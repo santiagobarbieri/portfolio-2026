@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "Albert Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../assets/fonts/albert-sans-300.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Albert Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/albert-sans-600.woff2") format("woff2");
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --fg: #f1ece0;
+  /* AA contrast for small text; these stay slightly stronger than the mockups. */
+  --mute: #98958e;
+  --line: #77746f;
+  --font: "Albert Sans", system-ui, sans-serif;
+  --frame-margin: 16px;
+  --frame-top: 40px;
+  --sidebar-width: 235px;
+  --duration: 300ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f1ece0;
+  --fg: #0a0a0a;
+  --mute: #6b675f;
+  --line: #807d76;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p,
+ul,
+figure {
+  margin: 0;
+}
+
+body {
+  display: flow-root;
+  min-width: 0;
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.2;
+  transition: background-color var(--duration), color var(--duration);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+summary,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+summary {
+  cursor: pointer;
+}
+
+button {
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+strong,
+h1,
+h2 {
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 5px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 20;
+  top: 8px;
+  left: 16px;
+  padding: 12px;
+  background: var(--fg);
+  color: var(--bg);
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

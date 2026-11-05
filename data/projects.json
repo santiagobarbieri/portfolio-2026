@@ -1,0 +1,87 @@
+[
+  {
+    "slug": "stephen-king",
+    "code": "XX–00",
+    "title": "Stephen King",
+    "type": "Diseño editorial",
+    "category": "editorial",
+    "description": "Completar",
+    "cover": "assets/images/stephen-king/PORTADA.png",
+    "w": 1280,
+    "h": 720,
+    "alt": "Fondo rojo de la portada de la serie Stephen King",
+    "order": -2,
+    "kind": "project",
+    "details": "data/projects/stephen-king.json"
+  },
+  {
+    "slug": "olas-ditella",
+    "code": "XX–00",
+    "title": "OLAS Di Tella",
+    "type": "Identidad visual",
+    "category": "identidad",
+    "description": "Identidad visual para OLAS, agrupación estudiantil de la Universidad Torcuato Di Tella, y su campaña de octubre de 2026.",
+    "cover": "assets/images/olas-ditella/poster%201-1600.webp",
+    "w": 1600,
+    "h": 2263,
+    "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde",
+    "order": -1,
+    "kind": "project",
+    "details": "data/projects/olas-ditella.json"
+  },
+  {
+    "slug": "el-armado",
+    "code": "EA–02",
+    "title": "El Armado",
+    "type": "Identidad visual",
+    "category": "identidad",
+    "description": "Segunda edición de la fiesta de música y karaoke en La Dama de Bollini.",
+    "cover": "assets/images/el-armado/Cover.png",
+    "alt": "Identidad de El Armado: micrófono y botella ilustrados sobre fondo bordó",
+    "w": 1080,
+    "h": 1350,
+    "order": 0,
+    "kind": "project",
+    "meta": [
+      [
+        "Lugar",
+        "La Dama de Bollini"
+      ],
+      [
+        "Formato",
+        "Música y karaoke"
+      ]
+    ],
+    "details": "data/projects/el-armado.json"
+  },
+  {
+    "slug": "fotos-en-zapallar",
+    "code": "FZ–00",
+    "title": "Fotos en Zapallar",
+    "type": "Fotografía",
+    "category": "fotografia",
+    "description": "Fotografías de paisaje y escenas de la ciudad de Zapallar, Chile.",
+    "cover": "assets/images/zapallar/IMG_4660-1600.webp",
+    "w": 1600,
+    "h": 898,
+    "order": 1,
+    "kind": "project",
+    "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar",
+    "details": "data/projects/fotos-en-zapallar.json"
+  },
+  {
+    "slug": "orfeo",
+    "code": "O–00",
+    "title": "Orfeo",
+    "type": "Dirección creativa",
+    "category": "direccion-creativa",
+    "description": "Dirección creativa, contenido audiovisual y desarrollo web para En la Esquina, el primer drop de ORFEO en Buenos Aires.",
+    "cover": "assets/images/orfeo/PORTADA-1600.webp",
+    "w": 1600,
+    "h": 1067,
+    "order": 2,
+    "kind": "project",
+    "alt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
+    "details": "data/projects/orfeo.json"
+  }
+]

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark light">
+    <title>Portfolio -Santiago Barbieri</title>
+    <meta name="description" content="Explorá el portfolio de Santiago Barbieri: About, Contact, redes y herramientas creativas.">
+    <meta name="theme-color" content="#f1ece0">
+    <meta property="og:title" content="Santiago Barbieri — Portfolio">
+    <meta property="og:description" content="Graphic Designer, Web Developer & Photographer. Buenos Aires, Argentina.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/shell.css">
+    <link rel="stylesheet" href="./css/accordion.css">
+    <link rel="stylesheet" href="./css/nav.css">
+    <script src="./js/transitions.js"></script>
+    <script type="module" src="./js/nav.js"></script>
+  </head>
+  <body class="navigation-page">
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+    <header class="site-header">
+      <nav class="site-navigation" aria-label="Navegación principal">
+        <a class="tab navigation-close" href="./index.html" aria-label="Cerrar navegación y volver al archivo" data-close-navigation>
+          <span data-origin-label>Index</span>
+          <span class="navigation-close__icon" aria-hidden="true">×</span>
+        </a>
+      </nav>
+      <a class="identity" href="./index.html" aria-label="Santiago Barbieri — Archivo">
+        <span class="identity__copy">
+          <strong class="identity__name">Santiago Barbieri</strong>
+          <span class="identity__role" lang="en">Graphic Designer, Web<br>Developer &amp; Photographer</span>
+        </span>
+        <span class="identity__glyph" aria-hidden="true"></span>
+      </a>
+    </header>
+
+    <main class="navigation-layout" id="main-content" tabindex="-1">
+      <h1 class="visually-hidden">Navegación — Santiago Barbieri</h1>
+      <figure class="navigation-feature" data-navigation-preview aria-busy="false">
+        <a href="./project.html?p=stephen-king" aria-label="Abrir Stephen King" data-preview-link>
+          <img class="navigation-feature__image" src="./assets/images/stephen-king/PORTADA.png" alt="Fondo rojo de la portada de la serie Stephen King" width="1280" height="720" decoding="async" data-preview-media>
+        </a>
+        <figcaption data-preview-caption aria-live="polite" aria-atomic="true">Stephen King</figcaption>
+      </figure>
+
+      <nav class="navigation-directory" aria-label="Páginas y enlaces" tabindex="0" aria-describedby="navigation-preview-help">
+        <p class="visually-hidden" id="navigation-preview-help">Desplazá la rueda sobre esta lista o usá las flechas para cambiar la imagen de proyecto.</p>
+        <a class="tab" href="./index.html">Archivo</a>
+        <a class="tab" href="./about.html">About</a>
+        <a class="tab" href="./contact.html">Contact</a>
+        <details class="accordion" name="navigation-group">
+          <summary class="tab accordion__trigger">Socials</summary>
+          <div class="accordion__content">
+            <!-- TODO: add the real profile URLs. -->
+            <ul class="directory-list" aria-label="Redes sociales pendientes de vincular">
+              <li><span aria-disabled="true" title="Enlace pendiente">Instagram</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Behance</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">LinkedIn</span></li>
+            </ul>
+          </div>
+        </details>
+        <details class="accordion" name="navigation-group">
+          <summary class="tab accordion__trigger">Shop</summary>
+          <div class="accordion__content">
+            <!-- TODO: add the real store URL. -->
+            <ul class="directory-list"><li><span aria-disabled="true" title="Enlace pendiente">Gumroad</span></li></ul>
+          </div>
+        </details>
+        <details class="accordion" name="navigation-group">
+          <summary class="tab accordion__trigger">Tools</summary>
+          <div class="accordion__content">
+            <!-- TODO: add approved URLs for available tools. -->
+            <ul class="directory-list" aria-label="Herramientas">
+              <li><span aria-disabled="true" title="Enlace pendiente">Basement</span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Endo<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Ruin<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Foundry<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Marble<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Margin</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Assembly</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Orbit</span></li>
+            </ul>
+          </div>
+        </details>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__location">
+        <p>Buenos Aires, Argentina</p>
+        <time data-local-clock>Hora de Buenos Aires</time>
+      </div>
+      <span class="site-footer__signature">Portfolio</span>
+    </footer>
+  </body>
+</html>

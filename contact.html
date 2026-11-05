@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark light">
+    <title>Contact — Santiago Barbieri</title>
+    <meta name="description" content="Contactá a Santiago Barbieri para conversar sobre diseño gráfico, desarrollo web y fotografía.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="Contact — Santiago Barbieri">
+    <meta property="og:description" content="Contactá a Santiago Barbieri para conversar sobre diseño gráfico, desarrollo web y fotografía.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/shell.css">
+    
+    <link rel="stylesheet" href="./css/contact.css">
+    <script src="./js/transitions.js"></script>
+    <script type="module" src="./js/contact.js"></script>
+  </head>
+  <body class="contact-page">
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <nav class="site-navigation" aria-label="Navegación principal">
+        <a class="tab contact-navigation__trigger" href="./nav.html?from=contact" aria-label="Abrir navegación — Contact">
+          <span>Contact</span>
+          <span class="navigation-menu__icon" aria-hidden="true"></span>
+        </a>
+      </nav>
+      <a class="identity" href="./index.html" aria-label="Santiago Barbieri — Archivo">
+        <span class="identity__copy">
+          <strong class="identity__name">Santiago Barbieri</strong>
+          <span class="identity__role" lang="en">Graphic Designer, Web<br>Developer &amp; Photographer</span>
+        </span>
+        <span class="identity__glyph" aria-hidden="true"></span>
+      </a>
+    </header>
+
+    <main class="contact-main" id="main-content" tabindex="-1">
+      <h1 class="visually-hidden">Contact — Santiago Barbieri</h1>
+      <section class="contact-layout" aria-labelledby="contact-title">
+        <h2 class="tab contact-entry__heading" id="contact-title" lang="en">Let's Work Together</h2>
+        <!-- TODO: connect the form to the approved contact service before enabling Send. -->
+        <form class="contact-entry__form" id="contact-form" method="post">
+          <div class="contact-field">
+            <label for="contact-name" lang="en">Name <span class="visually-hidden">(obligatorio)</span></label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="contact-field">
+            <label for="contact-email" lang="en">Email <span class="visually-hidden">(obligatorio)</span></label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="contact-field contact-field--message">
+            <label for="contact-message" lang="en">Your Message <span class="visually-hidden">(obligatorio)</span></label>
+            <textarea id="contact-message" name="message" rows="3" autocomplete="off" data-lenis-prevent required></textarea>
+          </div>
+          <p class="contact-entry__status" id="contact-status" role="status">El envío estará disponible próximamente.</p>
+          <button class="tab contact-entry__send" type="submit" aria-describedby="contact-status" disabled lang="en">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__location">
+        <p>Buenos Aires, Argentina</p>
+        <time data-local-clock>Hora de Buenos Aires</time>
+      </div>
+      <span class="site-footer__signature">Portfolio</span>
+    </footer>
+  </body>
+</html>

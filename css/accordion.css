@@ -1,0 +1,102 @@
+.accordion {
+  scroll-margin-top: 100px;
+}
+
+.accordion + .accordion {
+  margin-top: 4px;
+}
+
+.accordion__trigger {
+  list-style: none;
+}
+
+.accordion__trigger::-webkit-details-marker {
+  display: none;
+}
+
+/* Keep the Index's clean tabs; affordance appears on hover and keyboard focus. */
+.accordion__trigger::before {
+  width: 5px;
+  height: 5px;
+  margin-right: 3px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  content: "";
+  order: 1;
+  opacity: 0;
+  transform: rotate(45deg);
+  transition: transform 200ms var(--ease), opacity 200ms;
+}
+
+.accordion__trigger:hover::before,
+.accordion__trigger:focus-visible::before {
+  opacity: 1;
+}
+
+.accordion[open] .accordion__trigger::before {
+  transform: rotate(135deg);
+}
+
+.accordion__content {
+  padding: 4px 0 0 5px;
+  text-align: right;
+}
+
+.accordion__content p {
+  margin: 3px 0 5px;
+}
+
+.accordion__content p + p {
+  margin-top: 8px;
+}
+
+.directory-list li {
+  min-height: 18px;
+  line-height: 18px;
+}
+
+.directory-item {
+  display: inline-block;
+}
+
+.directory-item--unavailable,
+.directory-note {
+  color: var(--mute);
+}
+
+@supports (interpolate-size: allow-keywords) {
+  .accordion,
+  .navigation-menu {
+    interpolate-size: allow-keywords;
+  }
+
+  .accordion::details-content,
+  .navigation-menu::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height var(--duration) var(--ease), content-visibility var(--duration) allow-discrete;
+  }
+
+  .accordion[open]::details-content,
+  .navigation-menu[open]::details-content {
+    height: auto;
+  }
+}
+
+.accordion[data-animate] .accordion__content > *,
+.accordion[data-animate] .directory-list li {
+  animation: directory-reveal 240ms var(--ease) both;
+}
+
+.accordion[data-animate] li:nth-child(2) { animation-delay: 30ms; }
+.accordion[data-animate] li:nth-child(3) { animation-delay: 60ms; }
+.accordion[data-animate] li:nth-child(4) { animation-delay: 90ms; }
+.accordion[data-animate] li:nth-child(5) { animation-delay: 120ms; }
+.accordion[data-animate] li:nth-child(6) { animation-delay: 150ms; }
+.accordion[data-animate] li:nth-child(7) { animation-delay: 180ms; }
+.accordion[data-animate] li:nth-child(8) { animation-delay: 210ms; }
+
+@keyframes directory-reveal {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}

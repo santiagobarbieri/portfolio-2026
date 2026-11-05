@@ -1,0 +1,589 @@
+{
+  "slug": "orfeo",
+  "code": "O–00",
+  "title": "Orfeo",
+  "type": "Dirección creativa",
+  "category": "direccion-creativa",
+  "description": "Dirección creativa, contenido audiovisual y desarrollo web para En la Esquina, el primer drop de ORFEO en Buenos Aires.",
+  "cover": "assets/images/orfeo/PORTADA-1600.webp",
+  "w": 1600,
+  "h": 1067,
+  "alt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
+  "hero": "assets/images/orfeo/PORTADA-1600.webp",
+  "heroW": 1600,
+  "heroH": 1067,
+  "heroAlt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
+  "meta": [
+    [
+      "Colección",
+      "En la Esquina"
+    ],
+    [
+      "Lugar",
+      "Buenos Aires, Argentina"
+    ],
+    [
+      "Año",
+      "2026"
+    ],
+    [
+      "Rol",
+      "Dirección creativa, producción y edición audiovisual, desarrollo y gestión web"
+    ],
+    [
+      "Fotografía",
+      "Juana"
+    ]
+  ],
+  "intro": [],
+  "sections": [
+    {
+      "n": "01",
+      "title": "En la Esquina",
+      "block": "text",
+      "text": "Para su primer drop, En la Esquina, ORFEO reunió tres sweaters —Talcahuano, Lavalle y Viamonte— y una campaña centrada en la vida cotidiana de Buenos Aires. Mi participación abarcó el desarrollo creativo del lanzamiento, la producción y edición audiovisual y el desarrollo y la gestión técnica de la página web, en colaboración con el equipo de ORFEO."
+    },
+    {
+      "n": "02",
+      "title": "Logo",
+      "block": "logo",
+      "items": [
+        {
+          "src": "assets/images/orfeo/logo%20%281%29.png",
+          "w": 4134,
+          "h": 4134,
+          "alt": "Logotipo de ORFEO sobre fondo claro"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
+          "w": 1600,
+          "h": 1600,
+          "alt": "Sello oval de ORFEO con el lema Back to Basics",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/favicon.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Monograma ORF sobre fondo claro"
+        }
+      ]
+    },
+    {
+      "n": "03",
+      "title": "Colección",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/orfeo/IMG_4710-800.webp",
+          "w": 800,
+          "h": 533,
+          "alt": "Detalle de un sweater marrón tejido en la colección de ORFEO",
+          "original": "assets/images/orfeo/IMG_4710.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4710-1600.webp",
+              "w": 1600,
+              "h": 1067
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4710-800.webp",
+              "w": 800,
+              "h": 533
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4775-800.webp",
+          "w": 800,
+          "h": 533,
+          "alt": "Detalle de camisa y sweater negro en la colección de ORFEO",
+          "original": "assets/images/orfeo/IMG_4775.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4775-1600.webp",
+              "w": 1600,
+              "h": 1067
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4775-800.webp",
+              "w": 800,
+              "h": 533
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4800-800.webp",
+          "w": 800,
+          "h": 533,
+          "alt": "Vista posterior de un sweater azul tejido en la colección de ORFEO",
+          "original": "assets/images/orfeo/IMG_4800.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4800-1600.webp",
+              "w": 1600,
+              "h": 1067
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4800-800.webp",
+              "w": 800,
+              "h": 533
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "04",
+      "title": "Fotografía de campaña",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/orfeo/IMG_4109-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater marrón en una escalinata porteña",
+          "original": "assets/images/orfeo/IMG_4109.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4109-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4109-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4144-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater marrón junto a la entrada de un edificio",
+          "original": "assets/images/orfeo/IMG_4144.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4144-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4144-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4246-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater negro durante un viaje en transporte público",
+          "original": "assets/images/orfeo/IMG_4246.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4246-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4246-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4452-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater negro en un espacio verde de la ciudad",
+          "original": "assets/images/orfeo/IMG_4452.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4452-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4452-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4484-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater azul en un recorrido urbano",
+          "original": "assets/images/orfeo/IMG_4484.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4484-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4484-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4685-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater azul junto a un árbol",
+          "original": "assets/images/orfeo/IMG_4685.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4685-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4685-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4868-800.webp",
+          "w": 800,
+          "h": 533,
+          "alt": "Tres modelos con los sweaters de la colección de ORFEO",
+          "original": "assets/images/orfeo/IMG_4868.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4868-1600.webp",
+              "w": 1600,
+              "h": 1067
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4868-800.webp",
+              "w": 800,
+              "h": 533
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "05",
+      "title": "Recursos gráficos",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Estampilla gráfica de ORFEO en rojo y amarillo",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Estampilla gráfica de ORFEO sobre fondo claro",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Estampilla gráfica de ORFEO sobre fondo oscuro",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001047.154.png",
+          "w": 3543,
+          "h": 3543,
+          "alt": "Variante de estampilla gráfica de ORFEO en blanco"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Estampilla ilustrada de ORFEO en tonos claros",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Aplicaciones",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular negra"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular verde"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular marrón"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular azul"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en bordó",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en verde",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en azul",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en marrón",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "07",
+      "title": "Trabajo en equipo",
+      "block": "text",
+      "text": "La narrativa del lanzamiento fue una construcción colectiva. Federico y Bautista fundaron la marca; Juana trabajó en fotografía, edición fotográfica y estética visual. El trabajo presentado aquí sitúa mi aporte en la dirección creativa del primer drop, el contenido audiovisual y la página web."
+    }
+  ],
+  "sandbox": [
+    {
+      "src": "assets/images/orfeo/PORTADA-1600.webp",
+      "x": 9,
+      "y": 15,
+      "w": 22,
+      "z": 1,
+      "original": "assets/images/orfeo/PORTADA.JPG",
+      "sources": [
+        {
+          "src": "assets/images/orfeo/PORTADA-1600.webp",
+          "w": 1600,
+          "h": 1067
+        },
+        {
+          "src": "assets/images/orfeo/PORTADA-800.webp",
+          "w": 800,
+          "h": 533
+        }
+      ]
+    },
+    {
+      "src": "assets/images/orfeo/logo%20%281%29.png",
+      "x": 39,
+      "y": 12,
+      "w": 15.8,
+      "z": 2
+    },
+    {
+      "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-1600.webp",
+      "x": 68,
+      "y": 14,
+      "w": 15.8,
+      "z": 3,
+      "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714.png",
+      "sources": [
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-1600.webp",
+          "w": 1600,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp",
+          "w": 800,
+          "h": 800
+        }
+      ]
+    },
+    {
+      "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-1600.webp",
+      "x": 10,
+      "y": 60,
+      "w": 15.8,
+      "z": 4,
+      "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657.png",
+      "sources": [
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-1600.webp",
+          "w": 1600,
+          "h": 1600
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp",
+          "w": 800,
+          "h": 800
+        }
+      ]
+    },
+    {
+      "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png",
+      "x": 40,
+      "y": 56,
+      "w": 15.8,
+      "z": 5
+    },
+    {
+      "src": "assets/images/orfeo/IMG_4109-1600.webp",
+      "x": 70,
+      "y": 58,
+      "w": 10.5,
+      "z": 6,
+      "original": "assets/images/orfeo/IMG_4109.JPG",
+      "sources": [
+        {
+          "src": "assets/images/orfeo/IMG_4109-1600.webp",
+          "w": 1536,
+          "h": 2304
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4109-800.webp",
+          "w": 800,
+          "h": 1200
+        }
+      ]
+    }
+  ],
+  "coverOriginal": "assets/images/orfeo/PORTADA.JPG",
+  "heroOriginal": "assets/images/orfeo/PORTADA.JPG"
+}

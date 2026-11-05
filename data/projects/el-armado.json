@@ -1,0 +1,187 @@
+{
+  "slug": "el-armado",
+  "code": "EA–02",
+  "title": "El Armado",
+  "type": "Identidad visual",
+  "description": "Segunda edición de la fiesta de música y karaoke en La Dama de Bollini.",
+  "cover": "assets/images/el-armado/Cover.png",
+  "w": 1080,
+  "h": 1350,
+  "hero": "assets/images/el-armado/FLYER A4 - EL ARMADO.png",
+  "heroW": 2480,
+  "heroH": 3508,
+  "heroAlt": "Afiche de El Armado con logotipo, micrófono y botella sobre fondo bordó",
+  "meta": [
+    [
+      "Lugar",
+      "La Dama de Bollini"
+    ],
+    [
+      "Formato",
+      "Música y karaoke"
+    ]
+  ],
+  "sections": [
+    {
+      "n": "01",
+      "title": "Logo",
+      "block": "logo",
+      "items": [
+        {
+          "src": "assets/images/el-armado/Logo.png",
+          "w": 863,
+          "h": 343,
+          "alt": "Logotipo de El Armado en letras condensadas color hueso"
+        }
+      ]
+    },
+    {
+      "n": "02",
+      "title": "Paleta",
+      "block": "palette",
+      "colors": [
+        {
+          "name": "Hueso",
+          "hex": "#D2DDCC"
+        },
+        {
+          "name": "Vino",
+          "hex": "#360F17"
+        },
+        {
+          "name": "Malva",
+          "hex": "#9E6B7A"
+        },
+        {
+          "name": "Verde",
+          "hex": "#9AE4A3"
+        }
+      ]
+    },
+    {
+      "n": "03",
+      "title": "Iconografía",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/el-armado/Iconography 1.png",
+          "w": 760,
+          "h": 754,
+          "alt": "Manos sosteniendo un micrófono y una botella, iconografía de El Armado"
+        },
+        {
+          "src": "assets/images/el-armado/Iconography 2.png",
+          "w": 976,
+          "h": 813,
+          "alt": "El Armado — segunda pieza de iconografía"
+        }
+      ]
+    },
+    {
+      "n": "04",
+      "title": "Afiche",
+      "block": "pair",
+      "items": [
+        {
+          "src": "assets/images/el-armado/FLYER A4 - EL ARMADO.png",
+          "w": 2480,
+          "h": 3508,
+          "alt": "Afiche de El Armado con ilustraciones y datos de la fiesta"
+        }
+      ]
+    },
+    {
+      "n": "05",
+      "title": "Redes sociales",
+      "block": "pair",
+      "items": [
+        {
+          "src": "assets/images/el-armado/HISTORIA IG - EL ARMADO (1).png",
+          "w": 1080,
+          "h": 1920,
+          "alt": "Historia de Instagram de El Armado"
+        }
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Variantes",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/el-armado/VARIANTES 1.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 1"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 2.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 2"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 3.png",
+          "w": 283,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 3"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 4.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 4"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 5.png",
+          "w": 283,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 5"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 6.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 6"
+        },
+        {
+          "src": "assets/images/el-armado/Variante Logo.png",
+          "w": 970,
+          "h": 970,
+          "alt": "El Armado — variante del logotipo"
+        }
+      ]
+    },
+    {
+      "n": "07",
+      "title": "Referencias",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/el-armado/REFERENCIAS 1.png",
+          "w": 254,
+          "h": 254,
+          "alt": "El Armado — referencia visual 1"
+        },
+        {
+          "src": "assets/images/el-armado/REFERENCIAS 2.png",
+          "w": 222,
+          "h": 260,
+          "alt": "El Armado — referencia visual 2"
+        },
+        {
+          "src": "assets/images/el-armado/REFERENCIAS 3.png",
+          "w": 163,
+          "h": 204,
+          "alt": "El Armado — referencia visual 3"
+        },
+        {
+          "src": "assets/images/el-armado/REFERENCIAS 4.png",
+          "w": 175,
+          "h": 234,
+          "alt": "El Armado — referencia visual 4"
+        }
+      ]
+    }
+  ]
+}

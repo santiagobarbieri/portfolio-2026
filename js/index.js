@@ -1,0 +1,331 @@
+import { initArchiveMotion } from "./motion.js";
+import { waitForImages } from "./loading.js";
+
+const storageKey = "portfolio-archive-state";
+const modulo = (value, count) => ((value % count) + count) % count;
+const collator = new Intl.Collator("es", { sensitivity: "base" });
+
+function node(tag, className, text) {
+  const result = document.createElement(tag);
+  if (className) result.className = className;
+  if (text) result.textContent = text;
+  return result;
+}
+
+function createCard(project) {
+  const card = node("article", "archive-card");
+  Object.assign(card.dataset, { slug: project.slug, category: project.category, order: project.order });
+  const link = node("a", "archive-card__link");
+  link.href = `./project.html?p=${encodeURIComponent(project.slug)}`;
+  link.setAttribute("aria-label", `Abrir ${project.title}`);
+  const media = node("div", "archive-card__media");
+  if (project.cover) {
+    const image = node("img", "archive-card__image");
+    image.src = new URL(project.cover, document.baseURI).href;
+    image.alt = project.alt || `${project.title} — ${project.type}`;
+    image.width = project.w;
+    image.height = project.h;
+    image.decoding = "async";
+    image.loading = "lazy";
+    image.dataset.coverMotion = "";
+    media.append(image);
+  } else {
+    const placeholder = node("div", `archive-card__placeholder archive-card__placeholder--${project.placeholder || "landscape"}`);
+    placeholder.setAttribute("aria-hidden", "true");
+    const preview = node("div", "archive-card__preview");
+    preview.dataset.coverMotion = "";
+    preview.append(node("span", "archive-card__preview-label", "Portada pendiente"), node("span", "archive-card__preview-title", project.title), node("p", "archive-card__preview-text", project.description));
+    placeholder.append(preview);
+    media.append(placeholder);
+  }
+  const caption = node("div", "archive-card__caption");
+  caption.append(node("span", "archive-card__code", project.code || "—"), node("h2", "archive-card__title", `${project.title} - ${project.type}`), node("p", "archive-card__description", project.description || "Completar"));
+  link.append(media, caption);
+  card.append(link);
+  return card;
+}
+
+function storedState() {
+  try { return JSON.parse(sessionStorage.getItem(storageKey)) || {}; } catch { return {}; }
+}
+
+export async function initArchive() {
+  const stream = document.querySelector("[data-archive-stream]");
+  if (!stream) return;
+  let templates = [...stream.querySelectorAll(".archive-card")];
+  try {
+    const response = await fetch(new URL("../data/projects.json", import.meta.url));
+    if (response.ok) templates = (await response.json()).map(createCard);
+  } catch {
+    // Full HTML cards remain the source if the registry is unavailable.
+  }
+  await document.fonts.ready;
+
+  const state = storedState();
+  const menus = [...document.querySelectorAll("[data-filter-menu]")];
+  const status = document.querySelector("[data-archive-status]");
+  const main = document.getElementById("main-content");
+  const mediaQuery = matchMedia("(max-width: 600px)");
+  let category = templates.some((card) => card.dataset.category === state.category) ? state.category : "all";
+  let order = ["newest", "oldest", "az"].includes(state.order) ? state.order : "newest";
+  let selected = [];
+  let rows = [];
+  const cardPool = new Map();
+  const heights = new Map();
+  let streamY = 0;
+  let streamHeight = 0;
+  let lastAccessibilityY = -Infinity;
+  let working = false;
+  let resizeFrame = 0;
+  let startY = 0;
+  let pristine = state.version === 2 ? Boolean(state.pristine) : true;
+  let focusSlug = state.slug || null;
+  const motion = initArchiveMotion({ onFrame: recycle });
+  const buffer = () => Math.max(700, innerHeight * 1.35);
+
+  function sorted() {
+    return templates.filter((card) => category === "all" || card.dataset.category === category).sort((a, b) => {
+      if (order === "az") return collator.compare(a.querySelector("h2").textContent, b.querySelector("h2").textContent);
+      const difference = Number(a.dataset.order) - Number(b.dataset.order);
+      return order === "oldest" ? -difference : difference;
+    });
+  }
+
+  function makeRow(sequence, reusable) {
+    const row = reusable || node("div", "archive-row");
+    row.dataset.sequence = sequence;
+    row.toggleAttribute("data-history", sequence < 0);
+    const template = selected[modulo(sequence, selected.length)];
+    let card = row.firstElementChild;
+    if (card?.dataset.slug !== template.dataset.slug) {
+      if (card) releaseCard(card);
+      card = cardPool.get(template.dataset.slug)?.pop() || template.cloneNode(true);
+      row.replaceChildren(card);
+    }
+    card.classList.toggle("archive-card--right", modulo(sequence, 2) === 1);
+    return row;
+  }
+
+  function releaseCard(card) {
+    const pool = cardPool.get(card.dataset.slug) || [];
+    cardPool.set(card.dataset.slug, pool);
+    card.remove();
+    pool.push(card);
+  }
+
+  function rowHeight(row) {
+    const slug = row.firstElementChild.dataset.slug;
+    if (!heights.has(slug)) heights.set(slug, row.getBoundingClientRect().height);
+    return heights.get(slug);
+  }
+
+  function syncAccessibility() {
+    const representatives = new Map();
+    let top = streamY - scrollY;
+    rows.forEach((row) => {
+      const card = row.firstElementChild;
+      const hidden = pristine && row.hasAttribute("data-history");
+      const distance = hidden ? Infinity : Math.abs(top - 140);
+      const current = representatives.get(card.dataset.slug);
+      const focused = row.contains(document.activeElement);
+      if (!current || focused || (!current.focused && distance < current.distance)) representatives.set(card.dataset.slug, { row, distance, focused });
+      top += rowHeight(row);
+    });
+    rows.forEach((row) => {
+      const primary = representatives.get(row.firstElementChild.dataset.slug)?.row === row;
+      if (primary && row.hasAttribute("aria-hidden")) row.removeAttribute("aria-hidden");
+      else if (!primary && !row.hasAttribute("aria-hidden")) row.setAttribute("aria-hidden", "true");
+      const link = row.firstElementChild.firstElementChild;
+      const tabIndex = primary ? 0 : -1;
+      if (link.tabIndex !== tabIndex) link.tabIndex = tabIndex;
+    });
+    lastAccessibilityY = scrollY;
+  }
+
+  function anchor() {
+    const row = rows.find((item) => !(pristine && item.hasAttribute("data-history")) && item.getBoundingClientRect().bottom > 1) || rows[0];
+    if (!row) return { sequence: 0, offset: 0 };
+    return { sequence: Number(row.dataset.sequence), offset: -row.getBoundingClientRect().top };
+  }
+
+  function save() {
+    try {
+      sessionStorage.setItem(storageKey, JSON.stringify({ version: 2, category, order, pristine, ...anchor(), slug: focusSlug }));
+    } catch {}
+  }
+
+  function updateMenus() {
+    menus.forEach((menu) => {
+      const key = menu.dataset.filterMenu;
+      const value = key === "category" ? category : order;
+      const checked = menu.querySelector(`input[value="${CSS.escape(value)}"]`);
+      if (checked) {
+        checked.checked = true;
+        menu.querySelector("[data-filter-label]").textContent = checked.nextElementSibling.textContent;
+      }
+    });
+    status.textContent = `${selected.length} ${selected.length === 1 ? "proyecto" : "proyectos"}`;
+  }
+
+  function render(position = { sequence: 0, offset: -main.offsetTop }) {
+    working = true;
+    selected = sorted();
+    rows.forEach((row) => releaseCard(row.firstElementChild));
+    heights.clear();
+    stream.replaceChildren();
+    rows = [];
+    if (!selected.length) {
+      stream.append(node("p", "archive-empty", "No hay proyectos en esta categoría."));
+      motion.resize();
+      motion.scrollTo(0, { immediate: true });
+      updateMenus();
+      working = false;
+      return;
+    }
+    const sequence = Number.isSafeInteger(position.sequence) ? position.sequence : 0;
+    let center = makeRow(sequence);
+    rows.push(center);
+    stream.append(center);
+    // Keep the complete catalogue represented, then fill a viewport-sized buffer.
+    for (let index = 1; index < selected.length; index += 1) {
+      const row = makeRow(sequence + index);
+      rows.push(row);
+      stream.append(row);
+    }
+    let beforeHeight = 0;
+    while (beforeHeight < buffer() + Math.max(0, position.offset) && rows.length < selected.length + 160) {
+      const row = makeRow(Number(rows[0].dataset.sequence) - 1);
+      stream.prepend(row);
+      rows.unshift(row);
+      beforeHeight += rowHeight(row);
+    }
+    let belowHeight = rows.slice(rows.indexOf(center)).reduce((sum, row) => sum + rowHeight(row), 0);
+    while (belowHeight < innerHeight + buffer() + Math.max(0, position.offset) && rows.length < selected.length + 220) {
+      const row = makeRow(Number(rows.at(-1).dataset.sequence) + 1);
+      stream.append(row);
+      rows.push(row);
+      belowHeight += rowHeight(row);
+    }
+    document.body.dataset.pristine = String(pristine);
+    streamY = stream.getBoundingClientRect().top + scrollY;
+    streamHeight = rows.reduce((sum, row) => sum + rowHeight(row), 0);
+    motion.resize();
+    motion.scrollTo(stream.offsetTop + center.offsetTop + position.offset, { immediate: true });
+    startY = scrollY;
+    syncAccessibility();
+    updateMenus();
+    working = false;
+  }
+
+  function recycle() {
+    if (working || !rows.length) return;
+    working = true;
+    let zeroBottom = streamY;
+    for (const row of rows) {
+      zeroBottom += rowHeight(row);
+      if (row.dataset.sequence === "0") break;
+    }
+    if (pristine && (scrollY < startY - 1 || zeroBottom < scrollY)) {
+      pristine = false;
+      document.body.dataset.pristine = "false";
+    }
+    let changed = false;
+    let compensation = 0;
+    let guard = 0;
+    // Move only fully offscreen rows. Compensate their exact height in the same frame.
+    while (rows.length > 1 && streamY + rowHeight(rows[0]) < scrollY + compensation - buffer() && guard++ < 160) {
+      const first = rows.shift();
+      const height = rowHeight(first);
+      const sequence = Number(rows.at(-1).dataset.sequence) + 1;
+      if (first.contains(document.activeElement)) main.focus({ preventScroll: true });
+      first.remove();
+      stream.append(makeRow(sequence, first));
+      rows.push(first);
+      streamHeight += rowHeight(first) - height;
+      compensation -= height;
+      changed = true;
+    }
+    guard = 0;
+    while (streamY > scrollY + compensation - buffer() && guard++ < 160) {
+      const sequence = Number(rows[0].dataset.sequence) - 1;
+      const last = rows.at(-1);
+      const lastTop = streamY + streamHeight - rowHeight(last);
+      const canReuse = rows.length > selected.length + 1 && lastTop > scrollY + compensation + innerHeight + buffer();
+      const row = canReuse ? rows.pop() : null;
+      if (row) { streamHeight -= rowHeight(row); row.remove(); }
+      const previous = makeRow(sequence, row);
+      stream.prepend(previous);
+      rows.unshift(previous);
+      const height = rowHeight(previous);
+      streamHeight += height;
+      compensation += height;
+      changed = true;
+    }
+    // A run of short covers must still leave enough content ahead of the viewport.
+    guard = 0;
+    while (streamY + streamHeight < scrollY + compensation + innerHeight + buffer() && guard++ < 160) {
+      const row = makeRow(Number(rows.at(-1).dataset.sequence) + 1);
+      stream.append(row);
+      rows.push(row);
+      streamHeight += rowHeight(row);
+      changed = true;
+    }
+    while (rows.length > selected.length + 3 && streamY + streamHeight - rowHeight(rows.at(-1)) - rowHeight(rows.at(-2)) > scrollY + compensation + innerHeight + buffer() * 1.8) {
+      const row = rows.pop();
+      streamHeight -= rowHeight(row);
+      releaseCard(row.firstElementChild);
+      row.remove();
+      changed = true;
+    }
+    if (changed) motion.rebase(compensation);
+    if (changed || Math.abs(scrollY - lastAccessibilityY) > 100) syncAccessibility();
+    working = false;
+  }
+
+  history.scrollRestoration = "manual";
+  document.body.classList.add("has-archive-loop");
+  render(state.version === 2 ? state : undefined);
+  menus.forEach((menu) => {
+    menu.addEventListener("change", (event) => {
+      if (!event.target.matches("input")) return;
+      if (menu.dataset.filterMenu === "category") category = event.target.value;
+      else order = event.target.value;
+      menu.open = false;
+      pristine = true;
+      render();
+      save();
+      menu.querySelector("summary").focus({ preventScroll: true });
+    });
+    menu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") { menu.open = false; menu.querySelector("summary").focus(); }
+    });
+  });
+  document.addEventListener("pointerdown", (event) => menus.forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; }));
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (link?.href.includes("project.html")) {
+      focusSlug = new URL(link.href).searchParams.get("p");
+      save();
+    }
+    if (link?.classList.contains("skip-link")) {
+      event.preventDefault();
+      main.focus({ preventScroll: true });
+    }
+  });
+  window.addEventListener("pagehide", save);
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+    const position = storedState();
+    pristine = Boolean(position.pristine);
+    render(position);
+    const card = rows.find((row) => row.firstElementChild.dataset.slug === focusSlug && row.getBoundingClientRect().bottom > 0);
+    card?.querySelector("a").focus({ preventScroll: true });
+  });
+  window.addEventListener("resize", () => {
+    const position = anchor();
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => render(position));
+  }, { passive: true });
+  mediaQuery.addEventListener("change", () => { const position = anchor(); render(position); });
+  await waitForImages(stream);
+}

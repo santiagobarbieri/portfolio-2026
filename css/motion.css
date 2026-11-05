@@ -1,0 +1,14 @@
+/* Minimal recommended Lenis styles; the page keeps its native scroll container. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+

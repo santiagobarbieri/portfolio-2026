@@ -1,0 +1,369 @@
+{
+  "slug": "stephen-king",
+  "code": "XX–00",
+  "title": "Stephen King",
+  "type": "Diseño editorial",
+  "category": "editorial",
+  "description": "Completar",
+  "cover": "assets/images/stephen-king/PORTADA.png",
+  "w": 1280,
+  "h": 720,
+  "alt": "Fondo rojo de la portada de la serie Stephen King",
+  "hero": "assets/images/stephen-king/PORTADA.png",
+  "heroW": 1280,
+  "heroH": 720,
+  "heroAlt": "Fondo rojo de la portada de la serie Stephen King",
+  "meta": [],
+  "sections": [
+    {
+      "n": "01",
+      "title": "Portadas",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de 'SALEM'S LOT en la serie Stephen King",
+          "original": "assets/images/stephen-king/%27SALEM%27S%20LOT.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/CARRIE-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de CARRIE en la serie Stephen King",
+          "original": "assets/images/stephen-king/CARRIE.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/CARRIE-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/CARRIE-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/CUJO-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de CUJO en la serie Stephen King",
+          "original": "assets/images/stephen-king/CUJO.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/CUJO-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/CUJO-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/IT-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de IT en la serie Stephen King",
+          "original": "assets/images/stephen-king/IT.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/IT-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/IT-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/MISERY-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de MISERY en la serie Stephen King",
+          "original": "assets/images/stephen-king/MISERY.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/MISERY-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/MISERY-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de PET SEMATARY en la serie Stephen King",
+          "original": "assets/images/stephen-king/PET%20SEMATARY.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/PET%20SEMATARY-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de THE DARK TOWER en la serie Stephen King",
+          "original": "assets/images/stephen-king/THE%20DARK%20TOWER.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/THE%20DARK%20TOWER-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de THE DEAD ZONE en la serie Stephen King",
+          "original": "assets/images/stephen-king/THE%20DEAD%20ZONE.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de THE GREEN MILE en la serie Stephen King",
+          "original": "assets/images/stephen-king/THE%20GREEN%20MILE.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/THE%20GREEN%20MILE-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20SHINING-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Portada de THE SHINING en la serie Stephen King",
+          "original": "assets/images/stephen-king/THE%20SHINING.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/THE%20SHINING-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/THE%20SHINING-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "02",
+      "title": "Variantes",
+      "block": "grid",
+      "items": [
+        {
+          "src": "assets/images/stephen-king/Variante%201-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Stephen King — variante 1",
+          "original": "assets/images/stephen-king/Variante%201.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/Variante%201-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/Variante%201-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/Variante%202-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Stephen King — variante 2",
+          "original": "assets/images/stephen-king/Variante%202.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/Variante%202-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/Variante%202-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        },
+        {
+          "src": "assets/images/stephen-king/Variante%203-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Stephen King — variante 3",
+          "original": "assets/images/stephen-king/Variante%203.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/Variante%203-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/Variante%203-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sandbox": [
+    {
+      "src": "assets/images/stephen-king/PORTADA.png",
+      "x": 8,
+      "y": 12,
+      "w": 16,
+      "z": 1
+    },
+    {
+      "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-1600.webp",
+      "x": 39,
+      "y": 9,
+      "w": 16,
+      "z": 2,
+      "original": "assets/images/stephen-king/%27SALEM%27S%20LOT.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ]
+    },
+    {
+      "src": "assets/images/stephen-king/CARRIE-1600.webp",
+      "x": 70,
+      "y": 14,
+      "w": 16,
+      "z": 3,
+      "original": "assets/images/stephen-king/CARRIE.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/CARRIE-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/CARRIE-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ]
+    },
+    {
+      "src": "assets/images/stephen-king/CUJO-1600.webp",
+      "x": 24,
+      "y": 58,
+      "w": 16,
+      "z": 4,
+      "original": "assets/images/stephen-king/CUJO.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/CUJO-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/CUJO-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ]
+    },
+    {
+      "src": "assets/images/stephen-king/IT-1600.webp",
+      "x": 60,
+      "y": 57,
+      "w": 16,
+      "z": 5,
+      "original": "assets/images/stephen-king/IT.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/IT-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/IT-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ]
+    }
+  ]
+}
