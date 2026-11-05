@@ -255,9 +255,8 @@
       "frame": "portrait"
     },
     {
-      "n": "04",
-      "title": "Logo",
-      "block": "logo",
+      "title": "Logotipo",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/orfeo/logo%20%281%29.png",
@@ -266,7 +265,144 @@
           "alt": "Logotipo de ORFEO sobre fondo claro",
           "size": "medium",
           "alignment": "center"
+        }
+      ],
+      "variants": [
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular negra",
+          "caption": "Carbón"
         },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular verde",
+          "caption": "Oliva"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular marrón",
+          "caption": "Marrón"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca ORFEO en una aplicación circular azul",
+          "caption": "Marino"
+        }
+      ],
+      "variantsTitle": "Aplicaciones de color",
+      "n": "04"
+    },
+    {
+      "title": "Monograma",
+      "block": "comparison",
+      "items": [
+        {
+          "src": "assets/images/orfeo/favicon.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Monograma ORF sobre fondo claro",
+          "size": "compact",
+          "alignment": "center"
+        }
+      ],
+      "variants": [
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en bordó",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ],
+          "caption": "Lacre 01"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en verde",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ],
+          "caption": "Lacre 02"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en azul",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ],
+          "caption": "Lacre 03"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Sello en relieve de ORFEO en marrón",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ],
+          "caption": "Lacre 04"
+        }
+      ],
+      "variantsTitle": "Aplicaciones en lacre",
+      "n": "05"
+    },
+    {
+      "title": "Sello",
+      "block": "logo",
+      "layout": "brand-board",
+      "items": [
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
           "w": 1600,
@@ -287,22 +423,13 @@
           ],
           "size": "compact",
           "alignment": "center"
-        },
-        {
-          "src": "assets/images/orfeo/favicon.png",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Monograma ORF sobre fondo claro",
-          "size": "compact",
-          "alignment": "center"
         }
       ],
-      "layout": "brand-board"
+      "n": "06"
     },
     {
-      "n": "05",
-      "title": "Recursos gráficos",
-      "block": "grid",
+      "title": "Estampilla ilustrada",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp",
@@ -321,8 +448,11 @@
               "w": 800,
               "h": 800
             }
-          ]
-        },
+          ],
+          "size": "medium"
+        }
+      ],
+      "variants": [
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp",
           "w": 800,
@@ -340,7 +470,8 @@
               "w": 800,
               "h": 800
             }
-          ]
+          ],
+          "caption": "Variante 01"
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp",
@@ -359,14 +490,25 @@
               "w": 800,
               "h": 800
             }
-          ]
+          ],
+          "caption": "Variante 02"
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001047.154.png",
           "w": 3543,
           "h": 3543,
-          "alt": "Variante de estampilla gráfica de ORFEO en blanco"
-        },
+          "alt": "Variante de estampilla gráfica de ORFEO en blanco",
+          "caption": "Variante 03"
+        }
+      ],
+      "variantsTitle": "Variantes gráficas",
+      "n": "07"
+    },
+    {
+      "title": "Recurso ornamental",
+      "block": "gallery",
+      "layout": "brand-board",
+      "items": [
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
           "w": 800,
@@ -384,121 +526,14 @@
               "w": 800,
               "h": 800
             }
-          ]
+          ],
+          "size": "medium"
         }
       ],
-      "layout": "contact-sheet"
+      "n": "08"
     },
     {
-      "n": "06",
-      "title": "Aplicaciones",
-      "block": "grid",
-      "items": [
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Marca ORFEO en una aplicación circular negra"
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Marca ORFEO en una aplicación circular verde"
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Marca ORFEO en una aplicación circular marrón"
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Marca ORFEO en una aplicación circular azul"
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
-          "w": 800,
-          "h": 800,
-          "alt": "Sello en relieve de ORFEO en bordó",
-          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937.png",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-1600.webp",
-              "w": 1600,
-              "h": 1600
-            },
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
-              "w": 800,
-              "h": 800
-            }
-          ]
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
-          "w": 800,
-          "h": 800,
-          "alt": "Sello en relieve de ORFEO en verde",
-          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082.png",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-1600.webp",
-              "w": 1600,
-              "h": 1600
-            },
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
-              "w": 800,
-              "h": 800
-            }
-          ]
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
-          "w": 800,
-          "h": 800,
-          "alt": "Sello en relieve de ORFEO en azul",
-          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717.png",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-1600.webp",
-              "w": 1600,
-              "h": 1600
-            },
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
-              "w": 800,
-              "h": 800
-            }
-          ]
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
-          "w": 800,
-          "h": 800,
-          "alt": "Sello en relieve de ORFEO en marrón",
-          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326.png",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-1600.webp",
-              "w": 1600,
-              "h": 1600
-            },
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
-              "w": 800,
-              "h": 800
-            }
-          ]
-        }
-      ],
-      "layout": "contact-sheet"
-    },
-    {
-      "n": "07",
+      "n": "09",
       "title": "Trabajo en equipo",
       "block": "text",
       "text": "La narrativa del lanzamiento fue una construcción colectiva. Federico y Bautista fundaron la marca; Juana trabajó en fotografía, edición fotográfica y estética visual. El trabajo presentado aquí sitúa mi aporte en la dirección creativa del primer drop, el contenido audiovisual y la página web."

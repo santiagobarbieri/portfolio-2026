@@ -25,7 +25,7 @@
     {
       "n": "01",
       "title": "Logo",
-      "block": "logo",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/el-armado/Logo.png",
@@ -36,27 +36,23 @@
           "alignment": "center"
         }
       ],
-      "layout": "brand-board"
-    },
-    {
-      "title": "Variante de marca",
-      "block": "logo",
       "layout": "brand-board",
-      "items": [
+      "variants": [
         {
           "src": "assets/images/el-armado/Variante Logo.png",
           "w": 970,
           "h": 970,
           "alt": "El Armado — variante del logotipo",
-          "size": "compact"
+          "size": "compact",
+          "caption": "Variante de marca"
         }
       ],
-      "n": "02"
+      "variantsTitle": "Variante de marca"
     },
     {
-      "n": "03",
+      "n": "02",
       "title": "Iconografía",
-      "block": "grid",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/el-armado/Iconography 1.png",
@@ -65,22 +61,26 @@
           "alt": "Manos sosteniendo un micrófono y una botella, iconografía de El Armado",
           "size": "medium",
           "alignment": "start"
-        },
+        }
+      ],
+      "layout": "brand-board",
+      "variants": [
         {
           "src": "assets/images/el-armado/Iconography 2.png",
           "w": 976,
           "h": 813,
           "alt": "El Armado — segunda pieza de iconografía",
           "size": "medium",
-          "alignment": "end"
+          "alignment": "end",
+          "caption": "Versión lineal"
         }
       ],
-      "layout": "brand-board"
+      "variantsTitle": "Versión lineal"
     },
     {
-      "n": "04",
+      "n": "03",
       "title": "Afiche",
-      "block": "pair",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/el-armado/FLYER A4 - EL ARMADO.png",
@@ -90,10 +90,55 @@
         }
       ],
       "layout": "uniform-grid",
-      "frame": "poster"
+      "frame": "poster",
+      "variants": [
+        {
+          "src": "assets/images/el-armado/VARIANTES 1.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 1",
+          "caption": "Variante 01"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 2.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 2",
+          "caption": "Variante 02"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 3.png",
+          "w": 283,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 3",
+          "caption": "Variante 03"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 4.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 4",
+          "caption": "Variante 04"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 5.png",
+          "w": 283,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 5",
+          "caption": "Variante 05"
+        },
+        {
+          "src": "assets/images/el-armado/VARIANTES 6.png",
+          "w": 284,
+          "h": 401,
+          "alt": "El Armado — variante gráfica 6",
+          "caption": "Variante 06"
+        }
+      ],
+      "variantsTitle": "Variantes de afiche"
     },
     {
-      "n": "05",
+      "n": "04",
       "title": "Redes sociales",
       "block": "pair",
       "items": [
@@ -108,52 +153,7 @@
       "frame": "story"
     },
     {
-      "n": "06",
-      "title": "Variantes",
-      "block": "grid",
-      "items": [
-        {
-          "src": "assets/images/el-armado/VARIANTES 1.png",
-          "w": 284,
-          "h": 401,
-          "alt": "El Armado — variante gráfica 1"
-        },
-        {
-          "src": "assets/images/el-armado/VARIANTES 2.png",
-          "w": 284,
-          "h": 401,
-          "alt": "El Armado — variante gráfica 2"
-        },
-        {
-          "src": "assets/images/el-armado/VARIANTES 3.png",
-          "w": 283,
-          "h": 401,
-          "alt": "El Armado — variante gráfica 3"
-        },
-        {
-          "src": "assets/images/el-armado/VARIANTES 4.png",
-          "w": 284,
-          "h": 401,
-          "alt": "El Armado — variante gráfica 4"
-        },
-        {
-          "src": "assets/images/el-armado/VARIANTES 5.png",
-          "w": 283,
-          "h": 401,
-          "alt": "El Armado — variante gráfica 5"
-        },
-        {
-          "src": "assets/images/el-armado/VARIANTES 6.png",
-          "w": 284,
-          "h": 401,
-          "alt": "El Armado — variante gráfica 6"
-        }
-      ],
-      "layout": "contact-sheet",
-      "frame": "poster"
-    },
-    {
-      "n": "07",
+      "n": "05",
       "title": "Referencias",
       "block": "grid",
       "items": [

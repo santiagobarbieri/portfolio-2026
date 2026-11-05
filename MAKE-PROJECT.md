@@ -106,6 +106,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 | `video` | `video` | Reproductor a ancho completo. |
 | `text` | `texto`, `notas` | Texto light en columna angosta (máx. 420px). Contenido desde `.md` dentro de la carpeta. |
 | `gallery` | cualquier otro | Igual que `grid`. |
+| `comparison` | original y variantes asociadas | Principal en la primera columna y miniaturas en la segunda. La sección contiene `items` y `variants`. |
 
 **Grilla vigente:**
 - El área de contenido coincide con las dos columnas centrales de Archivo: hasta 870px, con el mismo gutter y alineación.
@@ -132,6 +133,8 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 En las marcas se puede declarar `size: compact|medium|wide`. Los logos quedan dentro de una columna central: una marca cuadrada llega a unos 300px y un monograma a 120–180px. No usar diferencias de tamaño ni alineaciones escalonadas en grillas de fotos o afiches.
 
 La propiedad raíz `palette` contiene `title`, `description`, `source` y `colors: [{name, hex, source?}]`. Se presenta junto al hero. `source` distingue valores provistos, colores de las piezas, muestras de aplicaciones o paletas fotográficas. Los nombres y HEX quedan visibles; si son valores muestreados, explicitar que son de referencia. Stephen King usa `source: per-cover` y conserva las paletas individuales.
+
+Las variantes van en `variants: [{src, w, h, alt, caption, sources?}]` de la sección que contiene su principal. `variantsTitle` puede distinguir exploraciones, aplicaciones de color u otras versiones verificadas. Se muestran como pruebas pequeñas, sin ampliar originales ni recortar. `cover-study` también admite `variants`, junto a la paleta y lectura visual. Mantener aparte las piezas que pertenecen a otra familia o no tienen relación demostrable.
 
 Para piezas editoriales individuales, `block: cover-study` muestra una tapa y una ficha lateral. La sección incluye un único `item`, `colors: [{name, hex}]` e `inspiration` como lectura visual breve. Si no existen referencias originales, describir solamente motivos visibles; no atribuir influencias al autor. En Stephen King los colores están muestreados de cada portada y esta lectura fue autorizada por Santi.
 

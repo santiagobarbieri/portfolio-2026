@@ -22,6 +22,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Cada proyecto muestra su paleta al abrirse, con nombres y HEX. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
 - Dentro de proyectos se ocultan ubicación y fecha/hora del footer. En las otras páginas se conservan.
 - El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
+- Las variantes verificadas se muestran más pequeñas junto a su pieza principal, dentro de la segunda columna central. No reunirlas en una galería independiente ni asociar familias gráficas distintas por suposición.
 
 ## 1. Stack y reglas de código
 

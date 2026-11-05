@@ -58,7 +58,49 @@
           "hex": "#301314"
         }
       ],
-      "inspiration": "Un bosque a contraluz, siluetas con ojos encendidos y textura granulada. El rojo del título corta una escena casi negra."
+      "inspiration": "Un bosque a contraluz, siluetas con ojos encendidos y textura granulada. El rojo del título corta una escena casi negra.",
+      "variants": [
+        {
+          "src": "assets/images/stephen-king/Variante%202-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Stephen King — variante 2",
+          "original": "assets/images/stephen-king/Variante%202.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/Variante%202-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/Variante%202-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ],
+          "caption": "Variante 02"
+        },
+        {
+          "src": "assets/images/stephen-king/Variante%203-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Stephen King — variante 3",
+          "original": "assets/images/stephen-king/Variante%203.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/Variante%203-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/Variante%203-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ],
+          "caption": "Variante 03"
+        }
+      ]
     },
     {
       "n": "02",
@@ -148,7 +190,29 @@
           "hex": "#C47C3C"
         }
       ],
-      "inspiration": "Un perro en primer plano sobre un paisaje seco. La imagen cálida y el rojo de las letras contrastan con el fondo claro."
+      "inspiration": "Un perro en primer plano sobre un paisaje seco. La imagen cálida y el rojo de las letras contrastan con el fondo claro.",
+      "variants": [
+        {
+          "src": "assets/images/stephen-king/Variante%201-800.webp",
+          "w": 800,
+          "h": 1132,
+          "alt": "Stephen King — variante 1",
+          "original": "assets/images/stephen-king/Variante%201.png",
+          "sources": [
+            {
+              "src": "assets/images/stephen-king/Variante%201-1600.webp",
+              "w": 1600,
+              "h": 2263
+            },
+            {
+              "src": "assets/images/stephen-king/Variante%201-800.webp",
+              "w": 800,
+              "h": 1132
+            }
+          ],
+          "caption": "Variante 01"
+        }
+      ]
     },
     {
       "n": "04",
@@ -464,72 +528,6 @@
         }
       ],
       "inspiration": "Un hacha atraviesa un collage de rostro y arquitectura. El azul frío de la imagen contrasta con el título amarillo inclinado."
-    },
-    {
-      "n": "11",
-      "title": "Variantes",
-      "block": "grid",
-      "items": [
-        {
-          "src": "assets/images/stephen-king/Variante%201-800.webp",
-          "w": 800,
-          "h": 1132,
-          "alt": "Stephen King — variante 1",
-          "original": "assets/images/stephen-king/Variante%201.png",
-          "sources": [
-            {
-              "src": "assets/images/stephen-king/Variante%201-1600.webp",
-              "w": 1600,
-              "h": 2263
-            },
-            {
-              "src": "assets/images/stephen-king/Variante%201-800.webp",
-              "w": 800,
-              "h": 1132
-            }
-          ]
-        },
-        {
-          "src": "assets/images/stephen-king/Variante%202-800.webp",
-          "w": 800,
-          "h": 1132,
-          "alt": "Stephen King — variante 2",
-          "original": "assets/images/stephen-king/Variante%202.png",
-          "sources": [
-            {
-              "src": "assets/images/stephen-king/Variante%202-1600.webp",
-              "w": 1600,
-              "h": 2263
-            },
-            {
-              "src": "assets/images/stephen-king/Variante%202-800.webp",
-              "w": 800,
-              "h": 1132
-            }
-          ]
-        },
-        {
-          "src": "assets/images/stephen-king/Variante%203-800.webp",
-          "w": 800,
-          "h": 1132,
-          "alt": "Stephen King — variante 3",
-          "original": "assets/images/stephen-king/Variante%203.png",
-          "sources": [
-            {
-              "src": "assets/images/stephen-king/Variante%203-1600.webp",
-              "w": 1600,
-              "h": 2263
-            },
-            {
-              "src": "assets/images/stephen-king/Variante%203-800.webp",
-              "w": 800,
-              "h": 1132
-            }
-          ]
-        }
-      ],
-      "layout": "uniform-grid",
-      "frame": "poster"
     }
   ],
   "sandbox": [

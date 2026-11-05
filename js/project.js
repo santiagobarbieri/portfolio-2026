@@ -97,6 +97,21 @@ function makeMedia(item, sizes) {
   return media;
 }
 
+function makeVariants(items, label = "Variantes") {
+  const group = makeElement("div", "project-variants");
+  group.append(makeElement("h3", "tab project-variants__title", label));
+  const grid = makeElement("div", "project-variants__grid");
+  items.forEach((item) => {
+    const media = makeMedia(item, "150px");
+    if (!media) return;
+    media.classList.add("project-variant");
+    media.dataset.aspect = item.w / item.h < 0.85 ? "poster" : item.w / item.h > 1.3 ? "landscape" : "square";
+    grid.append(media);
+  });
+  group.append(grid);
+  return group;
+}
+
 function makeCoverNotes(data) {
   const notes = makeElement("div", "project-cover-notes");
   if (data.colors?.length) {
@@ -105,6 +120,7 @@ function makeCoverNotes(data) {
   if (data.inspiration) {
     notes.append(makeElement("h3", "tab project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
   }
+  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada"));
   return notes;
 }
 
@@ -127,6 +143,16 @@ function renderSection(data, index) {
 
   if (data.block === "palette" && Array.isArray(data.colors)) {
     body.append(makePalette(data.colors));
+  } else if (data.block === "comparison") {
+    const spread = makeElement("div", "project-section__images project-comparison");
+    const primary = makeElement("div", "project-comparison__main");
+    (data.items || []).forEach((item) => {
+      const media = makeMedia(item);
+      if (media) primary.append(media);
+    });
+    spread.append(primary);
+    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle));
+    body.append(spread);
   } else {
     const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
     if (layout) images.classList.add(`project-section__images--${layout}`);
@@ -181,7 +207,15 @@ function makeProjectSidebar(project, sections, hasPalette) {
   desktop.addEventListener("change", fitOverview);
   fitOverview();
   navigation.addEventListener("click", (event) => {
-    if (event.target.closest("a") && !desktop.matches) overview.open = false;
+    const link = event.target.closest("a");
+    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const target = document.getElementById(link.hash.slice(1));
+    if (!target) return;
+    event.preventDefault();
+    history.replaceState(null, "", link.hash);
+    target.scrollIntoView({ block: "start", behavior: "instant" });
+    target.focus({ preventScroll: true });
+    if (!desktop.matches) overview.open = false;
   });
   return sidebar;
 }

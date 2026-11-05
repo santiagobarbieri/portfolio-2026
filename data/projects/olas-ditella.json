@@ -42,7 +42,7 @@
     {
       "n": "02",
       "title": "Logo",
-      "block": "logo",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/olas-ditella/Logo.svg",
@@ -51,17 +51,53 @@
           "alt": "Logotipo vectorial de OLAS con una ola y una flecha",
           "size": "wide",
           "alignment": "center"
-        },
+        }
+      ],
+      "layout": "brand-board",
+      "variants": [
         {
           "src": "assets/images/olas-ditella/BANNER.png",
           "w": 1286,
           "h": 405,
           "alt": "Marca OLAS en formato horizontal",
           "size": "medium",
-          "alignment": "center"
+          "alignment": "center",
+          "caption": "Exportación PNG"
+        },
+        {
+          "src": "assets/images/olas-ditella/VARIANTES%201.png",
+          "w": 1230,
+          "h": 698,
+          "alt": "Propuesta de marca OLA con símbolo de ola sobre azul",
+          "size": "medium",
+          "caption": "Exploración 01"
+        },
+        {
+          "src": "assets/images/olas-ditella/VARIANTES%202.png",
+          "w": 384,
+          "h": 113,
+          "alt": "Propuesta de marca O.L.A. con el nombre de la agrupación",
+          "size": "compact",
+          "caption": "Exploración 02"
+        },
+        {
+          "src": "assets/images/olas-ditella/VARIANTES%204.jpeg",
+          "w": 1536,
+          "h": 1024,
+          "alt": "Propuesta amarilla de marca La Ola sobre blanco",
+          "size": "medium",
+          "caption": "Exploración 03"
+        },
+        {
+          "src": "assets/images/olas-ditella/VARIANTES%205.jpeg",
+          "w": 1220,
+          "h": 778,
+          "alt": "Propuesta de marca OLAS con flecha hacia la derecha",
+          "size": "medium",
+          "caption": "Exploración 04"
         }
       ],
-      "layout": "brand-board"
+      "variantsTitle": "Marca y exploraciones"
     },
     {
       "n": "03",
@@ -206,7 +242,7 @@
     {
       "n": "05",
       "title": "Stickers",
-      "block": "grid",
+      "block": "comparison",
       "items": [
         {
           "src": "assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png",
@@ -215,56 +251,24 @@
           "alt": "Sticker circular de OLAS con ola y flecha sobre negro",
           "size": "medium",
           "alignment": "start"
-        },
+        }
+      ],
+      "layout": "brand-board",
+      "variants": [
         {
           "src": "assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png",
           "w": 1080,
           "h": 1080,
           "alt": "Sticker circular de OLAS con ola y flecha sobre verde",
           "size": "medium",
-          "alignment": "end"
+          "alignment": "end",
+          "caption": "Fondo verde"
         }
       ],
-      "layout": "brand-board"
+      "variantsTitle": "Variante de fondo"
     },
     {
       "n": "06",
-      "title": "Variantes",
-      "block": "grid",
-      "items": [
-        {
-          "src": "assets/images/olas-ditella/VARIANTES%201.png",
-          "w": 1230,
-          "h": 698,
-          "alt": "Propuesta de marca OLA con símbolo de ola sobre azul",
-          "size": "medium"
-        },
-        {
-          "src": "assets/images/olas-ditella/VARIANTES%202.png",
-          "w": 384,
-          "h": 113,
-          "alt": "Propuesta de marca O.L.A. con el nombre de la agrupación",
-          "size": "compact"
-        },
-        {
-          "src": "assets/images/olas-ditella/VARIANTES%204.jpeg",
-          "w": 1536,
-          "h": 1024,
-          "alt": "Propuesta amarilla de marca La Ola sobre blanco",
-          "size": "medium"
-        },
-        {
-          "src": "assets/images/olas-ditella/VARIANTES%205.jpeg",
-          "w": 1220,
-          "h": 778,
-          "alt": "Propuesta de marca OLAS con flecha hacia la derecha",
-          "size": "medium"
-        }
-      ],
-      "layout": "brand-board"
-    },
-    {
-      "n": "07",
       "title": "Recursos",
       "block": "gallery",
       "items": [
