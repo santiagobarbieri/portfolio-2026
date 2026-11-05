@@ -4,21 +4,21 @@
   "title": "Stephen King",
   "type": "Diseño editorial",
   "category": "editorial",
-  "description": "Completar",
+  "description": "Serie de diez portadas de libros de Stephen King y tres variantes gráficas.",
   "cover": "assets/images/stephen-king/PORTADA.png",
   "w": 1280,
   "h": 720,
-  "alt": "Fondo rojo de la portada de la serie Stephen King",
+  "alt": "Logotipo rojo de Stephen King con letras erosionadas",
   "hero": "assets/images/stephen-king/PORTADA.png",
   "heroW": 1280,
   "heroH": 720,
-  "heroAlt": "Fondo rojo de la portada de la serie Stephen King",
+  "heroAlt": "Logotipo rojo de Stephen King con letras erosionadas",
   "meta": [],
   "sections": [
     {
       "n": "01",
-      "title": "Portadas",
-      "block": "grid",
+      "title": "’Salem’s Lot",
+      "block": "cover-study",
       "items": [
         {
           "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp",
@@ -38,7 +38,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#100606"
         },
+        {
+          "name": "Rojo",
+          "hex": "#931919"
+        },
+        {
+          "name": "Violeta",
+          "hex": "#58284C"
+        },
+        {
+          "name": "Borgoña",
+          "hex": "#301314"
+        }
+      ],
+      "inspiration": "Un bosque a contraluz, siluetas con ojos encendidos y textura granulada. El rojo del título corta una escena casi negra."
+    },
+    {
+      "n": "02",
+      "title": "Carrie",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/CARRIE-800.webp",
           "w": 800,
@@ -57,7 +83,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Azul noche",
+          "hex": "#0A0B1C"
         },
+        {
+          "name": "Rojo",
+          "hex": "#FF342C"
+        },
+        {
+          "name": "Coral",
+          "hex": "#D74C3A"
+        },
+        {
+          "name": "Grafito",
+          "hex": "#251F27"
+        }
+      ],
+      "inspiration": "Retrato frontal entre sombras, superposiciones y puntos luminosos. El rojo anaranjado se concentra en el rostro y las letras."
+    },
+    {
+      "n": "03",
+      "title": "Cujo",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/CUJO-800.webp",
           "w": 800,
@@ -76,7 +128,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Papel",
+          "hex": "#FFE6BF"
         },
+        {
+          "name": "Rojo",
+          "hex": "#B70000"
+        },
+        {
+          "name": "Marrón",
+          "hex": "#68321F"
+        },
+        {
+          "name": "Ocre",
+          "hex": "#C47C3C"
+        }
+      ],
+      "inspiration": "Un perro en primer plano sobre un paisaje seco. La imagen cálida y el rojo de las letras contrastan con el fondo claro."
+    },
+    {
+      "n": "04",
+      "title": "IT",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/IT-800.webp",
           "w": 800,
@@ -95,7 +173,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#080505"
         },
+        {
+          "name": "Carmesí",
+          "hex": "#880817"
+        },
+        {
+          "name": "Arena",
+          "hex": "#E2C489"
+        },
+        {
+          "name": "Gris cálido",
+          "hex": "#A79778"
+        }
+      ],
+      "inspiration": "Un globo rojo, una mano aislada y mucho negro. La tipografía clara deja que el recorte de la imagen sostenga la tensión."
+    },
+    {
+      "n": "05",
+      "title": "Misery",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/MISERY-800.webp",
           "w": 800,
@@ -114,7 +218,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#050404"
         },
+        {
+          "name": "Naranja",
+          "hex": "#DA681D"
+        },
+        {
+          "name": "Violeta",
+          "hex": "#8A1A93"
+        },
+        {
+          "name": "Marrón",
+          "hex": "#3C180F"
+        }
+      ],
+      "inspiration": "Máquina de escribir en primer plano y perfil recortado. Naranja y violeta saturados, letras irregulares y trama de impresión."
+    },
+    {
+      "n": "06",
+      "title": "Pet Sematary",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp",
           "w": 800,
@@ -133,7 +263,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Papel",
+          "hex": "#FFF6B6"
         },
+        {
+          "name": "Negro",
+          "hex": "#080804"
+        },
+        {
+          "name": "Rojo",
+          "hex": "#E50906"
+        },
+        {
+          "name": "Ámbar",
+          "hex": "#E19B21"
+        }
+      ],
+      "inspiration": "El retrato de un gato se reduce a masas negras y rojas sobre papel amarillo. Grano marcado y tipografía roja en la parte superior."
+    },
+    {
+      "n": "07",
+      "title": "The Dark Tower",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp",
           "w": 800,
@@ -152,7 +308,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#0C0A07"
         },
+        {
+          "name": "Magenta",
+          "hex": "#820C8A"
+        },
+        {
+          "name": "Azul",
+          "hex": "#343286"
+        },
+        {
+          "name": "Verde",
+          "hex": "#226454"
+        }
+      ],
+      "inspiration": "Una torre negra organiza la composición vertical. El cielo magenta y el paisaje azul verdoso introducen una lectura psicodélica."
+    },
+    {
+      "n": "08",
+      "title": "The Dead Zone",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp",
           "w": 800,
@@ -171,7 +353,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Rojo",
+          "hex": "#C42F40"
         },
+        {
+          "name": "Crema",
+          "hex": "#DEBF8D"
+        },
+        {
+          "name": "Violeta",
+          "hex": "#8265A1"
+        },
+        {
+          "name": "Naranja",
+          "hex": "#C33D18"
+        }
+      ],
+      "inspiration": "Superposiciones, repeticiones y bordes desplazados construyen una imagen casi abstracta. Rojo y violeta quedan contenidos por el título crema."
+    },
+    {
+      "n": "09",
+      "title": "The Green Mile",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp",
           "w": 800,
@@ -190,7 +398,33 @@
               "h": 1132
             }
           ]
+        }
+      ],
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#060606"
         },
+        {
+          "name": "Verde",
+          "hex": "#017809"
+        },
+        {
+          "name": "Amarillo",
+          "hex": "#E4D853"
+        },
+        {
+          "name": "Oliva",
+          "hex": "#534F20"
+        }
+      ],
+      "inspiration": "Un ratón y un cable fino recorren el fondo negro. Verde y amarillo separan la tipografía de la ilustración."
+    },
+    {
+      "n": "10",
+      "title": "The Shining",
+      "block": "cover-study",
+      "items": [
         {
           "src": "assets/images/stephen-king/THE%20SHINING-800.webp",
           "w": 800,
@@ -210,10 +444,29 @@
             }
           ]
         }
-      ]
+      ],
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#010A0D"
+        },
+        {
+          "name": "Azul",
+          "hex": "#438192"
+        },
+        {
+          "name": "Amarillo",
+          "hex": "#FFD102"
+        },
+        {
+          "name": "Gris",
+          "hex": "#A8BCBE"
+        }
+      ],
+      "inspiration": "Un hacha atraviesa un collage de rostro y arquitectura. El azul frío de la imagen contrasta con el título amarillo inclinado."
     },
     {
-      "n": "02",
+      "n": "11",
       "title": "Variantes",
       "block": "grid",
       "items": [
@@ -274,7 +527,8 @@
             }
           ]
         }
-      ]
+      ],
+      "layout": "contact-sheet"
     }
   ],
   "sandbox": [
@@ -365,5 +619,6 @@
         }
       ]
     }
-  ]
+  ],
+  "paletteSource": "Colores muestreados de las portadas; lectura visual a partir de las piezas."
 }

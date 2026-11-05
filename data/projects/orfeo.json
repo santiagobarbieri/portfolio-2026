@@ -45,44 +45,6 @@
     },
     {
       "n": "02",
-      "title": "Logo",
-      "block": "logo",
-      "items": [
-        {
-          "src": "assets/images/orfeo/logo%20%281%29.png",
-          "w": 4134,
-          "h": 4134,
-          "alt": "Logotipo de ORFEO sobre fondo claro"
-        },
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
-          "w": 1600,
-          "h": 1600,
-          "alt": "Sello oval de ORFEO con el lema Back to Basics",
-          "original": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972.png",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
-              "w": 1600,
-              "h": 1600
-            },
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-800.webp",
-              "w": 800,
-              "h": 800
-            }
-          ]
-        },
-        {
-          "src": "assets/images/orfeo/favicon.png",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Monograma ORF sobre fondo claro"
-        }
-      ]
-    },
-    {
-      "n": "03",
       "title": "Colección",
       "block": "grid",
       "items": [
@@ -103,7 +65,8 @@
               "w": 800,
               "h": 533
             }
-          ]
+          ],
+          "size": "medium"
         },
         {
           "src": "assets/images/orfeo/IMG_4775-800.webp",
@@ -122,7 +85,8 @@
               "w": 800,
               "h": 533
             }
-          ]
+          ],
+          "size": "medium"
         },
         {
           "src": "assets/images/orfeo/IMG_4800-800.webp",
@@ -141,12 +105,13 @@
               "w": 800,
               "h": 533
             }
-          ]
+          ],
+          "size": "medium"
         }
       ]
     },
     {
-      "n": "04",
+      "n": "03",
       "title": "Fotografía de campaña",
       "block": "grid",
       "items": [
@@ -167,7 +132,9 @@
               "w": 800,
               "h": 1200
             }
-          ]
+          ],
+          "size": "medium",
+          "alignment": "start"
         },
         {
           "src": "assets/images/orfeo/IMG_4144-800.webp",
@@ -186,7 +153,9 @@
               "w": 800,
               "h": 1200
             }
-          ]
+          ],
+          "size": "medium",
+          "alignment": "end"
         },
         {
           "src": "assets/images/orfeo/IMG_4246-800.webp",
@@ -205,7 +174,9 @@
               "w": 800,
               "h": 1200
             }
-          ]
+          ],
+          "size": "medium",
+          "alignment": "start"
         },
         {
           "src": "assets/images/orfeo/IMG_4452-800.webp",
@@ -224,7 +195,9 @@
               "w": 800,
               "h": 1200
             }
-          ]
+          ],
+          "size": "medium",
+          "alignment": "end"
         },
         {
           "src": "assets/images/orfeo/IMG_4484-800.webp",
@@ -243,7 +216,9 @@
               "w": 800,
               "h": 1200
             }
-          ]
+          ],
+          "size": "medium",
+          "alignment": "start"
         },
         {
           "src": "assets/images/orfeo/IMG_4685-800.webp",
@@ -262,7 +237,9 @@
               "w": 800,
               "h": 1200
             }
-          ]
+          ],
+          "size": "medium",
+          "alignment": "end"
         },
         {
           "src": "assets/images/orfeo/IMG_4868-800.webp",
@@ -281,9 +258,57 @@
               "w": 800,
               "h": 533
             }
-          ]
+          ],
+          "size": "wide",
+          "alignment": "center"
         }
-      ]
+      ],
+      "layout": "editorial"
+    },
+    {
+      "n": "04",
+      "title": "Logo",
+      "block": "logo",
+      "items": [
+        {
+          "src": "assets/images/orfeo/logo%20%281%29.png",
+          "w": 4134,
+          "h": 4134,
+          "alt": "Logotipo de ORFEO sobre fondo claro",
+          "size": "medium",
+          "alignment": "center"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
+          "w": 1600,
+          "h": 1600,
+          "alt": "Sello oval de ORFEO con el lema Back to Basics",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ],
+          "size": "compact",
+          "alignment": "center"
+        },
+        {
+          "src": "assets/images/orfeo/favicon.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Monograma ORF sobre fondo claro",
+          "size": "compact",
+          "alignment": "center"
+        }
+      ],
+      "layout": "brand-board"
     },
     {
       "n": "05",
@@ -372,7 +397,8 @@
             }
           ]
         }
-      ]
+      ],
+      "layout": "contact-sheet"
     },
     {
       "n": "06",
@@ -479,7 +505,8 @@
             }
           ]
         }
-      ]
+      ],
+      "layout": "contact-sheet"
     },
     {
       "n": "07",

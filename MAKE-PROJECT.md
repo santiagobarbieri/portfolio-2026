@@ -120,6 +120,22 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 
 **Numeración:** las secciones se numeran `01`, `02`… por orden de carpeta. El hero y los metadatos no se numeran (`Proyecto` es el primer Tab).
 
+### Composición por sección
+
+`layout` permite variar la presentación conservando el marco y la tipografía compartidos:
+
+| Layout | Uso |
+|---|---|
+| `brand-board` | Comparación de marcas e ilustraciones contenidas, sin ampliar logos al ancho completo. |
+| `poster-wall` | Un afiche principal y una comparación de las piezas restantes en dos columnas. |
+| `editorial` | Pares fotográficos escalonados y una imagen de cierre más amplia. |
+| `photo-essay` | Paisajes amplios alternados con retratos y detalles. |
+| `contact-sheet` | Variantes y recursos pequeños en una plancha de escala controlada. |
+
+Cada item puede declarar `size: compact|medium|wide` y `alignment: start|center|end`. Son decisiones de presentación: se preservan proporciones, originales, textos y créditos. Los logos tienen escala contenida; un wordmark horizontal puede llegar a 520px, una marca cuadrada a unos 300px y un monograma a 120–180px.
+
+Para piezas editoriales individuales, `block: cover-study` muestra una tapa y una ficha lateral. La sección incluye un único `item`, `colors: [{name, hex}]` e `inspiration` como lectura visual breve. Si no existen referencias originales, describir solamente motivos visibles; no atribuir influencias al autor. En Stephen King los colores están muestreados de cada portada y esta lectura fue autorizada por Santi.
+
 ## 5. Sandbox
 
 - Si existe `sandbox/`, usa solo esas imágenes. Si no, usa la portada, el logo, las piezas de `pair` y hasta 4 elementos más de otras secciones.

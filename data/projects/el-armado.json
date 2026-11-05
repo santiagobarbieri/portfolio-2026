@@ -31,9 +31,12 @@
           "src": "assets/images/el-armado/Logo.png",
           "w": 863,
           "h": 343,
-          "alt": "Logotipo de El Armado en letras condensadas color hueso"
+          "alt": "Logotipo de El Armado en letras condensadas color hueso",
+          "size": "wide",
+          "alignment": "center"
         }
-      ]
+      ],
+      "layout": "brand-board"
     },
     {
       "n": "02",
@@ -67,15 +70,20 @@
           "src": "assets/images/el-armado/Iconography 1.png",
           "w": 760,
           "h": 754,
-          "alt": "Manos sosteniendo un micrófono y una botella, iconografía de El Armado"
+          "alt": "Manos sosteniendo un micrófono y una botella, iconografía de El Armado",
+          "size": "medium",
+          "alignment": "start"
         },
         {
           "src": "assets/images/el-armado/Iconography 2.png",
           "w": 976,
           "h": 813,
-          "alt": "El Armado — segunda pieza de iconografía"
+          "alt": "El Armado — segunda pieza de iconografía",
+          "size": "medium",
+          "alignment": "end"
         }
-      ]
+      ],
+      "layout": "brand-board"
     },
     {
       "n": "04",
@@ -148,9 +156,11 @@
           "src": "assets/images/el-armado/Variante Logo.png",
           "w": 970,
           "h": 970,
-          "alt": "El Armado — variante del logotipo"
+          "alt": "El Armado — variante del logotipo",
+          "size": "compact"
         }
-      ]
+      ],
+      "layout": "contact-sheet"
     },
     {
       "n": "07",
@@ -181,7 +191,8 @@
           "h": 234,
           "alt": "El Armado — referencia visual 4"
         }
-      ]
+      ],
+      "layout": "contact-sheet"
     }
   ]
 }

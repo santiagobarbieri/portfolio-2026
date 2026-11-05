@@ -13,6 +13,10 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
 - Abrir con `preview.command` / HTTP: el acceso file:// bloquea módulos ES y JSON.
+- Ocultar las barras de scroll sin bloquear rueda, touch ni teclado; Testament y Message conservan su desplazamiento interno.
+- Los proyectos comparten tipografía, marco y rótulos. La composición se define por sección con `layout`: no aplicar la misma grilla a todos.
+- Contener los logos y recursos pequeños; nunca estirarlos automáticamente al ancho de la columna. Orfeo usa relato fotográfico, OLAS una campaña de afiches y Zapallar un ensayo visual.
+- Stephen King presenta cada tapa con su paleta y una lectura visual lateral. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
 
 ## 1. Stack y reglas de código
 

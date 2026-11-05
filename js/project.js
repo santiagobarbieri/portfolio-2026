@@ -27,7 +27,7 @@ function makeElement(tag, className, text) {
   return element;
 }
 
-function makeImage(item, eager = false) {
+function makeImage(item, eager = false, sizes = "(max-width: 600px) calc(100vw - 32px), (max-width: 900px) 60vw, 640px") {
   if (!item?.src) return null;
   const source = new URL(item.src, document.baseURI);
   if (source.origin !== window.location.origin) return null;
@@ -35,6 +35,11 @@ function makeImage(item, eager = false) {
   image.src = source.href;
   image.alt = item.alt || "";
   image.decoding = "async";
+  const sources = (Array.isArray(item.sources) ? item.sources : []).filter((source) => source.src && source.w > 0);
+  if (sources.length) {
+    image.srcset = sources.map((item) => `${new URL(item.src, document.baseURI).href} ${item.w}w`).join(", ");
+    image.sizes = sizes;
+  }
   if (item.w > 0 && item.h > 0) {
     image.width = item.w;
     image.height = item.h;
@@ -82,12 +87,27 @@ function makePalette(colors) {
 
 function renderSection(data, index) {
   const section = makeElement("section", "project-section");
+  const layouts = new Set(["brand-board", "poster-wall", "editorial", "photo-essay", "contact-sheet"]);
+  const layout = layouts.has(data.layout) ? data.layout : data.block === "logo" ? "brand-board" : null;
+  if (layout) section.classList.add(`project-section--${layout}`);
+  if (data.block === "cover-study") section.classList.add("project-section--cover-study");
   const heading = makeElement("div", "project-section__heading");
   const number = data.n || String(index + 1).padStart(2, "0");
   const sectionTitle = makeElement("h2", "tab", number);
   sectionTitle.id = `section-${index + 1}`;
   section.setAttribute("aria-labelledby", sectionTitle.id);
-  heading.append(sectionTitle, makeElement("p", null, data.title || "Imágenes"));
+  sectionTitle.setAttribute("aria-label", `${number} ${data.title || "Imágenes"}`);
+  heading.append(sectionTitle, makeElement("p", "project-section__label", data.title || "Imágenes"));
+  if (data.block === "cover-study") {
+    const notes = makeElement("div", "project-cover-notes");
+    if (data.colors?.length) {
+      notes.append(makeElement("h3", "tab project-cover-notes__title", "Paleta"), makePalette(data.colors));
+    }
+    if (data.inspiration) {
+      notes.append(makeElement("h3", "tab project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
+    }
+    heading.append(notes);
+  }
   const body = makeElement("div", "project-section__content");
 
   if (data.block === "palette" && Array.isArray(data.colors)) {
@@ -95,15 +115,22 @@ function renderSection(data, index) {
   } else {
     const items = Array.isArray(data.items) ? data.items : [];
     let columns = 1;
-    if (!["logo", "sequence", "text"].includes(data.block)) {
+    if (!["logo", "sequence", "text", "cover-study"].includes(data.block)) {
       columns = items.length >= 7 ? 4 : items.length >= 3 ? 3 : items.length;
     }
     const images = makeElement("div", `project-section__images project-section__images--${Math.max(1, columns)} project-section__images--${data.block || "grid"}`);
+    if (layout) images.classList.add(`project-section__images--${layout}`);
     items.forEach((item) => {
-      const image = makeImage(item);
+      const sizes = data.block === "cover-study" ? "(max-width: 600px) calc(100vw - 32px), 380px" : undefined;
+      const image = makeImage(item, false, sizes);
       if (!image) return;
-      if (item.w / item.h > 2.5) image.classList.add("project-section__wide");
-      images.append(image);
+      const media = makeElement("figure", "project-media");
+      if (["compact", "medium", "wide"].includes(item.size)) media.dataset.size = item.size;
+      if (["start", "center", "end"].includes(item.alignment)) media.dataset.alignment = item.alignment;
+      if (item.w / item.h > 2.5 && !layout) media.classList.add("project-section__wide");
+      media.append(image);
+      if (item.caption) media.append(makeElement("figcaption", "project-media__caption", item.caption));
+      images.append(media);
     });
     if (images.children.length) body.append(images);
     if (data.text) body.append(makeElement("p", null, data.text));
@@ -115,6 +142,7 @@ function renderSection(data, index) {
 function renderProject(project) {
   content.classList.remove("entry-fallback");
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
+  if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
   setPageTitle(`${project.title} - Overlook`, project.description, project.cover);
   const heroSource = project.hero || project.cover;
   if (heroSource) {

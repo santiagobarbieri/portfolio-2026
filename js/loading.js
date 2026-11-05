@@ -1,6 +1,7 @@
 let pending = 0;
 let overlay;
 let hideTimer;
+const minimumDisplay = 700;
 
 export function startLoading(label = "Cargando") {
   if (!overlay) {
@@ -32,7 +33,7 @@ export function startLoading(label = "Cargando") {
       if (pending) return;
       overlay.hidden = true;
       document.querySelector("main")?.removeAttribute("aria-busy");
-    }, Math.max(0, 200 - (performance.now() - started)));
+    }, Math.max(0, minimumDisplay - (performance.now() - started)));
   };
 }
 

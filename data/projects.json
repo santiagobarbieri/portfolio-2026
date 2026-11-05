@@ -5,11 +5,11 @@
     "title": "Stephen King",
     "type": "Diseño editorial",
     "category": "editorial",
-    "description": "Completar",
+    "description": "Serie de diez portadas de libros de Stephen King y tres variantes gráficas.",
     "cover": "assets/images/stephen-king/PORTADA.png",
     "w": 1280,
     "h": 720,
-    "alt": "Fondo rojo de la portada de la serie Stephen King",
+    "alt": "Logotipo rojo de Stephen King con letras erosionadas",
     "order": -2,
     "kind": "project",
     "details": "data/projects/stephen-king.json"

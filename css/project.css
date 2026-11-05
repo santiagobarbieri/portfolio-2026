@@ -71,7 +71,7 @@
   margin: 16px auto 0;
 }
 
-.project-entry__hero img { width: 100%; height: auto; }
+.project-entry__hero img { width: 100%; height: auto; max-height: 70svh; object-fit: contain; }
 
 .project-entry__intro {
   width: min(447px, 100%);
@@ -111,6 +111,7 @@
 .project-section__heading h2 { margin: 0; font-size: 13px; }
 .project-section__heading p { margin-top: 5px; color: var(--mute); }
 .project-section__content { min-width: 0; }
+.project-section__content > p { max-width: 420px; line-height: 1.5; }
 
 .project-section__images {
   display: grid;
@@ -127,14 +128,113 @@
 .project-section__images--pair img:only-child { max-width: 400px; }
 .project-section__images .project-section__wide { grid-column: 1 / -1; }
 
+.project-media {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.project-media[data-alignment="start"] { justify-self: start; }
+.project-media[data-alignment="center"] { justify-self: center; }
+.project-media[data-alignment="end"] { justify-self: end; }
+.project-media__caption { margin-top: 10px; color: var(--mute); font-size: 11px; }
+
+/* Marks share a quiet comparison board rather than filling the image column. */
+.project-section__images--brand-board {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 48px;
+  max-width: 840px;
+  min-height: 220px;
+}
+.project-section__images--brand-board.project-section__images--1 { grid-template-columns: minmax(0, 1fr); }
+.project-section__images--brand-board .project-media { max-width: 340px; justify-self: center; }
+.project-section__images--brand-board .project-media[data-size="wide"] { max-width: 520px; }
+.project-section__images--brand-board .project-media[data-size="compact"] { max-width: 180px; }
+.project-section__images--brand-board img { width: auto; max-width: 100%; max-height: 280px; object-fit: contain; }
+.project-entry--orfeo .project-section__images--brand-board {
+  grid-template-columns: 1.4fr 1fr 0.6fr;
+  max-width: 800px;
+  gap: 32px;
+}
+.project-entry--orfeo .project-section__images--brand-board .project-media:first-child { max-width: 300px; }
+.project-entry--orfeo .project-section__images--brand-board .project-media:nth-child(2) { max-width: 220px; }
+.project-entry--orfeo .project-section__images--brand-board .project-media:nth-child(3) { max-width: 120px; }
+.project-entry--olas-ditella .project-section__images--logo .project-media { max-width: 420px; }
+
+/* Small variants and graphic resources stay at an intentional, readable scale. */
+.project-section__images--contact-sheet {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  max-width: 840px;
+  gap: 32px;
+}
+.project-section__images--contact-sheet.project-section__images--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.project-section__images--contact-sheet .project-media { max-width: 210px; }
+.project-section__images--contact-sheet .project-media[data-size="compact"] { max-width: 160px; }
+.project-section__images--contact-sheet img { width: auto; max-width: 100%; max-height: 300px; object-fit: contain; }
+
+/* A campaign opens with one poster, followed by a two-column comparison. */
+.project-section__images--poster-wall {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-items: center;
+  max-width: 780px;
+  gap: 48px 40px;
+}
+.project-section__images--poster-wall .project-media { max-width: 300px; }
+.project-section__images--poster-wall .project-media:first-child { grid-column: 1 / -1; max-width: 400px; margin-bottom: 24px; }
+
+/* Fashion photographs read as pairs and a final group image. */
+.project-section__images--editorial {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  max-width: 800px;
+  gap: 64px 48px;
+}
+.project-section__images--editorial .project-media { max-width: 320px; }
+.project-section__images--editorial .project-media:nth-child(even) { margin-top: 72px; }
+.project-section__images--editorial .project-media[data-size="wide"] { grid-column: 1 / -1; max-width: 720px; margin-top: 20px; }
+
+/* Landscapes and details have a different cadence from a brand case study. */
+.project-section__images--photo-essay {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  max-width: 860px;
+  gap: 80px 48px;
+}
+.project-section__images--photo-essay .project-media[data-size="wide"] { grid-column: 1 / -1; max-width: 760px; }
+.project-section__images--photo-essay .project-media[data-size="medium"] { max-width: 360px; }
+.project-section__images--photo-essay .project-media[data-size="compact"] { max-width: 240px; }
+.project-entry--fotos-en-zapallar .project-entry__hero { width: min(700px, 100%); }
+.project-entry--orfeo .project-entry__hero { width: min(560px, 100%); }
+
+/* Each book is a complete spread: cover, sampled palette and visual reading. */
+.project-section--cover-study { margin-top: 120px; }
+.project-section--cover-study .project-section__heading { max-width: 340px; }
+.project-section--cover-study .project-section__label { margin-top: 12px; color: var(--fg); font-size: 18px; font-weight: 600; }
+.project-section__images--cover-study { max-width: 640px; justify-items: center; }
+.project-section__images--cover-study .project-media { max-width: 380px; }
+.project-cover-notes { max-width: 320px; }
+.project-cover-notes__title { margin: 28px 0 14px; font-size: 11px; font-weight: 600; }
+.project-cover-notes__text { color: var(--mute); font-size: 12px; line-height: 1.5; }
+.project-cover-notes .project-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.project-cover-notes .project-palette__swatch { max-width: 36px; }
+.project-cover-notes .project-palette__swatch circle { stroke: var(--line); stroke-width: 0.8; }
+.project-cover-notes .project-palette__name { font-size: 10px; }
+.project-cover-notes .project-palette__hex { margin-top: 4px; font-size: 10px; }
+
 .project-palette {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
+  max-width: 620px;
 }
 
 .project-palette__item { min-width: 0; }
-.project-palette__swatch { display: block; width: 100%; aspect-ratio: 1; }
+.project-palette__swatch { display: block; width: 100%; max-width: 120px; aspect-ratio: 1; }
 .project-palette__name { margin-top: 10px; font-size: 10px; }
 .project-palette__hex { display: block; margin-top: 6px; color: var(--mute); font-size: 10px; }
 
@@ -154,6 +254,11 @@
   .project-section__images--3,
   .project-section__images--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-cover-notes .project-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-section__images--brand-board,
+  .project-section__images--contact-sheet { gap: 24px; }
+  .project-section--cover-study { grid-template-columns: minmax(170px, 30%) minmax(0, 1fr); }
+  .project-section__images--poster-wall { gap: 32px 24px; }
 }
 
 @media (max-width: 600px) {
@@ -166,10 +271,31 @@
   .project-section__images { gap: 16px; }
   .project-entry__hero { margin-top: 0; }
   .project-palette { gap: 16px; }
+  .project-section--cover-study { grid-template-columns: minmax(0, 1fr); }
+  .project-section--cover-study .project-section__heading { display: contents; position: static; max-width: none; }
+  .project-section--cover-study .project-section__heading > h2 { order: 0; }
+  .project-section--cover-study .project-section__label { order: 1; margin-top: 0; }
+  .project-section--cover-study .project-section__content { order: 2; }
+  .project-section--cover-study .project-cover-notes { order: 3; }
+  .project-cover-notes { max-width: none; }
+  .project-cover-notes .project-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .project-section__images--brand-board { min-height: 140px; gap: 24px; }
+  .project-entry--orfeo .project-section__images--brand-board { gap: 16px; }
+  .project-section__images--editorial { gap: 32px 20px; }
+  .project-section__images--editorial .project-media:nth-child(even) { margin-top: 36px; }
+  .project-section__images--photo-essay { gap: 40px 24px; }
+  .project-section__images--contact-sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .project-section__images--contact-sheet.project-section__images--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (pointer: coarse) {
   .entry-page { --entry-control-height: 44px; }
+}
+
+@media (max-width: 420px) {
+  .project-section__images--editorial,
+  .project-section__images--photo-essay { grid-template-columns: minmax(0, 1fr); }
+  .project-section__images--editorial .project-media:nth-child(even) { margin-top: 0; }
 }
 
 .project-section__images { position: relative; }
