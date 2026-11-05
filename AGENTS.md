@@ -20,7 +20,8 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Los proyectos usan exactamente el ancho y la posición de las dos columnas centrales del home. La ficha del proyecto y su índice lateral quedan fijos; en pantallas pequeñas se abren desde un desplegable fijo.
 - Fotos y afiches se organizan en grillas de dos columnas con celdas iguales, sin piezas destacadas más grandes, desfases ni ampliaciones al ancho completo. En mobile pasan a una columna. Se mantienen las imágenes completas dentro de cada celda.
 - Cada proyecto muestra su paleta al abrirse, con nombres y HEX. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
-- Dentro de proyectos se ocultan ubicación y fecha/hora del footer. En las otras páginas se conservan.
+- Dentro de proyectos y en pantallas de hasta 900 px se ocultan ubicación y fecha/hora del footer. En desktop se conservan fuera de proyectos.
+- En mobile y tablet, Archivo reúne navegación, identidad y filtros en un encabezado negro fijo, opaco y continuo. Categoría y orden se abren desde un ícono de filtros; el loop sigue detrás. Los cambios de altura del navegador móvil no reconstruyen las cards.
 - El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
 - Las variantes verificadas se muestran más pequeñas junto a su pieza principal, dentro de la segunda columna central. No reunirlas en una galería independiente ni asociar familias gráficas distintas por suposición.
 

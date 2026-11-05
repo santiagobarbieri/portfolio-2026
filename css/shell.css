@@ -314,3 +314,7 @@
 .contact-field textarea::-webkit-scrollbar { display: none; width: 0; }
 .about-entry__body::-webkit-scrollbar-thumb,
 .contact-field textarea::-webkit-scrollbar-thumb { background: var(--line); }
+
+@media (max-width: 900px) {
+  .site-footer__location { display: none; }
+}

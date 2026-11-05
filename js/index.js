@@ -64,8 +64,11 @@ export async function initArchive() {
   const state = storedState();
   const menus = [...document.querySelectorAll("[data-filter-menu]")];
   const status = document.querySelector("[data-archive-status]");
+  const mobileStatus = document.querySelector("[data-archive-mobile-status]");
+  const filterPanel = document.querySelector("[data-archive-filter-panel]");
+  const filterTrigger = filterPanel?.querySelector("summary");
+  const compactControls = matchMedia("(max-width: 900px)");
   const main = document.getElementById("main-content");
-  const mediaQuery = matchMedia("(max-width: 600px)");
   let category = templates.some((card) => card.dataset.category === state.category) ? state.category : "all";
   let order = ["newest", "oldest", "az"].includes(state.order) ? state.order : "newest";
   let selected = [];
@@ -77,6 +80,7 @@ export async function initArchive() {
   let lastAccessibilityY = -Infinity;
   let working = false;
   let resizeFrame = 0;
+  let viewportWidth = innerWidth;
   let startY = 0;
   let pristine = state.version === 2 ? Boolean(state.pristine) : true;
   let focusSlug = state.slug || null;
@@ -143,9 +147,16 @@ export async function initArchive() {
   }
 
   function anchor() {
-    const row = rows.find((item) => !(pristine && item.hasAttribute("data-history")) && item.getBoundingClientRect().bottom > 1) || rows[0];
-    if (!row) return { sequence: 0, offset: 0 };
-    return { sequence: Number(row.dataset.sequence), offset: -row.getBoundingClientRect().top };
+    // Cached geometry preserves the old position even after responsive CSS reflows.
+    let top = streamY - scrollY;
+    for (const row of rows) {
+      const height = rowHeight(row);
+      if (!(pristine && row.hasAttribute("data-history")) && top + height > 1) {
+        return { sequence: Number(row.dataset.sequence), offset: -top };
+      }
+      top += height;
+    }
+    return { sequence: Number(rows[0]?.dataset.sequence) || 0, offset: scrollY - streamY };
   }
 
   function save() {
@@ -164,7 +175,9 @@ export async function initArchive() {
         menu.querySelector("[data-filter-label]").textContent = checked.nextElementSibling.textContent;
       }
     });
-    status.textContent = `${selected.length} ${selected.length === 1 ? "proyecto" : "proyectos"}`;
+    const count = `${selected.length} ${selected.length === 1 ? "proyecto" : "proyectos"}`;
+    status.textContent = count;
+    if (mobileStatus) mobileStatus.textContent = count;
   }
 
   function render(position = { sequence: 0, offset: -main.offsetTop }) {
@@ -282,6 +295,35 @@ export async function initArchive() {
     working = false;
   }
 
+  function fitFilterControls() {
+    if (filterPanel) filterPanel.open = !compactControls.matches;
+    menus.forEach((menu) => { menu.open = compactControls.matches; });
+  }
+
+  function closeFilters(menu) {
+    if (compactControls.matches && filterPanel) {
+      filterPanel.open = false;
+      filterTrigger?.focus({ preventScroll: true });
+    } else {
+      menu.open = false;
+      menu.querySelector("summary").focus({ preventScroll: true });
+    }
+  }
+
+  fitFilterControls();
+  compactControls.addEventListener("change", fitFilterControls);
+  filterPanel?.addEventListener("toggle", () => {
+    if (compactControls.matches && filterPanel.open) {
+      menus.forEach((menu) => { menu.open = true; });
+    }
+  });
+  filterPanel?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && compactControls.matches && filterPanel.open) {
+      event.preventDefault();
+      closeFilters();
+    }
+  });
+
   history.scrollRestoration = "manual";
   document.body.classList.add("has-archive-loop");
   render(state.version === 2 ? state : undefined);
@@ -290,17 +332,22 @@ export async function initArchive() {
       if (!event.target.matches("input")) return;
       if (menu.dataset.filterMenu === "category") category = event.target.value;
       else order = event.target.value;
-      menu.open = false;
       pristine = true;
       render();
       save();
-      menu.querySelector("summary").focus({ preventScroll: true });
+      closeFilters(menu);
     });
     menu.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") { menu.open = false; menu.querySelector("summary").focus(); }
+      if (event.key === "Escape" && !compactControls.matches) closeFilters(menu);
     });
   });
-  document.addEventListener("pointerdown", (event) => menus.forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; }));
+  document.addEventListener("pointerdown", (event) => {
+    if (compactControls.matches && filterPanel) {
+      if (!filterPanel.contains(event.target)) filterPanel.open = false;
+    } else {
+      menus.forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; });
+    }
+  });
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a");
     if (link?.href.includes("project.html")) {
@@ -322,10 +369,16 @@ export async function initArchive() {
     card?.querySelector("a").focus({ preventScroll: true });
   });
   window.addEventListener("resize", () => {
+    // Mobile browser chrome changes height while scrolling. Keep the cards intact.
+    if (innerWidth === viewportWidth) {
+      recycle();
+      return;
+    }
+    viewportWidth = innerWidth;
     const position = anchor();
     cancelAnimationFrame(resizeFrame);
-    resizeFrame = requestAnimationFrame(() => render(position));
+    const atBeginning = pristine && position.sequence === 0 && position.offset < 0;
+    resizeFrame = requestAnimationFrame(() => render(atBeginning ? undefined : position));
   }, { passive: true });
-  mediaQuery.addEventListener("change", () => { const position = anchor(); render(position); });
   await waitForImages(stream);
 }

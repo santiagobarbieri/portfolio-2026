@@ -3,6 +3,8 @@
   --archive-row-gap: 144px;
 }
 
+.archive-filter-toggle { display: none; }
+
 .archive-intro {
   max-width: 235px;
   margin-top: 5px;
@@ -236,11 +238,6 @@
   .archive-main {
     width: calc(100% - 64px);
     max-width: 700px;
-    margin-top: 252px;
-  }
-
-  .archive-filters {
-    top: 152px;
   }
 }
 
@@ -249,43 +246,9 @@
     --archive-row-gap: 72px;
   }
 
-  .archive-page .site-navigation,
-  .archive-page .identity {
-    position: fixed;
-  }
-
-  .archive-page .identity {
-    padding: 3px;
-    background: var(--bg);
-  }
-
-  .archive-intro {
-    display: none;
-  }
-
-  .archive-filters {
-    top: 86px;
-    right: 16px;
-    width: auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 8px 16px;
-    padding-bottom: 8px;
-    background: var(--bg);
-  }
-
-  .archive-filter + .archive-filter {
-    margin: 0;
-  }
-
-  .archive-results {
-    margin: 0;
-  }
-
   .archive-main {
     width: calc(100% - 32px);
     max-width: 400px;
-    margin-top: 184px;
   }
 
   .archive-row { padding-bottom: 72px; }
@@ -294,25 +257,6 @@
 
   .archive-card__preview-title {
     font-size: 32px;
-  }
-
-  .archive-page .site-footer {
-    right: 16px;
-    bottom: 12px;
-    left: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    margin: 0;
-  }
-
-  .archive-page .theme-switch {
-    margin: 0;
-  }
-
-  .archive-page .site-footer__signature {
-    display: none;
   }
 }
 
@@ -364,9 +308,89 @@
 .archive-filter-option input:checked + span::before { content: "· "; }
 .archive-filter-option input:focus-visible + span { outline: 1px solid currentColor; outline-offset: 3px; }
 .archive-filter-option:hover span { color: var(--fg); }
-@media (max-width: 600px) {
-  .archive-filter-menu + .archive-filter-menu { margin-top: 0; }
-}
 @media (pointer: coarse) {
   .archive-filter-option { min-height: 40px; }
+}
+
+/* One opaque control surface keeps the stream beneath the mobile header. */
+@media (max-width: 900px) {
+  .archive-page .site-header {
+    position: fixed;
+    z-index: 10;
+    inset: 0 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px 16px;
+    padding: calc(16px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 12px max(16px, env(safe-area-inset-left));
+    background: var(--bg);
+  }
+
+  .archive-page .site-navigation {
+    position: static;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .archive-page .navigation-shortcut {
+    max-width: 180px;
+    min-height: 44px;
+  }
+
+  .archive-intro { display: none; }
+
+  .archive-page .identity {
+    position: static;
+    align-items: center;
+    min-height: 44px;
+    gap: 10px;
+    padding: 0;
+    background: transparent;
+  }
+
+  .archive-page .identity__copy { padding-top: 0; }
+  .archive-page .identity__name { margin-bottom: 0; font-size: 12px; }
+  .archive-page .identity__role { display: none; }
+  .archive-page .identity__glyph {
+    display: block;
+    flex-basis: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 0;
+  }
+
+  .archive-filter-panel { grid-column: 1 / -1; min-width: 0; }
+  .archive-filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    list-style: none;
+  }
+  .archive-filter-toggle::-webkit-details-marker { display: none; }
+  .archive-filter-toggle__icon { display: block; flex: 0 0 20px; }
+  .archive-filter-count { margin-left: auto; color: var(--mute); font-size: 11px; }
+
+  .archive-filters {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    width: 100%;
+    max-height: calc(100svh - 160px - env(safe-area-inset-top));
+    margin-top: 8px;
+    padding: 12px 0 4px;
+    border-top: 1px solid var(--line);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    background: var(--bg);
+  }
+  .archive-filters::-webkit-scrollbar { display: none; width: 0; }
+  .archive-filter-menu + .archive-filter-menu { margin-top: 0; }
+  .archive-filter-options { position: static; padding: 0 5px; border-bottom: 0; }
+  .archive-filter-option { min-height: 44px; }
+  .archive-results { display: none; }
+  .archive-main { margin-top: calc(148px + env(safe-area-inset-top)); }
+  .archive-page .site-footer { display: none; }
 }
