@@ -17,6 +17,11 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Los proyectos comparten tipografía, marco y rótulos. La composición se define por sección con `layout`: no aplicar la misma grilla a todos.
 - Contener los logos y recursos pequeños; nunca estirarlos automáticamente al ancho de la columna. Orfeo usa relato fotográfico, OLAS una campaña de afiches y Zapallar un ensayo visual.
 - Stephen King presenta cada tapa con su paleta y una lectura visual lateral. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
+- Los proyectos usan exactamente el ancho y la posición de las dos columnas centrales del home. La ficha del proyecto y su índice lateral quedan fijos; en pantallas pequeñas se abren desde un desplegable fijo.
+- Fotos y afiches se organizan en grillas de dos columnas con celdas iguales, sin piezas destacadas más grandes, desfases ni ampliaciones al ancho completo. En mobile pasan a una columna. Se mantienen las imágenes completas dentro de cada celda.
+- Cada proyecto muestra su paleta al abrirse, con nombres y HEX. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
+- Dentro de proyectos se ocultan ubicación y fecha/hora del footer. En las otras páginas se conservan.
+- El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
 
 ## 1. Stack y reglas de código
 

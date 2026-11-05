@@ -27,7 +27,7 @@ function makeElement(tag, className, text) {
   return element;
 }
 
-function makeImage(item, eager = false, sizes = "(max-width: 600px) calc(100vw - 32px), (max-width: 900px) 60vw, 640px") {
+function makeImage(item, eager = false, sizes = "(max-width: 600px) calc(100vw - 32px), (max-width: 900px) 45vw, 400px") {
   if (!item?.src) return null;
   const source = new URL(item.src, document.baseURI);
   if (source.origin !== window.location.origin) return null;
@@ -85,53 +85,58 @@ function makePalette(colors) {
   return palette;
 }
 
+function makeMedia(item, sizes) {
+  const image = makeImage(item, false, sizes);
+  if (!image) return null;
+  const media = makeElement("figure", "project-media");
+  const frame = makeElement("div", "project-media__image");
+  if (["compact", "medium", "wide"].includes(item.size)) media.dataset.size = item.size;
+  frame.append(image);
+  media.append(frame);
+  if (item.caption) media.append(makeElement("figcaption", "project-media__caption", item.caption));
+  return media;
+}
+
+function makeCoverNotes(data) {
+  const notes = makeElement("div", "project-cover-notes");
+  if (data.colors?.length) {
+    notes.append(makeElement("h3", "tab project-cover-notes__title", "Paleta"), makePalette(data.colors));
+  }
+  if (data.inspiration) {
+    notes.append(makeElement("h3", "tab project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
+  }
+  return notes;
+}
+
 function renderSection(data, index) {
   const section = makeElement("section", "project-section");
-  const layouts = new Set(["brand-board", "poster-wall", "editorial", "photo-essay", "contact-sheet"]);
+  const layouts = new Set(["brand-board", "uniform-grid", "contact-sheet"]);
   const layout = layouts.has(data.layout) ? data.layout : data.block === "logo" ? "brand-board" : null;
   if (layout) section.classList.add(`project-section--${layout}`);
   if (data.block === "cover-study") section.classList.add("project-section--cover-study");
-  const heading = makeElement("div", "project-section__heading");
+  section.id = `section-${index + 1}`;
+  section.tabIndex = -1;
   const number = data.n || String(index + 1).padStart(2, "0");
-  const sectionTitle = makeElement("h2", "tab", number);
-  sectionTitle.id = `section-${index + 1}`;
+  const heading = makeElement("div", "project-section__heading");
+  const sectionTitle = makeElement("h2", "tab");
+  sectionTitle.id = `section-title-${index + 1}`;
+  sectionTitle.append(makeElement("span", "project-section__number", number), makeElement("span", "project-section__label", data.title || "Imágenes"));
   section.setAttribute("aria-labelledby", sectionTitle.id);
-  sectionTitle.setAttribute("aria-label", `${number} ${data.title || "Imágenes"}`);
-  heading.append(sectionTitle, makeElement("p", "project-section__label", data.title || "Imágenes"));
-  if (data.block === "cover-study") {
-    const notes = makeElement("div", "project-cover-notes");
-    if (data.colors?.length) {
-      notes.append(makeElement("h3", "tab project-cover-notes__title", "Paleta"), makePalette(data.colors));
-    }
-    if (data.inspiration) {
-      notes.append(makeElement("h3", "tab project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
-    }
-    heading.append(notes);
-  }
+  heading.append(sectionTitle);
   const body = makeElement("div", "project-section__content");
 
   if (data.block === "palette" && Array.isArray(data.colors)) {
     body.append(makePalette(data.colors));
   } else {
-    const items = Array.isArray(data.items) ? data.items : [];
-    let columns = 1;
-    if (!["logo", "sequence", "text", "cover-study"].includes(data.block)) {
-      columns = items.length >= 7 ? 4 : items.length >= 3 ? 3 : items.length;
-    }
-    const images = makeElement("div", `project-section__images project-section__images--${Math.max(1, columns)} project-section__images--${data.block || "grid"}`);
+    const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
     if (layout) images.classList.add(`project-section__images--${layout}`);
+    if (["poster", "portrait", "landscape", "square", "story"].includes(data.frame)) images.classList.add(`project-section__images--frame-${data.frame}`);
+    const items = Array.isArray(data.items) ? data.items : [];
     items.forEach((item) => {
-      const sizes = data.block === "cover-study" ? "(max-width: 600px) calc(100vw - 32px), 380px" : undefined;
-      const image = makeImage(item, false, sizes);
-      if (!image) return;
-      const media = makeElement("figure", "project-media");
-      if (["compact", "medium", "wide"].includes(item.size)) media.dataset.size = item.size;
-      if (["start", "center", "end"].includes(item.alignment)) media.dataset.alignment = item.alignment;
-      if (item.w / item.h > 2.5 && !layout) media.classList.add("project-section__wide");
-      media.append(image);
-      if (item.caption) media.append(makeElement("figcaption", "project-media__caption", item.caption));
-      images.append(media);
+      const media = makeMedia(item);
+      if (media) images.append(media);
     });
+    if (data.block === "cover-study") images.append(makeCoverNotes(data));
     if (images.children.length) body.append(images);
     if (data.text) body.append(makeElement("p", null, data.text));
   }
@@ -139,44 +144,103 @@ function renderSection(data, index) {
   return section;
 }
 
-function renderProject(project) {
-  content.classList.remove("entry-fallback");
-  const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
-  if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
-  setPageTitle(`${project.title} - Overlook`, project.description, project.cover);
-  const heroSource = project.hero || project.cover;
-  if (heroSource) {
-    const hero = makeElement("figure", "project-entry__hero");
-    const image = makeImage({
-      src: heroSource,
-      alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`,
-      w: project.heroW || project.w,
-      h: project.heroH || project.h,
-    }, true);
-    if (image) hero.append(image);
-    article.append(hero);
-  }
-
-  const intro = makeElement("section", "project-entry__intro");
-  intro.append(makeElement("h2", "tab", "Proyecto"));
+function makeProjectSidebar(project, sections, hasPalette) {
+  const sidebar = makeElement("aside", "project-sidebar");
+  sidebar.setAttribute("aria-label", "Ficha del proyecto");
+  const overview = makeElement("details", "project-overview");
+  const summary = makeElement("summary", "tab project-overview__summary", "Proyecto");
+  const body = makeElement("div", "project-overview__body");
+  body.dataset.lenisPrevent = "";
   const metadata = makeElement("dl", "project-metadata");
   const rows = [["Proyecto", project.title], ["Tipo", project.type]];
   if (Array.isArray(project.meta)) rows.push(...project.meta);
   else if (project.meta && typeof project.meta === "object") rows.push(...Object.entries(project.meta));
   rows.forEach(([name, value]) => {
-    if (!value) return;
-    metadata.append(makeElement("dt", null, name), makeElement("dd", null, value));
+    if (value) metadata.append(makeElement("dt", null, name), makeElement("dd", null, value));
   });
-  intro.append(metadata);
-  if (project.description) intro.append(makeElement("p", null, project.description));
-  article.append(intro);
+  body.append(metadata);
+  if (project.description) body.append(makeElement("p", "project-overview__description", project.description));
+  const navigation = makeElement("nav", "project-index");
+  navigation.setAttribute("aria-label", "Secciones del proyecto");
+  const list = makeElement("ul");
+  const entries = sections.map((section, index) => ({ id: `section-${index + 1}`, text: `${section.n || String(index + 1).padStart(2, "0")} ${section.title}` }));
+  if (hasPalette) entries.unshift({ id: "project-colors", text: "Color" });
+  entries.forEach(({ id, text }) => {
+    const item = makeElement("li");
+    const link = makeElement("a", null, text);
+    link.href = `#${id}`;
+    item.append(link);
+    list.append(item);
+  });
+  navigation.append(makeElement("h2", "project-index__title", "Secciones"), list);
+  body.append(navigation);
+  overview.append(summary, body);
+  sidebar.append(overview);
+  const desktop = matchMedia("(min-width: 901px)");
+  const fitOverview = () => { overview.open = desktop.matches; };
+  desktop.addEventListener("change", fitOverview);
+  fitOverview();
+  navigation.addEventListener("click", (event) => {
+    if (event.target.closest("a") && !desktop.matches) overview.open = false;
+  });
+  return sidebar;
+}
 
+function trackProjectSections(sidebar) {
+  if (!("IntersectionObserver" in window)) return;
+  const links = [...sidebar.querySelectorAll("a")];
+  const visible = new Set();
+  let active = null;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target));
+    const target = [...visible].sort((a, b) => Math.abs(a.getBoundingClientRect().top - 110) - Math.abs(b.getBoundingClientRect().top - 110))[0];
+    if (!target || active === target.id) return;
+    active = target.id;
+    links.forEach((link) => {
+      if (link.hash === `#${active}`) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }, { rootMargin: "-90px 0px -40% 0px" });
+  links.forEach((link) => {
+    const target = document.getElementById(link.hash.slice(1));
+    if (target) observer.observe(target);
+  });
+}
+
+function renderProject(project) {
+  content.classList.remove("entry-fallback");
+  const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
+  if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
+  setPageTitle(`${project.title} - Overlook`, project.description, project.cover);
+  const opening = makeElement("div", "project-entry__opening");
+  const heroSource = project.hero || project.cover;
+  if (heroSource) {
+    const hero = makeElement("figure", "project-entry__hero");
+    const image = makeImage({ src: heroSource, alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`, w: project.heroW || project.w, h: project.heroH || project.h }, true);
+    if (image) hero.append(image);
+    opening.append(hero);
+  }
+  if (project.palette) {
+    const palette = makeElement("section", "project-color-summary");
+    palette.id = "project-colors";
+    palette.tabIndex = -1;
+    const heading = makeElement("h2", "tab", project.palette.title || "Paleta");
+    heading.id = "project-colors-title";
+    palette.setAttribute("aria-labelledby", heading.id);
+    palette.append(heading);
+    if (project.palette.colors?.length) palette.append(makePalette(project.palette.colors));
+    if (project.palette.description) palette.append(makeElement("p", "project-color-summary__description", project.palette.description));
+    opening.append(palette);
+  }
+  article.append(opening);
   const sections = Array.isArray(project.sections) ? project.sections : [];
   if (!sections.length && Array.isArray(project.images) && project.images.length) {
     sections.push({ n: "01", title: "Imágenes", block: "grid", items: project.images.map((item) => typeof item === "string" ? { src: item, alt: `${project.title} — Imágenes` } : item) });
   }
   sections.forEach((section, index) => article.append(renderSection(section, index)));
-  content.replaceChildren(article);
+  const sidebar = makeProjectSidebar(project, sections, Boolean(project.palette));
+  content.replaceChildren(sidebar, article);
+  trackProjectSections(sidebar);
 }
 
 async function renderEntry() {

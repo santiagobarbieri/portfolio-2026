@@ -39,27 +39,19 @@
       "layout": "brand-board"
     },
     {
-      "n": "02",
-      "title": "Paleta",
-      "block": "palette",
-      "colors": [
+      "title": "Variante de marca",
+      "block": "logo",
+      "layout": "brand-board",
+      "items": [
         {
-          "name": "Hueso",
-          "hex": "#D2DDCC"
-        },
-        {
-          "name": "Vino",
-          "hex": "#360F17"
-        },
-        {
-          "name": "Malva",
-          "hex": "#9E6B7A"
-        },
-        {
-          "name": "Verde",
-          "hex": "#9AE4A3"
+          "src": "assets/images/el-armado/Variante Logo.png",
+          "w": 970,
+          "h": 970,
+          "alt": "El Armado — variante del logotipo",
+          "size": "compact"
         }
-      ]
+      ],
+      "n": "02"
     },
     {
       "n": "03",
@@ -96,7 +88,9 @@
           "h": 3508,
           "alt": "Afiche de El Armado con ilustraciones y datos de la fiesta"
         }
-      ]
+      ],
+      "layout": "uniform-grid",
+      "frame": "poster"
     },
     {
       "n": "05",
@@ -109,7 +103,9 @@
           "h": 1920,
           "alt": "Historia de Instagram de El Armado"
         }
-      ]
+      ],
+      "layout": "uniform-grid",
+      "frame": "story"
     },
     {
       "n": "06",
@@ -151,16 +147,10 @@
           "w": 284,
           "h": 401,
           "alt": "El Armado — variante gráfica 6"
-        },
-        {
-          "src": "assets/images/el-armado/Variante Logo.png",
-          "w": 970,
-          "h": 970,
-          "alt": "El Armado — variante del logotipo",
-          "size": "compact"
         }
       ],
-      "layout": "contact-sheet"
+      "layout": "contact-sheet",
+      "frame": "poster"
     },
     {
       "n": "07",
@@ -194,5 +184,28 @@
       ],
       "layout": "contact-sheet"
     }
-  ]
+  ],
+  "palette": {
+    "title": "Paleta del proyecto",
+    "description": "Colores definidos para la identidad de El Armado.",
+    "source": "provided",
+    "colors": [
+      {
+        "name": "Hueso",
+        "hex": "#D2DDCC"
+      },
+      {
+        "name": "Vino",
+        "hex": "#360F17"
+      },
+      {
+        "name": "Malva",
+        "hex": "#9E6B7A"
+      },
+      {
+        "name": "Verde",
+        "hex": "#9AE4A3"
+      }
+    ]
+  }
 }

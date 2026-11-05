@@ -97,7 +97,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 
 | Bloque | Carpeta típica | Render |
 |---|---|---|
-| `logo` | `logo`, `marca` | Imagen a ancho completo de la columna de contenido. Varias: una debajo de otra. |
+| `logo` | `logo`, `marca` | Marca contenida dentro de una columna del home. Varias: comparación compacta en dos columnas. |
 | `palette` | `paleta`, `colores` | Círculos iguales (4 por fila), nombre y HEX debajo, en mute. Datos desde `palette` de `project.md`. Si no hay datos, muestrear los colores de las imágenes y reportarlo. |
 | `type` | `tipografia` | Nombre de la fuente en bold; si hay imágenes, muestra de tipografía a ancho completo. |
 | `pair` | `afiche`, `poster` | 1 pieza: centrada, máx. 400px de ancho. 2: lado a lado. |
@@ -107,16 +107,15 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 | `text` | `texto`, `notas` | Texto light en columna angosta (máx. 420px). Contenido desde `.md` dentro de la carpeta. |
 | `gallery` | cualquier otro | Igual que `grid`. |
 
-**Grilla por cantidad (columna de contenido):**
-- 1 → ancho completo, máx. 520px si es vertical.
-- 2 → 2 columnas.
-- 3–6 → 3 columnas.
-- 7 o más → 4 columnas.
-- Proporción original siempre; sin recortes ni `object-fit: cover`.
-- Imagen más ancha que 2.5:1 (logos, banners) → ocupa toda la fila.
-- Las variantes descartadas van en la misma grilla que el resto, sin tratamiento especial.
+**Grilla vigente:**
+- El área de contenido coincide con las dos columnas centrales de Archivo: hasta 870px, con el mismo gutter y alineación.
+- Las grillas tienen dos columnas, independientemente de la cantidad de piezas; en mobile, una columna para fotos y afiches.
+- Ninguna imagen de una grilla se destaca con mayor tamaño ni ocupa ambas columnas.
+- Las celdas de una misma grilla tienen el mismo ancho y alto. `frame` define su proporción: `poster`, `portrait`, `landscape`, `square` o `story`.
+- Proporción original siempre; las imágenes se contienen completas en las celdas, sin recortes ni `object-fit: cover`.
+- Las marcas y pruebas pequeñas conservan escala contenida para no ampliar archivos de baja resolución.
 
-**Hero:** `00-hero` centrado, máx. 420px de ancho, con aire arriba y abajo. La tabla de metadatos va debajo, en la columna izquierda.
+**Hero:** `00-hero` ocupa la primera columna central, con la paleta a su lado. La ficha y el índice permanecen fijos en la columna lateral izquierda. En mobile se despliegan desde un control fijo.
 
 **Numeración:** las secciones se numeran `01`, `02`… por orden de carpeta. El hero y los metadatos no se numeran (`Proyecto` es el primer Tab).
 
@@ -127,12 +126,12 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 | Layout | Uso |
 |---|---|
 | `brand-board` | Comparación de marcas e ilustraciones contenidas, sin ampliar logos al ancho completo. |
-| `poster-wall` | Un afiche principal y una comparación de las piezas restantes en dos columnas. |
-| `editorial` | Pares fotográficos escalonados y una imagen de cierre más amplia. |
-| `photo-essay` | Paisajes amplios alternados con retratos y detalles. |
+| `uniform-grid` | Fotos o afiches en dos columnas y celdas iguales, sin jerarquías de tamaño. `frame` define la proporción de la celda. |
 | `contact-sheet` | Variantes y recursos pequeños en una plancha de escala controlada. |
 
-Cada item puede declarar `size: compact|medium|wide` y `alignment: start|center|end`. Son decisiones de presentación: se preservan proporciones, originales, textos y créditos. Los logos tienen escala contenida; un wordmark horizontal puede llegar a 520px, una marca cuadrada a unos 300px y un monograma a 120–180px.
+En las marcas se puede declarar `size: compact|medium|wide`. Los logos quedan dentro de una columna central: una marca cuadrada llega a unos 300px y un monograma a 120–180px. No usar diferencias de tamaño ni alineaciones escalonadas en grillas de fotos o afiches.
+
+La propiedad raíz `palette` contiene `title`, `description`, `source` y `colors: [{name, hex, source?}]`. Se presenta junto al hero. `source` distingue valores provistos, colores de las piezas, muestras de aplicaciones o paletas fotográficas. Los nombres y HEX quedan visibles; si son valores muestreados, explicitar que son de referencia. Stephen King usa `source: per-cover` y conserva las paletas individuales.
 
 Para piezas editoriales individuales, `block: cover-study` muestra una tapa y una ficha lateral. La sección incluye un único `item`, `colors: [{name, hex}]` e `inspiration` como lectura visual breve. Si no existen referencias originales, describir solamente motivos visibles; no atribuir influencias al autor. En Stephen King los colores están muestreados de cada portada y esta lectura fue autorizada por Santi.
 

@@ -200,7 +200,8 @@
           ]
         }
       ],
-      "layout": "poster-wall"
+      "layout": "uniform-grid",
+      "frame": "poster"
     },
     {
       "n": "05",
@@ -363,5 +364,32 @@
     }
   ],
   "coverOriginal": "assets/images/olas-ditella/poster%201.png",
-  "heroOriginal": "assets/images/olas-ditella/poster%201.png"
+  "heroOriginal": "assets/images/olas-ditella/poster%201.png",
+  "palette": {
+    "title": "Paleta de identidad",
+    "description": "Verde, menta, azul profundo y blanco presentes en las piezas de la identidad.",
+    "source": "artwork",
+    "colors": [
+      {
+        "name": "Verde",
+        "hex": "#4C997F",
+        "source": "assets/images/olas-ditella/Vectores%202.svg"
+      },
+      {
+        "name": "Menta",
+        "hex": "#9FDDBD",
+        "source": "assets/images/olas-ditella/Logo.svg"
+      },
+      {
+        "name": "Azul profundo",
+        "hex": "#175055",
+        "source": "assets/images/olas-ditella/New%20Project%20%283%29.svg"
+      },
+      {
+        "name": "Blanco",
+        "hex": "#FBFDFD",
+        "source": "assets/images/olas-ditella/Logo.svg"
+      }
+    ]
+  }
 }

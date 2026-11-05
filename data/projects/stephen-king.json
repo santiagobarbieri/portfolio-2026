@@ -528,7 +528,8 @@
           ]
         }
       ],
-      "layout": "contact-sheet"
+      "layout": "uniform-grid",
+      "frame": "poster"
     }
   ],
   "sandbox": [
@@ -620,5 +621,11 @@
       ]
     }
   ],
-  "paletteSource": "Colores muestreados de las portadas; lectura visual a partir de las piezas."
+  "paletteSource": "Colores muestreados de las portadas; lectura visual a partir de las piezas.",
+  "palette": {
+    "title": "Paletas por portada",
+    "description": "Cada tapa tiene su propia paleta. Los colores y su lectura visual acompañan a cada pieza.",
+    "source": "per-cover",
+    "colors": []
+  }
 }

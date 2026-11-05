@@ -43,8 +43,7 @@
               "h": 449
             }
           ],
-          "size": "wide",
-          "alignment": "center"
+          "caption": "Paseo costero"
         },
         {
           "src": "assets/images/zapallar/IMG_4726-800.webp",
@@ -64,8 +63,7 @@
               "h": 532
             }
           ],
-          "size": "medium",
-          "alignment": "start"
+          "caption": "Árboles y jardines"
         },
         {
           "src": "assets/images/zapallar/IMG_4665-800.webp",
@@ -85,8 +83,7 @@
               "h": 1067
             }
           ],
-          "size": "compact",
-          "alignment": "end"
+          "caption": "Detalles cotidianos"
         },
         {
           "src": "assets/images/zapallar/IMG_4673-800.webp",
@@ -106,8 +103,7 @@
               "h": 1067
             }
           ],
-          "size": "compact",
-          "alignment": "start"
+          "caption": "Bandera de Chile"
         },
         {
           "src": "assets/images/zapallar/IMG_4731-800.webp",
@@ -127,8 +123,7 @@
               "h": 532
             }
           ],
-          "size": "medium",
-          "alignment": "end"
+          "caption": "Playa"
         },
         {
           "src": "assets/images/zapallar/DSC01575-800.webp",
@@ -148,8 +143,7 @@
               "h": 532
             }
           ],
-          "size": "medium",
-          "alignment": "start"
+          "caption": "Luz de tarde"
         },
         {
           "src": "assets/images/zapallar/IMG_4748-800.webp",
@@ -169,11 +163,11 @@
               "h": 532
             }
           ],
-          "size": "wide",
-          "alignment": "center"
+          "caption": "Reflejos sobre el mar"
         }
       ],
-      "layout": "photo-essay"
+      "layout": "uniform-grid",
+      "frame": "landscape"
     }
   ],
   "sandbox": [
@@ -279,5 +273,37 @@
     }
   ],
   "coverOriginal": "assets/images/zapallar/IMG_4660.jpg",
-  "heroOriginal": "assets/images/zapallar/IMG_4660.jpg"
+  "heroOriginal": "assets/images/zapallar/IMG_4660.jpg",
+  "palette": {
+    "title": "Paleta fotográfica",
+    "description": "Paleta observada en la serie fotográfica: cielo, vegetación, roca y luz de tarde.",
+    "source": "photographic",
+    "colors": [
+      {
+        "name": "Cielo",
+        "hex": "#7EBDED",
+        "source": "assets/images/zapallar/IMG_4660.jpg"
+      },
+      {
+        "name": "Oliva",
+        "hex": "#484724",
+        "source": "assets/images/zapallar/IMG_4726.JPG"
+      },
+      {
+        "name": "Roca",
+        "hex": "#79776A",
+        "source": "assets/images/zapallar/IMG_4660.jpg"
+      },
+      {
+        "name": "Dorado",
+        "hex": "#AD8D55",
+        "source": "assets/images/zapallar/IMG_4748.JPG"
+      },
+      {
+        "name": "Luz cálida",
+        "hex": "#E8CB83",
+        "source": "assets/images/zapallar/IMG_4748.JPG"
+      }
+    ]
+  }
 }
