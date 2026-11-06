@@ -10,7 +10,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
 - Todas las vistas usan el tema oscuro, sin switch. Acento #216BFF en el nombre, glyph, hovers, foco y cursor. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
-- En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección.
+- En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
 - Abrir con `preview.command` / HTTP: el acceso file:// bloquea módulos ES y JSON.
 - Ocultar las barras de scroll sin bloquear rueda, touch ni teclado; Testament y Message conservan su desplazamiento interno.

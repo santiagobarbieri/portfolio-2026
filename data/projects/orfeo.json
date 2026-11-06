@@ -155,6 +155,25 @@
               "h": 1200
             }
           ]
+        },
+        {
+          "src": "assets/images/orfeo/IMG_4452-800.webp",
+          "w": 800,
+          "h": 1200,
+          "alt": "Modelo con sweater marrón tejido de Viamonte junto a un árbol",
+          "original": "assets/images/orfeo/IMG_4452.JPG",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/IMG_4452-1600.webp",
+              "w": 1536,
+              "h": 2304
+            },
+            {
+              "src": "assets/images/orfeo/IMG_4452-800.webp",
+              "w": 800,
+              "h": 1200
+            }
+          ]
         }
       ],
       "n": "03"
@@ -179,25 +198,6 @@
             },
             {
               "src": "assets/images/orfeo/IMG_4246-800.webp",
-              "w": 800,
-              "h": 1200
-            }
-          ]
-        },
-        {
-          "src": "assets/images/orfeo/IMG_4452-800.webp",
-          "w": 800,
-          "h": 1200,
-          "alt": "Modelo con sweater negro en un espacio verde de la ciudad",
-          "original": "assets/images/orfeo/IMG_4452.JPG",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/IMG_4452-1600.webp",
-              "w": 1536,
-              "h": 2304
-            },
-            {
-              "src": "assets/images/orfeo/IMG_4452-800.webp",
               "w": 800,
               "h": 1200
             }

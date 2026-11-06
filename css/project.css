@@ -108,11 +108,11 @@
 }
 .project-entry__hero { width: 100%; min-width: 0; margin: 0; }
 .project-entry__hero img { width: 100%; height: auto; max-height: 70svh; object-fit: contain; }
-.project-color-summary { min-width: 0; scroll-margin-top: calc(var(--entry-bar-height) + 24px); }
+.project-color-summary { min-width: 0; scroll-margin-top: var(--project-sticky-top); }
 .project-color-summary .project-palette { margin-top: 24px; }
 .project-color-summary__description { max-width: 340px; margin-top: 24px; color: var(--mute); font-size: 11px; line-height: 1.4; }
 
-.project-section { min-width: 0; margin-top: 100px; scroll-margin-top: calc(var(--entry-bar-height) + 24px); }
+.project-section { min-width: 0; margin-top: 100px; scroll-margin-top: var(--project-sticky-top); }
 .project-section__heading { margin-bottom: 24px; }
 .project-section__heading h2 { justify-content: flex-start; gap: 16px; margin: 0; font-size: 13px; }
 .project-section__number { min-width: 24px; }
@@ -193,7 +193,7 @@
   .entry-main { width: calc(100% - 64px); max-width: 700px; margin-top: 252px; }
 }
 @media (max-width: 900px) {
-  .project-sidebar { top: calc(var(--entry-bar-height) + 16px); right: 32px; left: 32px; width: auto; max-width: 700px; margin-inline: auto; }
+  .project-sidebar { top: var(--entry-bar-height); padding-top: 16px; right: 32px; left: 32px; width: auto; max-width: 700px; margin-inline: auto; }
   .project-overview__body { max-height: calc(100svh - 180px); padding: 16px; border-bottom: 1px solid var(--line); }
   .project-section { margin-top: 80px; }
   .project-cover-notes .project-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -287,11 +287,11 @@ body:has(.project-preview[open]) { overflow: hidden; }
 @media (max-width: 900px) {
   .project-overview__summary { min-height: 44px; }
   .project-section,
-  .project-color-summary { scroll-margin-top: calc(var(--entry-bar-height) + 84px); }
+  .project-color-summary { scroll-margin-top: var(--project-sticky-top); }
 }
 
 /* Section labels travel with their own images, inside the shared central bounds. */
-.entry-page { --project-sticky-top: calc(var(--entry-bar-height) + 12px); }
+.entry-page { --project-sticky-top: var(--entry-bar-height); }
 .project-section__heading {
   position: sticky;
   z-index: 3;
@@ -337,7 +337,7 @@ body:has(.project-preview[open]) { overflow: hidden; }
 .project-catalogue__link:hover .project-media__caption { color: var(--fg); }
 
 @media (max-width: 900px) {
-  .entry-page { --project-sticky-top: calc(var(--entry-bar-height) + 68px); }
+  .entry-page { --project-sticky-top: calc(var(--entry-bar-height) + 60px); }
 }
 @media (max-width: 600px) {
   .project-comparison--brand-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
