@@ -38,7 +38,7 @@
 }
 
 .accordion__content {
-  padding: 4px 0 0 5px;
+  padding: 8px 0 0;
   text-align: right;
 }
 
@@ -51,8 +51,8 @@
 }
 
 .directory-list li {
-  min-height: 18px;
-  line-height: 18px;
+  min-height: 22px;
+  line-height: var(--leading-meta);
 }
 
 .directory-item {

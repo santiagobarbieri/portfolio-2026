@@ -1,37 +1,7 @@
 .project-type {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--fg);
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.project-type::before {
-  flex: 0 0 auto;
-  width: 10px;
-  height: 10px;
-  border: 1px solid currentColor;
-  content: "";
-}
-
-.project-type[data-family="identity"]::before {
-  background:
-    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat,
-    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
-}
-
-.project-type[data-family="passion"]::before {
-  width: 8px;
-  height: 8px;
-  margin-inline: 1px;
-  transform: rotate(45deg);
-}
-
-.project-type[data-family="photography"]::before {
-  width: 13px;
-  height: 9px;
-  border-left-style: double;
-  border-left-width: 3px;
+  display: inline-block;
+  color: var(--mute);
+  font-size: var(--text-meta);
+  font-weight: 300;
+  line-height: var(--leading-meta);
 }

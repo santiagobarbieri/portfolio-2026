@@ -41,16 +41,13 @@ function createCard(project) {
     media.append(placeholder);
   }
   const caption = node("div", "archive-card__caption");
-  const cue = node("span", "archive-card__cue", "↗");
-  cue.setAttribute("aria-hidden", "true");
-  caption.append(cue);
-  caption.append(node("span", "archive-card__code", project.code || "—"));
+  if (project.code && !/^XX[–—-]00$/.test(project.code)) caption.append(node("span", "archive-card__code", project.code));
   const type = makeProjectType(project.family);
   if (type) {
     type.classList.add("archive-card__type");
     caption.append(type);
   }
-  caption.append(node("h2", "archive-card__title", `${project.title} - ${project.type}`), node("p", "archive-card__description", project.description || "Completar"));
+  caption.append(node("h2", "archive-card__title", project.title), node("p", "archive-card__description", project.description || "Completar"));
   link.append(media, caption);
   card.append(link);
   return card;

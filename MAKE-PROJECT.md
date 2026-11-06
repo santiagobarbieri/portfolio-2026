@@ -114,13 +114,13 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 
 **Grilla vigente:**
 - El área de contenido coincide con las dos columnas centrales de Archivo: hasta 870px, con el mismo gutter y alineación.
-- Las grillas con `frame: poster` tienen cinco columnas en todo tamaño, incluidas sus variantes; las miniaturas abren una ampliación accesible. Las fotos conservan dos columnas y pasan a una en mobile.
+- Las grillas con `frame: poster` tienen cinco columnas en todo tamaño, incluidas sus variantes; las miniaturas abren una ampliación accesible. Las fotos dentro de identidad conservan dos columnas y pasan a una en mobile; las colecciones `family: photography` mantienen tres por fila.
 - Ninguna imagen de una grilla se destaca con mayor tamaño ni ocupa ambas columnas.
 - Las celdas de una misma grilla tienen el mismo ancho y alto. `frame` define su proporción: `poster`, `portrait`, `landscape`, `square` o `story`.
 - Proporción original siempre; las imágenes se contienen completas en las celdas, sin recortes ni `object-fit: cover`.
 - Las marcas y pruebas pequeñas conservan escala contenida para no ampliar archivos de baja resolución.
 
-**Hero de identidad/editorial:** `00-hero` ocupa la primera columna central, con la paleta a su lado. La ficha y el índice permanecen fijos en la columna lateral izquierda. En mobile se despliegan desde un control fijo.
+**Apertura de identidad/editorial:** encabezado común con nombre y clasificación textual. `00-hero` ocupa la primera columna central, con la paleta a su lado; en una campaña fotográfica como Orfeo, la foto ocupa las dos columnas y la paleta queda inmediatamente debajo. La ficha y el índice permanecen fijos en la columna lateral izquierda. En mobile se despliegan desde un control fijo.
 
 **Numeración:** las secciones se numeran `01`, `02`… por orden de carpeta. El hero y los metadatos no se numeran (`Proyecto` es el primer Tab).
 
@@ -136,7 +136,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 
 En las marcas se puede declarar `size: compact|medium|wide`. Los logos quedan dentro de una columna central: una marca cuadrada llega a unos 300px y un monograma a 120–180px. No usar diferencias de tamaño ni alineaciones escalonadas en grillas de fotos o afiches.
 
-La propiedad raíz `palette` contiene `title`, `description`, `source` y `colors: [{name, hex, source?}]`. En identidad/editorial se presenta junto al hero; las colecciones fotográficas omiten este bloque. `source` distingue valores provistos, colores de las piezas, muestras de aplicaciones o paletas fotográficas. Los nombres y HEX quedan visibles; si son valores muestreados, explicitar que son de referencia. Stephen King usa `source: per-cover` y conserva las paletas individuales.
+La propiedad raíz `palette` contiene `title`, `description`, `source` y `colors: [{name, hex, source?}]`. En identidad/editorial se presenta junto al hero o debajo si el hero fotográfico ocupa ambas columnas; las colecciones fotográficas omiten este bloque. `source` distingue valores provistos, colores de las piezas, muestras de aplicaciones o paletas fotográficas. Los nombres y HEX quedan visibles; si son valores muestreados, explicitar que son de referencia. Stephen King usa `source: per-cover` y conserva las paletas individuales.
 
 Las variantes van en `variants: [{src, w, h, alt, caption, sources?}]` de la sección que contiene su principal. `variantsTitle` puede distinguir exploraciones, aplicaciones de color u otras versiones verificadas. Se muestran como pruebas pequeñas, sin ampliar originales ni recortar. `cover-study` también admite `variants`, junto a la paleta y lectura visual. Mantener aparte las piezas que pertenecen a otra familia o no tienen relación demostrable.
 
@@ -199,3 +199,8 @@ En ORFEO, las prendas confirmadas son Viamonte (marrón tejido), Talcahuano (neg
 Para `family: photography`, usar la vista de colección: tres imágenes por fila, imágenes completas, contador y `name` solo si se proporcionó un nombre real. No generar nombres a partir de `alt` ni de nombres de archivo. No mostrar paletas, análisis o capítulos en la grilla. La ficha se presenta debajo de las fotos.
 
 Todas las fotografías ampliables de un proyecto se reúnen por su ruta original sin duplicar exportaciones. El visor compartido muestra las fotos y su nombre/número, con flechas, rueda/trackpad horizontal continuo e infinito y gesto horizontal. `original` es la ruta de descarga en calidad original; las previews usan WebP. Incluir los originales de descarga en el deploy, sin modificar ni recomprimir los archivos fuente.
+
+
+## Escala editorial compartida
+
+Los tokens de `base.css` fijan el ancho y el comienzo del contenido, el gutter, la altura de controles, los espacios de sección y tres roles tipográficos. No introducir tamaños de metadatos distintos por proyecto. Marcas de apertura contenidas en 260–280px; paletas de círculos de 36px (32px en mobile). Los títulos de variantes y lecturas no llevan la clase de control `tab`; los rótulos principales de sección tienen una sola línea inferior. La clasificación es texto gris sin símbolos adicionales. Ver el sistema editorial aprobado en AGENTS.md.

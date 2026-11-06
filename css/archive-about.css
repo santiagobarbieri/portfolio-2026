@@ -1,12 +1,14 @@
 .archive-about {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--archive-gap);
+  gap: var(--column-gap);
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
   width: 100%;
 }
-.archive-about__testament { min-width: 0; padding-top: 24px; }
+.archive-about__testament { min-width: 0; padding-top: 0; }
 .archive-about__heading { gap: 12px; }
-.archive-about__heading h2 { font-size: inherit; }
+.archive-about__heading h2 { font-size: var(--text-title); }
 .archive-about__zoom { display: flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 300; }
 .archive-about__zoom button { min-width: 24px; min-height: 24px; padding: 0; }
 .archive-about__zoom button:disabled { color: var(--mute); }
@@ -19,7 +21,7 @@
   overscroll-behavior: contain;
   scrollbar-width: none;
   font-size: 15px;
-  line-height: 1.1;
+  line-height: 1.35;
   text-align: justify;
 }
 .archive-about__copy::-webkit-scrollbar { display: none; width: 0; }
@@ -29,15 +31,15 @@
 .archive-about__copy[data-zoom="175"] { font-size: 17.5px; }
 .archive-about__copy[data-zoom="200"] { font-size: 20px; }
 .archive-about__notes { margin-top: 20px; }
-.archive-about__notes .accordion__content { font-size: 11px; }
-.archive-about__portrait { min-width: 0; margin: 48px 0 0; }
+.archive-about__notes .accordion__content { font-size: var(--text-meta); line-height: var(--leading-meta); }
+.archive-about__portrait { min-width: 0; margin: 0; }
 .archive-about__portrait-frame {
   display: flex;
   align-items: flex-end;
   width: 100%;
   aspect-ratio: 400 / 576;
   padding: 12px;
-  border: 1px solid var(--line);
+  background: var(--hover-surface);
   color: var(--mute);
   font-size: 11px;
 }

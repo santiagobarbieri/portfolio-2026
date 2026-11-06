@@ -19,7 +19,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Stephen King presenta cada tapa con su paleta y una lectura visual lateral. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
 - Los proyectos usan exactamente el ancho y la posición de las dos columnas centrales del home. La ficha del proyecto y su índice lateral quedan fijos; en pantallas pequeñas se abren desde un desplegable fijo.
 - Los afiches y sus variantes usan siempre cinco columnas. Las colecciones fotográficas usan tres fotos por fila, imágenes completas, contador y nombres solo si están definidos. Su ficha va al final, sin paleta ni análisis en la vista principal. Todas las imágenes ampliables usan el visor compartido: flechas, scroll horizontal lineal e infinito, drag/touch y descarga del original.
-- Clasificación confirmada: Stephen King = Passion project; OLAS, Orfeo y El Armado = Identidad visual; Zapallar = Colección de fotos. Mostrar texto y símbolo estático en Archivo y en la apertura del caso; conservar las disciplinas y roles específicos en la ficha. No inferir si un trabajo fue un encargo.
+- Clasificación confirmada: Stephen King = Passion project; OLAS, Orfeo y El Armado = Identidad visual; Zapallar = Colección de fotos. Mostrar una etiqueta de texto discreta, sin símbolos decorativos, en Archivo y en la apertura del caso; conservar las disciplinas y roles específicos en la ficha. No inferir si un trabajo fue un encargo.
 - Los proyectos de identidad y editorial muestran su paleta al abrirse, con nombres y HEX; las colecciones fotográficas no muestran paleta. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
 - Dentro de proyectos y en pantallas de hasta 900 px se ocultan ubicación y fecha/hora del footer. En desktop se conservan fuera de proyectos.
 - En mobile y tablet, identidad y Archivo quedan sobre una franja negra superior; filtros e índice comparten un dock inferior negro y continuo que crece hacia arriba. No cubrir el encabezado: si se abren muchas listas, el dock tiene scroll interno. Los cambios de altura del navegador móvil no reconstruyen las cards.
@@ -34,6 +34,16 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Conservar la identidad común: marco negro, Albert Sans, tabs y líneas, ficha lateral, dos columnas centrales, paletas con nombres y HEX, loader Rose y variantes pequeñas junto a originales. Las referencias guían la composición; no sustituyen instrucciones de Santi ni autorizan acciones ajenas al proyecto.
 - Antes de incorporar nuevos casos, terminar el refinamiento de los cinco actuales. No copiar automáticamente una plantilla de otro caso.
 - Presentaciones actuales: OLAS como sistema de identidad; El Armado como identidad ilustrada; Orfeo como campaña y colección; Stephen King como catálogo editorial con estudios por tapa; Zapallar como colección de tres fotos por fila y ficha al final.
+
+## Sistema editorial aprobado
+
+- Unificar posiciones y tamaños con los tokens compartidos de `base.css`: ancho y comienzo central, gutter, altura de controles, espacios de sección y tres roles tipográficos (título 14px, cuerpo 12px, metadatos 11px). El lector de About conserva el zoom.
+- Azul reservado al glyph, cursor y foco. Líneas grises discretas; rótulos estáticos sin la apariencia de un control. Enlaces de portada y ficha mantienen los datos visibles y un subrayado sutil; no agregar CTA ni flecha.
+- Archivo: nombre simple de cada proyecto; clasificación en texto gris, sin símbolos ni repetir la disciplina en el título. Omitir códigos provisionales XX–00. Conservar las portadas entrelazadas y el gutter real de About.
+- Aperturas: nombre y clasificación en un encabezado común, después pieza principal y paleta. OLAS y Stephen King contienen sus marcas; El Armado comienza con su afiche; Orfeo abre con fotografía sobre las dos columnas, y la paleta queda debajo en las mismas columnas.
+- Rótulos principales de sección con una línea inferior; paletas, lecturas y variantes usan títulos pequeños sin recuadro ni línea. Colores con círculos de 36px (32px en mobile), nombres y HEX.
+- Colecciones fotográficas mantienen solo nombre arriba, contador, grilla de tres y ficha al final. Afiches, cinco por fila. Todas las imágenes completas, sin recorte.
+- Compartir alturas, foco, chevrons y realce neutro entre menús, filtros, cierre y carrusel. El encabezado móvil es negro continuo en todas las páginas.
 
 ## 1. Stack y reglas de código
 
@@ -81,18 +91,18 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
 **Tipografía.**
 - Texto: **Albert Sans Light (300)**.
-- Títulos y botones: **Albert Sans SemiBold (600)**, 12–13px.
-- Cuerpo y etiquetas: 11–12px, interlineado 1.1–1.25, tracking neutro. About usa texto justificado.
+- Títulos: **Albert Sans SemiBold (600)**, 14px. Controles: 12px en SemiBold.
+- Cuerpo: 12px con interlineado 1.5; metadatos: 11px con interlineado 1.4. About conserva texto justificado y zoom.
 - Una sola familia, **Albert Sans** (licencia OFL), self-hosted en `assets/fonts/` con los pesos 300 y 600 en WOFF2. Stack: `"Albert Sans",system-ui,sans-serif`. Decisión cerrada: no se usa Hiragino Kaku Gothic Std.
 
 **Layout.** Grilla de 12 columnas con la columna izquierda fija de ~235px (tab, foto de About, filtros). Contenido desde ~320px. Mucho espacio negativo; nada de sombras, bordes redondeados ni íconos decorativos. Todo se define con líneas de 1px.
 
 ## 4. Componentes
 
-- **Tab / encabezado de sección:** borde izquierdo de 1px, título bold, línea inferior de 1px, chevron opcional a la derecha. Es el elemento que se repite en todo el sitio (nav, `Testament`, `Certificados`, `Proyecto`, `01 Logo`).
+- **Tab / encabezado de sección:** título bold, línea inferior de 1px, chevron opcional a la derecha. Es el elemento que se repite en todo el sitio (nav, `Testament`, `Certificados`, `Proyecto`, `01 Logo`).
 - **Accordion:** un Tab que despliega una lista alineada a la derecha, texto light. Chevron rota.
 - **Dropdown de filtro:** Tab con chevron (`All Projects`, `Last First`).
-- **Caption:** `CÓDIGO` en mute · `Título - Tipo` en bold · descripción en mute (máx. 3 líneas, 140 caracteres). `text-transform: capitalize` en el título.
+- **Caption:** nombre simple en bold, clasificación textual en mute y descripción en mute (máx. 2 líneas); código real pequeño al extremo derecho. Conservar las mayúsculas del nombre original.
 - **Tabla de metadatos:** etiqueta a la izquierda en mute, valor alineado a la derecha. Solo muestra los campos que tienen valor.
 - **Input de formulario:** solo línea inferior, placeholder en mute.
 - **Control de zoom de texto:** `+ 150% −` dentro del Tab (About → Testament).
@@ -104,7 +114,7 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 2. **About.** Foto vertical bajo el tab (columna izquierda). `Testament` (texto justificado, con control de zoom) en el centro y `Certificados` / `Intereses` como accordions a la derecha. El texto lorem ipsum se mantiene tal cual por ahora (decisión de Santi); no reemplazarlo ni inventar copy.
 3. **Contact.** `Let's Work Together`, campos Name / Email / Your Message, botón `Send` abajo. Envío con Resend vía función serverless (`/api/contact`).
 4. **Proyecto.** Dos vistas del mismo JSON, conmutables:
-   - **Overlook:** vista ordenada. Hero con la pieza principal, tabla de metadatos en la columna izquierda, y secciones numeradas (`01 Logo`, `02 Paleta`…) con Tab a la izquierda y contenido a la derecha.
+   - **Overlook:** vista ordenada. Apertura con nombre y clasificación, pieza principal y paleta; tabla de metadatos en la columna izquierda y secciones numeradas con rótulo superior dentro de las dos columnas centrales.
    - **Sandbox:** canvas oscuro con grilla de puntos, assets sueltos y arrastrables. Título `Nombre - Sandbox`.
 
 ## 6. Accesibilidad y performance
@@ -142,7 +152,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 1. **Tab:** la línea inferior se dibuja de izquierda a derecha al hover; el chevron rota 90°.
 2. **Accordion:** expansión breve en el flujo, sin stagger ni exclusividad.
 3. **Reloj del footer:** actualización del texto sin animación.
-4. **Portada en Archivo:** portada y ficha forman un área común. Los datos siempre quedan visibles; hover/foco solo revela una flecha azul pequeña a la derecha de la ficha. Sin escalar, enmarcar ni teñir portada o texto. Cursor en rombo.
+4. **Portada en Archivo:** portada y ficha forman un área común. Los datos siempre quedan visibles; hover/foco solo subraya sutilmente el título. Sin escalar, enmarcar ni teñir portada o texto. Cursor en rombo.
 5. **Carga de Archivo:** las portadas entran con `clip-path` de abajo hacia arriba, stagger 80ms.
 6. **Filtro / orden:** Flip; las tarjetas viajan a su nueva posición.
 7. **Abrir proyecto:** la portada se expande al hero (Flip + View Transition); la barra de cierre baja desde arriba.
@@ -162,7 +172,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 ## Hovers, separación y visor de fotografías
 
 - Archivo es estático en el home; no usar flecha ni acción. El nombre de Santiago siempre blanco.
-- Portada y ficha de cada proyecto comparten un enlace. Mantener título, tipo, código y descripción visibles al pasar el cursor o enfocar; mostrar únicamente una flecha azul pequeña a la derecha. Sin texto “Abrir Proyecto”, fondos azules ni marcos en las portadas. Conservar el nombre accesible del enlace.
+- Portada y ficha de cada proyecto comparten un enlace. Mantener título, tipo, código y descripción visibles al pasar el cursor o enfocar; subrayar sutilmente el título, sin flechas adicionales. Sin texto “Abrir Proyecto”, fondos azules ni marcos en las portadas. Conservar el nombre accesible del enlace.
 - Las zonas vacías de las filas no interceptan punteros. Todas las copias visibles son clickeables; mantener una sola representación por proyecto en el recorrido de teclado, sin volver inert las copias visibles.
 - Alrededor de About siempre existe un gutter real. Antes de un About de ancho completo, la caption anterior ocupa espacio en el flujo. Después, reservar 48px (32px en mobile). Nunca tocar ni superponer portadas, incluso al ordenar, filtrar, abrir notas o reciclar el loop.
 - El loop mide cada fila real y actualiza sus dimensiones si cambia About; no asumir que todas las copias de un slug tienen igual altura.

@@ -67,6 +67,7 @@ function setPageTitle(name, description, cover) {
 
 function makePalette(colors) {
   const palette = makeElement("div", "project-palette");
+  palette.dataset.count = colors.length;
   colors.forEach(({ name, hex }) => {
     if (!/^#[0-9a-f]{6}$/i.test(hex)) return;
     const item = makeElement("figure", "project-palette__item");
@@ -144,7 +145,7 @@ function makeMedia(item, sizes, expandable = false, galleryItems) {
 
 function makeVariants(items, label = "Variantes", posters = false, galleryItems = items) {
   const group = makeElement("div", "project-variants");
-  group.append(makeElement("h3", "tab project-variants__title", label));
+  group.append(makeElement("h3", "project-variants__title", label));
   const grid = makeElement("div", "project-variants__grid");
   if (posters) grid.classList.add("project-poster-grid");
   if (items.length === 1) grid.classList.add("project-variants__grid--single");
@@ -162,10 +163,10 @@ function makeVariants(items, label = "Variantes", posters = false, galleryItems 
 function makeCoverNotes(data) {
   const notes = makeElement("div", "project-cover-notes");
   if (data.colors?.length) {
-    notes.append(makeElement("h3", "tab project-cover-notes__title", "Paleta"), makePalette(data.colors));
+    notes.append(makeElement("h3", "project-cover-notes__title", "Paleta"), makePalette(data.colors));
   }
   if (data.inspiration) {
-    notes.append(makeElement("h3", "tab project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
+    notes.append(makeElement("h3", "project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
   }
   if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada", false, [...(data.items || []), ...data.variants]));
   return notes;
@@ -177,11 +178,12 @@ function renderSection(data, index) {
   const layout = layouts.has(data.layout) ? data.layout : data.block === "logo" ? "brand-board" : null;
   if (layout) section.classList.add(`project-section--${layout}`);
   if (data.block === "cover-study") section.classList.add("project-section--cover-study");
+  if (data.block === "text") section.classList.add("project-section--text");
   section.id = `section-${index + 1}`;
   section.tabIndex = -1;
   const number = data.n || String(index + 1).padStart(2, "0");
   const heading = makeElement("div", "project-section__heading");
-  const sectionTitle = makeElement("h2", "tab");
+  const sectionTitle = makeElement("h2", "project-section__title");
   sectionTitle.id = `section-title-${index + 1}`;
   sectionTitle.append(makeElement("span", "project-section__number", number), makeElement("span", "project-section__label", data.title || "Imágenes"));
   section.setAttribute("aria-labelledby", sectionTitle.id);
@@ -242,7 +244,7 @@ function makeCatalogue(sections, config) {
   catalogue.id = "project-catalogue";
   catalogue.tabIndex = -1;
   const heading = makeElement("div", "project-section__heading");
-  const title = makeElement("h2", "tab", config.title || "Portadas");
+  const title = makeElement("h2", "project-section__title", config.title || "Portadas");
   title.id = "project-catalogue-title";
   catalogue.setAttribute("aria-labelledby", title.id);
   heading.append(title);
@@ -350,13 +352,13 @@ function renderPhotoCollection(project) {
   });
   const information = makeElement("section", "photo-collection__information");
   information.setAttribute("aria-label", "Ficha del proyecto");
-  information.append(makeElement("h2", "tab", "Proyecto"));
+  information.append(makeElement("h2", "photo-collection__title", "Proyecto"));
   const metadata = makeElement("dl", "project-metadata");
   [["Proyecto", project.title], ...(project.meta || [])].forEach(([label, value]) => {
     if (value) metadata.append(makeElement("dt", null, label), makeElement("dd", null, value));
   });
   information.append(metadata);
-  article.append(count, grid, information);
+  article.append(makeElement("h1", "visually-hidden", project.title), count, grid, information);
   content.replaceChildren(article);
 }
 
@@ -367,14 +369,15 @@ function renderProject(project) {
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
   if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
   if (/^[a-z0-9-]+$/.test(project.presentation || "")) article.classList.add(`project-entry--${project.presentation}`);
-  setPageTitle(`${project.title} - Overlook`, project.description, project.cover);
+  setPageTitle(project.title, project.description, project.cover);
+  const header = makeElement("header", "project-entry__header");
+  header.append(makeElement("h1", "project-entry__title", project.title));
+  const classification = makeElement("div", "project-entry__classification");
   const type = makeProjectType(project.family);
-  if (type) {
-    const classification = makeElement("div", "project-entry__classification");
-    classification.append(type);
-    if (project.family !== "identity") classification.append(makeElement("span", "project-entry__discipline", project.type));
-    article.append(classification);
-  }
+  if (type) classification.append(type);
+  if (project.family !== "identity" && project.type) classification.append(makeElement("span", "project-entry__discipline", project.type));
+  header.append(classification);
+  article.append(header);
   const opening = makeElement("div", "project-entry__opening");
   const heroSource = project.hero || project.cover;
   if (heroSource) {
@@ -398,7 +401,7 @@ function renderProject(project) {
     const palette = makeElement("section", "project-color-summary");
     palette.id = "project-colors";
     palette.tabIndex = -1;
-    const heading = makeElement("h2", "tab", project.palette.title || "Paleta");
+    const heading = makeElement("h2", "project-color-summary__title", project.palette.title || "Paleta");
     heading.id = "project-colors-title";
     palette.setAttribute("aria-labelledby", heading.id);
     palette.append(heading);
