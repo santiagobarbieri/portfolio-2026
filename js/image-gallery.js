@@ -164,7 +164,8 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     counter = element("output", "image-gallery__counter");
     counter.setAttribute("aria-live", "polite");
     counter.setAttribute("aria-label", "Imagen actual y total");
-    const close = element("button", "image-gallery__control image-gallery__close", "×");
+    const close = element("button", "image-gallery__control image-gallery__close");
+    close.append(element("span", "image-gallery__control-glyph", "×"));
     close.type = "button";
     close.setAttribute("aria-label", "Cerrar imágenes");
     close.addEventListener("click", () => dialog.close());
@@ -174,8 +175,10 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     track = element("div", "image-gallery__track");
     viewport.append(track);
     const footer = element("div", "image-gallery__footer");
-    const previous = element("button", "image-gallery__control", "←");
-    const next = element("button", "image-gallery__control", "→");
+    const previous = element("button", "image-gallery__control");
+    const next = element("button", "image-gallery__control");
+    previous.append(element("span", "image-gallery__control-glyph", "←"));
+    next.append(element("span", "image-gallery__control-glyph", "→"));
     previous.type = next.type = "button";
     previous.dataset.galleryPrevious = "";
     next.dataset.galleryNext = "";

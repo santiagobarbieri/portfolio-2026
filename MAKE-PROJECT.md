@@ -203,4 +203,7 @@ El carrusel reúne el hero, las imágenes de todas las secciones y sus variantes
 
 ## Escala editorial compartida
 
-Los tokens de `base.css` fijan el ancho y el comienzo del contenido, el gutter, la altura de controles, los espacios de sección y tres roles tipográficos. No introducir tamaños de metadatos distintos por proyecto. Marcas de apertura contenidas en 260–280px; paletas de círculos de 36px (32px en mobile). Los títulos de variantes y lecturas no llevan la clase de control `tab`; los rótulos principales de sección tienen una sola línea inferior. La clasificación es texto gris sin símbolos adicionales. Ver el sistema editorial aprobado en AGENTS.md.
+Los tokens de `base.css` fijan el ancho y el comienzo del contenido, el gutter, la altura de controles, los espacios de sección y tres roles tipográficos. No introducir tamaños de metadatos distintos por proyecto. Marcas de apertura contenidas en 260–280px; paletas de círculos de 36px (32px en mobile). Los títulos de variantes y lecturas no llevan la clase de control `tab`; los rótulos principales de sección no llevan línea inferior. La clasificación es texto gris sin símbolos adicionales. Ver el sistema editorial aprobado en AGENTS.md.
+
+
+El sistema de hover usa crecimiento breve de controles e imágenes, sin subrayados ni fondos. No añadir líneas decorativas al incorporar casos. Conservar la composición de transformaciones: la física de Archivo traslada el enlace y el hover escala su portada/título; las ampliaciones y descargas conservan sus áreas de interacción.

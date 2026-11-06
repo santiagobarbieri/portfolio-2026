@@ -2,6 +2,5 @@
 .shop-main { width: calc((var(--content-width) - var(--column-gap)) / 2); margin: var(--content-top) 0 80px var(--content-left); }
 .shop-main h1 { font-size: var(--text-title); line-height: var(--leading-title); }
 .shop-main p { margin: 24px 0; color: var(--mute); font-size: var(--text-body); }
-.shop-main > a { display: inline-block; padding-block: 12px; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
-.shop-main > a:is(:hover, :focus-visible) { text-decoration-color: var(--fg); }
+.shop-main > a { display: inline-block; padding-block: 12px; }
 @media (max-width: 600px) { .shop-main { width: var(--content-width); } }

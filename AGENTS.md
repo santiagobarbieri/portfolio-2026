@@ -8,7 +8,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
 - About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom y retrato reservado. Certificados e Intereses están fuera del lector, inmediatamente debajo. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
 - El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
-- Todas las vistas usan el tema oscuro, sin switch. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. El cursor y su etiqueta usan blanco con mix-blend-mode: difference. Hovers sutiles: superficies neutras muy leves y líneas, sin bloques azules, marcos de color sobre imágenes ni cambios de color en títulos. Mantener imágenes y paletas de cada proyecto intactas.
+- Todas las vistas usan el tema oscuro, sin switch. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. El cursor y su etiqueta usan blanco con mix-blend-mode: difference. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -26,7 +26,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
 - Las variantes verificadas se muestran más pequeñas junto a su pieza principal, dentro de la segunda columna central. No reunirlas en una galería independiente ni asociar familias gráficas distintas por suposición.
 - Cursor en mouse/fine: punto blanco de 7px que crece a un rombo de 18px con giro perceptible sobre controles reales. A su lado aparece una etiqueta horizontal blanca, texto negro pequeño en una línea y padding de 5px 8px; el conjunto usa mezcla difference. mantenerlo dentro del viewport y sobre los diálogos. Mantener cursor nativo en touch y si JavaScript falla. El cursor también se muestra dentro de diálogos.
-- Scroll común y corto en Archivo y proyectos mediante Lenis local; touch, teclado y lectores internos nativos. En Archivo, cada portada y su ficha comparten un desfase con resorte, masa y profundidad propias que responde a velocidad y dirección. Limitarlo al espacio real entre tarjetas; About queda estable con su gutter completo. Sin escalar portadas, mover el reloj ni stagger de listas. Desactivar la física con prefers-reduced-motion.
+- Scroll común y corto en Archivo y proyectos mediante Lenis local; touch, teclado y lectores internos nativos. En Archivo, cada portada y su ficha comparten un desfase con resorte, masa y profundidad propias que responde a velocidad y dirección. Limitarlo al espacio real entre tarjetas; About queda estable con su gutter completo. El hover puede ampliar la portada dentro de su espacio seguro; la física solo desplaza. Sin mover el reloj ni stagger de listas. Desactivar la física con prefers-reduced-motion.
 
 ## Referencias y presentación de proyectos
 
@@ -38,12 +38,12 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 ## Sistema editorial aprobado
 
 - Unificar posiciones y tamaños con los tokens compartidos de `base.css`: ancho y comienzo central, gutter, altura de controles, espacios de sección y tres roles tipográficos (título 14px, cuerpo 12px, metadatos 11px). El lector de About conserva el zoom.
-- Blanco y grises para glyph, controles y foco; cursor y etiqueta con mezcla difference. Líneas grises discretas; rótulos estáticos sin la apariencia de un control. Enlaces de portada y ficha mantienen los datos visibles y un subrayado sutil; no agregar CTA ni flecha.
+- Blanco y grises para glyph, controles y foco; cursor y etiqueta con mezcla difference. Líneas grises discretas; rótulos estáticos sin la apariencia de un control. Enlaces de portada y ficha mantienen los datos visibles; portada y título crecen levemente al hacer hover, sin CTA ni flechas adicionales.
 - Archivo: nombre simple de cada proyecto; clasificación en texto gris, sin símbolos ni repetir la disciplina en el título. Omitir códigos provisionales XX–00. Conservar las portadas entrelazadas y el gutter real de About.
 - Aperturas: nombre y clasificación en un encabezado común, después pieza principal y paleta. OLAS y Stephen King contienen sus marcas; El Armado comienza con su afiche; Orfeo abre con fotografía sobre las dos columnas, y la paleta queda debajo en las mismas columnas.
-- Rótulos principales de sección con una línea inferior; paletas, lecturas y variantes usan títulos pequeños sin recuadro ni línea. Colores con círculos de 36px (32px en mobile), nombres y HEX.
+- Rótulos principales de sección sin línea inferior; paletas, lecturas y variantes usan títulos pequeños sin recuadro ni línea. Colores con círculos de 36px (32px en mobile), nombres y HEX.
 - Colecciones fotográficas mantienen solo nombre arriba, contador, grilla de tres y ficha al final. Afiches, cinco por fila. Todas las imágenes completas, sin recorte.
-- Compartir alturas, foco, chevrons y realce neutro entre menús, filtros, cierre y carrusel. El encabezado móvil es negro continuo en todas las páginas.
+- Compartir alturas, foco, chevrons y crecimiento de hover entre menús, filtros, cierre y carrusel. El encabezado móvil es negro continuo en todas las páginas.
 
 ## 1. Stack y reglas de código
 
@@ -95,11 +95,11 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 - Cuerpo: 12px con interlineado 1.5; metadatos: 11px con interlineado 1.4. About conserva texto justificado y zoom.
 - Una sola familia, **Albert Sans** (licencia OFL), self-hosted en `assets/fonts/` con los pesos 300 y 600 en WOFF2. Stack: `"Albert Sans",system-ui,sans-serif`. Decisión cerrada: no se usa Hiragino Kaku Gothic Std.
 
-**Layout.** Grilla de 12 columnas con la columna izquierda fija de ~235px (tab, foto de About, filtros). Contenido desde ~320px. Mucho espacio negativo; nada de sombras, bordes redondeados ni íconos decorativos. Todo se define con líneas de 1px.
+**Layout.** Grilla de 12 columnas con la columna izquierda fija de ~235px (tab, foto de About, filtros). Contenido desde ~320px. Mucho espacio negativo; nada de sombras, bordes redondeados ni íconos decorativos. Separar por espacio y jerarquía; reservar las líneas para los campos de formulario y divisiones puntuales.
 
 ## 4. Componentes
 
-- **Tab / encabezado de sección:** título bold, línea inferior de 1px, chevron opcional a la derecha. Es el elemento que se repite en todo el sitio (nav, `Testament`, `Certificados`, `Proyecto`, `01 Logo`).
+- **Tab / encabezado de sección:** título bold sin línea, chevron opcional a la derecha. Es el elemento que se repite en todo el sitio (nav, `Testament`, `Certificados`, `Proyecto`, `01 Logo`).
 - **Accordion:** un Tab que despliega una lista alineada a la derecha, texto light. Chevron rota.
 - **Dropdown de filtro:** Tab con chevron (`All Projects`, `Last First`).
 - **Caption:** nombre simple en bold, clasificación textual en mute y descripción en mute (máx. 2 líneas); código real pequeño al extremo derecho. Conservar las mayúsculas del nombre original.
@@ -149,10 +149,10 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 
 ## 7b. Micro-interacciones concretas
 
-1. **Tab:** la línea inferior se dibuja de izquierda a derecha al hover; el chevron rota 90°.
+1. **Tab interactivo:** crece suavemente al hacer hover o foco de teclado; el chevron acompaña el estado con un pequeño desplazamiento.
 2. **Accordion:** expansión breve en el flujo, sin stagger ni exclusividad.
 3. **Reloj del footer:** actualización del texto sin animación.
-4. **Portada en Archivo:** portada y ficha forman un área común. Los datos siempre quedan visibles; hover/foco solo subraya sutilmente el título. Sin escalar, enmarcar ni teñir portada o texto. Cursor blanco en rombo con etiqueta horizontal de acción.
+4. **Portada en Archivo:** portada y ficha forman un área común. Los datos siempre quedan visibles; hover/foco amplía sutilmente portada y título, sin enmarcar ni teñir. Cursor blanco en rombo con etiqueta horizontal de acción.
 5. **Carga de Archivo:** las portadas entran con `clip-path` de abajo hacia arriba, stagger 80ms.
 6. **Filtro / orden:** Flip; las tarjetas viajan a su nueva posición.
 7. **Abrir proyecto:** la portada se expande al hero (Flip + View Transition); la barra de cierre baja desde arriba.
@@ -160,7 +160,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 9. **Sandbox:** arrastre con inercia; al soltar, un leve asentamiento (<150ms); doble click reordena en la disposición inicial.
 10. **Inputs:** la línea inferior engrosa a 2px en foco; `Send` pasa a `Sending…` y luego `Sent`.
 11. **Control de zoom de texto:** el cambio de tamaño se anima (font-size interpolado) y se recuerda en `localStorage`.
-12. **Botón `×`:** área de hover neutra muy leve, sin giro.
+12. **Botón `×`:** crece levemente y la cruz gira 90° en unos 220ms, sin cambio de fondo.
 
 ## 9. Decisiones tomadas
 
@@ -172,7 +172,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 ## Hovers, separación y visor de fotografías
 
 - Archivo es estático en el home; no usar flecha ni acción. El nombre de Santiago siempre blanco.
-- Portada y ficha de cada proyecto comparten un enlace. Mantener título, tipo, código y descripción visibles al pasar el cursor o enfocar; subrayar sutilmente el título, sin flechas adicionales. Sin texto “Abrir Proyecto”, fondos azules ni marcos en las portadas. Conservar el nombre accesible del enlace.
+- Portada y ficha de cada proyecto comparten un enlace. Mantener título, tipo, código y descripción visibles al pasar el cursor o enfocar; ampliar sutilmente portada y título, sin flechas adicionales. Sin texto “Abrir Proyecto”, fondos azules ni marcos en las portadas. Conservar el nombre accesible del enlace.
 - Las zonas vacías de las filas no interceptan punteros. Todas las copias visibles son clickeables; mantener una sola representación por proyecto en el recorrido de teclado, sin volver inert las copias visibles.
 - Alrededor de About siempre existe un gutter real. Antes de un About de ancho completo, la caption anterior ocupa espacio en el flujo. Después, reservar 48px (32px en mobile). Nunca tocar ni superponer portadas, incluso al ordenar, filtrar, abrir notas o reciclar el loop.
 - El loop mide cada fila real y actualiza sus dimensiones si cambia About; no asumir que todas las copias de un slug tienen igual altura.
@@ -200,3 +200,12 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - Visor sin líneas divisorias ni marcos permanentes. Nombre pequeño debajo de cada pieza; usar los nombres y captions existentes, o el título de la sección con número cuando hay varias. En colecciones fotográficas, conservar nombres explícitos o numeración.
 - Cada imagen lleva su propio icono de descarga arriba a la derecha, dentro de la superficie de la imagen y sin afectar drag. El enlace apunta al original de esa pieza, incluye nombre de archivo/formato en su descripción y muestra la información al hacer hover o foco. No mantener un botón global de descarga en el footer.
 - Mantener imágenes completas, flechas, wheel lineal infinito, touch, cierre con Escape y retorno de foco. Solo los iconos visibles entran al recorrido de teclado; no dejar enlaces de copias fuera de pantalla tabulables.
+
+
+## Hovers por crecimiento
+
+- Señal común: controles/textos 1.04, imágenes 1.015 e iconos hasta 1.12, en unos 180–220ms. Usar `scale`/`rotate` de CSS para no alterar medidas de layout ni sobrescribir la traslación de la física.
+- No usar subrayados ni fondos de hover. Reducir separadores: solo conservar líneas funcionales de inputs y divisiones puntuales de contenido (About y ficha final de colección). Foco visible de teclado siempre.
+- En Archivo, el enlace completo conserva su tamaño de layout; crecen la portada y el título. La portada crece hacia abajo salvo antes de About, donde crece hacia arriba. Respetar el gutter de About y las separaciones entre tarjetas.
+- Cruces con giro de 90°, flechas del carrusel con desplazamiento horizontal de 3px, icono de descarga con descenso de 2px y chevrons con movimiento breve. Sin giro continuo ni rebotes.
+- Hovers solo para mouse/fine. Mantener respuesta de foco y toque; con movimiento reducido, los estados cambian sin interpolación. Reservar espacio en menús y contenedores para evitar recortes o scroll horizontal al crecer.

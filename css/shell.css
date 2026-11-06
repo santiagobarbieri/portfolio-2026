@@ -5,28 +5,9 @@
   justify-content: space-between;
   min-height: var(--control-height);
   padding: 4px 0;
-  border-bottom: 1px solid var(--line);
   font-size: var(--text-body);
   font-weight: 600;
   line-height: var(--leading-title);
-}
-
-.tab::after {
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  height: 1px;
-  background: var(--fg);
-  content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--duration) var(--ease);
-}
-
-.tab:hover::after,
-.tab:focus-visible::after {
-  transform: scaleX(1);
 }
 
 .site-header {
@@ -104,7 +85,6 @@
   color: var(--mute);
 }
 
-.navigation-menu__list a:hover,
 .navigation-menu__list a[aria-current] {
   color: var(--fg);
 }
@@ -195,10 +175,6 @@
   color: var(--fg);
 }
 
-.theme-switch__button:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 
 .theme-switch__separator {
   padding: 0 2px;
@@ -338,4 +314,10 @@
   .identity__name { margin-bottom: 0; font-size: var(--text-body); }
   .identity__role { display: none; }
   .identity__glyph { display: block; flex-basis: 30px; width: 30px; height: 30px; margin: 0; }
+}
+
+.identity { --interaction-scale: 1.03; --interaction-origin: right center; }
+.identity__glyph { transition: rotate 220ms var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  .identity:hover .identity__glyph { rotate: -6deg; }
 }

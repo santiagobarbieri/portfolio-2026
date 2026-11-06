@@ -61,7 +61,8 @@
 .archive-row--about { padding-bottom: var(--archive-safe-gap, 48px); }
 .archive-row--before-about { padding-bottom: var(--archive-safe-gap, 48px); }
 .archive-row--before-about .archive-card__caption { position: relative; inset: auto; }
-.archive-about__zoom button:not(:disabled):is(:hover, :focus-visible) {
-  color: var(--fg);
-  background: var(--hover-surface);
+
+.archive-about__zoom button { --interaction-scale: var(--hover-icon-scale); --interaction-origin: center; }
+@media (hover: hover) and (pointer: fine) {
+  [data-archive-zoom="increase"]:not(:disabled):hover { rotate: 90deg; }
 }

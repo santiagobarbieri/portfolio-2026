@@ -41,7 +41,7 @@
   aspect-ratio: 235 / 334;
   max-height: min(334px, 50svh);
   padding: 8px;
-  border: 1px solid var(--line);
+  background: var(--hover-surface);
   color: var(--mute);
   font-size: 11px;
 }
@@ -283,3 +283,8 @@
 .about-entry__body::-webkit-scrollbar { display: none; width: 0; }
 .about-entry__body::-webkit-scrollbar-thumb { background: var(--line); }
 .about-entry__body::-webkit-scrollbar-track { background: transparent; }
+
+.text-zoom button { --interaction-scale: var(--hover-icon-scale); --interaction-origin: center; }
+@media (hover: hover) and (pointer: fine) {
+  [data-text-zoom="increase"]:not(:disabled):hover { rotate: 90deg; }
+}
