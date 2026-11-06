@@ -6,9 +6,9 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 - El único home es **index.html / Archivo**. Las guías verdes de Figma son referencias: no se dibujan en la web. Cada portada comienza donde termina la portada anterior, alternando columnas; las captions ocupan los huecos.
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
-- About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom y retrato reservado. Certificados e Intereses están fuera del lector, inmediatamente debajo. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
+- About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom y retrato reservado. Se distingue con una superficie cálida clara (#f1ece0), texto oscuro y controles de foco oscuros; conservar los ejes de las dos columnas y el gutter exterior. Certificados e Intereses están fuera del lector, inmediatamente debajo. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
 - El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
-- Todas las vistas usan el tema oscuro, sin switch. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. El cursor y su etiqueta usan blanco con mix-blend-mode: difference. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
+- Todas las vistas usan el tema oscuro, sin switch; la entrada About tiene una superficie clara local. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. El cursor y su etiqueta usan blanco con mix-blend-mode: difference. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -80,7 +80,7 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
 ## 3. Diseño
 
-**Color.** Tema oscuro fijo. Sistema neutro en blanco y grises; sin acento azul. Cursor blanco con mezcla difference. El tema claro solo permanece como token de compatibilidad y no se expone en la interfaz.
+**Color.** Tema oscuro fijo, con una superficie cálida clara local para la entrada About en Archivo. Sistema neutro en blanco y grises; sin acento azul. Cursor blanco con mezcla difference. No exponer un selector de tema.
 
 | Token | Oscuro (por defecto) | Claro |
 |---|---|---|

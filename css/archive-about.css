@@ -1,10 +1,29 @@
 .archive-about {
+  --bg: #f1ece0;
+  --fg: #171714;
+  --mute: #625f59;
+  --line: #aaa397;
+  --accent: #171714;
+  --hover-surface: #e3ddd1;
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--column-gap);
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
+  padding: 28px 0;
   width: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  color-scheme: light;
+}
+/* Let the paper extend beyond the content without shifting either column. */
+.archive-about::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 -16px;
+  background: inherit;
+  pointer-events: none;
+  content: "";
 }
 .archive-about__testament { min-width: 0; padding-top: 0; }
 .archive-about__heading { gap: 12px; }
@@ -46,7 +65,7 @@
 .archive-about__portrait img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1); }
 
 @media (max-width: 600px) {
-  .archive-about { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .archive-about { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px 0; }
   .archive-about__testament { padding-top: 0; }
   .archive-about__copy { height: 320px; }
   .archive-about__portrait { margin-top: 0; }
