@@ -141,6 +141,12 @@ h2 {
   outline-offset: 5px;
 }
 
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+  text-shadow: none;
+}
+
 [hidden] {
   display: none !important;
 }

@@ -1,11 +1,12 @@
-.site-cursor { position: fixed; z-index: 1000; top: 0; left: 0; width: 0; height: 0; pointer-events: none; mix-blend-mode: normal; }
+.site-cursor { --cursor-fill: #fff; --cursor-ink: #000; position: fixed; z-index: 1000; top: 0; left: 0; width: 0; height: 0; pointer-events: none; user-select: none; mix-blend-mode: normal; }
+.site-cursor--on-black { --cursor-fill: #000; --cursor-ink: #fff; }
 .site-cursor__point {
   display: block;
   width: 7px;
   height: 7px;
-  border: 1px solid #000;
+  border: 1px solid var(--cursor-ink);
   border-radius: 50%;
-  background: #fff;
+  background: var(--cursor-fill);
   transform: translate(-50%, -50%) rotate(-45deg);
   transition: width 190ms var(--ease), height 190ms var(--ease), border-radius 140ms, transform 240ms var(--ease);
 }
@@ -18,8 +19,9 @@
   width: max-content;
   max-width: calc(100vw - 32px);
   padding: 2px 4px;
-  background: #fff;
-  color: #000;
+  border: 1px solid var(--cursor-ink);
+  background: var(--cursor-fill);
+  color: var(--cursor-ink);
   font-family: var(--font);
   font-size: 10px;
   font-weight: 600;

@@ -190,7 +190,7 @@ La propiedad raíz `family` usa `identity`, `passion` o `photography` según la 
 
 ## Home vigente
 
-About es una entrada HTML de Archivo con `data-kind="about"`, no un proyecto del registro JSON ni del contador. Conservar esa entrada, el índice lateral, el cursor blanco con contorno negro y etiqueta blanca con texto negro sin mezcla y el scroll común al agregar casos. Las fotos y paletas de los proyectos no se tiñen con el acento global.
+About es una entrada HTML de Archivo con `data-kind="about"`, no un proyecto del registro JSON ni del contador. Conservar esa entrada, el índice lateral, el cursor y la etiqueta de contraste fijo, con contorno e inversión conjunta solo sobre negro uniforme y el scroll común al agregar casos. Las fotos y paletas de los proyectos no se tiñen con el acento global.
 
 En ORFEO, las prendas confirmadas son Viamonte (marrón tejido), Talcahuano (negro liso) y Lavalle (azul tejido). La foto `IMG_4452` del modelo junto al árbol pertenece a Viamonte. Verificar visualmente las piezas antes de agruparlas; no inferir la prenda por la ubicación o por un alt previo.
 

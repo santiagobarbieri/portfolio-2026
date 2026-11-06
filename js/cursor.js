@@ -34,6 +34,97 @@ function interactionAt(target) {
   return action("Activar");
 }
 
+/** Only opaque, neutral blacks count; photographs are intentionally unknown. */
+function isBlack(color) {
+  const match = color.match(/^rgba?\(([^)]+)\)$/);
+  if (!match) return false;
+  const [r, g, b, a = 1] = match[1].split(/[\s,/]+/).map(Number);
+  return a === 1 && Math.max(r, g, b) <= 12 && Math.max(r, g, b) - Math.min(r, g, b) <= 1;
+}
+
+function createBackdropCheck(cursor, schedule) {
+  let dirty = true;
+  let candidates = [];
+  const media = "img, video, canvas, svg";
+  const transparent = (color) => color === "transparent" || color === "rgba(0, 0, 0, 0)";
+  const intersection = (a, b) => {
+    const left = Math.max(a.left, b.left), right = Math.min(a.right, b.right);
+    const top = Math.max(a.top, b.top), bottom = Math.min(a.bottom, b.bottom);
+    return right > left && bottom > top ? { left, right, top, bottom } : null;
+  };
+  function points(rect) {
+    const insetX = Math.min(0.25, (rect.right - rect.left) / 4);
+    const insetY = Math.min(0.25, (rect.bottom - rect.top) / 4);
+    return [rect.left + insetX, (rect.left + rect.right) / 2, rect.right - insetX]
+      .flatMap((x) => [rect.top + insetY, (rect.top + rect.bottom) / 2, rect.bottom - insetY].map((y) => [x, y]));
+  }
+  function fullyBlack(rectangles) {
+    const styles = new Map();
+    const styleOf = (node) => {
+      if (!styles.has(node)) styles.set(node, getComputedStyle(node));
+      return styles.get(node);
+    };
+    const effects = (style) => (style.maskImage || style.webkitMaskImage || "none") !== "none"
+      || style.filter !== "none" || (style.backdropFilter && style.backdropFilter !== "none")
+      || style.mixBlendMode !== "normal" || Number(style.opacity) < 1;
+    const textured = (style) => style.backgroundImage !== "none" || effects(style);
+    function blackAt(x, y) {
+      let found = false;
+      for (let node = document.elementFromPoint(x, y); node; node = node.parentElement) {
+        const style = styleOf(node);
+        if (effects(style)) return false;
+        if (found) continue;
+        if (node.matches(media) || node.closest("svg") || style.backgroundImage !== "none") return false;
+        if (!transparent(style.backgroundColor)) {
+          if (!isBlack(style.backgroundColor)) return false;
+          found = true;
+        }
+      }
+      return found;
+    }
+    if (dirty) {
+      candidates = [...document.body.querySelectorAll("*")].filter((node) => {
+        if (node === cursor || cursor.contains(node) || node.closest("svg") && !node.matches("svg")) return false;
+        const style = styleOf(node);
+        return node.matches(media) || textured(style) || !transparent(style.backgroundColor) && !isBlack(style.backgroundColor);
+      });
+      dirty = false;
+    }
+    const selection = getSelection();
+    const selected = selection && !selection.isCollapsed
+      ? Array.from({ length: selection.rangeCount }, (_, i) => [...selection.getRangeAt(i).getClientRects()]).flat() : [];
+    const field = document.querySelector("input:focus, textarea:focus");
+    if (field?.selectionStart != null && field.selectionStart !== field.selectionEnd) selected.push(field.getBoundingClientRect());
+    return rectangles.every((rect) => {
+      if (rect.left < 0 || rect.top < 0 || rect.right > innerWidth || rect.bottom > innerHeight) return false;
+      if (selected.some((range) => intersection(rect, range)) || !points(rect).every(([x, y]) => blackAt(x, y))) return false;
+      // Inspect crossing surfaces too: a narrow photo/light sliver can miss the corners.
+      return candidates.every((node) => {
+        const overlap = intersection(rect, node.getBoundingClientRect());
+        return !overlap || points(overlap).every(([x, y]) => blackAt(x, y));
+      });
+    });
+  }
+  new MutationObserver((records) => {
+    let changed = false;
+    for (const record of records) {
+      if (record.target === cursor || cursor.contains(record.target)) continue;
+      if (record.type === "childList") {
+        if (![...record.addedNodes, ...record.removedNodes].some((node) => node.nodeType === 1 && node !== cursor)) continue;
+        dirty = true;
+      } else if (record.attributeName === "class") {
+        if (record.target !== document.documentElement && !record.target.matches(".archive-card__link")) dirty = true;
+      } else if (record.attributeName === "style") {
+        // Motion updates only geometry; rescan styles when a painted surface changes.
+        if (/background|mask|filter|opacity|--bg|--fg/.test(record.target.style.cssText + record.oldValue)) dirty = true;
+      }
+      changed = true;
+    }
+    if (changed) schedule();
+  }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeOldValue: true, attributeFilter: ["style", "class", "hidden", "open"] });
+  return { fullyBlack, invalidate: () => { dirty = true; } };
+}
+
 export function initCursor() {
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -56,6 +147,7 @@ export function initCursor() {
   let labelHeight = 0;
   let surface = document.body;
   let bounds = { left: 0, top: 0, right: innerWidth, bottom: innerHeight };
+  const backdrop = createBackdropCheck(cursor, schedule);
 
   function measureSurface() {
     bounds = surface === document.body ? { left: 0, top: 0, right: innerWidth, bottom: innerHeight } : surface.getBoundingClientRect();
@@ -94,6 +186,12 @@ export function initCursor() {
     const labelX = x + gap + labelWidth > bounds.right - inset ? -gap - labelWidth : gap;
     const labelY = Math.max(bounds.top + inset - y, Math.min(-labelHeight / 2, bounds.bottom - inset - labelHeight - y));
     label.style.transform = `translate3d(${labelX}px, ${labelY}px, 0)`;
+    // The larger footprint also contains the point throughout its rotation/growth.
+    const areas = [{ left: x - 13, right: x + 13, top: y - 13, bottom: y + 13 }];
+    if (getComputedStyle(label).visibility === "visible") {
+      areas.push({ left: x + labelX, right: x + labelX + labelWidth, top: y + labelY, bottom: y + labelY + labelHeight });
+    }
+    cursor.classList.toggle("site-cursor--on-black", backdrop.fullyBlack(areas));
   }
   function schedule() { if (visible && !frame) frame = requestAnimationFrame(render); }
   document.addEventListener("pointermove", (event) => {
@@ -110,11 +208,12 @@ export function initCursor() {
   document.addEventListener("pointerout", (event) => { if (!event.relatedTarget) hide(); else schedule(); }, { passive: true });
   document.addEventListener("scroll", schedule, { capture: true, passive: true });
   document.addEventListener("toggle", schedule, true);
+  document.addEventListener("selectionchange", schedule);
   document.addEventListener("click", schedule);
   document.addEventListener("close", () => { placeCursor(); schedule(); }, true);
   document.addEventListener("keydown", (event) => { if (event.key === "Tab") hide(); });
   window.addEventListener("blur", hide);
-  window.addEventListener("resize", () => { measureSurface(); labelWidth = 0; schedule(); }, { passive: true });
+  window.addEventListener("resize", () => { measureSurface(); backdrop.invalidate(); labelWidth = 0; schedule(); }, { passive: true });
   finePointer.addEventListener("change", hide);
   reducedMotion.addEventListener("change", schedule);
   document.fonts.ready.then(() => { labelWidth = 0; schedule(); });
