@@ -8,7 +8,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
 - About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom y retrato reservado. Se distingue con una superficie cálida clara (#f1ece0), texto oscuro y controles de foco oscuros; conservar los ejes de las dos columnas y el gutter exterior. Certificados e Intereses están fuera del lector, inmediatamente debajo. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
 - El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
-- Todas las vistas usan el tema oscuro, sin switch; la entrada About tiene una superficie clara local. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. El cursor y su etiqueta usan blanco con mix-blend-mode: difference. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
+- Todas las vistas usan el tema oscuro, sin switch; la entrada About tiene una superficie clara local. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. Cursor blanco con contorno negro y etiqueta de fondo blanco opaco con texto negro, sin mezcla de colores. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -26,7 +26,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
 - Archivo y proyectos incluyen el loader en su HTML; el bootstrap clásico lo activa antes del primer render. Los módulos adoptan ese mismo loader y solo revelan la página cuando el contenido, las fuentes y las imágenes iniciales están preparados. No ocultarlo por un timeout mientras la carga válida siga pendiente. Si los datos fallan, mostrar un estado de error con vuelta al Archivo. El fallback HTML sigue accesible sin JavaScript.
 - Las variantes verificadas se muestran más pequeñas junto a su pieza principal, dentro de la segunda columna central. No reunirlas en una galería independiente ni asociar familias gráficas distintas por suposición.
-- Cursor en mouse/fine: punto blanco de 7px que crece a un rombo de 18px con giro perceptible sobre controles reales. A su lado aparece una etiqueta horizontal blanca, texto negro pequeño en una línea y padding de 5px 8px; el conjunto usa mezcla difference. mantenerlo dentro del viewport y sobre los diálogos. Mantener cursor nativo en touch y si JavaScript falla. El cursor también se muestra dentro de diálogos.
+- Cursor en mouse/fine: punto blanco de 7px con contorno negro que crece a un rombo de 18px con giro perceptible sobre controles reales. A su lado aparece una etiqueta horizontal blanca, texto negro pequeño en una línea y padding de 2px 4px; el conjunto usa mezcla normal. Mantenerlo dentro del viewport y sobre los diálogos. Mantener cursor nativo en touch y si JavaScript falla. El cursor también se muestra dentro de diálogos.
 - Scroll común y corto en Archivo y proyectos mediante Lenis local; touch, teclado y lectores internos nativos. En Archivo, cada portada y su ficha comparten un desfase con resorte, masa y profundidad propias que responde a velocidad y dirección. Limitarlo al espacio real entre tarjetas; About queda estable con su gutter completo. El hover puede ampliar la portada dentro de su espacio seguro; la física solo desplaza. Sin mover el reloj ni stagger de listas. Desactivar la física con prefers-reduced-motion.
 
 ## Referencias y presentación de proyectos
@@ -39,7 +39,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 ## Sistema editorial aprobado
 
 - Unificar posiciones y tamaños con los tokens compartidos de `base.css`: ancho y comienzo central, gutter, altura de controles, espacios de sección y tres roles tipográficos (título 14px, cuerpo 12px, metadatos 11px). El lector de About conserva el zoom.
-- Blanco y grises para glyph, controles y foco; cursor y etiqueta con mezcla difference. Líneas grises discretas; rótulos estáticos sin la apariencia de un control. Enlaces de portada y ficha mantienen los datos visibles; portada y título crecen levemente al hacer hover, sin CTA ni flechas adicionales.
+- Blanco y grises para glyph, controles y foco; cursor y etiqueta en blanco y negro sin mezcla. Líneas grises discretas; rótulos estáticos sin la apariencia de un control. Enlaces de portada y ficha mantienen los datos visibles; portada y título crecen levemente al hacer hover, sin CTA ni flechas adicionales.
 - Archivo: nombre simple de cada proyecto; clasificación en texto gris, sin símbolos ni repetir la disciplina en el título. Omitir códigos provisionales XX–00. Conservar las portadas entrelazadas y el gutter real de About.
 - Aperturas: nombre y clasificación en un encabezado común, después pieza principal y paleta. OLAS y Stephen King contienen sus marcas; El Armado comienza con su afiche; Orfeo abre con fotografía sobre las dos columnas, y la paleta queda debajo en las mismas columnas.
 - Rótulos principales de sección sin línea inferior; paletas, lecturas y variantes usan títulos pequeños sin recuadro ni línea. Colores con círculos de 36px (32px en mobile), nombres y HEX.
@@ -81,7 +81,7 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
 ## 3. Diseño
 
-**Color.** Tema oscuro fijo, con una superficie cálida clara local para la entrada About en Archivo. Sistema neutro en blanco y grises; sin acento azul. Cursor blanco con mezcla difference. No exponer un selector de tema.
+**Color.** Tema oscuro fijo, con una superficie cálida clara local para la entrada About en Archivo. Sistema neutro en blanco y grises; sin acento azul. Cursor blanco con contorno negro y etiqueta blanca con texto negro, sin mezcla. No exponer un selector de tema.
 
 | Token | Oscuro (por defecto) | Claro |
 |---|---|---|
@@ -167,7 +167,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 
 - Tipografía de títulos y botones: Albert Sans 600 (sin Hiragino).
 - "Portfolio" con una sola i.
-- Tema oscuro fijo, interfaz neutra y cursor difference, sin toggle. El estado del recorrido se guarda en sessionStorage versión 3.
+- Tema oscuro fijo, interfaz neutra y cursor en blanco y negro sin mezcla, sin toggle. El estado del recorrido se guarda en sessionStorage versión 3.
 - About: se deja el texto placeholder por ahora.
 
 ## Hovers, separación y visor de fotografías
@@ -191,7 +191,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - La etiqueta es decorativa (`aria-hidden`) y no reemplaza nombres accesibles, foco visible ni contenido de las fichas. Con movimiento reducido, forma y etiqueta cambian sin animación y las tarjetas quedan estables.
 
 
-- Actualización del cursor: blanco con `mix-blend-mode: difference` en todo el conjunto, forma de 7px a 18px y etiqueta horizontal compacta. Retirar el azul de acento del marco y los controles; mantener intactos los colores de las imágenes y las paletas de los proyectos.
+- Actualización del cursor: blanco con contorno negro y `mix-blend-mode: normal`, forma de 7px a 18px y etiqueta horizontal opaca blanca con texto negro y padding de 2px 4px. Retirar el azul de acento del marco y los controles; mantener intactos los colores de las imágenes y las paletas de los proyectos.
 
 
 ## Carrusel completo del proyecto

@@ -1,8 +1,9 @@
-.site-cursor { position: fixed; z-index: 1000; top: 0; left: 0; width: 0; height: 0; pointer-events: none; mix-blend-mode: difference; }
+.site-cursor { position: fixed; z-index: 1000; top: 0; left: 0; width: 0; height: 0; pointer-events: none; mix-blend-mode: normal; }
 .site-cursor__point {
   display: block;
   width: 7px;
   height: 7px;
+  border: 1px solid #000;
   border-radius: 50%;
   background: #fff;
   transform: translate(-50%, -50%) rotate(-45deg);
@@ -16,7 +17,7 @@
   display: block;
   width: max-content;
   max-width: calc(100vw - 32px);
-  padding: 5px 8px;
+  padding: 2px 4px;
   background: #fff;
   color: #000;
   font-family: var(--font);
