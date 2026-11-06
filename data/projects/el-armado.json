@@ -51,7 +51,7 @@
     },
     {
       "n": "02",
-      "title": "Iconografía",
+      "title": "Ilustración e iconografía",
       "block": "comparison",
       "items": [
         {
@@ -79,7 +79,7 @@
     },
     {
       "n": "03",
-      "title": "Afiche",
+      "title": "Afiche y variantes",
       "block": "comparison",
       "items": [
         {
@@ -139,14 +139,15 @@
     },
     {
       "n": "04",
-      "title": "Redes sociales",
+      "title": "Historias de Instagram",
       "block": "pair",
       "items": [
         {
           "src": "assets/images/el-armado/HISTORIA IG - EL ARMADO (1).png",
           "w": 1080,
           "h": 1920,
-          "alt": "Historia de Instagram de El Armado"
+          "alt": "Historia de Instagram de El Armado",
+          "caption": "Formato vertical para Instagram"
         }
       ],
       "layout": "uniform-grid",
@@ -182,7 +183,7 @@
           "alt": "El Armado — referencia visual 4"
         }
       ],
-      "layout": "contact-sheet"
+      "layout": "reference-sheet"
     }
   ],
   "palette": {
@@ -208,5 +209,6 @@
       }
     ]
   },
-  "family": "identity"
+  "family": "identity",
+  "presentation": "illustrated-identity"
 }

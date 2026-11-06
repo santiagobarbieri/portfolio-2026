@@ -9,10 +9,10 @@
   "w": 1600,
   "h": 2263,
   "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde",
-  "hero": "assets/images/olas-ditella/poster%201-1600.webp",
-  "heroW": 1600,
-  "heroH": 2263,
-  "heroAlt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde",
+  "hero": "assets/images/olas-ditella/Logo.svg",
+  "heroW": 1286,
+  "heroH": 405,
+  "heroAlt": "Logotipo vectorial de OLAS con una ola y una flecha",
   "meta": [
     [
       "Agrupación",
@@ -41,7 +41,7 @@
     },
     {
       "n": "02",
-      "title": "Logo",
+      "title": "Marca y exploraciones",
       "block": "comparison",
       "items": [
         {
@@ -131,9 +131,17 @@
           "h": 435,
           "alt": "OLAS — recurso vectorial 4",
           "size": "compact"
+        },
+        {
+          "src": "assets/images/olas-ditella/New%20Project%20%283%29.svg",
+          "w": 1080,
+          "h": 1080,
+          "alt": "OLAS — recurso vectorial adicional",
+          "size": "compact",
+          "alignment": "center"
         }
       ],
-      "layout": "contact-sheet"
+      "layout": "symbol-grid"
     },
     {
       "n": "04",
@@ -249,7 +257,7 @@
           "w": 1080,
           "h": 1080,
           "alt": "Sticker circular de OLAS con ola y flecha sobre negro",
-          "size": "medium",
+          "size": "compact",
           "alignment": "start"
         }
       ],
@@ -266,22 +274,6 @@
         }
       ],
       "variantsTitle": "Variante de fondo"
-    },
-    {
-      "n": "06",
-      "title": "Recursos",
-      "block": "gallery",
-      "items": [
-        {
-          "src": "assets/images/olas-ditella/New%20Project%20%283%29.svg",
-          "w": 1080,
-          "h": 1080,
-          "alt": "OLAS — recurso vectorial adicional",
-          "size": "compact",
-          "alignment": "center"
-        }
-      ],
-      "layout": "brand-board"
     }
   ],
   "sandbox": [
@@ -368,7 +360,6 @@
     }
   ],
   "coverOriginal": "assets/images/olas-ditella/poster%201.png",
-  "heroOriginal": "assets/images/olas-ditella/poster%201.png",
   "palette": {
     "title": "Paleta de identidad",
     "description": "Verde, menta, azul profundo y blanco presentes en las piezas de la identidad.",
@@ -396,5 +387,6 @@
       }
     ]
   },
-  "family": "identity"
+  "family": "identity",
+  "presentation": "identity-system"
 }

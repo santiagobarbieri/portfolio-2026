@@ -21,30 +21,11 @@
   ],
   "sections": [
     {
-      "n": "01",
-      "title": "Fotos",
+      "title": "Entre la costa y el pueblo",
       "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "landscape",
       "items": [
-        {
-          "src": "assets/images/zapallar/IMG_4660-800.webp",
-          "w": 800,
-          "h": 449,
-          "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar",
-          "original": "assets/images/zapallar/IMG_4660.jpg",
-          "sources": [
-            {
-              "src": "assets/images/zapallar/IMG_4660-1600.webp",
-              "w": 1600,
-              "h": 898
-            },
-            {
-              "src": "assets/images/zapallar/IMG_4660-800.webp",
-              "w": 800,
-              "h": 449
-            }
-          ],
-          "caption": "Paseo costero"
-        },
         {
           "src": "assets/images/zapallar/IMG_4726-800.webp",
           "w": 800,
@@ -65,6 +46,35 @@
           ],
           "caption": "Árboles y jardines"
         },
+        {
+          "src": "assets/images/zapallar/IMG_4731-800.webp",
+          "w": 800,
+          "h": 532,
+          "alt": "Mate y termo sobre la arena de la playa",
+          "original": "assets/images/zapallar/IMG_4731.JPG",
+          "sources": [
+            {
+              "src": "assets/images/zapallar/IMG_4731-1600.webp",
+              "w": 1600,
+              "h": 1065
+            },
+            {
+              "src": "assets/images/zapallar/IMG_4731-800.webp",
+              "w": 800,
+              "h": 532
+            }
+          ],
+          "caption": "Playa"
+        }
+      ],
+      "n": "01"
+    },
+    {
+      "title": "Detalles cotidianos",
+      "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "portrait",
+      "items": [
         {
           "src": "assets/images/zapallar/IMG_4665-800.webp",
           "w": 800,
@@ -104,27 +114,16 @@
             }
           ],
           "caption": "Bandera de Chile"
-        },
-        {
-          "src": "assets/images/zapallar/IMG_4731-800.webp",
-          "w": 800,
-          "h": 532,
-          "alt": "Mate y termo sobre la arena de la playa",
-          "original": "assets/images/zapallar/IMG_4731.JPG",
-          "sources": [
-            {
-              "src": "assets/images/zapallar/IMG_4731-1600.webp",
-              "w": 1600,
-              "h": 1065
-            },
-            {
-              "src": "assets/images/zapallar/IMG_4731-800.webp",
-              "w": 800,
-              "h": 532
-            }
-          ],
-          "caption": "Playa"
-        },
+        }
+      ],
+      "n": "02"
+    },
+    {
+      "title": "Luz de tarde",
+      "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "landscape",
+      "items": [
         {
           "src": "assets/images/zapallar/DSC01575-800.webp",
           "w": 800,
@@ -166,8 +165,7 @@
           "caption": "Reflejos sobre el mar"
         }
       ],
-      "layout": "uniform-grid",
-      "frame": "landscape"
+      "n": "03"
     }
   ],
   "sandbox": [
@@ -306,5 +304,18 @@
       }
     ]
   },
-  "family": "photography"
+  "family": "photography",
+  "presentation": "photo-essay",
+  "heroSources": [
+    {
+      "src": "assets/images/zapallar/IMG_4660-1600.webp",
+      "w": 1600,
+      "h": 898
+    },
+    {
+      "src": "assets/images/zapallar/IMG_4660-800.webp",
+      "w": 800,
+      "h": 449
+    }
+  ]
 }

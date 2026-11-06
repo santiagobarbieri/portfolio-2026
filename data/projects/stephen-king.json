@@ -626,5 +626,9 @@
     "source": "per-cover",
     "colors": []
   },
-  "family": "passion"
+  "family": "passion",
+  "presentation": "editorial-series",
+  "catalogue": {
+    "title": "Las diez portadas"
+  }
 }

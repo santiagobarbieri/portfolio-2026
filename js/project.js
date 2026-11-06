@@ -148,8 +148,9 @@ function makeVariants(items, label = "Variantes", posters = false) {
   group.append(makeElement("h3", "tab project-variants__title", label));
   const grid = makeElement("div", "project-variants__grid");
   if (posters) grid.classList.add("project-poster-grid");
+  if (items.length === 1) grid.classList.add("project-variants__grid--single");
   items.forEach((item) => {
-    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", posters);
+    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", true);
     if (!media) return;
     media.classList.add("project-variant");
     media.dataset.aspect = item.w / item.h < 0.85 ? "poster" : item.w / item.h > 1.3 ? "landscape" : "square";
@@ -173,7 +174,7 @@ function makeCoverNotes(data) {
 
 function renderSection(data, index) {
   const section = makeElement("section", "project-section");
-  const layouts = new Set(["brand-board", "uniform-grid", "contact-sheet"]);
+  const layouts = new Set(["brand-board", "uniform-grid", "contact-sheet", "symbol-grid", "reference-sheet", "product-triptych"]);
   const layout = layouts.has(data.layout) ? data.layout : data.block === "logo" ? "brand-board" : null;
   if (layout) section.classList.add(`project-section--${layout}`);
   if (data.block === "cover-study") section.classList.add("project-section--cover-study");
@@ -192,6 +193,7 @@ function renderSection(data, index) {
     body.append(makePalette(data.colors));
   } else if (data.block === "comparison") {
     const spread = makeElement("div", "project-section__images project-comparison");
+    if (layout === "brand-board") spread.classList.add("project-comparison--brand-board");
     const primary = makeElement("div", "project-comparison__main");
     (data.items || []).forEach((item) => {
       const media = makeMedia(item, undefined, data.frame === "poster");
@@ -203,12 +205,13 @@ function renderSection(data, index) {
   } else {
     const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
     if (layout) images.classList.add(`project-section__images--${layout}`);
+    if (layout === "product-triptych") images.classList.add("project-section__images--uniform-grid");
     const posterGrid = data.frame === "poster";
     if (posterGrid) images.classList.add("project-poster-grid");
     if (["poster", "portrait", "landscape", "square", "story"].includes(data.frame)) images.classList.add(`project-section__images--frame-${data.frame}`);
     const items = Array.isArray(data.items) ? data.items : [];
     items.forEach((item) => {
-      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, posterGrid);
+      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, posterGrid || layout === "uniform-grid" || layout === "product-triptych");
       if (media) images.append(media);
     });
     if (data.block === "cover-study") images.append(makeCoverNotes(data));
@@ -217,6 +220,44 @@ function renderSection(data, index) {
   }
   section.append(heading, body);
   return section;
+}
+
+function jumpToSection(event) {
+  const link = event.target.closest("a");
+  if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const target = document.getElementById(link.hash.slice(1));
+  if (!target) return;
+  event.preventDefault();
+  history.replaceState(null, "", link.hash);
+  const overview = document.querySelector(".project-overview");
+  if (overview && !matchMedia("(min-width: 901px)").matches) overview.open = false;
+  target.scrollIntoView({ block: "start", behavior: "instant" });
+  target.focus({ preventScroll: true });
+}
+
+function makeCatalogue(sections, config) {
+  const catalogue = makeElement("section", "project-section project-catalogue");
+  catalogue.id = "project-catalogue";
+  catalogue.tabIndex = -1;
+  const heading = makeElement("div", "project-section__heading");
+  const title = makeElement("h2", "tab", config.title || "Portadas");
+  title.id = "project-catalogue-title";
+  catalogue.setAttribute("aria-labelledby", title.id);
+  heading.append(title);
+  const grid = makeElement("div", "project-catalogue__grid project-poster-grid");
+  sections.forEach((section, index) => {
+    if (section.block !== "cover-study" || !section.items?.length) return;
+    const link = makeElement("a", "project-catalogue__link");
+    link.href = `#section-${index + 1}`;
+    link.setAttribute("aria-label", `Ver ${section.title}: paleta y lectura visual`);
+    const media = makeMedia({ ...section.items[0], caption: section.title }, "(max-width: 600px) 18vw, 160px");
+    if (!media) return;
+    link.append(media);
+    grid.append(link);
+  });
+  grid.addEventListener("click", jumpToSection);
+  catalogue.append(heading, grid);
+  return catalogue;
 }
 
 function makeProjectSidebar(project, sections, hasPalette) {
@@ -239,6 +280,7 @@ function makeProjectSidebar(project, sections, hasPalette) {
   navigation.setAttribute("aria-label", "Secciones del proyecto");
   const list = makeElement("ul");
   const entries = sections.map((section, index) => ({ id: `section-${index + 1}`, text: `${section.n || String(index + 1).padStart(2, "0")} ${section.title}` }));
+  if (project.catalogue) entries.unshift({ id: "project-catalogue", text: "Todas las portadas" });
   if (hasPalette) entries.unshift({ id: "project-colors", text: "Color" });
   entries.forEach(({ id, text }) => {
     const item = makeElement("li");
@@ -255,17 +297,7 @@ function makeProjectSidebar(project, sections, hasPalette) {
   const fitOverview = () => { overview.open = desktop.matches; };
   desktop.addEventListener("change", fitOverview);
   fitOverview();
-  navigation.addEventListener("click", (event) => {
-    const link = event.target.closest("a");
-    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const target = document.getElementById(link.hash.slice(1));
-    if (!target) return;
-    event.preventDefault();
-    history.replaceState(null, "", link.hash);
-    target.scrollIntoView({ block: "start", behavior: "instant" });
-    target.focus({ preventScroll: true });
-    if (!desktop.matches) overview.open = false;
-  });
+  navigation.addEventListener("click", jumpToSection);
   return sidebar;
 }
 
@@ -294,6 +326,7 @@ function renderProject(project) {
   content.classList.remove("entry-fallback");
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
   if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
+  if (/^[a-z0-9-]+$/.test(project.presentation || "")) article.classList.add(`project-entry--${project.presentation}`);
   setPageTitle(`${project.title} - Overlook`, project.description, project.cover);
   const type = makeProjectType(project.family);
   if (type) {
@@ -306,7 +339,7 @@ function renderProject(project) {
   const heroSource = project.hero || project.cover;
   if (heroSource) {
     const hero = makeElement("figure", "project-entry__hero");
-    const image = makeImage({ src: heroSource, alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`, w: project.heroW || project.w, h: project.heroH || project.h }, true);
+    const image = makeImage({ src: heroSource, alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`, w: project.heroW || project.w, h: project.heroH || project.h, sources: project.heroSources }, true);
     if (image) hero.append(image);
     opening.append(hero);
   }
@@ -327,6 +360,7 @@ function renderProject(project) {
   if (!sections.length && Array.isArray(project.images) && project.images.length) {
     sections.push({ n: "01", title: "Imágenes", block: "grid", items: project.images.map((item) => typeof item === "string" ? { src: item, alt: `${project.title} — Imágenes` } : item) });
   }
+  if (project.catalogue) article.append(makeCatalogue(sections, project.catalogue));
   sections.forEach((section, index) => article.append(renderSection(section, index)));
   const sidebar = makeProjectSidebar(project, sections, Boolean(project.palette));
   content.replaceChildren(sidebar, article);

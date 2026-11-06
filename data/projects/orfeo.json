@@ -9,10 +9,10 @@
   "w": 1600,
   "h": 1067,
   "alt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
-  "hero": "assets/images/orfeo/PORTADA-1600.webp",
+  "hero": "assets/images/orfeo/IMG_4868-1600.webp",
   "heroW": 1600,
   "heroH": 1067,
-  "heroAlt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
+  "heroAlt": "Tres modelos con los sweaters de la colección de ORFEO",
   "meta": [
     [
       "Colección",
@@ -45,7 +45,7 @@
     },
     {
       "n": "02",
-      "title": "Colección",
+      "title": "Tres prendas",
       "block": "grid",
       "items": [
         {
@@ -109,13 +109,14 @@
           "caption": "Lavalle"
         }
       ],
-      "layout": "uniform-grid",
+      "layout": "product-triptych",
       "frame": "landscape"
     },
     {
-      "n": "03",
-      "title": "Fotografía de campaña",
+      "title": "Viamonte",
       "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "portrait",
       "items": [
         {
           "src": "assets/images/orfeo/IMG_4109-800.webp",
@@ -154,7 +155,16 @@
               "h": 1200
             }
           ]
-        },
+        }
+      ],
+      "n": "03"
+    },
+    {
+      "title": "Talcahuano",
+      "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "portrait",
+      "items": [
         {
           "src": "assets/images/orfeo/IMG_4246-800.webp",
           "w": 800,
@@ -192,7 +202,16 @@
               "h": 1200
             }
           ]
-        },
+        }
+      ],
+      "n": "04"
+    },
+    {
+      "title": "Lavalle",
+      "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "portrait",
+      "items": [
         {
           "src": "assets/images/orfeo/IMG_4484-800.webp",
           "w": 800,
@@ -230,29 +249,9 @@
               "h": 1200
             }
           ]
-        },
-        {
-          "src": "assets/images/orfeo/IMG_4868-800.webp",
-          "w": 800,
-          "h": 533,
-          "alt": "Tres modelos con los sweaters de la colección de ORFEO",
-          "original": "assets/images/orfeo/IMG_4868.JPG",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/IMG_4868-1600.webp",
-              "w": 1600,
-              "h": 1067
-            },
-            {
-              "src": "assets/images/orfeo/IMG_4868-800.webp",
-              "w": 800,
-              "h": 533
-            }
-          ]
         }
       ],
-      "layout": "uniform-grid",
-      "frame": "portrait"
+      "n": "05"
     },
     {
       "title": "Logotipo",
@@ -263,7 +262,7 @@
           "w": 4134,
           "h": 4134,
           "alt": "Logotipo de ORFEO sobre fondo claro",
-          "size": "medium",
+          "size": "compact",
           "alignment": "center"
         }
       ],
@@ -298,7 +297,8 @@
         }
       ],
       "variantsTitle": "Aplicaciones de color",
-      "n": "04"
+      "n": "06",
+      "layout": "brand-board"
     },
     {
       "title": "Monograma",
@@ -396,10 +396,11 @@
         }
       ],
       "variantsTitle": "Aplicaciones en lacre",
-      "n": "05"
+      "n": "07",
+      "layout": "brand-board"
     },
     {
-      "title": "Sello",
+      "title": "Sello y ornamentos",
       "block": "logo",
       "layout": "brand-board",
       "items": [
@@ -423,9 +424,29 @@
           ],
           "size": "compact",
           "alignment": "center"
+        },
+        {
+          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
+          "w": 800,
+          "h": 800,
+          "alt": "Estampilla ilustrada de ORFEO en tonos claros",
+          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136.png",
+          "sources": [
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-1600.webp",
+              "w": 1600,
+              "h": 1600
+            },
+            {
+              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
+              "w": 800,
+              "h": 800
+            }
+          ],
+          "size": "compact"
         }
       ],
-      "n": "06"
+      "n": "08"
     },
     {
       "title": "Estampilla ilustrada",
@@ -449,7 +470,7 @@
               "h": 800
             }
           ],
-          "size": "medium"
+          "size": "compact"
         }
       ],
       "variants": [
@@ -502,38 +523,11 @@
         }
       ],
       "variantsTitle": "Variantes gráficas",
-      "n": "07"
-    },
-    {
-      "title": "Recurso ornamental",
-      "block": "gallery",
-      "layout": "brand-board",
-      "items": [
-        {
-          "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
-          "w": 800,
-          "h": 800,
-          "alt": "Estampilla ilustrada de ORFEO en tonos claros",
-          "original": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136.png",
-          "sources": [
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-1600.webp",
-              "w": 1600,
-              "h": 1600
-            },
-            {
-              "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp",
-              "w": 800,
-              "h": 800
-            }
-          ],
-          "size": "medium"
-        }
-      ],
-      "n": "08"
-    },
-    {
       "n": "09",
+      "layout": "brand-board"
+    },
+    {
+      "n": "10",
       "title": "Trabajo en equipo",
       "block": "text",
       "text": "La narrativa del lanzamiento fue una construcción colectiva. Federico y Bautista fundaron la marca; Juana trabajó en fotografía, edición fotográfica y estética visual. El trabajo presentado aquí sitúa mi aporte en la dirección creativa del primer drop, el contenido audiovisual y la página web."
@@ -636,7 +630,7 @@
     }
   ],
   "coverOriginal": "assets/images/orfeo/PORTADA.JPG",
-  "heroOriginal": "assets/images/orfeo/PORTADA.JPG",
+  "heroOriginal": "assets/images/orfeo/IMG_4868.JPG",
   "palette": {
     "title": "Paleta de aplicaciones",
     "description": "Colores extraídos de las aplicaciones gráficas; valores de referencia.",
@@ -669,5 +663,18 @@
       }
     ]
   },
-  "family": "identity"
+  "family": "identity",
+  "presentation": "fashion-campaign",
+  "heroSources": [
+    {
+      "src": "assets/images/orfeo/IMG_4868-1600.webp",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "assets/images/orfeo/IMG_4868-800.webp",
+      "w": 800,
+      "h": 533
+    }
+  ]
 }
