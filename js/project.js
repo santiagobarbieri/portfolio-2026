@@ -1,3 +1,4 @@
+import { createImageGallery, imageKey } from "./image-gallery.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
 import { initShell } from "./shell.js";
@@ -19,7 +20,7 @@ function closeEntry(event) {
 
 document.querySelector("[data-close-entry]")?.addEventListener("click", closeEntry);
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !document.querySelector(".project-preview[open]")) closeEntry(event);
+  if (event.key === "Escape" && !document.querySelector("dialog[open]")) closeEntry(event);
 });
 
 function makeElement(tag, className, text) {
@@ -87,44 +88,39 @@ function makePalette(colors) {
   return palette;
 }
 
-let preview = null;
+let projectPhotos = [];
 
-function openPreview(item) {
-  if (!preview) {
-    preview = makeElement("dialog", "project-preview");
-    preview.setAttribute("aria-labelledby", "project-preview-title");
-    const header = makeElement("div", "project-preview__header");
-    const heading = makeElement("h2", "project-preview__title", "Afiche");
-    heading.id = "project-preview-title";
-    const close = makeElement("button", "project-preview__close", "×");
-    close.type = "button";
-    close.setAttribute("aria-label", "Cerrar ampliación");
-    close.addEventListener("click", () => preview.close());
-    header.append(heading, close);
-    preview.append(header, makeElement("div", "project-preview__stage"));
-    preview.addEventListener("close", () => {
-      projectScroll.start();
-      preview.querySelector(".project-preview__stage").replaceChildren();
-    });
-    document.body.append(preview);
-  }
-  const stage = preview.querySelector(".project-preview__stage");
-  const largest = [...(item.sources || [])].sort((a, b) => b.w - a.w)[0];
-  const image = makeImage({ ...item, ...largest, sources: [] }, true);
-  if (!image) return;
-  preview.querySelector(".project-preview__title").textContent = item.caption || item.alt || "Afiche";
-  stage.replaceChildren(image);
-  stage.setAttribute("aria-busy", "true");
-  image.decode().catch(() => {
-    if (stage.contains(image)) stage.replaceChildren(makeElement("p", null, "No se pudo cargar la imagen."));
-  }).finally(() => {
-    if (!stage.querySelector("img") || stage.contains(image)) stage.removeAttribute("aria-busy");
-  });
-  projectScroll.stop();
-  preview.showModal();
+function isPhoto(item) {
+  return /\.jpe?g$/i.test(new URL(item.original || item.src, document.baseURI).pathname);
 }
 
-function makeMedia(item, sizes, expandable = false) {
+function collectPhotos(project) {
+  const photos = [];
+  const seen = new Set();
+  function add(item) {
+    const key = imageKey(item);
+    if (key && !seen.has(key) && (project.family === "photography" || isPhoto(item))) {
+      seen.add(key);
+      photos.push(item);
+    }
+  }
+  if (project.hero || project.cover) add({
+    src: project.hero || project.cover, original: project.heroOriginal || project.coverOriginal,
+    w: project.heroW || project.w, h: project.heroH || project.h,
+    alt: project.heroAlt || project.alt, sources: project.heroSources, name: project.heroName,
+  });
+  (project.sections || []).forEach((section) => (section.items || []).forEach((item) => add({
+    ...item, name: item.name || (section.layout === "product-triptych" ? item.caption : undefined),
+  })));
+  return photos;
+}
+
+function openGallery(item, collection) {
+  const items = collection?.length ? collection : isPhoto(item) && projectPhotos.length ? projectPhotos : [item];
+  imageGallery.open(items, Math.max(0, items.findIndex((entry) => imageKey(entry) === imageKey(item))));
+}
+
+function makeMedia(item, sizes, expandable = false, galleryItems) {
   const image = makeImage(item, false, sizes);
   if (!image) return null;
   const media = makeElement("figure", "project-media");
@@ -135,7 +131,7 @@ function makeMedia(item, sizes, expandable = false) {
     button.type = "button";
     button.setAttribute("aria-label", `Ampliar: ${item.caption || item.alt || "afiche"}`);
     button.setAttribute("aria-haspopup", "dialog");
-    button.addEventListener("click", () => openPreview(item));
+    button.addEventListener("click", () => openGallery(item, galleryItems));
     button.append(image);
     frame.append(button);
   } else {
@@ -146,14 +142,14 @@ function makeMedia(item, sizes, expandable = false) {
   return media;
 }
 
-function makeVariants(items, label = "Variantes", posters = false) {
+function makeVariants(items, label = "Variantes", posters = false, galleryItems = items) {
   const group = makeElement("div", "project-variants");
   group.append(makeElement("h3", "tab project-variants__title", label));
   const grid = makeElement("div", "project-variants__grid");
   if (posters) grid.classList.add("project-poster-grid");
   if (items.length === 1) grid.classList.add("project-variants__grid--single");
   items.forEach((item) => {
-    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", true);
+    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", true, galleryItems);
     if (!media) return;
     media.classList.add("project-variant");
     media.dataset.aspect = item.w / item.h < 0.85 ? "poster" : item.w / item.h > 1.3 ? "landscape" : "square";
@@ -171,7 +167,7 @@ function makeCoverNotes(data) {
   if (data.inspiration) {
     notes.append(makeElement("h3", "tab project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
   }
-  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada"));
+  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada", false, [...(data.items || []), ...data.variants]));
   return notes;
 }
 
@@ -198,12 +194,13 @@ function renderSection(data, index) {
     const spread = makeElement("div", "project-section__images project-comparison");
     if (layout === "brand-board") spread.classList.add("project-comparison--brand-board");
     const primary = makeElement("div", "project-comparison__main");
+    const galleryItems = [...(data.items || []), ...(data.variants || [])];
     (data.items || []).forEach((item) => {
-      const media = makeMedia(item, undefined, data.frame === "poster");
+      const media = makeMedia(item, undefined, true, galleryItems);
       if (media) primary.append(media);
     });
     spread.append(primary);
-    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster"));
+    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster", galleryItems));
     body.append(spread);
   } else {
     const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
@@ -214,7 +211,8 @@ function renderSection(data, index) {
     if (["poster", "portrait", "landscape", "square", "story"].includes(data.frame)) images.classList.add(`project-section__images--frame-${data.frame}`);
     const items = Array.isArray(data.items) ? data.items : [];
     items.forEach((item) => {
-      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, posterGrid || layout === "uniform-grid" || layout === "product-triptych");
+      const collection = isPhoto(item) ? undefined : [...items, ...(data.variants || [])];
+      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, posterGrid || layout === "uniform-grid" || layout === "product-triptych" || data.block === "cover-study", collection);
       if (media) images.append(media);
     });
     if (data.block === "cover-study") images.append(makeCoverNotes(data));
@@ -326,7 +324,45 @@ function trackProjectSections(sidebar) {
   });
 }
 
+function renderPhotoCollection(project) {
+  document.body.classList.add("photo-collection-page");
+  content.classList.remove("entry-fallback");
+  setPageTitle(project.title, project.description, project.cover);
+  const article = makeElement("article", "project-entry photo-collection");
+  const count = makeElement("p", "photo-collection__count", `${String(projectPhotos.length).padStart(2, "0")} fotografías`);
+  const grid = makeElement("div", "photo-collection__grid");
+  projectPhotos.forEach((item, index) => {
+    const figure = makeElement("figure", "photo-collection__item");
+    const button = makeElement("button", "photo-collection__open");
+    button.type = "button";
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-label", `Abrir fotografía ${index + 1}${item.name ? ` — ${item.name}` : ""}`);
+    const frame = makeElement("span", "photo-collection__frame");
+    const image = makeImage(item, index < 3, "(max-width: 900px) 30vw, 280px");
+    if (image) frame.append(image);
+    const caption = makeElement("span", "photo-collection__caption");
+    caption.append(makeElement("span", "photo-collection__number", String(index + 1).padStart(2, "0")));
+    if (item.name) caption.append(makeElement("span", "photo-collection__name", item.name));
+    button.append(frame, caption);
+    button.addEventListener("click", () => imageGallery.open(projectPhotos, index));
+    figure.append(button);
+    grid.append(figure);
+  });
+  const information = makeElement("section", "photo-collection__information");
+  information.setAttribute("aria-label", "Ficha del proyecto");
+  information.append(makeElement("h2", "tab", "Proyecto"));
+  const metadata = makeElement("dl", "project-metadata");
+  [["Proyecto", project.title], ...(project.meta || [])].forEach(([label, value]) => {
+    if (value) metadata.append(makeElement("dt", null, label), makeElement("dd", null, value));
+  });
+  information.append(metadata);
+  article.append(count, grid, information);
+  content.replaceChildren(article);
+}
+
 function renderProject(project) {
+  projectPhotos = collectPhotos(project);
+  if (project.family === "photography") { renderPhotoCollection(project); return; }
   content.classList.remove("entry-fallback");
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
   if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
@@ -343,8 +379,19 @@ function renderProject(project) {
   const heroSource = project.hero || project.cover;
   if (heroSource) {
     const hero = makeElement("figure", "project-entry__hero");
-    const image = makeImage({ src: heroSource, alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`, w: project.heroW || project.w, h: project.heroH || project.h, sources: project.heroSources }, true);
-    if (image) hero.append(image);
+    const heroItem = { src: heroSource, alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`, w: project.heroW || project.w, h: project.heroH || project.h, sources: project.heroSources, original: project.heroOriginal || project.coverOriginal };
+    const image = makeImage(heroItem, true);
+    if (image) {
+      if (isPhoto(heroItem)) {
+        const open = makeElement("button", "project-media__expand");
+        open.type = "button";
+        open.setAttribute("aria-label", "Abrir fotografías del proyecto");
+        open.setAttribute("aria-haspopup", "dialog");
+        open.addEventListener("click", () => openGallery(heroItem));
+        open.append(image);
+        hero.append(open);
+      } else hero.append(image);
+    }
     opening.append(hero);
   }
   if (project.palette) {
@@ -407,6 +454,7 @@ async function renderEntry() {
 }
 
 const projectScroll = initSmoothScroll();
+const imageGallery = createImageGallery({ onOpen: () => projectScroll.stop(), onClose: () => projectScroll.start() });
 initShell();
 document.addEventListener("portfolio:content-ready", () => projectScroll.resize(), { once: true });
 renderEntry();

@@ -171,10 +171,17 @@ h2 {
   }
 }
 
-.identity__name,
+.identity__name { color: var(--fg); }
 .identity__glyph { color: var(--accent); }
-a:hover,
-button:not(:disabled):hover,
-summary:hover { color: var(--accent); }
 :focus-visible { outline-color: var(--accent); }
-.project-index a[aria-current] { color: var(--accent); }
+.tab:is(a, button, summary):is(:hover, :focus-visible) {
+  color: var(--fg);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.project-index a:is(:hover, :focus-visible) {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.project-index a[aria-current] { color: var(--fg); }
+.project-index a[aria-current]::before { color: var(--accent); }

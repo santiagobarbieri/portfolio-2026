@@ -26,7 +26,7 @@ export function initCursor() {
     if (!finePointer.matches || event.pointerType !== "mouse") { hide(); return; }
     x = event.clientX;
     y = event.clientY;
-    const interactive = event.target.closest('a[href], button:not(:disabled), summary, input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [role="button"], [tabindex="0"]');
+    const interactive = event.target.closest('a[href], button:not(:disabled), summary, input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [role="button"], [tabindex="0"], [data-cursor-interactive]');
     const label = event.target.closest("label")?.querySelector("input:not(:disabled)");
     cursor.classList.toggle("site-cursor--interactive", Boolean(interactive || label));
     cursor.classList.toggle("site-cursor--still", reducedMotion.matches);

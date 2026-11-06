@@ -41,6 +41,9 @@ function createCard(project) {
     media.append(placeholder);
   }
   const caption = node("div", "archive-card__caption");
+  const open = node("span", "archive-card__open", "Abrir Proyecto");
+  open.setAttribute("aria-hidden", "true");
+  caption.append(open);
   caption.append(node("span", "archive-card__code", project.code || "—"));
   const type = makeProjectType(project.family);
   if (type) {
@@ -93,11 +96,32 @@ export async function initArchive() {
   let working = false;
   let resizeFrame = 0;
   let viewportWidth = innerWidth;
+  let sizeFrame = 0;
   let startY = 0;
   let pristine = state.version === 3 ? Boolean(state.pristine) : true;
   let focusSlug = state.slug || null;
   const motion = initArchiveMotion({ onFrame: recycle });
   const buffer = () => Math.max(700, innerHeight * 1.35);
+  const rowObserver = new ResizeObserver((entries) => {
+    if (working || !entries.some(({ target }) => target.isConnected && heights.has(target) && Math.abs(target.getBoundingClientRect().height - heights.get(target)) > 0.5)) return;
+    cancelAnimationFrame(sizeFrame);
+    sizeFrame = requestAnimationFrame(refreshSizes);
+  });
+
+  function refreshSizes() {
+    if (working || !rows.length) return;
+    const position = anchor();
+    heights.clear();
+    streamY = stream.getBoundingClientRect().top + scrollY;
+    streamHeight = rows.reduce((sum, row) => sum + rowHeight(row), 0);
+    const current = rows.find((row) => Number(row.dataset.sequence) === position.sequence);
+    if (current) {
+      const compensation = streamY + current.offsetTop + position.offset - scrollY;
+      startY += compensation;
+      motion.rebase(compensation);
+    }
+    recycle();
+  }
 
   function sorted() {
     return templates.filter((card) => category === "all" || card.dataset.category === category).sort((a, b) => {
@@ -109,6 +133,7 @@ export async function initArchive() {
 
   function makeRow(sequence, reusable) {
     const row = reusable || node("div", "archive-row");
+    heights.delete(row);
     row.dataset.sequence = sequence;
     row.toggleAttribute("data-history", sequence < 0);
     const template = selected[modulo(sequence, selected.length)];
@@ -123,8 +148,10 @@ export async function initArchive() {
     const precedingProjects = selected.slice(0, index).filter((item) => item.dataset.kind !== "about").length;
     const projectSequence = Math.floor(sequence / selected.length) * projectCount + precedingProjects;
     card.classList.toggle("archive-card--right", card.dataset.kind !== "about" && modulo(projectSequence, 2) === 1);
+    row.classList.toggle("archive-row--about", card.dataset.kind === "about");
     row.classList.toggle("archive-row--before-about", selected[modulo(sequence + 1, selected.length)].dataset.kind === "about");
     if (card.dataset.kind === "about") prepareArchiveAbout(card);
+    rowObserver.observe(row);
     return row;
   }
 
@@ -136,9 +163,8 @@ export async function initArchive() {
   }
 
   function rowHeight(row) {
-    const slug = row.firstElementChild.dataset.slug;
-    if (!heights.has(slug)) heights.set(slug, row.getBoundingClientRect().height);
-    return heights.get(slug);
+    if (!heights.has(row)) heights.set(row, row.getBoundingClientRect().height);
+    return heights.get(row);
   }
 
   function syncAccessibility() {
@@ -157,9 +183,10 @@ export async function initArchive() {
       const primary = representatives.get(row.firstElementChild.dataset.slug)?.row === row;
       if (primary && row.hasAttribute("aria-hidden")) row.removeAttribute("aria-hidden");
       else if (!primary && !row.hasAttribute("aria-hidden")) row.setAttribute("aria-hidden", "true");
-      row.inert = !primary;
-      const link = row.querySelector(".archive-card__link");
-      if (link && link.tabIndex !== (primary ? 0 : -1)) link.tabIndex = primary ? 0 : -1;
+      row.inert = false;
+      row.querySelectorAll("a, button, summary, [tabindex]").forEach((control) => {
+        if (control.tabIndex !== (primary ? 0 : -1)) control.tabIndex = primary ? 0 : -1;
+      });
     });
     lastAccessibilityY = scrollY;
   }
@@ -202,7 +229,10 @@ export async function initArchive() {
   function render(position = { sequence: 0, offset: -main.offsetTop }) {
     working = true;
     selected = sorted();
-    rows.forEach((row) => releaseCard(row.firstElementChild));
+    rows.forEach((row) => {
+      rowObserver.unobserve(row);
+      releaseCard(row.firstElementChild);
+    });
     heights.clear();
     stream.replaceChildren();
     rows = [];
@@ -306,6 +336,8 @@ export async function initArchive() {
       const row = rows.pop();
       streamHeight -= rowHeight(row);
       releaseCard(row.firstElementChild);
+      rowObserver.unobserve(row);
+      heights.delete(row);
       row.remove();
       changed = true;
     }
@@ -338,6 +370,7 @@ export async function initArchive() {
     }
   });
 
+  stream.addEventListener("focusin", syncAccessibility);
   history.scrollRestoration = "manual";
   document.body.classList.add("has-archive-loop");
   render(state.version === 3 ? state : undefined);
@@ -357,15 +390,6 @@ export async function initArchive() {
   });
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a");
-    if (link?.matches("[data-reset-archive]")) {
-      event.preventDefault();
-      category = "all";
-      pristine = true;
-      render();
-      save();
-      main.focus({ preventScroll: true });
-      return;
-    }
     if (link?.href.includes("project.html")) {
       focusSlug = new URL(link.href).searchParams.get("p");
       save();

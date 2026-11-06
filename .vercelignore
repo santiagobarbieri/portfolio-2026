@@ -10,50 +10,5 @@ node_modules/
 preview.command
 *.log
 
-# Unused source media stays in GitHub; the live site uses the WebP versions.
-assets/images/olas-ditella/poster 1.png
-assets/images/olas-ditella/poster 2.png
-assets/images/olas-ditella/poster 3.png
-assets/images/olas-ditella/poster 4.png
-assets/images/olas-ditella/poster 5.png
-assets/images/orfeo/IMG_4109.JPG
-assets/images/orfeo/IMG_4144.JPG
-assets/images/orfeo/IMG_4246.JPG
-assets/images/orfeo/IMG_4452.JPG
-assets/images/orfeo/IMG_4484.JPG
-assets/images/orfeo/IMG_4685.JPG
-assets/images/orfeo/IMG_4710.JPG
-assets/images/orfeo/IMG_4775.JPG
-assets/images/orfeo/IMG_4800.JPG
-assets/images/orfeo/IMG_4868.JPG
-assets/images/orfeo/New Project - 2026-05-14T233653.972.png
-assets/images/orfeo/New Project - 2026-05-15T000714.714.png
-assets/images/orfeo/New Project - 2026-05-15T000735.657.png
-assets/images/orfeo/New Project - 2026-05-15T000851.918.png
-assets/images/orfeo/New Project - 2026-05-15T002752.937.png
-assets/images/orfeo/New Project - 2026-05-15T002807.082.png
-assets/images/orfeo/New Project - 2026-05-15T002835.717.png
-assets/images/orfeo/New Project - 2026-05-15T002850.326.png
-assets/images/orfeo/New Project - 2026-05-15T140807.136.png
-assets/images/orfeo/PORTADA.JPG
+# Unused source media stays in GitHub. Referenced originals are served for downloads.
 assets/images/orfeo/TALCAHUANO.mov
-assets/images/stephen-king/'SALEM'S LOT.png
-assets/images/stephen-king/CARRIE.png
-assets/images/stephen-king/CUJO.png
-assets/images/stephen-king/IT.png
-assets/images/stephen-king/MISERY.png
-assets/images/stephen-king/PET SEMATARY.png
-assets/images/stephen-king/THE DARK TOWER.png
-assets/images/stephen-king/THE DEAD ZONE.png
-assets/images/stephen-king/THE GREEN MILE.png
-assets/images/stephen-king/THE SHINING.png
-assets/images/stephen-king/Variante 1.png
-assets/images/stephen-king/Variante 2.png
-assets/images/stephen-king/Variante 3.png
-assets/images/zapallar/DSC01575.JPG
-assets/images/zapallar/IMG_4660.jpg
-assets/images/zapallar/IMG_4665.JPG
-assets/images/zapallar/IMG_4673.JPG
-assets/images/zapallar/IMG_4726.JPG
-assets/images/zapallar/IMG_4731.JPG
-assets/images/zapallar/IMG_4748.JPG

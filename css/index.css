@@ -423,3 +423,40 @@
   .archive-filters { max-height: none; overflow: visible; }
   .archive-directory { flex: 0 0 auto; margin-top: 0; overflow: visible; }
 }
+
+/* Empty row areas must never intercept the caption of the previous project. */
+.archive-row { pointer-events: none; }
+.archive-card,
+.archive-about { pointer-events: auto; }
+.archive-label { cursor: default; }
+.archive-label::after { content: none; }
+.archive-card__link { position: relative; z-index: 1; }
+.archive-card__caption { min-height: 76px; margin-top: 0; padding-block: 14px 12px; }
+.archive-card__open {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 10px 12px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  visibility: hidden;
+  pointer-events: none;
+}
+.archive-card__link:focus-visible .archive-card__caption > :not(.archive-card__open) { visibility: hidden; }
+.archive-card__link:focus-visible .archive-card__open { visibility: visible; }
+.archive-card__link:focus-visible .archive-card__caption { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.archive-card__link:focus-visible .archive-card__media::after { position: absolute; inset: 0; border: 1px solid var(--accent); content: ""; pointer-events: none; }
+.archive-filter-option:is(:hover, :focus-within) { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.archive-filter-option:hover span { color: var(--fg); }
+.archive-filter-option input:focus-visible + span { outline-color: var(--accent); }
+@media (max-width: 600px) { .archive-page { --archive-safe-gap: 32px; } }
+
+@media (hover: hover) {
+  .archive-card__link:hover .archive-card__caption > :not(.archive-card__open) { visibility: hidden; }
+  .archive-card__link:hover .archive-card__open { visibility: visible; }
+  .archive-card__link:hover .archive-card__caption { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+  .archive-card__link:hover .archive-card__media::after { position: absolute; inset: 0; border: 1px solid var(--accent); content: ""; pointer-events: none; }
+}
+@media (max-width: 600px) { .archive-card__caption { position: relative; inset: auto; } }

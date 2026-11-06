@@ -120,7 +120,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 - Proporción original siempre; las imágenes se contienen completas en las celdas, sin recortes ni `object-fit: cover`.
 - Las marcas y pruebas pequeñas conservan escala contenida para no ampliar archivos de baja resolución.
 
-**Hero:** `00-hero` ocupa la primera columna central, con la paleta a su lado. La ficha y el índice permanecen fijos en la columna lateral izquierda. En mobile se despliegan desde un control fijo.
+**Hero de identidad/editorial:** `00-hero` ocupa la primera columna central, con la paleta a su lado. La ficha y el índice permanecen fijos en la columna lateral izquierda. En mobile se despliegan desde un control fijo.
 
 **Numeración:** las secciones se numeran `01`, `02`… por orden de carpeta. El hero y los metadatos no se numeran (`Proyecto` es el primer Tab).
 
@@ -136,7 +136,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 
 En las marcas se puede declarar `size: compact|medium|wide`. Los logos quedan dentro de una columna central: una marca cuadrada llega a unos 300px y un monograma a 120–180px. No usar diferencias de tamaño ni alineaciones escalonadas en grillas de fotos o afiches.
 
-La propiedad raíz `palette` contiene `title`, `description`, `source` y `colors: [{name, hex, source?}]`. Se presenta junto al hero. `source` distingue valores provistos, colores de las piezas, muestras de aplicaciones o paletas fotográficas. Los nombres y HEX quedan visibles; si son valores muestreados, explicitar que son de referencia. Stephen King usa `source: per-cover` y conserva las paletas individuales.
+La propiedad raíz `palette` contiene `title`, `description`, `source` y `colors: [{name, hex, source?}]`. En identidad/editorial se presenta junto al hero; las colecciones fotográficas omiten este bloque. `source` distingue valores provistos, colores de las piezas, muestras de aplicaciones o paletas fotográficas. Los nombres y HEX quedan visibles; si son valores muestreados, explicitar que son de referencia. Stephen King usa `source: per-cover` y conserva las paletas individuales.
 
 Las variantes van en `variants: [{src, w, h, alt, caption, sources?}]` de la sección que contiene su principal. `variantsTitle` puede distinguir exploraciones, aplicaciones de color u otras versiones verificadas. Se muestran como pruebas pequeñas, sin ampliar originales ni recortar. `cover-study` también admite `variants`, junto a la paleta y lectura visual. Mantener aparte las piezas que pertenecen a otra familia o no tienen relación demostrable.
 
@@ -160,7 +160,7 @@ Para piezas editoriales individuales, `block: cover-study` muestra una tapa y un
 ## 7. Casos límite
 
 - **Proyecto de una sola imagen:** solo hero + metadatos; sin secciones.
-- **Proyecto fotográfico (ej. Fotos En Zapallar):** una sección `Fotos` en `grid` o `sequence` según Santi; `meta` puede ser solo `Lugar` y `Año`.
+- **Proyecto fotográfico (ej. Fotos En Zapallar):** `family: photography` activa la colección de tres fotos por fila y el carrusel compartido; la ficha va debajo y `meta` puede ser solo `Lugar` y `Año`.
 - **Sin portada:** usa la primera imagen disponible y repórtalo.
 - **Proyecto sin texto:** descripción `"Completar"` en Archivo; no dejes el campo vacío.
 - **Proyecto que ya existe:** actualiza; no dupliques en `projects.json`.
@@ -193,3 +193,9 @@ La propiedad raíz `family` usa `identity`, `passion` o `photography` según la 
 About es una entrada HTML de Archivo con `data-kind="about"`, no un proyecto del registro JSON ni del contador. Conservar esa entrada, el índice lateral, el cursor azul y el scroll común al agregar casos. Las fotos y paletas de los proyectos no se tiñen con el acento global.
 
 En ORFEO, las prendas confirmadas son Viamonte (marrón tejido), Talcahuano (negro liso) y Lavalle (azul tejido). La foto `IMG_4452` del modelo junto al árbol pertenece a Viamonte. Verificar visualmente las piezas antes de agruparlas; no inferir la prenda por la ubicación o por un alt previo.
+
+## Colecciones fotográficas y ampliaciones
+
+Para `family: photography`, usar la vista de colección: tres imágenes por fila, imágenes completas, contador y `name` solo si se proporcionó un nombre real. No generar nombres a partir de `alt` ni de nombres de archivo. No mostrar paletas, análisis o capítulos en la grilla. La ficha se presenta debajo de las fotos.
+
+Todas las fotografías ampliables de un proyecto se reúnen por su ruta original sin duplicar exportaciones. El visor compartido muestra las fotos y su nombre/número, con flechas, rueda/trackpad horizontal continuo e infinito y gesto horizontal. `original` es la ruta de descarga en calidad original; las previews usan WebP. Incluir los originales de descarga en el deploy, sin modificar ni recomprimir los archivos fuente.

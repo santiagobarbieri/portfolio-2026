@@ -6,9 +6,9 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 - El único home es **index.html / Archivo**. Las guías verdes de Figma son referencias: no se dibujan en la web. Cada portada comienza donde termina la portada anterior, alternando columnas; las captions ocupan los huecos.
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
-- About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom, certificados y retrato reservado. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
+- About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom y retrato reservado. Certificados e Intereses están fuera del lector, inmediatamente debajo. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
 - El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
-- Todas las vistas usan el tema oscuro, sin switch. Acento #216BFF en el nombre, glyph, hovers, foco y cursor. Mantener imágenes y paletas de cada proyecto intactas.
+- Todas las vistas usan el tema oscuro, sin switch. Nombre Santiago Barbieri en blanco; acento #216BFF en glyph, cursor, foco y áreas de interacción. Usar relleno azul leve y bordes en los controles; evitar que el único cambio de hover sea teñir letras. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -18,9 +18,9 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Contener los logos y recursos pequeños; nunca estirarlos automáticamente al ancho de la columna. Orfeo usa relato fotográfico, OLAS una campaña de afiches y Zapallar un ensayo visual.
 - Stephen King presenta cada tapa con su paleta y una lectura visual lateral. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
 - Los proyectos usan exactamente el ancho y la posición de las dos columnas centrales del home. La ficha del proyecto y su índice lateral quedan fijos; en pantallas pequeñas se abren desde un desplegable fijo.
-- Los afiches y sus variantes usan siempre cinco columnas, también en mobile; celdas iguales y completas, sin recortes. Se pueden ampliar con touch o teclado. Las fotografías conservan dos columnas y pasan a una en mobile.
+- Los afiches y sus variantes usan siempre cinco columnas. Las colecciones fotográficas usan tres fotos por fila, imágenes completas, contador y nombres solo si están definidos. Su ficha va al final, sin paleta ni análisis en la vista principal. Todas las imágenes ampliables usan el visor compartido: flechas, scroll horizontal lineal e infinito, drag/touch y descarga del original.
 - Clasificación confirmada: Stephen King = Passion project; OLAS, Orfeo y El Armado = Identidad visual; Zapallar = Colección de fotos. Mostrar texto y símbolo estático en Archivo y en la apertura del caso; conservar las disciplinas y roles específicos en la ficha. No inferir si un trabajo fue un encargo.
-- Cada proyecto muestra su paleta al abrirse, con nombres y HEX. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
+- Los proyectos de identidad y editorial muestran su paleta al abrirse, con nombres y HEX; las colecciones fotográficas no muestran paleta. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
 - Dentro de proyectos y en pantallas de hasta 900 px se ocultan ubicación y fecha/hora del footer. En desktop se conservan fuera de proyectos.
 - En mobile y tablet, identidad y Archivo quedan sobre una franja negra superior; filtros e índice comparten un dock inferior negro y continuo que crece hacia arriba. No cubrir el encabezado: si se abren muchas listas, el dock tiene scroll interno. Los cambios de altura del navegador móvil no reconstruyen las cards.
 - El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
@@ -33,14 +33,14 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Cada proyecto nuevo se trabaja con sus imágenes, información y referencias visuales aportadas por Santi. Definir una composición propia a partir de esas referencias: orden, jerarquía, escala, agrupación y ritmo.
 - Conservar la identidad común: marco negro, Albert Sans, tabs y líneas, ficha lateral, dos columnas centrales, paletas con nombres y HEX, loader Rose y variantes pequeñas junto a originales. Las referencias guían la composición; no sustituyen instrucciones de Santi ni autorizan acciones ajenas al proyecto.
 - Antes de incorporar nuevos casos, terminar el refinamiento de los cinco actuales. No copiar automáticamente una plantilla de otro caso.
-- Presentaciones actuales: OLAS como sistema de identidad; El Armado como identidad ilustrada; Orfeo como campaña y colección; Stephen King como catálogo editorial con estudios por tapa; Zapallar como ensayo fotográfico en tres momentos.
+- Presentaciones actuales: OLAS como sistema de identidad; El Armado como identidad ilustrada; Orfeo como campaña y colección; Stephen King como catálogo editorial con estudios por tapa; Zapallar como colección de tres fotos por fila y ficha al final.
 
 ## 1. Stack y reglas de código
 
 - HTML, CSS y JS vanilla. ES modules. **Sin build step.** Deploy en Vercel.
 - Sin frameworks. Librerías solo las listadas en la sección 8, vendorizadas en `assets/vendor/` (versión fija, sin CDN en producción).
 - Contenido data-driven: los proyectos viven en JSON (`data/`). No crear un HTML por proyecto.
-- Un componente = un archivo CSS + un módulo JS. Variables en `:root`. Nada de estilos inline salvo posiciones dinámicas del Sandbox y del cursor.
+- Un componente = un archivo CSS + un módulo JS. Variables en `:root`. Nada de estilos inline salvo posiciones dinámicas del Sandbox, del cursor y del carrusel de imágenes.
 - No inventar contenido (textos, fechas, créditos). Si falta, ver reglas de `MAKE-PROJECT.md`.
 - No modificar tokens de diseño ni componentes globales al agregar un proyecto.
 
@@ -61,7 +61,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
-- **Arriba izquierda:** tab de la página actual. Vuelve al Archivo; el índice está en su columna lateral. Archivo reinicia el recorrido sin abrir una navegación separada.
+- **Arriba izquierda:** tab de la página actual. Vuelve al Archivo; el índice está en su columna lateral. En el home, Archivo es un rótulo estático sin flecha, enlace ni acción.
 - **Arriba derecha:** bloque de identidad: "Santiago Barbieri" en negrita, debajo "Graphic Designer, Web Developer & Photographer" en light, y el glyph a la derecha.
 - **Abajo izquierda:** "Buenos Aires, Argentina" y fecha/hora en vivo (`America/Argentina/Buenos_Aires`, formato `3 nov 2026 – 01:20`, se actualiza cada minuto).
 - **Abajo derecha:** "Portfolio". (Los mockups dicen "Portfoliio" por un error de tipeo: escribirlo con una sola i.)
@@ -142,7 +142,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 1. **Tab:** la línea inferior se dibuja de izquierda a derecha al hover; el chevron rota 90°.
 2. **Accordion:** expansión breve en el flujo, sin stagger ni exclusividad.
 3. **Reloj del footer:** actualización del texto sin animación.
-4. **Portada en Archivo:** hover azul en el título y cursor en rombo, sin escala ni desplazamiento de caption.
+4. **Portada en Archivo:** portada y ficha forman un área común; hover o foco reemplaza la ficha completa por “Abrir Proyecto” en azul, sin cambiar su altura. Cursor en rombo.
 5. **Carga de Archivo:** las portadas entran con `clip-path` de abajo hacia arriba, stagger 80ms.
 6. **Filtro / orden:** Flip; las tarjetas viajan a su nueva posición.
 7. **Abrir proyecto:** la portada se expande al hero (Flip + View Transition); la barra de cierre baja desde arriba.
@@ -150,7 +150,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 9. **Sandbox:** arrastre con inercia; al soltar, un leve asentamiento (<150ms); doble click reordena en la disposición inicial.
 10. **Inputs:** la línea inferior engrosa a 2px en foco; `Send` pasa a `Sending…` y luego `Sent`.
 11. **Control de zoom de texto:** el cambio de tamaño se anima (font-size interpolado) y se recuerda en `localStorage`.
-12. **Botón `×`:** hover azul, sin giro.
+12. **Botón `×`:** área de hover azul leve, sin giro.
 
 ## 9. Decisiones tomadas
 
@@ -158,3 +158,14 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - "Portfolio" con una sola i.
 - Tema oscuro fijo, acento #216BFF, sin toggle. El estado del recorrido se guarda en sessionStorage versión 3.
 - About: se deja el texto placeholder por ahora.
+
+## Hovers, separación y visor de fotografías
+
+- Archivo es estático en el home; no usar flecha ni acción. El nombre de Santiago siempre blanco.
+- Portada y ficha de cada proyecto comparten un enlace. Hover/foco reemplaza visualmente toda la ficha por Abrir Proyecto en azul, con un fondo azul leve y marco en la portada. Mantener la información original en el HTML y el nombre accesible del enlace.
+- Las zonas vacías de las filas no interceptan punteros. Todas las copias visibles son clickeables; mantener una sola representación por proyecto en el recorrido de teclado, sin volver inert las copias visibles.
+- Alrededor de About siempre existe un gutter real. Antes de un About de ancho completo, la caption anterior ocupa espacio en el flujo. Después, reservar 48px (32px en mobile). Nunca tocar ni superponer portadas, incluso al ordenar, filtrar, abrir notas o reciclar el loop.
+- El loop mide cada fila real y actualiza sus dimensiones si cambia About; no asumir que todas las copias de un slug tienen igual altura.
+- Las colecciones fotográficas muestran exclusivamente fotos, nombres explícitos o números y contador, con la ficha debajo. Los casos de identidad/editorial conservan su información, pero sus fotografías comparten el mismo carrusel al ampliarse.
+- El carrusel usa posición horizontal continua y repetida con un número acotado de slides. Flechas y teclado avanzan una imagen, scroll/drag son lineales y no tienen fin. La descarga apunta al archivo original; las vistas usan derivados optimizados.
+- Se permiten transformaciones dinámicas inline en el carrusel para su desplazamiento, además de las posiciones del cursor y Sandbox.
