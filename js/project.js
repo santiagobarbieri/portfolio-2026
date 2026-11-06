@@ -89,39 +89,60 @@ function makePalette(colors) {
   return palette;
 }
 
-let projectPhotos = [];
+let projectAssets = [];
 
-function isPhoto(item) {
-  return /\.jpe?g$/i.test(new URL(item.original || item.src, document.baseURI).pathname);
+function makeHeroItem(project) {
+  const usesCover = !project.hero || imageKey({ src: project.hero }) === imageKey({ src: project.cover });
+  return {
+    src: project.hero || project.cover,
+    original: project.heroOriginal || (usesCover ? project.coverOriginal : undefined),
+    w: project.heroW || project.w, h: project.heroH || project.h,
+    alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`,
+    sources: project.heroSources || (usesCover ? project.coverSources : undefined),
+    name: project.heroName,
+  };
 }
 
-function collectPhotos(project) {
-  const photos = [];
-  const seen = new Set();
-  function add(item) {
+function collectProjectAssets(project) {
+  const assets = new Map();
+  const photography = project.family === "photography";
+  function add(item, name, contextual = false) {
     const key = imageKey(item);
-    if (key && !seen.has(key) && (project.family === "photography" || isPhoto(item))) {
-      seen.add(key);
-      photos.push(item);
+    if (!key) return;
+    const existing = assets.get(key);
+    if (!existing) assets.set(key, { ...item, name: item.name || name, contextualName: contextual, explicitName: Boolean(item.name) });
+    else if (contextual && !existing.contextualName && !existing.explicitName) {
+      existing.name = item.name || name;
+      existing.contextualName = true;
     }
   }
-  if (project.hero || project.cover) add({
-    src: project.hero || project.cover, original: project.heroOriginal || project.coverOriginal,
-    w: project.heroW || project.w, h: project.heroH || project.h,
-    alt: project.heroAlt || project.alt, sources: project.heroSources, name: project.heroName,
+  if (project.hero || project.cover) add(makeHeroItem(project), photography ? undefined : project.title);
+  const sections = project.sections || (project.images?.length ? [{ title: "Imágenes", items: project.images }] : []);
+  sections.forEach((section) => {
+    const primary = section.items || [];
+    const variants = section.variants || [];
+    function label(item, index, variant) {
+      if (photography) return item.name;
+      const title = section.title || "Imagen";
+      if (item.name) return item.name;
+      if (item.caption) return variant ? `${title} — ${item.caption}` : section.block === "cover-study" ? title : item.caption;
+      const count = variant ? variants.length : primary.length;
+      return count > 1 ? `${title} — ${String(index + 1).padStart(2, "0")}` : title;
+    }
+    primary.forEach((value, index) => {
+      const item = typeof value === "string" ? { src: value } : value;
+      add(item, label(item, index, false), true);
+    });
+    variants.forEach((item, index) => add(item, label(item, index, true), true));
   });
-  (project.sections || []).forEach((section) => (section.items || []).forEach((item) => add({
-    ...item, name: item.name || (section.layout === "product-triptych" ? item.caption : undefined),
-  })));
-  return photos;
+  return [...assets.values()];
 }
 
-function openGallery(item, collection) {
-  const items = collection?.length ? collection : isPhoto(item) && projectPhotos.length ? projectPhotos : [item];
-  imageGallery.open(items, Math.max(0, items.findIndex((entry) => imageKey(entry) === imageKey(item))));
+function openGallery(item) {
+  imageGallery.open(projectAssets, Math.max(0, projectAssets.findIndex((entry) => imageKey(entry) === imageKey(item))));
 }
 
-function makeMedia(item, sizes, expandable = false, galleryItems) {
+function makeMedia(item, sizes, expandable = false) {
   const image = makeImage(item, false, sizes);
   if (!image) return null;
   const media = makeElement("figure", "project-media");
@@ -132,7 +153,7 @@ function makeMedia(item, sizes, expandable = false, galleryItems) {
     button.type = "button";
     button.setAttribute("aria-label", `Ampliar: ${item.caption || item.alt || "afiche"}`);
     button.setAttribute("aria-haspopup", "dialog");
-    button.addEventListener("click", () => openGallery(item, galleryItems));
+    button.addEventListener("click", () => openGallery(item));
     button.append(image);
     frame.append(button);
   } else {
@@ -143,14 +164,14 @@ function makeMedia(item, sizes, expandable = false, galleryItems) {
   return media;
 }
 
-function makeVariants(items, label = "Variantes", posters = false, galleryItems = items) {
+function makeVariants(items, label = "Variantes", posters = false) {
   const group = makeElement("div", "project-variants");
   group.append(makeElement("h3", "project-variants__title", label));
   const grid = makeElement("div", "project-variants__grid");
   if (posters) grid.classList.add("project-poster-grid");
   if (items.length === 1) grid.classList.add("project-variants__grid--single");
   items.forEach((item) => {
-    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", true, galleryItems);
+    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", true);
     if (!media) return;
     media.classList.add("project-variant");
     media.dataset.aspect = item.w / item.h < 0.85 ? "poster" : item.w / item.h > 1.3 ? "landscape" : "square";
@@ -168,7 +189,7 @@ function makeCoverNotes(data) {
   if (data.inspiration) {
     notes.append(makeElement("h3", "project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
   }
-  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada", false, [...(data.items || []), ...data.variants]));
+  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada"));
   return notes;
 }
 
@@ -196,13 +217,12 @@ function renderSection(data, index) {
     const spread = makeElement("div", "project-section__images project-comparison");
     if (layout === "brand-board") spread.classList.add("project-comparison--brand-board");
     const primary = makeElement("div", "project-comparison__main");
-    const galleryItems = [...(data.items || []), ...(data.variants || [])];
     (data.items || []).forEach((item) => {
-      const media = makeMedia(item, undefined, true, galleryItems);
+      const media = makeMedia(item, undefined, true);
       if (media) primary.append(media);
     });
     spread.append(primary);
-    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster", galleryItems));
+    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster"));
     body.append(spread);
   } else {
     const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
@@ -213,8 +233,7 @@ function renderSection(data, index) {
     if (["poster", "portrait", "landscape", "square", "story"].includes(data.frame)) images.classList.add(`project-section__images--frame-${data.frame}`);
     const items = Array.isArray(data.items) ? data.items : [];
     items.forEach((item) => {
-      const collection = isPhoto(item) ? undefined : [...items, ...(data.variants || [])];
-      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, posterGrid || layout === "uniform-grid" || layout === "product-triptych" || data.block === "cover-study", collection);
+      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, true);
       if (media) images.append(media);
     });
     if (data.block === "cover-study") images.append(makeCoverNotes(data));
@@ -331,9 +350,9 @@ function renderPhotoCollection(project) {
   content.classList.remove("entry-fallback");
   setPageTitle(project.title, project.description, project.cover);
   const article = makeElement("article", "project-entry photo-collection");
-  const count = makeElement("p", "photo-collection__count", `${String(projectPhotos.length).padStart(2, "0")} fotografías`);
+  const count = makeElement("p", "photo-collection__count", `${String(projectAssets.length).padStart(2, "0")} fotografías`);
   const grid = makeElement("div", "photo-collection__grid");
-  projectPhotos.forEach((item, index) => {
+  projectAssets.forEach((item, index) => {
     const figure = makeElement("figure", "photo-collection__item");
     const button = makeElement("button", "photo-collection__open");
     button.type = "button";
@@ -346,7 +365,7 @@ function renderPhotoCollection(project) {
     caption.append(makeElement("span", "photo-collection__number", String(index + 1).padStart(2, "0")));
     if (item.name) caption.append(makeElement("span", "photo-collection__name", item.name));
     button.append(frame, caption);
-    button.addEventListener("click", () => imageGallery.open(projectPhotos, index));
+    button.addEventListener("click", () => openGallery(item));
     figure.append(button);
     grid.append(figure);
   });
@@ -363,7 +382,7 @@ function renderPhotoCollection(project) {
 }
 
 function renderProject(project) {
-  projectPhotos = collectPhotos(project);
+  projectAssets = collectProjectAssets(project);
   if (project.family === "photography") { renderPhotoCollection(project); return; }
   content.classList.remove("entry-fallback");
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
@@ -382,18 +401,16 @@ function renderProject(project) {
   const heroSource = project.hero || project.cover;
   if (heroSource) {
     const hero = makeElement("figure", "project-entry__hero");
-    const heroItem = { src: heroSource, alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`, w: project.heroW || project.w, h: project.heroH || project.h, sources: project.heroSources, original: project.heroOriginal || project.coverOriginal };
+    const heroItem = makeHeroItem(project);
     const image = makeImage(heroItem, true);
     if (image) {
-      if (isPhoto(heroItem)) {
-        const open = makeElement("button", "project-media__expand");
-        open.type = "button";
-        open.setAttribute("aria-label", "Abrir fotografías del proyecto");
-        open.setAttribute("aria-haspopup", "dialog");
-        open.addEventListener("click", () => openGallery(heroItem));
-        open.append(image);
-        hero.append(open);
-      } else hero.append(image);
+      const open = makeElement("button", "project-media__expand");
+      open.type = "button";
+      open.setAttribute("aria-label", `Abrir carrusel de ${project.title}`);
+      open.setAttribute("aria-haspopup", "dialog");
+      open.addEventListener("click", () => openGallery(heroItem));
+      open.append(image);
+      hero.append(open);
     }
     opening.append(hero);
   }

@@ -14,23 +14,51 @@ function localURL(path) {
 }
 
 export function imageKey(item) {
-  return localURL(item.original || item.src)?.pathname || "";
+  const url = localURL(item.original || item.src);
+  return url ? decodeURIComponent(url.pathname) : "";
 }
 
-/** A bounded, repeating filmstrip. Wheel and drag move linearly; arrows move one image. */
+function makeDownload(item, index) {
+  const source = localURL(item.original || item.src);
+  const filename = decodeURIComponent(source.pathname.split("/").at(-1));
+  const format = filename.split(".").at(-1).toUpperCase();
+  const name = item.name || `imagen ${String(index + 1).padStart(2, "0")}`;
+  const link = element("a", "image-gallery__download");
+  link.href = source.href;
+  link.download = filename;
+  link.setAttribute("aria-label", `Descargar ${name}: ${filename} — original ${format}`);
+  link.dataset.cursorAction = `Descargar ${format}`;
+  const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  icon.setAttribute("viewBox", "0 0 24 24");
+  icon.setAttribute("fill", "none");
+  icon.setAttribute("stroke", "currentColor");
+  icon.setAttribute("stroke-width", "1.5");
+  icon.setAttribute("aria-hidden", "true");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", "M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5");
+  icon.append(path);
+  const detail = element("span", "image-gallery__download-info");
+  detail.setAttribute("aria-hidden", "true");
+  detail.append(element("span", "image-gallery__download-label", "Descargar original"), element("span", "image-gallery__download-file", `${format} · ${filename}`));
+  link.append(icon, detail);
+  return link;
+}
+
+/** One project-wide, bounded filmstrip; every image owns its caption and download. */
 export function createImageGallery({ onOpen, onClose } = {}) {
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let dialog = null;
-  let viewport, track, name, counter, download;
+  let viewport, track, counter;
   let items = [];
   let slots = [];
+  let widths = [];
+  let centers = [];
+  let sizes = [];
   let position = 0;
+  let cycleWidth = 1;
   let frame = 0;
   let animation = 0;
   let drag = null;
-  let widths = [];
-  let centers = [];
-  let cycleWidth = 1;
   let destination = null;
 
   function nearest(value = position) {
@@ -55,18 +83,28 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     cancelAnimationFrame(animation);
     destination = null;
     const width = viewport.clientWidth;
-    const height = Math.max(1, viewport.clientHeight - 32);
-    widths = items.map((item) => Math.max(width / items.length, Math.min(width, height * ((item.w || 1) / (item.h || 1)) + 32)));
+    const imageHeight = Math.max(1, viewport.clientHeight - 80);
+    sizes = items.map((item) => {
+      const ratio = (item.w || 1) / (item.h || 1);
+      const w = Math.min(Math.max(1, width - 32), imageHeight * ratio);
+      return { w, h: w / ratio };
+    });
+    widths = sizes.map(({ w }) => Math.max(width / items.length, w + 32));
     let offset = 0;
     centers = widths.map((itemWidth) => { const center = offset + itemWidth / 2; offset += itemWidth; return center; });
     cycleWidth = offset;
-    slots.forEach((slot, i) => { slot.style.flexBasis = `${widths[i % items.length]}px`; });
+    slots.forEach(({ node, piece, frame }, i) => {
+      const size = sizes[i % items.length];
+      node.style.flexBasis = `${widths[i % items.length]}px`;
+      piece.style.width = `${size.w}px`;
+      frame.style.height = `${size.h}px`;
+    });
     position = centers[index] || 0;
     render();
   }
 
   function busy() {
-    const image = slots[activeSlot()]?.querySelector("img");
+    const image = slots[activeSlot()]?.image;
     viewport.setAttribute("aria-busy", String(Boolean(image && !image.complete)));
   }
 
@@ -75,27 +113,28 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     if (!dialog?.open || !items.length) return;
     const phase = modulo(position, cycleWidth);
     const index = nearest();
-    const item = items[index];
-    track.style.transform = `translate3d(${-(cycleWidth + phase - viewport.clientWidth / 2)}px, 0, 0)`;
+    const translate = -(cycleWidth + phase - viewport.clientWidth / 2);
+    track.style.transform = `translate3d(${translate}px, 0, 0)`;
     const current = activeSlot();
-    slots.forEach((slot, i) => {
-      slot.setAttribute("aria-hidden", String(i !== current));
-      if (Math.abs(i - current) <= 1) slot.querySelector("img").loading = "eager";
+    slots.forEach(({ node, image, download }, i) => {
+      const n = i % items.length;
+      const left = Math.floor(i / items.length) * cycleWidth + centers[n] - widths[n] / 2 + translate;
+      const visible = left + widths[n] > 0 && left < viewport.clientWidth;
+      node.setAttribute("aria-hidden", String(!visible));
+      node.toggleAttribute("data-current", i === current);
+      // A partially visible neighbor remains clickable; tab only to fully visible icons.
+      const pieceWidth = sizes[n].w;
+      const right = left + (widths[n] + pieceWidth) / 2 - 8;
+      download.tabIndex = visible && right - 44 >= 0 && right <= viewport.clientWidth ? 0 : -1;
+      if (visible || Math.abs(i - current) <= 1) image.loading = "eager";
     });
-    name.textContent = item.name || "";
-    name.hidden = !item.name;
     const label = `${String(index + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
     if (counter.textContent !== label) counter.textContent = label;
     dialog.dataset.index = index;
-    const source = localURL(item.original || item.src);
-    download.href = source.href;
-    download.download = decodeURIComponent(source.pathname.split("/").at(-1));
     busy();
   }
 
-  function queueRender() {
-    if (!frame) frame = requestAnimationFrame(render);
-  }
+  function queueRender() { if (!frame) frame = requestAnimationFrame(render); }
 
   function step(direction) {
     cancelAnimationFrame(animation);
@@ -120,9 +159,8 @@ export function createImageGallery({ onOpen, onClose } = {}) {
 
   function build() {
     dialog = element("dialog", "image-gallery");
-    dialog.setAttribute("aria-label", "Visor de imágenes");
+    dialog.setAttribute("aria-label", "Carrusel de imágenes del proyecto");
     const header = element("div", "image-gallery__header");
-    name = element("h2", "image-gallery__name");
     counter = element("output", "image-gallery__counter");
     counter.setAttribute("aria-live", "polite");
     counter.setAttribute("aria-label", "Imagen actual y total");
@@ -130,7 +168,7 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     close.type = "button";
     close.setAttribute("aria-label", "Cerrar imágenes");
     close.addEventListener("click", () => dialog.close());
-    header.append(name, counter, close);
+    header.append(counter, close);
     viewport = element("div", "image-gallery__viewport");
     viewport.dataset.cursorInteractive = "";
     track = element("div", "image-gallery__track");
@@ -145,9 +183,7 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     next.setAttribute("aria-label", "Imagen siguiente");
     previous.addEventListener("click", () => step(-1));
     next.addEventListener("click", () => step(1));
-    download = element("a", "image-gallery__download", "Descargar");
-    download.setAttribute("aria-label", "Descargar imagen en calidad original");
-    footer.append(previous, next, download);
+    footer.append(previous, next);
     dialog.append(header, viewport, footer);
     document.body.append(dialog);
     viewport.addEventListener("wheel", (event) => {
@@ -161,7 +197,7 @@ export function createImageGallery({ onOpen, onClose } = {}) {
       queueRender();
     }, { passive: false });
     viewport.addEventListener("pointerdown", (event) => {
-      if (event.button !== 0 || !items.length) return;
+      if (event.button !== 0 || !items.length || event.target.closest("a, button")) return;
       cancelAnimationFrame(animation);
       destination = null;
       drag = { id: event.pointerId, x: event.clientX, position };
@@ -213,8 +249,10 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     const initialIndex = Math.max(0, items.findIndex((item) => imageKey(item) === chosenKey));
     const fragment = document.createDocumentFragment();
     slots = [];
-    for (let cycle = 0; cycle < 3; cycle += 1) items.forEach((item) => {
+    for (let cycle = 0; cycle < 3; cycle += 1) items.forEach((item, index) => {
       const slot = element("div", "image-gallery__slide");
+      const piece = element("figure", "image-gallery__piece");
+      const frame = element("div", "image-gallery__frame");
       const image = document.createElement("img");
       const largest = [...(item.sources || [])].sort((a, b) => b.w - a.w)[0];
       image.src = localURL(largest?.src || item.src).href;
@@ -222,10 +260,17 @@ export function createImageGallery({ onOpen, onClose } = {}) {
       image.decoding = "async";
       image.loading = "lazy";
       image.draggable = false;
-      image.addEventListener("load", busy);
+      image.addEventListener("load", () => {
+        if (!item.w || !item.h) { item.w = image.naturalWidth; item.h = image.naturalHeight; layout(); }
+        busy();
+      });
       image.addEventListener("error", () => { slot.classList.add("image-gallery__slide--error"); busy(); });
-      slot.append(image);
-      slots.push(slot);
+      const caption = element("figcaption", "image-gallery__caption", item.name || String(index + 1).padStart(2, "0"));
+      const download = makeDownload(item, index);
+      frame.append(image, download);
+      piece.append(frame, caption);
+      slot.append(piece);
+      slots.push({ node: slot, piece, frame, image, download });
       fragment.append(slot);
     });
     track.replaceChildren(fragment);

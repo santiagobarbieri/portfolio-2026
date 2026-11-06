@@ -18,7 +18,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Contener los logos y recursos pequeños; nunca estirarlos automáticamente al ancho de la columna. Orfeo usa relato fotográfico, OLAS una campaña de afiches y Zapallar un ensayo visual.
 - Stephen King presenta cada tapa con su paleta y una lectura visual lateral. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
 - Los proyectos usan exactamente el ancho y la posición de las dos columnas centrales del home. La ficha del proyecto y su índice lateral quedan fijos; en pantallas pequeñas se abren desde un desplegable fijo.
-- Los afiches y sus variantes usan siempre cinco columnas. Las colecciones fotográficas usan tres fotos por fila, imágenes completas, contador y nombres solo si están definidos. Su ficha va al final, sin paleta ni análisis en la vista principal. Todas las imágenes ampliables usan el visor compartido: flechas, scroll horizontal lineal e infinito, drag/touch y descarga del original.
+- Los afiches y sus variantes usan siempre cinco columnas. Las colecciones fotográficas usan tres fotos por fila, imágenes completas, contador y nombres solo si están definidos. Su ficha va al final, sin paleta ni análisis en la vista principal. Todas las imágenes ampliables abren un único carrusel con las piezas y variantes de todo el proyecto, sin duplicar archivos. Visor sin líneas, con flechas, scroll horizontal lineal e infinito y drag/touch. Cada imagen tiene nombre debajo y su propio icono de descarga original arriba a la derecha.
 - Clasificación confirmada: Stephen King = Passion project; OLAS, Orfeo y El Armado = Identidad visual; Zapallar = Colección de fotos. Mostrar una etiqueta de texto discreta, sin símbolos decorativos, en Archivo y en la apertura del caso; conservar las disciplinas y roles específicos en la ficha. No inferir si un trabajo fue un encargo.
 - Los proyectos de identidad y editorial muestran su paleta al abrirse, con nombres y HEX; las colecciones fotográficas no muestran paleta. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
 - Dentro de proyectos y en pantallas de hasta 900 px se ocultan ubicación y fecha/hora del footer. En desktop se conservan fuera de proyectos.
@@ -191,3 +191,12 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 
 
 - Actualización del cursor: blanco con `mix-blend-mode: difference` en todo el conjunto, forma de 7px a 18px y etiqueta horizontal compacta. Retirar el azul de acento del marco y los controles; mantener intactos los colores de las imágenes y las paletas de los proyectos.
+
+
+## Carrusel completo del proyecto
+
+- Reunir hero, imágenes de secciones y variantes en un único banco de assets, deduplicado por ruta original. No agregar imágenes de Sandbox que no se vean en la página, ni paletas o elementos del marco.
+- Todas las imágenes de secciones y el hero abren el mismo banco en la pieza elegida. Los enlaces del catálogo editorial conservan su navegación a los estudios.
+- Visor sin líneas divisorias ni marcos permanentes. Nombre pequeño debajo de cada pieza; usar los nombres y captions existentes, o el título de la sección con número cuando hay varias. En colecciones fotográficas, conservar nombres explícitos o numeración.
+- Cada imagen lleva su propio icono de descarga arriba a la derecha, dentro de la superficie de la imagen y sin afectar drag. El enlace apunta al original de esa pieza, incluye nombre de archivo/formato en su descripción y muestra la información al hacer hover o foco. No mantener un botón global de descarga en el footer.
+- Mantener imágenes completas, flechas, wheel lineal infinito, touch, cierre con Escape y retorno de foco. Solo los iconos visibles entran al recorrido de teclado; no dejar enlaces de copias fuera de pantalla tabulables.

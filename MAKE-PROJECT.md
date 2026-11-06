@@ -198,7 +198,7 @@ En ORFEO, las prendas confirmadas son Viamonte (marrón tejido), Talcahuano (neg
 
 Para `family: photography`, usar la vista de colección: tres imágenes por fila, imágenes completas, contador y `name` solo si se proporcionó un nombre real. No generar nombres a partir de `alt` ni de nombres de archivo. No mostrar paletas, análisis o capítulos en la grilla. La ficha se presenta debajo de las fotos.
 
-Todas las fotografías ampliables de un proyecto se reúnen por su ruta original sin duplicar exportaciones. El visor compartido muestra las fotos y su nombre/número, con flechas, rueda/trackpad horizontal continuo e infinito y gesto horizontal. `original` es la ruta de descarga en calidad original; las previews usan WebP. Incluir los originales de descarga en el deploy, sin modificar ni recomprimir los archivos fuente.
+El carrusel reúne el hero, las imágenes de todas las secciones y sus variantes por ruta original, sin duplicar exportaciones. Cada pieza muestra su nombre debajo (o número si una fotografía no tiene nombre explícito). Visor sin líneas, con flechas, rueda/trackpad horizontal continuo e infinito y gesto horizontal. Cada imagen lleva un icono de descarga en su esquina superior derecha, con nombre del archivo y formato en hover/foco; no usar una descarga global. `original` es la ruta de descarga en calidad original; las previews usan WebP. Incluir los originales de descarga en el deploy, sin modificar ni recomprimir los archivos fuente.
 
 
 ## Escala editorial compartida
