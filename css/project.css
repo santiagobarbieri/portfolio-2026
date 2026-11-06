@@ -345,3 +345,5 @@ body:has(.project-preview[open]) { overflow: hidden; }
   .project-section__images--reference-sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .project-section__images--product-triptych .project-media__caption { font-size: 10px; }
 }
+
+.entry-bar__close:hover span { transform: none; }

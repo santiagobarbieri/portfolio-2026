@@ -1,0 +1,5 @@
+.shop-page { min-height: 100svh; }
+.shop-main { width: min(400px, calc(100% - 32px)); margin: 180px auto 80px; }
+.shop-main h1 { font-size: 13px; }
+.shop-main p { margin: 24px 0; color: var(--mute); }
+.shop-main > a { display: inline-block; padding-block: 12px; }

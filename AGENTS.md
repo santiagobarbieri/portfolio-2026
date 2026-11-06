@@ -6,9 +6,9 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 - El único home es **index.html / Archivo**. Las guías verdes de Figma son referencias: no se dibujan en la web. Cada portada comienza donde termina la portada anterior, alternando columnas; las captions ocupan los huecos.
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
-- About, Contact y Nav son páginas estáticas independientes, sin scroll de documento. Testament tiene scroll interno (sin paginación); Message tiene altura fija y scroll propio sin mover Send.
-- Nav usa fondo claro, su tab dice **Index**, incluye Archivo/About/Contact. Su preview izquierdo cambia al desplazar la lista de enlaces.
-- Eliminar el switch de tema: páginas oscuras y Nav invertido claro.
+- About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom, certificados y retrato reservado. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
+- El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
+- Todas las vistas usan el tema oscuro, sin switch. Acento #216BFF en el nombre, glyph, hovers, foco y cursor. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -22,9 +22,11 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Clasificación confirmada: Stephen King = Passion project; OLAS, Orfeo y El Armado = Identidad visual; Zapallar = Colección de fotos. Mostrar texto y símbolo estático en Archivo y en la apertura del caso; conservar las disciplinas y roles específicos en la ficha. No inferir si un trabajo fue un encargo.
 - Cada proyecto muestra su paleta al abrirse, con nombres y HEX. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
 - Dentro de proyectos y en pantallas de hasta 900 px se ocultan ubicación y fecha/hora del footer. En desktop se conservan fuera de proyectos.
-- En mobile y tablet, Archivo reúne navegación, identidad y filtros en un encabezado negro fijo, opaco y continuo. Categoría y orden se abren desde un ícono de filtros; el loop sigue detrás. Los cambios de altura del navegador móvil no reconstruyen las cards.
+- En mobile y tablet, identidad y Archivo quedan sobre una franja negra superior; filtros e índice comparten un dock inferior negro y continuo que crece hacia arriba. No cubrir el encabezado: si se abren muchas listas, el dock tiene scroll interno. Los cambios de altura del navegador móvil no reconstruyen las cards.
 - El loader Rose permanece al menos 700 ms, y más tiempo si los recursos siguen cargando.
 - Las variantes verificadas se muestran más pequeñas junto a su pieza principal, dentro de la segunda columna central. No reunirlas en una galería independiente ni asociar familias gráficas distintas por suposición.
+- Cursor en mouse/fine: punto azul, rombo con giro breve sobre controles reales. Mantener cursor nativo en touch y si JavaScript falla. El cursor también se muestra dentro de diálogos.
+- Scroll común y corto en Archivo y proyectos mediante Lenis local; touch, teclado y lectores internos nativos. Sin parallax, escala de portadas, movimiento del reloj ni stagger de listas. Respetar prefers-reduced-motion.
 
 ## Referencias y presentación de proyectos
 
@@ -38,7 +40,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - HTML, CSS y JS vanilla. ES modules. **Sin build step.** Deploy en Vercel.
 - Sin frameworks. Librerías solo las listadas en la sección 8, vendorizadas en `assets/vendor/` (versión fija, sin CDN en producción).
 - Contenido data-driven: los proyectos viven en JSON (`data/`). No crear un HTML por proyecto.
-- Un componente = un archivo CSS + un módulo JS. Variables en `:root`. Nada de estilos inline salvo valores dinámicos (posiciones del Sandbox).
+- Un componente = un archivo CSS + un módulo JS. Variables en `:root`. Nada de estilos inline salvo posiciones dinámicas del Sandbox y del cursor.
 - No inventar contenido (textos, fechas, créditos). Si falta, ver reglas de `MAKE-PROJECT.md`.
 - No modificar tokens de diseño ni componentes globales al agregar un proyecto.
 
@@ -46,7 +48,8 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 /index.html            Archivo (home, grilla continua)
 /about.html            About estático
 /contact.html          Contact estático
-/nav.html              Navegación estática independiente
+/nav.html              Redirección de compatibilidad hacia Archivo
+/shop.html             Shop — Próximamente
 /project.html          Render genérico: ?p=<slug>&view=overlook|sandbox
 /data/projects.json    Registro (orden, código, slug, cover, tags)
 /data/projects/<slug>.json
@@ -58,17 +61,16 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
-- **Arriba izquierda:** tab de navegación de la página actual (ver componente Tab) con chevron. Abre `nav.html`, una pantalla estática con accesos a About y Contact, redes, Shop y Tools; su × regresa a la página de origen.
+- **Arriba izquierda:** tab de la página actual. Vuelve al Archivo; el índice está en su columna lateral. Archivo reinicia el recorrido sin abrir una navegación separada.
 - **Arriba derecha:** bloque de identidad: "Santiago Barbieri" en negrita, debajo "Graphic Designer, Web Developer & Photographer" en light, y el glyph a la derecha.
 - **Abajo izquierda:** "Buenos Aires, Argentina" y fecha/hora en vivo (`America/Argentina/Buenos_Aires`, formato `3 nov 2026 – 01:20`, se actualiza cada minuto).
 - **Abajo derecha:** "Portfolio". (Los mockups dicen "Portfoliio" por un error de tipeo: escribirlo con una sola i.)
-- **Abajo, junto al reloj:** toggle de tema `Light / Dark` (ver sección 3).
 - **Abajo centro/derecha:** acción contextual de la página (ej. `Send` en Contact).
 - En proyectos el marco superior se reemplaza por la **barra de cierre**: `×` a la izquierda, título de la vista a la derecha (`El Armado - Overlook`).
 
 ## 3. Diseño
 
-**Color.** Dos temas con toggle. Valores aproximados tomados de los mockups: ajustar con cuentagotas.
+**Color.** Tema oscuro fijo. Acento #216BFF definido por Santi; usarlo con moderación. El tema claro solo permanece como token de compatibilidad y no se expone en la interfaz.
 
 | Token | Oscuro (por defecto) | Claro |
 |---|---|---|
@@ -76,8 +78,6 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 | `--fg` | `#f1ece0` | `#0a0a0a` |
 | `--mute` | fg al 50% | fg al 50% |
 | `--line` | fg al 60% | fg al 60% |
-
-**Toggle de tema.** Control `Light / Dark` en el footer, junto al reloj, presente en todas las páginas. Se aplica con `data-theme="light|dark"` en `<html>` y se guarda en `localStorage`. Por defecto: oscuro. Un script inline en el `<head>` aplica el tema guardado antes del primer render para evitar el parpadeo. Transición de colores de 300ms (sin animar imágenes). Nav invierte la paleta del tema guardado al abrirse, sin cambiar la preferencia de la página de origen. En Nav, el toggle controla la paleta invertida y guarda su equivalente para el resto del sitio.
 
 **Tipografía.**
 - Texto: **Albert Sans Light (300)**.
@@ -100,7 +100,7 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
 ## 5. Páginas
 
-1. **Index / Archivo (home).** Texto introductorio bajo el tab. Filtros `All Projects` (por categoría) y `Last First` (orden) en la columna izquierda. Grilla escalonada de 2 columnas; cada portada conserva su proporción original; las columnas se desfasan verticalmente. Cada ítem lleva su Caption. Click abre `project.html`. El recorrido es continuo en ambas direcciones y los spins se intercalan como elementos decorativos. About, Contact y Nav están fuera de la grilla, en páginas estáticas propias. Se conservan filtro, orden y posición al volver de una entrada.
+1. **Index / Archivo (home).** Texto introductorio bajo el tab. Filtros `All Projects` (por categoría) y `Last First` (orden) en la columna izquierda. Grilla escalonada de 2 columnas; cada portada conserva su proporción original; las columnas se desfasan verticalmente. Cada ítem lleva su Caption. Click abre `project.html`. El recorrido es continuo en ambas direcciones; About es una entrada de ancho completo que combina Testament y retrato en las dos columnas. Los spins se reservan al loader. Contact y Shop abren otras pestañas; el índice está en Archivo. Se conservan filtro, orden y posición al volver de una entrada.
 2. **About.** Foto vertical bajo el tab (columna izquierda). `Testament` (texto justificado, con control de zoom) en el centro y `Certificados` / `Intereses` como accordions a la derecha. El texto lorem ipsum se mantiene tal cual por ahora (decisión de Santi); no reemplazarlo ni inventar copy.
 3. **Contact.** `Let's Work Together`, campos Name / Email / Your Message, botón `Send` abajo. Envío con Resend vía función serverless (`/api/contact`).
 4. **Proyecto.** Dos vistas del mismo JSON, conmutables:
@@ -140,9 +140,9 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 ## 7b. Micro-interacciones concretas
 
 1. **Tab:** la línea inferior se dibuja de izquierda a derecha al hover; el chevron rota 90°.
-2. **Accordion:** altura animada, ítems con stagger de 30ms.
-3. **Reloj del footer:** los dígitos rotan verticalmente al cambiar (SplitText).
-4. **Portada en Archivo:** al hover la imagen escala 1.02 y el Caption sube 4px; cursor con etiqueta `Open` que sigue al mouse con `gsap.quickTo`.
+2. **Accordion:** expansión breve en el flujo, sin stagger ni exclusividad.
+3. **Reloj del footer:** actualización del texto sin animación.
+4. **Portada en Archivo:** hover azul en el título y cursor en rombo, sin escala ni desplazamiento de caption.
 5. **Carga de Archivo:** las portadas entran con `clip-path` de abajo hacia arriba, stagger 80ms.
 6. **Filtro / orden:** Flip; las tarjetas viajan a su nueva posición.
 7. **Abrir proyecto:** la portada se expande al hero (Flip + View Transition); la barra de cierre baja desde arriba.
@@ -150,11 +150,11 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 9. **Sandbox:** arrastre con inercia; al soltar, un leve asentamiento (<150ms); doble click reordena en la disposición inicial.
 10. **Inputs:** la línea inferior engrosa a 2px en foco; `Send` pasa a `Sending…` y luego `Sent`.
 11. **Control de zoom de texto:** el cambio de tamaño se anima (font-size interpolado) y se recuerda en `localStorage`.
-12. **Botón `×`:** rota 90° al hover.
+12. **Botón `×`:** hover azul, sin giro.
 
 ## 9. Decisiones tomadas
 
 - Tipografía de títulos y botones: Albert Sans 600 (sin Hiragino).
 - "Portfolio" con una sola i.
-- Tema: toggle claro/oscuro, oscuro por defecto, recordado en `localStorage`.
+- Tema oscuro fijo, acento #216BFF, sin toggle. El estado del recorrido se guarda en sessionStorage versión 3.
 - About: se deja el texto placeholder por ahora.

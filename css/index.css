@@ -312,7 +312,49 @@
   .archive-filter-option { min-height: 40px; }
 }
 
-/* One opaque control surface keeps the stream beneath the mobile header. */
+
+.archive-card__code { grid-column: 1; grid-row: 1 / span 2; }
+.archive-card__type,
+.archive-card__title { grid-column: 2; }
+
+/* The directory lives on Archivo; every disclosure stays in the list flow. */
+.archive-controls {
+  position: fixed;
+  z-index: 6;
+  top: 143px;
+  bottom: 76px;
+  left: var(--frame-margin);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: var(--sidebar-width);
+  min-height: 0;
+}
+.archive-filter-panel { flex: 0 1 auto; min-height: 0; }
+.archive-filters {
+  position: static;
+  width: 100%;
+  max-height: max(160px, calc(100svh - 340px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.archive-filters::-webkit-scrollbar,
+.archive-directory::-webkit-scrollbar { display: none; width: 0; }
+.archive-filter-options { position: static; padding: 6px 5px; border-bottom: 0; }
+.archive-directory { min-height: 0; margin-top: auto; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.archive-directory__list { display: grid; gap: 4px; }
+.archive-directory__list > .accordion { margin-top: 0; }
+.archive-directory__external { font-size: 11px; font-weight: 300; }
+.archive-directory .accordion__trigger::before { opacity: 1; }
+.archive-directory .directory-list { padding-bottom: 8px; color: var(--mute); font-size: 11px; }
+.archive-directory .directory-list [aria-disabled="true"] { cursor: default; }
+.archive-filter-option:hover span,
+.archive-card__link:hover .archive-card__title { color: var(--accent); }
+.archive-filter-option input:checked + span::before { color: var(--accent); }
+.archive-card__link:hover .archive-card__caption,
+.archive-card__link:focus-visible .archive-card__caption { transform: none; }
+
 @media (max-width: 900px) {
   .archive-page .site-header {
     position: fixed;
@@ -321,80 +363,63 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 8px 16px;
+    gap: 16px;
     padding: calc(16px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 12px max(16px, env(safe-area-inset-left));
     background: var(--bg);
   }
-
-  .archive-page .site-navigation {
-    position: static;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .archive-page .navigation-shortcut {
-    max-width: 180px;
-    min-height: 44px;
-  }
-
+  .archive-page .site-navigation { position: static; width: 100%; min-width: 0; }
+  .archive-page .navigation-shortcut { max-width: 180px; min-height: 44px; }
   .archive-intro { display: none; }
-
-  .archive-page .identity {
-    position: static;
-    align-items: center;
-    min-height: 44px;
-    gap: 10px;
-    padding: 0;
-    background: transparent;
-  }
-
+  .archive-page .identity { position: static; align-items: center; min-height: 44px; gap: 10px; padding: 0; }
   .archive-page .identity__copy { padding-top: 0; }
   .archive-page .identity__name { margin-bottom: 0; font-size: 12px; }
   .archive-page .identity__role { display: none; }
-  .archive-page .identity__glyph {
-    display: block;
-    flex-basis: 30px;
-    width: 30px;
-    height: 30px;
-    margin-top: 0;
-  }
+  .archive-page .identity__glyph { display: block; flex-basis: 30px; width: 30px; height: 30px; margin-top: 0; }
 
-  .archive-filter-panel { grid-column: 1 / -1; min-width: 0; }
-  .archive-filter-toggle {
-    display: flex;
-    align-items: center;
+  /* A solid bottom dock grows upward without covering the identity header. */
+  .archive-controls {
+    position: fixed;
+    inset: auto 0 0;
     gap: 12px;
-    min-height: 44px;
-    list-style: none;
-  }
-  .archive-filter-toggle::-webkit-details-marker { display: none; }
-  .archive-filter-toggle__icon { display: block; flex: 0 0 20px; }
-  .archive-filter-count { margin-left: auto; color: var(--mute); font-size: 11px; }
-
-  .archive-filters {
-    position: static;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 24px;
     width: 100%;
-    max-height: calc(100svh - 160px - env(safe-area-inset-top));
-    margin-top: 8px;
-    padding: 12px 0 4px;
-    border-top: 1px solid var(--line);
+    max-height: calc(100svh - 100px - env(safe-area-inset-top));
+    padding: 8px max(16px, env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: none;
     background: var(--bg);
   }
-  .archive-filters::-webkit-scrollbar { display: none; width: 0; }
+  .archive-controls::-webkit-scrollbar { display: none; width: 0; }
+  .archive-filter-panel { flex: 0 0 auto; }
+  .archive-filter-toggle { display: flex; align-items: center; gap: 12px; min-height: 44px; list-style: none; }
+  .archive-filter-toggle::-webkit-details-marker { display: none; }
+  .archive-filter-toggle__icon { display: block; flex: 0 0 20px; }
+  .archive-filter-count { margin-left: auto; color: var(--mute); font-size: 11px; }
+  .archive-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; max-height: none; margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--line); overflow: visible; }
   .archive-filter-menu + .archive-filter-menu { margin-top: 0; }
-  .archive-filter-options { position: static; padding: 0 5px; border-bottom: 0; }
   .archive-filter-option { min-height: 44px; }
   .archive-results { display: none; }
-  .archive-main { margin-top: calc(148px + env(safe-area-inset-top)); }
+  .archive-directory { flex: 0 0 auto; overflow: visible; margin-top: 0; }
+  .archive-directory__list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; align-items: start; }
+  .archive-directory .tab { min-height: 44px; padding: 3px 5px; font-size: 12px; }
+  .archive-directory .directory-list { font-size: 10px; overflow-wrap: anywhere; }
+  .archive-directory .directory-list li { display: grid; align-items: center; min-height: 36px; line-height: 1.2; }
+  .archive-directory .accordion__content { padding-left: 0; }
+  .archive-main { margin-top: calc(100px + env(safe-area-inset-top)); }
   .archive-page .site-footer { display: none; }
 }
 
-.archive-card__code { grid-column: 1; grid-row: 1 / span 2; }
-.archive-card__type,
-.archive-card__title { grid-column: 2; }
+@media (min-width: 901px) {
+  .archive-controls {
+    top: auto;
+    max-height: calc(100svh - 220px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    background: var(--bg);
+  }
+  .archive-controls::-webkit-scrollbar { display: none; width: 0; }
+  .archive-filter-panel { flex: 0 0 auto; }
+  .archive-filters { max-height: none; overflow: visible; }
+  .archive-directory { flex: 0 0 auto; margin-top: 0; overflow: visible; }
+}

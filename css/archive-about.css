@@ -1,0 +1,56 @@
+.archive-about {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--archive-gap);
+  width: 100%;
+}
+.archive-about__testament { min-width: 0; padding-top: 24px; }
+.archive-about__heading { gap: 12px; }
+.archive-about__heading h2 { font-size: inherit; }
+.archive-about__zoom { display: flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 300; }
+.archive-about__zoom button { min-width: 24px; min-height: 24px; padding: 0; }
+.archive-about__zoom button:disabled { color: var(--mute); }
+.archive-about__zoom output { min-width: 31px; text-align: center; }
+.archive-about__copy {
+  height: 340px;
+  margin-top: 12px;
+  padding-right: 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  font-size: 15px;
+  line-height: 1.1;
+  text-align: justify;
+}
+.archive-about__copy::-webkit-scrollbar { display: none; width: 0; }
+.archive-about__copy p + p { margin-top: 16px; }
+.archive-about__copy[data-zoom="100"] { font-size: 10px; }
+.archive-about__copy[data-zoom="125"] { font-size: 12.5px; }
+.archive-about__copy[data-zoom="175"] { font-size: 17.5px; }
+.archive-about__copy[data-zoom="200"] { font-size: 20px; }
+.archive-about__notes { margin-top: 20px; }
+.archive-about__notes .accordion__content { font-size: 11px; }
+.archive-about__portrait { min-width: 0; margin: 48px 0 0; }
+.archive-about__portrait-frame {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  aspect-ratio: 400 / 576;
+  padding: 12px;
+  border: 1px solid var(--line);
+  color: var(--mute);
+  font-size: 11px;
+}
+.archive-about__portrait img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1); }
+.archive-row--before-about { padding-bottom: 120px; }
+@media (max-width: 600px) {
+  .archive-about { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .archive-about__testament { padding-top: 0; }
+  .archive-about__copy { height: 320px; }
+  .archive-about__portrait { margin-top: 0; }
+  .archive-about__portrait-frame { aspect-ratio: 4 / 5; }
+  .archive-row--before-about { padding-bottom: 72px; }
+}
+@media (pointer: coarse) {
+  .archive-about__zoom button { min-width: 36px; min-height: 44px; }
+}

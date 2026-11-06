@@ -17,6 +17,7 @@
 :root {
   color-scheme: dark;
   --bg: #0a0a0a;
+  --accent: #216bff;
   --fg: #f1ece0;
   /* AA contrast for small text; these stay slightly stronger than the mockups. */
   --mute: #98958e;
@@ -25,7 +26,7 @@
   --frame-margin: 16px;
   --frame-top: 40px;
   --sidebar-width: 235px;
-  --duration: 300ms;
+  --duration: 160ms;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   background: var(--bg);
   color: var(--fg);
@@ -151,7 +152,7 @@ h2 {
 }
 
 @view-transition {
-  navigation: auto;
+  navigation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -169,3 +170,11 @@ h2 {
     animation: none !important;
   }
 }
+
+.identity__name,
+.identity__glyph { color: var(--accent); }
+a:hover,
+button:not(:disabled):hover,
+summary:hover { color: var(--accent); }
+:focus-visible { outline-color: var(--accent); }
+.project-index a[aria-current] { color: var(--accent); }

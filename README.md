@@ -1,6 +1,6 @@
 # Santiago Barbieri — Portfolio
 
-El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. `nav.html`, `about.html` y `contact.html` son pantallas independientes; `project.html?p=<slug>` muestra cada proyecto.
+El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. About está integrado en el loop. El índice está en Archivo; Contact y Shop abren otras pestañas. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Shop y el retrato de About están pendientes de contenido.
 
 ## Publicación
 

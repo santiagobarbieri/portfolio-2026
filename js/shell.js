@@ -1,3 +1,4 @@
+import { initCursor } from "./cursor.js";
 import { startLoading, waitForImages, watchLazyImages } from "./loading.js";
 
 const timeZone = "America/Argentina/Buenos_Aires";
@@ -21,15 +22,8 @@ function initClock() {
     const parts = Object.fromEntries(formatter.formatToParts(now).map(({ type, value }) => [type, value]));
     const label = `${parts.day} ${parts.month.replace(".", "")} ${parts.year} – ${parts.hour}:${parts.minute}`;
     if (clock.textContent === label) return;
-    const hasPreviousTime = Boolean(clock.dateTime);
     clock.dateTime = now.toISOString();
     clock.textContent = label;
-    if (hasPreviousTime && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      clock.animate(
-        [{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "translateY(0)" }],
-        { duration: 240, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
-      );
-    }
   }
 
   updateClock();
@@ -47,6 +41,7 @@ function initClock() {
 
 export function initShell() {
   initClock();
+  initCursor();
   if (document.body.classList.contains("entry-page")) {
     const complete = startLoading("Cargando proyecto");
     const timeout = setTimeout(complete, 10000);

@@ -187,3 +187,7 @@ La propiedad raíz `family` usa `identity`, `passion` o `photography` según la 
 - La navegación de secciones usa reemplazo de hash para que cerrar el proyecto vuelva directamente al Archivo. Los rótulos de sección acompañan el contenido con sticky, dejando libre la barra superior y la ficha móvil.
 
 `heroSources: [{src, w, h}]` permite reutilizar las versiones responsive de la apertura sin cargar siempre el archivo más grande. Mantener las dimensiones y rutas reales.
+
+## Home vigente
+
+About es una entrada HTML de Archivo con `data-kind="about"`, no un proyecto del registro JSON ni del contador. Conservar esa entrada, el índice lateral, el cursor azul y el scroll común al agregar casos. Las fotos y paletas de los proyectos no se tiñen con el acento global.

@@ -1,3 +1,4 @@
+import { initArchiveAbout, prepareArchiveAbout } from "./archive-about.js";
 import { makeProjectType } from "./project-type.js";
 import { initArchiveMotion } from "./motion.js";
 import { waitForImages } from "./loading.js";
@@ -15,7 +16,7 @@ function node(tag, className, text) {
 
 function createCard(project) {
   const card = node("article", "archive-card");
-  Object.assign(card.dataset, { slug: project.slug, category: project.category, order: project.order });
+  Object.assign(card.dataset, { slug: project.slug, category: project.category, order: project.order, title: project.title, kind: "project" });
   const link = node("a", "archive-card__link");
   link.href = `./project.html?p=${encodeURIComponent(project.slug)}`;
   link.setAttribute("aria-label", `Abrir ${project.title}`);
@@ -59,6 +60,7 @@ function storedState() {
 export async function initArchive() {
   const stream = document.querySelector("[data-archive-stream]");
   if (!stream) return;
+  const aboutTemplate = stream.querySelector(".archive-about")?.cloneNode(true);
   let templates = [...stream.querySelectorAll(".archive-card")];
   try {
     const response = await fetch(new URL("../data/projects.json", import.meta.url));
@@ -66,9 +68,12 @@ export async function initArchive() {
   } catch {
     // Full HTML cards remain the source if the registry is unavailable.
   }
+  if (aboutTemplate) templates.unshift(aboutTemplate);
+  initArchiveAbout(stream);
   await document.fonts.ready;
 
-  const state = storedState();
+  const previousState = storedState();
+  const state = previousState.version === 3 ? previousState : {};
   const menus = [...document.querySelectorAll("[data-filter-menu]")];
   const status = document.querySelector("[data-archive-status]");
   const mobileStatus = document.querySelector("[data-archive-mobile-status]");
@@ -89,14 +94,14 @@ export async function initArchive() {
   let resizeFrame = 0;
   let viewportWidth = innerWidth;
   let startY = 0;
-  let pristine = state.version === 2 ? Boolean(state.pristine) : true;
+  let pristine = state.version === 3 ? Boolean(state.pristine) : true;
   let focusSlug = state.slug || null;
   const motion = initArchiveMotion({ onFrame: recycle });
   const buffer = () => Math.max(700, innerHeight * 1.35);
 
   function sorted() {
     return templates.filter((card) => category === "all" || card.dataset.category === category).sort((a, b) => {
-      if (order === "az") return collator.compare(a.querySelector("h2").textContent, b.querySelector("h2").textContent);
+      if (order === "az") return collator.compare(a.dataset.title || a.querySelector("h2").textContent, b.dataset.title || b.querySelector("h2").textContent);
       const difference = Number(a.dataset.order) - Number(b.dataset.order);
       return order === "oldest" ? -difference : difference;
     });
@@ -113,7 +118,13 @@ export async function initArchive() {
       card = cardPool.get(template.dataset.slug)?.pop() || template.cloneNode(true);
       row.replaceChildren(card);
     }
-    card.classList.toggle("archive-card--right", modulo(sequence, 2) === 1);
+    const index = modulo(sequence, selected.length);
+    const projectCount = selected.filter((item) => item.dataset.kind !== "about").length;
+    const precedingProjects = selected.slice(0, index).filter((item) => item.dataset.kind !== "about").length;
+    const projectSequence = Math.floor(sequence / selected.length) * projectCount + precedingProjects;
+    card.classList.toggle("archive-card--right", card.dataset.kind !== "about" && modulo(projectSequence, 2) === 1);
+    row.classList.toggle("archive-row--before-about", selected[modulo(sequence + 1, selected.length)].dataset.kind === "about");
+    if (card.dataset.kind === "about") prepareArchiveAbout(card);
     return row;
   }
 
@@ -146,9 +157,9 @@ export async function initArchive() {
       const primary = representatives.get(row.firstElementChild.dataset.slug)?.row === row;
       if (primary && row.hasAttribute("aria-hidden")) row.removeAttribute("aria-hidden");
       else if (!primary && !row.hasAttribute("aria-hidden")) row.setAttribute("aria-hidden", "true");
-      const link = row.firstElementChild.firstElementChild;
-      const tabIndex = primary ? 0 : -1;
-      if (link.tabIndex !== tabIndex) link.tabIndex = tabIndex;
+      row.inert = !primary;
+      const link = row.querySelector(".archive-card__link");
+      if (link && link.tabIndex !== (primary ? 0 : -1)) link.tabIndex = primary ? 0 : -1;
     });
     lastAccessibilityY = scrollY;
   }
@@ -168,7 +179,7 @@ export async function initArchive() {
 
   function save() {
     try {
-      sessionStorage.setItem(storageKey, JSON.stringify({ version: 2, category, order, pristine, ...anchor(), slug: focusSlug }));
+      sessionStorage.setItem(storageKey, JSON.stringify({ version: 3, category, order, pristine, ...anchor(), slug: focusSlug }));
     } catch {}
   }
 
@@ -182,7 +193,8 @@ export async function initArchive() {
         menu.querySelector("[data-filter-label]").textContent = checked.nextElementSibling.textContent;
       }
     });
-    const count = `${selected.length} ${selected.length === 1 ? "proyecto" : "proyectos"}`;
+    const projectCount = selected.filter((card) => card.dataset.kind !== "about").length;
+    const count = `${projectCount} ${projectCount === 1 ? "proyecto" : "proyectos"}`;
     status.textContent = count;
     if (mobileStatus) mobileStatus.textContent = count;
   }
@@ -304,7 +316,7 @@ export async function initArchive() {
 
   function fitFilterControls() {
     if (filterPanel) filterPanel.open = !compactControls.matches;
-    menus.forEach((menu) => { menu.open = compactControls.matches; });
+    menus.forEach((menu) => { menu.open = false; });
   }
 
   function closeFilters(menu) {
@@ -319,11 +331,6 @@ export async function initArchive() {
 
   fitFilterControls();
   compactControls.addEventListener("change", fitFilterControls);
-  filterPanel?.addEventListener("toggle", () => {
-    if (compactControls.matches && filterPanel.open) {
-      menus.forEach((menu) => { menu.open = true; });
-    }
-  });
   filterPanel?.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && compactControls.matches && filterPanel.open) {
       event.preventDefault();
@@ -333,7 +340,7 @@ export async function initArchive() {
 
   history.scrollRestoration = "manual";
   document.body.classList.add("has-archive-loop");
-  render(state.version === 2 ? state : undefined);
+  render(state.version === 3 ? state : undefined);
   menus.forEach((menu) => {
     menu.addEventListener("change", (event) => {
       if (!event.target.matches("input")) return;
@@ -348,15 +355,17 @@ export async function initArchive() {
       if (event.key === "Escape" && !compactControls.matches) closeFilters(menu);
     });
   });
-  document.addEventListener("pointerdown", (event) => {
-    if (compactControls.matches && filterPanel) {
-      if (!filterPanel.contains(event.target)) filterPanel.open = false;
-    } else {
-      menus.forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; });
-    }
-  });
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a");
+    if (link?.matches("[data-reset-archive]")) {
+      event.preventDefault();
+      category = "all";
+      pristine = true;
+      render();
+      save();
+      main.focus({ preventScroll: true });
+      return;
+    }
     if (link?.href.includes("project.html")) {
       focusSlug = new URL(link.href).searchParams.get("p");
       save();

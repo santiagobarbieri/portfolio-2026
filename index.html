@@ -15,8 +15,11 @@
     <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/shell.css">
+    <link rel="stylesheet" href="./css/cursor.css">
     <link rel="stylesheet" href="./css/project-type.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/archive-about.css">
+    <link rel="stylesheet" href="./css/accordion.css">
     <link rel="stylesheet" href="./css/motion.css">
     <script src="./js/transitions.js"></script>
     <script type="module" src="./js/main.js"></script>
@@ -26,7 +29,7 @@
 
     <header class="site-header">
       <nav class="site-navigation" aria-label="Navegación principal">
-        <a class="tab navigation-shortcut" href="./nav.html?from=archive" aria-label="Abrir menú de navegación — Archivo">
+        <a class="tab navigation-shortcut" href="#main-content" aria-label="Volver al comienzo del archivo" data-reset-archive>
           <span>Archivo</span>
           <span class="navigation-menu__icon" aria-hidden="true"></span>
         </a>
@@ -39,6 +42,7 @@
         </span>
         <span class="identity__glyph" aria-hidden="true"></span>
       </a>
+      <aside class="archive-controls" data-lenis-prevent aria-label="Filtros y navegación del archivo">
       <details class="archive-filter-panel" data-archive-filter-panel open>
         <summary class="archive-filter-toggle" aria-label="Filtrar y ordenar proyectos">
           <svg class="archive-filter-toggle__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
@@ -71,12 +75,80 @@
           <p class="archive-results" data-archive-status role="status" aria-live="polite">5 proyectos</p>
         </div>
       </details>
+        <nav class="archive-directory" aria-label="Contact, Shop, redes y herramientas">
+          <div class="archive-directory__list">
+            <a class="tab" href="./contact.html" target="_blank" rel="noopener noreferrer" aria-label="Contact — abrir en otra pestaña">Contact<span class="archive-directory__external" aria-hidden="true">↗</span></a>
+            <a class="tab" href="./shop.html" target="_blank" rel="noopener noreferrer" aria-label="Shop — abrir en otra pestaña">Shop<span class="archive-directory__external" aria-hidden="true">↗</span></a>
+          <details class="accordion archive-directory__group">
+            <summary class="tab accordion__trigger">Socials</summary>
+          <div class="accordion__content">
+            <!-- TODO: add the real profile URLs. -->
+            <ul class="directory-list" aria-label="Redes sociales pendientes de vincular">
+              <li><span aria-disabled="true" title="Enlace pendiente">Instagram</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Behance</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">LinkedIn</span></li>
+            </ul>
+          </div>
+                  </details>
+          <details class="accordion archive-directory__group">
+            <summary class="tab accordion__trigger">Tools</summary>
+          <div class="accordion__content">
+            <!-- TODO: add approved URLs for available tools. -->
+            <ul class="directory-list" aria-label="Herramientas">
+              <li><span aria-disabled="true" title="Enlace pendiente">Basement</span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Endo<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Ruin<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Foundry<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span class="directory-item--unavailable" aria-disabled="true">Marble<span class="visually-hidden"> — próximamente</span></span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Margin</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Assembly</span></li>
+              <li><span aria-disabled="true" title="Enlace pendiente">Orbit</span></li>
+            </ul>
+          </div>
+                  </details>
+          </div>
+        </nav>
+      </aside>
     </header>
 
     <main class="archive-main" id="main-content" tabindex="-1">
       <h1 class="visually-hidden">Archivo de proyectos — Santiago Barbieri</h1>
       <div class="archive-stream" data-archive-stream>
         <!-- Complete semantic fallback; JavaScript recycles rows outside the viewport. -->
+        <div class="archive-row" data-sequence="0">
+          <article class="archive-about" data-slug="about" data-kind="about" data-category="about" data-order="-3" data-title="About" aria-label="About — Santiago Barbieri">
+            <section class="archive-about__testament">
+              <div class="tab archive-about__heading">
+                <h2>Testament</h2>
+                <div class="archive-about__zoom" role="group" aria-label="Tamaño del texto de Testament">
+                  <button type="button" data-archive-zoom="increase" aria-label="Aumentar tamaño del texto">+</button>
+                  <output data-archive-zoom-label aria-live="polite">150%</output>
+                  <button type="button" data-archive-zoom="decrease" aria-label="Reducir tamaño del texto">−</button>
+                </div>
+              </div>
+              <div class="archive-about__copy" data-archive-testament data-zoom="150" data-lenis-prevent tabindex="0" role="region" aria-label="Testament — desplazamiento independiente">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <p>Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Nec ullamcorper sit amet risus nullam eget felis. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Aliquam id diam maecenas ultricies mi eget mauris pharetra et.</p>
+              <p>Id nibh tortor id aliquet lectus proin nibh nisl condimentum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Pellentesque sit amet porttitor eget dolor morbi non arcu. Vulputate ut pharetra sit amet aliquam id diam.</p>
+              <p>Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare. At tellus at urna condimentum mattis pellentesque id nibh tortor. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem.</p>
+              <div class="archive-about__notes">
+                <details class="accordion">
+                  <summary class="tab accordion__trigger">Certificados</summary>
+                  <div class="accordion__content"><ul class="directory-list"><li>Cambridge Certificate In Advanced English - C1</li><li>CoderHouse Web Development Badge</li></ul></div>
+                </details>
+                <details class="accordion">
+                  <summary class="tab accordion__trigger">Intereses</summary>
+                  <div class="accordion__content"><p>Completar</p></div>
+                </details>
+              </div>
+              </div>
+            </section>
+            <figure class="archive-about__portrait">
+              <!-- TODO: incorporar el retrato original cuando Santi lo proporcione. -->
+              <div class="archive-about__portrait-frame"><span>Retrato pendiente</span></div>
+            </figure>
+          </article>
+        </div>
         <div class="archive-row" data-sequence="0">
           <article class="archive-card" data-slug="stephen-king" data-category="editorial" data-order="-2">
             <a class="archive-card__link" href="./project.html?p=stephen-king" aria-label="Abrir Stephen King">

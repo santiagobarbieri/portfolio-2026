@@ -1,3 +1,4 @@
+import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
 import { initShell } from "./shell.js";
 
@@ -102,6 +103,7 @@ function openPreview(item) {
     header.append(heading, close);
     preview.append(header, makeElement("div", "project-preview__stage"));
     preview.addEventListener("close", () => {
+      projectScroll.start();
       preview.querySelector(".project-preview__stage").replaceChildren();
     });
     document.body.append(preview);
@@ -118,6 +120,7 @@ function openPreview(item) {
   }).finally(() => {
     if (!stage.querySelector("img") || stage.contains(image)) stage.removeAttribute("aria-busy");
   });
+  projectScroll.stop();
   preview.showModal();
 }
 
@@ -232,6 +235,7 @@ function jumpToSection(event) {
   const overview = document.querySelector(".project-overview");
   if (overview && !matchMedia("(min-width: 901px)").matches) overview.open = false;
   target.scrollIntoView({ block: "start", behavior: "instant" });
+  projectScroll.scrollTo(scrollY, { immediate: true });
   target.focus({ preventScroll: true });
 }
 
@@ -402,5 +406,7 @@ async function renderEntry() {
   }
 }
 
+const projectScroll = initSmoothScroll();
 initShell();
+document.addEventListener("portfolio:content-ready", () => projectScroll.resize(), { once: true });
 renderEntry();
