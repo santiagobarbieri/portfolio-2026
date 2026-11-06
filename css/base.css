@@ -17,7 +17,7 @@
 :root {
   color-scheme: dark;
   --bg: #0a0a0a;
-  --accent: #216bff;
+  --accent: #ffffff;
   --hover-surface: color-mix(in srgb, var(--fg) 4%, transparent);
   --fg: #f1ece0;
   /* AA contrast for small text; these stay slightly stronger than the mockups. */

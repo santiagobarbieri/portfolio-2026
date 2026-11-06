@@ -1,6 +1,7 @@
 import { initArchiveAbout, prepareArchiveAbout } from "./archive-about.js";
 import { makeProjectType } from "./project-type.js";
 import { initArchiveMotion } from "./motion.js";
+import { initArchivePhysics } from "./archive-physics.js";
 import { waitForImages } from "./loading.js";
 
 const storageKey = "portfolio-archive-state";
@@ -97,7 +98,8 @@ export async function initArchive() {
   let startY = 0;
   let pristine = state.version === 3 ? Boolean(state.pristine) : true;
   let focusSlug = state.slug || null;
-  const motion = initArchiveMotion({ onFrame: recycle });
+  const physics = initArchivePhysics();
+  const motion = initArchiveMotion({ onFrame: (frame) => { recycle(); physics.feed(frame); } });
   const buffer = () => Math.max(700, innerHeight * 1.35);
   const rowObserver = new ResizeObserver((entries) => {
     if (working || !entries.some(({ target }) => target.isConnected && heights.has(target) && Math.abs(target.getBoundingClientRect().height - heights.get(target)) > 0.5)) return;
@@ -118,6 +120,7 @@ export async function initArchive() {
       motion.rebase(compensation);
     }
     recycle();
+    physics.setRows(rows, streamY);
   }
 
   function sorted() {
@@ -153,6 +156,7 @@ export async function initArchive() {
   }
 
   function releaseCard(card) {
+    physics.forget(card.querySelector(".archive-card__link"));
     const pool = cardPool.get(card.dataset.slug) || [];
     cardPool.set(card.dataset.slug, pool);
     card.remove();
@@ -224,6 +228,7 @@ export async function initArchive() {
   }
 
   function render(position = { sequence: 0, offset: -main.offsetTop }) {
+    physics.reset();
     working = true;
     selected = sorted();
     rows.forEach((row) => {
@@ -271,6 +276,7 @@ export async function initArchive() {
     motion.resize();
     motion.scrollTo(stream.offsetTop + center.offsetTop + position.offset, { immediate: true });
     startY = scrollY;
+    physics.setRows(rows, streamY);
     syncAccessibility();
     updateMenus();
     working = false;
@@ -338,7 +344,10 @@ export async function initArchive() {
       row.remove();
       changed = true;
     }
-    if (changed) motion.rebase(compensation);
+    if (changed) {
+      motion.rebase(compensation);
+      physics.setRows(rows, streamY);
+    }
     if (changed || Math.abs(scrollY - lastAccessibilityY) > 100) syncAccessibility();
     working = false;
   }
@@ -396,7 +405,7 @@ export async function initArchive() {
       main.focus({ preventScroll: true });
     }
   });
-  window.addEventListener("pagehide", save);
+  window.addEventListener("pagehide", () => { save(); physics.reset(); });
   window.addEventListener("pageshow", (event) => {
     if (!event.persisted) return;
     const position = storedState();

@@ -12,3 +12,9 @@ html.lenis.lenis-smooth {
   overscroll-behavior: contain;
 }
 
+
+/* Cover and caption move as one; transforms never alter the loop's row heights. */
+.archive-card__link--moving { transform: translate3d(0, var(--archive-drift, 0px), 0); will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  .archive-card__link--moving { transform: none; will-change: auto; }
+}
