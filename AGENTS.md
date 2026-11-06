@@ -8,7 +8,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
 - About vive como una entrada del loop en Archivo, con Testament y su scroll interno, zoom y retrato reservado. Certificados e Intereses están fuera del lector, inmediatamente debajo. No se cuenta como proyecto. Contact sigue siendo una página estática independiente; Message tiene altura fija y scroll propio sin mover Send.
 - El índice y los filtros forman una lista anclada abajo en el home; los desplegables crecen hacia arriba y permanecen en el flujo. Contact y Shop abren otras pestañas; Socials y Tools despliegan sus listas sin exclusividad ni superposición. Nav redirige al Archivo para conservar enlaces antiguos. Shop muestra Próximamente hasta que exista la tienda; las URLs de redes y herramientas siguen pendientes.
-- Todas las vistas usan el tema oscuro, sin switch. Nombre Santiago Barbieri en blanco; acento #216BFF en glyph, cursor, foco y áreas de interacción. Usar relleno azul leve y bordes en los controles; evitar que el único cambio de hover sea teñir letras. Mantener imágenes y paletas de cada proyecto intactas.
+- Todas las vistas usan el tema oscuro, sin switch. Nombre Santiago Barbieri en blanco; acento #216BFF reservado al glyph, cursor, foco e indicadores pequeños. Hovers sutiles: superficies neutras muy leves y líneas, sin bloques azules, marcos de color sobre imágenes ni cambios de color en títulos. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -142,7 +142,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 1. **Tab:** la línea inferior se dibuja de izquierda a derecha al hover; el chevron rota 90°.
 2. **Accordion:** expansión breve en el flujo, sin stagger ni exclusividad.
 3. **Reloj del footer:** actualización del texto sin animación.
-4. **Portada en Archivo:** portada y ficha forman un área común; hover o foco reemplaza la ficha completa por “Abrir Proyecto” en azul, sin cambiar su altura. Cursor en rombo.
+4. **Portada en Archivo:** portada y ficha forman un área común. Los datos siempre quedan visibles; hover/foco solo revela una flecha azul pequeña a la derecha de la ficha. Sin escalar, enmarcar ni teñir portada o texto. Cursor en rombo.
 5. **Carga de Archivo:** las portadas entran con `clip-path` de abajo hacia arriba, stagger 80ms.
 6. **Filtro / orden:** Flip; las tarjetas viajan a su nueva posición.
 7. **Abrir proyecto:** la portada se expande al hero (Flip + View Transition); la barra de cierre baja desde arriba.
@@ -150,7 +150,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 9. **Sandbox:** arrastre con inercia; al soltar, un leve asentamiento (<150ms); doble click reordena en la disposición inicial.
 10. **Inputs:** la línea inferior engrosa a 2px en foco; `Send` pasa a `Sending…` y luego `Sent`.
 11. **Control de zoom de texto:** el cambio de tamaño se anima (font-size interpolado) y se recuerda en `localStorage`.
-12. **Botón `×`:** área de hover azul leve, sin giro.
+12. **Botón `×`:** área de hover neutra muy leve, sin giro.
 
 ## 9. Decisiones tomadas
 
@@ -162,7 +162,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 ## Hovers, separación y visor de fotografías
 
 - Archivo es estático en el home; no usar flecha ni acción. El nombre de Santiago siempre blanco.
-- Portada y ficha de cada proyecto comparten un enlace. Hover/foco reemplaza visualmente toda la ficha por Abrir Proyecto en azul, con un fondo azul leve y marco en la portada. Mantener la información original en el HTML y el nombre accesible del enlace.
+- Portada y ficha de cada proyecto comparten un enlace. Mantener título, tipo, código y descripción visibles al pasar el cursor o enfocar; mostrar únicamente una flecha azul pequeña a la derecha. Sin texto “Abrir Proyecto”, fondos azules ni marcos en las portadas. Conservar el nombre accesible del enlace.
 - Las zonas vacías de las filas no interceptan punteros. Todas las copias visibles son clickeables; mantener una sola representación por proyecto en el recorrido de teclado, sin volver inert las copias visibles.
 - Alrededor de About siempre existe un gutter real. Antes de un About de ancho completo, la caption anterior ocupa espacio en el flujo. Después, reservar 48px (32px en mobile). Nunca tocar ni superponer portadas, incluso al ordenar, filtrar, abrir notas o reciclar el loop.
 - El loop mide cada fila real y actualiza sus dimensiones si cambia About; no asumir que todas las copias de un slug tienen igual altura.

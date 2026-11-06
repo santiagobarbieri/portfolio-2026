@@ -28,7 +28,7 @@ body:has(.image-gallery[open]) { overflow: hidden; }
 .image-gallery__control { flex: 0 0 44px; display: grid; place-items: center; width: 44px; min-height: 44px; padding: 0; font-size: 20px; }
 .image-gallery__download { display: flex; align-items: center; min-height: 44px; padding: 0 12px; margin-left: auto; font-size: 12px; }
 .image-gallery__control:is(:hover, :focus-visible),
-.image-gallery__download:is(:hover, :focus-visible) { color: var(--fg); background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.image-gallery__download:is(:hover, :focus-visible) { color: var(--fg); background: var(--hover-surface); }
 .image-gallery__viewport[aria-busy="true"]::after { position: absolute; top: calc(50% - 16px); left: calc(50% - 16px); width: 32px; height: 32px; background: var(--fg); mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; -webkit-mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; animation: rose-loading 1600ms steps(8, end) infinite; content: ""; pointer-events: none; }
 @media (max-width: 600px) {
   .image-gallery { width: 100%; height: 100dvh; padding-inline: 12px; }

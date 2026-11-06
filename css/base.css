@@ -18,6 +18,7 @@
   color-scheme: dark;
   --bg: #0a0a0a;
   --accent: #216bff;
+  --hover-surface: color-mix(in srgb, var(--fg) 4%, transparent);
   --fg: #f1ece0;
   /* AA contrast for small text; these stay slightly stronger than the mockups. */
   --mute: #98958e;
@@ -176,12 +177,12 @@ h2 {
 :focus-visible { outline-color: var(--accent); }
 .tab:is(a, button, summary):is(:hover, :focus-visible) {
   color: var(--fg);
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: var(--fg);
+  background: var(--hover-surface);
 }
 .project-index a:is(:hover, :focus-visible) {
   color: var(--fg);
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  background: var(--hover-surface);
 }
 .project-index a[aria-current] { color: var(--fg); }
 .project-index a[aria-current]::before { color: var(--accent); }

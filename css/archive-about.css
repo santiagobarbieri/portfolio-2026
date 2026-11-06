@@ -61,5 +61,5 @@
 .archive-row--before-about .archive-card__caption { position: relative; inset: auto; }
 .archive-about__zoom button:not(:disabled):is(:hover, :focus-visible) {
   color: var(--fg);
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  background: var(--hover-surface);
 }

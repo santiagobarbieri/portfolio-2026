@@ -320,7 +320,8 @@
 .photo-collection__frame img { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
 .photo-collection__caption { display: flex; gap: 10px; min-height: 32px; padding: 10px 4px 4px; font-size: 11px; }
 .photo-collection__number { color: var(--mute); font-variant-numeric: tabular-nums; }
-.photo-collection__open:is(:hover, :focus-visible) { background: color-mix(in srgb, var(--accent) 9%, transparent); outline: 1px solid var(--accent); outline-offset: 3px; }
+.photo-collection__open { transition: background-color var(--duration) var(--ease); }
+.photo-collection__open:is(:hover, :focus-visible) { background: var(--hover-surface); }
 .photo-collection__information { max-width: 400px; margin-top: 80px; }
 .photo-collection__information .project-metadata { margin-top: 20px; }
 @media (max-width: 900px) { .photo-collection-page .entry-main { margin-top: 120px; } }

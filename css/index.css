@@ -172,12 +172,6 @@
   grid-template-columns: 58px minmax(0, 1fr);
   gap: 6px 12px;
   margin-top: 14px;
-  transition: transform var(--duration) var(--ease);
-}
-
-.archive-card__link:hover .archive-card__caption,
-.archive-card__link:focus-visible .archive-card__caption {
-  transform: translateY(-4px);
 }
 
 .archive-card__code {
@@ -349,11 +343,7 @@
 .archive-directory .accordion__trigger::before { opacity: 1; }
 .archive-directory .directory-list { padding-bottom: 8px; color: var(--mute); font-size: 11px; }
 .archive-directory .directory-list [aria-disabled="true"] { cursor: default; }
-.archive-filter-option:hover span,
-.archive-card__link:hover .archive-card__title { color: var(--accent); }
 .archive-filter-option input:checked + span::before { color: var(--accent); }
-.archive-card__link:hover .archive-card__caption,
-.archive-card__link:focus-visible .archive-card__caption { transform: none; }
 
 @media (max-width: 900px) {
   .archive-page .site-header {
@@ -431,32 +421,27 @@
 .archive-label { cursor: default; }
 .archive-label::after { content: none; }
 .archive-card__link { position: relative; z-index: 1; }
-.archive-card__caption { min-height: 76px; margin-top: 0; padding-block: 14px 12px; }
-.archive-card__open {
+.archive-card__caption { min-height: 76px; margin-top: 0; padding: 14px 22px 12px 0; }
+/* Keep the project information steady; only a small cue appears on interaction. */
+.archive-card__cue {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-start;
-  padding: 14px 10px 12px;
+  top: 14px;
+  right: 0;
   color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-  visibility: hidden;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0;
+  transform: translate(-2px, 2px);
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
   pointer-events: none;
 }
-.archive-card__link:focus-visible .archive-card__caption > :not(.archive-card__open) { visibility: hidden; }
-.archive-card__link:focus-visible .archive-card__open { visibility: visible; }
-.archive-card__link:focus-visible .archive-card__caption { background: color-mix(in srgb, var(--accent) 9%, transparent); }
-.archive-card__link:focus-visible .archive-card__media::after { position: absolute; inset: 0; border: 1px solid var(--accent); content: ""; pointer-events: none; }
-.archive-filter-option:is(:hover, :focus-within) { background: color-mix(in srgb, var(--accent) 14%, transparent); }
-.archive-filter-option:hover span { color: var(--fg); }
+.archive-card__link:focus-visible .archive-card__cue { opacity: 1; transform: none; }
+.archive-filter-option:is(:hover, :focus-within) { background: var(--hover-surface); }
 .archive-filter-option input:focus-visible + span { outline-color: var(--accent); }
-@media (max-width: 600px) { .archive-page { --archive-safe-gap: 32px; } }
-
 @media (hover: hover) {
-  .archive-card__link:hover .archive-card__caption > :not(.archive-card__open) { visibility: hidden; }
-  .archive-card__link:hover .archive-card__open { visibility: visible; }
-  .archive-card__link:hover .archive-card__caption { background: color-mix(in srgb, var(--accent) 9%, transparent); }
-  .archive-card__link:hover .archive-card__media::after { position: absolute; inset: 0; border: 1px solid var(--accent); content: ""; pointer-events: none; }
+  .archive-card__link:hover .archive-card__cue { opacity: 1; transform: none; }
 }
-@media (max-width: 600px) { .archive-card__caption { position: relative; inset: auto; } }
+@media (max-width: 600px) {
+  .archive-page { --archive-safe-gap: 32px; }
+  .archive-card__caption { position: relative; inset: auto; }
+}

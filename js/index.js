@@ -41,9 +41,9 @@ function createCard(project) {
     media.append(placeholder);
   }
   const caption = node("div", "archive-card__caption");
-  const open = node("span", "archive-card__open", "Abrir Proyecto");
-  open.setAttribute("aria-hidden", "true");
-  caption.append(open);
+  const cue = node("span", "archive-card__cue", "↗");
+  cue.setAttribute("aria-hidden", "true");
+  caption.append(cue);
   caption.append(node("span", "archive-card__code", project.code || "—"));
   const type = makeProjectType(project.family);
   if (type) {
