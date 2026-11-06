@@ -1,9 +1,14 @@
 let pending = 0;
 let overlay;
 let hideTimer;
+let visibleSince = 0;
 const minimumDisplay = 700;
 
 export function startLoading(label = "Cargando") {
+  const root = document.documentElement;
+  const boot = window.portfolioPageLoad;
+  boot?.claim();
+  overlay ||= document.querySelector(".site-loader");
   if (!overlay) {
     overlay = document.createElement("div");
     overlay.className = "site-loader";
@@ -13,16 +18,18 @@ export function startLoading(label = "Cargando") {
     rose.className = "site-loader__rose";
     rose.setAttribute("aria-hidden", "true");
     const text = document.createElement("span");
-    text.className = "visually-hidden";
+    text.className = "site-loader__label visually-hidden";
     overlay.append(rose, text);
     document.body.append(overlay);
   }
+  if (!root.hasAttribute("data-page-loading")) visibleSince = performance.now();
+  else if (!visibleSince) visibleSince = boot?.started ?? performance.now();
   clearTimeout(hideTimer);
   pending += 1;
   overlay.lastElementChild.textContent = label;
   overlay.hidden = false;
+  root.setAttribute("data-page-loading", "");
   document.querySelector("main")?.setAttribute("aria-busy", "true");
-  const started = performance.now();
   let finished = false;
   return () => {
     if (finished) return;
@@ -32,12 +39,15 @@ export function startLoading(label = "Cargando") {
     hideTimer = setTimeout(() => {
       if (pending) return;
       overlay.hidden = true;
+      root.removeAttribute("data-page-loading");
       document.querySelector("main")?.removeAttribute("aria-busy");
-    }, Math.max(0, minimumDisplay - (performance.now() - started)));
+    }, Math.max(0, minimumDisplay - (performance.now() - visibleSince)));
   };
 }
 
 export async function waitForImages(container = document) {
+  // Fonts settle the layout before deciding which lazy images are in view.
+  await document.fonts.ready;
   const visible = [...container.querySelectorAll("img")].filter((image) => {
     const rect = image.getBoundingClientRect();
     return image.loading !== "lazy" || (rect.top < innerHeight && rect.bottom > 0);
@@ -46,6 +56,8 @@ export async function waitForImages(container = document) {
     image.loading = "eager";
     return image.decode().catch(() => {});
   }));
+  // Commit the final layout while the opaque loader still covers the page.
+  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 }
 
 export function watchLazyImages(container) {

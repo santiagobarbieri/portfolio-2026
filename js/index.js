@@ -64,7 +64,7 @@ export async function initArchive() {
   const aboutTemplate = stream.querySelector(".archive-about")?.cloneNode(true);
   let templates = [...stream.querySelectorAll(".archive-card")];
   try {
-    const response = await fetch(new URL("../data/projects.json", import.meta.url));
+    const response = await fetch(new URL("../data/projects.json", import.meta.url), { signal: AbortSignal.timeout(15000) });
     if (response.ok) templates = (await response.json()).map(createCard);
   } catch {
     // Full HTML cards remain the source if the registry is unavailable.

@@ -2,6 +2,7 @@ import { createImageGallery, imageKey } from "./image-gallery.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
 import { initShell } from "./shell.js";
+import { startLoading, waitForImages, watchLazyImages } from "./loading.js";
 
 const content = document.querySelector("[data-entry-content]");
 const title = document.querySelector("[data-entry-title]");
@@ -438,43 +439,58 @@ function renderProject(project) {
   trackProjectSections(sidebar);
 }
 
+function renderFallback(name, message) {
+  setPageTitle(name);
+  content.className = "entry-fallback";
+  const link = makeElement("a", "entry-fallback__link", "Volver al archivo ↗");
+  link.href = "./index.html";
+  content.replaceChildren(makeElement("h1", null, name), makeElement("p", null, message), link);
+}
+
 async function renderEntry() {
   if (slug === "about" || slug === "contact") {
     window.location.replace(`./${slug}.html`);
-    return;
+    return false;
   }
   if (!slug) {
-    document.dispatchEvent(new CustomEvent("portfolio:content-ready"));
     return;
   }
 
   try {
-    const response = await fetch(new URL("../data/projects.json", import.meta.url));
+    const response = await fetch(new URL("../data/projects.json", import.meta.url), { signal: AbortSignal.timeout(15000) });
     if (!response.ok) throw new Error("Registry unavailable");
     const projects = await response.json();
     let project = projects.find((item) => item.slug === slug);
     if (!project) {
-      setPageTitle("Entrada no encontrada");
+      renderFallback("Entrada no encontrada", "Este proyecto no está disponible. Podés explorar los demás desde el archivo.");
       return;
     }
     if (project.details) {
       const detailsURL = new URL(project.details, document.baseURI);
       if (detailsURL.origin === window.location.origin) {
-        const detailsResponse = await fetch(detailsURL);
-        if (detailsResponse.ok) project = { ...project, ...await detailsResponse.json() };
+        const detailsResponse = await fetch(detailsURL, { signal: AbortSignal.timeout(15000) });
+        if (!detailsResponse.ok) throw new Error("Project unavailable");
+        project = { ...project, ...await detailsResponse.json() };
       }
     }
     renderProject(project);
   } catch {
-    setPageTitle("Archivo");
-    // The fallback return link remains available if project data cannot load.
-  } finally {
-    document.dispatchEvent(new CustomEvent("portfolio:content-ready"));
+    renderFallback("No se pudo cargar el proyecto", "Revisá tu conexión e intentá abrirlo otra vez desde el archivo.");
   }
 }
 
 const projectScroll = initSmoothScroll();
 const imageGallery = createImageGallery({ onOpen: () => projectScroll.stop(), onClose: () => projectScroll.start() });
-initShell();
-document.addEventListener("portfolio:content-ready", () => projectScroll.resize(), { once: true });
-renderEntry();
+const complete = startLoading("Cargando proyecto");
+let redirecting = false;
+try {
+  initShell();
+  redirecting = await renderEntry() === false;
+  if (!redirecting) {
+    watchLazyImages(content);
+    await waitForImages(content);
+    projectScroll.resize();
+  }
+} finally {
+  if (!redirecting) complete();
+}

@@ -1,5 +1,4 @@
 import { initCursor } from "./cursor.js";
-import { startLoading, waitForImages, watchLazyImages } from "./loading.js";
 
 const timeZone = "America/Argentina/Buenos_Aires";
 
@@ -42,18 +41,4 @@ function initClock() {
 export function initShell() {
   initClock();
   initCursor();
-  if (document.body.classList.contains("entry-page")) {
-    const complete = startLoading("Cargando proyecto");
-    const timeout = setTimeout(complete, 10000);
-    document.addEventListener("portfolio:content-ready", async () => {
-      const content = document.querySelector("main");
-      watchLazyImages(content);
-      await waitForImages(content);
-      clearTimeout(timeout);
-      complete();
-    }, { once: true });
-  }
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) document.querySelector(".site-loader")?.setAttribute("hidden", "");
-  });
 }

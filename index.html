@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="dark" data-load-screen>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,6 +11,7 @@
     <meta property="og:description" content="Graphic Designer, Web Developer & Photographer. Buenos Aires, Argentina.">
     <meta property="og:type" content="website">
     <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
     <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="./css/base.css">
@@ -25,6 +26,10 @@
     <script type="module" src="./js/main.js"></script>
   </head>
   <body class="archive-page">
+    <div class="site-loader" role="status">
+      <span class="site-loader__rose" aria-hidden="true"></span>
+      <span class="site-loader__label visually-hidden">Cargando archivo</span>
+    </div>
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
     <header class="site-header">

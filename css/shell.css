@@ -263,12 +263,15 @@
   position: fixed;
   z-index: 100;
   inset: 0;
-  display: grid;
+  display: none;
   place-items: center;
   background: var(--bg);
   color: var(--fg);
   cursor: progress;
 }
+html[data-page-loading] .site-loader { display: grid; }
+/* Keep the fallback and unfinished layout out of the first render and tab order. */
+html[data-page-loading] body > :not(.site-loader):not(script):not(noscript) { visibility: hidden; }
 .site-loader__rose {
   width: 42px;
   height: 42px;
