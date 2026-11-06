@@ -119,30 +119,43 @@
         <!-- Complete semantic fallback; JavaScript recycles rows outside the viewport. -->
         <div class="archive-row" data-sequence="0">
           <article class="archive-about" data-slug="about" data-kind="about" data-category="about" data-order="-3" data-title="About" aria-label="About — Santiago Barbieri">
-            <section class="archive-about__testament">
-              <div class="tab archive-about__heading">
-                <h2>Testament</h2>
-                <div class="archive-about__zoom" role="group" aria-label="Tamaño del texto de Testament">
-                  <button type="button" data-archive-zoom="increase" aria-label="Aumentar tamaño del texto">+</button>
-                  <output data-archive-zoom-label aria-live="polite">150%</output>
-                  <button type="button" data-archive-zoom="decrease" aria-label="Reducir tamaño del texto">−</button>
+            <section class="archive-about__profile">
+              <header class="archive-about__intro">
+                <p class="archive-about__eyebrow">About</p>
+                <h2 class="archive-about__name">Santiago Barbieri</h2>
+                <p class="archive-about__summary">Diseño gráfico, desarrollo web y fotografía.</p>
+                <p class="archive-about__location">Buenos Aires, Argentina.</p>
+              </header>
+              <div class="archive-about__disclosures">
+                <details class="accordion archive-about__testament" data-archive-note="testament">
+                  <summary class="tab accordion__trigger archive-about__heading">Testament</summary>
+                  <div class="archive-about__reading">
+                    <div class="archive-about__reader-tools">
+                      <span aria-hidden="true">Texto</span>
+                      <div class="archive-about__zoom" role="group" aria-label="Tamaño del texto de Testament">
+                        <button type="button" data-archive-zoom="increase" aria-label="Aumentar tamaño del texto">+</button>
+                        <output data-archive-zoom-label aria-live="polite">150%</output>
+                        <button type="button" data-archive-zoom="decrease" aria-label="Reducir tamaño del texto">−</button>
+                      </div>
+                    </div>
+                    <div class="archive-about__copy" data-archive-testament data-zoom="150" data-lenis-prevent tabindex="0" role="region" aria-label="Testament — desplazamiento independiente">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                      <p>Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Nec ullamcorper sit amet risus nullam eget felis. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Aliquam id diam maecenas ultricies mi eget mauris pharetra et.</p>
+                      <p>Id nibh tortor id aliquet lectus proin nibh nisl condimentum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Pellentesque sit amet porttitor eget dolor morbi non arcu. Vulputate ut pharetra sit amet aliquam id diam.</p>
+                      <p>Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare. At tellus at urna condimentum mattis pellentesque id nibh tortor. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem.</p>
+                    </div>
+                  </div>
+                </details>
+                <div class="archive-about__notes">
+                  <details class="accordion" data-archive-note="certificates">
+                    <summary class="tab accordion__trigger">Certificados</summary>
+                    <div class="accordion__content"><ul class="directory-list"><li>Cambridge Certificate In Advanced English - C1</li><li>CoderHouse Web Development Badge</li></ul></div>
+                  </details>
+                  <details class="accordion" data-archive-note="interests">
+                    <summary class="tab accordion__trigger">Intereses</summary>
+                    <div class="accordion__content"><p>Completar</p></div>
+                  </details>
                 </div>
-              </div>
-              <div class="archive-about__copy" data-archive-testament data-zoom="150" data-lenis-prevent tabindex="0" role="region" aria-label="Testament — desplazamiento independiente">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p>Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Nec ullamcorper sit amet risus nullam eget felis. Amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Aliquam id diam maecenas ultricies mi eget mauris pharetra et.</p>
-                <p>Id nibh tortor id aliquet lectus proin nibh nisl condimentum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Pellentesque sit amet porttitor eget dolor morbi non arcu. Vulputate ut pharetra sit amet aliquam id diam.</p>
-                <p>Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare. At tellus at urna condimentum mattis pellentesque id nibh tortor. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem.</p>
-              </div>
-              <div class="archive-about__notes">
-                <details class="accordion" data-archive-note="certificates">
-                  <summary class="tab accordion__trigger">Certificados</summary>
-                  <div class="accordion__content"><ul class="directory-list"><li>Cambridge Certificate In Advanced English - C1</li><li>CoderHouse Web Development Badge</li></ul></div>
-                </details>
-                <details class="accordion" data-archive-note="interests">
-                  <summary class="tab accordion__trigger">Intereses</summary>
-                  <div class="accordion__content"><p>Completar</p></div>
-                </details>
               </div>
             </section>
             <figure class="archive-about__portrait">

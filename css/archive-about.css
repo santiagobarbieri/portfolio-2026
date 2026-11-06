@@ -5,42 +5,39 @@
   --line: #aaa397;
   --accent: #171714;
   --hover-surface: #e3ddd1;
-  position: relative;
-  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: var(--column-gap);
-  padding: 28px 0;
+  padding: clamp(24px, 2.65vw, 40px);
   width: 100%;
   background: var(--bg);
   color: var(--fg);
   color-scheme: light;
 }
-/* Let the paper extend beyond the content without shifting either column. */
-.archive-about::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0 -16px;
-  background: inherit;
-  pointer-events: none;
-  content: "";
-}
-.archive-about__testament { min-width: 0; padding-top: 0; }
-.archive-about__heading { gap: 12px; }
-.archive-about__heading h2 { font-size: var(--text-title); }
+.archive-about__profile { display: grid; align-content: start; min-width: 0; gap: 28px; }
+.archive-about__intro { display: grid; gap: 8px; }
+.archive-about__eyebrow, .archive-about__location { color: var(--mute); font-size: var(--text-meta); line-height: var(--leading-meta); }
+.archive-about__eyebrow { margin-bottom: 4px; }
+.archive-about__name { font-size: var(--text-title); line-height: var(--leading-title); }
+.archive-about__summary { max-width: 30ch; font-size: var(--text-body); line-height: var(--leading-body); }
+.archive-about__testament { min-width: 0; }
+.archive-about__disclosures .accordion__trigger::before { opacity: 1; }
+.archive-about__reading { padding: 8px 0 20px; }
+.archive-about__reader-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--mute); font-size: var(--text-meta); }
 .archive-about__zoom { display: flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 300; }
-.archive-about__zoom button { min-width: 24px; min-height: 24px; padding: 0; }
+.archive-about__zoom button { min-width: 28px; min-height: 28px; padding: 0; color: var(--fg); }
 .archive-about__zoom button:disabled { color: var(--mute); }
 .archive-about__zoom output { min-width: 31px; text-align: center; }
 .archive-about__copy {
   height: 340px;
   margin-top: 12px;
-  padding-right: 6px;
+  padding-right: 10px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.45;
   text-align: justify;
 }
 .archive-about__copy::-webkit-scrollbar { display: none; width: 0; }
@@ -49,15 +46,17 @@
 .archive-about__copy[data-zoom="125"] { font-size: 12.5px; }
 .archive-about__copy[data-zoom="175"] { font-size: 17.5px; }
 .archive-about__copy[data-zoom="200"] { font-size: 20px; }
-.archive-about__notes { margin-top: 20px; }
-.archive-about__notes .accordion__content { font-size: var(--text-meta); line-height: var(--leading-meta); }
+.archive-about__notes { margin-top: 4px; }
+.archive-about__notes .accordion__content { padding: 8px 0 16px; text-align: left; font-size: var(--text-meta); line-height: var(--leading-body); }
+.archive-about__notes .directory-list { display: grid; gap: 8px; }
+.archive-about__notes .directory-list li { min-height: 0; line-height: var(--leading-body); }
 .archive-about__portrait { min-width: 0; margin: 0; }
 .archive-about__portrait-frame {
   display: flex;
   align-items: flex-end;
   width: 100%;
-  aspect-ratio: 400 / 576;
-  padding: 12px;
+  aspect-ratio: 4 / 5;
+  padding: 16px;
   background: var(--hover-surface);
   color: var(--mute);
   font-size: 11px;
@@ -65,9 +64,9 @@
 .archive-about__portrait img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1); }
 
 @media (max-width: 600px) {
-  .archive-about { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px 0; }
-  .archive-about__testament { padding-top: 0; }
-  .archive-about__copy { height: 320px; }
+  .archive-about { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 24px 20px; }
+  .archive-about__profile { gap: 24px; }
+  .archive-about__copy { height: 300px; }
   .archive-about__portrait { margin-top: 0; }
   .archive-about__portrait-frame { aspect-ratio: 4 / 5; }
 
