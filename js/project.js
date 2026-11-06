@@ -1,3 +1,4 @@
+import { makeProjectType } from "./project-type.js";
 import { initShell } from "./shell.js";
 
 const content = document.querySelector("[data-entry-content]");
@@ -17,7 +18,7 @@ function closeEntry(event) {
 
 document.querySelector("[data-close-entry]")?.addEventListener("click", closeEntry);
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeEntry(event);
+  if (event.key === "Escape" && !document.querySelector(".project-preview[open]")) closeEntry(event);
 });
 
 function makeElement(tag, className, text) {
@@ -85,24 +86,70 @@ function makePalette(colors) {
   return palette;
 }
 
-function makeMedia(item, sizes) {
+let preview = null;
+
+function openPreview(item) {
+  if (!preview) {
+    preview = makeElement("dialog", "project-preview");
+    preview.setAttribute("aria-labelledby", "project-preview-title");
+    const header = makeElement("div", "project-preview__header");
+    const heading = makeElement("h2", "project-preview__title", "Afiche");
+    heading.id = "project-preview-title";
+    const close = makeElement("button", "project-preview__close", "×");
+    close.type = "button";
+    close.setAttribute("aria-label", "Cerrar ampliación");
+    close.addEventListener("click", () => preview.close());
+    header.append(heading, close);
+    preview.append(header, makeElement("div", "project-preview__stage"));
+    preview.addEventListener("close", () => {
+      preview.querySelector(".project-preview__stage").replaceChildren();
+    });
+    document.body.append(preview);
+  }
+  const stage = preview.querySelector(".project-preview__stage");
+  const largest = [...(item.sources || [])].sort((a, b) => b.w - a.w)[0];
+  const image = makeImage({ ...item, ...largest, sources: [] }, true);
+  if (!image) return;
+  preview.querySelector(".project-preview__title").textContent = item.caption || item.alt || "Afiche";
+  stage.replaceChildren(image);
+  stage.setAttribute("aria-busy", "true");
+  image.decode().catch(() => {
+    if (stage.contains(image)) stage.replaceChildren(makeElement("p", null, "No se pudo cargar la imagen."));
+  }).finally(() => {
+    if (!stage.querySelector("img") || stage.contains(image)) stage.removeAttribute("aria-busy");
+  });
+  preview.showModal();
+}
+
+function makeMedia(item, sizes, expandable = false) {
   const image = makeImage(item, false, sizes);
   if (!image) return null;
   const media = makeElement("figure", "project-media");
   const frame = makeElement("div", "project-media__image");
   if (["compact", "medium", "wide"].includes(item.size)) media.dataset.size = item.size;
-  frame.append(image);
+  if (expandable) {
+    const button = makeElement("button", "project-media__expand");
+    button.type = "button";
+    button.setAttribute("aria-label", `Ampliar: ${item.caption || item.alt || "afiche"}`);
+    button.setAttribute("aria-haspopup", "dialog");
+    button.addEventListener("click", () => openPreview(item));
+    button.append(image);
+    frame.append(button);
+  } else {
+    frame.append(image);
+  }
   media.append(frame);
   if (item.caption) media.append(makeElement("figcaption", "project-media__caption", item.caption));
   return media;
 }
 
-function makeVariants(items, label = "Variantes") {
+function makeVariants(items, label = "Variantes", posters = false) {
   const group = makeElement("div", "project-variants");
   group.append(makeElement("h3", "tab project-variants__title", label));
   const grid = makeElement("div", "project-variants__grid");
+  if (posters) grid.classList.add("project-poster-grid");
   items.forEach((item) => {
-    const media = makeMedia(item, "150px");
+    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", posters);
     if (!media) return;
     media.classList.add("project-variant");
     media.dataset.aspect = item.w / item.h < 0.85 ? "poster" : item.w / item.h > 1.3 ? "landscape" : "square";
@@ -147,19 +194,21 @@ function renderSection(data, index) {
     const spread = makeElement("div", "project-section__images project-comparison");
     const primary = makeElement("div", "project-comparison__main");
     (data.items || []).forEach((item) => {
-      const media = makeMedia(item);
+      const media = makeMedia(item, undefined, data.frame === "poster");
       if (media) primary.append(media);
     });
     spread.append(primary);
-    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle));
+    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster"));
     body.append(spread);
   } else {
     const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
     if (layout) images.classList.add(`project-section__images--${layout}`);
+    const posterGrid = data.frame === "poster";
+    if (posterGrid) images.classList.add("project-poster-grid");
     if (["poster", "portrait", "landscape", "square", "story"].includes(data.frame)) images.classList.add(`project-section__images--frame-${data.frame}`);
     const items = Array.isArray(data.items) ? data.items : [];
     items.forEach((item) => {
-      const media = makeMedia(item);
+      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, posterGrid);
       if (media) images.append(media);
     });
     if (data.block === "cover-study") images.append(makeCoverNotes(data));
@@ -246,6 +295,13 @@ function renderProject(project) {
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
   if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
   setPageTitle(`${project.title} - Overlook`, project.description, project.cover);
+  const type = makeProjectType(project.family);
+  if (type) {
+    const classification = makeElement("div", "project-entry__classification");
+    classification.append(type);
+    if (project.family !== "identity") classification.append(makeElement("span", "project-entry__discipline", project.type));
+    article.append(classification);
+  }
   const opening = makeElement("div", "project-entry__opening");
   const heroSource = project.hero || project.cover;
   if (heroSource) {

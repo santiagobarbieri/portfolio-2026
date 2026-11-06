@@ -1,3 +1,4 @@
+import { makeProjectType } from "./project-type.js";
 import { initArchiveMotion } from "./motion.js";
 import { waitForImages } from "./loading.js";
 
@@ -39,7 +40,13 @@ function createCard(project) {
     media.append(placeholder);
   }
   const caption = node("div", "archive-card__caption");
-  caption.append(node("span", "archive-card__code", project.code || "—"), node("h2", "archive-card__title", `${project.title} - ${project.type}`), node("p", "archive-card__description", project.description || "Completar"));
+  caption.append(node("span", "archive-card__code", project.code || "—"));
+  const type = makeProjectType(project.family);
+  if (type) {
+    type.classList.add("archive-card__type");
+    caption.append(type);
+  }
+  caption.append(node("h2", "archive-card__title", `${project.title} - ${project.type}`), node("p", "archive-card__description", project.description || "Completar"));
   link.append(media, caption);
   card.append(link);
   return card;

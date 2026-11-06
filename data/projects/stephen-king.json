@@ -625,5 +625,6 @@
     "description": "Cada tapa tiene su propia paleta. Los colores y su lectura visual acompañan a cada pieza.",
     "source": "per-cover",
     "colors": []
-  }
+  },
+  "family": "passion"
 }

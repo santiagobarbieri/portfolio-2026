@@ -2,8 +2,8 @@
   "slug": "orfeo",
   "code": "O–00",
   "title": "Orfeo",
-  "type": "Dirección creativa",
-  "category": "direccion-creativa",
+  "type": "Identidad visual",
+  "category": "identidad",
   "description": "Dirección creativa, contenido audiovisual y desarrollo web para En la Esquina, el primer drop de ORFEO en Buenos Aires.",
   "cover": "assets/images/orfeo/PORTADA-1600.webp",
   "w": 1600,
@@ -668,5 +668,6 @@
         "source": "assets/images/orfeo/logo%20%281%29.png"
       }
     ]
-  }
+  },
+  "family": "identity"
 }

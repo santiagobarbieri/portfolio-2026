@@ -394,3 +394,7 @@
   .archive-main { margin-top: calc(148px + env(safe-area-inset-top)); }
   .archive-page .site-footer { display: none; }
 }
+
+.archive-card__code { grid-column: 1; grid-row: 1 / span 2; }
+.archive-card__type,
+.archive-card__title { grid-column: 2; }

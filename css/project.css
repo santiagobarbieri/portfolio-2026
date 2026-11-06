@@ -240,3 +240,56 @@
 @media (prefers-reduced-motion: reduce) {
   .project-section__images[aria-busy="true"]::after { animation: none; }
 }
+
+.project-entry__classification { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 24px; }
+.project-entry__discipline { color: var(--mute); font-size: 11px; }
+
+/* Five equal poster slots at every viewport width; small proofs open at full size. */
+.project-poster-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(6px, 1.2vw, 18px);
+}
+.project-variants__grid.project-poster-grid { max-width: none; gap: clamp(6px, 0.8vw, 12px); }
+.project-media__expand { display: grid; place-items: center; width: 100%; height: 100%; min-width: 0; padding: 0; cursor: zoom-in; }
+
+body:has(.project-preview[open]) { overflow: hidden; }
+.project-preview {
+  position: fixed;
+  inset: 0;
+  width: calc(100% - 32px);
+  max-width: 1000px;
+  height: calc(100dvh - 32px);
+  max-height: none;
+  padding: 16px;
+  border: 1px solid var(--line);
+  margin: auto;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+}
+.project-preview[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 16px; }
+.project-preview::backdrop { background: rgb(10 10 10 / 95%); }
+.project-preview__header { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-width: 0; border-bottom: 1px solid var(--line); }
+.project-preview__title { min-width: 0; font-size: 12px; font-weight: 600; line-height: 1.3; }
+.project-preview__close { flex: 0 0 44px; width: 44px; min-height: 44px; font-size: 24px; }
+.project-preview__stage { position: relative; display: grid; place-items: center; min-width: 0; min-height: 0; }
+.project-preview__stage img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.project-preview__stage[aria-busy="true"]::after {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: var(--fg);
+  mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat;
+  -webkit-mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat;
+  animation: rose-loading 1600ms steps(8, end) infinite;
+  content: "";
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-preview__stage[aria-busy="true"]::after { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .project-overview__summary { min-height: 44px; }
+  .project-section,
+  .project-color-summary { scroll-margin-top: calc(var(--entry-bar-height) + 84px); }
+}

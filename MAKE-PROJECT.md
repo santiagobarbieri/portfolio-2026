@@ -110,7 +110,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 
 **Grilla vigente:**
 - El área de contenido coincide con las dos columnas centrales de Archivo: hasta 870px, con el mismo gutter y alineación.
-- Las grillas tienen dos columnas, independientemente de la cantidad de piezas; en mobile, una columna para fotos y afiches.
+- Las grillas con `frame: poster` tienen cinco columnas en todo tamaño, incluidas sus variantes; las miniaturas abren una ampliación accesible. Las fotos conservan dos columnas y pasan a una en mobile.
 - Ninguna imagen de una grilla se destaca con mayor tamaño ni ocupa ambas columnas.
 - Las celdas de una misma grilla tienen el mismo ancho y alto. `frame` define su proporción: `poster`, `portrait`, `landscape`, `square` o `story`.
 - Proporción original siempre; las imágenes se contienen completas en las celdas, sin recortes ni `object-fit: cover`.
@@ -127,7 +127,7 @@ Cada sección usa un bloque. El tipo se deduce del nombre de la carpeta; si no c
 | Layout | Uso |
 |---|---|
 | `brand-board` | Comparación de marcas e ilustraciones contenidas, sin ampliar logos al ancho completo. |
-| `uniform-grid` | Fotos o afiches en dos columnas y celdas iguales, sin jerarquías de tamaño. `frame` define la proporción de la celda. |
+| `uniform-grid` | Fotos en dos columnas y afiches en cinco, con celdas iguales y sin jerarquías de tamaño. `frame` define la proporción de la celda. |
 | `contact-sheet` | Variantes y recursos pequeños en una plancha de escala controlada. |
 
 En las marcas se puede declarar `size: compact|medium|wide`. Los logos quedan dentro de una columna central: una marca cuadrada llega a unos 300px y un monograma a 120–180px. No usar diferencias de tamaño ni alineaciones escalonadas en grillas de fotos o afiches.
@@ -170,3 +170,5 @@ Antes de terminar, verifica que `project.html?p=<slug>` abre sin errores en cons
 3. Campos que quedaron en `"Completar"` o vacíos.
 4. Archivos de la carpeta que no pudiste clasificar y dónde los pusiste.
 5. Cualquier decisión que tomaste que Santi debería revisar.
+
+La propiedad raíz `family` usa `identity`, `passion` o `photography` según la clasificación confirmada por Santi. Se declara también en el registro. Es independiente de `category` y no permite inferir encargos o clientes.
