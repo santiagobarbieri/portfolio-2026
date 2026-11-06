@@ -97,42 +97,54 @@
           "w": 284,
           "h": 401,
           "alt": "El Armado — variante gráfica 1",
-          "caption": "Variante 01"
+          "caption": "Variante 01",
+          "gallery": false,
+          "galleryNote": "Original de 283–284 × 401 px; insuficiente para una ampliación grande. Se conserva como miniatura de proceso."
         },
         {
           "src": "assets/images/el-armado/VARIANTES 2.png",
           "w": 284,
           "h": 401,
           "alt": "El Armado — variante gráfica 2",
-          "caption": "Variante 02"
+          "caption": "Variante 02",
+          "gallery": false,
+          "galleryNote": "Original de 283–284 × 401 px; insuficiente para una ampliación grande. Se conserva como miniatura de proceso."
         },
         {
           "src": "assets/images/el-armado/VARIANTES 3.png",
           "w": 283,
           "h": 401,
           "alt": "El Armado — variante gráfica 3",
-          "caption": "Variante 03"
+          "caption": "Variante 03",
+          "gallery": false,
+          "galleryNote": "Original de 283–284 × 401 px; insuficiente para una ampliación grande. Se conserva como miniatura de proceso."
         },
         {
           "src": "assets/images/el-armado/VARIANTES 4.png",
           "w": 284,
           "h": 401,
           "alt": "El Armado — variante gráfica 4",
-          "caption": "Variante 04"
+          "caption": "Variante 04",
+          "gallery": false,
+          "galleryNote": "Original de 283–284 × 401 px; insuficiente para una ampliación grande. Se conserva como miniatura de proceso."
         },
         {
           "src": "assets/images/el-armado/VARIANTES 5.png",
           "w": 283,
           "h": 401,
           "alt": "El Armado — variante gráfica 5",
-          "caption": "Variante 05"
+          "caption": "Variante 05",
+          "gallery": false,
+          "galleryNote": "Original de 283–284 × 401 px; insuficiente para una ampliación grande. Se conserva como miniatura de proceso."
         },
         {
           "src": "assets/images/el-armado/VARIANTES 6.png",
           "w": 284,
           "h": 401,
           "alt": "El Armado — variante gráfica 6",
-          "caption": "Variante 06"
+          "caption": "Variante 06",
+          "gallery": false,
+          "galleryNote": "Original de 283–284 × 401 px; insuficiente para una ampliación grande. Se conserva como miniatura de proceso."
         }
       ],
       "variantsTitle": "Variantes de afiche"
@@ -183,7 +195,9 @@
           "alt": "El Armado — referencia visual 4"
         }
       ],
-      "layout": "reference-sheet"
+      "layout": "reference-sheet",
+      "gallery": false,
+      "galleryNote": "Referencias de 163–254 px de ancho; contexto visual de proceso, fuera del carrusel y de las descargas de piezas propias."
     }
   ],
   "palette": {

@@ -62,7 +62,9 @@
           "alt": "Marca OLAS en formato horizontal",
           "size": "medium",
           "alignment": "center",
-          "caption": "Exportación PNG"
+          "caption": "Exportación PNG",
+          "gallery": false,
+          "galleryNote": "Exportación raster de la marca que ya se presenta en SVG; evita repetir la misma pieza."
         },
         {
           "src": "assets/images/olas-ditella/VARIANTES%201.png",
@@ -78,7 +80,9 @@
           "h": 113,
           "alt": "Propuesta de marca O.L.A. con el nombre de la agrupación",
           "size": "compact",
-          "caption": "Exploración 02"
+          "caption": "Exploración 02",
+          "gallery": false,
+          "galleryNote": "Exploración de 384 × 113 px con texto pequeño y poco contraste; solo miniatura de proceso."
         },
         {
           "src": "assets/images/olas-ditella/VARIANTES%204.jpeg",
@@ -94,7 +98,9 @@
           "h": 778,
           "alt": "Propuesta de marca OLAS con flecha hacia la derecha",
           "size": "medium",
-          "caption": "Exploración 04"
+          "caption": "Exploración 04",
+          "gallery": false,
+          "galleryNote": "Exploración cercana a la marca principal; conservar la comparación pequeña sin repetir otra ampliación."
         }
       ],
       "variantsTitle": "Marca y exploraciones"
@@ -109,7 +115,9 @@
           "w": 518,
           "h": 642,
           "alt": "OLAS — recurso vectorial 1",
-          "size": "compact"
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Fragmento aislado de construcción del símbolo; conservar en la plancha, sin ampliación individual."
         },
         {
           "src": "assets/images/olas-ditella/Vectores%202.svg",
@@ -123,14 +131,18 @@
           "w": 642,
           "h": 501,
           "alt": "OLAS — recurso vectorial 3",
-          "size": "compact"
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Fragmento aislado de construcción del símbolo; conservar en la plancha, sin ampliación individual."
         },
         {
           "src": "assets/images/olas-ditella/Vectores%204.svg",
           "w": 563,
           "h": 435,
           "alt": "OLAS — recurso vectorial 4",
-          "size": "compact"
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Fragmento aislado de construcción del símbolo; conservar en la plancha, sin ampliación individual."
         },
         {
           "src": "assets/images/olas-ditella/New%20Project%20%283%29.svg",
@@ -270,7 +282,9 @@
           "alt": "Sticker circular de OLAS con ola y flecha sobre verde",
           "size": "medium",
           "alignment": "end",
-          "caption": "Fondo verde"
+          "caption": "Fondo verde",
+          "gallery": false,
+          "galleryNote": "Repite el mismo sticker con otro fondo; conservar la comparación de color como miniatura."
         }
       ],
       "variantsTitle": "Variante de fondo"

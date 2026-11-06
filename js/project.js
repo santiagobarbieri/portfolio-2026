@@ -101,6 +101,7 @@ function makeHeroItem(project) {
     alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`,
     sources: project.heroSources || (usesCover ? project.coverSources : undefined),
     name: project.heroName,
+    gallery: project.heroGallery,
   };
 }
 
@@ -108,6 +109,7 @@ function collectProjectAssets(project) {
   const assets = new Map();
   const photography = project.family === "photography";
   function add(item, name, contextual = false) {
+    if (item.gallery === false) return;
     const key = imageKey(item);
     if (!key) return;
     const existing = assets.get(key);
@@ -116,10 +118,12 @@ function collectProjectAssets(project) {
       existing.name = item.name || name;
       existing.contextualName = true;
     }
+    if (existing && item.size && !existing.size) existing.size = item.size;
   }
   if (project.hero || project.cover) add(makeHeroItem(project), photography ? undefined : project.title);
   const sections = project.sections || (project.images?.length ? [{ title: "Imágenes", items: project.images }] : []);
   sections.forEach((section) => {
+    if (section.gallery === false) return;
     const primary = section.items || [];
     const variants = section.variants || [];
     function label(item, index, variant) {
@@ -140,7 +144,8 @@ function collectProjectAssets(project) {
 }
 
 function openGallery(item) {
-  imageGallery.open(projectAssets, Math.max(0, projectAssets.findIndex((entry) => imageKey(entry) === imageKey(item))));
+  const index = projectAssets.findIndex((entry) => imageKey(entry) === imageKey(item));
+  if (index >= 0) imageGallery.open(projectAssets, index);
 }
 
 function makeMedia(item, sizes, expandable = false) {
@@ -149,7 +154,7 @@ function makeMedia(item, sizes, expandable = false) {
   const media = makeElement("figure", "project-media");
   const frame = makeElement("div", "project-media__image");
   if (["compact", "medium", "wide"].includes(item.size)) media.dataset.size = item.size;
-  if (expandable) {
+  if (expandable && item.gallery !== false && projectAssets.some((entry) => imageKey(entry) === imageKey(item))) {
     const button = makeElement("button", "project-media__expand");
     button.type = "button";
     button.setAttribute("aria-label", `Ampliar: ${item.caption || item.alt || "afiche"}`);
@@ -165,14 +170,14 @@ function makeMedia(item, sizes, expandable = false) {
   return media;
 }
 
-function makeVariants(items, label = "Variantes", posters = false) {
+function makeVariants(items, label = "Variantes", posters = false, expandable = true) {
   const group = makeElement("div", "project-variants");
   group.append(makeElement("h3", "project-variants__title", label));
   const grid = makeElement("div", "project-variants__grid");
   if (posters) grid.classList.add("project-poster-grid");
   if (items.length === 1) grid.classList.add("project-variants__grid--single");
   items.forEach((item) => {
-    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", true);
+    const media = makeMedia(item, posters ? "(max-width: 600px) 18vw, 80px" : "150px", expandable);
     if (!media) return;
     media.classList.add("project-variant");
     media.dataset.aspect = item.w / item.h < 0.85 ? "poster" : item.w / item.h > 1.3 ? "landscape" : "square";
@@ -190,7 +195,7 @@ function makeCoverNotes(data) {
   if (data.inspiration) {
     notes.append(makeElement("h3", "project-cover-notes__title", "Lectura visual"), makeElement("p", "project-cover-notes__text", data.inspiration));
   }
-  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada"));
+  if (data.variants?.length) notes.append(makeVariants(data.variants, "Variantes de portada", false, data.gallery !== false));
   return notes;
 }
 
@@ -219,11 +224,11 @@ function renderSection(data, index) {
     if (layout === "brand-board") spread.classList.add("project-comparison--brand-board");
     const primary = makeElement("div", "project-comparison__main");
     (data.items || []).forEach((item) => {
-      const media = makeMedia(item, undefined, true);
+      const media = makeMedia(item, undefined, data.gallery !== false);
       if (media) primary.append(media);
     });
     spread.append(primary);
-    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster"));
+    if (data.variants?.length) spread.append(makeVariants(data.variants, data.variantsTitle, data.frame === "poster", data.gallery !== false));
     body.append(spread);
   } else {
     const images = makeElement("div", `project-section__images project-section__images--${data.block || "grid"}`);
@@ -234,7 +239,7 @@ function renderSection(data, index) {
     if (["poster", "portrait", "landscape", "square", "story"].includes(data.frame)) images.classList.add(`project-section__images--frame-${data.frame}`);
     const items = Array.isArray(data.items) ? data.items : [];
     items.forEach((item) => {
-      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, true);
+      const media = makeMedia(item, posterGrid ? "(max-width: 600px) 18vw, (max-width: 900px) 17vw, 160px" : undefined, data.gallery !== false);
       if (media) images.append(media);
     });
     if (data.block === "cover-study") images.append(makeCoverNotes(data));
@@ -333,7 +338,12 @@ function trackProjectSections(sidebar) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target));
     const target = [...visible].sort((a, b) => Math.abs(a.getBoundingClientRect().top - 110) - Math.abs(b.getBoundingClientRect().top - 110))[0];
-    if (!target || active === target.id) return;
+    if (!target) {
+      active = null;
+      links.forEach((link) => link.removeAttribute("aria-current"));
+      return;
+    }
+    if (active === target.id) return;
     active = target.id;
     links.forEach((link) => {
       if (link.hash === `#${active}`) link.setAttribute("aria-current", "location");
@@ -405,13 +415,15 @@ function renderProject(project) {
     const heroItem = makeHeroItem(project);
     const image = makeImage(heroItem, true);
     if (image) {
-      const open = makeElement("button", "project-media__expand");
-      open.type = "button";
-      open.setAttribute("aria-label", `Abrir carrusel de ${project.title}`);
-      open.setAttribute("aria-haspopup", "dialog");
-      open.addEventListener("click", () => openGallery(heroItem));
-      open.append(image);
-      hero.append(open);
+      if (project.heroGallery !== false && projectAssets.some((entry) => imageKey(entry) === imageKey(heroItem))) {
+        const open = makeElement("button", "project-media__expand");
+        open.type = "button";
+        open.setAttribute("aria-label", `Abrir carrusel de ${project.title}`);
+        open.setAttribute("aria-haspopup", "dialog");
+        open.addEventListener("click", () => openGallery(heroItem));
+        open.append(image);
+        hero.append(open);
+      } else hero.append(image);
     }
     opening.append(hero);
   }

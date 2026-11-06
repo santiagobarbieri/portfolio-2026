@@ -214,3 +214,10 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 ## Selección de texto
 
 - Usar `::selection` con los tokens locales `--fg` como fondo y `--bg` como texto, sin sombra. La selección es clara sobre el sitio oscuro y oscura sobre la superficie clara de About.
+
+## Auditoría y curación de los cinco casos
+
+- Antes de agregar proyectos nuevos, resolver las preguntas de `project-audit.md` y cerrar contenido, autoría, entregables y selección de cada caso. La curación técnica no implica que esos contenidos estén aprobados.
+- `gallery: false` en una pieza o sección la conserva en la página de identidad/editorial como proceso estático y la excluye del visor; `heroGallery: false` mantiene la apertura fuera del visor. `galleryNote` documenta el motivo sin mostrarlo como interfaz. En las colecciones fotográficas, el banco curado define también la selección pública de la grilla.
+- No convertir miniaturas pequeñas o referencias en ampliaciones descargables; no borrar originales. Evitar repeticiones por color que no aporten al recorrido. Conservar variantes con cambios de composición sustanciales. Las portadas de Archivo no cambian por esta curación.
+- El visor limita la escala de bitmaps a su preview real y contiene piezas compactas/medianas/anchas. Las descargas siguen apuntando al original sin recomprimir.

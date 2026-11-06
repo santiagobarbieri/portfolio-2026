@@ -54,6 +54,7 @@ export function createImageGallery({ onOpen, onClose } = {}) {
   let widths = [];
   let centers = [];
   let sizes = [];
+  let pixelWidths = [];
   let position = 0;
   let cycleWidth = 1;
   let frame = 0;
@@ -84,9 +85,10 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     destination = null;
     const width = viewport.clientWidth;
     const imageHeight = Math.max(1, viewport.clientHeight - 80);
-    sizes = items.map((item) => {
+    sizes = items.map((item, index) => {
       const ratio = (item.w || 1) / (item.h || 1);
-      const w = Math.min(Math.max(1, width - 32), imageHeight * ratio);
+      const roleWidth = { compact: 400, medium: 640, wide: 960 }[item.size] || Infinity;
+      const w = Math.min(Math.max(1, width - 32), imageHeight * ratio, pixelWidths[index], roleWidth);
       return { w, h: w / ratio };
     });
     widths = sizes.map(({ w }) => Math.max(width / items.length, w + 32));
@@ -248,6 +250,11 @@ export function createImageGallery({ onOpen, onClose } = {}) {
       return true;
     });
     if (!items.length) return;
+    const previews = items.map((item) => [...(item.sources || [])].sort((a, b) => b.w - a.w)[0]);
+    pixelWidths = items.map((item, index) => {
+      const src = localURL(previews[index]?.src || item.src);
+      return /\.svg$/i.test(src.pathname) ? Infinity : previews[index]?.w || item.w || Infinity;
+    });
     if (!dialog) build();
     const initialIndex = Math.max(0, items.findIndex((item) => imageKey(item) === chosenKey));
     const fragment = document.createDocumentFragment();
@@ -257,14 +264,21 @@ export function createImageGallery({ onOpen, onClose } = {}) {
       const piece = element("figure", "image-gallery__piece");
       const frame = element("div", "image-gallery__frame");
       const image = document.createElement("img");
-      const largest = [...(item.sources || [])].sort((a, b) => b.w - a.w)[0];
+      const largest = previews[index];
       image.src = localURL(largest?.src || item.src).href;
       image.alt = item.alt || item.name || "";
       image.decoding = "async";
       image.loading = "lazy";
       image.draggable = false;
       image.addEventListener("load", () => {
-        if (!item.w || !item.h) { item.w = image.naturalWidth; item.h = image.naturalHeight; layout(); }
+        if (!image.isConnected) return;
+        let resize = false;
+        if (!item.w || !item.h) { item.w = image.naturalWidth; item.h = image.naturalHeight; resize = true; }
+        if (!/\.svg$/i.test(new URL(image.currentSrc || image.src).pathname) && image.naturalWidth > 0) {
+          pixelWidths[index] = image.naturalWidth;
+          if (sizes[index]?.w > image.naturalWidth) resize = true;
+        }
+        if (resize) layout();
         busy();
       });
       image.addEventListener("error", () => { slot.classList.add("image-gallery__slide--error"); busy(); });

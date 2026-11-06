@@ -272,28 +272,36 @@
           "w": 1080,
           "h": 1080,
           "alt": "Marca ORFEO en una aplicación circular negra",
-          "caption": "Carbón"
+          "caption": "Carbón",
+          "gallery": false,
+          "galleryNote": "Repite el logotipo cambiando el color de fondo; mantener las miniaturas y ampliar la marca principal."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png",
           "w": 1080,
           "h": 1080,
           "alt": "Marca ORFEO en una aplicación circular verde",
-          "caption": "Oliva"
+          "caption": "Oliva",
+          "gallery": false,
+          "galleryNote": "Repite el logotipo cambiando el color de fondo; mantener las miniaturas y ampliar la marca principal."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png",
           "w": 1080,
           "h": 1080,
           "alt": "Marca ORFEO en una aplicación circular marrón",
-          "caption": "Marrón"
+          "caption": "Marrón",
+          "gallery": false,
+          "galleryNote": "Repite el logotipo cambiando el color de fondo; mantener las miniaturas y ampliar la marca principal."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png",
           "w": 1080,
           "h": 1080,
           "alt": "Marca ORFEO en una aplicación circular azul",
-          "caption": "Marino"
+          "caption": "Marino",
+          "gallery": false,
+          "galleryNote": "Repite el logotipo cambiando el color de fondo; mantener las miniaturas y ampliar la marca principal."
         }
       ],
       "variantsTitle": "Aplicaciones de color",
@@ -352,7 +360,9 @@
               "h": 800
             }
           ],
-          "caption": "Lacre 02"
+          "caption": "Lacre 02",
+          "gallery": false,
+          "galleryNote": "Repite el mismo lacre en otro color; el carrusel conserva una muestra y la página mantiene la comparación."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
@@ -372,7 +382,9 @@
               "h": 800
             }
           ],
-          "caption": "Lacre 03"
+          "caption": "Lacre 03",
+          "gallery": false,
+          "galleryNote": "Repite el mismo lacre en otro color; el carrusel conserva una muestra y la página mantiene la comparación."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp",
@@ -392,7 +404,9 @@
               "h": 800
             }
           ],
-          "caption": "Lacre 04"
+          "caption": "Lacre 04",
+          "gallery": false,
+          "galleryNote": "Repite el mismo lacre en otro color; el carrusel conserva una muestra y la página mantiene la comparación."
         }
       ],
       "variantsTitle": "Aplicaciones en lacre",
@@ -492,7 +506,9 @@
               "h": 800
             }
           ],
-          "caption": "Variante 01"
+          "caption": "Variante 01",
+          "gallery": false,
+          "galleryNote": "Repite la estampilla ilustrada en otros colores; conservar como miniatura de proceso."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp",
@@ -512,14 +528,18 @@
               "h": 800
             }
           ],
-          "caption": "Variante 02"
+          "caption": "Variante 02",
+          "gallery": false,
+          "galleryNote": "Repite la estampilla ilustrada en otros colores; conservar como miniatura de proceso."
         },
         {
           "src": "assets/images/orfeo/New%20Project%20-%202026-05-15T001047.154.png",
           "w": 3543,
           "h": 3543,
           "alt": "Variante de estampilla gráfica de ORFEO en blanco",
-          "caption": "Variante 03"
+          "caption": "Variante 03",
+          "gallery": false,
+          "galleryNote": "Repite la estampilla ilustrada en otros colores; conservar como miniatura de proceso."
         }
       ],
       "variantsTitle": "Variantes gráficas",

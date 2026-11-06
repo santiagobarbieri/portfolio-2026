@@ -207,3 +207,9 @@ Los tokens de `base.css` fijan el ancho y el comienzo del contenido, el gutter, 
 
 
 El sistema de hover usa crecimiento breve de controles e imágenes, sin subrayados ni fondos. No añadir líneas decorativas al incorporar casos. Conservar la composición de transformaciones: la física de Archivo traslada el enlace y el hover escala su portada/título; las ampliaciones y descargas conservan sus áreas de interacción.
+
+## Selección editorial del visor
+
+`gallery: false` en un item o una sección excluye esa pieza del carrusel y desactiva su ampliación, conservándola en pequeño como proceso en identidad/editorial. `heroGallery: false` hace lo mismo con la apertura. `galleryNote` y `heroGalleryNote` documentan el criterio para futuras revisiones. En `family: photography`, el banco curado es también la selección de la grilla pública. No usar estos campos para borrar originales ni confundir una variante editorial con un archivo técnicamente defectuoso.
+
+El visor usa una preview optimizada y limita el tamaño raster a los píxeles disponibles; los originales mantienen sus enlaces de descarga. Las marcas y recursos compactos conservan escala contenida. Ver `project-audit.md` para las preguntas y decisiones de los cinco casos actuales.

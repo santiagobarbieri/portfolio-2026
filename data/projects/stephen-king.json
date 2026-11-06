@@ -98,7 +98,9 @@
               "h": 1132
             }
           ],
-          "caption": "Variante 03"
+          "caption": "Variante 03",
+          "gallery": false,
+          "galleryNote": "Alternativa de color o contraste cercana a la tapa principal; conservar como miniatura de proceso."
         }
       ]
     },
@@ -210,7 +212,9 @@
               "h": 1132
             }
           ],
-          "caption": "Variante 01"
+          "caption": "Variante 01",
+          "gallery": false,
+          "galleryNote": "Alternativa de color o contraste cercana a la tapa principal; conservar como miniatura de proceso."
         }
       ]
     },
@@ -630,5 +634,7 @@
   "presentation": "editorial-series",
   "catalogue": {
     "title": "Las diez portadas"
-  }
+  },
+  "heroGallery": false,
+  "heroGalleryNote": "Marca introductoria; conservar PORTADA.png en Archivo y en la apertura, fuera del recorrido de tapas."
 }
