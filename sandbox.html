@@ -21,8 +21,13 @@
   <body class="sandbox-page">
     <div class="site-loader" role="status"><span class="site-loader__rose" aria-hidden="true"></span><span class="site-loader__label visually-hidden">Cargando mesa de trabajo</span></div>
     <a class="skip-link" href="#main-content">Saltar a la mesa de trabajo</a>
+    <a class="skip-link" href="#sandbox-groups">Saltar a los grupos de la mesa</a>
     <header class="sandbox-header">
-      <h1 class="sandbox-header__title">Sandbox</h1>
+      <div class="sandbox-header__copy">
+        <h1 class="sandbox-header__title">Sandbox</h1>
+        <p class="sandbox-header__location" data-sandbox-location aria-live="polite">Mesa de trabajo</p>
+        <p class="sandbox-header__instruction" data-sandbox-instruction>Arrastrá para recorrer</p>
+      </div>
       <a class="sandbox-header__exit" href="./index.html" aria-label="Volver al archivo" data-cursor-action="Volver al archivo"><span class="identity__glyph" aria-hidden="true"></span></a>
     </header>
     <main id="main-content" class="sandbox-main" tabindex="-1">
@@ -43,16 +48,23 @@
       </div>
     </main>
     <footer class="sandbox-controls" data-sandbox-controls hidden>
-      <details class="sandbox-testament">
-        <summary>Sobre esta mesa <span aria-hidden="true">+</span></summary>
-        <p id="sandbox-instructions">Piezas de distintos proyectos se encuentran por formato. Arrastrá o desplazá para recorrer la mesa; tocá una pieza para conocer su origen. Usá + y − para cambiar la escala.</p>
-      </details>
-      <nav class="sandbox-groups" aria-label="Grupos de la mesa" data-sandbox-groups></nav>
-      <div class="sandbox-zoom" role="group" aria-label="Escala de la mesa">
-        <button type="button" data-sandbox-zoom="out" aria-label="Alejar mesa" data-cursor-action="Alejar">−</button>
-        <output data-sandbox-scale aria-label="Escala actual">100%</output>
-        <button type="button" data-sandbox-zoom="in" aria-label="Acercar mesa" data-cursor-action="Acercar">+</button>
-        <button type="button" data-sandbox-fit data-cursor-action="Ver toda la mesa">Ver todo</button>
+      <p class="visually-hidden" id="sandbox-instructions">Arrastrá o desplazá para recorrer la mesa. Elegí un grupo para acercarte o tocá una pieza para conocer su origen. En la mesa: flechas para desplazarte, + y − para cambiar la escala, 0 para ver todo y 1 para volver al 100%. El mapa permite cambiar de zona.</p>
+      <nav class="sandbox-groups" id="sandbox-groups" tabindex="-1" aria-label="Grupos de la mesa" data-sandbox-groups></nav>
+      <div class="sandbox-utilities">
+        <span class="sandbox-hint">Arrastrá para recorrer</span>
+        <details class="sandbox-map" data-sandbox-map>
+          <summary aria-label="Mostrar u ocultar mapa de la mesa" data-cursor-action="Mapa de la mesa">Mapa</summary>
+          <div class="sandbox-map__panel">
+            <button class="sandbox-map__canvas" type="button" aria-label="Mapa de la mesa. Tocá o arrastrá para cambiar de zona. Flechas para desplazarte; Enter para ver todo." data-cursor-action="Cambiar de zona" data-sandbox-map-button></button>
+            <p>El marco indica dónde estás.</p>
+          </div>
+        </details>
+        <div class="sandbox-zoom" role="group" aria-label="Escala de la mesa">
+          <button type="button" data-sandbox-zoom="out" aria-label="Alejar mesa" data-cursor-action="Alejar" aria-keyshortcuts="-">−</button>
+          <button type="button" data-sandbox-reset aria-label="Volver a escala 100%" data-cursor-action="Volver al 100%" aria-keyshortcuts="1"><output data-sandbox-scale aria-label="Escala actual">100%</output></button>
+          <button type="button" data-sandbox-zoom="in" aria-label="Acercar mesa" data-cursor-action="Acercar">+</button>
+          <button type="button" data-sandbox-fit data-cursor-action="Ver toda la mesa" aria-keyshortcuts="0">Ver todo</button>
+        </div>
       </div>
     </footer>
     <dialog class="sandbox-detail" aria-labelledby="sandbox-detail-title" data-sandbox-detail>

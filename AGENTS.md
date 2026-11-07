@@ -238,3 +238,15 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - Shop no mantiene una tienda local: el enlace final abrirá el Gumroad de Santi. La URL todavía no existe. Usar Próximamente sin enlazar al marketplace ni inventar un usuario.
 - Contact guía y valida cada paso, conserva respuestas al volver y permite revisar, copiar o guardar el brief. No afirmar que fue enviado; el servicio de entrega aún falta.
 - Conservar los módulos retirados `archive-about.js` y `archive-about.css` como código anterior sin cargarlos en Archivo. No reinsertar About al reciclar, ordenar o filtrar.
+
+
+## Movimiento y orientación del Sandbox
+
+- `sandbox-layout.js` calcula radios, posiciones y límites a partir de las proporciones reales de las piezas curadas. Conservar los grupos por formato y las procedencias mezcladas, sin colisiones, incluyendo el margen de hover.
+- `sandbox-camera.js` controla una única cámara. Wheel y navegación usan una interpolación breve; el arrastre sigue el gesto directamente y al soltar puede continuar como máximo 120px por eje. Sin rebotes ni RAF permanente; movimiento reducido elimina la interpolación y la inercia.
+- Al elegir un grupo, encuadrar todas sus piezas completas, con margen. No imponer una escala mínima fija que corte la composición en mobile. Los límites permiten centrar los grupos cercanos a los bordes.
+- Primera visita: desktop muestra la zona superior de la mesa; mobile entra por Afiches, completo. “Ver todo” encuadra la mesa global. En vista general táctil, el primer toque acerca el grupo; ya dentro, tocar una pieza abre su ficha.
+- El mapa indica la zona visible y permite cambiarla por toque o arrastre. Mantenerlo compacto, cerrable y funcional con teclado; no convertirlo en una capa decorativa. Las guías circulares conservan un grosor de pantalla legible al cambiar la escala.
+- Flechas desplazan; +/− cambian la escala; 0 muestra toda la mesa; 1 vuelve a 100%; Home vuelve al encuadre inicial. Tab trae a la vista las piezas fuera de pantalla. No desplazar la cámara por el foco generado al tocar con mouse o dedo.
+- Conservar cámara por coordenadas del mundo al volver de un proyecto o cambiar viewport. Estado `portfolio-sandbox-camera-v2`, invalidado cuando cambia la disposición. Cancelar gestos y movimiento al perder foco o al ocultar la pestaña.
+- Las fichas mantienen la procedencia, las paletas existentes y el enlace al proyecto. El banco sigue siendo de 51 piezas curadas: no reintroducir miniaturas descartadas ni modificar originales.

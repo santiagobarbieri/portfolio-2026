@@ -1,30 +1,41 @@
 import { collectProjectAssets } from "./project-assets.js";
 import { startLoading, waitForImages } from "./loading.js";
 import { initShell } from "./shell.js";
+import { buildSandboxLayout } from "./sandbox-layout.js";
+import { createSandboxCamera, fitRectangle, worldPoint } from "./sandbox-camera.js";
 
 const viewport = document.querySelector("[data-sandbox-viewport]");
 const world = document.querySelector("[data-sandbox-world]");
 const controls = document.querySelector("[data-sandbox-controls]");
 const dialog = document.querySelector("[data-sandbox-detail]");
 const scaleLabel = document.querySelector("[data-sandbox-scale]");
-const storageKey = "portfolio-sandbox-camera-v1";
-const bounds = { w: 3800, h: 3250 };
-const groups = [
-  { id: "books", name: "Portadas de libro", short: "Libros", x: 690, y: 700, r: 420, width: 128, height: 182 },
-  { id: "posters", name: "Afiches y formatos", short: "Afiches", x: 1830, y: 1040, r: 560, width: 140, height: 198 },
-  { id: "logos", name: "Logos y símbolos", short: "Logos", x: 3050, y: 710, r: 460, width: 180, height: 144 },
-  { id: "graphics", name: "Ilustración y aplicaciones", short: "Gráfica", x: 700, y: 2050, r: 400, width: 170, height: 150 },
-  { id: "photos", name: "Fotografía", short: "Fotos", x: 2510, y: 2440, r: 570, width: 170, height: 134 },
+const locationLabel = document.querySelector("[data-sandbox-location]");
+const map = document.querySelector("[data-sandbox-map]");
+const mapButton = document.querySelector("[data-sandbox-map-button]");
+const storageKey = "portfolio-sandbox-camera-v2";
+const preference = matchMedia("(prefers-reduced-motion: reduce)");
+const groupDefinitions = [
+  { id: "books", name: "Portadas de libro", short: "Libros", label: "Portadas", radius: 280, width: 128, height: 182 },
+  { id: "posters", name: "Afiches y formatos", short: "Afiches", label: "Afiches", radius: 330, width: 140, height: 198 },
+  { id: "logos", name: "Logos y símbolos", short: "Logos", label: "Logos", radius: 260, width: 180, height: 138 },
+  { id: "graphics", name: "Ilustración y aplicaciones", short: "Gráfica", label: "Gráfica", radius: 230, width: 160, height: 144 },
+  { id: "photos", name: "Fotografía", short: "Fotos", label: "Fotografía", radius: 420, width: 180, height: 138 },
 ];
-let camera = { x: 0, y: 0, scale: 1 };
-let frame = 0;
-let drag = null;
-let pinch = null;
+let layout;
+let camera;
+let mapView;
+let layoutKey;
 let moved = false;
+let keyboard = true;
+let drag;
+let pinch;
 let sourceButton;
-let viewportSize = { w: 0, h: 0 };
+let saveTimer;
+let piecesCount = 0;
+let currentGroup;
 const pointers = new Map();
 const groupButtons = new Map();
+const mapGroups = new Map();
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -72,7 +83,8 @@ function makeImage(item, eager = false) {
 
 function darkMount(item) {
   const source = decodeURIComponent(item.original || item.src);
-  return item.projectSlug === "orfeo" && item.sectionTitle === "Logotipo"
+  return item.projectSlug === "olas-ditella" && /\/Logo\.svg$/i.test(source)
+    || item.projectSlug === "orfeo" && item.sectionTitle === "Logotipo"
     || item.projectSlug === "el-armado" && (/\/Logo\.png$/i.test(source) || /iconography 2/i.test(source));
 }
 
@@ -95,6 +107,7 @@ function makePalette(colors) {
 }
 
 function openPiece(item, button) {
+  camera.stop();
   sourceButton = button;
   const media = document.querySelector("[data-detail-media]");
   media.replaceChildren(makeImage(item, true));
@@ -115,91 +128,129 @@ function renderPieces(projects) {
   const all = projects.flatMap((project) => collectProjectAssets(project, { includeIntro: true }).map((item) => ({
     ...item, projectDescription: project.description, projectPalette: project.palette?.colors,
   })));
-  groups.forEach((group) => {
-    const items = interleave(all.filter((item) => classify(item) === group.id));
-    if (!items.length) return;
+  piecesCount = all.length;
+  layout = buildSandboxLayout(groupDefinitions.map((group) => ({ ...group, items: interleave(all.filter((item) => classify(item) === group.id)) })));
+  layoutKey = layout.groups.map((group) => `${group.id}:${group.pieces.length}:${group.radius}`).join("|");
+  world.style.width = `${layout.bounds.width}px`;
+  world.style.height = `${layout.bounds.height}px`;
+  layout.groups.forEach((group) => {
     const orbit = element("section", "sandbox-orbit");
-    orbit.setAttribute("aria-label", `${group.name} · ${items.length} piezas`);
-    Object.assign(orbit.style, { left: `${group.x - group.r}px`, top: `${group.y - group.r}px`, width: `${group.r * 2}px`, height: `${group.r * 2}px` });
-    const label = element("div", "sandbox-orbit__label");
-    label.append(element("h2", "sandbox-orbit__title", group.name), element("span", "sandbox-orbit__count", `${items.length} piezas`));
-    orbit.append(label);
+    orbit.dataset.group = group.id;
+    orbit.setAttribute("aria-labelledby", `sandbox-group-${group.id}`);
+    Object.assign(orbit.style, { left: `${group.x - group.radius}px`, top: `${group.y - group.radius}px`, width: `${group.radius * 2}px`, height: `${group.radius * 2}px` });
+    const heading = element("h2", "sandbox-orbit__label");
+    heading.id = `sandbox-group-${group.id}`;
+    const focus = element("button", "sandbox-orbit__focus");
+    focus.type = "button";
+    focus.setAttribute("aria-label", `Acercarse a ${group.name}: ${group.pieces.length} piezas`);
+    focus.dataset.cursorAction = `Recorrer ${group.short.toLowerCase()}`;
+    focus.append(element("span", "sandbox-orbit__title", group.label), element("span", "sandbox-orbit__count", `${group.pieces.length} piezas`));
+    focus.addEventListener("click", () => { if (!moved) focusGroup(group); });
+    heading.append(focus);
+    orbit.append(heading);
     world.append(orbit);
-    items.forEach((asset, index) => {
-      const angle = -Math.PI / 2 + index / items.length * 2 * Math.PI;
+    group.pieces.forEach(({ item: asset, x, y, width, height }, index) => {
       const item = { ...asset, group: group.id, name: asset.name || `Fotografía ${String(index + 1).padStart(2, "0")}` };
       const button = element("button", "sandbox-piece");
       button.type = "button";
-      button.dataset.group = group.id;
-      button.dataset.project = item.projectSlug;
-      button.dataset.cursorAction = "Ver procedencia";
+      Object.assign(button.dataset, { group: group.id, project: item.projectSlug, cursorAction: "Ver procedencia", x, y });
       button.setAttribute("aria-label", `${item.name} — ${item.projectTitle}`);
       button.setAttribute("aria-haspopup", "dialog");
-      if (darkMount(item, group.id)) button.dataset.mount = "dark";
-      Object.assign(button.style, { left: `${group.x + Math.cos(angle) * group.r}px`, top: `${group.y + Math.sin(angle) * group.r}px`, width: `${group.width}px`, height: `${group.height}px` });
-      button.append(makeImage(item));
-      button.addEventListener("click", () => { if (!moved) openPiece(item, button); });
+      if (darkMount(item)) button.dataset.mount = "dark";
+      Object.assign(button.style, { left: `${x}px`, top: `${y}px`, width: `${width}px`, height: `${height}px` });
+      const image = makeImage(item);
+      button.setAttribute("aria-busy", String(!image.complete));
+      const settled = () => button.removeAttribute("aria-busy");
+      image.addEventListener("load", settled, { once: true });
+      image.addEventListener("error", () => {
+        settled(); button.dataset.error = "true";
+        button.append(element("span", "sandbox-piece__error", "Vista previa no disponible"));
+      }, { once: true });
+      button.append(image);
+      button.addEventListener("click", () => {
+        if (moved) return;
+        if (matchMedia("(pointer: coarse)").matches && Number(world.dataset.overview)) focusGroup(group);
+        else openPiece(item, button);
+      });
       world.append(button);
     });
     const jump = element("button", null, group.short);
     jump.type = "button";
-    jump.dataset.cursorAction = `Ver ${group.short.toLowerCase()}`;
-    jump.addEventListener("click", () => centerGroup(group));
+    jump.dataset.cursorAction = `Recorrer ${group.short.toLowerCase()}`;
+    jump.setAttribute("aria-label", `${group.name} · ${group.pieces.length} piezas`);
+    jump.addEventListener("click", () => focusGroup(group));
     document.querySelector("[data-sandbox-groups]").append(jump);
     groupButtons.set(group.id, jump);
   });
 }
 
-function constrain() {
-  camera.scale = Math.min(1.6, Math.max(0.075, camera.scale));
-  const fit = (position, size, screen) => {
-    if (size * camera.scale < screen - 80) return (screen - size * camera.scale) / 2;
-    return Math.min(80, Math.max(screen - size * camera.scale - 80, position));
-  };
-  camera.x = fit(camera.x, bounds.w, viewport.clientWidth);
-  camera.y = fit(camera.y, bounds.h, viewport.clientHeight);
+function makeMap() {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", `0 0 ${layout.bounds.width} ${layout.bounds.height}`);
+  svg.setAttribute("aria-hidden", "true");
+  layout.groups.forEach((group) => {
+    const circle = document.createElementNS(svg.namespaceURI, "circle");
+    circle.setAttribute("cx", group.x); circle.setAttribute("cy", group.y); circle.setAttribute("r", group.radius);
+    circle.classList.add("sandbox-map__group");
+    svg.append(circle); mapGroups.set(group.id, circle);
+  });
+  mapView = document.createElementNS(svg.namespaceURI, "rect");
+  mapView.classList.add("sandbox-map__view");
+  svg.append(mapView);
+  mapButton.append(svg);
+  map.open = matchMedia("(min-width: 901px) and (min-height: 650px)").matches;
 }
 
-function paint() {
-  frame = 0;
-  constrain();
-  viewportSize = { w: viewport.clientWidth, h: viewport.clientHeight };
-  world.style.setProperty("--sandbox-scale", camera.scale);
-  world.style.transform = `translate3d(${camera.x}px, ${camera.y}px, 0) scale(${camera.scale})`;
-  scaleLabel.value = `${Math.round(camera.scale * 100)}%`;
-  const center = { x: (viewport.clientWidth / 2 - camera.x) / camera.scale, y: (viewport.clientHeight / 2 - camera.y) / camera.scale };
-  const closest = groups.reduce((a, b) => Math.hypot(a.x - center.x, a.y - center.y) < Math.hypot(b.x - center.x, b.y - center.y) ? a : b);
-  groupButtons.forEach((button, id) => id === closest.id ? button.setAttribute("aria-current", "location") : button.removeAttribute("aria-current"));
+function updateCamera(state, size) {
+  world.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) scale(${state.scale})`;
+  world.style.setProperty("--sandbox-scale", state.scale);
+  const overview = state.scale <= fitRectangle(layout.bounds, size, 24).scale * 1.15;
+  const overviewValue = overview ? "1" : "0";
+  if (world.dataset.overview !== overviewValue) world.dataset.overview = overviewValue;
+  const scale = `${Math.round(state.scale * 100)}%`;
+  if (scaleLabel.value !== scale) scaleLabel.value = scale;
+  const center = worldPoint(state, size.width / 2, size.height / 2);
+  const group = layout.groups.reduce((a, b) => Math.hypot(a.x - center.x, a.y - center.y) < Math.hypot(b.x - center.x, b.y - center.y) ? a : b);
+  const label = overview ? `Mesa completa · ${piecesCount} piezas` : `${group.name} · ${group.pieces.length} piezas`;
+  const instruction = document.querySelector("[data-sandbox-instruction]");
+  const coarse = matchMedia("(pointer: coarse)").matches;
+  const hint = overview && coarse ? "Elegí un grupo para acercarte" : coarse ? "Arrastrá para recorrer · pellizcá para acercar" : "Arrastrá para recorrer · + y − cambian la escala";
+  if (instruction.textContent !== hint) instruction.textContent = hint;
+  if (locationLabel.textContent !== label) locationLabel.textContent = label;
+  const groupKey = overview ? "all" : group.id;
+  if (currentGroup !== groupKey) {
+    currentGroup = groupKey;
+    groupButtons.forEach((button, id) => !overview && id === group.id ? button.setAttribute("aria-current", "location") : button.removeAttribute("aria-current"));
+    mapGroups.forEach((node, id) => node.classList.toggle("sandbox-map__group--active", !overview && id === group.id));
+  }
+  const x = Math.max(0, -state.x / state.scale), y = Math.max(0, -state.y / state.scale);
+  mapView.setAttribute("x", x); mapView.setAttribute("y", y);
+  mapView.setAttribute("width", Math.max(0, Math.min(layout.bounds.width, (size.width - state.x) / state.scale) - x));
+  mapView.setAttribute("height", Math.max(0, Math.min(layout.bounds.height, (size.height - state.y) / state.scale) - y));
 }
-function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
+
 function saveCamera() {
-  try {
-    sessionStorage.setItem(storageKey, JSON.stringify({
-      cx: (viewport.clientWidth / 2 - camera.x) / camera.scale,
-      cy: (viewport.clientHeight / 2 - camera.y) / camera.scale,
-      scale: camera.scale,
-    }));
-  } catch {}
+  if (!camera) return;
+  clearTimeout(saveTimer);
+  const center = worldPoint(camera.state, camera.size.width / 2, camera.size.height / 2);
+  try { sessionStorage.setItem(storageKey, JSON.stringify({ layout: layoutKey, cx: center.x, cy: center.y, scale: camera.state.scale })); } catch {}
 }
-function centerGroup(group) {
-  camera.scale = Math.min(0.95, Math.max(0.42, Math.min(viewport.clientWidth / (group.r * 2 + 240), viewport.clientHeight / (group.r * 2 + 240))));
-  camera.x = viewport.clientWidth / 2 - group.x * camera.scale;
-  camera.y = viewport.clientHeight / 2 - group.y * camera.scale;
-  paint(); saveCamera();
+function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveCamera, 180); }
+function focusGroup(group) { camera.fit(group.bounds); }
+function opening(immediate = false) {
+  const start = matchMedia("(max-width: 600px)").matches ? layout.groups.find((group) => group.id === "posters")?.bounds || layout.groups[0].bounds : layout.opening;
+  camera.fit(start, immediate);
 }
-function zoom(value, x = viewport.clientWidth / 2, y = viewport.clientHeight / 2) {
-  const next = Math.max(0.075, Math.min(1.6, value));
-  const ratio = next / camera.scale;
-  camera.x = x - (x - camera.x) * ratio;
-  camera.y = y - (y - camera.y) * ratio;
-  camera.scale = next;
-  schedule();
-}
-function fitAll() {
-  camera.scale = Math.min((viewport.clientWidth - 40) / bounds.w, (viewport.clientHeight - 40) / bounds.h);
-  camera.x = (viewport.clientWidth - bounds.w * camera.scale) / 2;
-  camera.y = (viewport.clientHeight - bounds.h * camera.scale) / 2;
-  paint(); saveCamera();
+
+function navigationKey(event) {
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  const step = event.shiftKey ? 200 : 90;
+  const moves = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] };
+  if (moves[event.key]) { event.preventDefault(); camera.pan(...moves[event.key]); }
+  else if (["+", "=", "-"].includes(event.key)) { event.preventDefault(); camera.zoom(camera.destination.scale * (event.key === "-" ? 0.8 : 1.25)); }
+  else if (event.key === "0") { event.preventDefault(); camera.fit(); }
+  else if (event.key === "1") { event.preventDefault(); camera.zoom(1); }
+  else if (event.key === "Home") { event.preventDefault(); opening(); }
 }
 
 function initNavigation() {
@@ -208,76 +259,78 @@ function initNavigation() {
     const factor = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1;
     if (event.ctrlKey) {
       const rect = viewport.getBoundingClientRect();
-      zoom(camera.scale * Math.exp(-event.deltaY * 0.005), event.clientX - rect.left, event.clientY - rect.top);
-    } else {
-      camera.x -= (event.shiftKey ? event.deltaY : event.deltaX) * factor;
-      camera.y -= (event.shiftKey ? 0 : event.deltaY) * factor;
-      schedule();
-    }
+      camera.zoom(camera.destination.scale * Math.exp(-event.deltaY * 0.005), event.clientX - rect.left, event.clientY - rect.top);
+    } else camera.pan(-(event.shiftKey ? event.deltaY : event.deltaX) * factor, -(event.shiftKey ? 0 : event.deltaY) * factor);
   }, { passive: false });
+  document.addEventListener("pointerdown", () => { keyboard = false; }, true);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") keyboard = true;
+    if (!pointers.size && ["Tab", "Enter", " "].includes(event.key)) moved = false;
+  }, true);
   viewport.addEventListener("pointerdown", (event) => {
     if (event.button !== 0) return;
-    moved = false;
+    camera.stop(); moved = false;
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: camera.x, originY: camera.y };
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, state: camera.state, lastX: event.clientX, lastY: event.clientY, time: performance.now(), vx: 0, vy: 0 };
     if (pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      const rect = viewport.getBoundingClientRect();
-      const x = (a.x + b.x) / 2 - rect.left, y = (a.y + b.y) / 2 - rect.top;
-      pinch = { distance: Math.hypot(a.x - b.x, a.y - b.y), scale: camera.scale, x: (x - camera.x) / camera.scale, y: (y - camera.y) / camera.scale };
+      const [a, b] = [...pointers.values()], rect = viewport.getBoundingClientRect();
+      pinch = { distance: Math.hypot(a.x - b.x, a.y - b.y), scale: camera.state.scale, anchor: worldPoint(camera.state, (a.x + b.x) / 2 - rect.left, (a.y + b.y) / 2 - rect.top) };
       moved = true;
     }
   });
-  viewport.addEventListener("pointermove", (event) => {
+  window.addEventListener("pointermove", (event) => {
     if (!pointers.has(event.pointerId)) return;
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     if (pinch && pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      const rect = viewport.getBoundingClientRect();
-      camera.scale = Math.max(0.075, Math.min(1.6, pinch.scale * Math.hypot(a.x - b.x, a.y - b.y) / Math.max(1, pinch.distance)));
-      camera.x = (a.x + b.x) / 2 - rect.left - pinch.x * camera.scale;
-      camera.y = (a.y + b.y) / 2 - rect.top - pinch.y * camera.scale;
-      schedule(); return;
+      const [a, b] = [...pointers.values()], rect = viewport.getBoundingClientRect();
+      const scale = Math.max(camera.minimumScale, Math.min(1.8, pinch.scale * Math.hypot(a.x - b.x, a.y - b.y) / Math.max(1, pinch.distance)));
+      camera.move({ x: (a.x + b.x) / 2 - rect.left - pinch.anchor.x * scale, y: (a.y + b.y) / 2 - rect.top - pinch.anchor.y * scale, scale }, true);
+      return;
     }
     if (!drag || drag.id !== event.pointerId) return;
     const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
     if (Math.hypot(dx, dy) > 6) { moved = true; viewport.setPointerCapture(event.pointerId); }
-    if (moved) { camera.x = drag.originX + dx; camera.y = drag.originY + dy; schedule(); }
+    if (!moved) return;
+    const time = performance.now(), elapsed = Math.max(8, time - drag.time);
+    drag.vx = (event.clientX - drag.lastX) / elapsed;
+    drag.vy = (event.clientY - drag.lastY) / elapsed;
+    drag.lastX = event.clientX; drag.lastY = event.clientY; drag.time = time;
+    camera.move({ ...drag.state, x: drag.state.x + dx, y: drag.state.y + dy }, true);
   });
   const release = (event) => {
+    if (!pointers.has(event.pointerId)) return;
     pointers.delete(event.pointerId);
-    pinch = null;
-    drag = null;
+    const momentum = moved && drag && !pinch && !preference.matches && performance.now() - drag.time < 70 && event.type !== "pointercancel";
+    if (momentum) camera.pan(Math.max(-120, Math.min(120, drag.vx * 70)), Math.max(-120, Math.min(120, drag.vy * 70)));
+    pinch = null; drag = null;
     if (pointers.size === 1) {
       const [id, point] = [...pointers][0];
-      drag = { id, ...point, originX: camera.x, originY: camera.y };
+      drag = { id, ...point, state: camera.state, lastX: point.x, lastY: point.y, time: performance.now(), vx: 0, vy: 0 };
     }
-    saveCamera();
     if (!pointers.size) setTimeout(() => { moved = false; }, 0);
+    scheduleSave();
   };
   window.addEventListener("pointerup", release);
   window.addEventListener("pointercancel", release);
+  const cancelGesture = () => {
+    const interrupted = pointers.size > 0;
+    for (const id of pointers.keys()) if (viewport.hasPointerCapture(id)) viewport.releasePointerCapture(id);
+    pointers.clear(); drag = null; pinch = null;
+    if (interrupted) moved = true;
+    camera.stop(); saveCamera();
+  };
+  window.addEventListener("blur", cancelGesture);
+  document.addEventListener("visibilitychange", () => { if (document.hidden) cancelGesture(); });
   viewport.addEventListener("dragstart", (event) => event.preventDefault());
   viewport.addEventListener("focusin", (event) => {
-    if (!event.target.matches(".sandbox-piece")) return;
-    const rect = event.target.getBoundingClientRect();
-    const area = viewport.getBoundingClientRect();
-    if (rect.left < area.left + 12 || rect.right > area.right - 12 || rect.top < area.top + 12 || rect.bottom > area.bottom - 12) {
-      camera.x = viewport.clientWidth / 2 - parseFloat(event.target.style.left) * camera.scale;
-      camera.y = viewport.clientHeight / 2 - parseFloat(event.target.style.top) * camera.scale;
-      paint();
-    }
+    if (!keyboard || !event.target.matches(".sandbox-piece")) return;
+    const rect = event.target.getBoundingClientRect(), area = viewport.getBoundingClientRect();
+    if (rect.left < area.left + 12 || rect.right > area.right - 12 || rect.top < area.top + 12 || rect.bottom > area.bottom - 12) camera.center(Number(event.target.dataset.x), Number(event.target.dataset.y), true);
   });
-  viewport.addEventListener("keydown", (event) => {
-    if (event.ctrlKey || event.metaKey || event.altKey) return;
-    const step = event.shiftKey ? 200 : 80;
-    const moves = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] };
-    if (moves[event.key]) { event.preventDefault(); camera.x += moves[event.key][0]; camera.y += moves[event.key][1]; schedule(); }
-    else if (["+", "=", "-"].includes(event.key)) { event.preventDefault(); zoom(camera.scale * (event.key === "-" ? 0.8 : 1.25)); }
-    else if (event.key === "Home") { event.preventDefault(); centerGroup(groups[1]); }
-  });
-  document.querySelectorAll("[data-sandbox-zoom]").forEach((button) => button.addEventListener("click", () => zoom(camera.scale * (button.dataset.sandboxZoom === "in" ? 1.25 : 0.8))));
-  document.querySelector("[data-sandbox-fit]").addEventListener("click", fitAll);
+  viewport.addEventListener("keydown", navigationKey);
+  document.querySelectorAll("[data-sandbox-zoom]").forEach((button) => button.addEventListener("click", () => camera.zoom(camera.destination.scale * (button.dataset.sandboxZoom === "in" ? 1.25 : 0.8))));
+  document.querySelector("[data-sandbox-fit]").addEventListener("click", () => camera.fit());
+  document.querySelector("[data-sandbox-reset]").addEventListener("click", () => camera.zoom(1));
   document.querySelector("[data-detail-close]").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => {
     if (event.target !== dialog) return;
@@ -285,23 +338,39 @@ function initNavigation() {
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   });
   dialog.addEventListener("close", () => sourceButton?.focus({ preventScroll: true }));
-  window.addEventListener("pagehide", saveCamera);
+  window.addEventListener("pagehide", () => { saveCamera(); camera.stop(); });
   new ResizeObserver(() => {
-    if (viewportSize.w) {
-      camera.x += (viewport.clientWidth - viewportSize.w) / 2;
-      camera.y += (viewport.clientHeight - viewportSize.h) / 2;
-    }
-    paint();
+    if (Math.abs(viewport.clientWidth - camera.size.width) > 0.5 || Math.abs(viewport.clientHeight - camera.size.height) > 0.5) camera.resize({ width: viewport.clientWidth, height: viewport.clientHeight });
   }).observe(viewport);
-  const fitFrame = () => {
-    viewport.style.bottom = `${controls.getBoundingClientRect().height + 12}px`;
-    viewport.style.top = `${document.querySelector(".sandbox-header").getBoundingClientRect().bottom + 8}px`;
-    schedule();
-  };
   const frameObserver = new ResizeObserver(fitFrame);
   frameObserver.observe(controls);
   frameObserver.observe(document.querySelector(".sandbox-header"));
-  fitFrame();
+  initMapNavigation();
+}
+
+function fitFrame() {
+  controls.style.setProperty("--sandbox-dock-height", `${controls.getBoundingClientRect().height}px`);
+  viewport.style.bottom = `${controls.getBoundingClientRect().height + 12}px`;
+  viewport.style.top = `${document.querySelector(".sandbox-header").getBoundingClientRect().bottom + 8}px`;
+}
+
+function initMapNavigation() {
+  let pointer;
+  const position = (event, immediate) => {
+    const svg = mapButton.querySelector("svg");
+    const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(svg.getScreenCTM().inverse());
+    camera.center(point.x, point.y, immediate);
+  };
+  mapButton.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    event.preventDefault(); pointer = event.pointerId; mapButton.setPointerCapture(pointer); position(event, true);
+  });
+  mapButton.addEventListener("pointermove", (event) => { if (event.pointerId === pointer) position(event, true); });
+  mapButton.addEventListener("pointerup", () => { pointer = undefined; scheduleSave(); });
+  mapButton.addEventListener("pointercancel", () => { pointer = undefined; });
+  mapButton.addEventListener("click", (event) => { if (event.detail === 0) camera.fit(); });
+  mapButton.addEventListener("keydown", navigationKey);
+  map.addEventListener("keydown", (event) => { if (event.key === "Escape") { map.open = false; map.querySelector("summary").focus(); } });
 }
 
 const complete = startLoading("Cargando mesa de trabajo");
@@ -320,14 +389,13 @@ try {
   renderPieces(projects);
   viewport.hidden = controls.hidden = false;
   document.querySelector("[data-sandbox-fallback]").hidden = true;
+  makeMap(); fitFrame();
+  camera = createSandboxCamera({ viewport: { width: viewport.clientWidth, height: viewport.clientHeight }, bounds: layout.bounds, onChange: updateCamera, onRest: scheduleSave });
   initNavigation();
   let saved;
   try { saved = JSON.parse(sessionStorage.getItem(storageKey)); } catch {}
-  if (saved && [saved.cx, saved.cy, saved.scale].every(Number.isFinite)) {
-    camera = { x: viewport.clientWidth / 2 - saved.cx * saved.scale, y: viewport.clientHeight / 2 - saved.cy * saved.scale, scale: saved.scale };
-    paint();
-  }
-  else centerGroup(groups[1]);
+  if (saved?.layout === layoutKey && [saved.cx, saved.cy, saved.scale].every(Number.isFinite)) camera.move({ x: viewport.clientWidth / 2 - saved.cx * saved.scale, y: viewport.clientHeight / 2 - saved.cy * saved.scale, scale: saved.scale }, true);
+  else opening(true);
   await waitForImages(viewport);
 } catch {
   viewport.hidden = controls.hidden = true;

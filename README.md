@@ -33,6 +33,6 @@ El Archivo contiene cinco proyectos con imágenes. Contact guía el brief en cin
 
 ## Mesa y colecciones
 
-- Sandbox reutiliza 51 piezas curadas de los cinco proyectos, con grupos por formato y regreso a la cámara guardada.
+- Sandbox reutiliza 51 piezas curadas de los cinco proyectos, con grupos por formato, encuadre completo por grupo, mapa de orientación, desplazamiento suave, zoom anclado, pinch y teclado. Conserva la cámara al volver de un proyecto. En mobile inicia por Afiches; “Ver todo” muestra la mesa completa.
 - Stephen King presenta diez libros digitales. OLAS y El Armado presentan afiches sobre papel. Los índices mantienen cinco columnas; las fichas se despliegan bajo demanda.
 - Las maquetas usan CSS, imágenes propias y controles nativos. Sin dependencias nuevas, rotación automática ni textos inventados del prototipo BOOKS.
