@@ -1,290 +1,35 @@
-.about-page {
-  display: flex;
-  flex-direction: column;
-  height: 100svh;
-  min-height: 0;
-  padding: 143px 16px 16px;
-  gap: 24px;
-}
-
-.about-navigation__trigger {
-  min-height: 26px;
-}
-
-.about-main {
-  min-width: 0;
-  min-height: 0;
-  flex: 1;
-  margin: 0;
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: 235px minmax(0, 400px) minmax(0, 400px);
-  align-items: start;
-  gap: clamp(32px, 4.63vw, 70px);
-  max-width: 1175px;
-}
-
-.about-layout {
-  height: 100%;
-}
-
-.about-portrait {
-  margin-top: -56px;
-}
-
-.about-portrait__placeholder {
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  aspect-ratio: 235 / 334;
-  max-height: min(334px, 50svh);
-  padding: 8px;
-  background: var(--hover-surface);
-  color: var(--mute);
-  font-size: 11px;
-}
-
-.about-entry__testament {
-  min-width: 0;
-  min-height: 0;
-}
-
-.about-entry__testament {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  height: 100%;
-  gap: 16px;
-}
-
-.about-entry__heading h2 {
-  font-size: inherit;
-}
-
-.about-reader {
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-}
-
-.about-entry__body {
-  padding-top: 18px;
-  font-size: 10px;
-  font-weight: 300;
-  line-height: 1.35;
-  text-align: justify;
-  overflow-wrap: break-word;
-}
-
-.about-entry__body {
-  height: 100%;
-  min-height: 0;
-  padding-top: 0;
-  padding-right: 8px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.about-entry__body p + p {
-  margin-top: 16px;
-}
-
+.about-main { width: var(--content-width); margin: var(--content-top) 0 160px var(--content-left); }
+.about-intro { padding: clamp(24px, 3vw, 40px); background: #f1ece0; color: #0a0a0a; --bg: #f1ece0; --fg: #0a0a0a; }
+.about-intro__status { font-size: var(--text-meta); margin-bottom: 32px; }
+.about-intro h1 { font-size: var(--text-title); margin-bottom: 16px; }
+.about-intro__note { margin-top: 40px; color: #68655e; }
+.about-index { position: fixed; top: var(--content-top); left: var(--frame-margin); width: var(--sidebar-width); font-size: var(--text-meta); }
+.about-index > p { font-weight: 600; margin-bottom: 16px; }
+.about-index nav { display: grid; gap: 4px; }
+.about-index a { min-height: 32px; padding-block: 8px; color: var(--mute); }
+.about-index a[aria-current] { color: var(--fg); font-weight: 600; }
+.about-index__status { display: block; margin-top: 32px; color: var(--mute); }
+.about-journey { position: relative; margin-top: 80px; }
+.about-journey::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--line); }
+.about-chapter { position: relative; padding: 0 0 100px; scroll-margin-top: 120px; }
+.about-chapter__number { position: absolute; top: 24px; left: 50%; translate: -50% 0; padding: 6px; background: var(--bg); color: var(--mute); font-size: var(--text-meta); }
+.about-chapter__card { width: calc((100% - var(--column-gap)) / 2); min-height: 200px; padding: 24px 0; }
+.about-chapter:nth-child(even) .about-chapter__card { margin-left: calc((100% + var(--column-gap)) / 2); }
+.about-chapter h2 { font-size: var(--text-title); margin-bottom: 24px; }
+.about-chapter p { margin-top: 12px; color: var(--mute); }
+.about-chapter .accordion { margin-top: 32px; }
+.about-chapter .directory-list { font-size: var(--text-meta); }
+.about-contact { display: block; margin-top: 32px; min-height: 44px; padding-top: 12px; }
+.about-testament { max-width: 100%; padding: 32px; background: #f1ece0; color: #0a0a0a; --bg: #f1ece0; --fg: #0a0a0a; --mute: #68655e; }
+.about-testament__reader { padding-top: 24px; }
+.about-entry__body { max-height: 340px; margin-top: 20px; padding-right: 12px; overflow-y: auto; overscroll-behavior: contain; font-size: 10px; line-height: 1.5; text-align: justify; scrollbar-width: none; }
+.about-entry__body p + p { margin-top: 16px; }
 .about-entry__body--125 { font-size: 12.5px; }
 .about-entry__body--150 { font-size: 15px; }
 .about-entry__body--175 { font-size: 17.5px; }
 .about-entry__body--200 { font-size: 20px; }
-
-.text-zoom {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 11px;
-  font-weight: 300;
-}
-
-.text-zoom button {
-  min-width: 24px;
-  min-height: 24px;
-  padding: 0;
-}
-
-.text-zoom button:disabled {
-  color: var(--mute);
-  cursor: default;
-}
-
-.text-zoom output {
-  min-width: 31px;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-}
-
-.about-page .site-footer {
-  position: static;
-  display: flex;
-  align-items: flex-end;
-  flex-shrink: 0;
-  min-width: 0;
-  gap: 40px;
-  margin: 0;
-}
-
-.about-page .theme-switch {
-  margin: 0 0 -7px;
-}
-
-@media (max-width: 1200px) {
-  .about-layout {
-    grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1fr);
-    gap: 32px;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 900px) {
-  .about-page {
-    padding-top: 112px;
-  }
-
-  .about-layout {
-    grid-template-columns: 200px minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr);
-    gap: 24px 32px;
-  }
-
-  .about-portrait {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: -25px;
-  }
-
-  .about-entry__testament {
-    grid-column: 2;
-    grid-row: 1 / -1;
-  }
-
-  .about-entry__notes {
-    grid-column: 1;
-    grid-row: 2;
-  }
-}
-
-@media (max-width: 600px) {
-  .about-page {
-    padding-top: 92px;
-    gap: 16px;
-  }
-
-  .about-layout {
-    grid-template-columns: 72px minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr);
-    gap: 20px 16px;
-  }
-
-  .about-portrait {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 0;
-  }
-
-  .about-portrait__placeholder {
-    padding: 5px;
-    font-size: 10px;
-  }
-
-  .about-entry__testament {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .about-entry__testament {
-    gap: 10px;
-  }
-
-  .about-entry__notes {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .about-entry__notes .tab {
-    font-size: 12px;
-  }
-
-  .about-entry__notes .accordion__content {
-    font-size: 10px;
-    line-height: 1.15;
-  }
-
-  .about-entry__notes .directory-list li {
-    min-height: 0;
-    margin-top: 4px;
-    line-height: 1.15;
-  }
-
-  .about-page .site-footer {
-    gap: 12px;
-    font-size: 10px;
-  }
-
-  .about-page .site-footer__location {
-    white-space: nowrap;
-  }
-
-  .text-zoom button {
-    min-width: 36px;
-    min-height: 32px;
-  }
-}
-
-@media (max-height: 600px) and (min-width: 601px) {
-  .about-page {
-    padding-top: 92px;
-    gap: 16px;
-  }
-
-  .about-layout {
-    grid-template-columns: 72px minmax(0, 1fr) minmax(0, 180px);
-    grid-template-rows: minmax(0, 1fr);
-    gap: 24px;
-  }
-
-  .about-portrait,
-  .about-entry__testament,
-  .about-entry__notes {
-    grid-column: auto;
-    grid-row: auto;
-    margin-top: 0;
-  }
-
-  .about-entry__testament {
-    gap: 8px;
-  }
-
-  .about-entry__notes .accordion__content {
-    font-size: 10px;
-  }
-
-  .about-entry__notes .directory-list li {
-    min-height: 0;
-    line-height: 1.15;
-    margin-top: 4px;
-  }
-}
-
-@media (pointer: coarse) {
-  .text-zoom button {
-    min-height: 36px;
-  }
-}
-
-.about-entry__body::-webkit-scrollbar { display: none; width: 0; }
-.about-entry__body::-webkit-scrollbar-thumb { background: var(--line); }
-.about-entry__body::-webkit-scrollbar-track { background: transparent; }
-
-.text-zoom button { --interaction-scale: var(--hover-icon-scale); --interaction-origin: center; }
-@media (hover: hover) and (pointer: fine) {
-  [data-text-zoom="increase"]:not(:disabled):hover { rotate: 90deg; }
-}
+.text-zoom { display: flex; justify-content: flex-end; align-items: center; gap: 8px; font-size: var(--text-meta); }
+.text-zoom button { min-width: 32px; min-height: 32px; padding: 0; border: 0; background: none; }
+.text-zoom output { min-width: 36px; text-align: center; }
+@media (max-width: 900px) { .about-index { position: static; width: var(--content-width); margin: 100px 0 24px var(--content-left); }.about-index > p, .about-index__status { display: none; }.about-index nav { display: flex; gap: 16px; justify-content: space-between; }.about-main { margin-top: 0; }.about-index a { min-height: 44px; } }
+@media (max-width: 600px) { .about-journey::before { left: 12px; }.about-chapter { padding-left: 44px; padding-bottom: 64px; }.about-chapter__number { left: 12px; }.about-chapter__card { width: 100%; }.about-chapter:nth-child(even) .about-chapter__card { margin-left: 0; }.about-testament { padding: 24px 20px; }.about-entry__body { max-height: 300px; } }

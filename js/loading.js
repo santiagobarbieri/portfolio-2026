@@ -50,7 +50,7 @@ export async function waitForImages(container = document) {
   await document.fonts.ready;
   const visible = [...container.querySelectorAll("img")].filter((image) => {
     const rect = image.getBoundingClientRect();
-    return image.loading !== "lazy" || (rect.top < innerHeight && rect.bottom > 0);
+    return image.loading !== "lazy" || (rect.top < innerHeight && rect.bottom > 0 && rect.left < innerWidth && rect.right > 0);
   });
   await Promise.all(visible.map((image) => {
     image.loading = "eager";

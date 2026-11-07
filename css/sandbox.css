@@ -1,0 +1,74 @@
+.sandbox-page { height: 100svh; overflow: hidden; }
+.sandbox-header { position: fixed; z-index: 5; inset: 0 0 auto; display: flex; justify-content: space-between; align-items: start; padding: var(--frame-top) var(--frame-margin) 16px; pointer-events: none; }
+.sandbox-header__title { width: var(--sidebar-width); padding: 4px 5px; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: var(--text-title); line-height: var(--leading-title); }
+.sandbox-header__exit { pointer-events: auto; }
+.sandbox-header__exit .identity__glyph { color: var(--fg); }
+.sandbox-main { position: absolute; inset: 0; }
+.sandbox-fallback { position: absolute; inset: 20% 16px auto; max-width: 420px; margin: auto; }
+.sandbox-fallback h2 { font-size: var(--text-title); margin-bottom: 16px; }
+.sandbox-fallback li { margin-top: 12px; }
+.sandbox-viewport { position: absolute; inset: 100px 0 114px; overflow: hidden; touch-action: none; outline-offset: -4px; }
+.sandbox-world { position: absolute; left: 0; top: 0; width: 3800px; height: 3250px; transform-origin: 0 0; }
+.sandbox-orbit { position: absolute; border: 1px solid color-mix(in srgb, var(--fg) 38%, transparent); border-radius: 50%; pointer-events: none; }
+.sandbox-orbit__label { position: absolute; inset: 0; display: grid; place-content: center; gap: 8px; text-align: center; font-weight: 300; }
+.sandbox-orbit__title { font-size: calc(14px / var(--sandbox-scale, 1)); font-weight: 300; }
+.sandbox-orbit__count { color: var(--mute); font-size: calc(11px / var(--sandbox-scale, 1)); }
+.sandbox-piece { position: absolute; display: grid; place-items: center; padding: 0; border: 0; background: transparent; transform: translate(-50%, -50%); user-select: none; -webkit-user-select: none; --interaction-scale: 1; }
+.sandbox-piece img { display: block; width: 100%; height: 100%; object-fit: contain; transition: scale var(--interaction-duration) var(--ease); }
+.sandbox-piece[data-mount="dark"] { background: #0a0a0a; padding: 16px; }
+.sandbox-piece:focus-visible { outline: 2px solid var(--fg); outline-offset: 6px; }
+.sandbox-controls { position: fixed; z-index: 6; bottom: 0; left: 0; right: 0; display: grid; grid-template-columns: minmax(160px, 1fr) auto auto; align-items: end; gap: 24px; padding: 10px var(--frame-margin) max(16px, env(safe-area-inset-bottom)); background: var(--bg); }
+.sandbox-testament { max-width: 360px; }
+.sandbox-testament summary { display: flex; align-items: center; justify-content: space-between; min-height: 32px; list-style: none; font-weight: 600; }
+.sandbox-testament summary::-webkit-details-marker { display: none; }
+.sandbox-testament summary span { transition: rotate 180ms var(--ease); }
+.sandbox-testament[open] summary span { rotate: 45deg; }
+.sandbox-testament p { padding: 12px 0; max-height: 160px; overflow-y: auto; }
+.sandbox-groups, .sandbox-zoom { display: flex; align-items: center; gap: 16px; }
+.sandbox-groups button, .sandbox-zoom button { padding: 4px 0; min-height: 36px; border: 0; background: none; font-size: var(--text-body); }
+.sandbox-groups button { color: var(--mute); }
+.sandbox-groups button[aria-current] { color: var(--fg); font-weight: 600; }
+.sandbox-zoom { gap: 4px; }
+.sandbox-zoom button { min-width: 36px; }
+.sandbox-zoom button:last-child { margin-left: 12px; }
+.sandbox-zoom output { min-width: 42px; text-align: center; font-variant-numeric: tabular-nums; font-size: var(--text-meta); }
+.sandbox-detail { width: min(600px, calc(100vw - 32px)); max-height: calc(100svh - 64px); padding: 0; border: 0; background: var(--bg); color: var(--fg); overflow-y: auto; }
+.sandbox-detail::backdrop { background: #0a0a0a88; }
+.sandbox-detail__layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+.sandbox-detail__media { display: grid; place-items: center; align-self: start; padding: 0; }
+.sandbox-detail__media img { display: block; width: 100%; max-height: 420px; object-fit: contain; }
+.sandbox-detail__media[data-mount="dark"] { background: #0a0a0a; padding: 20px; }
+.sandbox-detail__copy { position: relative; padding: 24px; display: flex; flex-direction: column; min-height: 240px; }
+.sandbox-detail__close { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; padding: 0; border: 0; background: none; }
+.sandbox-detail__close span { display: inline-block; font-size: 20px; transition: rotate 180ms var(--ease); }
+.sandbox-detail__origin { margin: 0 24px 4px 0; color: var(--mute); font-size: var(--text-meta); }
+.sandbox-detail h2 { margin-right: 16px; font-size: var(--text-title); }
+.sandbox-detail__description { margin-top: 12px; }
+.sandbox-detail__palette { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.sandbox-detail__color { display: grid; gap: 6px; font-size: 10px; }
+.sandbox-detail__color svg { width: 24px; height: 24px; }
+.sandbox-detail__link { display: flex; align-items: center; justify-content: space-between; min-height: 44px; margin-top: 24px; font-weight: 600; }
+@media (hover: hover) and (pointer: fine) {
+  .sandbox-piece:hover img { scale: 1.06; }
+  .sandbox-detail__close:hover span { rotate: 90deg; }
+}
+@media (max-width: 900px) {
+  .sandbox-header { padding-top: calc(20px + env(safe-area-inset-top)); }
+  .sandbox-header__title { width: min(180px, 50vw); }
+  .sandbox-header__exit .identity__glyph { width: 38px; height: 38px; }
+  .sandbox-header__exit { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
+  .sandbox-viewport { top: calc(80px + env(safe-area-inset-top)); bottom: 150px; }
+  .sandbox-controls { grid-template-columns: 1fr auto; gap: 4px 16px; }
+  .sandbox-groups { grid-column: 1 / -1; grid-row: 1; gap: 0; justify-content: space-between; }
+  .sandbox-groups button, .sandbox-zoom button, .sandbox-testament summary { min-height: 44px; }
+  .sandbox-testament { min-width: 0; }
+  .sandbox-testament summary { font-size: 11px; gap: 12px; }
+}
+@media (max-width: 450px) {
+  .sandbox-groups button { font-size: 11px; }
+  .sandbox-detail__copy { padding: 24px 16px 12px; min-height: 200px; }
+  .sandbox-detail__layout { grid-template-columns: 1fr; }
+  .sandbox-detail__media { max-height: 35svh; }
+  .sandbox-detail__media img { max-height: 35svh; width: auto; max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .sandbox-piece img, .sandbox-testament summary span, .sandbox-detail__close span { transition: none; } }

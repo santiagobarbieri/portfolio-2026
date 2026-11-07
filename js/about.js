@@ -1,5 +1,7 @@
 import { initShell } from "./shell.js";
 import { initAccordions } from "./accordion.js";
+import { initSmoothScroll } from "./motion.js";
+import { startLoading, waitForImages } from "./loading.js";
 
 function initTestamentReader() {
   const text = document.querySelector("[data-testament]");
@@ -35,6 +37,26 @@ function initTestamentReader() {
   applyZoom();
 }
 
-initShell();
-initAccordions();
-initTestamentReader();
+const complete = startLoading("Cargando About");
+try {
+  initShell();
+  initAccordions();
+  initTestamentReader();
+  const scroll = initSmoothScroll();
+  const links = [...document.querySelectorAll(".about-index a")];
+  links.forEach((link) => link.addEventListener("click", (event) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const target = document.querySelector(link.hash);
+    if (!target) return;
+    event.preventDefault();
+    scroll.scrollTo(scrollY + target.getBoundingClientRect().top - 120);
+  }));
+  const visible = new Set();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target));
+    const first = [...visible].sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0];
+    links.forEach((link) => first && link.hash === `#${first.id}` ? link.setAttribute("aria-current", "location") : link.removeAttribute("aria-current"));
+  }, { rootMargin: "-100px 0px -40%" });
+  document.querySelectorAll(".about-chapter").forEach((chapter) => observer.observe(chapter));
+  await waitForImages(document.querySelector("main"));
+} finally { complete(); }

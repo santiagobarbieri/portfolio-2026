@@ -322,5 +322,8 @@ html[data-page-loading] body > :not(.site-loader):not(script):not(noscript) { vi
 .identity { --interaction-scale: 1.03; --interaction-origin: right center; }
 .identity__glyph { transition: rotate 220ms var(--ease); }
 @media (hover: hover) and (pointer: fine) {
-  .identity:hover .identity__glyph { rotate: -6deg; }
+  .identity__logo:hover .identity__glyph { rotate: -6deg; }
 }
+
+.identity__logo { display: grid; place-items: center; min-width: 44px; min-height: 44px; --interaction-origin: center; }
+.identity__glyph { display: block; }

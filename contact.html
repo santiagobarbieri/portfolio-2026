@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="dark" data-load-screen>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,6 +11,7 @@
     <meta property="og:description" content="Contactá a Santiago Barbieri para conversar sobre diseño gráfico, desarrollo web y fotografía.">
     <meta property="og:type" content="website">
     <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
     <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="./css/base.css">
@@ -22,6 +23,7 @@
     <script type="module" src="./js/contact.js"></script>
   </head>
   <body class="contact-page">
+    <div class="site-loader" role="status"><span class="site-loader__rose" aria-hidden="true"></span><span class="site-loader__label visually-hidden">Cargando Contact</span></div>
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
     <header class="site-header">
@@ -31,44 +33,69 @@
           <span class="navigation-menu__icon" aria-hidden="true"></span>
         </a>
       </nav>
-      <a class="identity" href="./index.html" aria-label="Santiago Barbieri — Archivo">
-        <span class="identity__copy">
+      <div class="identity">
+        <a class="identity__copy" href="./index.html" aria-label="Santiago Barbieri — Archivo" data-cursor-action="Volver al archivo">
           <strong class="identity__name">Santiago Barbieri</strong>
           <span class="identity__role" lang="en">Graphic Designer, Web<br>Developer &amp; Photographer</span>
-        </span>
-        <span class="identity__glyph" aria-hidden="true"></span>
-      </a>
+        </a>
+        <a class="identity__logo" href="./sandbox.html" aria-label="Abrir Sandbox — mesa de trabajo" data-cursor-action="Abrir Sandbox"><span class="identity__glyph" aria-hidden="true"></span></a>
+      </div>
     </header>
 
+    <nav class="contact-steps" aria-label="Pasos del formulario" data-contact-steps hidden>
+      <ol><li><button type="button" data-contact-step-link="0">01 Motivo</button></li><li><button type="button" data-contact-step-link="1">02 Detalles</button></li><li><button type="button" data-contact-step-link="2">03 Contexto</button></li><li><button type="button" data-contact-step-link="3">04 Tus datos</button></li><li><button type="button" data-contact-step-link="4">05 Revisar</button></li></ol>
+    </nav>
     <main class="contact-main" id="main-content" tabindex="-1">
-      <h1 class="visually-hidden">Contact — Santiago Barbieri</h1>
-      <section class="contact-layout" aria-labelledby="contact-title">
-        <h2 class="contact-entry__heading" id="contact-title" lang="en">Let's Work Together</h2>
-        <!-- TODO: connect the form to the approved contact service before enabling Send. -->
-        <form class="contact-entry__form" id="contact-form" method="post">
-          <div class="contact-field">
-            <label for="contact-name" lang="en">Name <span class="visually-hidden">(obligatorio)</span></label>
-            <input id="contact-name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div class="contact-field">
-            <label for="contact-email" lang="en">Email <span class="visually-hidden">(obligatorio)</span></label>
-            <input id="contact-email" name="email" type="email" autocomplete="email" required>
-          </div>
-          <div class="contact-field contact-field--message">
-            <label for="contact-message" lang="en">Your Message <span class="visually-hidden">(obligatorio)</span></label>
-            <textarea id="contact-message" name="message" rows="3" autocomplete="off" data-lenis-prevent required></textarea>
-          </div>
-          <p class="contact-entry__status" id="contact-status" role="status">El envío estará disponible próximamente.</p>
-          <button class="tab contact-entry__send" type="submit" aria-describedby="contact-status" disabled lang="en">Send</button>
-        </form>
-      </section>
+      <header class="contact-heading"><h1>Contact</h1><p data-contact-progress aria-live="polite">Contame qué tenés en mente.</p></header>
+      <form class="contact-form" id="contact-form" method="post">
+        <div class="contact-form__body" data-contact-body>
+          <fieldset class="contact-step" data-contact-step>
+            <legend tabindex="-1">¿Qué tenés en mente?</legend>
+            <p class="contact-step__hint">Elegí cómo empezamos.</p>
+            <div class="contact-choices">
+              <label class="contact-choice"><input type="radio" name="request-kind" value="Proyecto" required><span>Un proyecto</span><small>Diseño, identidad, fotografía o desarrollo web.</small></label>
+              <label class="contact-choice"><input type="radio" name="request-kind" value="Consulta" required><span>Una consulta</span><small>Una pregunta, colaboración u otra idea.</small></label>
+            </div>
+          </fieldset>
+          <fieldset class="contact-step" data-contact-step>
+            <legend tabindex="-1" data-contact-details-title>Contame la idea</legend>
+            <div data-project-fields>
+              <div class="contact-field"><label for="contact-company">Marca o empresa <span>(opcional)</span></label><input id="contact-company" name="company" autocomplete="organization" maxlength="160"></div>
+              <fieldset class="contact-services"><legend>¿En qué necesitás ayuda? <span>(opcional)</span></legend>
+                <label><input type="checkbox" name="services" value="Identidad visual"><span>Identidad visual</span></label><label><input type="checkbox" name="services" value="Editorial y afiches"><span>Editorial y afiches</span></label><label><input type="checkbox" name="services" value="Diseño y desarrollo web"><span>Diseño y desarrollo web</span></label><label><input type="checkbox" name="services" value="Fotografía"><span>Fotografía</span></label><label><input type="checkbox" name="services" value="Dirección creativa"><span>Dirección creativa</span></label><label><input type="checkbox" name="services" value="A definir"><span>A definir</span></label>
+              </fieldset>
+            </div>
+            <div class="contact-field"><label for="contact-message" data-contact-message-label>La idea y lo que querés lograr <span>(obligatorio)</span></label><textarea id="contact-message" name="message" rows="4" autocomplete="off" maxlength="6000" data-lenis-prevent required></textarea></div>
+          </fieldset>
+          <fieldset class="contact-step" data-contact-step>
+            <legend tabindex="-1">Un poco de contexto</legend>
+            <p class="contact-step__hint">Si todavía no lo sabés, podés dejarlo abierto.</p>
+            <div data-project-fields>
+              <div class="contact-field"><label for="contact-deadline">Plazo o fecha ideal <span>(opcional)</span></label><input id="contact-deadline" name="deadline" autocomplete="off" maxlength="160" placeholder="A definir"></div>
+              <div class="contact-budget"><div class="contact-field"><label for="contact-budget">Presupuesto estimado <span>(opcional)</span></label><input id="contact-budget" name="budget" type="number" inputmode="decimal" min="0" step="any" placeholder="A definir"></div><div class="contact-field"><label for="contact-currency">Moneda</label><select id="contact-currency" name="currency"><option value="ARS">ARS</option><option value="USD">USD</option></select></div></div>
+            </div>
+            <div class="contact-field"><label for="contact-reference">Sitio o referencia <span>(opcional)</span></label><input id="contact-reference" name="reference" type="url" autocomplete="url" placeholder="https://" maxlength="1000"></div>
+            <div class="contact-field"><label for="contact-context">Algo más que debería saber <span>(opcional)</span></label><textarea id="contact-context" name="context" rows="3" autocomplete="off" maxlength="3000" data-lenis-prevent></textarea></div>
+          </fieldset>
+          <fieldset class="contact-step" data-contact-step>
+            <legend tabindex="-1">¿Cómo te contacto?</legend>
+            <div class="contact-field"><label for="contact-name">Nombre <span>(obligatorio)</span></label><input id="contact-name" name="name" autocomplete="name" maxlength="160" required></div>
+            <div class="contact-field"><label for="contact-email">Email <span>(obligatorio)</span></label><input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+          </fieldset>
+          <fieldset class="contact-step" data-contact-step>
+            <legend tabindex="-1">Revisá tu brief</legend>
+            <dl class="contact-review" data-contact-review></dl>
+            <p class="contact-step__hint">El envío todavía está en preparación. Podés copiar o descargar el brief.</p>
+            <div class="contact-review__actions"><button type="button" data-contact-copy disabled data-cursor-action="Copiar brief">Copiar brief</button><button type="button" data-contact-download disabled data-cursor-action="Guardar brief">Descargar brief ↓</button><button type="submit" disabled aria-describedby="contact-status">Enviar consulta</button></div>
+            <pre class="contact-brief-text" data-contact-brief hidden tabindex="0"></pre>
+          </fieldset>
+        </div>
+        <p class="contact-status" id="contact-status" role="status">El envío estará disponible próximamente.</p>
+        <div class="contact-form__navigation" data-contact-navigation hidden><button type="button" data-contact-back data-cursor-action="Paso anterior">← Anterior</button><button type="button" data-contact-next data-cursor-action="Continuar">Continuar →</button></div>
+      </form>
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer__location">
-        <p>Buenos Aires, Argentina</p>
-        <time data-local-clock>Hora de Buenos Aires</time>
-      </div>
       <span class="site-footer__signature">Portfolio</span>
     </footer>
   </body>

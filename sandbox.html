@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-load-screen>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <title>Sandbox — Santiago Barbieri</title>
+    <meta name="description" content="Mesa de trabajo de Santiago Barbieri: portadas, afiches, logos, fotografías e ilustraciones conectados con sus proyectos.">
+    <meta name="theme-color" content="#f1ece0">
+    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/shell.css">
+    <link rel="stylesheet" href="./css/cursor.css">
+    <link rel="stylesheet" href="./css/sandbox.css">
+    <script src="./js/transitions.js"></script>
+    <script type="module" src="./js/sandbox.js"></script>
+  </head>
+  <body class="sandbox-page">
+    <div class="site-loader" role="status"><span class="site-loader__rose" aria-hidden="true"></span><span class="site-loader__label visually-hidden">Cargando mesa de trabajo</span></div>
+    <a class="skip-link" href="#main-content">Saltar a la mesa de trabajo</a>
+    <header class="sandbox-header">
+      <h1 class="sandbox-header__title">Sandbox</h1>
+      <a class="sandbox-header__exit" href="./index.html" aria-label="Volver al archivo" data-cursor-action="Volver al archivo"><span class="identity__glyph" aria-hidden="true"></span></a>
+    </header>
+    <main id="main-content" class="sandbox-main" tabindex="-1">
+      <div class="sandbox-fallback" data-sandbox-fallback>
+        <h2>Mesa de trabajo</h2>
+        <p>Explorá las piezas de cada proyecto.</p>
+        <ul>
+          <li><a href="./project.html?p=stephen-king">Stephen King</a></li>
+          <li><a href="./project.html?p=olas-ditella">OLAS Di Tella</a></li>
+          <li><a href="./project.html?p=el-armado">El Armado</a></li>
+          <li><a href="./project.html?p=fotos-en-zapallar">Fotos en Zapallar</a></li>
+          <li><a href="./project.html?p=orfeo">Orfeo</a></li>
+        </ul>
+        <noscript><p>La mesa interactiva necesita JavaScript. Podés abrir los proyectos desde esta lista.</p></noscript>
+      </div>
+      <div class="sandbox-viewport" tabindex="0" role="region" aria-label="Mesa de trabajo. Arrastrá o usá las flechas para recorrer; más y menos para acercar o alejar." aria-describedby="sandbox-instructions" data-sandbox-viewport data-cursor-interactive data-cursor-action="Arrastrar mesa" hidden>
+        <div class="sandbox-world" data-sandbox-world></div>
+      </div>
+    </main>
+    <footer class="sandbox-controls" data-sandbox-controls hidden>
+      <details class="sandbox-testament">
+        <summary>Sobre esta mesa <span aria-hidden="true">+</span></summary>
+        <p id="sandbox-instructions">Piezas de distintos proyectos se encuentran por formato. Arrastrá o desplazá para recorrer la mesa; tocá una pieza para conocer su origen. Usá + y − para cambiar la escala.</p>
+      </details>
+      <nav class="sandbox-groups" aria-label="Grupos de la mesa" data-sandbox-groups></nav>
+      <div class="sandbox-zoom" role="group" aria-label="Escala de la mesa">
+        <button type="button" data-sandbox-zoom="out" aria-label="Alejar mesa" data-cursor-action="Alejar">−</button>
+        <output data-sandbox-scale aria-label="Escala actual">100%</output>
+        <button type="button" data-sandbox-zoom="in" aria-label="Acercar mesa" data-cursor-action="Acercar">+</button>
+        <button type="button" data-sandbox-fit data-cursor-action="Ver toda la mesa">Ver todo</button>
+      </div>
+    </footer>
+    <dialog class="sandbox-detail" aria-labelledby="sandbox-detail-title" data-sandbox-detail>
+      <div class="sandbox-detail__layout">
+        <div class="sandbox-detail__media" data-detail-media></div>
+        <div class="sandbox-detail__copy">
+          <button class="sandbox-detail__close" type="button" aria-label="Cerrar ficha" data-detail-close data-cursor-action="Cerrar ficha"><span aria-hidden="true">×</span></button>
+          <p class="sandbox-detail__origin" data-detail-origin></p>
+          <h2 id="sandbox-detail-title" data-detail-title></h2>
+          <p class="sandbox-detail__description" data-detail-description></p>
+          <div class="sandbox-detail__palette" data-detail-palette></div>
+          <a class="sandbox-detail__link" data-detail-link data-cursor-action="Ver proyecto completo">Ver proyecto completo <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

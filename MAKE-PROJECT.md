@@ -142,12 +142,11 @@ Las variantes van en `variants: [{src, w, h, alt, caption, sources?}]` de la sec
 
 Para piezas editoriales individuales, `block: cover-study` muestra una tapa y una ficha lateral. La sección incluye un único `item`, `colors: [{name, hex}]` e `inspiration` como lectura visual breve. Si no existen referencias originales, describir solamente motivos visibles; no atribuir influencias al autor. En Stephen King los colores están muestreados de cada portada y esta lectura fue autorizada por Santi.
 
-## 5. Sandbox
+## 5. Sandbox global
 
-- Si existe `sandbox/`, usa solo esas imágenes. Si no, usa la portada, el logo, las piezas de `pair` y hasta 4 elementos más de otras secciones.
-- Posiciones iniciales en `%` del canvas, deterministas (mismo input, mismo resultado), sin solapamientos, con mucho espacio libre. La pieza principal al centro-izquierda, el logo arriba al centro, las variantes a la derecha.
-- Ancho de cada asset entre 10% y 25% del canvas. Paleta como bloque de círculos si hay colores.
-- El arrastre es del front-end (ver `AGENTS.md`): no guardes posiciones nuevas en el JSON.
+La mesa global `sandbox.html` obtiene sus piezas del mismo banco curado que el carrusel. `project-assets.js` conserva procedencia y sección, y `sandbox.js` las agrupa por formato en círculos. No generar un canvas separado por proyecto ni duplicar fuentes. La cámara se desplaza con drag, wheel, pinch, controles y teclado; tocar una pieza abre su ficha con acceso al proyecto completo. Los originales permanecen intactos.
+
+Para una colección editorial con `catalogue`, los bloques `cover-study` alimentan la colección de libros de `medium-collection.js`. Su ficha desplegable conserva `colors`, `inspiration` y `variants`. Los afiches con `frame: poster` usan el mismo componente sobre papel, con cinco miniaturas por fila. No inventar información de contratapas o lomos; son maquetas digitales del frente disponible.
 
 ## 6. Imágenes
 
@@ -167,7 +166,7 @@ Para piezas editoriales individuales, `block: cover-study` muestra una tapa y un
 
 ## 8. Checklist y reporte final
 
-Antes de terminar, verifica que `project.html?p=<slug>` abre sin errores en consola, que ninguna imagen devuelve 404 y que Overlook y Sandbox cargan. Responde con:
+Antes de terminar, verifica que `project.html?p=<slug>` abre sin errores en consola, que ninguna imagen devuelve 404 y que el proyecto y la mesa global cargan. Responde con:
 
 1. Archivos creados o modificados.
 2. Secciones generadas (número, título, bloque, cantidad de imágenes).
@@ -183,14 +182,14 @@ La propiedad raíz `family` usa `identity`, `passion` o `photography` según la 
 - `layout: symbol-grid`: símbolos contenidos en cinco columnas en desktop y dos en mobile.
 - `layout: reference-sheet`: referencias pequeñas, cuatro columnas en desktop y dos en mobile, sin ampliar originales de baja resolución.
 - `layout: product-triptych`: tres piezas iguales alineadas, con captions y ampliación. Mantiene tres columnas y las imágenes completas.
-- `catalogue: {title}`: índice visual de los bloques `cover-study`, cinco tapas por fila, enlazadas a sus estudios originales. No duplica datos de paleta ni variantes.
+- `catalogue: {title}`: colección de los bloques `cover-study` sobre libros digitales, con índice de cinco tapas por fila y ficha desplegable por pieza. No duplica datos de paleta ni variantes.
 - La navegación de secciones usa reemplazo de hash para que cerrar el proyecto vuelva directamente al Archivo. Los rótulos de sección acompañan el contenido con sticky, dejando libre la barra superior y la ficha móvil.
 
 `heroSources: [{src, w, h}]` permite reutilizar las versiones responsive de la apertura sin cargar siempre el archivo más grande. Mantener las dimensiones y rutas reales.
 
 ## Home vigente
 
-About es una entrada HTML de Archivo con `data-kind="about"`, no un proyecto del registro JSON ni del contador. Conservar esa entrada, el índice lateral, el cursor y la etiqueta de contraste fijo, con contorno e inversión conjunta solo sobre negro uniforme y el scroll común al agregar casos. Las fotos y paletas de los proyectos no se tiñen con el acento global.
+Archivo contiene solo proyectos. About es una página independiente en construcción y no forma parte del registro ni del loop. Los filtros, About/Contact/Shop y Socials/Tools ocupan tres grupos separados. Conservar cursor, física, loop impar y estado de sesión versión 4 al incorporar casos. Shop abrirá Gumroad cuando exista su URL; no inventar enlaces.
 
 En ORFEO, las prendas confirmadas son Viamonte (marrón tejido), Talcahuano (negro liso) y Lavalle (azul tejido). La foto `IMG_4452` del modelo junto al árbol pertenece a Viamonte. Verificar visualmente las piezas antes de agruparlas; no inferir la prenda por la ubicación o por un alt previo.
 

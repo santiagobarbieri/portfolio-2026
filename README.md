@@ -1,6 +1,6 @@
 # Santiago Barbieri — Portfolio
 
-El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. About está integrado en el loop. El índice está en Archivo; Contact y Shop abren otras pestañas. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Shop y el retrato de About están pendientes de contenido.
+El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. About es un recorrido independiente en construcción. El lateral separa filtros, About/Contact/Shop y Socials/Tools. Contact abre otra pestaña; Shop abrirá Gumroad cuando exista su URL. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Shop y el retrato de About están pendientes de contenido. El glyph abre `sandbox.html`, la mesa global clara con grupos circulares, arrastre, zoom y fichas de procedencia.
 
 ## Publicación
 
@@ -8,7 +8,7 @@ El único home es `index.html`: Archivo, con proyectos intercalados en dos colum
 - GitHub (privado): https://github.com/santiagobarbieri/portfolio-2026
 - Proyecto de Vercel: `portfolio-2026`. La rama `main` está conectada para publicar automáticamente cada push.
 
-Vercel sirve HTML, CSS, JavaScript y JSON directamente: no hay instalación ni compilación. `.vercelignore` excluye las notas internas, el video fuente pendiente de convertir y los originales que ya tienen versiones WebP en uso. Los originales se conservan en el repositorio.
+Vercel sirve HTML, CSS, JavaScript y JSON directamente: no hay instalación ni compilación. `.vercelignore` excluye notas internas, el prototipo local BOOKS y el video fuente pendiente de convertir. Los originales de las piezas publicadas se conservan para sus descargas.
 
 ## Vista local
 
@@ -28,4 +28,11 @@ Los módulos ES y la lectura de JSON necesitan HTTP. Abrir `index.html` como `fi
 - `data/projects/<slug>.json`: detalles y secciones opcionales.
 - `assets/images/<slug>/`: originales; no se renombran ni alteran.
 
-El Archivo contiene cinco proyectos con imágenes. El envío de Contact sigue pendiente de configurar; no se simula un envío exitoso.
+El Archivo contiene cinco proyectos con imágenes. Contact guía el brief en cinco pasos y permite copiarlo o descargarlo. El envío sigue pendiente de configurar; no se simula un envío exitoso.
+
+
+## Mesa y colecciones
+
+- Sandbox reutiliza 51 piezas curadas de los cinco proyectos, con grupos por formato y regreso a la cámara guardada.
+- Stephen King presenta diez libros digitales. OLAS y El Armado presentan afiches sobre papel. Los índices mantienen cinco columnas; las fichas se despliegan bajo demanda.
+- Las maquetas usan CSS, imágenes propias y controles nativos. Sin dependencias nuevas, rotación automática ni textos inventados del prototipo BOOKS.

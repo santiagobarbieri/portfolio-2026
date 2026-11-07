@@ -1,3 +1,5 @@
+import { collectProjectAssets, makeHeroItem } from "./project-assets.js";
+import { createMediumCollection } from "./medium-collection.js";
 import { createImageGallery, imageKey } from "./image-gallery.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
@@ -8,14 +10,23 @@ const content = document.querySelector("[data-entry-content]");
 const title = document.querySelector("[data-entry-title]");
 const slug = new URLSearchParams(window.location.search).get("p");
 
+const fromSandbox = document.referrer && new URL(document.referrer).origin === location.origin && /\/sandbox\.html$/.test(new URL(document.referrer).pathname);
+const returnTarget = fromSandbox ? "./sandbox.html" : "./index.html";
+const closeLink = document.querySelector("[data-close-entry]");
+if (closeLink) {
+  closeLink.href = returnTarget;
+  closeLink.setAttribute("aria-label", fromSandbox ? "Cerrar y volver al Sandbox" : "Cerrar y volver al archivo");
+  closeLink.dataset.cursorAction = fromSandbox ? "Volver al Sandbox" : "Volver al archivo";
+}
+
 function closeEntry(event) {
   if (event?.metaKey || event?.ctrlKey || event?.shiftKey || event?.altKey) return;
   const previous = document.referrer ? new URL(document.referrer) : null;
-  if (previous?.origin === window.location.origin && /\/(?:index\.html)?$/.test(previous.pathname)) {
+  if (previous?.origin === window.location.origin && /\/(?:index\.html|sandbox\.html)?$/.test(previous.pathname) && history.length > 1) {
     event?.preventDefault();
     window.history.back();
   } else if (event?.type === "keydown") {
-    window.location.href = "./index.html";
+    window.location.href = returnTarget;
   }
 }
 
@@ -92,56 +103,6 @@ function makePalette(colors) {
 
 let projectAssets = [];
 
-function makeHeroItem(project) {
-  const usesCover = !project.hero || imageKey({ src: project.hero }) === imageKey({ src: project.cover });
-  return {
-    src: project.hero || project.cover,
-    original: project.heroOriginal || (usesCover ? project.coverOriginal : undefined),
-    w: project.heroW || project.w, h: project.heroH || project.h,
-    alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`,
-    sources: project.heroSources || (usesCover ? project.coverSources : undefined),
-    name: project.heroName,
-    gallery: project.heroGallery,
-  };
-}
-
-function collectProjectAssets(project) {
-  const assets = new Map();
-  const photography = project.family === "photography";
-  function add(item, name, contextual = false) {
-    if (item.gallery === false) return;
-    const key = imageKey(item);
-    if (!key) return;
-    const existing = assets.get(key);
-    if (!existing) assets.set(key, { ...item, name: item.name || name, contextualName: contextual, explicitName: Boolean(item.name) });
-    else if (contextual && !existing.contextualName && !existing.explicitName) {
-      existing.name = item.name || name;
-      existing.contextualName = true;
-    }
-    if (existing && item.size && !existing.size) existing.size = item.size;
-  }
-  if (project.hero || project.cover) add(makeHeroItem(project), photography ? undefined : project.title);
-  const sections = project.sections || (project.images?.length ? [{ title: "Imágenes", items: project.images }] : []);
-  sections.forEach((section) => {
-    if (section.gallery === false) return;
-    const primary = section.items || [];
-    const variants = section.variants || [];
-    function label(item, index, variant) {
-      if (photography) return item.name;
-      const title = section.title || "Imagen";
-      if (item.name) return item.name;
-      if (item.caption) return variant ? `${title} — ${item.caption}` : section.block === "cover-study" ? title : item.caption;
-      const count = variant ? variants.length : primary.length;
-      return count > 1 ? `${title} — ${String(index + 1).padStart(2, "0")}` : title;
-    }
-    primary.forEach((value, index) => {
-      const item = typeof value === "string" ? { src: value } : value;
-      add(item, label(item, index, false), true);
-    });
-    variants.forEach((item, index) => add(item, label(item, index, true), true));
-  });
-  return [...assets.values()];
-}
 
 function openGallery(item) {
   const index = projectAssets.findIndex((entry) => imageKey(entry) === imageKey(item));
@@ -219,6 +180,13 @@ function renderSection(data, index) {
 
   if (data.block === "palette" && Array.isArray(data.colors)) {
     body.append(makePalette(data.colors));
+  } else if (data.frame === "poster" && data.gallery !== false && data.items?.length) {
+    body.append(createMediumCollection({
+      medium: "poster", title: data.title,
+      items: data.items.filter((item) => item.gallery !== false).map((item, index) => ({ ...item, name: item.name || item.caption || `${data.title} ${String(index + 1).padStart(2, "0")}` })),
+      onOpen: openGallery,
+      renderNotes: data.variants?.length ? (_item, target) => target.append(makeVariants(data.variants, data.variantsTitle, true, data.gallery !== false)) : undefined,
+    }));
   } else if (data.block === "comparison") {
     const spread = makeElement("div", "project-section__images project-comparison");
     if (layout === "brand-board") spread.classList.add("project-comparison--brand-board");
@@ -264,31 +232,6 @@ function jumpToSection(event) {
   target.focus({ preventScroll: true });
 }
 
-function makeCatalogue(sections, config) {
-  const catalogue = makeElement("section", "project-section project-catalogue");
-  catalogue.id = "project-catalogue";
-  catalogue.tabIndex = -1;
-  const heading = makeElement("div", "project-section__heading");
-  const title = makeElement("h2", "project-section__title", config.title || "Portadas");
-  title.id = "project-catalogue-title";
-  catalogue.setAttribute("aria-labelledby", title.id);
-  heading.append(title);
-  const grid = makeElement("div", "project-catalogue__grid project-poster-grid");
-  sections.forEach((section, index) => {
-    if (section.block !== "cover-study" || !section.items?.length) return;
-    const link = makeElement("a", "project-catalogue__link");
-    link.href = `#section-${index + 1}`;
-    link.setAttribute("aria-label", `Ver ${section.title}: paleta y lectura visual`);
-    const media = makeMedia({ ...section.items[0], caption: section.title }, "(max-width: 600px) 18vw, 160px");
-    if (!media) return;
-    link.append(media);
-    grid.append(link);
-  });
-  grid.addEventListener("click", jumpToSection);
-  catalogue.append(heading, grid);
-  return catalogue;
-}
-
 function makeProjectSidebar(project, sections, hasPalette) {
   const sidebar = makeElement("aside", "project-sidebar");
   sidebar.setAttribute("aria-label", "Ficha del proyecto");
@@ -309,7 +252,6 @@ function makeProjectSidebar(project, sections, hasPalette) {
   navigation.setAttribute("aria-label", "Secciones del proyecto");
   const list = makeElement("ul");
   const entries = sections.map((section, index) => ({ id: `section-${index + 1}`, text: `${section.n || String(index + 1).padStart(2, "0")} ${section.title}` }));
-  if (project.catalogue) entries.unshift({ id: "project-catalogue", text: "Todas las portadas" });
   if (hasPalette) entries.unshift({ id: "project-colors", text: "Color" });
   entries.forEach(({ id, text }) => {
     const item = makeElement("li");
@@ -410,7 +352,7 @@ function renderProject(project) {
   article.append(header);
   const opening = makeElement("div", "project-entry__opening");
   const heroSource = project.hero || project.cover;
-  if (heroSource) {
+  if (heroSource && !project.catalogue) {
     const hero = makeElement("figure", "project-entry__hero");
     const heroItem = makeHeroItem(project);
     const image = makeImage(heroItem, true);
@@ -427,7 +369,7 @@ function renderProject(project) {
     }
     opening.append(hero);
   }
-  if (project.palette) {
+  if (project.palette && !project.catalogue) {
     const palette = makeElement("section", "project-color-summary");
     palette.id = "project-colors";
     palette.tabIndex = -1;
@@ -439,14 +381,33 @@ function renderProject(project) {
     if (project.palette.description) palette.append(makeElement("p", "project-color-summary__description", project.palette.description));
     opening.append(palette);
   }
-  article.append(opening);
+  if (opening.childElementCount) article.append(opening);
   const sections = Array.isArray(project.sections) ? project.sections : [];
   if (!sections.length && Array.isArray(project.images) && project.images.length) {
     sections.push({ n: "01", title: "Imágenes", block: "grid", items: project.images.map((item) => typeof item === "string" ? { src: item, alt: `${project.title} — Imágenes` } : item) });
   }
-  if (project.catalogue) article.append(makeCatalogue(sections, project.catalogue));
-  sections.forEach((section, index) => article.append(renderSection(section, index)));
-  const sidebar = makeProjectSidebar(project, sections, Boolean(project.palette));
+  let navigationSections = sections;
+  if (project.catalogue && sections.some((section) => section.block === "cover-study")) {
+    const collection = makeElement("section", "project-section");
+    collection.id = "section-1";
+    collection.tabIndex = -1;
+    const heading = makeElement("h2", "project-section__title", "Colección editorial");
+    heading.id = "book-collection-title";
+    collection.setAttribute("aria-labelledby", heading.id);
+    const collectionHeading = makeElement("div", "project-section__heading");
+    collectionHeading.append(heading);
+    collection.append(collectionHeading, createMediumCollection({
+      medium: "book", title: "Portadas sobre libros",
+      items: sections.filter((section) => section.block === "cover-study").map((section) => ({ ...section.items[0], name: section.title, colors: section.colors, study: section })),
+      onOpen: openGallery,
+      renderNotes: (item, target) => target.append(makeCoverNotes(item.study)),
+    }));
+    article.append(collection);
+    navigationSections = [{ n: "01", title: "Colección editorial" }];
+  } else {
+    sections.forEach((section, index) => article.append(renderSection(section, index)));
+  }
+  const sidebar = makeProjectSidebar({ ...project, catalogue: undefined }, navigationSections, Boolean(project.palette && !project.catalogue));
   content.replaceChildren(sidebar, article);
   trackProjectSections(sidebar);
 }
