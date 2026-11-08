@@ -12,14 +12,14 @@ const scaleLabel = document.querySelector("[data-sandbox-scale]");
 const locationLabel = document.querySelector("[data-sandbox-location]");
 const map = document.querySelector("[data-sandbox-map]");
 const mapButton = document.querySelector("[data-sandbox-map-button]");
-const storageKey = "portfolio-sandbox-camera-v2";
+const storageKey = "portfolio-sandbox-camera-v3";
 const preference = matchMedia("(prefers-reduced-motion: reduce)");
 const groupDefinitions = [
-  { id: "books", name: "Portadas de libro", short: "Libros", label: "Portadas", radius: 280, width: 128, height: 182 },
-  { id: "posters", name: "Afiches y formatos", short: "Afiches", label: "Afiches", radius: 330, width: 140, height: 198 },
-  { id: "logos", name: "Logos y símbolos", short: "Logos", label: "Logos", radius: 260, width: 180, height: 138 },
-  { id: "graphics", name: "Ilustración y aplicaciones", short: "Gráfica", label: "Gráfica", radius: 230, width: 160, height: 144 },
-  { id: "photos", name: "Fotografía", short: "Fotos", label: "Fotografía", radius: 420, width: 180, height: 138 },
+  { id: "books", name: "Portadas de libro", short: "Libros", label: "Libros", anchor: [0.3, 0.3], width: 128, height: 182 },
+  { id: "posters", name: "Posters", short: "Posters", label: "Posters", anchor: [0.56, 0.4], width: 140, height: 198 },
+  { id: "logos", name: "Logos y símbolos", short: "Logos", label: "Logos", anchor: [0.68, 0.25], width: 180, height: 138 },
+  { id: "graphics", name: "Ilustración y aplicaciones", short: "Gráfica", label: "Gráfica", anchor: [0.35, 0.68], width: 160, height: 144 },
+  { id: "photos", name: "Fotografía", short: "Fotos", label: "Fotos", anchor: [0.64, 0.66], width: 180, height: 138 },
 ];
 let layout;
 let camera;
@@ -32,9 +32,8 @@ let pinch;
 let sourceButton;
 let saveTimer;
 let piecesCount = 0;
-let currentGroup;
+let activeFilter = null;
 const pointers = new Map();
-const groupButtons = new Map();
 const mapGroups = new Map();
 
 function element(tag, className, text) {
@@ -130,22 +129,24 @@ function renderPieces(projects) {
   })));
   piecesCount = all.length;
   layout = buildSandboxLayout(groupDefinitions.map((group) => ({ ...group, items: interleave(all.filter((item) => classify(item) === group.id)) })));
-  layoutKey = layout.groups.map((group) => `${group.id}:${group.pieces.length}:${group.radius}`).join("|");
+  layoutKey = "mixed-v1|" + layout.groups.map((group) => `${group.id}:${group.pieces.length}`).join("|");
   world.style.width = `${layout.bounds.width}px`;
   world.style.height = `${layout.bounds.height}px`;
   layout.groups.forEach((group) => {
-    const orbit = element("section", "sandbox-orbit");
+    const orbit = element("section", "sandbox-filter-node");
     orbit.dataset.group = group.id;
     orbit.setAttribute("aria-labelledby", `sandbox-group-${group.id}`);
     Object.assign(orbit.style, { left: `${group.x - group.radius}px`, top: `${group.y - group.radius}px`, width: `${group.radius * 2}px`, height: `${group.radius * 2}px` });
-    const heading = element("h2", "sandbox-orbit__label");
+    const heading = element("h2", "sandbox-filter-node__heading");
     heading.id = `sandbox-group-${group.id}`;
-    const focus = element("button", "sandbox-orbit__focus");
+    const focus = element("button", "sandbox-filter-node__button");
     focus.type = "button";
-    focus.setAttribute("aria-label", `Acercarse a ${group.name}: ${group.pieces.length} piezas`);
-    focus.dataset.cursorAction = `Recorrer ${group.short.toLowerCase()}`;
-    focus.append(element("span", "sandbox-orbit__title", group.label), element("span", "sandbox-orbit__count", `${group.pieces.length} piezas`));
-    focus.addEventListener("click", () => { if (!moved) focusGroup(group); });
+    focus.setAttribute("aria-label", `Filtrar ${group.name}: ${group.pieces.length} piezas`);
+    focus.setAttribute("aria-pressed", "false");
+    focus.dataset.filter = group.id;
+    focus.dataset.cursorAction = `Filtrar ${group.short.toLowerCase()}`;
+    focus.append(element("span", "sandbox-filter-node__title", group.label), element("span", "sandbox-filter-node__count", `${group.pieces.length} piezas`));
+    focus.addEventListener("click", () => { if (!moved) toggleFilter(group.id); });
     heading.append(focus);
     orbit.append(heading);
     world.append(orbit);
@@ -169,18 +170,19 @@ function renderPieces(projects) {
       button.append(image);
       button.addEventListener("click", () => {
         if (moved) return;
-        if (matchMedia("(pointer: coarse)").matches && Number(world.dataset.overview)) focusGroup(group);
-        else openPiece(item, button);
+        openPiece(item, button);
       });
       world.append(button);
     });
     const jump = element("button", null, group.short);
     jump.type = "button";
-    jump.dataset.cursorAction = `Recorrer ${group.short.toLowerCase()}`;
-    jump.setAttribute("aria-label", `${group.name} · ${group.pieces.length} piezas`);
-    jump.addEventListener("click", () => focusGroup(group));
+    jump.dataset.cursorAction = `Filtrar ${group.short.toLowerCase()}`;
+    jump.dataset.filter = group.id;
+    jump.setAttribute("aria-pressed", "false");
+    jump.setAttribute("aria-label", `Filtrar ${group.name} · ${group.pieces.length} piezas`);
+    jump.addEventListener("click", () => toggleFilter(group.id));
+    jump.append(element("span", "sandbox-filter-count", String(group.pieces.length)));
     document.querySelector("[data-sandbox-groups]").append(jump);
-    groupButtons.set(group.id, jump);
   });
 }
 
@@ -189,16 +191,21 @@ function makeMap() {
   svg.setAttribute("viewBox", `0 0 ${layout.bounds.width} ${layout.bounds.height}`);
   svg.setAttribute("aria-hidden", "true");
   layout.groups.forEach((group) => {
-    const circle = document.createElementNS(svg.namespaceURI, "circle");
-    circle.setAttribute("cx", group.x); circle.setAttribute("cy", group.y); circle.setAttribute("r", group.radius);
-    circle.classList.add("sandbox-map__group");
-    svg.append(circle); mapGroups.set(group.id, circle);
+    const marks = group.pieces.map((piece) => {
+      const mark = document.createElementNS(svg.namespaceURI, "rect");
+      mark.setAttribute("x", piece.x - piece.width / 2); mark.setAttribute("y", piece.y - piece.height / 2);
+      mark.setAttribute("width", piece.width); mark.setAttribute("height", piece.height);
+      mark.classList.add("sandbox-map__piece");
+      svg.append(mark);
+      return mark;
+    });
+    mapGroups.set(group.id, marks);
   });
   mapView = document.createElementNS(svg.namespaceURI, "rect");
   mapView.classList.add("sandbox-map__view");
   svg.append(mapView);
   mapButton.append(svg);
-  map.open = matchMedia("(min-width: 901px) and (min-height: 650px)").matches;
+  map.open = false;
 }
 
 function updateCamera(state, size) {
@@ -209,20 +216,11 @@ function updateCamera(state, size) {
   if (world.dataset.overview !== overviewValue) world.dataset.overview = overviewValue;
   const scale = `${Math.round(state.scale * 100)}%`;
   if (scaleLabel.value !== scale) scaleLabel.value = scale;
-  const center = worldPoint(state, size.width / 2, size.height / 2);
-  const group = layout.groups.reduce((a, b) => Math.hypot(a.x - center.x, a.y - center.y) < Math.hypot(b.x - center.x, b.y - center.y) ? a : b);
-  const label = overview ? `Mesa completa · ${piecesCount} piezas` : `${group.name} · ${group.pieces.length} piezas`;
+  const filterNodes = state.scale >= 0.35 ? "1" : "0";
+  if (world.dataset.filterNodes !== filterNodes) world.dataset.filterNodes = filterNodes;
   const instruction = document.querySelector("[data-sandbox-instruction]");
-  const coarse = matchMedia("(pointer: coarse)").matches;
-  const hint = overview && coarse ? "Elegí un grupo para acercarte" : coarse ? "Arrastrá para recorrer · pellizcá para acercar" : "Arrastrá para recorrer · + y − cambian la escala";
+  const hint = overview ? "Tocá un círculo para filtrar y acercarte" : matchMedia("(pointer: coarse)").matches ? "Arrastrá para recorrer · pellizcá para acercar" : "Arrastrá para recorrer · + y − cambian la escala";
   if (instruction.textContent !== hint) instruction.textContent = hint;
-  if (locationLabel.textContent !== label) locationLabel.textContent = label;
-  const groupKey = overview ? "all" : group.id;
-  if (currentGroup !== groupKey) {
-    currentGroup = groupKey;
-    groupButtons.forEach((button, id) => !overview && id === group.id ? button.setAttribute("aria-current", "location") : button.removeAttribute("aria-current"));
-    mapGroups.forEach((node, id) => node.classList.toggle("sandbox-map__group--active", !overview && id === group.id));
-  }
   const x = Math.max(0, -state.x / state.scale), y = Math.max(0, -state.y / state.scale);
   mapView.setAttribute("x", x); mapView.setAttribute("y", y);
   mapView.setAttribute("width", Math.max(0, Math.min(layout.bounds.width, (size.width - state.x) / state.scale) - x));
@@ -233,13 +231,32 @@ function saveCamera() {
   if (!camera) return;
   clearTimeout(saveTimer);
   const center = worldPoint(camera.state, camera.size.width / 2, camera.size.height / 2);
-  try { sessionStorage.setItem(storageKey, JSON.stringify({ layout: layoutKey, cx: center.x, cy: center.y, scale: camera.state.scale })); } catch {}
+  try { sessionStorage.setItem(storageKey, JSON.stringify({ layout: layoutKey, filter: activeFilter, cx: center.x, cy: center.y, scale: camera.state.scale })); } catch {}
 }
 function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveCamera, 180); }
-function focusGroup(group) { camera.fit(group.bounds); }
+function renderFilter() {
+  const filtered = layout.groups.find((group) => group.id === activeFilter);
+  const label = filtered ? `${filtered.name} · ${filtered.pieces.length} de ${piecesCount} piezas` : `Todo el mapa · ${piecesCount} piezas`;
+  if (locationLabel.textContent !== label) locationLabel.textContent = label;
+  document.querySelectorAll(".sandbox-piece").forEach((piece) => {
+    piece.dataset.muted = String(Boolean(activeFilter && piece.dataset.group !== activeFilter));
+  });
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    const selected = button.dataset.filter === activeFilter;
+    button.setAttribute("aria-pressed", String(selected));
+    button.dataset.cursorAction = selected ? "Quitar filtro" : `Filtrar ${layout.groups.find((group) => group.id === button.dataset.filter).short.toLowerCase()}`;
+  });
+  mapGroups.forEach((marks, id) => marks.forEach((mark) => mark.classList.toggle("sandbox-map__piece--muted", Boolean(activeFilter && id !== activeFilter))));
+}
+function toggleFilter(id) {
+  activeFilter = activeFilter === id ? null : id;
+  renderFilter();
+  camera.fit(layout.groups.find((group) => group.id === activeFilter)?.bounds || layout.bounds);
+}
 function opening(immediate = false) {
-  const start = matchMedia("(max-width: 600px)").matches ? layout.groups.find((group) => group.id === "posters")?.bounds || layout.groups[0].bounds : layout.opening;
-  camera.fit(start, immediate);
+  activeFilter = null;
+  renderFilter();
+  camera.fit(layout.bounds, immediate);
 }
 
 function navigationKey(event) {
@@ -248,7 +265,7 @@ function navigationKey(event) {
   const moves = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] };
   if (moves[event.key]) { event.preventDefault(); camera.pan(...moves[event.key]); }
   else if (["+", "=", "-"].includes(event.key)) { event.preventDefault(); camera.zoom(camera.destination.scale * (event.key === "-" ? 0.8 : 1.25)); }
-  else if (event.key === "0") { event.preventDefault(); camera.fit(); }
+  else if (event.key === "0") { event.preventDefault(); opening(); }
   else if (event.key === "1") { event.preventDefault(); camera.zoom(1); }
   else if (event.key === "Home") { event.preventDefault(); opening(); }
 }
@@ -329,7 +346,7 @@ function initNavigation() {
   });
   viewport.addEventListener("keydown", navigationKey);
   document.querySelectorAll("[data-sandbox-zoom]").forEach((button) => button.addEventListener("click", () => camera.zoom(camera.destination.scale * (button.dataset.sandboxZoom === "in" ? 1.25 : 0.8))));
-  document.querySelector("[data-sandbox-fit]").addEventListener("click", () => camera.fit());
+  document.querySelector("[data-sandbox-fit]").addEventListener("click", () => opening());
   document.querySelector("[data-sandbox-reset]").addEventListener("click", () => camera.zoom(1));
   document.querySelector("[data-detail-close]").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => {
@@ -368,7 +385,7 @@ function initMapNavigation() {
   mapButton.addEventListener("pointermove", (event) => { if (event.pointerId === pointer) position(event, true); });
   mapButton.addEventListener("pointerup", () => { pointer = undefined; scheduleSave(); });
   mapButton.addEventListener("pointercancel", () => { pointer = undefined; });
-  mapButton.addEventListener("click", (event) => { if (event.detail === 0) camera.fit(); });
+  mapButton.addEventListener("click", (event) => { if (event.detail === 0) opening(); });
   mapButton.addEventListener("keydown", navigationKey);
   map.addEventListener("keydown", (event) => { if (event.key === "Escape") { map.open = false; map.querySelector("summary").focus(); } });
 }
@@ -394,8 +411,11 @@ try {
   initNavigation();
   let saved;
   try { saved = JSON.parse(sessionStorage.getItem(storageKey)); } catch {}
-  if (saved?.layout === layoutKey && [saved.cx, saved.cy, saved.scale].every(Number.isFinite)) camera.move({ x: viewport.clientWidth / 2 - saved.cx * saved.scale, y: viewport.clientHeight / 2 - saved.cy * saved.scale, scale: saved.scale }, true);
-  else opening(true);
+  if (saved?.layout === layoutKey && [saved.cx, saved.cy, saved.scale].every(Number.isFinite)) {
+    activeFilter = layout.groups.some((group) => group.id === saved.filter) ? saved.filter : null;
+    renderFilter();
+    camera.move({ x: viewport.clientWidth / 2 - saved.cx * saved.scale, y: viewport.clientHeight / 2 - saved.cy * saved.scale, scale: saved.scale }, true);
+  } else opening(true);
   await waitForImages(viewport);
 } catch {
   viewport.hidden = controls.hidden = true;

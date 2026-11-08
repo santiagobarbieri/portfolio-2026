@@ -117,7 +117,7 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 2. **About.** Página independiente con un recorrido vertical que contará la historia hasta hoy. Actualmente en construcción, con capítulos reservados y certificados existentes; no inventar fechas ni hitos. Testament sigue cerrado por defecto, con scroll interno y zoom.
 3. **Contact.** Formulario guiado: motivo, detalles, contexto, datos y revisión. Distinguir proyecto de consulta. Texto largo con scroll interno. Envío pendiente de configurar; permitir copiar/guardar el brief sin simular envío.
 4. **Proyecto.** Vista ordenada desde su JSON. Apertura con nombre y clasificación, pieza principal y paleta; tabla de metadatos en la columna izquierda y secciones numeradas con rótulo superior dentro de las dos columnas centrales.
-5. **Sandbox global.** Mesa cálida clara, texto negro, grupos circulares de portadas, afiches, logos, gráfica y fotografía. Mezclar procedencias dentro de cada formato. Arrastrar la cámara, wheel, zoom, pinch y teclado; no mover las piezas individualmente. Ficha pequeña con imagen, origen, paleta cuando existe y acceso al proyecto completo. Conservar cámara al volver.
+5. **Sandbox global.** Un mapa general con todas las piezas mezcladas en un mismo espacio. Los círculos son filtros por formato, no contenedores ni islas de contenido. Activar un filtro encuadra sus coincidencias a color; el resto permanece visible en blanco y negro y al 50% de opacidad. Quitar el filtro devuelve todo a color. Mantener drag, wheel, zoom, pinch, teclado y fichas de procedencia.
 
 ## 6. Accesibilidad y performance
 
@@ -223,7 +223,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 
 ## Sandbox global y colecciones sobre soportes
 
-- `sandbox.html`, `css/sandbox.css` y `js/sandbox.js` implementan la mesa global de las referencias Sandbox/Sandbox-1. Fondo #f1ece0, texto negro, círculos finos como única guía gráfica. El logo del marco abre esta vista; no sustituirlo por un enlace al home.
+- `sandbox.html`, `css/sandbox.css` y `js/sandbox.js` implementan la mesa global de las referencias Sandbox/Sandbox-1. Fondo #f1ece0, texto negro y círculos como controles de filtro dentro de un campo compartido. El logo del marco abre esta vista; no sustituirlo por un enlace al home.
 - Reutilizar el banco curado mediante `project-assets.js`. No reintroducir imágenes descartadas ni duplicar exportaciones. La marca introductoria de Stephen King se permite en Logos aunque esté excluida del carrusel editorial.
 - Arrastre, wheel y zoom afectan la cámara; grupos y piezas permanecen deterministas y sin colisiones. Flechas, +/−, Home, foco y controles visibles permiten recorrer sin mouse. El popup usa dialog nativo con Escape y retorno de foco. Proyecto abierto desde la mesa vuelve a su posición guardada.
 - `medium-collection.js` y su CSS presentan las portadas sobre libros digitales y los afiches sobre papel. Interfaz neutra, Albert Sans, sin luces ambientales, acentos de color ni textos de proceso inventados. Los originales permanecen completos; solo el soporte se representa en 3D con CSS. No inventar contratapas ni lomos diseñados.
@@ -242,11 +242,19 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 
 ## Movimiento y orientación del Sandbox
 
-- `sandbox-layout.js` calcula radios, posiciones y límites a partir de las proporciones reales de las piezas curadas. Conservar los grupos por formato y las procedencias mezcladas, sin colisiones, incluyendo el margen de hover.
+- `sandbox-layout.js` distribuye todas las piezas en un mismo campo, con formatos y proyectos mezclados y posiciones deterministas sin colisiones. Los nodos circulares son filtros, no recintos alrededor de las piezas. Reservar espacio para los nodos y el crecimiento de hover.
 - `sandbox-camera.js` controla una única cámara. Wheel y navegación usan una interpolación breve; el arrastre sigue el gesto directamente y al soltar puede continuar como máximo 120px por eje. Sin rebotes ni RAF permanente; movimiento reducido elimina la interpolación y la inercia.
-- Al elegir un grupo, encuadrar todas sus piezas completas, con margen. No imponer una escala mínima fija que corte la composición en mobile. Los límites permiten centrar los grupos cercanos a los bordes.
-- Primera visita: desktop muestra la zona superior de la mesa; mobile entra por Afiches, completo. “Ver todo” encuadra la mesa global. En vista general táctil, el primer toque acerca el grupo; ya dentro, tocar una pieza abre su ficha.
-- El mapa indica la zona visible y permite cambiarla por toque o arrastre. Mantenerlo compacto, cerrable y funcional con teclado; no convertirlo en una capa decorativa. Las guías circulares conservan un grosor de pantalla legible al cambiar la escala.
+- Al activar un filtro circular, encuadrar sus coincidencias completas, con margen. El filtro solo cambia color/opacidad y cámara; nunca reordena ni oculta piezas. No imponer una escala mínima fija que corte la composición en mobile. Los límites permiten centrar los grupos cercanos a los bordes.
+- Primera visita: vista general de todo el mapa en desktop y mobile. Los círculos del campo y de la barra inferior activan el mismo filtro. Tocar de nuevo el activo o “Ver todo” quita el filtro y recupera el conjunto a color. Tocar cualquier pieza, incluso atenuada, abre su ficha.
+- El minimapa representa las piezas distribuidas y la zona visible; refleja también el filtro activo. Permite cambiar de zona por toque o arrastre. Mantenerlo compacto, cerrable y funcional con teclado.
 - Flechas desplazan; +/− cambian la escala; 0 muestra toda la mesa; 1 vuelve a 100%; Home vuelve al encuadre inicial. Tab trae a la vista las piezas fuera de pantalla. No desplazar la cámara por el foco generado al tocar con mouse o dedo.
-- Conservar cámara por coordenadas del mundo al volver de un proyecto o cambiar viewport. Estado `portfolio-sandbox-camera-v2`, invalidado cuando cambia la disposición. Cancelar gestos y movimiento al perder foco o al ocultar la pestaña.
+- Conservar cámara por coordenadas del mundo al volver de un proyecto o cambiar viewport. Estado `portfolio-sandbox-camera-v3`, incluyendo el filtro activo, invalidado cuando cambia la disposición. Cancelar gestos y movimiento al perder foco o al ocultar la pestaña.
 - Las fichas mantienen la procedencia, las paletas existentes y el enlace al proyecto. El banco sigue siendo de 51 piezas curadas: no reintroducir miniaturas descartadas ni modificar originales.
+
+
+## Mega mapa de contenido — dirección vigente
+
+- El Sandbox reúne el trabajo en un solo espacio continuo; no distribuir los formatos en anillos separados. Mantener la posición de cada pieza al filtrar para conservar la memoria espacial.
+- Los círculos Libros, Posters, Logos, Gráfica y Fotos son filtros con estado `aria-pressed`. Un filtro activo conserva sus coincidencias a color/opacidad 1 y aplica `grayscale(1)` y `opacity: 0.5` al resto del mapa. Es un tratamiento de interfaz: no modificar archivos ni las imágenes originales de las fichas.
+- No elegir filtros automáticamente al desplazar la cámara. “Ver todo”, Home y 0 quitan el filtro y encuadran todo. El zoom manual, el minimapa y el desplazamiento conservan el filtro elegido.
+- La cámara y el filtro se conservan al volver de un proyecto. Los estados antiguos del esquema de islas no se reutilizan en la nueva distribución.

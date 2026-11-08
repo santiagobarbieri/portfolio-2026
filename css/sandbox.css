@@ -12,11 +12,11 @@
 .sandbox-fallback li { margin-top: 12px; }
 .sandbox-viewport { position: absolute; inset: 100px 0 114px; overflow: hidden; touch-action: none; outline-offset: -4px; }
 .sandbox-world { position: absolute; left: 0; top: 0; width: 1px; height: 1px; transform-origin: 0 0; }
-.sandbox-orbit { position: absolute; border: calc(1px / var(--sandbox-scale, 1)) solid color-mix(in srgb, var(--fg) 38%, transparent); border-radius: 50%; pointer-events: none; }
-.sandbox-orbit__label { position: absolute; inset: 0; font-weight: 300; }
-.sandbox-orbit__focus { display: grid; place-content: center; gap: calc(8px / var(--sandbox-scale, 1)); width: 100%; height: 100%; padding: 0; border: 0; border-radius: 50%; background: none; text-align: center; font-weight: 300; pointer-events: auto; --interaction-origin: center; --interaction-scale: 1.015; }
-.sandbox-orbit__title { font-size: calc(14px / var(--sandbox-scale, 1)); font-weight: 300; }
-.sandbox-orbit__count { color: var(--mute); font-size: calc(11px / var(--sandbox-scale, 1)); }
+.sandbox-filter-node { position: absolute; border: calc(1px / var(--sandbox-scale, 1)) solid color-mix(in srgb, var(--fg) 38%, transparent); border-radius: 50%; pointer-events: none; }
+.sandbox-filter-node__heading { position: absolute; inset: 0; font-weight: 300; }
+.sandbox-filter-node__button { display: grid; place-content: center; gap: calc(8px / var(--sandbox-scale, 1)); width: 100%; height: 100%; padding: 0; border: 0; border-radius: 50%; background: none; text-align: center; font-weight: 300; pointer-events: auto; --interaction-origin: center; --interaction-scale: 1.015; }
+.sandbox-filter-node__title { font-size: calc(14px / var(--sandbox-scale, 1)); font-weight: 300; }
+.sandbox-filter-node__count { color: var(--mute); font-size: calc(11px / var(--sandbox-scale, 1)); }
 .sandbox-piece { position: absolute; display: grid; place-items: center; padding: 0; border: 0; background: transparent; transform: translate(-50%, -50%); user-select: none; -webkit-user-select: none; --interaction-scale: 1; }
 .sandbox-piece[aria-busy="true"]::after { content: ""; position: absolute; width: 20px; height: 20px; background: var(--fg); mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; animation: rose-steps 1600ms steps(8, end) infinite; }
 .sandbox-piece[data-error] img { visibility: hidden; }
@@ -27,8 +27,15 @@
 .sandbox-controls { position: fixed; z-index: 6; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 10px var(--frame-margin) max(16px, env(safe-area-inset-bottom)); background: var(--bg); }
 .sandbox-groups, .sandbox-zoom, .sandbox-utilities { display: flex; align-items: center; gap: 16px; }
 .sandbox-groups button, .sandbox-zoom button, .sandbox-map summary { min-height: 44px; padding: 4px 0; border: 0; background: none; font-size: var(--text-body); }
-.sandbox-groups button { color: var(--mute); }
-.sandbox-groups button[aria-current] { color: var(--fg); font-weight: 600; }
+.sandbox-groups { gap: 12px; }
+.sandbox-groups button { display: grid; place-content: center; gap: 2px; width: 64px; height: 64px; min-height: 64px; border: 1px solid var(--line); border-radius: 50%; color: var(--fg); --interaction-origin: center; }
+.sandbox-groups button[aria-pressed="true"] { border: 2px solid var(--fg); font-weight: 600; }
+.sandbox-filter-count { font-size: var(--text-meta); font-weight: 300; color: var(--mute); }
+.sandbox-filter-node:has([aria-pressed="true"]) { border-width: calc(2px / var(--sandbox-scale, 1)); border-color: var(--fg); }
+.sandbox-filter-node__button[aria-pressed="true"] { font-weight: 600; }
+.sandbox-world[data-filter-nodes="0"] .sandbox-filter-node { visibility: hidden; }
+.sandbox-piece { opacity: 1; filter: grayscale(0); transition: opacity 180ms var(--ease), filter 180ms var(--ease), scale var(--interaction-duration) var(--ease); }
+.sandbox-piece[data-muted="true"] { opacity: 0.5; filter: grayscale(1); }
 .sandbox-utilities { gap: 24px; }
 .sandbox-hint { color: var(--mute); font-size: var(--text-meta); }
 .sandbox-zoom { gap: 0; }
@@ -41,8 +48,8 @@
 .sandbox-map__panel { position: absolute; right: 0; bottom: calc(100% + 12px); width: 190px; padding: 12px; background: var(--bg); border: 1px solid var(--line); }
 .sandbox-map__canvas { display: block; width: 100%; aspect-ratio: 1.4; padding: 0; border: 0; background: none; touch-action: none; --interaction-scale: 1; }
 .sandbox-map__canvas svg { display: block; width: 100%; height: 100%; }
-.sandbox-map__group { fill: none; stroke: var(--mute); stroke-width: 1; vector-effect: non-scaling-stroke; }
-.sandbox-map__group--active { stroke: var(--fg); }
+.sandbox-map__piece { fill: var(--fg); }
+.sandbox-map__piece--muted { opacity: 0.5; }
 .sandbox-map__view { fill: #0a0a0a0a; stroke: var(--fg); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .sandbox-map__panel p { margin-top: 8px; color: var(--mute); font-size: var(--text-meta); }
 .sandbox-detail { width: min(600px, calc(100vw - 32px)); max-height: calc(100svh - 64px); padding: 0; border: 0; background: var(--bg); color: var(--fg); overflow-y: auto; }
@@ -78,15 +85,12 @@
 }
 @media (max-width: 600px) {
   .sandbox-hint { display: none; }
-  .sandbox-groups button { font-size: 11px; }
+  .sandbox-groups button { width: 52px; height: 52px; min-height: 52px; font-size: 11px; }
   .sandbox-detail__copy { padding: 24px 16px 12px; min-height: 200px; }
   .sandbox-detail__layout { grid-template-columns: 1fr; }
   .sandbox-detail__media { max-height: 35svh; }
   .sandbox-detail__media img { max-height: 35svh; width: auto; max-width: 100%; }
 }
-@media (prefers-reduced-motion: reduce) { .sandbox-piece img, .sandbox-detail__close span { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .sandbox-piece, .sandbox-piece img, .sandbox-detail__close span { transition: none; } }
 
 @keyframes rose-steps { to { rotate: 360deg; } }
-
-.sandbox-world[data-overview="1"] .sandbox-orbit__title { font-size: calc(11px / var(--sandbox-scale, 1)); }
-.sandbox-world[data-overview="1"] .sandbox-orbit__count { display: none; }

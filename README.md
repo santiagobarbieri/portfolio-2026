@@ -1,6 +1,6 @@
 # Santiago Barbieri — Portfolio
 
-El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. About es un recorrido independiente en construcción. El lateral separa filtros, About/Contact/Shop y Socials/Tools. Contact abre otra pestaña; Shop abrirá Gumroad cuando exista su URL. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Shop y el retrato de About están pendientes de contenido. El glyph abre `sandbox.html`, la mesa global clara con grupos circulares, arrastre, zoom y fichas de procedencia.
+El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. About es un recorrido independiente en construcción. El lateral separa filtros, About/Contact/Shop y Socials/Tools. Contact abre otra pestaña; Shop abrirá Gumroad cuando exista su URL. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Shop y el retrato de About están pendientes de contenido. El glyph abre `sandbox.html`, el mapa general claro con todo el trabajo mezclado, filtros circulares, arrastre, zoom y fichas de procedencia.
 
 ## Publicación
 
@@ -33,6 +33,6 @@ El Archivo contiene cinco proyectos con imágenes. Contact guía el brief en cin
 
 ## Mesa y colecciones
 
-- Sandbox reutiliza 51 piezas curadas de los cinco proyectos, con grupos por formato, encuadre completo por grupo, mapa de orientación, desplazamiento suave, zoom anclado, pinch y teclado. Conserva la cámara al volver de un proyecto. En mobile inicia por Afiches; “Ver todo” muestra la mesa completa.
+- Sandbox reúne 51 piezas curadas de los cinco proyectos en un campo compartido. Los círculos filtran por formato y encuadran sus coincidencias a color; el resto permanece en blanco y negro al 50% de opacidad, sin cambiar de lugar. “Ver todo” quita el filtro. Conserva cámara y filtro al volver de un proyecto, y mantiene minimapa, pinch y teclado.
 - Stephen King presenta diez libros digitales. OLAS y El Armado presentan afiches sobre papel. Los índices mantienen cinco columnas; las fichas se despliegan bajo demanda.
 - Las maquetas usan CSS, imágenes propias y controles nativos. Sin dependencias nuevas, rotación automática ni textos inventados del prototipo BOOKS.

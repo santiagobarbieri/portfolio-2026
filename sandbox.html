@@ -21,7 +21,7 @@
   <body class="sandbox-page">
     <div class="site-loader" role="status"><span class="site-loader__rose" aria-hidden="true"></span><span class="site-loader__label visually-hidden">Cargando mesa de trabajo</span></div>
     <a class="skip-link" href="#main-content">Saltar a la mesa de trabajo</a>
-    <a class="skip-link" href="#sandbox-groups">Saltar a los grupos de la mesa</a>
+    <a class="skip-link" href="#sandbox-groups">Saltar a los filtros del mapa</a>
     <header class="sandbox-header">
       <div class="sandbox-header__copy">
         <h1 class="sandbox-header__title">Sandbox</h1>
@@ -48,10 +48,10 @@
       </div>
     </main>
     <footer class="sandbox-controls" data-sandbox-controls hidden>
-      <p class="visually-hidden" id="sandbox-instructions">Arrastrá o desplazá para recorrer la mesa. Elegí un grupo para acercarte o tocá una pieza para conocer su origen. En la mesa: flechas para desplazarte, + y − para cambiar la escala, 0 para ver todo y 1 para volver al 100%. El mapa permite cambiar de zona.</p>
-      <nav class="sandbox-groups" id="sandbox-groups" tabindex="-1" aria-label="Grupos de la mesa" data-sandbox-groups></nav>
+      <p class="visually-hidden" id="sandbox-instructions">Arrastrá o desplazá para recorrer la mesa. Los círculos filtran por formato y acercan las piezas seleccionadas. El resto sigue visible en blanco y negro y al 50% de opacidad. Tocá una pieza para conocer su origen. Volvé a tocar el filtro activo para quitarlo. En la mesa: flechas para desplazarte, + y − para cambiar la escala, 0 para ver todo y 1 para volver al 100%. El mapa permite cambiar de zona.</p>
+      <nav class="sandbox-groups" id="sandbox-groups" tabindex="-1" aria-label="Filtrar piezas por formato" data-sandbox-groups></nav>
       <div class="sandbox-utilities">
-        <span class="sandbox-hint">Arrastrá para recorrer</span>
+        <span class="sandbox-hint">Círculos para filtrar</span>
         <details class="sandbox-map" data-sandbox-map>
           <summary aria-label="Mostrar u ocultar mapa de la mesa" data-cursor-action="Mapa de la mesa">Mapa</summary>
           <div class="sandbox-map__panel">

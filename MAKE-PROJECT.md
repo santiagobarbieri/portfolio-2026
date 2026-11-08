@@ -144,7 +144,7 @@ Para piezas editoriales individuales, `block: cover-study` muestra una tapa y un
 
 ## 5. Sandbox global
 
-La mesa global `sandbox.html` obtiene sus piezas del mismo banco curado que el carrusel. `project-assets.js` conserva procedencia y sección, y `sandbox.js` las agrupa por formato en círculos. No generar un canvas separado por proyecto ni duplicar fuentes. La cámara se desplaza con drag, wheel, pinch, controles y teclado; tocar una pieza abre su ficha con acceso al proyecto completo. Los originales permanecen intactos.
+La mesa global `sandbox.html` obtiene sus piezas del mismo banco curado que el carrusel. `project-assets.js` conserva procedencia y sección, y `sandbox.js` las mezcla en un único mapa. Los círculos filtran por formato, acercan las coincidencias a color y mantienen el resto en blanco y negro al 50% de opacidad, sin reordenar piezas. No generar un canvas separado por proyecto ni duplicar fuentes. La cámara se desplaza con drag, wheel, pinch, controles y teclado; tocar una pieza abre su ficha con acceso al proyecto completo. Los originales permanecen intactos.
 
 Para una colección editorial con `catalogue`, los bloques `cover-study` alimentan la colección de libros de `medium-collection.js`. Su ficha desplegable conserva `colors`, `inspiration` y `variants`. Los afiches con `frame: poster` usan el mismo componente sobre papel, con cinco miniaturas por fila. No inventar información de contratapas o lomos; son maquetas digitales del frente disponible.
 
