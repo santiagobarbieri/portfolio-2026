@@ -32,6 +32,7 @@
 .book-shelf__arrow:disabled { opacity: 0.2; }
 .book-shelf__caption { display: grid; gap: 6px; text-align: center; }
 .book-shelf__counter { color: var(--mute); font-size: var(--text-meta); font-variant-numeric: tabular-nums; }
+.book-shelf__format { color: var(--mute); font-size: var(--text-meta); line-height: var(--leading-meta); }
 .book-shelf__name { font-size: var(--text-title); font-weight: 600; }
 .book-shelf__inspect { grid-column: 2; grid-row: 2; }
 .book-shelf__rotate { grid-column: 1; grid-row: 2; width: 44px; font-size: 22px; }
@@ -46,6 +47,16 @@
 .book-shelf__notes h3:not(:first-child) { margin-top: 32px; }
 .book-shelf__notes > p { color: var(--mute); font-size: var(--text-body); line-height: var(--leading-body); }
 .book-shelf__notes .book-shelf__palette-note { margin-top: 12px; font-size: var(--text-meta); }
+.book-shelf__edition { margin-bottom: 28px; font-size: var(--text-meta); }
+.book-shelf__edition summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; list-style: none; font-weight: 600; }
+.book-shelf__edition summary::-webkit-details-marker { display: none; }
+.book-shelf__edition summary::after { width: 5px; height: 5px; margin-right: 4px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; content: ""; rotate: 45deg; transition: rotate var(--interaction-duration) var(--ease); }
+.book-shelf__edition[open] summary::after { rotate: 225deg; }
+.book-shelf__edition-data { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 8px 16px; margin: 16px 0; }
+.book-shelf__edition-data dt { color: var(--mute); }
+.book-shelf__edition-data dd { margin: 0; text-align: right; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.book-shelf__edition-note { margin: 20px 0 12px; color: var(--mute); line-height: var(--leading-body); }
+.book-shelf__edition-source { display: block; width: fit-content; min-height: 44px; padding-block: 12px; }
 .book-shelf__variants { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .book-shelf__variant-button { display: block; width: 100%; padding: 0; --interaction-origin: center; }
 .book-shelf__variant-button[aria-pressed="true"] + figcaption { font-weight: 600; }

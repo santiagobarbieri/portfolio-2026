@@ -50,7 +50,8 @@ export function createBookShelf({ project, makePalette, onOpen }) {
   caption.setAttribute("aria-live", "polite");
   const counter = element("span", "book-shelf__counter");
   const name = element("span", "book-shelf__name");
-  caption.append(counter, name);
+  const format = element("span", "book-shelf__format");
+  caption.append(counter, name, format);
   const inspect = button("book-shelf__inspect", "Ver ficha", "Ver ficha de la portada");
   const rotate = button("book-shelf__rotate", "↻", "Girar libro 45 grados");
   const reset = button("book-shelf__reset", "Vista frontal", "Volver a la portada");
@@ -95,8 +96,20 @@ export function createBookShelf({ project, makePalette, onOpen }) {
   }
   const normals = [[0, 0, 1], [0, 0, -1], [-1, 0, 0], [1, 0, 0], [0, -1, 0], [0, 1, 0]];
   const light = [-0.45, -0.6, 0.65].map((value) => value / Math.hypot(-0.45, -0.6, 0.65));
-  const books = project.sections.filter((section) => section.block === "cover-study" && section.items?.[0]).map((section, i) => {
+  const sections = project.sections.filter((section) => section.block === "cover-study" && section.items?.[0]);
+  const measuredSize = (edition) => {
+    const size = edition?.dimensionsMm;
+    return size && [size.width, size.height, size.depth].every((value) => Number.isFinite(value) && value > 0) ? size : null;
+  };
+  const referenceHeight = Math.max(1, ...sections.map((section) => measuredSize(section.edition)?.height || 0));
+  const unitsPerMm = 460 / referenceHeight;
+  const number = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 1 });
+  const books = sections.map((section, i) => {
     const item = section.items[0];
+    const measured = measuredSize(section.edition);
+    const height = measured ? measured.height * unitsPerMm : 460;
+    const width = measured ? measured.width * unitsPerMm : height * item.w / item.h;
+    const depth = measured ? measured.depth * unitsPerMm : 34;
     const slot = element("div", "book-shelf__slot");
     slot.dataset.book = i;
     const shadow = element("span", "book-shelf__shadow");
@@ -109,12 +122,17 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     finish.setAttribute("aria-hidden", "true");
     faces[0].append(cover, finish);
     object.append(...faces);
-    slot.style.setProperty("--book-width", `${460 * item.w / item.h}px`);
+    slot.style.setProperty("--book-width", `${width}px`);
+    slot.style.setProperty("--book-height", `${height}px`);
+    slot.style.setProperty("--book-depth", `${depth}px`);
+    // A neutral border accommodates a reference trim ratio without cropping the artwork.
+    const groundColor = section.colors?.[0]?.hex;
+    if (/^#[0-9a-f]{6}$/i.test(groundColor || "")) faces[0].style.backgroundColor = groundColor;
     slot.append(shadow, object);
     track.append(slot);
     return {
       section, item, selected: item, slot, object, faces, cover, shadow,
-      width: 460 * item.w / item.h, ry: -24, rx: -3,
+      width, height, depth, ry: -24, rx: -3,
       yaw: { value: -24, velocity: 0 }, pitch: { value: -3, velocity: 0 },
       target: { y: -24, x: -3 }, pose: null,
     };
@@ -134,6 +152,10 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     root.dataset.index = String(current);
     counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(books.length).padStart(2, "0")}`;
     name.textContent = books[current].section.title;
+    const edition = books[current].section.edition;
+    const size = measuredSize(edition);
+    format.textContent = edition?.pages && size ? `${number.format(edition.pages)} págs. · ${Math.round(size.width)} × ${Math.round(size.height)} mm` : "";
+    format.hidden = !format.textContent;
     previous.disabled = current === 0 || focused;
     next.disabled = current === books.length - 1 || focused;
     books.forEach((book, i) => {
@@ -173,6 +195,35 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     const section = book.section;
     title.textContent = section.title;
     notes.replaceChildren();
+    const edition = section.edition;
+    const size = measuredSize(edition);
+    if (edition && size) {
+      const details = element("details", "book-shelf__edition");
+      const summary = element("summary", null, "Edición de referencia");
+      const metadata = element("dl", "book-shelf__edition-data");
+      const binding = { hardcover: "Tapa dura", paperback: "Rústica", "mass-market-paperback": "Bolsillo" }[edition.binding];
+      const fields = [
+        ["Editorial", [edition.publisher, edition.year].filter(Boolean).join(" · ")],
+        ["Formato", binding],
+        ["Páginas", edition.pages && number.format(edition.pages)],
+        ["Ancho × alto × lomo", `${number.format(size.width)} × ${number.format(size.height)} × ${number.format(size.depth)} mm`],
+        ["ISBN", edition.isbn],
+      ];
+      fields.forEach(([label, value]) => {
+        if (value) metadata.append(element("dt", null, label), element("dd", null, value));
+      });
+      details.append(summary, metadata, element("p", "book-shelf__edition-note", "Formato del soporte basado en esta edición publicada. Las medidas de catálogo son de referencia; la cubierta es un rediseño independiente."));
+      for (const source of edition.sources || []) {
+        if (!/^https:\/\//.test(source.url)) continue;
+        const link = element("a", "book-shelf__edition-source", source.label);
+        link.href = source.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.dataset.cursorAction = "Consultar fuente";
+        details.append(link);
+      }
+      notes.append(details);
+    }
     if (section.colors?.length) {
       notes.append(element("h3", null, "Paleta de la portada"), makePalette(section.colors));
       notes.append(element("p", "book-shelf__palette-note", "Colores muestreados de la tapa principal."));
@@ -320,6 +371,9 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     const ground = focused && !mobile ? 230 * sc * 1.15 : 215 * sc - 12;
     floor.style.setProperty("--shelf-ground", `${ground}px`);
     let moving = false;
+    const offsets = Array(books.length).fill(0);
+    for (let i = current + 1; i < books.length; i++) offsets[i] = offsets[i - 1] + (books[i - 1].width + books[i].width) / 2 + 38;
+    for (let i = current - 1; i >= 0; i--) offsets[i] = offsets[i + 1] - (books[i + 1].width + books[i].width) / 2 - 38;
     books.forEach((book, i) => {
       const off = i - current, distance = Math.abs(off), active = i === current;
       if (!active) aim(book, -Math.sign(off) * Math.min(distance, 2) * 30, -3);
@@ -329,10 +383,11 @@ export function createBookShelf({ project, makePalette, onOpen }) {
       moving = yawMoving || pitchMoving || moving;
       book.ry = book.yaw.value;
       book.rx = book.pitch.value;
-      const scale = focused && active ? sc * 1.15 : sc * (1 - Math.min(distance, 3) * 0.14);
-      const x = focused && active ? -focusWidth / 2 : Math.sign(off) * (distance < 1 ? distance * 340 : 340 + (distance - 1) * 215) * Math.max(0.55, sc);
-      const y = focused && active ? mobile ? -layout.height * 0.29 : 0 : ground - 230 * scale;
-      const z = focused && active ? mobile ? 0 : 100 : active ? 72 : -distance * 150;
+      // One physical scale across the shelf; only perspective changes apparent size.
+      const scale = focused && active ? sc * 1.15 : sc;
+      const x = focused && active ? -focusWidth / 2 : offsets[i] * sc;
+      const y = focused && mobile && active ? -layout.height * 0.29 : ground - book.height / 2 * scale;
+      const z = focused && active ? mobile ? 0 : 100 : active ? 72 : -distance * 75;
       const targetPose = { x, y, z, scale, opacity: focused && !active ? 0 : 1 };
       if (!book.pose) book.pose = Object.fromEntries(Object.entries(targetPose).map(([key, value]) => [key, { value, velocity: 0 }]));
       for (const [key, target] of Object.entries(targetPose)) {
@@ -351,10 +406,10 @@ export function createBookShelf({ project, makePalette, onOpen }) {
         const radians = Math.PI / 180;
         const cy = Math.cos(book.ry * radians), sy = Math.sin(book.ry * radians);
         const pitch = book.rx * radians;
-        const halfDepth = Math.abs(sy) * book.width / 2 + Math.abs(cy) * 17;
-        const lift = Math.max(0, 230 * Math.cos(pitch) + halfDepth * Math.abs(Math.sin(pitch)) - 230);
+        const halfDepth = Math.abs(sy) * book.width / 2 + Math.abs(cy) * book.depth / 2;
+        const lift = Math.max(0, book.height / 2 * Math.cos(pitch) + halfDepth * Math.abs(Math.sin(pitch)) - book.height / 2);
         book.object.style.transform = `translateY(${-lift}px) rotateX(${book.rx}deg) rotateY(${book.ry}deg)`;
-        const footprint = Math.max(40, Math.abs(cy) * book.width + Math.abs(sy) * 34) * 1.12;
+        const footprint = Math.max(40, Math.abs(cy) * book.width + Math.abs(sy) * book.depth) * 1.12;
         book.shadow.style.width = `${footprint}px`;
         book.shadow.style.left = `${-footprint / 2}px`;
         book.object.style.setProperty("--shine-x", `${50 + sy * 45}%`);

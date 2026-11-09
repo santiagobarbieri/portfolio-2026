@@ -102,7 +102,42 @@
           "gallery": false,
           "galleryNote": "Alternativa de color o contraste cercana a la tapa principal; conservar como miniatura de proceso."
         }
-      ]
+      ],
+      "edition": {
+        "isbn": "9780345806796",
+        "publisher": "Vintage",
+        "year": 2013,
+        "binding": "paperback",
+        "pages": 688,
+        "dimensionsMm": {
+          "width": 131.8,
+          "height": 203.2,
+          "depth": 27.9
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.penguinrandomhouse.com/books/92979/salems-lot-by-stephen-king-with-an-introduction-by-joe-hill/",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/salem-s-lot-stephen-king/3795fecacf6a6e8c?ean=9780345806796",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08",
+        "sourceNote": "Ancho y alto de la editorial; lomo del catálogo de Bookshop.org. Medidas comerciales redondeadas."
+      }
     },
     {
       "n": "02",
@@ -147,7 +182,41 @@
           "hex": "#251F27"
         }
       ],
-      "inspiration": "Retrato frontal entre sombras, superposiciones y puntos luminosos. El rojo anaranjado se concentra en el rostro y las letras."
+      "inspiration": "Retrato frontal entre sombras, superposiciones y puntos luminosos. El rojo anaranjado se concentra en el rostro y las letras.",
+      "edition": {
+        "isbn": "9780385086950",
+        "publisher": "Doubleday",
+        "year": 1990,
+        "binding": "hardcover",
+        "pages": 208,
+        "dimensionsMm": {
+          "width": 165.1,
+          "height": 241.3,
+          "depth": 20.3
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.penguinrandomhouse.com/books/92955/carrie-television-tie-in-by-stephen-king-with-an-introduction-by-margaret-atwood/",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/carrie-stephen-king/20710c47678d3af2?ean=9780385086950",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     },
     {
       "n": "03",
@@ -216,7 +285,41 @@
           "gallery": false,
           "galleryNote": "Alternativa de color o contraste cercana a la tapa principal; conservar como miniatura de proceso."
         }
-      ]
+      ],
+      "edition": {
+        "isbn": "9781501192241",
+        "publisher": "Scribner",
+        "year": 2018,
+        "binding": "paperback",
+        "pages": 400,
+        "dimensionsMm": {
+          "width": 134.9,
+          "height": 209.6,
+          "depth": 27.9
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.simonandschuster.com/books/Cujo/Stephen-King/9781501192241",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/cujo-a-novel-stephen-king/0f1d4a4e907922c1?ean=9781501192241",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     },
     {
       "n": "04",
@@ -261,7 +364,41 @@
           "hex": "#A79778"
         }
       ],
-      "inspiration": "Un globo rojo, una mano aislada y mucho negro. La tipografía clara deja que el recorte de la imagen sostenga la tensión."
+      "inspiration": "Un globo rojo, una mano aislada y mucho negro. La tipografía clara deja que el recorte de la imagen sostenga la tensión.",
+      "edition": {
+        "isbn": "9781501142970",
+        "publisher": "Scribner",
+        "year": 2016,
+        "binding": "paperback",
+        "pages": 1168,
+        "dimensionsMm": {
+          "width": 139.7,
+          "height": 212.7,
+          "depth": 68.6
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.simonandschuster.com/books/It/Stephen-King/9781501142970",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/it-a-novel-stephen-king/4c52f6d603df5f37?ean=9781501142970",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     },
     {
       "n": "05",
@@ -306,7 +443,41 @@
           "hex": "#3C180F"
         }
       ],
-      "inspiration": "Máquina de escribir en primer plano y perfil recortado. Naranja y violeta saturados, letras irregulares y trama de impresión."
+      "inspiration": "Máquina de escribir en primer plano y perfil recortado. Naranja y violeta saturados, letras irregulares y trama de impresión.",
+      "edition": {
+        "isbn": "9781501143106",
+        "publisher": "Scribner",
+        "year": 2016,
+        "binding": "paperback",
+        "pages": 368,
+        "dimensionsMm": {
+          "width": 139.7,
+          "height": 212.7,
+          "depth": 27.9
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.simonandschuster.com/books/Misery/Stephen-King/9781501143106",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/misery-stephen-king/bee26555de1c9be8?ean=9781501143106",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     },
     {
       "n": "06",
@@ -351,7 +522,36 @@
           "hex": "#E19B21"
         }
       ],
-      "inspiration": "El retrato de un gato se reduce a masas negras y rojas sobre papel amarillo. Grano marcado y tipografía roja en la parte superior."
+      "inspiration": "El retrato de un gato se reduce a masas negras y rojas sobre papel amarillo. Grano marcado y tipografía roja en la parte superior.",
+      "edition": {
+        "isbn": "9781501156700",
+        "publisher": "Pocket Books",
+        "year": 2017,
+        "binding": "mass-market-paperback",
+        "pages": 560,
+        "dimensionsMm": {
+          "width": 104.6,
+          "height": 190.5,
+          "depth": 27.9
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha de esta edición · Indigo",
+            "url": "https://www.indigo.ca/products/pet-sematary-2",
+            "fields": [
+              "isbn",
+              "dimensionsMm",
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08",
+        "sourceNote": "Edición de bolsillo de 2017, ISBN 9781501156700. Ficha de Indigo; la URL editorial de este ISBN redirige a otra edición y no se usa para sus datos."
+      }
     },
     {
       "n": "07",
@@ -396,7 +596,42 @@
           "hex": "#226454"
         }
       ],
-      "inspiration": "Una torre negra organiza la composición vertical. El cielo magenta y el paisaje azul verdoso introducen una lectura psicodélica."
+      "inspiration": "Una torre negra organiza la composición vertical. El cielo magenta y el paisaje azul verdoso introducen una lectura psicodélica.",
+      "edition": {
+        "isbn": "9780743254564",
+        "publisher": "Scribner",
+        "year": 2005,
+        "binding": "paperback",
+        "pages": 864,
+        "dimensionsMm": {
+          "width": 139.7,
+          "height": 212.7,
+          "depth": 48.3
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.simonandschuster.com/books/The-Dark-Tower-VII/Stephen-King/The-Dark-Tower/9780743254564",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/the-dark-tower-vii-the-dark-tower-stephen-king/495852fc3b7f7f0c?ean=9780743254564",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08",
+        "volume": 7
+      }
     },
     {
       "n": "08",
@@ -441,7 +676,41 @@
           "hex": "#C33D18"
         }
       ],
-      "inspiration": "Superposiciones, repeticiones y bordes desplazados construyen una imagen casi abstracta. Rojo y violeta quedan contenidos por el título crema."
+      "inspiration": "Superposiciones, repeticiones y bordes desplazados construyen una imagen casi abstracta. Rojo y violeta quedan contenidos por el título crema.",
+      "edition": {
+        "isbn": "9781501144509",
+        "publisher": "Scribner",
+        "year": 2016,
+        "binding": "paperback",
+        "pages": 528,
+        "dimensionsMm": {
+          "width": 134.9,
+          "height": 209.6,
+          "depth": 35.6
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.simonandschuster.com/books/The-Dead-Zone/Stephen-King/9781501144509",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/the-dead-zone-stephen-king/92bce9ac48a836b1?ean=9781501144509",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     },
     {
       "n": "09",
@@ -486,7 +755,41 @@
           "hex": "#534F20"
         }
       ],
-      "inspiration": "Un ratón y un cable fino recorren el fondo negro. Verde y amarillo separan la tipografía de la ilustración."
+      "inspiration": "Un ratón y un cable fino recorren el fondo negro. Verde y amarillo separan la tipografía de la ilustración.",
+      "edition": {
+        "isbn": "9781501192265",
+        "publisher": "Scribner",
+        "year": 2018,
+        "binding": "paperback",
+        "pages": 432,
+        "dimensionsMm": {
+          "width": 134.9,
+          "height": 209.6,
+          "depth": 25.4
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.simonandschuster.com/books/The-Green-Mile/Stephen-King/9781501192265",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/the-green-mile-the-complete-serial-novel-stephen-king/6768714?ean=9781501192265",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     },
     {
       "n": "10",
@@ -531,7 +834,41 @@
           "hex": "#A8BCBE"
         }
       ],
-      "inspiration": "Un hacha atraviesa un collage de rostro y arquitectura. El azul frío de la imagen contrasta con el título amarillo inclinado."
+      "inspiration": "Un hacha atraviesa un collage de rostro y arquitectura. El azul frío de la imagen contrasta con el título amarillo inclinado.",
+      "edition": {
+        "isbn": "9780385121675",
+        "publisher": "Doubleday",
+        "year": 1990,
+        "binding": "hardcover",
+        "pages": 464,
+        "dimensionsMm": {
+          "width": 162.6,
+          "height": 241.3,
+          "depth": 38.1
+        },
+        "measurementStatus": "catalogue-reference",
+        "sources": [
+          {
+            "label": "Ficha editorial",
+            "url": "https://www.penguinrandomhouse.com/books/92991/the-shining-by-stephen-king/",
+            "fields": [
+              "pages",
+              "publisher",
+              "year",
+              "binding"
+            ]
+          },
+          {
+            "label": "Ficha de esta edición · Bookshop.org",
+            "url": "https://bookshop.org/p/books/the-shining-stephen-king/dd63255725abb29c?ean=9780385121675",
+            "fields": [
+              "isbn",
+              "dimensionsMm"
+            ]
+          }
+        ],
+        "verifiedAt": "2026-11-08"
+      }
     }
   ],
   "paletteSource": "Colores muestreados de las portadas; lectura visual a partir de las piezas.",
@@ -550,6 +887,7 @@
   "heroGalleryNote": "Marca conservada como portada de Archivo; la apertura del estante muestra directamente los diez libros.",
   "shelf": {
     "number": "001",
-    "author": "Stephen King"
+    "author": "Stephen King",
+    "editionNote": "Ediciones publicadas de referencia para las dimensiones del soporte digital. Las cubiertas son rediseños independientes de Santiago Barbieri. Medidas de catálogo, sujetas a variación entre tiradas; no son especificaciones de producción de estos rediseños."
   }
 }
