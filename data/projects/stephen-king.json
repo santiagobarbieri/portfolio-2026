@@ -1,10 +1,10 @@
 {
   "slug": "stephen-king",
   "code": "XX–00",
-  "title": "Stephen King",
+  "title": "Shelf 001 - Stephen King",
   "type": "Diseño editorial",
   "category": "editorial",
-  "description": "Serie de diez portadas de libros de Stephen King y tres variantes gráficas.",
+  "description": "Primer estante de una biblioteca de portadas rediseñadas: diez libros de Stephen King.",
   "cover": "assets/images/stephen-king/PORTADA.png",
   "w": 1280,
   "h": 720,
@@ -542,10 +542,14 @@
     "colors": []
   },
   "family": "passion",
-  "presentation": "editorial-series",
+  "presentation": "book-shelf",
   "catalogue": {
     "title": "Las diez portadas"
   },
   "heroGallery": false,
-  "heroGalleryNote": "Marca introductoria; conservar PORTADA.png en Archivo y en la apertura, fuera del recorrido de tapas."
+  "heroGalleryNote": "Marca conservada como portada de Archivo; la apertura del estante muestra directamente los diez libros.",
+  "shelf": {
+    "number": "001",
+    "author": "Stephen King"
+  }
 }

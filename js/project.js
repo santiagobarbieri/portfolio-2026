@@ -1,5 +1,6 @@
 import { collectProjectAssets, makeHeroItem } from "./project-assets.js";
 import { createMediumCollection } from "./medium-collection.js";
+import { createBookShelf } from "./book-shelf.js";
 import { createImageGallery, imageKey } from "./image-gallery.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
@@ -330,6 +331,15 @@ function renderPhotoCollection(project) {
 
 function renderProject(project) {
   projectAssets = collectProjectAssets(project);
+  if (project.presentation === "book-shelf") {
+    const shelf = createBookShelf({ project, makePalette, onOpen: openGallery });
+    projectScroll.destroy();
+    document.body.classList.add("entry-page--shelf");
+    content.classList.remove("entry-fallback");
+    setPageTitle(project.title, project.description, project.cover);
+    content.replaceChildren(shelf);
+    return;
+  }
   if (project.family === "photography") { renderPhotoCollection(project); return; }
   content.classList.remove("entry-fallback");
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
@@ -447,7 +457,9 @@ async function renderEntry() {
 }
 
 const projectScroll = initSmoothScroll();
-const imageGallery = createImageGallery({ onOpen: () => projectScroll.stop(), onClose: () => projectScroll.start() });
+const imageGallery = createImageGallery({ onOpen: () => projectScroll.stop(), onClose: () => {
+  if (!document.body.classList.contains("entry-page--shelf")) projectScroll.start();
+} });
 const complete = startLoading("Cargando proyecto");
 let redirecting = false;
 try {
@@ -456,7 +468,7 @@ try {
   if (!redirecting) {
     watchLazyImages(content);
     await waitForImages(content);
-    projectScroll.resize();
+    if (!document.body.classList.contains("entry-page--shelf")) projectScroll.resize();
   }
 } finally {
   if (!redirecting) complete();
