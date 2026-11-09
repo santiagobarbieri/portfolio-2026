@@ -4,11 +4,13 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 ## Dirección vigente — últimas aclaraciones de Santi
 
+- Prioridad actual: terminar de refinar los cinco proyectos. El Sandbox y la propuesta de mundo 3D están retirados; no agregar nuevas experiencias sin una indicación explícita de Santi. El logo vuelve al Archivo.
+
 - El único home es **index.html / Archivo**. Las guías verdes de Figma son referencias: no se dibujan en la web. Cada portada comienza donde termina la portada anterior, alternando columnas; las captions ocupan los huecos.
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
 - Archivo contiene exclusivamente proyectos. About es una página independiente en construcción: recorrido vertical con camino, capítulos y contenido real pendiente; no integra el loop ni el contador. Contact es un formulario guiado independiente. Shop abrirá Gumroad cuando exista la URL; mientras tanto es un rótulo Próximamente, sin enlace inventado.
 - El lateral de Archivo tiene tres grupos separados: filtros; About/Contact/Shop; Socials/Tools. Los desplegables crecen hacia arriba en el flujo, sin exclusividad ni superposición. Contact abre otra pestaña; Shop será un enlace externo a Gumroad. Nav conserva la redirección al Archivo.
-- El sitio usa tema oscuro, sin switch; About y el Sandbox global tienen una superficie cálida clara local. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. Cursor y etiqueta blancos con contorno negro y texto negro; invertir ambos a negro con contorno/texto blanco solo si toda su superficie queda sobre negro opaco de la interfaz. Sin mezcla de colores. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
+- El sitio usa tema oscuro, sin switch; About tiene una superficie cálida clara local. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. Cursor y etiqueta blancos con contorno negro y texto negro; invertir ambos a negro con contorno/texto blanco solo si toda su superficie queda sobre negro opaco de la interfaz. Sin mezcla de colores. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
 - Mantener originales y metadatos reales. Portadas faltantes con Lorem Ipsum autorizado, sin inventar imágenes.
@@ -51,7 +53,7 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - HTML, CSS y JS vanilla. ES modules. **Sin build step.** Deploy en Vercel.
 - Sin frameworks. Librerías solo las listadas en la sección 8, vendorizadas en `assets/vendor/` (versión fija, sin CDN en producción).
 - Contenido data-driven: los proyectos viven en JSON (`data/`). No crear un HTML por proyecto.
-- Un componente = un archivo CSS + un módulo JS. Variables en `:root`. Nada de estilos inline salvo posiciones dinámicas del Sandbox, del cursor, del carrusel el desfase de tarjetas de Archivo y las propiedades del soporte de las colecciones.
+- Un componente = un archivo CSS + un módulo JS. Variables en `:root`. Nada de estilos inline salvo posiciones dinámicas del cursor, del carrusel, el desfase de tarjetas de Archivo y las propiedades del soporte de las colecciones.
 - No inventar contenido (textos, fechas, créditos). Si falta, ver reglas de `MAKE-PROJECT.md`.
 - No modificar tokens de diseño ni componentes globales al agregar un proyecto.
 
@@ -62,7 +64,6 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 /nav.html              Redirección de compatibilidad hacia Archivo
 /shop.html             Shop — Próximamente
 /project.html          Render genérico: ?p=<slug>
-/sandbox.html          Mesa global clara, abierta desde el glyph
 /data/projects.json    Registro (orden, código, slug, cover, tags)
 /data/projects/<slug>.json
 /assets/images/<slug>/ Imágenes de cada proyecto
@@ -78,12 +79,12 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 - **Abajo izquierda:** "Buenos Aires, Argentina" y fecha/hora en vivo (`America/Argentina/Buenos_Aires`, formato `3 nov 2026 – 01:20`, se actualiza cada minuto).
 - **Abajo derecha:** "Portfolio". (Los mockups dicen "Portfoliio" por un error de tipeo: escribirlo con una sola i.)
 - **Abajo centro/derecha:** acción contextual de la página (ej. `Send` en Contact).
-- El glyph abre `sandbox.html`; el nombre y las disciplinas mantienen el enlace al Archivo. En Sandbox el glyph vuelve al Archivo.
+- El glyph, el nombre y las disciplinas enlazan al Archivo.
 - En proyectos el marco superior se reemplaza por la **barra de cierre**: `×` a la izquierda, título de la vista a la derecha (`El Armado - Overlook`).
 
 ## 3. Diseño
 
-**Color.** Tema oscuro fijo, con superficies cálidas claras para About y el Sandbox global. Sistema neutro en blanco y grises; sin acento azul. Cursor blanco con contorno negro y etiqueta blanca con texto negro, sin mezcla. No exponer un selector de tema.
+**Color.** Tema oscuro fijo, con una superficie cálida clara para About. Sistema neutro en blanco y grises; sin acento azul. Cursor blanco con contorno negro y etiqueta blanca con texto negro, sin mezcla. No exponer un selector de tema.
 
 | Token | Oscuro (por defecto) | Claro |
 |---|---|---|
@@ -117,7 +118,6 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 2. **About.** Página independiente con un recorrido vertical que contará la historia hasta hoy. Actualmente en construcción, con capítulos reservados y certificados existentes; no inventar fechas ni hitos. Testament sigue cerrado por defecto, con scroll interno y zoom.
 3. **Contact.** Formulario guiado: motivo, detalles, contexto, datos y revisión. Distinguir proyecto de consulta. Texto largo con scroll interno. Envío pendiente de configurar; permitir copiar/guardar el brief sin simular envío.
 4. **Proyecto.** Vista ordenada desde su JSON. Apertura con nombre y clasificación, pieza principal y paleta; tabla de metadatos en la columna izquierda y secciones numeradas con rótulo superior dentro de las dos columnas centrales.
-5. **Sandbox global.** Un mapa general con todas las piezas mezcladas en un mismo espacio. Los círculos son filtros por formato, no contenedores ni islas de contenido. Activar un filtro encuadra sus coincidencias a color; el resto permanece visible en blanco y negro y al 50% de opacidad. Quitar el filtro devuelve todo a color. Mantener drag, wheel, zoom, pinch, teclado y fichas de procedencia.
 
 ## 6. Accesibilidad y performance
 
@@ -158,7 +158,6 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 6. **Filtro / orden:** Flip; las tarjetas viajan a su nueva posición.
 7. **Abrir proyecto:** la portada se expande al hero (Flip + View Transition); la barra de cierre baja desde arriba.
 8. **Overlook:** cada sección revela su Tab y luego su contenido, una sola vez.
-9. **Sandbox:** cámara por drag, wheel y pinch, sin animación continua ni movimiento individual de piezas; controles de grupos, escala y vista completa.
 10. **Inputs:** la línea inferior engrosa a 2px en foco; `Send` pasa a `Sending…` y luego `Sent`.
 11. **Control de zoom de texto:** el cambio de tamaño se anima (font-size interpolado) y se recuerda en `localStorage`.
 12. **Botón `×`:** crece levemente y la cruz gira 90° en unos 220ms, sin cambio de fondo.
@@ -177,7 +176,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - Las zonas vacías de las filas no interceptan punteros. Todas las copias visibles son clickeables; mantener una sola representación por proyecto en el recorrido de teclado, sin volver inert las copias visibles.
 - Las colecciones fotográficas muestran exclusivamente fotos, nombres explícitos o números y contador, con la ficha debajo. Los casos de identidad/editorial conservan su información, pero sus fotografías comparten el mismo carrusel al ampliarse.
 - El carrusel usa posición horizontal continua y repetida con un número acotado de slides. Flechas y teclado avanzan una imagen, scroll/drag son lineales y no tienen fin. La descarga apunta al archivo original; las vistas usan derivados optimizados.
-- Se permiten transformaciones dinámicas inline en el carrusel para su desplazamiento, en el cursor y Sandbox, y la variable de desfase vertical de las tarjetas de Archivo.
+- Se permiten transformaciones dinámicas inline en el carrusel para su desplazamiento, en el cursor y la variable de desfase vertical de las tarjetas de Archivo.
 
 
 ## Física del Archivo y cursor contextual
@@ -194,7 +193,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 
 ## Carrusel completo del proyecto
 
-- Reunir hero, imágenes de secciones y variantes en un único banco de assets, deduplicado por ruta original. No agregar imágenes de Sandbox que no se vean en la página, ni paletas o elementos del marco.
+- Reunir hero, imágenes de secciones y variantes en un único banco de assets, deduplicado por ruta original. Usar únicamente las piezas visibles en el proyecto; no incorporar paletas ni elementos del marco al visor.
 - Todas las imágenes de secciones y el hero abren el mismo banco en la pieza elegida. Los enlaces del catálogo editorial conservan su navegación a los estudios.
 - Visor sin líneas divisorias ni marcos permanentes. Nombre pequeño debajo de cada pieza; usar los nombres y captions existentes, o el título de la sección con número cuando hay varias. En colecciones fotográficas, conservar nombres explícitos o numeración.
 - Cada imagen lleva su propio icono de descarga arriba a la derecha, dentro de la superficie de la imagen y sin afectar drag. El enlace apunta al original de esa pieza, incluye nombre de archivo/formato en su descripción y muestra la información al hacer hover o foco. No mantener un botón global de descarga en el footer.
@@ -221,11 +220,8 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - El visor limita la escala de bitmaps a su preview real y contiene piezas compactas/medianas/anchas. Las descargas siguen apuntando al original sin recomprimir.
 
 
-## Sandbox global y colecciones sobre soportes
+## Colecciones sobre soportes
 
-- `sandbox.html`, `css/sandbox.css` y `js/sandbox.js` implementan la mesa global de las referencias Sandbox/Sandbox-1. Fondo #f1ece0, texto negro y círculos como controles de filtro dentro de un campo compartido. El logo del marco abre esta vista; no sustituirlo por un enlace al home.
-- Reutilizar el banco curado mediante `project-assets.js`. No reintroducir imágenes descartadas ni duplicar exportaciones. La marca introductoria de Stephen King se permite en Logos aunque esté excluida del carrusel editorial.
-- Arrastre, wheel y zoom afectan la cámara; grupos y piezas permanecen deterministas y sin colisiones. Flechas, +/−, Home, foco y controles visibles permiten recorrer sin mouse. El popup usa dialog nativo con Escape y retorno de foco. Proyecto abierto desde la mesa vuelve a su posición guardada.
 - `medium-collection.js` y su CSS presentan las portadas sobre libros digitales y los afiches sobre papel. Interfaz neutra, Albert Sans, sin luces ambientales, acentos de color ni textos de proceso inventados. Los originales permanecen completos; solo el soporte se representa en 3D con CSS. No inventar contratapas ni lomos diseñados.
 - Stephen King abre con la colección de diez libros; paletas, lecturas y variantes están en la ficha desplegable de la pieza elegida. Los afiches de OLAS y El Armado usan el soporte de papel. Índices de portadas y afiches siempre en cinco columnas. Ampliar conserva el carrusel curado del proyecto y la descarga original.
 - Se permiten propiedades CSS dinámicas de ángulo, proporción y color del soporte en estas maquetas. Respetar movimiento reducido; sin rotación automática ni RAF permanente al reposar.
@@ -238,23 +234,3 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - Shop no mantiene una tienda local: el enlace final abrirá el Gumroad de Santi. La URL todavía no existe. Usar Próximamente sin enlazar al marketplace ni inventar un usuario.
 - Contact guía y valida cada paso, conserva respuestas al volver y permite revisar, copiar o guardar el brief. No afirmar que fue enviado; el servicio de entrega aún falta.
 - Conservar los módulos retirados `archive-about.js` y `archive-about.css` como código anterior sin cargarlos en Archivo. No reinsertar About al reciclar, ordenar o filtrar.
-
-
-## Movimiento y orientación del Sandbox
-
-- `sandbox-layout.js` distribuye todas las piezas en un mismo campo, con formatos y proyectos mezclados y posiciones deterministas sin colisiones. Los nodos circulares son filtros, no recintos alrededor de las piezas. Reservar espacio para los nodos y el crecimiento de hover.
-- `sandbox-camera.js` controla una única cámara. Wheel y navegación usan una interpolación breve; el arrastre sigue el gesto directamente y al soltar puede continuar como máximo 120px por eje. Sin rebotes ni RAF permanente; movimiento reducido elimina la interpolación y la inercia.
-- Al activar un filtro circular, encuadrar sus coincidencias completas, con margen. El filtro solo cambia color/opacidad y cámara; nunca reordena ni oculta piezas. No imponer una escala mínima fija que corte la composición en mobile. Los límites permiten centrar los grupos cercanos a los bordes.
-- Primera visita: vista general de todo el mapa en desktop y mobile. Los círculos del campo y de la barra inferior activan el mismo filtro. Tocar de nuevo el activo o “Ver todo” quita el filtro y recupera el conjunto a color. Tocar cualquier pieza, incluso atenuada, abre su ficha.
-- El minimapa representa las piezas distribuidas y la zona visible; refleja también el filtro activo. Permite cambiar de zona por toque o arrastre. Mantenerlo compacto, cerrable y funcional con teclado.
-- Flechas desplazan; +/− cambian la escala; 0 muestra toda la mesa; 1 vuelve a 100%; Home vuelve al encuadre inicial. Tab trae a la vista las piezas fuera de pantalla. No desplazar la cámara por el foco generado al tocar con mouse o dedo.
-- Conservar cámara por coordenadas del mundo al volver de un proyecto o cambiar viewport. Estado `portfolio-sandbox-camera-v3`, incluyendo el filtro activo, invalidado cuando cambia la disposición. Cancelar gestos y movimiento al perder foco o al ocultar la pestaña.
-- Las fichas mantienen la procedencia, las paletas existentes y el enlace al proyecto. El banco sigue siendo de 51 piezas curadas: no reintroducir miniaturas descartadas ni modificar originales.
-
-
-## Mega mapa de contenido — dirección vigente
-
-- El Sandbox reúne el trabajo en un solo espacio continuo; no distribuir los formatos en anillos separados. Mantener la posición de cada pieza al filtrar para conservar la memoria espacial.
-- Los círculos Libros, Posters, Logos, Gráfica y Fotos son filtros con estado `aria-pressed`. Un filtro activo conserva sus coincidencias a color/opacidad 1 y aplica `grayscale(1)` y `opacity: 0.5` al resto del mapa. Es un tratamiento de interfaz: no modificar archivos ni las imágenes originales de las fichas.
-- No elegir filtros automáticamente al desplazar la cámara. “Ver todo”, Home y 0 quitan el filtro y encuadran todo. El zoom manual, el minimapa y el desplazamiento conservan el filtro elegido.
-- La cámara y el filtro se conservan al volver de un proyecto. Los estados antiguos del esquema de islas no se reutilizan en la nueva distribución.

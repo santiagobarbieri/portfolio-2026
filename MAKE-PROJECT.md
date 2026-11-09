@@ -29,7 +29,6 @@ assets/images/<slug>/
   06-instagram/
   07-variantes-descartadas/
   08-aplicaciones/
-  sandbox/                      ← opcional: assets para el canvas libre
 ```
 
 - El `slug` es el nombre de la carpeta en minúsculas con guiones (`el-armado`).
@@ -86,8 +85,7 @@ Texto libre opcional (hasta 3 párrafos) que aparece debajo de la tabla de metad
   "sections": [
     { "n": "01", "title": "Logo", "block": "logo", "items": [ { "src": "...", "w": 1800, "h": 600, "alt": "Logotipo de El Armado" } ] },
     { "n": "02", "title": "Paleta", "block": "palette", "colors": [ { "name": "Hueso", "hex": "#D2DDCC" } ] }
-  ],
-  "sandbox": [ { "src": "...", "x": 12, "y": 18, "w": 22, "z": 1 } ]
+  ]
 }
 ```
 
@@ -142,9 +140,9 @@ Las variantes van en `variants: [{src, w, h, alt, caption, sources?}]` de la sec
 
 Para piezas editoriales individuales, `block: cover-study` muestra una tapa y una ficha lateral. La sección incluye un único `item`, `colors: [{name, hex}]` e `inspiration` como lectura visual breve. Si no existen referencias originales, describir solamente motivos visibles; no atribuir influencias al autor. En Stephen King los colores están muestreados de cada portada y esta lectura fue autorizada por Santi.
 
-## 5. Sandbox global
+## 5. Visor y colecciones
 
-La mesa global `sandbox.html` obtiene sus piezas del mismo banco curado que el carrusel. `project-assets.js` conserva procedencia y sección, y `sandbox.js` las mezcla en un único mapa. Los círculos filtran por formato, acercan las coincidencias a color y mantienen el resto en blanco y negro al 50% de opacidad, sin reordenar piezas. No generar un canvas separado por proyecto ni duplicar fuentes. La cámara se desplaza con drag, wheel, pinch, controles y teclado; tocar una pieza abre su ficha con acceso al proyecto completo. Los originales permanecen intactos.
+El visor del proyecto usa el banco curado de `project-assets.js`, con piezas deduplicadas por original, nombres existentes y exclusiones `gallery: false`. El logo y el cierre del proyecto vuelven al Archivo.
 
 Para una colección editorial con `catalogue`, los bloques `cover-study` alimentan la colección de libros de `medium-collection.js`. Su ficha desplegable conserva `colors`, `inspiration` y `variants`. Los afiches con `frame: poster` usan el mismo componente sobre papel, con cinco miniaturas por fila. No inventar información de contratapas o lomos; son maquetas digitales del frente disponible.
 

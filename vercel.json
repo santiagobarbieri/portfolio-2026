@@ -4,5 +4,17 @@
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": ".",
-  "cleanUrls": false
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/sandbox.html",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/sandbox",
+      "destination": "/index.html",
+      "permanent": false
+    }
+  ]
 }

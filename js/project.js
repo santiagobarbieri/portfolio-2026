@@ -10,23 +10,17 @@ const content = document.querySelector("[data-entry-content]");
 const title = document.querySelector("[data-entry-title]");
 const slug = new URLSearchParams(window.location.search).get("p");
 
-const fromSandbox = document.referrer && new URL(document.referrer).origin === location.origin && /\/sandbox\.html$/.test(new URL(document.referrer).pathname);
-const returnTarget = fromSandbox ? "./sandbox.html" : "./index.html";
 const closeLink = document.querySelector("[data-close-entry]");
-if (closeLink) {
-  closeLink.href = returnTarget;
-  closeLink.setAttribute("aria-label", fromSandbox ? "Cerrar y volver al Sandbox" : "Cerrar y volver al archivo");
-  closeLink.dataset.cursorAction = fromSandbox ? "Volver al Sandbox" : "Volver al archivo";
-}
+if (closeLink) closeLink.dataset.cursorAction = "Volver al archivo";
 
 function closeEntry(event) {
   if (event?.metaKey || event?.ctrlKey || event?.shiftKey || event?.altKey) return;
   const previous = document.referrer ? new URL(document.referrer) : null;
-  if (previous?.origin === window.location.origin && /\/(?:index\.html|sandbox\.html)?$/.test(previous.pathname) && history.length > 1) {
+  if (previous?.origin === window.location.origin && /\/(?:index\.html)?$/.test(previous.pathname) && history.length > 1) {
     event?.preventDefault();
     window.history.back();
   } else if (event?.type === "keydown") {
-    window.location.href = returnTarget;
+    window.location.href = "./index.html";
   }
 }
 

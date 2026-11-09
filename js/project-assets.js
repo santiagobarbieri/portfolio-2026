@@ -13,7 +13,7 @@ export function makeHeroItem(project) {
   };
 }
 
-export function collectProjectAssets(project, { includeIntro = false } = {}) {
+export function collectProjectAssets(project) {
   const assets = new Map();
   const photography = project.family === "photography";
   function add(item, name, contextual = false) {
@@ -33,7 +33,7 @@ export function collectProjectAssets(project, { includeIntro = false } = {}) {
     }
     if (existing && item.size && !existing.size) existing.size = item.size;
   }
-  if (project.hero || project.cover) add({ ...makeHeroItem(project), ...(includeIntro ? { gallery: true } : {}), projectSlug: project.slug, projectTitle: project.title }, photography ? undefined : project.title);
+  if (project.hero || project.cover) add({ ...makeHeroItem(project), projectSlug: project.slug, projectTitle: project.title }, photography ? undefined : project.title);
   const sections = project.sections || (project.images?.length ? [{ title: "Imágenes", items: project.images }] : []);
   sections.forEach((section) => {
     if (section.gallery === false) return;
