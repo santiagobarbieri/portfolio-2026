@@ -108,7 +108,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     const item = section.items[0];
     const measured = measuredSize(section.edition);
     const height = measured ? measured.height * unitsPerMm : 460;
-    const width = measured ? measured.width * unitsPerMm : height * item.w / item.h;
+    const width = height * item.w / item.h;
     const depth = measured ? measured.depth * unitsPerMm : 34;
     const slot = element("div", "book-shelf__slot");
     slot.dataset.book = i;
@@ -125,9 +125,6 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     slot.style.setProperty("--book-width", `${width}px`);
     slot.style.setProperty("--book-height", `${height}px`);
     slot.style.setProperty("--book-depth", `${depth}px`);
-    // A neutral border accommodates a reference trim ratio without cropping the artwork.
-    const groundColor = section.colors?.[0]?.hex;
-    if (/^#[0-9a-f]{6}$/i.test(groundColor || "")) faces[0].style.backgroundColor = groundColor;
     slot.append(shadow, object);
     track.append(slot);
     return {
@@ -153,8 +150,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(books.length).padStart(2, "0")}`;
     name.textContent = books[current].section.title;
     const edition = books[current].section.edition;
-    const size = measuredSize(edition);
-    format.textContent = edition?.pages && size ? `${number.format(edition.pages)} págs. · ${Math.round(size.width)} × ${Math.round(size.height)} mm` : "";
+    format.textContent = edition?.pages ? `${number.format(edition.pages)} págs.` : "";
     format.hidden = !format.textContent;
     previous.disabled = current === 0 || focused;
     next.disabled = current === books.length - 1 || focused;
@@ -180,6 +176,22 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     book.target.y = book.ry + wrap(yaw - book.ry);
     book.target.x = pitch;
   }
+  function fitCover(book) {
+    const cover = book.cover;
+    const update = () => {
+      if (book.cover !== cover || !cover.naturalWidth || !cover.naturalHeight) return;
+      // The support follows the actual artwork, including responsive exports and variants.
+      const source = (book.selected.sources || []).find((item) => new URL(item.src, document.baseURI).href === cover.currentSrc);
+      const ratio = source?.w > 0 && source?.h > 0 ? source.w / source.h : cover.naturalWidth / cover.naturalHeight;
+      const width = book.height * ratio;
+      if (Math.abs(width - book.width) < 0.0001) return;
+      book.width = width;
+      book.slot.style.setProperty("--book-width", `${width}px`);
+      wake();
+    };
+    listen(cover, "load", update);
+    update();
+  }
   async function switchVariant(book, item) {
     book.pending = item;
     const replacement = image(item, true);
@@ -189,6 +201,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     book.selected = item;
     book.cover.replaceWith(replacement);
     book.cover = replacement;
+    fitCover(book);
     if (books[current] === book && focused) notes.querySelectorAll("[data-variant]").forEach((node) => node.setAttribute("aria-pressed", String(node.dataset.variant === item.src)));
   }
   function populateNotes(book) {
@@ -206,13 +219,13 @@ export function createBookShelf({ project, makePalette, onOpen }) {
         ["Editorial", [edition.publisher, edition.year].filter(Boolean).join(" · ")],
         ["Formato", binding],
         ["Páginas", edition.pages && number.format(edition.pages)],
-        ["Ancho × alto × lomo", `${number.format(size.width)} × ${number.format(size.height)} × ${number.format(size.depth)} mm`],
+        ["Medidas de la edición", `${number.format(size.width)} × ${number.format(size.height)} × ${number.format(size.depth)} mm`],
         ["ISBN", edition.isbn],
       ];
       fields.forEach(([label, value]) => {
         if (value) metadata.append(element("dt", null, label), element("dd", null, value));
       });
-      details.append(summary, metadata, element("p", "book-shelf__edition-note", "Formato del soporte basado en esta edición publicada. Las medidas de catálogo son de referencia; la cubierta es un rediseño independiente."));
+      details.append(summary, metadata, element("p", "book-shelf__edition-note", "Medidas de referencia: ancho × alto × lomo. El soporte toma la altura y el grosor de esta edición y adapta su ancho a la proporción del rediseño para cubrir el frente completo."));
       for (const source of edition.sources || []) {
         if (!/^https:\/\//.test(source.url)) continue;
         const link = element("a", "book-shelf__edition-source", source.label);
@@ -383,7 +396,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
       moving = yawMoving || pitchMoving || moving;
       book.ry = book.yaw.value;
       book.rx = book.pitch.value;
-      // One physical scale across the shelf; only perspective changes apparent size.
+      // Shared height/depth scale; each front follows its artwork's own aspect ratio.
       const scale = focused && active ? sc * 1.15 : sc;
       const x = focused && active ? -focusWidth / 2 : offsets[i] * sc;
       const y = focused && mobile && active ? -layout.height * 0.29 : ground - book.height / 2 * scale;
@@ -451,6 +464,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     if (!event.persisted) { lifetime.abort(); resize.disconnect(); visibility.disconnect(); }
   });
   listen(window, "pageshow", wake);
+  books.forEach(fitCover);
   updateUI();
   return root;
 }
