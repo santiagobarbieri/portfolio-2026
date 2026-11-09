@@ -37,6 +37,9 @@ export function createBookShelf({ project, makePalette, onOpen }) {
   const stage = element("div", "book-shelf__stage");
   stage.setAttribute("aria-label", "Estante de libros: elegí una tapa o arrastrá el libro central para girarlo");
   const track = element("div", "book-shelf__track");
+  const floor = element("div", "book-shelf__floor");
+  floor.setAttribute("aria-hidden", "true");
+  track.append(floor);
   stage.append(track);
   const previous = button("book-shelf__arrow", "←", "Libro anterior");
   const next = button("book-shelf__arrow", "→", "Libro siguiente");
@@ -76,6 +79,20 @@ export function createBookShelf({ project, makePalette, onOpen }) {
   const listen = (target, type, callback, options = {}) => target.addEventListener(type, callback, { ...options, signal: lifetime.signal });
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const wrap = (angle) => ((angle % 360 + 540) % 360) - 180;
+  // Exact critically damped response: stable across refresh rates, without bounce.
+  function spring(state, target, dt, frequency = 18, tolerance = 0.01) {
+    if (preference.matches) { state.value = target; state.velocity = 0; return false; }
+    const offset = state.value - target;
+    const impulse = state.velocity + frequency * offset;
+    const decay = Math.exp(-frequency * dt);
+    state.value = target + (offset + impulse * dt) * decay;
+    state.velocity = (state.velocity - frequency * impulse * dt) * decay;
+    if (Math.abs(state.value - target) < tolerance && Math.abs(state.velocity) < tolerance * frequency) {
+      state.value = target; state.velocity = 0;
+      return false;
+    }
+    return true;
+  }
   const normals = [[0, 0, 1], [0, 0, -1], [-1, 0, 0], [1, 0, 0], [0, -1, 0], [0, 1, 0]];
   const light = [-0.45, -0.6, 0.65].map((value) => value / Math.hypot(-0.45, -0.6, 0.65));
   const books = project.sections.filter((section) => section.block === "cover-study" && section.items?.[0]).map((section, i) => {
@@ -88,21 +105,27 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     const faces = ["front", "back", "spine", "pages", "top", "bottom"].map((side) => element("span", `shelf-book__face shelf-book__face--${side}`));
     faces.forEach((face) => face.setAttribute("aria-hidden", "true"));
     const cover = image(item, i < 3);
-    faces[0].append(cover);
+    const finish = element("span", "shelf-book__finish");
+    finish.setAttribute("aria-hidden", "true");
+    faces[0].append(cover, finish);
     object.append(...faces);
     slot.style.setProperty("--book-width", `${460 * item.w / item.h}px`);
     slot.append(shadow, object);
     track.append(slot);
-    return { section, item, selected: item, slot, object, faces, cover, ry: -28, rx: -6, vy: 0, vx: 0, snap: null };
+    return {
+      section, item, selected: item, slot, object, faces, cover, shadow,
+      width: 460 * item.w / item.h, ry: -24, rx: -3,
+      yaw: { value: -24, velocity: 0 }, pitch: { value: -3, velocity: 0 },
+      target: { y: -24, x: -3 }, pose: null,
+    };
   });
   let current = 0;
-  let position = 0;
   let focused = false;
   let gesture = null;
   let frame = 0;
   let lastTime = 0;
   let visibility = null;
-  let layout = { width: 0, height: 0 };
+  let layout = { width: 0, height: 0, top: 0, viewportHeight: 0 };
 
   function wake() {
     if (!frame && !document.hidden && !document.querySelector("dialog[open]")) frame = requestAnimationFrame(draw);
@@ -128,10 +151,12 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     if (selected === current) return;
     current = selected;
     const book = books[current];
-    book.ry = wrap(book.ry);
-    book.snap = { y: -28, x: -6 };
-    book.vy = book.vx = 0;
+    aim(book, -24, -3);
     updateUI();
+  }
+  function aim(book, yaw, pitch) {
+    book.target.y = book.ry + wrap(yaw - book.ry);
+    book.target.x = pitch;
   }
   async function switchVariant(book, item) {
     book.pending = item;
@@ -176,9 +201,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     if (focused) return;
     focused = true;
     const book = books[current];
-    book.ry = wrap(book.ry);
-    book.snap = { y: 0, x: 0 };
-    book.vy = book.vx = 0;
+    aim(book, 0, 0);
     populateNotes(book);
     panel.hidden = false;
     panel.scrollTop = 0;
@@ -193,8 +216,7 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     panel.hidden = true;
     root.classList.remove("book-shelf--focused");
     const book = books[current];
-    book.ry = wrap(book.ry);
-    book.snap = { y: -28, x: -6 };
+    aim(book, -24, -3);
     inspect.setAttribute("aria-expanded", "false");
     updateUI();
     book.object.focus({ preventScroll: true });
@@ -204,8 +226,8 @@ export function createBookShelf({ project, makePalette, onOpen }) {
   listen(inspect, "click", openDetails);
   listen(close, "click", closeDetails);
   listen(enlarge, "click", () => { cancelAnimationFrame(frame); frame = 0; onOpen(books[current].selected); });
-  listen(rotate, "click", () => { const book = books[current]; book.snap = { y: book.ry + 45, x: book.rx }; wake(); });
-  listen(reset, "click", () => { const book = books[current]; book.ry = wrap(book.ry); book.snap = { y: 0, x: 0 }; wake(); });
+  listen(rotate, "click", () => { const book = books[current]; book.target.y += 45; wake(); });
+  listen(reset, "click", () => { aim(books[current], 0, 0); wake(); });
   books.forEach((book, i) => listen(book.object, "click", (event) => {
     if (event.detail !== 0) return; // Pointer taps are resolved below after the drag threshold.
     if (current === i) openDetails();
@@ -227,22 +249,23 @@ export function createBookShelf({ project, makePalette, onOpen }) {
     const slot = event.target.closest("[data-book]");
     if (!slot) return;
     const i = Number(slot.dataset.book);
-    gesture = { id: event.pointerId, i, x: event.clientX, y: event.clientY, lx: event.clientX, ly: event.clientY, time: event.timeStamp, moved: false };
+    gesture = { id: event.pointerId, i, x: event.clientX, y: event.clientY, lx: event.clientX, ly: event.clientY, time: event.timeStamp, moved: false, vy: 0, pitch: books[i].rx };
     stage.setPointerCapture(event.pointerId);
   });
   listen(stage, "pointermove", (event) => {
     if (!gesture || gesture.id !== event.pointerId || gesture.i !== current) return;
     if (!gesture.moved && Math.hypot(event.clientX - gesture.x, event.clientY - gesture.y) < 6) return;
-    gesture.moved = true;
     const book = books[current];
-    book.snap = null;
-    const elapsed = Math.max(8, event.timeStamp - gesture.time) / (1000 / 60);
-    const dx = (event.clientX - gesture.lx) * 0.45;
-    const dy = -(event.clientY - gesture.ly) * 0.3;
-    book.vy = clamp(dx / elapsed, -12, 12);
-    book.vx = clamp(dy / elapsed, -6, 6);
-    book.ry += dx;
-    book.rx = clamp(book.rx + dy, -50, 50);
+    if (!gesture.moved) { book.target.y = book.ry; book.target.x = book.rx; }
+    gesture.moved = true;
+    const elapsed = Math.max(8, event.timeStamp - gesture.time) / 1000;
+    const dx = (event.clientX - gesture.lx) * 0.32;
+    const dy = -(event.clientY - gesture.ly) * 0.22;
+    gesture.vy += (clamp(dx / elapsed, -220, 220) - gesture.vy) * 0.55;
+    book.target.y += dx;
+    gesture.pitch += dy;
+    // Increasing resistance at the pitch limits keeps the book controllable.
+    book.target.x = 28 * Math.tanh(gesture.pitch / 28);
     gesture.lx = event.clientX;
     gesture.ly = event.clientY;
     gesture.time = event.timeStamp;
@@ -259,7 +282,13 @@ export function createBookShelf({ project, makePalette, onOpen }) {
       if (previousGesture.i !== current) select(previousGesture.i);
       else openDetails();
     }
-    if (preference.matches || event.type !== "pointerup" || event.timeStamp - previousGesture.time > 100) books[current].vy = books[current].vx = 0;
+    if (previousGesture.moved && previousGesture.i === current) {
+      const book = books[current];
+      const momentum = !preference.matches && event.type === "pointerup" && event.timeStamp - previousGesture.time < 90;
+      // A short, bounded continuation replaces the previous long free spin.
+      if (momentum) book.target.y += previousGesture.vy * 0.12;
+      book.target.x = focused ? 0 : -3;
+    }
     wake();
   }
   listen(stage, "pointerup", release);
@@ -280,67 +309,82 @@ export function createBookShelf({ project, makePalette, onOpen }) {
   }
   function draw(time) {
     frame = 0;
-    const dt = clamp((time - lastTime) / (1000 / 60), 0.25, 2);
+    const dt = lastTime ? clamp((time - lastTime) / 1000, 1 / 240, 0.05) : 1 / 60;
     lastTime = time;
-    const smooth = (value, target, amount) => preference.matches ? target : value + (target - value) * (1 - (1 - amount) ** dt);
-    position = smooth(position, current, 0.08);
-    if (Math.abs(position - current) < 0.001) position = current;
     const mobile = layout.width <= 700;
     const focusWidth = focused && !mobile ? Math.min(400, layout.width * 0.35) : 0;
     const available = layout.width - focusWidth;
     const sc = focused && mobile
       ? Math.min(1, layout.height * 0.34 / (460 * 1.15), layout.width / 760)
-      : Math.min(1, layout.height / 640, available / 760);
-    let moving = position !== current;
+      : Math.min(1, layout.height / 660, available / 800);
+    const ground = focused && !mobile ? 230 * sc * 1.15 : 215 * sc - 12;
+    floor.style.setProperty("--shelf-ground", `${ground}px`);
+    let moving = false;
     books.forEach((book, i) => {
-      const off = i - position, distance = Math.abs(off), active = i === current;
-      const hidden = focused ? !active : distance > 3.5;
-      book.slot.style.visibility = hidden ? "hidden" : "visible";
-      book.slot.inert = hidden;
-      if (hidden && !active) return;
-      if (active) {
-        if (book.snap) {
-          book.ry = smooth(book.ry, book.snap.y, 0.12);
-          book.rx = smooth(book.rx, book.snap.x, 0.12);
-          if (Math.abs(book.snap.y - book.ry) + Math.abs(book.snap.x - book.rx) < 0.05) {
-            book.ry = book.snap.y; book.rx = book.snap.x; book.snap = null;
-          } else moving = true;
-        } else if (!gesture && !preference.matches) {
-          book.vy *= 0.94 ** dt;
-          book.vx *= 0.9 ** dt;
-          if (Math.abs(book.vy) < 0.01) book.vy = 0;
-          if (Math.abs(book.vx) < 0.01) book.vx = 0;
-          book.ry += book.vy * dt;
-          book.rx = clamp(book.rx + book.vx * dt, -50, 50);
-          moving ||= Boolean(book.vy || book.vx);
-        }
-      } else {
-        const target = -Math.sign(off) * Math.min(distance, 2) * 34;
-        book.ry = smooth(target + wrap(book.ry - target), target, 0.1);
-        book.rx = smooth(book.rx, -6, 0.1);
-        book.vy = book.vx = 0;
-        moving ||= Math.abs(book.ry - target) + Math.abs(book.rx + 6) > 0.05;
+      const off = i - current, distance = Math.abs(off), active = i === current;
+      if (!active) aim(book, -Math.sign(off) * Math.min(distance, 2) * 30, -3);
+      const response = gesture?.i === i ? 25 : 16;
+      const yawMoving = spring(book.yaw, book.target.y, dt, response);
+      const pitchMoving = spring(book.pitch, book.target.x, dt, response);
+      moving = yawMoving || pitchMoving || moving;
+      book.ry = book.yaw.value;
+      book.rx = book.pitch.value;
+      const scale = focused && active ? sc * 1.15 : sc * (1 - Math.min(distance, 3) * 0.14);
+      const x = focused && active ? -focusWidth / 2 : Math.sign(off) * (distance < 1 ? distance * 340 : 340 + (distance - 1) * 215) * Math.max(0.55, sc);
+      const y = focused && active ? mobile ? -layout.height * 0.29 : 0 : ground - 230 * scale;
+      const z = focused && active ? mobile ? 0 : 100 : active ? 72 : -distance * 150;
+      const targetPose = { x, y, z, scale, opacity: focused && !active ? 0 : 1 };
+      if (!book.pose) book.pose = Object.fromEntries(Object.entries(targetPose).map(([key, value]) => [key, { value, velocity: 0 }]));
+      for (const [key, target] of Object.entries(targetPose)) {
+        const unsettled = spring(book.pose[key], target, dt, 18, key === "scale" || key === "opacity" ? 0.0001 : 0.02);
+        moving = unsettled || moving;
       }
-      const scale = focused ? sc * 1.15 : sc * (1 - Math.min(distance, 3) * 0.17);
-      const x = focused ? -focusWidth / 2 : Math.sign(off) * (distance < 1 ? distance * 310 : 310 + (distance - 1) * 190) * Math.max(0.55, sc);
-      const y = focused && mobile ? -layout.height * 0.29 : focused ? 0 : 220 * sc - 230 * scale - 12;
-      const z = focused ? mobile ? 0 : 100 : -distance * 160;
-      book.slot.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale})`;
-      book.slot.style.zIndex = String(100 - Math.round(distance * 10));
-      book.object.style.transform = `rotateX(${book.rx}deg) rotateY(${book.ry}deg)`;
-      shade(book, focused ? 0 : Math.min(0.5, distance * 0.26));
+      const pose = Object.fromEntries(Object.entries(book.pose).map(([key, state]) => [key, state.value]));
+      const hidden = !active && (distance > 3.5 || pose.opacity < 0.001);
+      book.slot.style.visibility = hidden ? "hidden" : "visible";
+      book.slot.inert = hidden || focused && !active;
+      if (!hidden) {
+        book.slot.style.opacity = pose.opacity.toFixed(4);
+        book.slot.style.transform = `translate3d(${pose.x}px, ${pose.y}px, ${pose.z}px) scale(${pose.scale})`;
+        book.slot.style.zIndex = String(active ? 110 : 100 - Math.round(distance * 10));
+        // Lift only enough to keep the lowest rotated corner on the support plane.
+        const radians = Math.PI / 180;
+        const cy = Math.cos(book.ry * radians), sy = Math.sin(book.ry * radians);
+        const pitch = book.rx * radians;
+        const halfDepth = Math.abs(sy) * book.width / 2 + Math.abs(cy) * 17;
+        const lift = Math.max(0, 230 * Math.cos(pitch) + halfDepth * Math.abs(Math.sin(pitch)) - 230);
+        book.object.style.transform = `translateY(${-lift}px) rotateX(${book.rx}deg) rotateY(${book.ry}deg)`;
+        const footprint = Math.max(40, Math.abs(cy) * book.width + Math.abs(sy) * 34) * 1.12;
+        book.shadow.style.width = `${footprint}px`;
+        book.shadow.style.left = `${-footprint / 2}px`;
+        book.object.style.setProperty("--shine-x", `${50 + sy * 45}%`);
+        book.object.style.setProperty("--shine-alpha", (0.012 + Math.abs(sy) * 0.025).toFixed(3));
+        shade(book, focused ? 0 : Math.min(0.36, distance * 0.18));
+      }
     });
     root.dataset.moving = String(moving);
     if (moving) wake();
   }
-  const resize = new ResizeObserver(([entry]) => { layout = { width: entry.contentRect.width, height: entry.contentRect.height }; wake(); });
+  const resize = new ResizeObserver(([entry]) => {
+    const next = { width: entry.contentRect.width, height: entry.contentRect.height, top: stage.getBoundingClientRect().top, viewportHeight: innerHeight };
+    const viewportChanged = next.width !== layout.width || next.viewportHeight !== layout.viewportHeight;
+    books.forEach((book) => {
+      if (viewportChanged || next.width <= 700) book.pose = null;
+      else if (book.pose) book.pose.y.value += layout.top + layout.height / 2 - next.top - next.height / 2;
+    });
+    layout = next;
+    wake();
+  });
   resize.observe(stage);
   listen(preference, "change", () => {
-    books.forEach((book) => { book.vx = book.vy = 0; });
+    gesture = null;
+    root.classList.remove("book-shelf--dragging");
+    books.forEach((book) => { book.yaw.velocity = book.pitch.velocity = 0; });
     wake();
   });
   listen(document, "visibilitychange", () => {
     cancelAnimationFrame(frame); frame = 0;
+    lastTime = 0;
     if (!document.hidden) wake();
   });
   // Returning from the shared image viewer must resume an interrupted settle.
