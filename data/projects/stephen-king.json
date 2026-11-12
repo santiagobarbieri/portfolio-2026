@@ -137,6 +137,11 @@
         ],
         "verifiedAt": "2026-11-08",
         "sourceNote": "Ancho y alto de la editorial; lomo del catálogo de Bookshop.org. Medidas comerciales redondeadas."
+      },
+      "synopsis": "Ben Mears regresa al pueblo de su infancia para escribir sobre una casa que lo obsesiona. Allí descubre una amenaza vampírica que transforma a sus habitantes.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/salems-lot.html"
       }
     },
     {
@@ -216,6 +221,11 @@
           }
         ],
         "verifiedAt": "2026-11-08"
+      },
+      "synopsis": "Carrie White, una adolescente hostigada en la escuela y reprimida en su casa, descubre que puede mover objetos con la mente. Su deseo de pertenecer se cruza con una crueldad cada vez mayor.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/carrie.html"
       }
     },
     {
@@ -319,6 +329,11 @@
           }
         ],
         "verifiedAt": "2026-11-08"
+      },
+      "synopsis": "Un san bernardo contrae la rabia y se convierte en una amenaza. Una madre y su hijo quedan atrapados en un auto averiado, aislados por el perro y el calor.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/cujo.html"
       }
     },
     {
@@ -398,6 +413,11 @@
           }
         ],
         "verifiedAt": "2026-11-08"
+      },
+      "synopsis": "Un grupo de amigos vuelve a Derry para enfrentar una criatura que marcó su infancia. El relato cruza dos épocas, los recuerdos compartidos y el miedo que vuelve a despertar.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/it.html"
       }
     },
     {
@@ -477,7 +497,13 @@
           }
         ],
         "verifiedAt": "2026-11-08"
-      }
+      },
+      "synopsis": "Después de un accidente, el escritor Paul Sheldon es rescatado por una admiradora. Su refugio se convierte en cautiverio cuando ella intenta controlar el destino de su personaje favorito.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/misery.html"
+      },
+      "designNote": "La búsqueda se apoya en lo fenoménico, la figura y lo reconocible."
     },
     {
       "n": "06",
@@ -551,7 +577,13 @@
         ],
         "verifiedAt": "2026-11-08",
         "sourceNote": "Edición de bolsillo de 2017, ISBN 9781501156700. Ficha de Indigo; la URL editorial de este ISBN redirige a otra edición y no se usa para sus datos."
-      }
+      },
+      "synopsis": "Louis Creed y su familia se mudan cerca de un cementerio de mascotas. Un lugar oculto más allá del bosque lo enfrenta con el duelo y la tentación de revertir la muerte.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/pet-sematary.html"
+      },
+      "designNote": "La construcción del gato busca una expresión menos detallada, cercana al arte expresionista."
     },
     {
       "n": "07",
@@ -631,6 +663,11 @@
         ],
         "verifiedAt": "2026-11-08",
         "volume": 7
+      },
+      "synopsis": "En el volumen VII, Roland y sus compañeros recorren el último tramo hacia la Torre Oscura. Los enemigos que aún los persiguen ponen a prueba el destino de su búsqueda.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/dark-tower.html"
       }
     },
     {
@@ -710,6 +747,11 @@
           }
         ],
         "verifiedAt": "2026-11-08"
+      },
+      "synopsis": "Johnny Smith despierta de un coma con la capacidad de ver el pasado y el futuro al tocar a otras personas. Una visión vinculada con un político lo enfrenta a una difícil decisión.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/dead-zone.html"
       }
     },
     {
@@ -789,6 +831,11 @@
           }
         ],
         "verifiedAt": "2026-11-08"
+      },
+      "synopsis": "En el corredor de la muerte de una prisión, el guardia Paul Edgecombe conoce a John Coffey. Su llegada y sus capacidades extraordinarias ponen en duda lo que Paul cree sobre la justicia.",
+      "synopsisSource": {
+        "label": "Simon & Schuster",
+        "url": "https://www.simonandschuster.com/books/The-Green-Mile/Stephen-King/9781501192265"
       }
     },
     {
@@ -868,6 +915,11 @@
           }
         ],
         "verifiedAt": "2026-11-08"
+      },
+      "synopsis": "Jack Torrance acepta cuidar el hotel Overlook durante el invierno y se instala allí con su familia. El aislamiento y las fuerzas del hotel amenazan a su hijo Danny, que posee una sensibilidad especial.",
+      "synopsisSource": {
+        "label": "StephenKing.com",
+        "url": "https://stephenking.com/works/novel/shining.html"
       }
     }
   ],
@@ -888,6 +940,7 @@
   "shelf": {
     "number": "001",
     "author": "Stephen King",
-    "editionNote": "Las alturas y grosores toman ediciones publicadas como referencia, a una escala común. El ancho del soporte se adapta a la proporción nativa de cada tapa activa para cubrir el frente completo sin márgenes, recortes ni deformaciones. Las medidas editoriales originales se conservan como documentación del ISBN; no son especificaciones de producción de estos rediseños independientes de Santiago Barbieri."
+    "editionNote": "Las alturas y grosores toman ediciones publicadas como referencia, a una escala común. El ancho del soporte se adapta a la proporción nativa de cada tapa activa para cubrir el frente completo sin márgenes, recortes ni deformaciones. Las medidas editoriales originales se conservan como documentación del ISBN; no son especificaciones de producción de estos rediseños independientes de Santiago Barbieri.",
+    "technique": "Construcción visual mediante capas y modos de fusión (blend modes) en Photoshop. Cada tapa desarrolla una búsqueda propia."
   }
 }

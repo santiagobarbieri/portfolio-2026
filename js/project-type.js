@@ -1,7 +1,7 @@
 const labels = {
-  identity: "Identidad visual",
-  passion: "Passion project",
-  photography: "Colección de fotos",
+  identity: "Proyectos",
+  passion: "Ediciones",
+  photography: "Colecciones",
 };
 
 export function makeProjectType(family) {

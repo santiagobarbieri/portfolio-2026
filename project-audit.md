@@ -161,3 +161,10 @@ Los objetivos o materiales que no estén confirmados no se completan por inferen
 - Sin imágenes faltantes ni excepciones de JavaScript durante la revisión.
 - Integridad de los 83 originales verificada mediante SHA-256; no se eliminó ni recomprimió ninguno.
 - Se corrige el índice lateral para que no conserve una sección anterior cuando la apertura queda en pantalla.
+
+### Shelf 001 · ficha y proceso confirmados (2026-11-09)
+
+- Santi confirmó capas y modos de fusión en Photoshop como técnica común, expresionismo menos detallado para el gato de Pet Sematary y lo fenoménico/figura reconocible en Misery.
+- Ficha breve por toque, sin desplazar el estante: paleta, diseño, técnica y sinopsis con fuente. Variantes en desplegable.
+- Scroll/trackpad y swipe de fondo con ajuste al libro; arrastre del central para rotar, índice de tapas y memoria de sesión.
+- No inventar nuevos estantes, lomos ni contratapas: faltan originales.

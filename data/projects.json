@@ -13,7 +13,10 @@
     "order": -2,
     "kind": "project",
     "details": "data/projects/stephen-king.json",
-    "family": "passion"
+    "family": "passion",
+    "shelf": {
+      "number": "001"
+    }
   },
   {
     "slug": "olas-ditella",

@@ -329,10 +329,10 @@ function renderPhotoCollection(project) {
   content.replaceChildren(article);
 }
 
-function renderProject(project) {
+function renderProject(project, shelves = []) {
   projectAssets = collectProjectAssets(project);
   if (project.presentation === "book-shelf") {
-    const shelf = createBookShelf({ project, makePalette, onOpen: openGallery });
+    const shelf = createBookShelf({ project, shelves, makePalette, onOpen: openGallery });
     projectScroll.destroy();
     document.body.classList.add("entry-page--shelf");
     content.classList.remove("entry-fallback");
@@ -351,7 +351,7 @@ function renderProject(project) {
   const classification = makeElement("div", "project-entry__classification");
   const type = makeProjectType(project.family);
   if (type) classification.append(type);
-  if (project.family !== "identity" && project.type) classification.append(makeElement("span", "project-entry__discipline", project.type));
+  if (project.type) classification.append(makeElement("span", "project-entry__discipline", project.type));
   header.append(classification);
   article.append(header);
   const opening = makeElement("div", "project-entry__opening");
@@ -450,7 +450,7 @@ async function renderEntry() {
         project = { ...project, ...await detailsResponse.json() };
       }
     }
-    renderProject(project);
+    renderProject(project, projects.filter((entry) => entry.shelf?.number));
   } catch {
     renderFallback("No se pudo cargar el proyecto", "Revisá tu conexión e intentá abrirlo otra vez desde el archivo.");
   }

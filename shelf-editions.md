@@ -20,3 +20,24 @@ Las páginas se toman de las fichas editoriales cuando están disponibles. Las d
 La ficha del editor de Carrie reúne varios formatos: el registro usa expresamente la tapa dura de 1990 y 208 páginas, corroborada por su ISBN en Bookshop.org. Para The Shining se usa también la tapa dura de 1990 (464 páginas), evitando mezclarla con las rústicas de 592/688 páginas o futuras reediciones. The Dark Tower corresponde al volumen VII, confirmado por Santi.
 
 Actualización de presentación — 9 de noviembre de 2026: las alturas y los grosores toman estas ediciones como referencia, a una escala común. El ancho del soporte se adapta a la proporción nativa de cada tapa activa para que cubra todo el frente, sin márgenes, recortes ni deformaciones. Se recalcula también al cambiar de variante o exportación responsive. Las medidas editoriales de la tabla se conservan como documentación de las fuentes; el ancho adaptado del rediseño no pretende reproducir el ancho de ese ISBN.
+
+## Ficha compacta — 9 de noviembre de 2026
+
+La ficha abre al tocar el libro, sin cambiar posición ni escala de la escena. Incluye paleta muestreada, lectura breve de la tapa, técnica y sinopsis. Las páginas/formato corresponden a las ediciones de referencia de esta tabla.
+
+Técnica confirmada por Santiago: construcción visual mediante capas y modos de fusión en Photoshop. Pet Sematary busca una construcción expresionista menos detallada del gato. Misery trabaja lo fenoménico, la figura y lo reconocible. Las demás observaciones se mantienen como lecturas visuales y no como procesos atribuidos.
+
+Las sinopsis son paráfrasis breves en español de las fichas oficiales; cada libro conserva su URL en `synopsisSource`:
+
+- [’Salem’s Lot](https://stephenking.com/works/novel/salems-lot.html)
+- [Carrie](https://stephenking.com/works/novel/carrie.html)
+- [Cujo](https://stephenking.com/works/novel/cujo.html)
+- [IT](https://stephenking.com/works/novel/it.html)
+- [Misery](https://stephenking.com/works/novel/misery.html)
+- [Pet Sematary](https://stephenking.com/works/novel/pet-sematary.html)
+- [The Dark Tower](https://stephenking.com/works/novel/dark-tower.html)
+- [The Dead Zone](https://stephenking.com/works/novel/dead-zone.html)
+- [The Green Mile](https://www.simonandschuster.com/books/The-Green-Mile/Stephen-King/9781501192265)
+- [The Shining](https://stephenking.com/works/novel/shining.html)
+
+Los lomos y contratapas diseñados siguen pendientes de originales. El soporte neutro distingue encuadernación dura y rústica, sin crear arte nuevo.

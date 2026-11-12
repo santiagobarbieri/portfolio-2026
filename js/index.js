@@ -16,7 +16,7 @@ function node(tag, className, text) {
 
 function createCard(project) {
   const card = node("article", "archive-card");
-  Object.assign(card.dataset, { slug: project.slug, category: project.category, order: project.order, title: project.title, kind: "project" });
+  Object.assign(card.dataset, { slug: project.slug, category: project.category, family: project.family, order: project.order, title: project.title, kind: "project" });
   const link = node("a", "archive-card__link");
   link.href = `./project.html?p=${encodeURIComponent(project.slug)}`;
   link.setAttribute("aria-label", `Abrir ${project.title}`);
@@ -78,7 +78,8 @@ export async function initArchive() {
   const filterTrigger = filterPanel?.querySelector("summary");
   const compactControls = matchMedia("(max-width: 900px)");
   const main = document.getElementById("main-content");
-  let category = templates.some((card) => card.dataset.category === state.category) ? state.category : "all";
+  const previousCategory = { identidad: "identity", editorial: "passion", fotografia: "photography" }[state.category] || state.category;
+  let category = templates.some((card) => card.dataset.family === previousCategory) ? previousCategory : "all";
   let order = ["newest", "oldest", "az"].includes(state.order) ? state.order : "newest";
   let selected = [];
   let rows = [];
@@ -120,7 +121,7 @@ export async function initArchive() {
   }
 
   function sorted() {
-    return templates.filter((card) => category === "all" || card.dataset.category === category).sort((a, b) => {
+    return templates.filter((card) => category === "all" || card.dataset.family === category).sort((a, b) => {
       if (order === "az") return collator.compare(a.dataset.title || a.querySelector("h2").textContent, b.dataset.title || b.querySelector("h2").textContent);
       const difference = Number(a.dataset.order) - Number(b.dataset.order);
       return order === "oldest" ? -difference : difference;
@@ -211,7 +212,7 @@ export async function initArchive() {
       }
     });
     const projectCount = selected.length;
-    const count = `${projectCount} ${projectCount === 1 ? "proyecto" : "proyectos"}`;
+    const count = `${projectCount} ${projectCount === 1 ? "entrada" : "entradas"}`;
     status.textContent = count;
     if (mobileStatus) mobileStatus.textContent = count;
   }
@@ -228,7 +229,7 @@ export async function initArchive() {
     stream.replaceChildren();
     rows = [];
     if (!selected.length) {
-      stream.append(node("p", "archive-empty", "No hay proyectos en esta categoría."));
+      stream.append(node("p", "archive-empty", "No hay entradas en esta categoría."));
       motion.resize();
       motion.scrollTo(0, { immediate: true });
       updateMenus();

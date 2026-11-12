@@ -153,7 +153,7 @@ export function initCursor() {
     bounds = surface === document.body ? { left: 0, top: 0, right: innerWidth, bottom: innerHeight } : surface.getBoundingClientRect();
   }
   function placeCursor() {
-    const next = document.querySelector("dialog[open]") || document.body;
+    const next = document.activeElement?.closest("dialog[open]") || [...document.querySelectorAll("dialog[open]")].at(-1) || document.body;
     if (cursor.parentElement !== next) {
       next.append(cursor);
       surface = next;
