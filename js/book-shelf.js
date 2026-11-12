@@ -42,7 +42,7 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
   const root = element("article", "book-shelf");
   root.dataset.lenisPrevent = "";
   const heading = element("header", "book-shelf__heading");
-  heading.append(element("h1", null, project.title), element("p", null, "Ediciones · Libros"));
+  heading.append(element("h1", null, project.title), element("p", null, "Books · Tapas de libros"));
   // Only published registry entries can become shelf destinations.
   if (shelves.length > 1) {
     const navigation = element("details", "book-shelf__library");
@@ -51,7 +51,7 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
     list.setAttribute("aria-label", "Estantes publicados");
     shelves.forEach((shelf) => {
       const link = element("a", null, shelf.title);
-      link.href = `./project.html?p=${encodeURIComponent(shelf.slug)}`;
+      link.href = `./books.html?shelf=${encodeURIComponent(shelf.slug)}`;
       if (shelf.slug === project.slug) link.setAttribute("aria-current", "page");
       list.append(link);
     });

@@ -1,6 +1,6 @@
 import { collectProjectAssets, makeHeroItem } from "./project-assets.js";
 import { createMediumCollection } from "./medium-collection.js";
-import { createBookShelf } from "./book-shelf.js";
+import { makePalette } from "./project-palette.js";
 import { createImageGallery, imageKey } from "./image-gallery.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
@@ -72,29 +72,6 @@ function setPageTitle(name, description, cover) {
   }
 }
 
-function makePalette(colors) {
-  const palette = makeElement("div", "project-palette");
-  palette.dataset.count = colors.length;
-  colors.forEach(({ name, hex }) => {
-    if (!/^#[0-9a-f]{6}$/i.test(hex)) return;
-    const item = makeElement("figure", "project-palette__item");
-    const swatch = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    swatch.classList.add("project-palette__swatch");
-    swatch.setAttribute("viewBox", "0 0 100 100");
-    swatch.setAttribute("aria-hidden", "true");
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", "50");
-    circle.setAttribute("cy", "50");
-    circle.setAttribute("r", "50");
-    circle.setAttribute("fill", hex);
-    swatch.append(circle);
-    const caption = makeElement("figcaption", "project-palette__name", name);
-    caption.append(makeElement("span", "project-palette__hex", hex.toUpperCase()));
-    item.append(swatch, caption);
-    palette.append(item);
-  });
-  return palette;
-}
 
 let projectAssets = [];
 
@@ -329,17 +306,8 @@ function renderPhotoCollection(project) {
   content.replaceChildren(article);
 }
 
-function renderProject(project, shelves = []) {
+function renderProject(project) {
   projectAssets = collectProjectAssets(project);
-  if (project.presentation === "book-shelf") {
-    const shelf = createBookShelf({ project, shelves, makePalette, onOpen: openGallery });
-    projectScroll.destroy();
-    document.body.classList.add("entry-page--shelf");
-    content.classList.remove("entry-fallback");
-    setPageTitle(project.title, project.description, project.cover);
-    content.replaceChildren(shelf);
-    return;
-  }
   if (project.family === "photography") { renderPhotoCollection(project); return; }
   content.classList.remove("entry-fallback");
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
@@ -442,6 +410,10 @@ async function renderEntry() {
       renderFallback("Entrada no encontrada", "Este proyecto no está disponible. Podés explorar los demás desde el archivo.");
       return;
     }
+    if (project.shelf?.number) {
+      window.location.replace(`./books.html?shelf=${encodeURIComponent(project.slug)}`);
+      return false;
+    }
     if (project.details) {
       const detailsURL = new URL(project.details, document.baseURI);
       if (detailsURL.origin === window.location.origin) {
@@ -450,7 +422,7 @@ async function renderEntry() {
         project = { ...project, ...await detailsResponse.json() };
       }
     }
-    renderProject(project, projects.filter((entry) => entry.shelf?.number));
+    renderProject(project);
   } catch {
     renderFallback("No se pudo cargar el proyecto", "Revisá tu conexión e intentá abrirlo otra vez desde el archivo.");
   }

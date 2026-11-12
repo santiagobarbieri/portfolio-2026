@@ -60,7 +60,8 @@
               <legend class="visually-hidden">Filtrar por categoría</legend>
               <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="all" checked><span>Todo el Archivo</span></label>
               <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="identity"><span>Proyectos</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="passion"><span>Ediciones</span></label>
+              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="books"><span>Books</span></label>
+              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="posters"><span>Posters</span></label>
               <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="photography"><span>Colecciones</span></label>
             </fieldset>
           </details>
@@ -76,6 +77,11 @@
           <p class="archive-results" data-archive-status role="status" aria-live="polite">5 entradas</p>
         </div>
       </details>
+        <nav class="archive-personal" aria-label="Obra personal">
+          <a class="tab" href="./books.html">Books</a>
+          <a class="tab" href="./posters.html">Posters</a>
+          <a class="tab" href="./self-made.html">Self Made</a>
+        </nav>
         <nav class="archive-pages" aria-label="About, Contact y Shop">
           <a class="tab" href="./about.html">About</a>
           <a class="tab" href="./contact.html" target="_blank" rel="noopener noreferrer" aria-label="Contact — abrir en otra pestaña">Contact<span class="archive-directory__external" aria-hidden="true">↗</span></a>
@@ -120,13 +126,13 @@
       <div class="archive-stream" data-archive-stream>
         <!-- Complete semantic fallback; JavaScript recycles rows outside the viewport. -->
         <div class="archive-row" data-sequence="0">
-          <article class="archive-card" data-slug="stephen-king" data-category="editorial" data-family="passion" data-order="-2">
-            <a class="archive-card__link" href="./project.html?p=stephen-king" aria-label="Abrir Shelf 001 - Stephen King">
+          <article class="archive-card" data-slug="stephen-king" data-category="editorial" data-family="books" data-order="-2">
+            <a class="archive-card__link" href="./books.html?shelf=stephen-king" aria-label="Abrir Shelf 001 - Stephen King">
               <div class="archive-card__media">
                 <img class="archive-card__image" src="./assets/images/stephen-king/PORTADA.png" alt="Logotipo rojo de Stephen King con letras erosionadas" width="1280" height="720" decoding="async" data-cover-motion>
               </div>
               <div class="archive-card__caption">
-                <span class="project-type archive-card__type" data-family="passion">Ediciones</span>
+                <span class="project-type archive-card__type" data-family="books">Books</span>
                 <h2 class="archive-card__title">Shelf 001 - Stephen King</h2>
                 <p class="archive-card__description">Primer estante de una biblioteca de portadas rediseñadas: diez libros de Stephen King.</p>
               </div>

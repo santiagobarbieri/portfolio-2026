@@ -1,0 +1,34 @@
+.personal-archive-page { --accent: var(--fg); --piece-columns: 7; --piece-gap: 16px; --piece-row-gap: 32px; --piece-ratio: 1.415; }
+.personal-archive__bar { position: fixed; z-index: 5; inset: 0 0 auto; height: 0; pointer-events: none; }
+.personal-archive__close, .personal-archive__logo { position: absolute; top: 32px; display: grid; place-items: center; min-height: 44px; background: var(--bg); pointer-events: auto; }
+.personal-archive__close { left: 16px; min-width: 56px; justify-items: start; font-weight: 600; font-size: var(--text-body); }
+.personal-archive__logo { right: 16px; min-width: 44px; }
+.personal-archive__logo .identity__glyph { flex-basis: 26px; width: 26px; height: 26px; margin: 0; }
+.personal-archive__main { width: min(1600px, 76vw); margin: 48px auto 48px; }
+.personal-archive__stream { position: relative; overflow-anchor: none; }
+.personal-archive__row { display: grid; grid-template-columns: repeat(var(--piece-columns), minmax(0, 1fr)); gap: var(--piece-gap); padding-bottom: var(--piece-row-gap); overflow-anchor: none; }
+.personal-archive__cell { min-width: 0; margin: 0; }
+.personal-archive__open { display: block; width: 100%; padding: 0; text-align: left; --interaction-scale: 1; }
+.personal-archive__media { position: relative; display: block; width: 100%; aspect-ratio: 1 / var(--piece-ratio); }
+.personal-archive__media img { width: 100%; height: auto; max-height: 100%; object-fit: contain; object-position: top; transform-origin: center; transition: scale var(--interaction-duration) var(--ease), opacity var(--duration) var(--ease); }
+.personal-archive__media img[data-preview]:not(.is-ready) { opacity: 0; }
+.personal-archive__number { display: block; margin-top: 10px; font-size: var(--text-meta); line-height: var(--leading-meta); font-variant-numeric: tabular-nums; }
+.personal-archive__media[aria-busy="true"]::after { position: absolute; top: calc(50% - 8px); left: calc(50% - 8px); width: 16px; height: 16px; background: var(--fg); mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; -webkit-mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; animation: rose-loading 1600ms steps(8, end) infinite; content: ""; pointer-events: none; }
+.personal-archive__media[data-error]::after { position: absolute; inset: 0; display: grid; place-items: center; content: "Imagen no disponible"; color: var(--mute); font-size: var(--text-meta); }
+.personal-archive-page[data-pristine="true"] .personal-archive__row[data-history] { visibility: hidden; }
+.personal-archive__open:focus-visible img { scale: var(--hover-image-scale); }
+.personal-archive__empty { padding-block: 120px; max-width: 360px; }
+.personal-archive__empty h2 { font-size: var(--text-title); }
+.personal-archive__empty p { margin-top: 12px; color: var(--mute); }
+.personal-archive__empty a { min-height: 44px; margin-top: 20px; padding-block: 12px; }
+.personal-archive-page .image-gallery::backdrop { background: var(--bg); }
+@media (hover: hover) and (pointer: fine) { .personal-archive__open:hover img { scale: var(--hover-image-scale); } }
+@media (max-width: 1199px) { .personal-archive-page { --piece-columns: 5; } .personal-archive__main { width: calc(100% - 160px); } }
+@media (max-width: 900px) { .personal-archive-page { --piece-columns: 4; } .personal-archive__main { width: calc(100% - 128px); } }
+@media (max-width: 600px) {
+  .personal-archive-page { --piece-columns: 3; --piece-gap: 12px; --piece-row-gap: 28px; }
+  .personal-archive__bar { height: 80px; background: var(--bg); }
+  .personal-archive__close, .personal-archive__logo { top: 16px; }
+  .personal-archive__main { width: calc(100% - 32px); margin-top: 96px; }
+}
+@media (prefers-reduced-motion: reduce) { .personal-archive__media[aria-busy="true"]::after { animation: none; } }

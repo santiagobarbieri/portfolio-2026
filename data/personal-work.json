@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "stephen-king-01",
+      "kind": "book",
+      "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de 'SALEM'S LOT en la serie Stephen King",
+      "original": "assets/images/stephen-king/%27SALEM%27S%20LOT.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "’Salem’s Lot",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-01-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "fotos-en-zapallar-01",
+      "kind": "photo",
+      "src": "assets/images/zapallar/IMG_4660-1600.webp",
+      "original": "assets/images/zapallar/IMG_4660.jpg",
+      "w": 1600,
+      "h": 898,
+      "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar",
+      "sources": [
+        {
+          "src": "assets/images/zapallar/IMG_4660-1600.webp",
+          "w": 1600,
+          "h": 898
+        },
+        {
+          "src": "assets/images/zapallar/IMG_4660-800.webp",
+          "w": 800,
+          "h": 449
+        }
+      ],
+      "projectSlug": "fotos-en-zapallar",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/fotos-en-zapallar-01-400.webp",
+        "w": 400,
+        "h": 225
+      }
+    },
+    {
+      "id": "stephen-king-02",
+      "kind": "book",
+      "src": "assets/images/stephen-king/Variante%202-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Stephen King — variante 2",
+      "original": "assets/images/stephen-king/Variante%202.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/Variante%202-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/Variante%202-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "caption": "Variante 02",
+      "name": "’Salem’s Lot — Variante 02",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-02-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "fotos-en-zapallar-02",
+      "kind": "photo",
+      "src": "assets/images/zapallar/IMG_4726-800.webp",
+      "w": 800,
+      "h": 532,
+      "alt": "Árboles y jardines en una calle de Zapallar",
+      "original": "assets/images/zapallar/IMG_4726.JPG",
+      "sources": [
+        {
+          "src": "assets/images/zapallar/IMG_4726-1600.webp",
+          "w": 1600,
+          "h": 1065
+        },
+        {
+          "src": "assets/images/zapallar/IMG_4726-800.webp",
+          "w": 800,
+          "h": 532
+        }
+      ],
+      "caption": "Árboles y jardines",
+      "projectSlug": "fotos-en-zapallar",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/fotos-en-zapallar-02-400.webp",
+        "w": 400,
+        "h": 266
+      }
+    },
+    {
+      "id": "stephen-king-03",
+      "kind": "book",
+      "src": "assets/images/stephen-king/CARRIE-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de CARRIE en la serie Stephen King",
+      "original": "assets/images/stephen-king/CARRIE.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/CARRIE-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/CARRIE-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "Carrie",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-03-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "fotos-en-zapallar-03",
+      "kind": "photo",
+      "src": "assets/images/zapallar/IMG_4665-800.webp",
+      "w": 800,
+      "h": 1067,
+      "alt": "Botellas y objetos en los estantes de un comercio",
+      "original": "assets/images/zapallar/IMG_4665.JPG",
+      "sources": [
+        {
+          "src": "assets/images/zapallar/IMG_4665-1600.webp",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "src": "assets/images/zapallar/IMG_4665-800.webp",
+          "w": 800,
+          "h": 1067
+        }
+      ],
+      "caption": "Detalles cotidianos",
+      "projectSlug": "fotos-en-zapallar",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/fotos-en-zapallar-03-400.webp",
+        "w": 400,
+        "h": 534
+      }
+    },
+    {
+      "id": "stephen-king-04",
+      "kind": "book",
+      "src": "assets/images/stephen-king/CUJO-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de CUJO en la serie Stephen King",
+      "original": "assets/images/stephen-king/CUJO.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/CUJO-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/CUJO-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "Cujo",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-04-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "fotos-en-zapallar-04",
+      "kind": "photo",
+      "src": "assets/images/zapallar/IMG_4673-800.webp",
+      "w": 800,
+      "h": 1067,
+      "alt": "Bandera de Chile junto a automóviles y árboles",
+      "original": "assets/images/zapallar/IMG_4673.JPG",
+      "sources": [
+        {
+          "src": "assets/images/zapallar/IMG_4673-1600.webp",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "src": "assets/images/zapallar/IMG_4673-800.webp",
+          "w": 800,
+          "h": 1067
+        }
+      ],
+      "caption": "Bandera de Chile",
+      "projectSlug": "fotos-en-zapallar",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/fotos-en-zapallar-04-400.webp",
+        "w": 400,
+        "h": 534
+      }
+    },
+    {
+      "id": "stephen-king-05",
+      "kind": "book",
+      "src": "assets/images/stephen-king/IT-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de IT en la serie Stephen King",
+      "original": "assets/images/stephen-king/IT.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/IT-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/IT-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "IT",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-05-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "fotos-en-zapallar-05",
+      "kind": "photo",
+      "src": "assets/images/zapallar/DSC01575-800.webp",
+      "w": 800,
+      "h": 532,
+      "alt": "Atardecer sobre el mar con nubes oscuras y siluetas de la costa",
+      "original": "assets/images/zapallar/DSC01575.JPG",
+      "sources": [
+        {
+          "src": "assets/images/zapallar/DSC01575-1600.webp",
+          "w": 1600,
+          "h": 1065
+        },
+        {
+          "src": "assets/images/zapallar/DSC01575-800.webp",
+          "w": 800,
+          "h": 532
+        }
+      ],
+      "caption": "Luz de tarde",
+      "projectSlug": "fotos-en-zapallar",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/fotos-en-zapallar-05-400.webp",
+        "w": 400,
+        "h": 266
+      }
+    },
+    {
+      "id": "stephen-king-06",
+      "kind": "book",
+      "src": "assets/images/stephen-king/MISERY-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de MISERY en la serie Stephen King",
+      "original": "assets/images/stephen-king/MISERY.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/MISERY-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/MISERY-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "Misery",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-06-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "fotos-en-zapallar-06",
+      "kind": "photo",
+      "src": "assets/images/zapallar/IMG_4748-800.webp",
+      "w": 800,
+      "h": 532,
+      "alt": "Reflejo del sol sobre el mar al atardecer",
+      "original": "assets/images/zapallar/IMG_4748.JPG",
+      "sources": [
+        {
+          "src": "assets/images/zapallar/IMG_4748-1600.webp",
+          "w": 1600,
+          "h": 1065
+        },
+        {
+          "src": "assets/images/zapallar/IMG_4748-800.webp",
+          "w": 800,
+          "h": 532
+        }
+      ],
+      "caption": "Reflejos sobre el mar",
+      "projectSlug": "fotos-en-zapallar",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/fotos-en-zapallar-06-400.webp",
+        "w": 400,
+        "h": 266
+      }
+    },
+    {
+      "id": "stephen-king-07",
+      "kind": "book",
+      "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de PET SEMATARY en la serie Stephen King",
+      "original": "assets/images/stephen-king/PET%20SEMATARY.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/PET%20SEMATARY-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "Pet Sematary",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-07-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "stephen-king-08",
+      "kind": "book",
+      "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de THE DARK TOWER en la serie Stephen King",
+      "original": "assets/images/stephen-king/THE%20DARK%20TOWER.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/THE%20DARK%20TOWER-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "The Dark Tower",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-08-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "stephen-king-09",
+      "kind": "book",
+      "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de THE DEAD ZONE en la serie Stephen King",
+      "original": "assets/images/stephen-king/THE%20DEAD%20ZONE.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "The Dead Zone",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-09-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "stephen-king-10",
+      "kind": "book",
+      "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de THE GREEN MILE en la serie Stephen King",
+      "original": "assets/images/stephen-king/THE%20GREEN%20MILE.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/THE%20GREEN%20MILE-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "The Green Mile",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-10-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    },
+    {
+      "id": "stephen-king-11",
+      "kind": "book",
+      "src": "assets/images/stephen-king/THE%20SHINING-800.webp",
+      "w": 800,
+      "h": 1132,
+      "alt": "Portada de THE SHINING en la serie Stephen King",
+      "original": "assets/images/stephen-king/THE%20SHINING.png",
+      "sources": [
+        {
+          "src": "assets/images/stephen-king/THE%20SHINING-1600.webp",
+          "w": 1600,
+          "h": 2263
+        },
+        {
+          "src": "assets/images/stephen-king/THE%20SHINING-800.webp",
+          "w": 800,
+          "h": 1132
+        }
+      ],
+      "name": "The Shining",
+      "projectSlug": "stephen-king",
+      "thumbnail": {
+        "src": "assets/images/personal-previews/stephen-king-11-400.webp",
+        "w": 400,
+        "h": 566
+      }
+    }
+  ]
+}

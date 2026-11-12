@@ -64,7 +64,7 @@ Texto libre opcional (hasta 3 párrafos) que aparece debajo de la tabla de metad
 
 - `code`: lo escribe Santi. Nunca lo generes. Formato `INICIALES–NN` (ej. `EA–02` = El Armado, 2.ª edición; `FZ–00` = sin numeración). Si falta, usa `XX–00` y repórtalo.
 - `meta` es libre: puede traer `Cliente`, `Rol`, `Año`, `Herramientas`, `Créditos`, etc. Se renderiza tal cual, en el orden dado.
-- `category` alimenta el filtro de Archivo: `identidad`, `editorial`, `digital`, `fotografia`, `direccion-creativa`. Si el valor es nuevo, agrégalo al registro y repórtalo.
+- `category` describe la disciplina (el filtro principal usa `family`): `identidad`, `editorial`, `digital`, `fotografia`, `direccion-creativa`. Si el valor es nuevo, agrégalo al registro y repórtalo.
 
 ## 3. Qué produce Codex
 
@@ -172,7 +172,7 @@ Antes de terminar, verifica que `project.html?p=<slug>` abre sin errores en cons
 4. Archivos de la carpeta que no pudiste clasificar y dónde los pusiste.
 5. Cualquier decisión que tomaste que Santi debería revisar.
 
-La propiedad raíz `family` usa `identity`, `passion` o `photography` según la clasificación confirmada por Santi. Se declara también en el registro. Es independiente de `category` y no permite inferir encargos o clientes.
+La propiedad raíz `family` usa `identity`, `books`, `posters` o `photography` según la clasificación confirmada por Santi. Se declara también en el registro. Es independiente de `category` y no permite inferir encargos o clientes.
 
 ### Composiciones refinadas
 
@@ -213,8 +213,16 @@ El visor usa una preview optimizada y limita el tamaño raster a los píxeles di
 
 ## Estantes de libros
 
-`presentation: "book-shelf"` y `shelf: {number, author}` presentan los bloques `cover-study` como una colección CSS 3D a pantalla completa con ficha individual. Shelf 001 - Stephen King conserva su slug y la portada original del Archivo. Los libros toman imágenes, proporciones, paletas y lecturas de las secciones existentes; no duplicar tapas, ni inventar lomos o contratapas. El soporte neutro es una maqueta. Las variantes con `gallery: false` permanecen pequeñas y no sustituyen la tapa del libro ni entran en el visor. El arrastre del libro central gira con resistencia según su volumen; el fondo y la rueda recorren el estante con ajuste al libro más cercano. Un toque sobre cualquier libro abre directamente una ficha compacta modal, sin reacomodar la escena ni hacer zoom. No agregar Ver ficha. El índice de tapas permite saltar a cada libro; posición, rotaciones y variantes se recuerdan en sessionStorage. Mantener teclado, touch, reduced motion y Rose antes de revelar el estante. No publicar el prototipo local BOOKS.
+`presentation: "book-shelf"` y `shelf: {number, author}` presentan los bloques `cover-study` como una colección CSS 3D a pantalla completa con ficha individual. Shelf 001 - Stephen King conserva su slug y la portada original del Archivo. Los libros toman imágenes, proporciones, paletas y lecturas de las secciones existentes; no duplicar tapas, ni inventar lomos o contratapas. El soporte neutro es una maqueta. Las variantes con `gallery: false` permanecen pequeñas y no sustituyen la tapa del libro ni entran en el visor. El arrastre del libro central gira con resistencia según su volumen; el fondo y la rueda recorren el estante con ajuste al libro más cercano. Un toque sobre cualquier libro abre directamente una ficha compacta modal, sin reacomodar la escena ni hacer zoom. No agregar Ver ficha. El índice de tapas permite saltar a cada libro; posición, rotaciones y variantes se recuerdan en sessionStorage. Mantener teclado, touch, reduced motion y Rose antes de revelar el estante. La sección se abre en books.html?shelf=<slug>; project.html?p=<slug> conserva una redirección compatible. No publicar el prototipo local BOOKS.
 
 Cada bloque de libro puede incluir `edition: {isbn, publisher, year, binding, pages, dimensionsMm: {width, height, depth}, measurementStatus, sources: [{label, url, fields}], verifiedAt}`. Mantener ISBN y formato consistentes entre las fuentes; diferenciar medidas comerciales reportadas de estimaciones. No inferir páginas ni lomo solo por el título, ni mezclar cifras de distintas ediciones. `book-shelf.js` usa las alturas y grosores de referencia a una escala común. Adapta el ancho a la proporción nativa de la tapa activa, con la misma línea de apoyo y distancias según el ancho resultante. El frente queda cubierto completo, sin estirar, recortar ni agregar márgenes; las variantes y cambios responsive deben actualizar esa proporción. Las medidas editoriales de la ficha conservan su valor documental y no son las medidas de producción del rediseño. Los datos completos de edición y sus fuentes se conservan en el JSON y en shelf-editions.md; la ficha pública se mantiene breve.
 
 Cada libro puede definir `designNote`, `technique`, `synopsis` y `synopsisSource: {label, url}`. `shelf.technique` contiene la técnica común declarada por el autor; no inferirla de la imagen. La ficha muestra paleta, una nota breve de diseño, técnica y argumento sin spoilers, con fuentes de sinopsis verificadas. Los detalles completos de edición permanecen en los datos y en `shelf-editions.md`. Distinguir tapa dura y rústica en los bordes del soporte. Mientras no existan originales de lomos o contratapas, conservar soportes neutros. Para futura navegación entre estantes, registrar `shelf: {number}` en el índice; solo mostrar destinos realmente publicados.
+
+## Archivo personal (Self Made / Posters)
+
+Registrar exclusivamente piezas personales autorizadas en `data/personal-work.json`, sin convertir materiales para terceros en ejercicios personales. Santi aprobó las tapas de Stephen King y las seis fotos de Zapallar; los afiches actuales de OLAS/El Armado no forman parte de Posters ni de Self Made.
+
+Cada pieza usa `id` estable, `kind: book|poster|photo|logo`, `src`, `original`, dimensiones reales, `alt`, `name` opcional, `sources` y `thumbnail: {src,w,h}`. La miniatura de 400px es una copia optimizada nueva, en assets/images/personal-previews/, con la proporción completa. Preservar el original y las previews mayores para el visor y su descarga. Excluir las piezas no ampliables/de proceso según la curación de origen. Evitar duplicar exports del mismo original.
+
+Las vistas comparten grilla calmada, sin análisis ni metadatos visibles además del número. Posters filtra `kind: poster` y comunica el estado vacío mientras no haya piezas. Self Made mezcla los tipos. Mantener el fallback estático de imágenes, la memoria de posición, flechas de teclado y el reciclado independiente de cuántos archivos tenga el catálogo.

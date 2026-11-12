@@ -40,8 +40,18 @@ El trabajo actual se concentra en refinar los cinco proyectos existentes.
 
 ## Categorías del Archivo
 
-- **Ediciones**: nombre propuesto para trabajos breves autoiniciados; Shelf 001 - Stephen King abre en un estante de libros. Las futuras series se presentan en su medio, cuando existan sus recursos.
+- **Books**: biblioteca propia en books.html; Shelf 001 - Stephen King mantiene el estante de tapas. El enlace anterior sigue funcionando.
+- **Posters**: afiches personales en una vista simple, aún sin piezas.
+- **Self Made**: archivo personal visual, claro e infinito, con libros y fotografías autorizados.
 - **Proyectos**: Orfeo, OLAS y El Armado; trabajos para terceros, con su disciplina de identidad visual.
 - **Colecciones**: Fotos en Zapallar; grilla fotográfica y carrusel.
 
 En Shelf, un toque sobre cualquier libro abre una ficha breve con paleta, nota de la tapa, técnica y sinopsis con fuente. El estante permanece estable. La rueda/trackpad y el arrastre del fondo recorren los libros con ajuste de posición; el libro central se puede girar por arrastre o con el control de rotación. El índice permite elegir una tapa. Se recuerdan selección, posición, orientación y variante durante la sesión. Los lomos y contratapas son soportes neutros hasta recibir originales diseñados.
+
+## Self Made y carga de imágenes
+
+`self-made.html` sigue la referencia con siete columnas en desktop, fondo claro, números y logo pequeño. `posters.html` usa la misma base para futuros afiches personales, sin incluir piezas para terceros. Books tiene su propia página.
+
+El catálogo `data/personal-work.json` contiene 17 originales únicos autorizados: 11 tapas/variantes y 6 fotos de Zapallar. Las 17 miniaturas nuevas de 400px pesan juntas unos 413 KiB. Los originales se conservaron intactos. La vista asigna las URLs solo cerca del viewport y recicla las filas. El visor también materializa solo imágenes cercanas, con el catálogo completo disponible por rueda/flechas/touch y descarga original por imagen.
+
+Validación local con 200 entradas simuladas, viewport 1512×982, CPU a 4× y red de 500.000 bytes/s con 80ms de latencia: 35 miniaturas del grid solicitadas al inicio, 105 celdas constantes y 4 imágenes materializadas al abrir el visor; primer contenido visible y preparado a los 3,63s. Estas cifras describen esa prueba y sus condiciones. Los fixtures no se publican.
