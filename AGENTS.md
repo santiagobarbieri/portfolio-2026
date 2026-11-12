@@ -4,12 +4,12 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 ## Dirección vigente — últimas aclaraciones de Santi
 
-- Prioridad actual: terminar de refinar los cinco proyectos. El Sandbox y la propuesta de mundo 3D están retirados; no agregar nuevas experiencias sin una indicación explícita de Santi. El logo vuelve al Archivo.
+- Prioridad actual: refinar los casos y la organización de Archivo, Books y Obra propia. El Sandbox y la propuesta de mundo 3D están retirados; no agregar nuevas experiencias sin una indicación explícita de Santi. El logo vuelve al Archivo.
 
 - El único home es **index.html / Archivo**. Las guías verdes de Figma son referencias: no se dibujan en la web. Cada portada comienza donde termina la portada anterior, alternando columnas; las captions ocupan los huecos.
 - El loop está siempre activo, también con una cantidad impar de proyectos. Reciclar tarjetas fuera de pantalla sin mover las portadas visibles. No usar bloques duplicados con separaciones ni un interruptor de loop.
 - Archivo contiene exclusivamente proyectos. About es una página independiente en construcción: recorrido vertical con camino, capítulos y contenido real pendiente; no integra el loop ni el contador. Contact es un formulario guiado independiente. Shop abrirá Gumroad cuando exista la URL; mientras tanto es un rótulo Próximamente, sin enlace inventado.
-- El lateral separa filtros, los destinos personales Books/Posters/Self Made, About/Contact/Shop y Socials/Tools. Los desplegables crecen hacia arriba en el flujo, sin exclusividad ni superposición. Contact abre otra pestaña; Shop será un enlace externo a Gumroad. Nav conserva la redirección al Archivo.
+- El lateral separa filtros, los destinos personales Books/Obra propia, About/Contact/Shop y Socials/Tools. Los desplegables crecen hacia arriba en el flujo, sin exclusividad ni superposición. Contact abre otra pestaña; Shop será un enlace externo a Gumroad. Nav conserva la redirección al Archivo.
 - El sitio usa tema oscuro, sin switch; About tiene una superficie cálida clara local. Nombre Santiago Barbieri en blanco; interfaz neutra en blanco y grises, sin azul de acento. Cursor y etiqueta blancos con contorno negro y texto negro; invertir ambos a negro con contorno/texto blanco solo si toda su superficie queda sobre negro opaco de la interfaz. Sin mezcla de colores. Hovers por crecimiento breve de tamaño, sin subrayados ni cambios de fondo o color. Cruces, flechas y controles tienen microanimaciones. Mantener imágenes y paletas de cada proyecto intactas.
 - Usar únicamente **Spin Rose como loader** pequeño, con saltos de 45° cada 200 ms. Mostrarlo al cargar Archivo y mientras se cargan recursos; no dejar spins decorativos girando continuamente.
 - En proyectos, barra superior negra opaca desde el borde superior; los rótulos de sección acompañan a su imagen con sticky hasta el final de cada sección. Cubrir de forma continua el espacio hasta el rótulo sticky: no dejar franjas donde pasen imágenes. En mobile, el fondo de la ficha completa también ese espacio.
@@ -18,10 +18,10 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 - Ocultar las barras de scroll sin bloquear rueda, touch ni teclado; Testament y Message conservan su desplazamiento interno.
 - Los proyectos comparten tipografía, marco y rótulos. La composición se define por sección con `layout`: no aplicar la misma grilla a todos.
 - Contener los logos y recursos pequeños; nunca estirarlos automáticamente al ancho de la columna. Orfeo usa relato fotográfico, OLAS una campaña de afiches y Zapallar un ensayo visual.
-- **Books** es una pestaña propia (`books.html`), exclusivamente para tapas de libros. Shelf 001 - Stephen King conserva el slug y la portada de Archivo; el enlace antiguo de proyecto redirige a Books. Al abrirlo, `book-shelf.js` presenta las diez tapas en un estante CSS 3D a pantalla completa basado en BOOKS, con arrastre para rotar, recorrido con scroll/fondo y flechas, índice de tapas y ficha compacta en diálogo al tocar cualquier libro. La ficha no mueve, agranda ni recentra los libros; no hay botón Ver ficha. Cada futuro Shelf será otra colección de tapas rediseñadas. La ficha incluye paleta, información de la tapa, técnica declarada por Santi y sinopsis breve con fuente; las variantes quedan en un desplegable. El estante recuerda posición, ángulos y variante en la sesión. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
+- **Books** es una pestaña propia (`books.html`), exclusivamente para tapas de libros. Shelf 001 - Stephen King conserva el slug y sus recursos; ya no aparece en el loop. Books sin query abre la biblioteca por estantes, y ?shelf=stephen-king abre los diez libros. El enlace antiguo de proyecto redirige al estante. Al abrirlo, `book-shelf.js` presenta las diez tapas en un estante CSS 3D a pantalla completa basado en BOOKS, con arrastre para rotar, recorrido con scroll/fondo y flechas, índice de tapas y ficha compacta en diálogo al tocar cualquier libro. La ficha no mueve, agranda ni recentra los libros; no hay botón Ver ficha. Cada futuro Shelf será otra colección de tapas rediseñadas. La ficha incluye paleta, información de la tapa, técnica declarada por Santi y sinopsis breve con fuente; las variantes quedan en un desplegable. El estante recuerda posición, ángulos y variante en la sesión. Los colores se muestrean de las piezas; las observaciones no se presentan como influencias originales del autor.
 - Los proyectos usan exactamente el ancho y la posición de las dos columnas centrales del home. La ficha del proyecto y su índice lateral quedan fijos; en pantallas pequeñas se abren desde un desplegable fijo.
 - Los afiches y sus variantes usan siempre cinco columnas. Las colecciones fotográficas usan tres fotos por fila, imágenes completas, contador y nombres solo si están definidos. Su ficha va al final, sin paleta ni análisis en la vista principal. Todas las imágenes ampliables abren un único carrusel con las piezas y variantes de todo el proyecto, sin duplicar archivos. Visor sin líneas, con flechas, scroll horizontal lineal e infinito y drag/touch. Cada imagen tiene nombre debajo y su propio icono de descarga original arriba a la derecha.
-- Grupos del Archivo: Stephen King = Books; Posters reemplaza Ediciones para futuros afiches personales; OLAS, Orfeo y El Armado = Proyectos (trabajos para terceros, confirmados por Santi); Zapallar = Colecciones. Mantener la disciplina separada: diseño editorial, identidad visual o fotografía. Mostrar etiquetas discretas, sin símbolos decorativos; no inferir condiciones de pago de los casos.
+- El loop muestra únicamente proyectos para terceros: OLAS, Orfeo, El Armado y Club de Economía — UTDT. Stephen King se visita en Books y Zapallar permanece en Obra propia, fuera del loop. Posters está retirado. Mantener la disciplina separada: diseño editorial, identidad visual o fotografía. Mostrar etiquetas discretas, sin símbolos decorativos; no inferir condiciones de pago de los casos.
 - Los proyectos de identidad muestran su paleta al abrirse y los editoriales en la ficha de la portada, con nombres y HEX; las colecciones fotográficas no muestran paleta. Distinguir colores definidos, colores presentes en las piezas y paletas observadas en fotografías; no presentar muestras como especificaciones oficiales. Stephen King conserva una paleta por tapa.
 - Dentro de proyectos y en pantallas de hasta 900 px se ocultan ubicación y fecha/hora del footer. En desktop se conservan fuera de proyectos.
 - En mobile y tablet, identidad y Archivo quedan sobre una franja negra superior; filtros e índice comparten un dock inferior negro y continuo que crece hacia arriba. No cubrir el encabezado: si se abren muchas listas, el dock tiene scroll interno. Los cambios de altura del navegador móvil no reconstruyen las cards.
@@ -64,8 +64,8 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 /nav.html              Redirección de compatibilidad hacia Archivo
 /shop.html             Shop — Próximamente
 /books.html            Biblioteca de tapas: ?shelf=<slug>
-/posters.html          Afiches personales (actualmente sin piezas)
-/self-made.html        Grilla visual infinita de trabajo personal
+/posters.html          Redirección temporal a Obra propia
+/self-made.html        Obra propia: grilla visual infinita de trabajo personal
 /project.html          Render genérico: ?p=<slug>
 /data/projects.json    Registro (orden, código, slug, cover, tags)
 /data/projects/<slug>.json
@@ -245,19 +245,27 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 Separar procedencia, disciplina y tipo de presentación:
 
 - **Books**: biblioteca propia de tapas, hoy Shelf 001 - Stephen King. `family: books`.
-- **Posters**: afiches personales en una vista simple, por ahora sin piezas. `family: posters` para nuevas series; `passion` queda solo como alias compatible.
+- **Posters**: pestaña retirada temporalmente. Los afiches personales futuros pueden formar parte de Obra propia.
 - **Proyectos**: trabajos para terceros, hoy Orfeo, OLAS y El Armado. `family: identity`; no inferir si fueron pagos o colaborativos.
 - **Colecciones**: conjuntos fotográficos, hoy Fotos en Zapallar. `family: photography`.
-- **Self Made**: archivo visual de piezas personales autorizadas, independiente de los casos y de Books. Combina las tapas y fotografías como imágenes planas.
+- **Obra propia**: archivo visual de piezas personales autorizadas, independiente de los casos y de Books. Combina las tapas y fotografías como imágenes planas.
 
 `category` y `type` describen disciplinas; los filtros principales usan `family`. Los nuevos destinos personales se enlazan como grupo propio. Los tres proyectos de identidad siguen como próxima etapa de refinamiento.
 
-## Books, Posters y Self Made — 12 de noviembre de 2026
+## Books y Obra propia — 12 de noviembre de 2026
 
 - Books es una sección propia para tapas de libros. Conservar estante, física, índice y ficha breve; `project.html?p=stephen-king` es una ruta compatible que redirige a Books.
-- Posters es un archivo plano y simple de afiches personales. Los afiches de OLAS y El Armado siguen en sus proyectos para terceros; no reutilizarlos aquí sin indicación explícita. Hoy Posters está vacío y lo informa sin piezas inventadas.
-- Self Made sigue SELF MADE.png: superficie cálida clara, logo de 26px, Close y grilla amplia de imágenes sin fichas/paletas/títulos visibles; solo números discretos. Santi confirmó incluir las tapas de Stephen King y las fotos de Zapallar. No incluir Orfeo, OLAS ni El Armado.
+- Posters está fuera de la navegación y redirige temporalmente a Obra propia. Los afiches de OLAS y El Armado permanecen en sus casos para terceros.
+- Obra propia sigue SELF MADE.png: superficie cálida clara, logo de 26px, Close y grilla amplia de imágenes sin fichas/paletas/títulos visibles; solo números discretos. Santi confirmó incluir las tapas de Stephen King y las fotos de Zapallar. No incluir Orfeo, OLAS ni El Armado.
 - `data/personal-work.json` es el catálogo curado plano: piezas únicas por original, `id`, `kind: book|poster|photo|logo`, `src`, `original`, `w`, `h`, `alt`, `name` opcional, `sources` y `thumbnail`. No cargar todos los casos para construir Self Made. Mantener exclusiones gallery:false de la selección original.
 - Miniaturas derivadas de 400px en `assets/images/personal-previews/`; no sobrescribir ni renombrar originales. Los archivos grandes se reservan para ampliar y descargar.
 - `personal-archive.js` conserva solo filas suficientes para el viewport y su buffer, recicla en ambas direcciones, recuerda posición y no asigna URL a las miniaturas lejanas. Grilla de 7 columnas en desktop, 5/4 en tamaños intermedios y 3 en mobile; imágenes completas y números alineados por fila. Se permiten propiedades dinámicas de proporción y posiciones para el reciclado. Sin física de tarjetas en esta vista.
 - El carrusel compartido conserva el catálogo completo como datos y materializa solo una franja próxima a la vista. No crear tres copias DOM de todo el catálogo; flechas, rueda/touch, foco, descarga original y loop se conservan.
+
+## Biblioteca y separación del loop — última dirección (12 de noviembre de 2026)
+
+- El registro conserva libros y fotografías por compatibilidad, pero `archive: false` los excluye de la construcción del loop y del fallback HTML. La home solo muestra trabajos para terceros. Hoy son cuatro: Club de Economía — UTDT, OLAS, El Armado y Orfeo. El estado v4 incluye una firma `catalogue` para invalidar posiciones que pertenecen a otra selección.
+- Self Made se llama **Obra propia**. Se conserva self-made.html para mantener enlaces y posición de sesión. Su selección de 17 piezas y su grilla clara no cambian. Posters ya no figura en menús/filtros; sus URLs redirigen temporalmente a Obra propia.
+- Books abre la biblioteca (`books.html`) y muestra únicamente estantes publicados. Cada `shelf` del registro contiene `number`, `author`, `bookCount` y miniaturas `preview` con sus dimensiones y escala relativa. No descargar todos los JSON ni portadas grandes para la vista general.
+- Al elegir Shelf 001 se navega a books.html?shelf=stephen-king. En ese nivel, el control superior vuelve a la biblioteca; Escape cierra primero la ficha/visor y luego sube de nivel. No crear estantes ficticios para llenar la pantalla.
+- Club de Economía — UTDT usa VARIANTE.png como portada de Archivo, con marca celeste sobre negro. Su fuente de contenido es club-de-economia (1).md. Las piezas de anuncio suministradas tienen campos de ejemplo y se identifican como plantillas; no afirmar que muestran a Carlos Maslatón ni inventar fotos del evento. Los HEX son muestras de las piezas, no códigos provistos en el documento. Icono Descartado 9.png es 1×1: no usarlo; los iconos de 179–180px también quedan fuera del visor. Conservar todos los originales sin modificarlos.

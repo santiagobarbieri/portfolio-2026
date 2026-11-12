@@ -119,6 +119,6 @@
 /* Personal destinations stay separate from page links, filters and external lists. */
 .archive-personal { display: grid; gap: 4px; flex: 0 0 auto; }
 @media (max-width: 900px) {
-  .archive-personal { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .archive-personal { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .archive-personal .tab { min-height: 36px; }
 }

@@ -1,5 +1,21 @@
 [
   {
+    "slug": "club-de-economia-utdt",
+    "code": "XX–00",
+    "title": "Club de Economía — UTDT",
+    "type": "Identidad visual",
+    "category": "identidad",
+    "family": "identity",
+    "description": "Identidad visual y sistema gráfico para el relanzamiento del Club de Economía de la Universidad Torcuato Di Tella.",
+    "cover": "assets/images/club-de-economia-utdt/VARIANTE.png",
+    "w": 1080,
+    "h": 1080,
+    "alt": "Marca del Club de Economía en celeste sobre fondo negro",
+    "order": -3,
+    "kind": "project",
+    "details": "data/projects/club-de-economia-utdt.json"
+  },
+  {
     "slug": "stephen-king",
     "code": "XX–00",
     "title": "Shelf 001 - Stephen King",
@@ -15,8 +31,83 @@
     "details": "data/projects/stephen-king.json",
     "family": "books",
     "shelf": {
-      "number": "001"
-    }
+      "number": "001",
+      "author": "Stephen King",
+      "bookCount": 10,
+      "preview": [
+        {
+          "src": "assets/images/personal-previews/stephen-king-01-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de 'SALEM'S LOT en la serie Stephen King",
+          "scale": 0.8421
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-03-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de CARRIE en la serie Stephen King",
+          "scale": 1.0
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-04-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de CUJO en la serie Stephen King",
+          "scale": 0.8686
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-05-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de IT en la serie Stephen King",
+          "scale": 0.8815
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-06-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de MISERY en la serie Stephen King",
+          "scale": 0.8815
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-07-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de PET SEMATARY en la serie Stephen King",
+          "scale": 0.7895
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-08-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de THE DARK TOWER en la serie Stephen King",
+          "scale": 0.8815
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-09-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de THE DEAD ZONE en la serie Stephen King",
+          "scale": 0.8686
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-10-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de THE GREEN MILE en la serie Stephen King",
+          "scale": 0.8686
+        },
+        {
+          "src": "assets/images/personal-previews/stephen-king-11-400.webp",
+          "w": 400,
+          "h": 566,
+          "alt": "Portada de THE SHINING en la serie Stephen King",
+          "scale": 1.0
+        }
+      ]
+    },
+    "archive": false
   },
   {
     "slug": "olas-ditella",
@@ -74,7 +165,8 @@
     "kind": "project",
     "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar",
     "details": "data/projects/fotos-en-zapallar.json",
-    "family": "photography"
+    "family": "photography",
+    "archive": false
   },
   {
     "slug": "orfeo",

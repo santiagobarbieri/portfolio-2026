@@ -1,0 +1,311 @@
+{
+  "slug": "club-de-economia-utdt",
+  "code": "XX–00",
+  "title": "Club de Economía — UTDT",
+  "type": "Identidad visual",
+  "category": "identidad",
+  "family": "identity",
+  "presentation": "identity-system",
+  "description": "Identidad visual y sistema gráfico para el relanzamiento del Club de Economía de la Universidad Torcuato Di Tella.",
+  "cover": "assets/images/club-de-economia-utdt/VARIANTE.png",
+  "w": 1080,
+  "h": 1080,
+  "alt": "Marca del Club de Economía en celeste sobre fondo negro",
+  "coverOriginal": "assets/images/club-de-economia-utdt/VARIANTE.png",
+  "hero": "assets/images/club-de-economia-utdt/OFICIAL.png",
+  "heroW": 1080,
+  "heroH": 1080,
+  "heroAlt": "Marca oficial del Club de Economía: diagonales celestes y nombre negro sobre gris claro",
+  "heroName": "Marca oficial — fondo claro",
+  "meta": [
+    [
+      "Cliente",
+      "Club de Economía, Universidad Torcuato Di Tella"
+    ],
+    [
+      "Rol",
+      "Diseño de identidad visual y sistema gráfico"
+    ],
+    [
+      "Año",
+      "2026"
+    ],
+    [
+      "Tipografía",
+      "Albert Sans · Semi Bold y Medium"
+    ]
+  ],
+  "intro": [],
+  "palette": {
+    "title": "Paleta de la identidad",
+    "description": "Celeste, gris claro y negro presentes en las piezas finales. Valores muestreados de los archivos proporcionados.",
+    "source": "artwork",
+    "colors": [
+      {
+        "name": "Celeste",
+        "hex": "#42AEBD",
+        "source": "assets/images/club-de-economia-utdt/VARIANTE.png"
+      },
+      {
+        "name": "Gris claro",
+        "hex": "#D9D9D9",
+        "source": "assets/images/club-de-economia-utdt/OFICIAL.png"
+      },
+      {
+        "name": "Negro",
+        "hex": "#000000",
+        "source": "assets/images/club-de-economia-utdt/VARIANTE.png"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "n": "01",
+      "title": "De la flecha a las diagonales",
+      "block": "text",
+      "text": "El punto de partida fueron las franjas de la identidad de la Di Tella. La exploración inicial sumaba una flecha ascendente; al quitarla, las diagonales conservaron el movimiento y ganaron claridad a una tinta y en tamaños pequeños. El celeste diferencia al club dentro del lenguaje de la universidad."
+    },
+    {
+      "n": "02",
+      "title": "Variante oscura",
+      "block": "logo",
+      "layout": "brand-board",
+      "items": [
+        {
+          "src": "assets/images/club-de-economia-utdt/VARIANTE.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Marca del Club de Economía en celeste sobre fondo negro",
+          "size": "medium",
+          "name": "Marca — variante oscura"
+        }
+      ]
+    },
+    {
+      "n": "03",
+      "title": "Isotipo y color",
+      "block": "comparison",
+      "layout": "brand-board",
+      "items": [
+        {
+          "src": "assets/images/club-de-economia-utdt/Isotipo.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Isotipo de diagonales celestes sobre un círculo gris claro",
+          "size": "compact",
+          "name": "Isotipo principal"
+        }
+      ],
+      "variants": [
+        {
+          "src": "assets/images/club-de-economia-utdt/logo%20azul%20blanco.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Isotipo gris claro sobre círculo celeste",
+          "caption": "Fondo celeste",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/logo%20negro%20azul.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Isotipo celeste sobre círculo negro",
+          "caption": "Fondo negro",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/Isotipo%202.png",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Isotipo negro sobre círculo gris claro",
+          "caption": "Una tinta",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        }
+      ],
+      "variantsTitle": "Aplicaciones de color"
+    },
+    {
+      "n": "04",
+      "title": "Plantillas para publicaciones",
+      "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "portrait",
+      "items": [
+        {
+          "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp",
+          "original": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post.png",
+          "w": 800,
+          "h": 1000,
+          "alt": "Plantilla clara de anuncio de charla en formato post, con campos de nombre, fecha y aula",
+          "name": "Plantilla de charla — post claro",
+          "sources": [
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-1080.webp",
+              "w": 1080,
+              "h": 1350
+            },
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp",
+              "w": 800,
+              "h": 1000
+            }
+          ]
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp",
+          "original": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante.png",
+          "w": 800,
+          "h": 1000,
+          "alt": "Plantilla oscura de anuncio de charla en formato post, con campos de nombre, fecha y aula",
+          "name": "Plantilla de charla — post oscuro",
+          "sources": [
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-1080.webp",
+              "w": 1080,
+              "h": 1350
+            },
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp",
+              "w": 800,
+              "h": 1000
+            }
+          ]
+        }
+      ],
+      "text": "La imagen, el nombre y los datos cambian; la estructura, la tipografía y el color se mantienen. Las piezas mostradas son plantillas con contenido de ejemplo."
+    },
+    {
+      "n": "05",
+      "title": "Plantillas para historias",
+      "block": "grid",
+      "layout": "uniform-grid",
+      "frame": "story",
+      "items": [
+        {
+          "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp",
+          "original": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig.png",
+          "w": 800,
+          "h": 1422,
+          "alt": "Plantilla clara de historia para anunciar charlas, con fondo fotográfico en escala de grises y campos para completar",
+          "name": "Plantilla de charla — historia clara",
+          "sources": [
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-1080.webp",
+              "w": 1080,
+              "h": 1920
+            },
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp",
+              "w": 800,
+              "h": 1422
+            }
+          ]
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp",
+          "original": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante.png",
+          "w": 800,
+          "h": 1422,
+          "alt": "Plantilla oscura de historia para anunciar charlas, con fondo fotográfico en escala de grises y campos para completar",
+          "name": "Plantilla de charla — historia oscura",
+          "sources": [
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-1080.webp",
+              "w": 1080,
+              "h": 1920
+            },
+            {
+              "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp",
+              "w": 800,
+              "h": 1422
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Trama y header",
+      "block": "sequence",
+      "items": [
+        {
+          "src": "assets/images/club-de-economia-utdt/Twitter%20header-800.webp",
+          "original": "assets/images/club-de-economia-utdt/Twitter%20header.png",
+          "w": 800,
+          "h": 267,
+          "alt": "Header de Twitter del Club de Economía con una trama geométrica de diagonales celestes sobre gris",
+          "name": "Header de Twitter",
+          "sources": [
+            {
+              "src": "assets/images/club-de-economia-utdt/Twitter%20header-1500.webp",
+              "w": 1500,
+              "h": 500
+            },
+            {
+              "src": "assets/images/club-de-economia-utdt/Twitter%20header-800.webp",
+              "w": 800,
+              "h": 267
+            }
+          ],
+          "size": "wide"
+        }
+      ]
+    },
+    {
+      "n": "07",
+      "title": "Exploraciones descartadas",
+      "block": "grid",
+      "layout": "reference-sheet",
+      "items": [
+        {
+          "src": "assets/images/club-de-economia-utdt/Descartado%202.png",
+          "w": 762,
+          "h": 256,
+          "alt": "Exploración de marca con flecha ascendente y franjas celestes",
+          "caption": "Flecha y contorno",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/Descartado%203.png",
+          "w": 763,
+          "h": 261,
+          "alt": "Exploración con flecha celeste, contorno blanco y logotipo blanco",
+          "caption": "Positivo y negativo",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/Descartado%204.png",
+          "w": 763,
+          "h": 261,
+          "alt": "Exploración con flecha ascendente y franjas rellenas",
+          "caption": "Símbolo compuesto",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        },
+        {
+          "src": "assets/images/club-de-economia-utdt/Descartado.png",
+          "w": 634,
+          "h": 156,
+          "alt": "Exploración descartada con franjas blancas y nombre del club",
+          "caption": "Exploración tipográfica",
+          "size": "compact",
+          "gallery": false,
+          "galleryNote": "Exploración o variante de color conservada como proceso; no repite otra ampliación."
+        }
+      ],
+      "text": "Estas pruebas registran el paso de un símbolo explícito de crecimiento a una marca construida con menos elementos."
+    }
+  ],
+  "heroSize": "medium"
+}

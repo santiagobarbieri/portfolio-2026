@@ -21,11 +21,12 @@
     <link rel="stylesheet" href="./css/image-gallery.css">
     <link rel="stylesheet" href="./css/medium-collection.css">
     <link rel="stylesheet" href="./css/book-shelf.css">
+    <link rel="stylesheet" href="./css/book-library.css">
     <link rel="stylesheet" href="./css/motion.css">
     <script src="./js/transitions.js"></script>
     <script type="module" src="./js/books.js"></script>
   </head>
-  <body class="entry-page books-page">
+  <body class="entry-page books-page books-page--library">
     <div class="site-loader" role="status">
       <span class="site-loader__rose" aria-hidden="true"></span>
       <span class="site-loader__label visually-hidden">Cargando biblioteca</span>
@@ -40,11 +41,27 @@
     </header>
 
     <main class="entry-main" id="main-content" tabindex="-1">
-      <div class="entry-fallback" data-entry-content>
-        <h1>Books</h1>
-        <p>Biblioteca de portadas rediseñadas: Shelf 001 - Stephen King.</p>
-        <a class="entry-fallback__link" href="./index.html">Volver al archivo ↗</a>
-        <noscript><p>El estante interactivo necesita JavaScript. El archivo sigue disponible en el enlace anterior.</p></noscript>
+      <div data-entry-content>
+        <section class="book-library">
+          <header class="book-library__heading"><h1>Books</h1><p>Tapas rediseñadas, organizadas por estantes.</p></header>
+          <section class="book-library__shelf">
+            <a class="book-library__link" href="./books.html?shelf=stephen-king" aria-label="Abrir Shelf 001 — Stephen King">
+              <header class="book-library__label"><span class="book-library__number">Shelf 001</span><h2 class="book-library__author">Stephen King</h2><span class="book-library__count">10 tapas</span></header>
+              <div class="book-library__preview" aria-hidden="true">
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-01-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-03-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-04-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-05-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-06-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-07-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-08-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-09-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-10-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+                <span class="book-library__volume"><img src="./assets/images/personal-previews/stephen-king-11-400.webp" width="400" height="566" alt="" loading="lazy" decoding="async"></span>
+              </div>
+            </a>
+          </section>
+        </section>
       </div>
     </main>
 

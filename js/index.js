@@ -63,15 +63,18 @@ export async function initArchive() {
   let templates = [...stream.querySelectorAll(".archive-card")];
   try {
     const response = await fetch(new URL("../data/projects.json", import.meta.url), { signal: AbortSignal.timeout(15000) });
-    if (response.ok) templates = (await response.json()).map(createCard);
+    if (response.ok) templates = (await response.json()).filter((project) => project.archive !== false).map(createCard);
   } catch {
     // Full HTML cards remain the source if the registry is unavailable.
   }
   await document.fonts.ready;
 
   const previousState = storedState();
-  const state = previousState.version === 4 ? previousState : {};
+  const catalogue = templates.map((card) => card.dataset.slug).join("|");
+  const state = previousState.version === 4 && previousState.catalogue === catalogue ? previousState : {};
   const menus = [...document.querySelectorAll("[data-filter-menu]")];
+  const familyCount = new Set(templates.map((card) => card.dataset.family)).size;
+  document.querySelector('[data-filter-menu="category"]')?.toggleAttribute("hidden", familyCount < 2);
   const status = document.querySelector("[data-archive-status]");
   const mobileStatus = document.querySelector("[data-archive-mobile-status]");
   const filterPanel = document.querySelector("[data-archive-filter-panel]");
@@ -197,7 +200,7 @@ export async function initArchive() {
 
   function save() {
     try {
-      sessionStorage.setItem(storageKey, JSON.stringify({ version: 4, category, order, pristine, ...anchor(), slug: focusSlug }));
+      sessionStorage.setItem(storageKey, JSON.stringify({ version: 4, catalogue, category, order, pristine, ...anchor(), slug: focusSlug }));
     } catch {}
   }
 
@@ -212,7 +215,7 @@ export async function initArchive() {
       }
     });
     const projectCount = selected.length;
-    const count = `${projectCount} ${projectCount === 1 ? "entrada" : "entradas"}`;
+    const count = `${projectCount} ${projectCount === 1 ? "proyecto" : "proyectos"}`;
     status.textContent = count;
     if (mobileStatus) mobileStatus.textContent = count;
   }

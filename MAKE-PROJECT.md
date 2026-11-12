@@ -226,3 +226,13 @@ Registrar exclusivamente piezas personales autorizadas en `data/personal-work.js
 Cada pieza usa `id` estable, `kind: book|poster|photo|logo`, `src`, `original`, dimensiones reales, `alt`, `name` opcional, `sources` y `thumbnail: {src,w,h}`. La miniatura de 400px es una copia optimizada nueva, en assets/images/personal-previews/, con la proporción completa. Preservar el original y las previews mayores para el visor y su descarga. Excluir las piezas no ampliables/de proceso según la curación de origen. Evitar duplicar exports del mismo original.
 
 Las vistas comparten grilla calmada, sin análisis ni metadatos visibles además del número. Posters filtra `kind: poster` y comunica el estado vacío mientras no haya piezas. Self Made mezcla los tipos. Mantener el fallback estático de imágenes, la memoria de posición, flechas de teclado y el reciclado independiente de cuántos archivos tenga el catálogo.
+
+## Biblioteca, Archivo y Obra propia
+
+`archive: false` en el registro excluye casos de la home sin borrar sus datos ni romper sus URLs. Books y Fotos en Zapallar están fuera del loop. Los casos para terceros, incluido Club de Economía — UTDT, se mantienen visibles. En la home, no mostrar filtros de familias sin entradas.
+
+Books sin `shelf` abre un índice de estantes, no el primer proyecto automáticamente. El registro `shelf: {number, author, bookCount, preview: [{src,w,h,scale}]}` usa miniaturas ya existentes y proporciones de referencia. Al entrar al estante, la barra superior vuelve a la biblioteca.
+
+`heroSize: compact|medium|wide` limita la apertura dentro del visor compartido sin modificar el archivo original. El tamaño de cada item conserva su prioridad. Obra propia es el nombre público del archivo personal en self-made.html; Posters está retirado temporalmente.
+
+En Club de Economía, mostrar la paleta muestreada #42AEBD / #D9D9D9 / #000000, declarar el origen de los valores, conservar las plantillas como plantillas y no añadir aplicaciones descritas pero no entregadas. El código de proyecto sigue pendiente (XX–00, oculto en la UI).

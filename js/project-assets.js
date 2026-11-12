@@ -9,6 +9,7 @@ export function makeHeroItem(project) {
     alt: project.heroAlt || project.alt || `${project.title} — ${project.type}`,
     sources: project.heroSources || (usesCover ? project.coverSources : undefined),
     name: project.heroName,
+    size: project.heroSize,
     gallery: project.heroGallery,
   };
 }

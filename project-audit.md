@@ -168,3 +168,12 @@ Los objetivos o materiales que no estén confirmados no se completan por inferen
 - Ficha breve por toque, sin desplazar el estante: paleta, diseño, técnica y sinopsis con fuente. Variantes en desplegable.
 - Scroll/trackpad y swipe de fondo con ajuste al libro; arrastre del central para rotar, índice de tapas y memoria de sesión.
 - No inventar nuevos estantes, lomos ni contratapas: faltan originales.
+
+## Club de Economía — UTDT · incorporación (2026-11-12)
+
+- Fuente: assets/images/club-de-economia-utdt/club-de-economia (1).md. Rol y año provistos: identidad visual/sistema gráfico, 2026.
+- Portada solicitada: VARIANTE.png, marca celeste sobre negro. Apertura: OFICIAL.png, con paleta muestreada de los archivos (#42AEBD, #D9D9D9, #000000). El documento no especifica HEX oficiales.
+- Visor: marca oficial, variante oscura, isotipo principal, dos posts, dos historias y header de Twitter (8 originales únicos). Variantes de color y cuatro descartes horizontales quedan como proceso estático.
+- Los anuncios muestran Nombre/Apellido/Fecha: se describen como plantillas. El MD menciona anuncio de relanzamiento, charla de Carlos Maslatón y fotos de evento, pero esas piezas no están entregadas; no se inventan.
+- Icono Descartado 9.png es 1×1 y los otros iconos son de 179–180px: no se usan. Los originales se preservan.
+- Pendientes: código de proyecto; aplicaciones reales/fotos del evento cuando Santi las aporte.

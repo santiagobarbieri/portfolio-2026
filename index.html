@@ -34,7 +34,7 @@
     <header class="site-header">
       <nav class="site-navigation" aria-label="Navegación principal">
         <span class="tab navigation-shortcut archive-label" aria-current="page">Archivo</span>
-        <p class="archive-intro">Este archivo guarda todos mis trabajos, tanto de identidad visual, editorial y producto digital, ordenados por proyecto.</p>
+        <p class="archive-intro">Archivo de proyectos realizados para marcas y organizaciones.</p>
       </nav>
       <div class="identity">
         <a class="identity__copy" href="./index.html" aria-label="Santiago Barbieri — Archivo" data-cursor-action="Volver al archivo">
@@ -45,24 +45,21 @@
       </div>
       <aside class="archive-controls" data-lenis-prevent aria-label="Filtros y navegación del archivo">
       <details class="archive-filter-panel" data-archive-filter-panel open>
-        <summary class="archive-filter-toggle" aria-label="Filtrar y ordenar proyectos">
+        <summary class="archive-filter-toggle" aria-label="Ordenar proyectos">
           <svg class="archive-filter-toggle__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
             <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12"/>
             <circle cx="10" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="7" cy="18" r="2"/>
           </svg>
           <span class="visually-hidden">Filtros</span>
-          <span class="archive-filter-count" data-archive-mobile-status role="status" aria-live="polite">5 entradas</span>
+          <span class="archive-filter-count" data-archive-mobile-status role="status" aria-live="polite">4 proyectos</span>
         </summary>
         <div class="archive-filters" data-lenis-prevent role="search" aria-label="Filtrar y organizar el archivo">
-          <details class="archive-filter-menu" data-filter-menu="category">
-            <summary class="tab"><span data-filter-label>Todo el Archivo</span></summary>
+          <details class="archive-filter-menu" data-filter-menu="category" hidden>
+            <summary class="tab"><span data-filter-label>Todos los proyectos</span></summary>
             <fieldset class="archive-filter-options">
-              <legend class="visually-hidden">Filtrar por categoría</legend>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="all" checked><span>Todo el Archivo</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="identity"><span>Proyectos</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="books"><span>Books</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="posters"><span>Posters</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="photography"><span>Colecciones</span></label>
+              <legend class="visually-hidden">Filtrar proyectos</legend>
+              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="all" checked><span>Todos los proyectos</span></label>
+              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="identity"><span>Identidad visual</span></label>
             </fieldset>
           </details>
           <details class="archive-filter-menu" data-filter-menu="order">
@@ -74,13 +71,12 @@
               <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="az"><span>A — Z</span></label>
             </fieldset>
           </details>
-          <p class="archive-results" data-archive-status role="status" aria-live="polite">5 entradas</p>
+          <p class="archive-results" data-archive-status role="status" aria-live="polite">4 proyectos</p>
         </div>
       </details>
         <nav class="archive-personal" aria-label="Obra personal">
           <a class="tab" href="./books.html">Books</a>
-          <a class="tab" href="./posters.html">Posters</a>
-          <a class="tab" href="./self-made.html">Self Made</a>
+          <a class="tab" href="./self-made.html">Obra propia</a>
         </nav>
         <nav class="archive-pages" aria-label="About, Contact y Shop">
           <a class="tab" href="./about.html">About</a>
@@ -124,17 +120,18 @@
     <main class="archive-main" id="main-content" tabindex="-1">
       <h1 class="visually-hidden">Archivo de proyectos — Santiago Barbieri</h1>
       <div class="archive-stream" data-archive-stream>
-        <!-- Complete semantic fallback; JavaScript recycles rows outside the viewport. -->
+        <!-- Semantic fallback: only the commissioned/collaborative projects belong to this loop. -->
         <div class="archive-row" data-sequence="0">
-          <article class="archive-card" data-slug="stephen-king" data-category="editorial" data-family="books" data-order="-2">
-            <a class="archive-card__link" href="./books.html?shelf=stephen-king" aria-label="Abrir Shelf 001 - Stephen King">
+          <article class="archive-card" data-slug="club-de-economia-utdt" data-category="identidad" data-family="identity" data-order="-3">
+            <a class="archive-card__link" href="./project.html?p=club-de-economia-utdt" aria-label="Abrir Club de Economía — UTDT">
               <div class="archive-card__media">
-                <img class="archive-card__image" src="./assets/images/stephen-king/PORTADA.png" alt="Logotipo rojo de Stephen King con letras erosionadas" width="1280" height="720" decoding="async" data-cover-motion>
+                <img class="archive-card__image" src="./assets/images/club-de-economia-utdt/VARIANTE.png" alt="Marca del Club de Economía en celeste sobre fondo negro" width="1080" height="1080" decoding="async" loading="lazy" data-cover-motion>
               </div>
               <div class="archive-card__caption">
-                <span class="project-type archive-card__type" data-family="books">Books</span>
-                <h2 class="archive-card__title">Shelf 001 - Stephen King</h2>
-                <p class="archive-card__description">Primer estante de una biblioteca de portadas rediseñadas: diez libros de Stephen King.</p>
+
+                <span class="project-type archive-card__type" data-family="identity">Proyectos</span>
+                <h2 class="archive-card__title">Club de Economía — UTDT</h2>
+                <p class="archive-card__description">Identidad visual y sistema gráfico para el relanzamiento del Club de Economía de la Universidad Torcuato Di Tella.</p>
               </div>
             </a>
           </article>
@@ -143,9 +140,10 @@
           <article class="archive-card archive-card--right" data-slug="olas-ditella" data-category="identidad" data-family="identity" data-order="-1">
             <a class="archive-card__link" href="./project.html?p=olas-ditella" aria-label="Abrir OLAS Di Tella">
               <div class="archive-card__media">
-                <img class="archive-card__image" src="./assets/images/olas-ditella/poster%201-1600.webp" alt="Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde" width="1600" height="2263" decoding="async" data-cover-motion>
+                <img class="archive-card__image" src="./assets/images/olas-ditella/poster%201-1600.webp" alt="Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde" width="1600" height="2263" decoding="async" loading="lazy" data-cover-motion>
               </div>
               <div class="archive-card__caption">
+
                 <span class="project-type archive-card__type" data-family="identity">Proyectos</span>
                 <h2 class="archive-card__title">OLAS Di Tella</h2>
                 <p class="archive-card__description">Identidad visual para OLAS, agrupación estudiantil de la Universidad Torcuato Di Tella, y su campaña de octubre de 2026.</p>
@@ -157,7 +155,7 @@
           <article class="archive-card" data-slug="el-armado" data-category="identidad" data-family="identity" data-order="0">
             <a class="archive-card__link" href="./project.html?p=el-armado" aria-label="Abrir El Armado">
               <div class="archive-card__media">
-                <img class="archive-card__image" src="./assets/images/el-armado/Cover.png" alt="Identidad de El Armado: micrófono y botella ilustrados sobre fondo bordó" width="1080" height="1350" decoding="async" data-cover-motion>
+                <img class="archive-card__image" src="./assets/images/el-armado/Cover.png" alt="Identidad de El Armado: micrófono y botella ilustrados sobre fondo bordó" width="1080" height="1350" decoding="async" loading="lazy" data-cover-motion>
               </div>
               <div class="archive-card__caption">
                 <span class="archive-card__code">EA–02</span>
@@ -169,25 +167,10 @@
           </article>
         </div>
         <div class="archive-row" data-sequence="3">
-          <article class="archive-card archive-card--right" data-slug="fotos-en-zapallar" data-category="fotografia" data-family="photography" data-order="1">
-            <a class="archive-card__link" href="./project.html?p=fotos-en-zapallar" aria-label="Abrir Fotos en Zapallar">
-              <div class="archive-card__media">
-                <img class="archive-card__image" src="./assets/images/zapallar/IMG_4660-1600.webp" alt="Paseo costero, rocas y vegetación de Zapallar frente al mar" width="1600" height="898" decoding="async" data-cover-motion>
-              </div>
-              <div class="archive-card__caption">
-                <span class="archive-card__code">FZ–00</span>
-                <span class="project-type archive-card__type" data-family="photography">Colecciones</span>
-                <h2 class="archive-card__title">Fotos en Zapallar</h2>
-                <p class="archive-card__description">Fotografías de paisaje y escenas de la ciudad de Zapallar, Chile.</p>
-              </div>
-            </a>
-          </article>
-        </div>
-        <div class="archive-row" data-sequence="4">
-          <article class="archive-card" data-slug="orfeo" data-category="identidad" data-family="identity" data-order="2">
+          <article class="archive-card archive-card--right" data-slug="orfeo" data-category="identidad" data-family="identity" data-order="2">
             <a class="archive-card__link" href="./project.html?p=orfeo" aria-label="Abrir Orfeo">
               <div class="archive-card__media">
-                <img class="archive-card__image" src="./assets/images/orfeo/PORTADA-1600.webp" alt="Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO" width="1600" height="1067" decoding="async" data-cover-motion>
+                <img class="archive-card__image" src="./assets/images/orfeo/PORTADA-1600.webp" alt="Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO" width="1600" height="1067" decoding="async" loading="lazy" data-cover-motion>
               </div>
               <div class="archive-card__caption">
                 <span class="archive-card__code">O–00</span>
