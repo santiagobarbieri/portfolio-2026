@@ -183,6 +183,7 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
   let current = Number.isInteger(saved?.current) ? clamp(saved.current, 0, books.length - 1) : 0;
   let inspected = null;
   let returnFocus = null;
+  let focusRequest = null;
   let gesture = null;
   let frame = 0;
   let lastTime = 0;
@@ -235,6 +236,7 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
   }
   function select(index) {
     current = clamp(index, 0, books.length - 1);
+    focusRequest = document.activeElement?.matches(".shelf-book") ? { i: current, from: document.activeElement } : null;
     clearTimeout(snapTimer);
     wheelOrigin = null;
     camera.target = centers[current];
@@ -360,7 +362,12 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
     preview.sizes = "100px";
     choose.append(preview, element("span", "shelf-index__number", String(i + 1).padStart(2, "0")), element("span", null, book.section.title));
     book.indexButton = choose;
-    listen(choose, "click", () => { index.close(); select(i); books[i].object.focus({ preventScroll: true }); });
+    listen(choose, "click", () => {
+      index.close();
+      select(i);
+      focusRequest = { i, from: document.activeElement };
+      wake();
+    });
     indexGrid.append(choose);
     listen(book.object, "click", (event) => { if (event.detail === 0) openDetails(i); });
   });
@@ -412,6 +419,7 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
   }, { passive: false });
   listen(stage, "pointerdown", (event) => {
     if (event.button !== 0 || gesture || document.querySelector("dialog[open]")) return;
+    focusRequest = null;
     const slot = event.target.closest("[data-book]");
     const i = slot ? Number(slot.dataset.book) : null;
     const book = books[i];
@@ -529,6 +537,18 @@ export function createBookShelf({ project, shelves = [], makePalette, onOpen }) 
       book.object.style.setProperty("--shine-alpha", (0.01 + Math.abs(sy) * 0.02).toFixed(3));
       shade(book, Math.min(0.22, distance * 0.1));
     });
+    if (focusRequest) {
+      const requested = books[focusRequest.i];
+      const active = document.activeElement;
+      if (active !== focusRequest.from && active !== document.body) focusRequest = null;
+      else if (!requested.slot.inert) {
+        const bounds = requested.object.getBoundingClientRect();
+        if (bounds.left >= 0 && bounds.right <= innerWidth) {
+          requested.object.focus({ preventScroll: true });
+          focusRequest = null;
+        }
+      }
+    }
     root.dataset.moving = String(moving);
     if (moving) wake();
     else { lastTime = 0; queueSave(); }
