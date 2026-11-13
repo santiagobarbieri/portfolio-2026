@@ -5,7 +5,7 @@ import { createImageGallery, imageKey } from "./image-gallery.js";
 import { createImageZoom } from "./image-zoom.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
-import { initShell } from "./shell.js";
+import { initShell, setProjectTitle } from "./shell.js";
 import { startLoading, waitForImages, watchLazyImages } from "./loading.js";
 
 const content = document.querySelector("[data-entry-content]");
@@ -60,10 +60,10 @@ function makeImage(item, eager = false, sizes = "(max-width: 600px) calc(100vw -
   return image;
 }
 
-function setPageTitle(name, description, cover) {
+function setPageTitle(project) {
+  const { title: name, description, cover } = project;
   title.textContent = name;
-  document.title = `${name} — Santiago Barbieri`;
-  document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
+  setProjectTitle(project);
   if (description) document.querySelector('meta[name="description"]')?.setAttribute("content", description);
   if (cover) {
     const meta = makeElement("meta");
@@ -277,7 +277,7 @@ function trackProjectSections(sidebar) {
 function renderPhotoCollection(project) {
   document.body.classList.add("photo-collection-page");
   content.classList.remove("entry-fallback");
-  setPageTitle(project.title, project.description, project.cover);
+  setPageTitle(project);
   const article = makeElement("article", "project-entry photo-collection");
   const count = makeElement("p", "photo-collection__count", `${String(projectAssets.length).padStart(2, "0")} fotografías`);
   const grid = makeElement("div", "photo-collection__grid");
@@ -318,7 +318,7 @@ function renderProject(project) {
   const article = makeElement("article", `project-entry${project.cover ? "" : " project-entry--text"}`);
   if (/^[a-z0-9-]+$/.test(project.slug)) article.classList.add(`project-entry--${project.slug}`);
   if (/^[a-z0-9-]+$/.test(project.presentation || "")) article.classList.add(`project-entry--${project.presentation}`);
-  setPageTitle(project.title, project.description, project.cover);
+  setPageTitle(project);
   const header = makeElement("header", "project-entry__header");
   header.append(makeElement("h1", "project-entry__title", project.title));
   const classification = makeElement("div", "project-entry__classification");

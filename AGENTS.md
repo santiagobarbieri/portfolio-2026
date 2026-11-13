@@ -2,6 +2,12 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Marca y pestañas — 13 de noviembre de 2026
+
+- La marca de Santiago se ve al 50% de su tamaño previo en toda la interfaz, incluidos los diálogos. `shell.css` reduce únicamente `.identity__glyph`, con origen arriba a la derecha, conservando posición y área del enlace. No reducir logotipos de clientes ni el favicon del navegador.
+- El favicon usa la misma marca sobre el color de fondo efectivo de la página, con el color de texto como contraste. Se genera desde el SVG original mediante `shell.js`; no modificar el asset que usa la máscara del logo.
+- Títulos de proyectos: `Nombre | Objetivo`, por ejemplo `El Armado | Identidad`. `objective` opcional permite especificar el objetivo; de lo contrario se usa la familia o disciplina confirmada. El formato se refleja también en `og:title`. Las secciones personales mantienen su nombre de navegación.
+
 ## Dirección vigente — ficha acumulativa de El Armado (13 de noviembre de 2026)
 
 Esta dirección de Santi y sus cuatro modelos PNG reemplazan la propuesta anterior de El Armado:

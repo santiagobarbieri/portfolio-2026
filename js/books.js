@@ -1,4 +1,4 @@
-import { initShell } from "./shell.js";
+import { initShell, setProjectTitle } from "./shell.js";
 import { initSmoothScroll } from "./motion.js";
 import { startLoading, waitForImages } from "./loading.js";
 
@@ -107,7 +107,7 @@ try {
     document.body.classList.add("entry-page--shelf");
     content.classList.remove("entry-fallback");
     content.replaceChildren(shelf);
-    document.title = `Librería · ${project.title} — Santiago Barbieri`;
+    setProjectTitle(project);
     document.querySelector('[data-entry-title]').textContent = project.title;
     const cover = document.createElement("meta");
     cover.setAttribute("property", "og:image");
