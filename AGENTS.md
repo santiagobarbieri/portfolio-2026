@@ -2,6 +2,29 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Dirección vigente — ficha acumulativa de El Armado (13 de noviembre de 2026)
+
+Esta dirección de Santi y sus cuatro modelos PNG reemplazan la propuesta anterior de El Armado:
+
+- Apertura: fondo vino continuo, logotipo del proyecto e introducción; marca de Santiago fija arriba a la derecha. El logotipo se reduce al avanzar.
+- Desktop: el scroll incorpora las cinco secciones —introducción, paleta, ilustraciones, afiches y entrega final— en una superficie sticky. Los bloques se compactan de forma reversible hasta reunir la ficha completa. La grilla calcula columnas uniformes según cantidad y espacio; cuatro variantes en esta primera versión. No fijar cinco afiches como regla.
+- Contador discreto `sección actual/total`, por ejemplo `1/5` a `5/5`, calculado desde las secciones. No mostrar «restantes» ni «01–LOGO».
+- Mobile: lectura vertical con texto seguido de imágenes y solapas que se apilan. Ajustar el sticky de cada tarjeta a su altura para permitir leer las tarjetas largas. Con movimiento reducido se conserva la lectura normal.
+- Display: **Anybody**, `wght: 900`, `wdth: 53.5`, sin cursiva, 57px de referencia; escala responsive para conservar la ficha legible. Fuente variable local WOFF2 y licencia OFL en `assets/fonts/anybody/`. Albert Sans permanece en cuerpo y controles. Druk Trial quedó descartada y no se incluye ni se carga.
+- Proyectos para clientes (`family: identity`): ampliación individual por imagen con `image-zoom.js` / `image-zoom.css`, sin carrusel ni acciones de descarga. Ajustar al viewport y a los píxeles reales de la fuente; nunca aumentar un bitmap más allá de su resolución efectiva. Cierre visible, Escape, click en el fondo y retorno de foco.
+- Librería y Exploraciones conservan sus experiencias personales; la política de descargas anterior se mantiene allí.
+- Las variantes pequeñas de El Armado conservan sus rutas: Santi las reemplazará con exportaciones mayores. El zoom mide el tamaño real al decodificar; no reescalar ni inventar detalle.
+- Los textos del modelo son la base narrativa. Se autoriza mejorar ortografía, puntuación y claridad sin agregar hechos, créditos ni resultados.
+- Se permiten transformaciones/propiedades CSS calculadas para posiciones, escala, ancho de las piezas, altura del recorrido y ajuste tipográfico en la ficha; no agregar RAF permanente al reposar ni reconstruir el DOM con cada scroll.
+
+## Archivos apartados para revisión — 12 de noviembre de 2026
+
+Santi pidió reunir archivos sin uso y pequeños en `AUDIT/` para revisarlos personalmente. `AUDIT/index.html`, `LEEME.md`, `INVENTARIO.csv` y `MANIFIESTO.json` registran origen, motivo, resolución y SHA-256. La carpeta queda fuera de Git y Vercel; no usarla como fuente de recursos públicos.
+
+- `AUDIT/sin-uso/` conserva 29 archivos trasladados, con su estructura original: módulos retirados, spins, metadatos, video sin uso y exportaciones sin referencia.
+- `AUDIT/baja-resolucion-en-uso/` conserva 12 copias para revisar. Sus originales permanecen donde están porque los HTML o los datos los referencian. No retirarlos de la web sin resolver primero esas referencias.
+- Miniaturas optimizadas usadas, fuentes, licencias, dependencias, documentación y `BOOKS/` se conservaron. No se borró ningún archivo. Para recuperar un archivo trasladado, devolverlo a la ruta original del manifiesto.
+
 ## Dirección vigente — proyectos independientes y español (12 de noviembre de 2026)
 
 Esta indicación de Santi reemplaza las restricciones anteriores de marco y HTML único **para los proyectos que se rediseñen explícitamente**:
@@ -251,7 +274,7 @@ CSS nativo primero. Lo que no se pueda hacer con CSS, con GSAP.
 - About, Contact y Shop son destinos independientes del Archivo. About está explícitamente en construcción hasta recibir la historia y las fechas. Conservar los certificados aportados; no convertir placeholders en hechos.
 - Shop no mantiene una tienda local: el enlace final abrirá el Gumroad de Santi. La URL todavía no existe. Usar Próximamente sin enlazar al marketplace ni inventar un usuario.
 - Contact guía y valida cada paso, conserva respuestas al volver y permite revisar, copiar o guardar el brief. No afirmar que fue enviado; el servicio de entrega aún falta.
-- Conservar los módulos retirados `archive-about.js` y `archive-about.css` como código anterior sin cargarlos en Archivo. No reinsertar About al reciclar, ordenar o filtrar.
+- Conservar los módulos retirados en `AUDIT/sin-uso/js/archive-about.js` y `AUDIT/sin-uso/css/archive-about.css` como código anterior sin cargarlos en Archivo. No reinsertar About al reciclar, ordenar o filtrar.
 
 ## Organización acordada — 12 de noviembre de 2026
 

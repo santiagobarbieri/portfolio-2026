@@ -2,6 +2,7 @@ import { collectProjectAssets, makeHeroItem } from "./project-assets.js";
 import { createMediumCollection } from "./medium-collection.js";
 import { makePalette } from "./project-palette.js";
 import { createImageGallery, imageKey } from "./image-gallery.js";
+import { createImageZoom } from "./image-zoom.js";
 import { initSmoothScroll } from "./motion.js";
 import { makeProjectType } from "./project-type.js";
 import { initShell } from "./shell.js";
@@ -74,11 +75,14 @@ function setPageTitle(name, description, cover) {
 
 
 let projectAssets = [];
+let clientProject = false;
 
 
 function openGallery(item) {
   const index = projectAssets.findIndex((entry) => imageKey(entry) === imageKey(item));
-  if (index >= 0) imageGallery.open(projectAssets, index);
+  if (index < 0) return;
+  if (clientProject) imageZoom.open(projectAssets[index]);
+  else imageGallery.open(projectAssets, index);
 }
 
 function makeMedia(item, sizes, expandable = false) {
@@ -307,6 +311,7 @@ function renderPhotoCollection(project) {
 }
 
 function renderProject(project) {
+  clientProject = project.family === "identity";
   projectAssets = collectProjectAssets(project);
   if (project.family === "photography") { renderPhotoCollection(project); return; }
   content.classList.remove("entry-fallback");
@@ -436,6 +441,7 @@ const projectScroll = initSmoothScroll();
 const imageGallery = createImageGallery({ onOpen: () => projectScroll.stop(), onClose: () => {
   if (!document.body.classList.contains("entry-page--shelf")) projectScroll.start();
 } });
+const imageZoom = createImageZoom({ onOpen: () => projectScroll.stop(), onClose: () => projectScroll.start() });
 const complete = startLoading("Cargando proyecto");
 let redirecting = false;
 try {

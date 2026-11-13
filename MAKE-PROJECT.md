@@ -2,6 +2,10 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Ficha acumulativa y ampliación de clientes — 13 de noviembre de 2026
+
+El Armado sigue los modelos de Figma y las aclaraciones de Santi: ensamblado por scroll reversible en desktop, solapas verticales en mobile y contador actual/total. Anybody 900, ancho 53.5, sin cursiva, es la display aprobada; Druk no se publica. En todos los casos `family: identity` se usa ampliación individual, sin carrusel ni descarga. Los párrafos de visor y descargas de esta guía se conservan para colecciones personales y quedan reemplazados para los clientes por esta indicación. No cambiar las otras composiciones hasta recibir sus modelos.
+
 ## Proyectos autónomos — dirección actual
 
 El registro admite `page`, una ruta local al sitio del proyecto. Archivo abre cada caso en otra pestaña y el render genérico redirige los enlaces antiguos si existe `page`. La página del piloto puede cambiar marco, composición y colores para expresar la identidad de El Armado, conservando accesibilidad, carga cuidada, cursor y visor. Antes de diseñar otro sitio autónomo, definirlo con Santi. La navegación del portfolio está en español: Librería y Exploraciones.

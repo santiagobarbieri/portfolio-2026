@@ -1,0 +1,23 @@
+body:has(.image-zoom[open]) { overflow: hidden; }
+.image-zoom { position: fixed; inset: 0; width: 100%; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 48px; border: 0; background: transparent; color: #f1ece0; overflow: hidden; }
+.image-zoom::backdrop { background: #000b; }
+.image-zoom[open] { display: grid; place-items: center; }
+.image-zoom__figure { position: relative; margin: 0; max-width: 100%; max-height: 100%; }
+.image-zoom__image { display: block; width: var(--zoom-width); height: var(--zoom-height); max-width: 100%; max-height: calc(100dvh - 96px); object-fit: contain; user-select: none; }
+.image-zoom__close { position: absolute; top: -44px; right: -12px; display: grid; place-items: center; width: 44px; height: 44px; color: #f1ece0; font-size: 24px; --interaction-origin: center; }
+.image-zoom__close span { display: inline-block; transition: rotate 180ms var(--ease); }
+.image-zoom__home { position: fixed; top: 40px; right: 16px; width: 50px; height: 50px; --interaction-origin: center; }
+.image-zoom__home .identity__glyph { display: block; }
+.image-zoom__status { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.image-zoom__rose { width: 32px; height: 32px; background: currentColor; mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; -webkit-mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; animation: rose-loading 1600ms steps(8, end) infinite; }
+.image-zoom[aria-busy="true"] .image-zoom__image { visibility: hidden; }
+.image-zoom__error { max-width: 280px; font-size: 12px; line-height: 1.5; text-align: center; }
+.image-zoom--error .image-zoom__close { position: fixed; right: 76px; top: 42px; }
+@media (hover: hover) and (pointer: fine) { .image-zoom__close:hover span { rotate: 90deg; } }
+@media (max-width: 600px) {
+  .image-zoom { padding: 56px 16px 24px; }
+  .image-zoom__image { max-height: calc(100dvh - 80px); }
+  .image-zoom__home { top: 16px; width: 32px; height: 32px; }
+  .image-zoom__home .identity__glyph { width: 32px; height: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .image-zoom__rose { animation: none; } }
