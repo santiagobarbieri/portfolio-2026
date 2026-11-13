@@ -410,6 +410,10 @@ async function renderEntry() {
       renderFallback("Entrada no encontrada", "Este proyecto no está disponible. Podés explorar los demás desde el archivo.");
       return;
     }
+    if (project.page) {
+      const destination = new URL(project.page, document.baseURI);
+      if (destination.origin === location.origin) { location.replace(destination.href); return false; }
+    }
     if (project.shelf?.number) {
       window.location.replace(`./books.html?shelf=${encodeURIComponent(project.slug)}`);
       return false;

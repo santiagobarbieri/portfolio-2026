@@ -1,8 +1,8 @@
 const labels = {
   identity: "Proyectos",
-  books: "Books",
-  posters: "Posters",
-  passion: "Posters",
+  books: "Librería",
+  posters: "Afiches",
+  passion: "Afiches",
   photography: "Colecciones",
 };
 

@@ -37,7 +37,7 @@ function initTestamentReader() {
   applyZoom();
 }
 
-const complete = startLoading("Cargando About");
+const complete = startLoading("Cargando Sobre mí");
 try {
   initShell();
   initAccordions();

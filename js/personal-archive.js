@@ -8,7 +8,7 @@ const main = document.querySelector("main");
 const stream = document.querySelector("[data-personal-stream]");
 const view = document.body.dataset.personalView;
 const storageKey = `portfolio:personal-grid:v1:${view}`;
-const complete = startLoading(view === "all" ? "Cargando Obra propia" : "Cargando Posters");
+const complete = startLoading(view === "all" ? "Cargando Exploraciones" : "Cargando Afiches");
 const close = document.querySelector("[data-close-personal]");
 close.dataset.cursorAction = "Volver al archivo";
 function closeArchive(event) {
@@ -72,7 +72,7 @@ async function initGrid() {
   } });
   stream.style.setProperty("--piece-ratio", Math.max(...items.map((item) => item.h / item.w)));
   stream.setAttribute("role", "grid");
-  stream.setAttribute("aria-label", view === "all" ? "Obra propia: archivo visual infinito" : "Posters: archivo visual infinito");
+  stream.setAttribute("aria-label", view === "all" ? "Exploraciones: archivo visual infinito" : "Afiches: archivo visual infinito");
   stream.setAttribute("aria-rowcount", "-1");
 
   function reveal(image) {

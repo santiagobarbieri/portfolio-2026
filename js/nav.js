@@ -6,15 +6,15 @@ initAccordions();
 
 const pages = {
   archive: { label: "Archivo", path: "./index.html" },
-  about: { label: "About", path: "./about.html" },
-  contact: { label: "Contact", path: "./contact.html" },
+  about: { label: "Sobre mí", path: "./about.html" },
+  contact: { label: "Contacto", path: "./contact.html" },
 };
 const origin = new URLSearchParams(window.location.search).get("from");
 const page = pages[origin] || pages.archive;
 const closeLink = document.querySelector("[data-close-navigation]");
 closeLink.href = page.path;
 closeLink.setAttribute("aria-label", `Cerrar navegación y volver a ${page.label}`);
-document.querySelector("[data-origin-label]").textContent = "Index";
+document.querySelector("[data-origin-label]").textContent = "Archivo";
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {

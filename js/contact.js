@@ -1,7 +1,7 @@
 import { initShell } from "./shell.js";
 import { startLoading, waitForImages } from "./loading.js";
 
-const complete = startLoading("Cargando Contact");
+const complete = startLoading("Cargando Contacto");
 try {
 
 initShell();
@@ -27,7 +27,7 @@ function review() {
     ...(isProject() ? [["Marca", data.get("company")], ["Servicios", data.getAll("services").join(", ")]] : []),
     [isProject() ? "Idea" : "Consulta", data.get("message")],
     ...(isProject() ? [["Plazo", data.get("deadline") || "A definir"], ["Presupuesto", data.get("budget") ? `${data.get("budget")} ${data.get("currency")}` : "A definir"]] : []),
-    ["Referencia", data.get("reference")], ["Contexto", data.get("context")], ["Nombre", data.get("name")], ["Email", data.get("email")],
+    ["Referencia", data.get("reference")], ["Contexto", data.get("context")], ["Nombre", data.get("name")], ["Correo electrónico", data.get("email")],
   ].filter(([, value]) => String(value || "").trim());
   const result = form.querySelector("[data-contact-review]");
   result.replaceChildren();
@@ -79,7 +79,7 @@ links.forEach((link, index) => link.addEventListener("click", () => { if (index 
 form.querySelector("[data-contact-copy]").addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(brief);
-    status.textContent = "Brief copiado. Todavía no fue enviado.";
+    status.textContent = "Resumen copiado. Todavía no fue enviado.";
   } catch {
     const text = form.querySelector("[data-contact-brief]");
     text.textContent = brief;
@@ -96,7 +96,7 @@ form.querySelector("[data-contact-download]").addEventListener("click", () => {
   link.href = url; link.download = "consulta-santiago-barbieri.txt";
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  status.textContent = "Brief guardado. Todavía no fue enviado.";
+  status.textContent = "Resumen guardado. Todavía no fue enviado.";
 });
 form.querySelectorAll("[data-contact-copy], [data-contact-download]").forEach((button) => { button.disabled = false; });
 document.body.classList.add("contact-page--guided");

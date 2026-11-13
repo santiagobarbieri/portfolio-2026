@@ -1,0 +1,138 @@
+/* El Armado owns its page. Shared typography, cursor, loader and viewer remain. */
+:root:has(.armado-page) { --bg: #360f17; --fg: #d2ddcc; --mute: #c0b7ad; --accent: #d2ddcc; --line: #86646b; --wine: #360f17; --bone: #d2ddcc; --green: #9ae4a3; --mauve: #9e6b7a; --armado-gutter: clamp(20px, 5vw, 88px); }
+.armado-page { font-size: 14px; }
+.armado-page h3 { margin: 0; font-size: 14px; font-weight: 600; }
+.armado-page section[id] { scroll-margin-top: 76px; }
+.armado-header { position: sticky; z-index: 15; top: 0; display: flex; align-items: center; gap: 24px; height: 76px; padding-inline: var(--armado-gutter); background: var(--wine); color: var(--bone); font-size: 12px; }
+.armado-header a { display: inline-flex; align-items: center; min-height: 44px; }
+.armado-header__brand { gap: 8px; font-weight: 600; letter-spacing: -.02em; margin-right: auto; }
+.armado-header__brand span { align-self: start; padding-top: 8px; font-size: 9px; font-weight: 300; }
+.armado-navigation { display: flex; gap: clamp(16px, 3vw, 48px); }
+.armado-navigation [aria-current] { font-weight: 600; }
+.armado-back { gap: 8px; margin-left: clamp(12px, 3vw, 48px); }
+.armado-back span, .armado-text-link span, .armado-footer__top span { display: inline-block; transition: translate 180ms var(--ease); }
+.armado-hero { padding: 18px var(--armado-gutter) 0; }
+.armado-hero__edition { display: flex; justify-content: space-between; padding-top: 16px; font-size: 12px; }
+.armado-hero__layout { display: grid; grid-template-columns: 1.12fr 1fr; gap: 6vw; align-items: center; min-height: min(690px, calc(100svh - 185px)); padding-block: 48px 64px; }
+.armado-wordmark { width: 100%; }
+.armado-hero__subtitle { font-size: clamp(30px, 3.7vw, 62px); font-weight: 300; line-height: 1.02; letter-spacing: -.045em; margin-top: 30px; }
+.armado-hero__discover { margin-top: 32px; font-size: 12px; }
+.armado-text-link { display: inline-flex; gap: 22px; align-items: center; min-height: 44px; }
+.armado-hero__art { align-self: center; padding-bottom: 18px; }
+.armado-art-link { display: block; --interaction-scale: 1; --interaction-origin: center; }
+.armado-art-link img { width: 100%; object-fit: contain; transition: scale 200ms var(--ease); }
+.armado-art-link:focus-visible img { scale: 1.015; }
+.armado-hero__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px 24px; font-size: 11px; }
+.armado-hero__foot a { display: grid; place-items: center; width: 44px; min-height: 44px; font-size: 24px; }
+.armado-light { --bg: var(--bone); --fg: var(--wine); --accent: var(--wine); --mute: #614751; background: var(--bg); color: var(--fg); }
+.armado-pieces, .armado-identity { padding: 96px var(--armado-gutter); }
+.armado-section-heading { display: grid; grid-template-columns: .65fr 1.3fr 1fr; align-items: start; gap: 32px; }
+.armado-eyebrow { padding-top: 9px; font-size: 12px; }
+.armado-section-heading h2 { font-size: clamp(40px, 5.5vw, 82px); font-weight: 300; line-height: .98; letter-spacing: -.055em; }
+.armado-section-heading p { align-self: end; max-width: 270px; font-size: 13px; line-height: 1.6; }
+.armado-formats { display: grid; grid-template-columns: 1.4fr 1fr; align-items: end; gap: clamp(36px, 9vw, 144px); width: min(100%, 1000px); margin: 80px auto 0; }
+.armado-format--poster { width: 100%; }
+.armado-format--story { width: 78%; justify-self: center; }
+.armado-format figcaption { display: flex; justify-content: space-between; gap: 12px; padding-block: 16px; font-size: 11px; }
+.armado-colour-tests { margin-top: 100px; }
+.armado-colour-tests header { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 28px; }
+.armado-colour-tests header p { font-size: 12px; }
+.armado-tests-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 2vw, 32px); }
+.armado-tests-grid img { width: 100%; aspect-ratio: 284 / 401; object-fit: contain; }
+.armado-tests-grid figcaption { padding-top: 12px; font-size: 11px; }
+.armado-identity { background: var(--wine); }
+.armado-drawing { width: min(100%, 760px); margin: 64px auto 88px; }
+.armado-drawing__controls { display: flex; justify-content: center; gap: 28px; margin-bottom: 28px; }
+.armado-drawing__controls button { min-height: 44px; min-width: 72px; padding: 8px; font-size: 12px; }
+.armado-drawing__controls button[aria-pressed="true"] { font-weight: 600; }
+.armado-drawing__controls button::before { display: inline-block; width: 4px; height: 4px; margin-right: 8px; border-radius: 50%; background: currentColor; opacity: 0; content: ""; }
+.armado-drawing__controls button[aria-pressed="true"]::before { opacity: 1; }
+.armado-drawing__figure { display: grid; justify-items: center; }
+.armado-drawing__figure .armado-art-link { display: grid; place-items: center; width: min(100%, 620px); aspect-ratio: 1; }
+.armado-drawing__figure img { max-height: 620px; height: 100%; }
+.armado-drawing__figure figcaption { margin-top: 20px; font-size: 11px; }
+.armado-drawing__figure[aria-busy="true"] { opacity: .55; }
+.armado-palette { display: grid; grid-template-columns: .65fr 2.3fr; gap: 32px; align-items: end; }
+.armado-palette h3 { font-size: 24px; letter-spacing: -.025em; }
+.armado-palette p { margin-top: 8px; font-size: 12px; }
+.armado-palette ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.armado-palette li { display: grid; gap: 20px; font-size: 12px; }
+.armado-palette small { display: block; margin-top: 4px; font-size: 11px; }
+.armado-swatch { display: block; width: 100%; aspect-ratio: 1; border-radius: 50%; max-width: 112px; }
+.armado-swatch--bone { background: var(--bone); }
+.armado-swatch--wine { background: var(--wine); outline: 1px solid #c0b7ad; outline-offset: -1px; }
+.armado-swatch--mauve { background: var(--mauve); }
+.armado-swatch--green { background: var(--green); }
+.armado-closing { padding: 80px var(--armado-gutter) 24px; background: var(--green); --bg: var(--green); --fg: var(--wine); --accent: var(--wine); color: var(--wine); }
+.armado-closing__mark { width: min(240px, 60%); margin: 0 auto 64px; }
+.armado-facts { max-width: 680px; margin: auto; }
+.armado-facts summary { display: flex; justify-content: space-between; min-height: 48px; align-items: center; list-style: none; font-size: 14px; font-weight: 600; }
+.armado-facts summary::-webkit-details-marker { display: none; }
+.armado-facts summary span { display: inline-block; font-size: 24px; transition: rotate 180ms var(--ease); }
+.armado-facts[open] summary span { rotate: 45deg; }
+.armado-facts dl { margin: 24px 0 0; }
+.armado-facts dl div { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-block: 6px; font-size: 12px; }
+.armado-facts dd { margin: 0; text-align: right; }
+.armado-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 80px; font-size: 11px; }
+.armado-footer__top { display: flex; gap: 12px; min-height: 44px; align-items: center; }
+.armado-page .image-gallery { --bg: #0a0a0a; --fg: #f1ece0; --accent: #fff; --mute: #98958e; }
+.armado-page .image-gallery__control { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+@media (hover: hover) and (pointer: fine) {
+  .armado-art-link:hover img { scale: 1.015; }
+  .armado-back:hover span, .armado-text-link:hover span { translate: 2px 0; }
+  .armado-hero__discover:hover span { translate: 0 3px; }
+  .armado-footer__top:hover span { translate: 0 -3px; }
+}
+@media (min-width: 1800px) { .armado-hero__layout { max-width: 1600px; margin: auto; } }
+@media (max-width: 900px) {
+  .armado-header { gap: 16px; }
+  .armado-navigation { gap: 18px; }
+  .armado-section-heading { grid-template-columns: 1fr 2fr; gap: 24px; }
+  .armado-section-heading p { grid-column: 2; }
+  .armado-formats { gap: 6vw; }
+  .armado-format--story { width: 90%; }
+  .armado-palette { grid-template-columns: 1fr; gap: 32px; }
+  .armado-palette ul { gap: 20px; }
+}
+@media (max-width: 700px) {
+  .armado-page section[id] { scroll-margin-top: 108px; }
+  .armado-header { height: 108px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: 56px 44px; gap: 0 16px; }
+  .armado-header__brand { font-size: 13px; }
+  .armado-back { grid-column: 2; grid-row: 1; margin: 0; }
+  .armado-navigation { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; gap: 12px; }
+  .armado-navigation a { font-size: 12px; }
+  .armado-hero { padding-top: 12px; }
+  .armado-hero__edition { font-size: 11px; padding: 0; gap: 16px; }
+  .armado-hero__layout { min-height: 0; grid-template-columns: 1fr; gap: 24px; padding-block: 36px 20px; }
+  .armado-hero__subtitle { margin-top: 24px; font-size: clamp(32px, 8vw, 48px); }
+  .armado-hero__subtitle br { display: none; }
+  .armado-hero__subtitle br::after { content: " "; }
+  .armado-hero__discover { margin-top: 12px; }
+  .armado-hero__art { width: 80%; max-width: 380px; margin-inline: auto; padding: 0; }
+  .armado-hero__foot { flex-wrap: wrap; gap: 8px 16px; font-size: 10px; }
+  .armado-hero__foot a { margin-left: auto; }
+  .armado-pieces, .armado-identity { padding-block: 56px; }
+  .armado-section-heading { grid-template-columns: 1fr; gap: 24px; }
+  .armado-section-heading h2 { font-size: clamp(48px, 12vw, 68px); }
+  .armado-section-heading p { grid-column: auto; }
+  .armado-formats { margin-top: 40px; grid-template-columns: 1fr; gap: 40px; }
+  .armado-format--poster { width: 95%; justify-self: start; }
+  .armado-format--story { width: 62%; justify-self: end; }
+  .armado-colour-tests { margin-top: 56px; }
+  .armado-colour-tests header { display: block; margin-bottom: 24px; }
+  .armado-colour-tests header p { margin-top: 4px; }
+  .armado-tests-grid { gap: 8px; }
+  .armado-drawing { margin-block: 36px 48px; }
+  .armado-drawing__figure figcaption { margin-top: 12px; }
+  .armado-palette ul { gap: 12px; }
+  .armado-swatch { max-width: 72px; }
+  .armado-palette li { gap: 14px; font-size: 11px; }
+  .armado-palette small { font-size: 10px; }
+  .armado-closing { padding-top: 48px; }
+  .armado-closing__mark { margin-bottom: 32px; }
+  .armado-footer { flex-wrap: wrap; gap: 12px 24px; padding-top: 44px; }
+  .armado-footer > span { width: 100%; padding-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .armado-page * { transition: none !important; } }
+.armado-drawing__figure { position: relative; }
+.armado-drawing__figure[aria-busy="true"]::after { content: ""; position: absolute; top: calc(50% - 16px); left: calc(50% - 16px); width: 32px; height: 32px; background: var(--fg); mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; -webkit-mask: url("../assets/Spin%20Rose.svg") center / contain no-repeat; animation: rose-loading 1600ms steps(8, end) infinite; pointer-events: none; }

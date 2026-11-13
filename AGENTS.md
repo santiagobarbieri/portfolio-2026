@@ -2,7 +2,20 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
-## Dirección vigente — últimas aclaraciones de Santi
+## Dirección vigente — proyectos independientes y español (12 de noviembre de 2026)
+
+Esta indicación de Santi reemplaza las restricciones anteriores de marco y HTML único **para los proyectos que se rediseñen explícitamente**:
+
+- La interfaz pública está en español: Librería (`books.html`), Exploraciones (`self-made.html`), Sobre mí, Contacto, Tienda, Redes y Herramientas. La biblioteca habla de Estantes. Conservar nombres propios, títulos originales de libros, nombres de archivos, rutas y claves internas.
+- El nombre Obra propia está retirado. Exploraciones conserva la grilla, el catálogo curado y la memoria de sesión existentes. No reinsertar libros ni Zapallar en el loop de proyectos para terceros.
+- Archivo funciona como índice. Todos sus enlaces de proyecto abren otra pestaña, con `target="_blank"`, `rel="noopener noreferrer"` y nombre accesible que lo avisa. Conservar el loop y su estado.
+- El referente confirmado es MSCHF (https://mschf.com): un índice que lleva a experiencias autónomas. Cada proyecto podrá tener su propia composición, paleta, navegación y página, reflejando su identidad. No copiar la interfaz ni las piezas de MSCHF.
+- **El Armado es el único piloto rediseñado por ahora.** Vive en `el-armado.html`, con `css/el-armado.css` y `js/el-armado.js`. Su entrada del registro declara `page`; la ruta genérica antigua redirige al destino indicado. Los otros casos siguen en el render genérico hasta trabajarlos con Santi.
+- En el piloto se conservan Albert Sans, accesibilidad, cursor monocromo, Rose, visor curado y descargas originales. La paleta vino/hueso/malva/verde pertenece al proyecto. No imponer el lateral negro ni las dos columnas del marco genérico dentro de este sitio autónomo.
+- Contenido esencial del piloto presente en HTML. JS mejora navegación, alternancia de ilustración y visor, sin bloquear el documento si falla el catálogo. Las miniaturas de variantes no se amplían. Recursos optimizados nuevos en `assets/images/el-armado-web/`; originales intactos.
+- No inventar entradas a la fiesta, venta de entradas, fechas vigentes, dirección, métricas, créditos ajenos ni datos comerciales ausentes.
+
+## Dirección anterior — conservar salvo los cambios indicados arriba
 
 - Prioridad actual: refinar los casos y la organización de Archivo, Books y Obra propia. El Sandbox y la propuesta de mundo 3D están retirados; no agregar nuevas experiencias sin una indicación explícita de Santi. El logo vuelve al Archivo.
 

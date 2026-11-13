@@ -8,14 +8,14 @@ const requested = new URLSearchParams(location.search).get("shelf");
 const close = document.querySelector("[data-close-entry]");
 if (requested) {
   close.href = "./books.html";
-  close.setAttribute("aria-label", "Volver a la biblioteca Books");
+  close.setAttribute("aria-label", "Volver a la biblioteca Librería");
   close.dataset.cursorAction = "Volver a la biblioteca";
   const arrow = document.createElement("span");
   arrow.className = "entry-bar__back-icon";
   arrow.setAttribute("aria-hidden", "true");
   arrow.textContent = "←";
   const label = document.createElement("span");
-  label.textContent = "Books";
+  label.textContent = "Librería";
   close.replaceChildren(arrow, label);
   document.body.classList.replace("books-page--library", "books-page--shelf");
 } else close.dataset.cursorAction = "Volver al archivo";
@@ -47,7 +47,7 @@ function element(tag, className, text) {
 function renderLibrary(shelves) {
   const library = element("section", "book-library");
   const heading = element("header", "book-library__heading");
-  heading.append(element("h1", null, "Books"), element("p", null, "Tapas rediseñadas, organizadas por estantes."));
+  heading.append(element("h1", null, "Librería"), element("p", null, "Tapas rediseñadas, organizadas por estantes."));
   library.append(heading);
   for (const entry of shelves) {
     const data = entry.shelf;
@@ -55,9 +55,9 @@ function renderLibrary(shelves) {
     const link = element("a", "book-library__link");
     link.href = `./books.html?shelf=${encodeURIComponent(entry.slug)}`;
     link.dataset.cursorAction = "Abrir estante";
-    link.setAttribute("aria-label", `Abrir Shelf ${data.number} — ${data.author || entry.title}`);
+    link.setAttribute("aria-label", `Abrir Estante ${data.number} — ${data.author || entry.title}`);
     const label = element("header", "book-library__label");
-    label.append(element("span", "book-library__number", `Shelf ${data.number}`), element("h2", "book-library__author", data.author || entry.title));
+    label.append(element("span", "book-library__number", `Estante ${data.number}`), element("h2", "book-library__author", data.author || entry.title));
     if (Number.isInteger(data.bookCount)) label.append(element("span", "book-library__count", `${data.bookCount} tapas`));
     const preview = element("div", "book-library__preview");
     preview.setAttribute("aria-hidden", "true");
@@ -82,7 +82,7 @@ function renderLibrary(shelves) {
   content.classList.remove("entry-fallback");
   content.replaceChildren(library);
   document.body.classList.add("books-page--library");
-  document.title = "Books — Santiago Barbieri";
+  document.title = "Librería — Santiago Barbieri";
   initSmoothScroll();
 }
 
@@ -107,7 +107,7 @@ try {
     document.body.classList.add("entry-page--shelf");
     content.classList.remove("entry-fallback");
     content.replaceChildren(shelf);
-    document.title = `Books · ${project.title} — Santiago Barbieri`;
+    document.title = `Librería · ${project.title} — Santiago Barbieri`;
     document.querySelector('[data-entry-title]').textContent = project.title;
     const cover = document.createElement("meta");
     cover.setAttribute("property", "og:image");
@@ -119,7 +119,7 @@ try {
 } catch {
   document.body.classList.remove("entry-page--shelf");
   content.classList.add("entry-fallback");
-  const back = element("a", "entry-fallback__link", "Volver a Books");
+  const back = element("a", "entry-fallback__link", "Volver a Librería");
   back.href = "./books.html";
-  content.replaceChildren(element("h1", null, "No se pudo cargar la biblioteca"), element("p", null, "Recargá la página o volvé a Books para elegir un estante."), back);
+  content.replaceChildren(element("h1", null, "No se pudo cargar la biblioteca"), element("p", null, "Recargá la página o volvé a Librería para elegir un estante."), back);
 } finally { complete(); }

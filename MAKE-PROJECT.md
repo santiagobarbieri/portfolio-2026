@@ -1,6 +1,10 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
-Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. **No se crea un HTML nuevo**: `project.html` renderiza cualquier proyecto desde su JSON. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
+Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
+
+## Proyectos autónomos — dirección actual
+
+El registro admite `page`, una ruta local al sitio del proyecto. Archivo abre cada caso en otra pestaña y el render genérico redirige los enlaces antiguos si existe `page`. La página del piloto puede cambiar marco, composición y colores para expresar la identidad de El Armado, conservando accesibilidad, carga cuidada, cursor y visor. Antes de diseñar otro sitio autónomo, definirlo con Santi. La navegación del portfolio está en español: Librería y Exploraciones.
 
 ## Referencias de cada proyecto
 
