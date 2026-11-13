@@ -1,4 +1,3 @@
-@font-face { font-family: "Anybody"; font-style: normal; font-weight: 100 900; font-stretch: 50% 150%; font-display: swap; src: url("../assets/fonts/anybody/anybody-variable.woff2") format("woff2"); }
 :root:has(.armado-page) { --bg: #360f17; --fg: #d2ddcc; --accent: #d2ddcc; --mute: #c5c3b4; --line: #b9b5a6; --armado-left: 21.23vw; --armado-copy: min(400px, 26.45vw); --armado-gap: clamp(40px, 4.63vw, 70px); --armado-right-margin: clamp(60px, 8.73vw, 132px); --armado-top: 88px; }
 .armado-page { font-size: 12px; line-height: 1.2; }
 .armado-shell { position: fixed; z-index: 30; top: 40px; right: 16px; left: max(24px, calc(var(--armado-left) - 70px)); display: flex; align-items: flex-start; justify-content: space-between; pointer-events: none; }

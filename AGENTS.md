@@ -2,6 +2,14 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Club de Economía — ficha acumulativa autorizada (13 de noviembre de 2026)
+
+Anybody es la fuente compartida de todos los títulos visibles del sitio: peso 900, ancho 53.5, sin cursiva. `css/typography.css` centraliza el @font-face y la jerarquía (32/22/18px para las pantallas comunes; los proyectos acumulativos mantienen 57px de referencia y 32/26px en secciones). Albert Sans sigue en párrafos, navegación, números y datos. Los logos e imágenes originales no se modifican. Cargar typography.css después de los componentes y precargar la fuente local antes de revelar las páginas.
+
+Santi pidió replicar el recorrido de El Armado en Club de Economía. Su página autónoma es `club-de-economia.html`, con CSS y JS propios. Conserva Albert Sans en las piezas y los textos, Anybody en los títulos de la interfaz y la paleta celeste/gris/negro del documento, sobre gris claro; no cambiar la portada negra/celeste del loop. La marca del club queda fija al costado izquierdo y el símbolo pequeño de Santiago vuelve al Archivo.
+
+Seis etapas: introducción, paleta, síntesis del símbolo, sistema de marca, plantillas para redes y trama. En desktop se ensamblan reversiblemente hasta reunir toda la ficha; en móvil son solapas con texto seguido de imágenes. Con movimiento reducido o sin JS, lectura vertical completa. Contador desde el DOM, Rose y ampliación individual sin carrusel ni descargas. Las exploraciones y variantes estáticas conservan su curación previa. Los campos de ejemplo de los anuncios son plantillas; no agregar piezas de eventos ausentes ni créditos no provistos. Los HEX son muestreados. El código pendiente no se muestra.
+
 ## Marca y pestañas — 13 de noviembre de 2026
 
 - El bloque Santiago Barbieri y sus disciplinas ocupa la esquina superior izquierda. La navegación se ubica debajo y el símbolo pequeño sigue arriba a la derecha. En móvil, nombre/disciplinas y símbolo forman la primera fila; la navegación, la segunda.
@@ -42,7 +50,7 @@ Esta indicación de Santi reemplaza las restricciones anteriores de marco y HTML
 - El nombre Obra propia está retirado. Exploraciones conserva la grilla, el catálogo curado y la memoria de sesión existentes. No reinsertar libros ni Zapallar en el loop de proyectos para terceros.
 - Archivo funciona como índice. Todos sus enlaces de proyecto abren otra pestaña, con `target="_blank"`, `rel="noopener noreferrer"` y nombre accesible que lo avisa. Conservar el loop y su estado.
 - El referente confirmado es MSCHF (https://mschf.com): un índice que lleva a experiencias autónomas. Cada proyecto podrá tener su propia composición, paleta, navegación y página, reflejando su identidad. No copiar la interfaz ni las piezas de MSCHF.
-- **El Armado es el único piloto rediseñado por ahora.** Vive en `el-armado.html`, con `css/el-armado.css` y `js/el-armado.js`. Su entrada del registro declara `page`; la ruta genérica antigua redirige al destino indicado. Los otros casos siguen en el render genérico hasta trabajarlos con Santi.
+- **El Armado es el primer piloto rediseñado; Club de Economía recibió autorización posterior para replicar su recorrido.** Vive en `el-armado.html`, con `css/el-armado.css` y `js/el-armado.js`. Su entrada del registro declara `page`; la ruta genérica antigua redirige al destino indicado. Los otros casos siguen en el render genérico hasta trabajarlos con Santi.
 - En el piloto se conservan Albert Sans, accesibilidad, cursor monocromo, Rose, visor curado y descargas originales. La paleta vino/hueso/malva/verde pertenece al proyecto. No imponer el lateral negro ni las dos columnas del marco genérico dentro de este sitio autónomo.
 - Contenido esencial del piloto presente en HTML. JS mejora navegación, alternancia de ilustración y visor, sin bloquear el documento si falla el catálogo. Las miniaturas de variantes no se amplían. Recursos optimizados nuevos en `assets/images/el-armado-web/`; originales intactos.
 - No inventar entradas a la fiesta, venta de entradas, fechas vigentes, dirección, métricas, créditos ajenos ni datos comerciales ausentes.
@@ -143,9 +151,9 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
 **Tipografía.**
 - Texto: **Albert Sans Light (300)**.
-- Títulos: **Albert Sans SemiBold (600)**, 14px. Controles: 12px en SemiBold.
+- Títulos: **Anybody**, peso 900 y ancho 53.5; jerarquía compartida en typography.css. Controles y navegación: Albert Sans SemiBold, 12px.
 - Cuerpo: 12px con interlineado 1.5; metadatos: 11px con interlineado 1.4. About conserva texto justificado y zoom.
-- Una sola familia, **Albert Sans** (licencia OFL), self-hosted en `assets/fonts/` con los pesos 300 y 600 en WOFF2. Stack: `"Albert Sans",system-ui,sans-serif`. Decisión cerrada: no se usa Hiragino Kaku Gothic Std.
+- Dos familias autoalojadas con licencia OFL: **Albert Sans** 300/600 para texto, controles y datos; **Anybody** variable para títulos. No se usa Hiragino Kaku Gothic Std ni Druk Trial.
 
 **Layout.** Grilla de 12 columnas con la columna izquierda fija de ~235px (tab, foto de About, filtros). Contenido desde ~320px. Mucho espacio negativo; nada de sombras, bordes redondeados ni íconos decorativos. Separar por espacio y jerarquía; reservar las líneas para los campos de formulario y divisiones puntuales.
 

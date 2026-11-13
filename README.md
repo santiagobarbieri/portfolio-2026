@@ -69,13 +69,19 @@ El nuevo caso Club de Economía — UTDT conserva los 26 originales aportados. L
 
 ### Piloto de sitios independientes
 
-El archivo abre cada proyecto en otra pestaña. El Armado es el primer sitio autónomo (`el-armado.html`): usa su paleta, sus ilustraciones y una composición propia. Su ficha genérica anterior redirige al piloto. Los otros tres casos conservan sus presentaciones actuales. Los destinos personales se llaman **Librería** y **Exploraciones**, con rutas conservadas.
+El archivo abre cada proyecto en otra pestaña. El Armado es el primer sitio autónomo (`el-armado.html`): usa su paleta, sus ilustraciones y una composición propia. Su ficha genérica anterior redirige al piloto. Club de Economía replica ese recorrido en `club-de-economia.html`. OLAS y Orfeo conservan sus presentaciones actuales. Los destinos personales se llaman **Librería** y **Exploraciones**, con rutas conservadas.
 
 El piloto incluye contenido HTML accesible sin JavaScript, navegación por secciones, alternancia color/trazo, visor de seis piezas y descargas originales. Las pruebas pequeñas de afiches no integran el visor. Los nuevos WebP son derivados; los originales no se modificaron.
 
 
 ### El Armado · modelo de Figma
 
-La página reconstruye la ficha por scroll: logotipo que se reduce, secciones que se acumulan, grilla de afiches uniforme y vista completa al final. En pantallas compactas el recorrido es vertical y las secciones se apilan como solapas. El contador indica sección actual y total. Con movimiento reducido se muestra la lectura normal.
+La página reconstruye la ficha por scroll: marca fija al costado izquierdo, encabezado descriptivo, secciones que se acumulan, grilla de afiches uniforme y vista completa al final. En pantallas compactas el recorrido es vertical y las secciones se apilan como solapas. El contador indica sección actual y total. Con movimiento reducido se muestra la lectura normal.
 
 Anybody está autoalojada como WOFF2 variable, con peso 900, ancho 53.5, estilo normal y tamaño de referencia 57px. Fuente y licencia oficial: https://github.com/google/fonts/tree/main/ofl/anybody. No se incorpora Druk. Los proyectos para terceros usan zoom individual con tamaño limitado a la resolución real, sin controles de descarga. Librería y Exploraciones mantienen sus visores personales. Las variantes de afiches de El Armado quedan pendientes de las exportaciones mayores de Santi.
+
+### Club de Economía · ficha acumulativa
+
+`club-de-economia.html` replica el recorrido de El Armado con seis etapas: presentación, paleta, síntesis, sistema de marca, plantillas para redes y trama. La marca queda fija en la columna izquierda; el scroll reúne reversiblemente la ficha en escritorio y apila solapas en móvil. Las plantillas conservan sus datos de ejemplo. La portada del Archivo sigue siendo VARIANTE.png y la ruta genérica anterior redirige a la nueva página. Se conservan los originales, las exclusiones del visor, el zoom individual sin descarga, Rose y la lectura sin JavaScript o con movimiento reducido.
+
+Anybody es la fuente común de títulos, autoalojada y centralizada en `css/typography.css`, con peso 900 y ancho 53.5. Albert Sans queda en textos, navegación y datos. Los títulos pequeños se ajustan a una escala legible sin modificar las piezas originales.

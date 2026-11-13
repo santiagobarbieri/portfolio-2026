@@ -13,7 +13,8 @@
     "alt": "Marca del Club de Economía en celeste sobre fondo negro",
     "order": -3,
     "kind": "project",
-    "details": "data/projects/club-de-economia-utdt.json"
+    "details": "data/projects/club-de-economia-utdt.json",
+    "page": "./club-de-economia.html"
   },
   {
     "slug": "stephen-king",

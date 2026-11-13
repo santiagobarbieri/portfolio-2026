@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "Anybody";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 150%;
+  font-display: swap;
+  src: url("../assets/fonts/anybody/anybody-variable.woff2") format("woff2");
+}
+
+:root {
+  --font-display: "Anybody", "Arial Narrow", var(--font);
+  --text-display: 32px;
+  --text-heading: 22px;
+  --text-heading-small: 18px;
+}
+
+/* Headings share the approved display axes; navigation and body keep Albert Sans. */
+:root :is(h1, h2, h3),
+.contact-step > legend {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 53.5%;
+  font-variation-settings: "wdth" 53.5, "wght" 900;
+  font-style: normal;
+  font-synthesis: none;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.about-intro h1,
+.contact-heading h1,
+.shop-main h1,
+.book-library__heading h1,
+.project-entry__title,
+.entry-fallback h1 {
+  font-size: var(--text-display);
+  line-height: 1.05;
+}
+
+.archive-card__title,
+.book-library__author,
+.about-chapter h2,
+.project-section__title,
+.book-note__title,
+.shelf-index__header h2,
+.contact-step > legend {
+  font-size: var(--text-heading);
+  line-height: 1.1;
+}
+
+.project-color-summary__title,
+.project-index__title,
+.project-cover-notes__title,
+.project-variants__title,
+.book-note__section h3 {
+  font-size: var(--text-heading-small);
+  line-height: 1.15;
+}
+
+/* Section numbers remain metadata, even inside a heading. */
+.project-section__number {
+  font-family: var(--font);
+  font-weight: 300;
+  font-stretch: normal;
+  font-variation-settings: normal;
+  text-transform: none;
+}

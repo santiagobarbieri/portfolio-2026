@@ -36,7 +36,7 @@ export function createImageZoom({ onOpen, onClose } = {}) {
     status.className = "image-zoom__status";
     status.setAttribute("role", "status");
     dialog.append(figure, status);
-    if (document.body.classList.contains("armado-page")) {
+    if (document.querySelector("[data-sheet-stage]")) {
       const home = document.createElement("a");
       home.className = "image-zoom__home";
       home.href = "./index.html";
