@@ -48,12 +48,7 @@ async function updateFavicon() {
     if (svg.localName !== "svg") return;
     const style = getComputedStyle(document.body);
     const background = style.backgroundColor;
-    const foreground = style.color;
-    const [x, y, width, height] = svg.getAttribute("viewBox").split(/\s+/).map(Number);
-    const surface = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    for (const [name, value] of Object.entries({ x, y, width, height, fill: background })) surface.setAttribute(name, value);
-    svg.querySelectorAll("path").forEach((path) => path.setAttribute("fill", foreground));
-    svg.prepend(surface);
+    svg.querySelectorAll("path").forEach((path) => path.setAttribute("fill", background));
     const icon = document.querySelector('link[rel="icon"]');
     if (icon) icon.href = `data:image/svg+xml,${encodeURIComponent(new XMLSerializer().serializeToString(svg))}`;
   } catch { /* Keep the static brand favicon if enhancement is unavailable. */ }

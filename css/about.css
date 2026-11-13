@@ -3,7 +3,7 @@
 .about-intro__status { font-size: var(--text-meta); margin-bottom: 32px; }
 .about-intro h1 { font-size: var(--text-title); margin-bottom: 16px; }
 .about-intro__note { margin-top: 40px; color: #68655e; }
-.about-index { position: fixed; top: var(--content-top); left: var(--frame-margin); width: var(--sidebar-width); font-size: var(--text-meta); }
+.about-index { position: fixed; top: calc(var(--content-top) + 80px); left: var(--frame-margin); width: var(--sidebar-width); font-size: var(--text-meta); }
 .about-index > p { font-weight: 600; margin-bottom: 16px; }
 .about-index nav { display: grid; gap: 4px; }
 .about-index a { min-height: 32px; padding-block: 8px; color: var(--mute); }
@@ -31,5 +31,5 @@
 .text-zoom { display: flex; justify-content: flex-end; align-items: center; gap: 8px; font-size: var(--text-meta); }
 .text-zoom button { min-width: 32px; min-height: 32px; padding: 0; border: 0; background: none; }
 .text-zoom output { min-width: 36px; text-align: center; }
-@media (max-width: 900px) { .about-index { position: static; width: var(--content-width); margin: 100px 0 24px var(--content-left); }.about-index > p, .about-index__status { display: none; }.about-index nav { display: flex; gap: 16px; justify-content: space-between; }.about-main { margin-top: 0; }.about-index a { min-height: 44px; } }
+@media (max-width: 900px) { .about-index { position: static; width: var(--content-width); margin: 144px 0 24px var(--content-left); }.about-index > p, .about-index__status { display: none; }.about-index nav { display: flex; gap: 16px; justify-content: space-between; }.about-main { margin-top: 0; }.about-index a { min-height: 44px; } }
 @media (max-width: 600px) { .about-journey::before { left: 12px; }.about-chapter { padding-left: 44px; padding-bottom: 64px; }.about-chapter__number { left: 12px; }.about-chapter__card { width: 100%; }.about-chapter:nth-child(even) .about-chapter__card { margin-left: 0; }.about-testament { padding: 24px 20px; }.about-entry__body { max-height: 300px; } }

@@ -20,7 +20,7 @@
 
 .site-navigation {
   position: fixed;
-  top: var(--frame-top);
+  top: calc(var(--frame-top) + 80px);
   left: var(--frame-margin);
   width: var(--sidebar-width);
 }
@@ -109,6 +109,11 @@
 }
 
 .identity__copy {
+  position: fixed;
+  top: var(--frame-top);
+  left: var(--frame-margin);
+  width: var(--sidebar-width);
+  --interaction-origin: left top;
   padding-top: 6px;
 }
 
@@ -329,3 +334,14 @@ html[data-page-loading] body > :not(.site-loader):not(script):not(noscript) { vi
 
 .identity__logo { display: grid; place-items: center; min-width: 44px; min-height: 44px; --interaction-origin: center; }
 .identity__glyph { display: block; }
+
+/* Personal identity stays at the top left; the reduced mark stays at the right. */
+@media (max-width: 900px) {
+  .site-header { grid-template-rows: auto auto; align-items: start; gap: 8px 16px; }
+  .site-navigation { grid-column: 1 / -1; grid-row: 2; }
+  .identity { display: contents; }
+  .identity__copy { position: static; grid-column: 1; grid-row: 1; width: 100%; padding: 0; }
+  .identity__role { display: block; max-width: none; font-size: 10px; line-height: 1.3; }
+  .identity__logo { grid-column: 2; grid-row: 1; align-self: start; }
+  .archive-page:has(.site-header), .contact-page:has(.site-header), .shop-page:has(.site-header) { --content-top: 144px; }
+}

@@ -28,7 +28,7 @@
 .contact-form__navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 12px; }
 .contact-form button { min-height: 44px; padding: 4px 0; border: 0; background: none; }
 .contact-form button:disabled { color: var(--mute); }
-.contact-steps { position: fixed; top: var(--content-top); left: var(--frame-margin); width: var(--sidebar-width); }
+.contact-steps { position: fixed; top: calc(var(--content-top) + 80px); left: var(--frame-margin); width: var(--sidebar-width); }
 .contact-steps ol { padding: 0; margin: 0; list-style: none; display: grid; gap: 8px; }
 .contact-steps button { min-height: 36px; padding: 4px 0; border: 0; background: none; text-align: left; color: var(--mute); }
 .contact-steps button[aria-current] { color: var(--fg); font-weight: 600; }

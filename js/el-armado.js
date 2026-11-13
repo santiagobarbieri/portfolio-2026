@@ -21,7 +21,6 @@ const zoom = createImageZoom({
 });
 const clamp = (n, low = 0, high = 1) => Math.min(high, Math.max(low, n));
 const ease = (n) => n * n * (3 - 2 * n);
-const lerp = (a, b, t) => a + (b - a) * t;
 let layout = null;
 let enhanced = false;
 let initialized = false;
@@ -71,8 +70,8 @@ function measure(keepPosition = true) {
     const available = innerHeight - top - 38;
     copies.forEach((node) => setBox(node, copyWidth));
     stage.style.removeProperty("--sheet-title-size");
-    const titleHeight = copyWidth * 343 / 863;
-    const introHeight = titleHeight * .72 + 28 + introText.offsetHeight;
+    const titleHeight = introTitle.offsetHeight;
+    const introHeight = titleHeight + 28 + introText.offsetHeight;
     let copyHeights = copies.map((node, index) => index ? node.offsetHeight : introHeight);
     const nominalTitle = parseFloat(getComputedStyle(copies[1].querySelector("h2")).fontSize);
     const excess = copyHeights.reduce((a, b) => a + b, 0) + 12 * (chapters.length - 1) - available;
@@ -166,10 +165,8 @@ function paint() {
   }
   phase = clamp((scrollY - layout.start) / layout.step, 0, chapters.length - 1);
   const totalProgress = phase / (chapters.length - 1);
-  const introScale = lerp(1, .72, ease(totalProgress));
   pose(copies[0], layout.left, layout.top, 1);
-  introTitle.style.transform = `scale(${introScale})`;
-  introText.style.transform = `translateY(${(layout.titleHeight * (introScale - 1) - 16 * totalProgress).toFixed(2)}px)`;
+  introText.style.transform = `translateY(${(-16 * totalProgress).toFixed(2)}px)`;
   for (let i = 1; i < copies.length; i += 1) {
     const reveal = ease(clamp(phase - i + 1));
     const spread = (1 - totalProgress) * i * Math.min(90, layout.available * .12);

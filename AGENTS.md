@@ -4,15 +4,18 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 ## Marca y pestañas — 13 de noviembre de 2026
 
+- El bloque Santiago Barbieri y sus disciplinas ocupa la esquina superior izquierda. La navegación se ubica debajo y el símbolo pequeño sigue arriba a la derecha. En móvil, nombre/disciplinas y símbolo forman la primera fila; la navegación, la segunda.
+- En El Armado, la marca del proyecto queda fija en la columna lateral izquierda (en móvil se adapta al encabezado). La apertura usa el texto «El Armado — Construcción de Identidad», en Anybody de 57px de referencia, sin reducirse durante el recorrido. Los títulos de sección bajan a 32px en escritorio y 26px en móvil.
+
 - La marca de Santiago se ve al 50% de su tamaño previo en toda la interfaz, incluidos los diálogos. `shell.css` reduce únicamente `.identity__glyph`, con origen arriba a la derecha, conservando posición y área del enlace. No reducir logotipos de clientes ni el favicon del navegador.
-- El favicon usa la misma marca sobre el color de fondo efectivo de la página, con el color de texto como contraste. Se genera desde el SVG original mediante `shell.js`; no modificar el asset que usa la máscara del logo.
+- El favicon es transparente: solo el símbolo toma el color de fondo del proyecto (bordó en El Armado). No agregar rectángulos, placas ni fondos. Se genera desde el SVG original mediante `shell.js`; no modificar el asset de la máscara.
 - Títulos de proyectos: `Nombre | Objetivo`, por ejemplo `El Armado | Identidad`. `objective` opcional permite especificar el objetivo; de lo contrario se usa la familia o disciplina confirmada. El formato se refleja también en `og:title`. Las secciones personales mantienen su nombre de navegación.
 
 ## Dirección vigente — ficha acumulativa de El Armado (13 de noviembre de 2026)
 
 Esta dirección de Santi y sus cuatro modelos PNG reemplazan la propuesta anterior de El Armado:
 
-- Apertura: fondo vino continuo, logotipo del proyecto e introducción; marca de Santiago fija arriba a la derecha. El logotipo se reduce al avanzar.
+- Apertura: fondo vino continuo, marca del proyecto fija al costado izquierdo y encabezado «El Armado — Construcción de Identidad» con introducción. El símbolo pequeño de Santiago permanece arriba a la derecha.
 - Desktop: el scroll incorpora las cinco secciones —introducción, paleta, ilustraciones, afiches y entrega final— en una superficie sticky. Los bloques se compactan de forma reversible hasta reunir la ficha completa. La grilla calcula columnas uniformes según cantidad y espacio; cuatro variantes en esta primera versión. No fijar cinco afiches como regla.
 - Contador discreto `sección actual/total`, por ejemplo `1/5` a `5/5`, calculado desde las secciones. No mostrar «restantes» ni «01–LOGO».
 - Mobile: lectura vertical con texto seguido de imágenes y solapas que se apilan. Ajustar el sticky de cada tarjeta a su altura para permitir leer las tarjetas largas. Con movimiento reducido se conserva la lectura normal.
@@ -119,8 +122,8 @@ Esta indicación de Santi reemplaza las restricciones anteriores de marco y HTML
 
 Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
-- **Arriba izquierda:** tab de la página actual. Vuelve al Archivo; el índice está en su columna lateral. En el home, Archivo es un rótulo estático sin flecha, enlace ni acción.
-- **Arriba derecha:** bloque de identidad: "Santiago Barbieri" en negrita, debajo "Graphic Designer, Web Developer & Photographer" en light, y el glyph a la derecha.
+- **Arriba izquierda:** nombre y disciplinas de Santiago; debajo, tab de la página actual. Vuelve al Archivo; el índice está en su columna lateral. En el home, Archivo es un rótulo estático sin flecha, enlace ni acción.
+- **Arriba derecha:** únicamente el glyph reducido de Santiago. El nombre y las disciplinas permanecen a la izquierda; en móvil comparten una primera fila con la marca y la navegación ocupa la segunda.
 - **Abajo izquierda:** "Buenos Aires, Argentina" y fecha/hora en vivo (`America/Argentina/Buenos_Aires`, formato `3 nov 2026 – 01:20`, se actualiza cada minuto).
 - **Abajo derecha:** "Portfolio". (Los mockups dicen "Portfoliio" por un error de tipeo: escribirlo con una sola i.)
 - **Abajo centro/derecha:** acción contextual de la página (ej. `Send` en Contact).
