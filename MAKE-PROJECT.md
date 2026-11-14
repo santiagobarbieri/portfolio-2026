@@ -4,7 +4,7 @@ Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/imag
 
 ## Carpetas en la lectura compacta — 14 de noviembre de 2026
 
-El Armado y Club comparten `project-folders.js` y `project-folders.css`. En móvil las carpetas tienen igual alto, guía de cierre de 128px y reducción final a 96.5%, con pestañas inclinadas que permiten navegar. El scroll principal recorre el contenido que no cabe antes de superponer otra carpeta. No fijar alturas que corten piezas ni crear scroll interno adicional. Mantener los datos de sección para contador y nombres de pestaña. El escritorio conserva su ficha acumulativa y movimiento reducido/sin JS conserva la lectura normal.
+El Armado y Club comparten `project-folders.js` y `project-folders.css`. Hasta 999px, cada carpeta ocupa todo el ancho, sin escala ni efecto de profundidad, con alto común y un escalón vertical de 8px. Las solapas inclinadas conservan los nombres completos, distribuidos en filas cuando hace falta. Tocar una carpeta que ya llegó la intercambia con la frontal sin desplazar la página ni reordenar el flujo. El scroll principal permite leer el contenido largo antes de apilarlo; al recuperar una carpeta se habilita su lectura interna nativa. Las paletas se presentan sobre un gris neutro (#525252), con texto claro y colores reales sin contornos. El escritorio conserva su ficha acumulativa y movimiento reducido/sin JS conserva la lectura normal.
 
 ## Club de Economía — extensión autorizada
 

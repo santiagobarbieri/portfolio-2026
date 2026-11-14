@@ -88,6 +88,6 @@ Albert Sans 600 es la fuente común de títulos, centralizada en `css/typography
 
 ### Archivo compacto y solapas de proyecto
 
-La vista de hasta 900px usa una barra breve y un índice de tres barras, sin menú fijo inferior. Las portadas se centran en una única columna de hasta 300px, conservando el loop bidireccional. El índice mantiene separados filtros, destinos personales, páginas y listas.
+Hasta 900px, el Archivo usa una sola barra superior de 64px más safe area y un índice de tres barras para filtros y enlaces. El loop conserva una única columna de portadas contenidas de hasta 300px y 56svh, sin dock inferior. En escritorio se mantienen las dos columnas.
 
-En El Armado y Club, las carpetas compactas comparten guía de cierre y alto. Se reducen levemente al apilarse y sus pestañas permiten volver a cada sección. El contenido largo se recorre con el scroll de la página antes de cerrar la carpeta. El ensamblado de escritorio y la lectura con movimiento reducido se conservan.
+En El Armado y Club, las carpetas compactas ocupan todo el ancho, sin encogerse ni retirarse en profundidad. Cierran con igual alto y un pequeño escalón de 8px; las solapas mantienen los nombres completos. Al tocar una, su carpeta intercambia el lugar con la frontal sin mover el scroll de la página. El contenido largo se recorre antes de apilarse y sigue accesible al recuperar una carpeta. Las muestras de paleta tienen un respaldo gris neutro y no llevan contornos. El escritorio conserva su ficha acumulativa y se mantiene la lectura normal con movimiento reducido o sin JavaScript.

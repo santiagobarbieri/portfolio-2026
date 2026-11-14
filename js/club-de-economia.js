@@ -19,7 +19,7 @@ const zoom = createImageZoom({
   onOpen: () => { zoomActive = true; motion.stop(); },
   onClose: () => { motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
 });
-const folders = createFolderStack({ stage, chapters, motion, isZoomOpen: () => zoomActive });
+const folders = createFolderStack({ stage, chapters, motion, isZoomOpen: () => zoomActive, onChange: (index) => updateCounter(index) });
 const clamp = (n, low = 0, high = 1) => Math.min(high, Math.max(low, n));
 const ease = (n) => n * n * (3 - 2 * n);
 let layout = null;

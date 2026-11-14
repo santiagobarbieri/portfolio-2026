@@ -1,21 +1,33 @@
-/* Compact project sections close on one rail with the same panel dimensions. */
+/* A neutral backing separates every palette sample without outlining its colours. */
+:is(.armado-palette, .club-palette) { padding: 16px; background: #525252; color: #f5f5f5; }
+.club-palette small { color: #f5f5f5; }
+.armado-colour--wine { background: #360f17; border: 0; }
+.club-colour--grey { border: 0; }
+
 @media (max-width: 999px) {
   body:not(.project-folders-ready) :is(.armado-chapter, .club-chapter) { position: relative; top: auto; }
-  .project-folders-ready { --folder-rail: 128px; }
   .project-folders-ready :is(.armado-sheet, .club-sheet) { padding: var(--folder-rail) 0 16px; }
-  .project-folders-ready :is(.armado-stage, .club-stage) { display: block; }
-  .project-folders-ready :is(.armado-chapter, .club-chapter) { display: block; position: sticky; top: var(--folder-rail); height: var(--folder-height); min-height: 0; padding: 0; margin: 0 16px; border: 0; z-index: var(--chapter-order); }
-  .project-folder { --folder-surface: var(--bg); position: relative; height: 100%; transform: scale(var(--folder-scale, 1)); transform-origin: center top; }
-  .project-folder--closed { --folder-surface: color-mix(in srgb, var(--bg) 95%, var(--fg)); }
-  .project-folder__window { position: absolute; inset: 0; overflow: clip; background: var(--folder-surface); border: 1px solid color-mix(in srgb, var(--fg) 25%, var(--bg)); }
-  .project-folder__content { min-height: 100%; padding: 24px 20px 32px; transform: translateY(var(--folder-shift, 0)); }
-  .project-folder__tab { position: absolute; z-index: 2; top: -32px; left: var(--folder-tab-x, 0); display: flex; align-items: center; gap: 8px; width: var(--folder-tab-width, 160px); height: 44px; padding: 0 22px 12px 10px; text-align: left; font-size: 11px; font-weight: 600; line-height: 1; --interaction-origin: center bottom; }
-  .project-folder__tab::before { position: absolute; z-index: -1; inset: 0 0 12px; background: var(--folder-surface); clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 0 100%); border-radius: 5px 0 0 0; content: ""; }
-  .project-folder--closed .project-folder__tab:not([aria-current="step"]) { width: 46px; }
-  .project-folder--closed .project-folder__tab:not([aria-current="step"]) .project-folder__label { visibility: hidden; }
-  .project-folder__number { flex: none; font-size: 10px; }
-  .project-folder__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .project-folders-ready :is(.armado-stage, .club-stage) { display: block; width: 100%; max-width: none; margin: 0; }
+  .project-folders-ready :is(.armado-chapter, .club-chapter) { display: block; position: sticky; top: var(--folder-top); height: var(--folder-height); min-height: 0; padding: 0; margin: 0; border: 0; background: transparent; z-index: var(--folder-order); }
+  .project-folder { --folder-surface: var(--bg); position: relative; height: 100%; color: var(--fg); }
+  .project-folder--palette { --folder-surface: #525252; --bg: #525252; --fg: #f5f5f5; --mute: #f5f5f5; }
+  .project-folder__window { position: absolute; inset: 0; overflow: clip; background: var(--folder-surface); border-top: 1px solid color-mix(in srgb, var(--fg) 25%, var(--bg)); }
+  .project-folder__content { min-height: 100%; padding: 24px 24px 32px; transform: translateY(var(--folder-shift, 0)); }
+  .project-folder-tabs { position: fixed; z-index: 32; inset-inline: 0; display: grid; grid-template-columns: repeat(var(--folder-columns), minmax(0, 1fr)); background: var(--bg); }
+  .project-folder__tab { --folder-surface: var(--bg); position: relative; z-index: 1; display: flex; align-items: flex-start; width: 100%; height: 44px; padding: 10px 24px 6px 12px; color: var(--fg); text-align: left; font-size: 11px; font-weight: 600; line-height: 1.15; --interaction-scale: 1; }
+  .project-folder__tab::before, .project-folder__tab::after { position: absolute; z-index: -1; inset: 0; background: color-mix(in srgb, currentColor 25%, var(--folder-surface)); clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 30px, 100% 100%, 0 100%); border-radius: 5px 0 0 0; content: ""; }
+  .project-folder__tab::after { inset: 1px 1px 0; background: var(--folder-surface); }
+  .project-folder[data-stacked="true"] .project-folder__content { visibility: hidden; }
+  .project-folder__tab--palette { --folder-surface: #525252; color: #f5f5f5; }
+  .project-folder__label { display: block; min-width: 0; white-space: normal; transition: scale 180ms var(--ease); transform-origin: left center; }
+  .project-folder__tab:focus-visible { outline-offset: -3px; }
+  .project-folder__tab:focus-visible .project-folder__label { scale: 1.04; }
+  .project-folder__tab:disabled { opacity: 1; }
+  .project-folder--manual .project-folder__window { overflow-y: auto; overscroll-behavior-y: contain; }
+  .project-folder__content :is(.armado-palette, .club-palette) { padding: 0; }
   .project-folder-gap { pointer-events: none; }
   .project-folder__content:has(.armado-illustration) { display: grid; grid-template-columns: minmax(0, 1fr) 27%; gap: 24px 20px; align-content: start; }
   .project-folder__content :is(.armado-copy, .club-copy) { min-width: 0; }
 }
+@media (max-width: 400px) { .project-folder__content { padding-inline: 20px; } }
+@media (hover: hover) and (pointer: fine) { .project-folder__tab:not(:disabled):hover .project-folder__label { scale: 1.04; } }
