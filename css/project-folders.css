@@ -1,33 +1,44 @@
-/* A neutral backing separates every palette sample without outlining its colours. */
-:is(.armado-palette, .club-palette) { padding: 16px; background: #525252; color: #f5f5f5; }
-.club-palette small { color: #f5f5f5; }
+/* Palette backing is neutral; the original swatches never need an outline. */
+:is(.armado-palette, .club-palette) { padding: 16px; background: #c8c8c8; color: #151515; }
+.club-palette small { color: #151515; }
 .armado-colour--wine { background: #360f17; border: 0; }
 .club-colour--grey { border: 0; }
 
-@media (max-width: 999px) {
-  body:not(.project-folders-ready) :is(.armado-chapter, .club-chapter) { position: relative; top: auto; }
-  .project-folders-ready :is(.armado-sheet, .club-sheet) { padding: var(--folder-rail) 0 16px; }
-  .project-folders-ready :is(.armado-stage, .club-stage) { display: block; width: 100%; max-width: none; margin: 0; }
-  .project-folders-ready :is(.armado-chapter, .club-chapter) { display: block; position: sticky; top: var(--folder-top); height: var(--folder-height); min-height: 0; padding: 0; margin: 0; border: 0; background: transparent; z-index: var(--folder-order); }
-  .project-folder { --folder-surface: var(--bg); position: relative; height: 100%; color: var(--fg); }
-  .project-folder--palette { --folder-surface: #525252; --bg: #525252; --fg: #f5f5f5; --mute: #f5f5f5; }
-  .project-folder__window { position: absolute; inset: 0; overflow: clip; background: var(--folder-surface); border-top: 1px solid color-mix(in srgb, var(--fg) 25%, var(--bg)); }
-  .project-folder__content { min-height: 100%; padding: 24px 24px 32px; transform: translateY(var(--folder-shift, 0)); }
-  .project-folder-tabs { position: fixed; z-index: 32; inset-inline: 0; display: grid; grid-template-columns: repeat(var(--folder-columns), minmax(0, 1fr)); background: var(--bg); }
-  .project-folder__tab { --folder-surface: var(--bg); position: relative; z-index: 1; display: flex; align-items: flex-start; width: 100%; height: 44px; padding: 10px 24px 6px 12px; color: var(--fg); text-align: left; font-size: 11px; font-weight: 600; line-height: 1.15; --interaction-scale: 1; }
-  .project-folder__tab::before, .project-folder__tab::after { position: absolute; z-index: -1; inset: 0; background: color-mix(in srgb, currentColor 25%, var(--folder-surface)); clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 30px, 100% 100%, 0 100%); border-radius: 5px 0 0 0; content: ""; }
-  .project-folder__tab::after { inset: 1px 1px 0; background: var(--folder-surface); }
-  .project-folder[data-stacked="true"] .project-folder__content { visibility: hidden; }
-  .project-folder__tab--palette { --folder-surface: #525252; color: #f5f5f5; }
-  .project-folder__label { display: block; min-width: 0; white-space: normal; transition: scale 180ms var(--ease); transform-origin: left center; }
-  .project-folder__tab:focus-visible { outline-offset: -3px; }
-  .project-folder__tab:focus-visible .project-folder__label { scale: 1.04; }
-  .project-folder__tab:disabled { opacity: 1; }
-  .project-folder--manual .project-folder__window { overflow-y: auto; overscroll-behavior-y: contain; }
-  .project-folder__content :is(.armado-palette, .club-palette) { padding: 0; }
-  .project-folder-gap { pointer-events: none; }
-  .project-folder__content:has(.armado-illustration) { display: grid; grid-template-columns: minmax(0, 1fr) 27%; gap: 24px 20px; align-content: start; }
-  .project-folder__content :is(.armado-copy, .club-copy) { min-width: 0; }
+.project-folders-ready :is(.armado-sheet, .club-sheet) { padding: 0; height: var(--folder-scroll-height); }
+.project-folders-ready :is(.armado-stage, .club-stage) { position: sticky; top: 0; display: block; width: 100%; max-width: none; height: 100dvh; margin: 0; overflow: clip; }
+.project-folders-ready :is(.armado-intro, .club-intro) { position: absolute; inset: 0 0 auto; z-index: 0; width: 100%; }
+.project-folders-ready :is(.armado-chapter, .club-chapter):not(:first-child) { position: absolute; inset: 0; display: block; padding: 0; margin: 0; border: 0; background: transparent; z-index: var(--folder-order); pointer-events: none; }
+.project-folder { --folder-shape: polygon(0 30px, var(--folder-tab-x) 30px, var(--folder-tab-x) 5px, calc(var(--folder-tab-x) + 5px) 0, calc(var(--folder-tab-x) + var(--folder-tab-width) - var(--folder-slant)) 0, calc(var(--folder-tab-x) + var(--folder-tab-width) - 5px) 26px, calc(var(--folder-tab-x) + var(--folder-tab-width)) 30px, 100% 30px, 100% 100%, 0 100%); clip-path: var(--folder-shape); --folder-surface: #d2ddcc; --bg: #d2ddcc; --fg: #360f17; --mute: #360f17; position: absolute; inset: 0 0 auto; height: var(--folder-height); color: var(--fg); transform: translate3d(0, var(--folder-y), 0); pointer-events: auto; }
+.club-page .project-folder { --folder-surface: #d9d9d9; --bg: #d9d9d9; --fg: #000; --mute: #454545; }
+.project-folder.project-folder--palette { --folder-surface: #c8c8c8; --bg: #c8c8c8; --fg: #151515; --mute: #303030; }
+.project-folder::before, .project-folder::after { position: absolute; z-index: -1; inset: 0; background: var(--fg); clip-path: var(--folder-shape); content: ""; }
+.project-folder::after { inset: 1px 0 0; background: var(--folder-surface); }
+.project-folder__window { position: absolute; inset: 31px 0 0; overflow: clip; }
+.project-folder__content { display: grid; grid-template-columns: minmax(220px, .37fr) minmax(0, .63fr); align-items: center; gap: 48px; width: min(100%, 1250px); min-height: 100%; padding: 56px 48px; margin-inline: auto; transform: translateY(var(--folder-shift, 0)); }
+.project-folder__content :is(.armado-copy, .club-copy) { width: 100%; max-width: 420px; margin: 0; border: 0; padding: 0; }
+.project-folder__content :is(.armado-art, .club-art) { margin: 0; }
+.project-folder__content :is(.armado-palette, .club-palette) { padding: 0; width: 100%; }
+.project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1; grid-row: 1; }
+.project-folder__content .armado-illustration { grid-column: 2; grid-row: 1; justify-self: start; width: min(60%, 330px); }
+.project-folder__content .armado-references { grid-column: 2; grid-row: 1; justify-self: end; width: 110px; }
+.project-folder__content .armado-final { width: min(100%, 290px); justify-self: center; }
+.project-folder__tab { position: absolute; z-index: 2; top: 0; left: var(--folder-tab-x); display: flex; align-items: flex-start; width: var(--folder-tab-width); height: 44px; padding: 7px calc(var(--folder-slant) + 8px) 12px 18px; color: inherit; text-align: left; font-weight: 600; line-height: 1.15; --interaction-scale: 1; }
+.project-folder__label { display: block; min-width: 0; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transform-origin: left center; transition: scale 180ms var(--ease); }
+.project-folder:is([data-stacked="true"], [data-preview="true"]) .project-folder__content { visibility: hidden; }
+.project-folder--manual .project-folder__window { overflow-y: auto; overscroll-behavior-y: contain; }
+.project-folder__tab:focus-visible { outline-offset: -3px; }
+.project-folder__tab:focus-visible .project-folder__label { scale: 1.04; }
+.project-folders-ready [data-folder-manual="true"] .project-folder { transition: transform 220ms var(--ease); }
+@media (max-width: 767px) {
+  .project-folder__content { display: block; padding: 32px 24px 40px; }
+  .project-folder__content :is(.armado-art, .club-art) { margin-top: 28px; }
+  .project-folder__content:has(.armado-illustration) { display: grid; grid-template-columns: minmax(0, 1fr) 27%; gap: 28px 20px; align-content: start; }
+  .project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1 / -1; grid-row: 1; }
+  .project-folder__content .armado-illustration { grid-column: 1; grid-row: 2; width: 100%; margin: 0; }
+  .project-folder__content .armado-references { grid-column: 2; grid-row: 2; width: 100%; margin: 0; }
+  .project-folder__content .armado-final { margin: 28px auto 0; width: min(68%, 290px); }
+  .project-folder__tab { padding-left: 10px; padding-right: calc(var(--folder-slant) + 6px); }
 }
 @media (max-width: 400px) { .project-folder__content { padding-inline: 20px; } }
-@media (hover: hover) and (pointer: fine) { .project-folder__tab:not(:disabled):hover .project-folder__label { scale: 1.04; } }
+@media (hover: hover) and (pointer: fine) { .project-folder__tab:hover .project-folder__label { scale: 1.04; } }
+@media (prefers-reduced-motion: reduce) { .project-folder, .project-folder__label { transition: none !important; } }

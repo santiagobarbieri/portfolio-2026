@@ -86,8 +86,10 @@ Albert Sans está autoalojada en los pesos 300 (texto) y 600 (títulos), con anc
 
 Albert Sans 600 es la fuente común de títulos, centralizada en `css/typography.css`, con ancho natural y sin mayúsculas forzadas. El cuerpo conserva peso 300. Se ajustan tamaños y espaciado para que las fichas acumulativas sigan entrando completas; las piezas originales permanecen intactas.
 
-### Archivo compacto y solapas de proyecto
+### Archivo compacto y carpetas de proyecto
 
 Hasta 900px, el Archivo usa una sola barra superior de 64px más safe area y un índice de tres barras para filtros y enlaces. El loop conserva una única columna de portadas contenidas de hasta 300px y 56svh, sin dock inferior. En escritorio se mantienen las dos columnas.
 
-En El Armado y Club, las carpetas compactas ocupan todo el ancho, sin encogerse ni retirarse en profundidad. Cierran con igual alto y un pequeño escalón de 8px; las solapas mantienen los nombres completos. Al tocar una, su carpeta intercambia el lugar con la frontal sin mover el scroll de la página. El contenido largo se recorre antes de apilarse y sigue accesible al recuperar una carpeta. Las muestras de paleta tienen un respaldo gris neutro y no llevan contornos. El escritorio conserva su ficha acumulativa y se mantiene la lectura normal con movimiento reducido o sin JavaScript.
+El Armado y Club siguen ahora el modelo REWORK en ambas interfaces. La apertura tiene espacio propio y las carpetas posteriores asoman desde abajo. Cada pestaña está unida a su hoja completa; el scroll la sube hasta formar el apilado con pequeños escalones, sin encoger ni alejar las superficies. La paleta tiene fondo gris neutro y las muestras no llevan contornos.
+
+En móvil las solapas conservan su secuencia horizontal, reducen los nombres y usan «…» cuando hace falta. El nombre completo sigue disponible para tecnologías de asistencia. Tocar una cambia la carpeta frontal sin saltos de página; el contenido largo conserva su lectura completa. Con movimiento reducido o sin JavaScript queda una lectura vertical normal. El Armado abre con ilustración, logotipo y descripción según la referencia; el enlace de Instagram queda pendiente de una URL real.

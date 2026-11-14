@@ -2,9 +2,11 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
-## Carpetas en la lectura compacta — 14 de noviembre de 2026
+## Carpetas completas — REWORK del 14 de noviembre de 2026
 
-El Armado y Club comparten `project-folders.js` y `project-folders.css`. Hasta 999px, cada carpeta ocupa todo el ancho, sin escala ni efecto de profundidad, con alto común y un escalón vertical de 8px. Las solapas inclinadas conservan los nombres completos, distribuidos en filas cuando hace falta. Tocar una carpeta que ya llegó la intercambia con la frontal sin desplazar la página ni reordenar el flujo. El scroll principal permite leer el contenido largo antes de apilarlo; al recuperar una carpeta se habilita su lectura interna nativa. Las paletas se presentan sobre un gris neutro (#525252), con texto claro y colores reales sin contornos. El escritorio conserva su ficha acumulativa y movimiento reducido/sin JS conserva la lectura normal.
+El Armado y Club comparten el recorrido `project-folders.js` / `project-folders.css` en escritorio y móvil. La apertura permanece fuera de las carpetas. Cada sección posterior es una hoja de ancho completo con su solapa unida físicamente al borde; al inicio asoman desde abajo y el scroll las sube hasta apilarlas con escalones de 12px, sin escala ni profundidad. Esta dirección reemplaza el ensamblado de escritorio y el rail separado de solapas.
+
+En móvil se conserva la secuencia horizontal: reducir el tamaño de los nombres y usar ellipsis cuando todavía no entren, manteniendo el nombre completo accesible. No trasladar solapas a otra fila ni convertirlas en botones separados de la hoja. Tocar una intercambia su lugar con la frontal sin desplazar la página. Conservar lectura completa de piezas largas, zoom individual, carga cubierta por Rose y lectura vertical normal sin JS o con movimiento reducido. Las tarjetas de paleta usan gris neutro ajeno a la identidad (#C8C8C8), sin bordes en los colores. No migrar los otros proyectos hasta recibir sus referencias.
 
 ## Club de Economía — extensión autorizada
 
