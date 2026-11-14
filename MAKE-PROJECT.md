@@ -2,6 +2,10 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Carpetas en la lectura compacta — 14 de noviembre de 2026
+
+El Armado y Club comparten `project-folders.js` y `project-folders.css`. En móvil las carpetas tienen igual alto, guía de cierre de 128px y reducción final a 96.5%, con pestañas inclinadas que permiten navegar. El scroll principal recorre el contenido que no cabe antes de superponer otra carpeta. No fijar alturas que corten piezas ni crear scroll interno adicional. Mantener los datos de sección para contador y nombres de pestaña. El escritorio conserva su ficha acumulativa y movimiento reducido/sin JS conserva la lectura normal.
+
 ## Club de Economía — extensión autorizada
 
 Santi autorizó replicar la ficha acumulativa de El Armado en Club de Economía. `club-de-economia.html`, su CSS y módulo JS propios conservan el contenido existente, la paleta gris/celeste/negro y Albert Sans en textos y piezas. Los títulos usan Albert Sans 600, a ancho natural y sin mayúsculas forzadas, compartida en typography.css por toda la web. El registro declara `page` para Archivo y la redirección antigua. Seis etapas, marca fija a la izquierda, ensamblado reversible en escritorio y solapas verticales en móvil. No migrar otros casos sin indicación. No inventar eventos a partir de las plantillas.

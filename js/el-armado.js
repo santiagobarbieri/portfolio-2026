@@ -2,6 +2,7 @@ import { initShell } from "./shell.js";
 import { initSmoothScroll } from "./motion.js";
 import { startLoading, waitForImages } from "./loading.js";
 import { createImageZoom } from "./image-zoom.js";
+import { createFolderStack } from "./project-folders.js";
 
 const complete = startLoading("Cargando El Armado");
 const sheet = document.querySelector("[data-sheet]");
@@ -19,6 +20,7 @@ const zoom = createImageZoom({
   onOpen: () => { zoomActive = true; motion.stop(); },
   onClose: () => { motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
 });
+const folders = createFolderStack({ stage, chapters, motion, isZoomOpen: () => zoomActive });
 const clamp = (n, low = 0, high = 1) => Math.min(high, Math.max(low, n));
 const ease = (n) => n * n * (3 - 2 * n);
 let layout = null;
@@ -51,9 +53,11 @@ function choosePosterColumns(count, width, height) {
 }
 function measure(keepPosition = true) {
   const wasEnhanced = enhanced;
+  const wasFolders = folders.enabled;
   const previousPhase = phase;
   const previousActive = active;
   enhanced = desktop.matches && !reduced.matches;
+  if (enhanced || reduced.matches || innerWidth >= 1000) folders.disable();
   document.body.classList.toggle("armado-page--sheet", enhanced);
   for (const node of [...copies, ...document.querySelectorAll("[data-sheet-art]")]) node.removeAttribute("style");
   introTitle.removeAttribute("style");
@@ -126,15 +130,21 @@ function measure(keepPosition = true) {
     sheet.style.removeProperty("--sheet-height");
     stage.style.removeProperty("--sheet-title-size");
     layout = null;
-    chapters.forEach((chapter, index) => {
-      chapter.style.setProperty("--chapter-order", index + 1);
-      const desired = 88 + index * 8;
-      const height = chapter.getBoundingClientRect().height;
-      chapter.style.setProperty("--mobile-sticky-top", `${Math.min(desired, innerHeight - height - 16)}px`);
-    });
-    if (initialized && wasEnhanced && keepPosition) {
+    if (innerWidth < 1000 && !reduced.matches) {
+      folders.enable();
+      folders.measure(keepPosition);
+    } else {
+      chapters.forEach((chapter, index) => {
+        chapter.style.setProperty("--chapter-order", index + 1);
+        const desired = 88 + index * 8;
+        const height = chapter.getBoundingClientRect().height;
+        chapter.style.setProperty("--mobile-sticky-top", `${Math.min(desired, innerHeight - height - 16)}px`);
+      });
+    }
+    if (initialized && (wasEnhanced || (wasFolders && !folders.enabled)) && keepPosition) {
       const chapter = chapters[Math.min(previousActive, chapters.length - 1)];
-      motion.scrollTo(chapter.offsetTop - 100, { immediate: true });
+      if (folders.enabled) folders.goTo(Math.min(previousActive, chapters.length - 1), true);
+      else motion.scrollTo(chapter.offsetTop - 100, { immediate: true });
     }
   }
   oldHeight = innerHeight;
@@ -155,6 +165,7 @@ function paint() {
   frame = 0;
   if (!initialized) return;
   if (!enhanced || !layout) {
+    if (folders.enabled) { updateCounter(folders.paint()); return; }
     let index = 0;
     chapters.forEach((chapter, i) => {
       const rect = chapter.getBoundingClientRect();
@@ -186,6 +197,7 @@ function schedule() { if (!frame && !document.hidden) frame = requestAnimationFr
 function goToChapter(index, immediate = false) {
   if (!initialized) return;
   if (enhanced) motion.scrollTo(layout.start + index * layout.step, { immediate });
+  else if (folders.enabled) folders.goTo(index, immediate);
   else motion.scrollTo(chapters[index].getBoundingClientRect().top + scrollY - 100, { immediate });
   if (immediate) paint();
 }
@@ -200,8 +212,9 @@ function initInteraction() {
     if (completeLink) {
       event.preventDefault();
       goToChapter(chapters.length - 1, true);
-      copies[1].tabIndex = -1;
-      copies[1].focus({ preventScroll: true });
+      const destination = folders.enabled ? copies.at(-1) : copies[1];
+      destination.tabIndex = -1;
+      destination.focus({ preventScroll: true });
     }
   });
   stage.addEventListener("focusin", (event) => {

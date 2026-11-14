@@ -81,6 +81,8 @@ export async function initArchive() {
   const status = document.querySelector("[data-archive-status]");
   const mobileStatus = document.querySelector("[data-archive-mobile-status]");
   const filterPanel = document.querySelector("[data-archive-filter-panel]");
+  const indexPanel = document.querySelector("[data-archive-index]");
+  const indexTrigger = indexPanel?.querySelector("summary");
   const filterTrigger = filterPanel?.querySelector("summary");
   const compactControls = matchMedia("(max-width: 900px)");
   const main = document.getElementById("main-content");
@@ -348,13 +350,37 @@ export async function initArchive() {
     working = false;
   }
 
+  function syncIndex() {
+    const open = compactControls.matches && Boolean(indexPanel?.open);
+    document.body.classList.toggle("archive-index-open", open);
+    main.inert = open;
+    if (open) { physics.reset(); motion.stop(); }
+    else motion.start();
+    if (indexTrigger) {
+      const label = open ? "Cerrar índice" : "Abrir índice";
+      indexTrigger.setAttribute("aria-label", label);
+      indexTrigger.dataset.cursorAction = label;
+    }
+  }
+
+  function closeIndex(focus = true) {
+    if (!compactControls.matches || !indexPanel) return;
+    indexPanel.open = false;
+    syncIndex();
+    if (focus) indexTrigger?.focus({ preventScroll: true });
+  }
+
   function fitFilterControls() {
-    if (filterPanel) filterPanel.open = !compactControls.matches;
+    if (indexPanel) indexPanel.open = !compactControls.matches;
+    if (filterPanel) filterPanel.open = true;
     menus.forEach((menu) => { menu.open = false; });
+    syncIndex();
   }
 
   function closeFilters(menu) {
-    if (compactControls.matches && filterPanel) {
+    if (compactControls.matches && indexPanel) {
+      closeIndex();
+    } else if (compactControls.matches && filterPanel) {
       filterPanel.open = false;
       filterTrigger?.focus({ preventScroll: true });
     } else {
@@ -365,6 +391,13 @@ export async function initArchive() {
 
   fitFilterControls();
   compactControls.addEventListener("change", fitFilterControls);
+  indexPanel?.addEventListener("toggle", syncIndex);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && compactControls.matches && indexPanel?.open) {
+      event.preventDefault();
+      closeIndex();
+    }
+  });
   filterPanel?.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && compactControls.matches && filterPanel.open) {
       event.preventDefault();
@@ -398,14 +431,16 @@ export async function initArchive() {
       save();
     }
     if (link?.closest(".archive-personal")) { focusSlug = null; save(); }
+    if (link && indexPanel?.contains(link)) closeIndex(false);
     if (link?.classList.contains("skip-link")) {
       event.preventDefault();
       main.focus({ preventScroll: true });
     }
   });
-  window.addEventListener("pagehide", () => { save(); physics.reset(); });
+  window.addEventListener("pagehide", () => { save(); closeIndex(false); physics.reset(); });
   window.addEventListener("pageshow", (event) => {
     if (!event.persisted) return;
+    closeIndex(false);
     const position = storedState();
     pristine = Boolean(position.pristine);
     render(position);

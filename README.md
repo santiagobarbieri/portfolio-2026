@@ -85,3 +85,9 @@ Albert Sans está autoalojada en los pesos 300 (texto) y 600 (títulos), con anc
 `club-de-economia.html` replica el recorrido de El Armado con seis etapas: presentación, paleta, síntesis, sistema de marca, plantillas para redes y trama. La marca queda fija en la columna izquierda; el scroll reúne reversiblemente la ficha en escritorio y apila solapas en móvil. Las plantillas conservan sus datos de ejemplo. La portada del Archivo sigue siendo VARIANTE.png y la ruta genérica anterior redirige a la nueva página. Se conservan los originales, las exclusiones del visor, el zoom individual sin descarga, Rose y la lectura sin JavaScript o con movimiento reducido.
 
 Albert Sans 600 es la fuente común de títulos, centralizada en `css/typography.css`, con ancho natural y sin mayúsculas forzadas. El cuerpo conserva peso 300. Se ajustan tamaños y espaciado para que las fichas acumulativas sigan entrando completas; las piezas originales permanecen intactas.
+
+### Archivo compacto y solapas de proyecto
+
+La vista de hasta 900px usa una barra breve y un índice de tres barras, sin menú fijo inferior. Las portadas se centran en una única columna de hasta 300px, conservando el loop bidireccional. El índice mantiene separados filtros, destinos personales, páginas y listas.
+
+En El Armado y Club, las carpetas compactas comparten guía de cierre y alto. Se reducen levemente al apilarse y sus pestañas permiten volver a cada sección. El contenido largo se recorre con el scroll de la página antes de cerrar la carpeta. El ensamblado de escritorio y la lectura con movimiento reducido se conservan.

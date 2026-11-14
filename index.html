@@ -35,6 +35,7 @@
     <header class="site-header">
       <nav class="site-navigation" aria-label="Navegación principal">
         <span class="tab navigation-shortcut archive-label" aria-current="page">Archivo</span>
+        <span class="archive-header-status" data-archive-mobile-status role="status" aria-live="polite">4 proyectos</span>
         <p class="archive-intro">Archivo de proyectos realizados para marcas y organizaciones.</p>
       </nav>
       <div class="identity">
@@ -44,15 +45,17 @@
         </a>
         <a class="identity__logo" href="./index.html" aria-label="Santiago Barbieri — Archivo" data-cursor-action="Volver al archivo"><span class="identity__glyph" aria-hidden="true"></span></a>
       </div>
+      <details class="archive-index" data-archive-index open>
+        <summary class="archive-index__toggle" aria-label="Índice de navegación" data-cursor-action="Índice"><span class="archive-index__icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="visually-hidden">Índice</span></summary>
       <aside class="archive-controls" data-lenis-prevent aria-label="Filtros y navegación del archivo">
+        <div class="archive-index__intro"><h2>Índice</h2><p>Diseño gráfico, desarrollo web y fotografía.</p></div>
       <details class="archive-filter-panel" data-archive-filter-panel open>
         <summary class="archive-filter-toggle" aria-label="Ordenar proyectos">
           <svg class="archive-filter-toggle__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
             <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12"/>
             <circle cx="10" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="7" cy="18" r="2"/>
           </svg>
-          <span class="visually-hidden">Filtros</span>
-          <span class="archive-filter-count" data-archive-mobile-status role="status" aria-live="polite">4 proyectos</span>
+          <span>Filtros y orden</span>
         </summary>
         <div class="archive-filters" data-lenis-prevent role="search" aria-label="Filtrar y organizar el archivo">
           <details class="archive-filter-menu" data-filter-menu="category" hidden>
@@ -116,6 +119,7 @@
           </div>
         </nav>
       </aside>
+      </details>
     </header>
 
     <main class="archive-main" id="main-content" tabindex="-1">

@@ -41,7 +41,7 @@ export function initArchivePhysics() {
 
   function setRows(rows, streamTop) {
     const next = new Map();
-    const compact = innerWidth <= 600;
+    const compact = innerWidth <= 900;
     const limit = compact ? 18 : 44;
     records = rows.map((row) => {
       const card = row.firstElementChild;
