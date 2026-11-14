@@ -9,10 +9,10 @@
 .armado-chapter { display: grid; grid-template-columns: var(--armado-copy) minmax(0, 1fr); align-items: center; gap: 32px var(--armado-gap); padding-block: 0 160px; scroll-margin-top: 100px; }
 .armado-intro { display: block; min-height: 440px; }
 .armado-copy { min-width: 0; width: var(--armado-copy); }
-.armado-copy h2 { font-family: "Anybody", "Arial Narrow", var(--font); font-size: var(--sheet-title-size, 32px); font-weight: 900; font-stretch: 53.5%; font-variation-settings: "wdth" 53.5, "wght" 900; font-style: normal; font-synthesis: none; line-height: 1; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0; }
+.armado-copy h2 { font-family: var(--font-display); font-size: var(--sheet-title-size, 24px); font-weight: 600; font-stretch: normal; font-variation-settings: normal; font-style: normal; font-synthesis: none; line-height: 1.08; text-transform: none; margin: 0 0 6px; letter-spacing: 0; }
 .armado-copy:not(.armado-intro__copy) { border-top: 1px solid var(--fg); padding-top: 10px; }
 .armado-copy p { line-height: 1.16; }
-.armado-intro__title { width: 100%; font-family: "Anybody", "Arial Narrow", var(--font); font-weight: 900; font-size: clamp(36px, 3.77vw, 57px); font-stretch: 53.5%; font-variation-settings: "wdth" 53.5, "wght" 900; font-synthesis: none; text-transform: uppercase; line-height: 1; }
+.armado-intro__title { width: 100%; font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 2.91vw, 44px); font-stretch: normal; font-variation-settings: normal; font-synthesis: none; text-transform: none; line-height: 1.08; }
 .armado-project-mark { position: fixed; z-index: 28; top: var(--armado-top); left: var(--frame-margin); width: min(235px, calc(var(--armado-left) - 32px)); }
 .armado-intro__description { margin-top: 44px; }
 .armado-image-button { display: block; width: 100%; padding: 0; text-align: left; --interaction-scale: 1; --interaction-origin: center; }
@@ -62,9 +62,9 @@
   .armado-intro { border-top: 0; padding-top: 0; }
   .armado-copy, .armado-chapter:has(.armado-illustration) .armado-copy { width: 100%; margin: 0; }
   .armado-copy:not(.armado-intro__copy) { border: 0; padding: 0; }
-  .armado-copy h2 { font-size: 26px; margin-bottom: 12px; }
+  .armado-copy h2 { font-size: 22px; margin-bottom: 12px; }
   .armado-copy p { font-size: 13px; line-height: 1.4; max-width: 500px; }
-  .armado-intro__title { max-width: 400px; font-size: 36px; }
+  .armado-intro__title { max-width: 400px; font-size: 32px; }
   .armado-project-mark { top: max(20px, env(safe-area-inset-top)); left: 24px; width: 100px; z-index: 31; }
   .armado-remaining { margin-left: 120px; }
   .armado-intro__description { margin-top: 32px; }

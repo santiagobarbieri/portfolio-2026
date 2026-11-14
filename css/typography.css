@@ -1,29 +1,20 @@
-@font-face {
-  font-family: "Anybody";
-  font-style: normal;
-  font-weight: 100 900;
-  font-stretch: 50% 150%;
-  font-display: swap;
-  src: url("../assets/fonts/anybody/anybody-variable.woff2") format("woff2");
-}
-
 :root {
-  --font-display: "Anybody", "Arial Narrow", var(--font);
-  --text-display: 32px;
-  --text-heading: 22px;
-  --text-heading-small: 18px;
+  --font-display: var(--font);
+  --text-display: 28px;
+  --text-heading: 18px;
+  --text-heading-small: 14px;
 }
 
-/* Headings share the approved display axes; navigation and body keep Albert Sans. */
+/* Albert Sans 600 separates headings from the lighter body without condensed axes. */
 :root :is(h1, h2, h3),
 .contact-step > legend {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 53.5%;
-  font-variation-settings: "wdth" 53.5, "wght" 900;
+  font-weight: 600;
+  font-stretch: normal;
+  font-variation-settings: normal;
   font-style: normal;
   font-synthesis: none;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0;
 }
 
@@ -37,7 +28,6 @@
   line-height: 1.05;
 }
 
-.archive-card__title,
 .book-library__author,
 .about-chapter h2,
 .project-section__title,
@@ -65,3 +55,5 @@
   font-variation-settings: normal;
   text-transform: none;
 }
+
+.archive-card__title { font-size: 16px; line-height: 1.3; }

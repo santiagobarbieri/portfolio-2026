@@ -76,7 +76,7 @@ function measure(keepPosition = true) {
     const nominalTitle = parseFloat(getComputedStyle(copies[1].querySelector("h2")).fontSize);
     const excess = copyHeights.reduce((a, b) => a + b, 0) + 12 * (chapters.length - 1) - available;
     if (excess > 0) {
-      const fittedTitle = Math.max(26, nominalTitle - excess / (chapters.length - 1) - 1);
+      const fittedTitle = Math.max(20, nominalTitle - excess / (chapters.length - 1) - 1);
       stage.style.setProperty("--sheet-title-size", `${fittedTitle}px`);
       copyHeights = copies.map((node, index) => index ? node.offsetHeight : introHeight);
     }

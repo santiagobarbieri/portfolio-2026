@@ -4,11 +4,11 @@ Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/imag
 
 ## Club de Economía — extensión autorizada
 
-Santi autorizó replicar la ficha acumulativa de El Armado en Club de Economía. `club-de-economia.html`, su CSS y módulo JS propios conservan el contenido existente, la paleta gris/celeste/negro y Albert Sans en textos y piezas. Los títulos usan Anybody 900/53.5, ahora compartida en typography.css por toda la web. El registro declara `page` para Archivo y la redirección antigua. Seis etapas, marca fija a la izquierda, ensamblado reversible en escritorio y solapas verticales en móvil. No migrar otros casos sin indicación. No inventar eventos a partir de las plantillas.
+Santi autorizó replicar la ficha acumulativa de El Armado en Club de Economía. `club-de-economia.html`, su CSS y módulo JS propios conservan el contenido existente, la paleta gris/celeste/negro y Albert Sans en textos y piezas. Los títulos usan Albert Sans 600, a ancho natural y sin mayúsculas forzadas, compartida en typography.css por toda la web. El registro declara `page` para Archivo y la redirección antigua. Seis etapas, marca fija a la izquierda, ensamblado reversible en escritorio y solapas verticales en móvil. No migrar otros casos sin indicación. No inventar eventos a partir de las plantillas.
 
 ## Ficha acumulativa y ampliación de clientes — 13 de noviembre de 2026
 
-El Armado sigue los modelos de Figma y las aclaraciones de Santi: ensamblado por scroll reversible en desktop, solapas verticales en mobile y contador actual/total. Anybody 900, ancho 53.5, sin cursiva, es la display aprobada; Druk no se publica. En todos los casos `family: identity` se usa ampliación individual, sin carrusel ni descarga. Los párrafos de visor y descargas de esta guía se conservan para colecciones personales y quedan reemplazados para los clientes por esta indicación. No cambiar las otras composiciones hasta recibir sus modelos.
+El Armado sigue los modelos de Figma y las aclaraciones de Santi: ensamblado por scroll reversible en desktop, solapas verticales en mobile y contador actual/total. Albert Sans 600 es la familia aprobada para títulos, con cuerpo 300; Anybody y Druk no se cargan. En todos los casos `family: identity` se usa ampliación individual, sin carrusel ni descarga. Los párrafos de visor y descargas de esta guía se conservan para colecciones personales y quedan reemplazados para los clientes por esta indicación. No cambiar las otras composiciones hasta recibir sus modelos.
 
 ## Proyectos autónomos — dirección actual
 

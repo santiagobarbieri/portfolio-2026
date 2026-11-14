@@ -4,16 +4,16 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 ## Club de Economía — ficha acumulativa autorizada (13 de noviembre de 2026)
 
-Anybody es la fuente compartida de todos los títulos visibles del sitio: peso 900, ancho 53.5, sin cursiva. `css/typography.css` centraliza el @font-face y la jerarquía (32/22/18px para las pantallas comunes; los proyectos acumulativos mantienen 57px de referencia y 32/26px en secciones). Albert Sans sigue en párrafos, navegación, números y datos. Los logos e imágenes originales no se modifican. Cargar typography.css después de los componentes y precargar la fuente local antes de revelar las páginas.
+Albert Sans vuelve a ser la única familia de la interfaz: peso 600 (SemiBold) para títulos y 300 para cuerpo. `css/typography.css` centraliza la jerarquía: 28/18/14px en las páginas comunes y 16px en captions del Archivo; los proyectos acumulativos usan hasta 44px de apertura, 24px de sección en escritorio y 22px en móvil, con ajuste para que la ficha entre completa. Ancho natural, sin ejes condensados ni mayúsculas forzadas. Los archivos 300/600 ya están autoalojados; no cargar Anybody. Sus archivos y licencia se conservan como referencia, sin borrarlos. Los logos e imágenes originales no se modifican. Cargar typography.css después de los componentes.
 
-Santi pidió replicar el recorrido de El Armado en Club de Economía. Su página autónoma es `club-de-economia.html`, con CSS y JS propios. Conserva Albert Sans en las piezas y los textos, Anybody en los títulos de la interfaz y la paleta celeste/gris/negro del documento, sobre gris claro; no cambiar la portada negra/celeste del loop. La marca del club queda fija al costado izquierdo y el símbolo pequeño de Santiago vuelve al Archivo.
+Santi pidió replicar el recorrido de El Armado en Club de Economía. Su página autónoma es `club-de-economia.html`, con CSS y JS propios. Conserva Albert Sans en las piezas y los textos, Albert Sans 600 en los títulos de la interfaz y la paleta celeste/gris/negro del documento, sobre gris claro; no cambiar la portada negra/celeste del loop. La marca del club queda fija al costado izquierdo y el símbolo pequeño de Santiago vuelve al Archivo.
 
 Seis etapas: introducción, paleta, síntesis del símbolo, sistema de marca, plantillas para redes y trama. En desktop se ensamblan reversiblemente hasta reunir toda la ficha; en móvil son solapas con texto seguido de imágenes. Con movimiento reducido o sin JS, lectura vertical completa. Contador desde el DOM, Rose y ampliación individual sin carrusel ni descargas. Las exploraciones y variantes estáticas conservan su curación previa. Los campos de ejemplo de los anuncios son plantillas; no agregar piezas de eventos ausentes ni créditos no provistos. Los HEX son muestreados. El código pendiente no se muestra.
 
 ## Marca y pestañas — 13 de noviembre de 2026
 
 - El bloque Santiago Barbieri y sus disciplinas ocupa la esquina superior izquierda. La navegación se ubica debajo y el símbolo pequeño sigue arriba a la derecha. En móvil, nombre/disciplinas y símbolo forman la primera fila; la navegación, la segunda.
-- En El Armado, la marca del proyecto queda fija en la columna lateral izquierda (en móvil se adapta al encabezado). La apertura usa el texto «El Armado — Construcción de Identidad», en Anybody de 57px de referencia, sin reducirse durante el recorrido. Los títulos de sección bajan a 32px en escritorio y 26px en móvil.
+- En El Armado, la marca del proyecto queda fija en la columna lateral izquierda (en móvil se adapta al encabezado). La apertura usa el texto «El Armado — Construcción de Identidad», en Albert Sans 600 de hasta 44px, sin reducirse durante el recorrido. Los títulos de sección usan 24px en escritorio y 22px en móvil.
 
 - La marca de Santiago se ve al 50% de su tamaño previo en toda la interfaz, incluidos los diálogos. `shell.css` reduce únicamente `.identity__glyph`, con origen arriba a la derecha, conservando posición y área del enlace. No reducir logotipos de clientes ni el favicon del navegador.
 - El favicon es transparente y elige entre fondo y acento del proyecto según `prefers-color-scheme`: el color más claro para tema oscuro y el más oscuro para tema claro (hueso/bordó en El Armado). Actualizarlo al cambiar la preferencia, sin recargar ni volver a descargar el SVG. La web no puede leer el color exacto de la pestaña, sus estados activo/inactivo ni los temas personalizados del navegador. No agregar rectángulos, placas ni fondos; conservar el asset original de la máscara.
@@ -27,7 +27,7 @@ Esta dirección de Santi y sus cuatro modelos PNG reemplazan la propuesta anteri
 - Desktop: el scroll incorpora las cinco secciones —introducción, paleta, ilustraciones, afiches y entrega final— en una superficie sticky. Los bloques se compactan de forma reversible hasta reunir la ficha completa. La grilla calcula columnas uniformes según cantidad y espacio; cuatro variantes en esta primera versión. No fijar cinco afiches como regla.
 - Contador discreto `sección actual/total`, por ejemplo `1/5` a `5/5`, calculado desde las secciones. No mostrar «restantes» ni «01–LOGO».
 - Mobile: lectura vertical con texto seguido de imágenes y solapas que se apilan. Ajustar el sticky de cada tarjeta a su altura para permitir leer las tarjetas largas. Con movimiento reducido se conserva la lectura normal.
-- Display: **Anybody**, `wght: 900`, `wdth: 53.5`, sin cursiva, 57px de referencia; escala responsive para conservar la ficha legible. Fuente variable local WOFF2 y licencia OFL en `assets/fonts/anybody/`. Albert Sans permanece en cuerpo y controles. Druk Trial quedó descartada y no se incluye ni se carga.
+- Títulos: **Albert Sans 600**, ancho natural y hasta 44px en apertura; cuerpo y controles en Albert Sans 300/600. Anybody y Druk no se cargan en la interfaz.
 - Proyectos para clientes (`family: identity`): ampliación individual por imagen con `image-zoom.js` / `image-zoom.css`, sin carrusel ni acciones de descarga. Ajustar al viewport y a los píxeles reales de la fuente; nunca aumentar un bitmap más allá de su resolución efectiva. Cierre visible, Escape, click en el fondo y retorno de foco.
 - Librería y Exploraciones conservan sus experiencias personales; la política de descargas anterior se mantiene allí.
 - Las variantes pequeñas de El Armado conservan sus rutas: Santi las reemplazará con exportaciones mayores. El zoom mide el tamaño real al decodificar; no reescalar ni inventar detalle.
@@ -151,9 +151,9 @@ Todas las páginas comparten el mismo marco fijo, con margen de 16px:
 
 **Tipografía.**
 - Texto: **Albert Sans Light (300)**.
-- Títulos: **Anybody**, peso 900 y ancho 53.5; jerarquía compartida en typography.css. Controles y navegación: Albert Sans SemiBold, 12px.
+- Títulos: **Albert Sans 600**, ancho natural; jerarquía compartida en typography.css. Controles y navegación: Albert Sans SemiBold, 12px.
 - Cuerpo: 12px con interlineado 1.5; metadatos: 11px con interlineado 1.4. About conserva texto justificado y zoom.
-- Dos familias autoalojadas con licencia OFL: **Albert Sans** 300/600 para texto, controles y datos; **Anybody** variable para títulos. No se usa Hiragino Kaku Gothic Std ni Druk Trial.
+- Una familia autoalojada con licencia OFL: **Albert Sans** 300/600 para texto, títulos, controles y datos. No cargar Anybody, Hiragino Kaku Gothic Std ni Druk Trial.
 
 **Layout.** Grilla de 12 columnas con la columna izquierda fija de ~235px (tab, foto de About, filtros). Contenido desde ~320px. Mucho espacio negativo; nada de sombras, bordes redondeados ni íconos decorativos. Separar por espacio y jerarquía; reservar las líneas para los campos de formulario y divisiones puntuales.
 

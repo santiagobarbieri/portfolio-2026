@@ -78,10 +78,10 @@ El piloto incluye contenido HTML accesible sin JavaScript, navegación por secci
 
 La página reconstruye la ficha por scroll: marca fija al costado izquierdo, encabezado descriptivo, secciones que se acumulan, grilla de afiches uniforme y vista completa al final. En pantallas compactas el recorrido es vertical y las secciones se apilan como solapas. El contador indica sección actual y total. Con movimiento reducido se muestra la lectura normal.
 
-Anybody está autoalojada como WOFF2 variable, con peso 900, ancho 53.5, estilo normal y tamaño de referencia 57px. Fuente y licencia oficial: https://github.com/google/fonts/tree/main/ofl/anybody. No se incorpora Druk. Los proyectos para terceros usan zoom individual con tamaño limitado a la resolución real, sin controles de descarga. Librería y Exploraciones mantienen sus visores personales. Las variantes de afiches de El Armado quedan pendientes de las exportaciones mayores de Santi.
+Albert Sans está autoalojada en los pesos 300 (texto) y 600 (títulos), con ancho natural. Anybody se conserva como referencia y no se carga. No se incorpora Druk. Los proyectos para terceros usan zoom individual con tamaño limitado a la resolución real, sin controles de descarga. Librería y Exploraciones mantienen sus visores personales. Las variantes de afiches de El Armado quedan pendientes de las exportaciones mayores de Santi.
 
 ### Club de Economía · ficha acumulativa
 
 `club-de-economia.html` replica el recorrido de El Armado con seis etapas: presentación, paleta, síntesis, sistema de marca, plantillas para redes y trama. La marca queda fija en la columna izquierda; el scroll reúne reversiblemente la ficha en escritorio y apila solapas en móvil. Las plantillas conservan sus datos de ejemplo. La portada del Archivo sigue siendo VARIANTE.png y la ruta genérica anterior redirige a la nueva página. Se conservan los originales, las exclusiones del visor, el zoom individual sin descarga, Rose y la lectura sin JavaScript o con movimiento reducido.
 
-Anybody es la fuente común de títulos, autoalojada y centralizada en `css/typography.css`, con peso 900 y ancho 53.5. Albert Sans queda en textos, navegación y datos. Los títulos pequeños se ajustan a una escala legible sin modificar las piezas originales.
+Albert Sans 600 es la fuente común de títulos, centralizada en `css/typography.css`, con ancho natural y sin mayúsculas forzadas. El cuerpo conserva peso 300. Se ajustan tamaños y espaciado para que las fichas acumulativas sigan entrando completas; las piezas originales permanecen intactas.
