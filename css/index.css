@@ -8,7 +8,6 @@
 .archive-card { position: relative; width: calc((100% - var(--archive-gap)) / 2); min-width: 0; pointer-events: auto; }
 .archive-about { pointer-events: auto; }
 .archive-card--right { margin-left: calc((100% + var(--archive-gap)) / 2); }
-.archive-page[data-pristine="true"] .archive-row[data-history] { visibility: hidden; }
 .archive-card__link { position: relative; z-index: 1; display: block; }
 .archive-card__media { position: relative; overflow: clip; min-height: 96px; }
 .archive-card__image { width: 100%; }

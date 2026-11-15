@@ -169,8 +169,7 @@ export async function initArchive() {
     let top = streamY - scrollY;
     rows.forEach((row) => {
       const card = row.firstElementChild;
-      const hidden = pristine && row.hasAttribute("data-history");
-      const distance = hidden ? Infinity : Math.abs(top - 140);
+      const distance = Math.abs(top - 140);
       const current = representatives.get(card.dataset.slug);
       const focused = row.contains(document.activeElement);
       if (!current || focused || (!current.focused && distance < current.distance)) representatives.set(card.dataset.slug, { row, distance, focused });
