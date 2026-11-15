@@ -22,7 +22,7 @@ El Armado sigue los modelos de Figma y las aclaraciones de Santi: ensamblado por
 
 ## Proyectos autónomos — dirección actual
 
-El registro admite `page`, una ruta local al sitio del proyecto. Archivo abre cada caso en otra pestaña y el render genérico redirige los enlaces antiguos si existe `page`. La página del piloto puede cambiar marco, composición y colores para expresar la identidad de El Armado, conservando accesibilidad, carga cuidada, cursor y visor. Antes de diseñar otro sitio autónomo, definirlo con Santi. La navegación del portfolio está en español: Librería y Exploraciones.
+El registro admite `page`, una ruta local al sitio del proyecto. Archivo abre cada caso en la pestaña actual y el render genérico redirige los enlaces antiguos si existe `page`. La página del piloto puede cambiar marco, composición y colores para expresar la identidad de El Armado, conservando accesibilidad, carga cuidada, cursor y visor. Antes de diseñar otro sitio autónomo, definirlo con Santi. La navegación del portfolio está en español: Librería y Exploraciones.
 
 ## Referencias de cada proyecto
 

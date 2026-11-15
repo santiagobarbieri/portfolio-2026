@@ -69,7 +69,7 @@ El nuevo caso Club de Economía — UTDT conserva los 26 originales aportados. L
 
 ### Piloto de sitios independientes
 
-El archivo abre cada proyecto en otra pestaña. El Armado es el primer sitio autónomo (`el-armado.html`): usa su paleta, sus ilustraciones y una composición propia. Su ficha genérica anterior redirige al piloto. Club de Economía replica ese recorrido en `club-de-economia.html`. OLAS y Orfeo conservan sus presentaciones actuales. Los destinos personales se llaman **Librería** y **Exploraciones**, con rutas conservadas.
+El archivo abre cada proyecto en la pestaña actual y conserva la posición del loop al volver. El Armado es el primer sitio autónomo (`el-armado.html`): usa su paleta, sus ilustraciones y una composición propia. Su ficha genérica anterior redirige al piloto. Club de Economía replica ese recorrido en `club-de-economia.html`. OLAS y Orfeo conservan sus presentaciones actuales. Los destinos personales se llaman **Librería** y **Exploraciones**, con rutas conservadas.
 
 El piloto incluye contenido HTML accesible sin JavaScript, navegación por secciones, alternancia color/trazo, visor de seis piezas y descargas originales. Las pruebas pequeñas de afiches no integran el visor. Los nuevos WebP son derivados; los originales no se modificaron.
 

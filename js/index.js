@@ -19,10 +19,8 @@ function createCard(project) {
   Object.assign(card.dataset, { slug: project.slug, category: project.category, family: project.family, order: project.order, title: project.title, kind: "project" });
   const link = node("a", "archive-card__link");
   link.href = project.page || (project.shelf?.number ? `./books.html?shelf=${encodeURIComponent(project.slug)}` : `./project.html?p=${encodeURIComponent(project.slug)}`);
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.dataset.cursorAction = "Abrir en otra pestaña";
-  link.setAttribute("aria-label", `Abrir ${project.title} en otra pestaña`);
+  link.dataset.cursorAction = "Abrir proyecto";
+  link.setAttribute("aria-label", `Abrir ${project.title}`);
   const media = node("div", "archive-card__media");
   if (project.cover) {
     const image = node("img", "archive-card__image");
