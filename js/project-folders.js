@@ -20,6 +20,17 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
   let touchResumed = false;
   const cap = 30;
   const step = 12;
+  const compact = matchMedia("(max-width: 767px)");
+  const disclosures = [...stage.querySelectorAll("[data-folder-disclosure]")];
+  let disclosureFrame = 0;
+  function fitDisclosures() { disclosures.forEach((details) => { details.open = !compact.matches; }); }
+  fitDisclosures();
+  compact.addEventListener("change", fitDisclosures);
+  stage.addEventListener("toggle", (event) => {
+    if (event.target.tagName !== "DETAILS" || !enabled) return;
+    cancelAnimationFrame(disclosureFrame);
+    disclosureFrame = requestAnimationFrame(() => { measure(true); onChange(paint()); });
+  }, true);
 
   function enable() {
     if (enabled) return;
@@ -55,7 +66,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       viewport.append(content);
       card.append(outline, tab, viewport);
       tab.addEventListener("click", () => select(index));
-      return { section, original, card, tab, label, outline, edge, viewport, content, from: 0, duration: 0, overflow: 0, peek: 0 };
+      return { section, original, card, tab, label, outline, edge, viewport, content, from: 0, duration: 0, overflow: 0, peek: 0, shift: 0, reveal: 0, read: 0 };
     });
     order = records.map((_, index) => index);
     selected = null;
@@ -78,6 +89,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     document.body.classList.remove("project-folders-ready");
     sheet.style.removeProperty("--folder-scroll-height");
     stage.style.removeProperty("--folder-height");
+    stage.style.removeProperty("--folder-stack-clearance");
     stage.style.removeProperty("--folder-hero-limit");
     for (const record of records) {
       record.content.inert = false;
@@ -103,6 +115,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     const reserve = Math.max(Math.min(210, height * .21), (records.length - 1) * step + 44 + safeBottom + 24);
     const peek = Math.max(rail + 56, height - reserve);
     stage.style.setProperty("--folder-height", `${panelHeight}px`);
+    stage.style.setProperty("--folder-stack-clearance", `${(records.length - 1) * step + 12}px`);
     stage.style.setProperty("--folder-hero-limit", `${peek}px`);
     const left = width < 640 ? 8 : Math.min(64, width * .0423);
     const slant = width < 640 ? 16 : 28;
@@ -120,7 +133,10 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       record.peek = peek + index * step;
       record.from = cursor;
       record.duration = Math.max(250, height * .82);
-      record.overflow = Math.max(0, record.content.offsetHeight - record.viewport.clientHeight);
+      record.windowTop = record.viewport.offsetTop;
+      record.contentHeight = record.content.offsetHeight;
+      record.padding = parseFloat(getComputedStyle(record.content).paddingTop);
+      record.overflow = Math.max(0, record.contentHeight - record.viewport.clientHeight);
       const font = width < 640 ? 11 : 13;
       record.tab.style.fontSize = `${font}px`;
       const available = slot - (width < 640 ? 12 : 20);
@@ -157,23 +173,41 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     });
     const front = manual ? selected : current;
     stage.dataset.folderManual = String(manual);
-    intro.inert = front >= 0;
-    records.forEach((record, index) => {
+    const poses = records.map((record, index) => {
       const rank = manual ? order.indexOf(index) : index;
       const progress = manual ? 1 : ease(clamp((y - record.from) / record.duration));
-      const top = record.peek + (rail + rank * step - record.peek) * progress;
-      const behind = manual ? index !== front : index < current;
+      return { rank, progress, top: record.peek + (rail + rank * step - record.peek) * progress };
+    });
+    const height = stage.clientHeight;
+    const hero = intro.querySelector("[class$='intro__composition']");
+    const heroTop = hero.getBoundingClientRect().top;
+    intro.inert = Math.min(...poses.map((pose) => pose.top + cap)) <= heroTop;
+    records.forEach((record, index) => {
+      const { rank, progress, top } = poses[index];
       record.section.style.setProperty("--folder-order", rank + 1);
       record.card.style.setProperty("--folder-y", `${top.toFixed(2)}px`);
       record.card.dataset.front = String(index === front);
       record.card.dataset.preview = String(!manual && progress < .03);
-      record.card.dataset.stacked = String(behind);
+      record.card.dataset.stacked = String(manual ? index !== front : index < current);
       record.card.classList.toggle("project-folder--manual", manual && index === front);
       record.viewport.toggleAttribute("data-lenis-prevent", manual && index === front && record.overflow > 1);
-      if (!manual || index !== front) record.viewport.scrollTop = 0;
-      const shift = manual ? 0 : clamp(y - record.from - record.duration, 0, record.overflow);
-      record.content.style.setProperty("--folder-shift", `${-shift.toFixed(2)}px`);
-      record.content.inert = index !== front;
+      let shift;
+      if (manual) shift = index === front ? 0 : record.read - record.viewport.scrollTop;
+      else {
+        record.card.classList.remove("project-folder--entering");
+        shift = clamp(y - record.from - record.duration, 0, record.overflow);
+        record.viewport.scrollTop = 0;
+      }
+      // Parked content starts outside the screen and travels with its sheet. Nothing fades or hides.
+      const reveal = manual ? 0 : Math.max(0, height - record.peek - record.windowTop + 4) * (1 - progress);
+      record.content.style.setProperty("--folder-shift", `${(reveal - shift).toFixed(2)}px`);
+      record.shift = shift;
+      record.reveal = reveal;
+      record.read = shift + record.viewport.scrollTop;
+      const cover = Math.min(height, ...poses.filter((other) => other.rank > rank).map((other) => other.top + cap));
+      const contentTop = top + record.windowTop + record.padding + reveal - record.read;
+      const contentBottom = top + record.windowTop + record.contentHeight + reveal - record.read;
+      record.content.inert = contentTop >= cover || contentBottom <= Math.max(0, top + record.windowTop);
       record.tab.setAttribute("aria-pressed", String(index === front));
     });
     active = front + 1;
@@ -182,12 +216,20 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
 
   function select(index) {
     if (!enabled || !measured || isZoomOpen()) return;
+    if (selected === index) return;
+    if (selected === null && active === index + 1 && scrollY - start >= records[index].from + records[index].duration) return;
+    records.forEach((record) => {
+      record.read = Math.max(0, record.shift + record.viewport.scrollTop);
+      record.card.classList.toggle("project-folder--entering", record.reveal > 0);
+    });
     const slot = order.indexOf(index);
     [order[slot], order[order.length - 1]] = [order[order.length - 1], order[slot]];
     selected = index;
     motion.scrollTo(scrollY, { immediate: true });
     lastY = scrollY;
-    records[index].viewport.scrollTop = 0;
+    // Enable native scrolling before restoring a reader offset (overflow: clip cannot scroll).
+    records[index].card.classList.add("project-folder--manual");
+    records[index].viewport.scrollTop = records[index].read;
     paint();
     onChange(index + 1);
   }

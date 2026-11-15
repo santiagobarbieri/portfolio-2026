@@ -1,8 +1,23 @@
-/* Palette backing is neutral; the original swatches never need an outline. */
+/* Original swatches sit on a neutral surface, without decorative outlines. */
 :is(.armado-palette, .club-palette) { padding: 16px; background: #c8c8c8; color: #151515; }
 .club-palette small { color: #151515; }
 .armado-colour--wine { background: #360f17; border: 0; }
 .club-colour--grey { border: 0; }
+.armado-palette small { display: block; margin-top: 4px; font-size: 11px; }
+.project-palette-source { margin-top: 20px; font-size: 12px; line-height: 1.45; }
+.project-piece { min-width: 0; margin: 0; }
+.project-piece figcaption { margin-top: 10px; font-size: 12px; line-height: 1.4; text-align: center; }
+.project-notes { min-width: 0; }
+.project-notes > summary { display: flex; align-items: center; gap: 12px; min-height: 40px; list-style: none; cursor: pointer; font-size: 12px; font-weight: 600; line-height: 1.4; }
+.project-notes > summary::-webkit-details-marker { display: none; }
+.project-notes > summary::after { flex: none; width: 5px; height: 5px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); content: ""; transition: rotate 180ms var(--ease); }
+.project-notes[open] > summary::after { rotate: 180deg; }
+.project-notes__body { padding: 4px 0 12px; }
+.project-notes__body p { font-size: 13px; line-height: 1.5; }
+.project-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.project-gallery > .project-notes { grid-column: span 3; }
+.project-variants-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.project-reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 
 .project-folders-ready :is(.armado-sheet, .club-sheet) { padding: 0; height: var(--folder-scroll-height); }
 .project-folders-ready :is(.armado-stage, .club-stage) { position: sticky; top: 0; display: block; width: 100%; max-width: none; height: 100dvh; --folder-safe-bottom: env(safe-area-inset-bottom, 0px); margin: 0; overflow: clip; }
@@ -13,41 +28,90 @@
 .project-folder.project-folder--palette { --folder-surface: #c8c8c8; --bg: #c8c8c8; --fg: #151515; --mute: #303030; }
 .project-folder__shape { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .project-folder__shape path { fill: var(--folder-surface); stroke: var(--fg); stroke-width: 1; stroke-linejoin: round; }
-.project-folder__window { position: absolute; inset: 31px 0 0; overflow: clip; pointer-events: auto; container-type: size; }
-.project-folder__content { display: grid; grid-template-columns: minmax(220px, .37fr) minmax(0, .63fr); align-items: center; gap: 48px; width: min(100%, 1250px); min-height: 100%; padding: 56px 48px; margin-inline: auto; transform: translateY(var(--folder-shift, 0)); }
-.project-folder__content :is(.armado-copy, .club-copy) { width: 100%; max-width: 420px; margin: 0; border: 0; padding: 0; }
-.project-folder__content :is(.armado-art, .club-art) { margin: 0; }
-.project-folder__content :is(.armado-palette, .club-palette) { padding: 0; width: 100%; }
-.project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1; grid-row: 1; }
-.project-folder__content .armado-illustration { grid-column: 2; grid-row: 1; justify-self: start; width: min(60%, 330px); }
-.project-folder__content .armado-references { grid-column: 2; grid-row: 1; justify-self: end; width: 110px; }
-.project-folder__content .armado-final { width: min(100%, 290px); justify-self: center; }
+.project-folder__window { position: absolute; inset: calc(31px + var(--folder-stack-clearance, 60px)) 0 0; overflow: clip; pointer-events: auto; container-type: size; scrollbar-width: none; }
+.project-folder__window::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.project-folder__content { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-content: center; align-items: start; gap: 40px 24px; width: min(100%, 1440px); min-height: 100%; padding: max(0px, calc(clamp(36px, 5vh, 64px) - var(--folder-stack-clearance, 60px))) clamp(32px, 5vw, 80px) 40px; margin-inline: auto; transform: translateY(var(--folder-shift, 0)); }
+.project-folder__content :is(.armado-copy, .club-copy) { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-column: 1 / -1; gap: 0 24px; width: 100%; max-width: none; margin: 0; padding: 0; border: 0; }
+.project-folder__content :is(.armado-copy, .club-copy) h2 { grid-column: 1 / 4; grid-row: 1; margin: 0; font-size: 24px; line-height: 1.15; }
+.project-folder__content .project-folder__lead { grid-column: 4 / -1; grid-row: 1; max-width: 58ch; margin: 0; font-size: 14px; line-height: 1.5; }
+.project-folder__content :is(.armado-copy, .club-copy) > .project-notes { grid-column: 4 / -1; max-width: 58ch; margin-top: 8px; }
+.project-folder__content :is(.armado-art, .club-art) { grid-column: 1 / -1; min-width: 0; margin: 0; }
+.project-folder__content :is(.armado-palette, .club-palette) { grid-column: 4 / -1; width: 100%; max-width: 900px; padding: 0; }
+.project-folder__content :is(.armado-palette, .club-palette) ul { gap: 28px; }
+.project-folder__content :is(.armado-colour, .club-colour) { width: 100%; max-width: 128px; }
+.project-folder__content .armado-illustration { grid-column: 2 / 8; grid-row: 2; width: min(100%, 440px); justify-self: center; }
+.project-folder__content .armado-references { display: block; grid-column: 9 / -1; grid-row: 2; width: min(100%, 340px); justify-self: center; align-self: center; }
+.project-folder__content .armado-references img { max-width: 160px; margin-inline: auto; }
+.project-folder__content .armado-final { width: min(100%, 340px); justify-self: center; }
+.project-folder__content .armado-final img { max-height: min(58cqh, 560px); }
+.project-folder__content .project-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.project-folder__content .project-gallery--posters .armado-image-button { position: relative; height: min(54cqh, 460px); aspect-ratio: auto; }
+.project-folder__content .project-gallery--posters img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.project-folder__content .project-gallery--templates .club-image-button { height: min(54cqh, 460px); }
+.project-folder__content .project-gallery--process { padding: 24px; color: #d9d9d9; }
+.project-folder__content .project-gallery--process img { height: clamp(80px, 16cqh, 150px); }
+.project-gallery--process .project-notes { color: #d9d9d9; }
+.project-folder__content .club-brandboard { display: grid; grid-template-columns: minmax(0, .4fr) minmax(0, .6fr); gap: 40px; width: 100%; }
+.project-folder__content .club-brandboard__marks { display: block; }
+.project-folder__content .club-brandboard__marks .club-piece { width: min(100%, 300px); margin-inline: auto; }
+.project-folder__content .club-brandboard__variants { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.project-folder__content .club-brandboard__variants > .club-piece { width: min(100%, 220px); margin-inline: auto; }
+.project-folder__content .club-brandboard__icons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin: 0; }
+.project-folder__content .club-brandboard__icons .club-piece { width: min(100%, 80px); }
+.project-folder__content .club-banner { width: min(100%, 900px); justify-self: center; }
+.project-folder__content .club-piece figcaption { font-size: 12px; line-height: 1.4; margin-top: 10px; }
 .project-folder__tab { pointer-events: auto; clip-path: polygon(0 0, calc(100% - var(--folder-slant)) 0, 100% 30px, 100% 100%, 0 100%); position: absolute; z-index: 2; top: 0; left: var(--folder-tab-x); display: flex; align-items: flex-start; width: var(--folder-tab-width); height: 44px; padding: 7px calc(var(--folder-slant) + 8px) 12px 18px; color: inherit; text-align: left; font-weight: 600; line-height: 1.15; --interaction-scale: 1; }
 .project-folder__label { display: block; min-width: 0; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transform-origin: left center; transition: scale 180ms var(--ease); }
-.project-folder:is([data-stacked="true"], [data-preview="true"]) .project-folder__content { visibility: hidden; }
 .project-folder--manual .project-folder__window { overflow-y: auto; overscroll-behavior-y: auto; }
 .project-folder__tab:focus-visible { outline-offset: -3px; }
 .project-folder__tab:focus-visible .project-folder__label { scale: 1.04; }
 .project-folders-ready :is([data-folder-manual="true"], .project-folders-resuming) .project-folder { transition: transform 220ms var(--ease); }
+.project-folder--entering .project-folder__content { transition: transform 220ms var(--ease); }
+@media (min-width: 768px) { .project-notes--variants > summary { display: none; } }
+@media (max-width: 999px) {
+  .project-folder__content { gap: 28px 20px; }
+  .project-folder__content :is(.armado-palette, .club-palette) { grid-column: 1 / -1; }
+}
 @media (max-width: 767px) {
-  .project-folder__content { display: block; padding: 28px 24px 32px; }
+  .project-folder__content { display: block; padding: 0 24px 32px; }
+  .project-folder__content :is(.armado-copy, .club-copy) { display: block; }
+  .project-folder__content :is(.armado-copy, .club-copy) h2 { font-size: 22px; margin: 0 0 14px; }
+  .project-folder__content .project-folder__lead { max-width: 38ch; font-size: 14px; line-height: 1.5; }
   .project-folder__content :is(.armado-art, .club-art) { margin-top: 28px; }
-  .project-folder__content:has(.armado-illustration) { display: grid; grid-template-columns: minmax(0, 1fr) 27%; gap: 28px 20px; align-content: start; }
-  .project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1 / -1; grid-row: 1; }
-  .project-folder__content .armado-illustration { grid-column: 1; grid-row: 2; width: 100%; margin: 0; }
-  .project-folder__content .armado-references { grid-column: 2; grid-row: 2; width: 100%; margin: 0; }
-  .project-folder__content .armado-final { margin: 28px auto 0; width: min(68%, 290px); }
+  .project-folder__content :is(.armado-palette, .club-palette) ul { gap: 16px; }
+  .project-folder__content .armado-illustration { width: min(72%, 260px); margin-inline: auto; }
+  .project-folder__content .armado-references { width: 100%; margin-top: 24px; }
+  .project-folder__content .armado-references img { max-width: 140px; }
+  .project-notes > summary { min-height: 44px; }
+  .project-notes--variants > summary { display: flex; }
+  .project-reference-grid, .project-variants-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; padding-top: 12px; }
+  .project-folder__content .project-gallery { display: block; }
+  .project-gallery > figure { width: min(100%, 300px); margin-inline: auto; }
+  .project-gallery > .project-notes { margin-top: 24px; }
+  .project-folder__content .project-gallery--posters .armado-image-button, .project-folder__content .project-gallery--templates > .club-piece .club-image-button { height: clamp(170px, 42cqh, 360px); }
+  .project-folder__content .project-gallery--templates .project-variants-grid .club-image-button { height: clamp(140px, 32cqh, 240px); }
+  .project-folder__content .project-gallery--process { padding: 20px; }
+  .project-folder__content .project-gallery--process > figure { width: 100%; max-width: none; }
+  .project-folder__content .project-gallery--process img { height: auto; max-height: 120px; }
+  .project-folder__content .armado-final { width: min(80%, 300px); margin-inline: auto; }
+  .project-folder__content .armado-final img { max-height: clamp(170px, 44cqh, 400px); }
+  .project-folder__content .club-brandboard { display: block; }
+  .project-folder__content .club-brandboard__marks .club-piece { width: min(70%, 220px); }
+  .project-folder__content .club-brandboard__alternatives { margin-top: 24px; }
+  .project-folder__content .club-brandboard__variants { grid-template-columns: minmax(0, 1fr); }
+  .project-folder__content .club-brandboard__icons { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .project-folder__content .club-piece figcaption, .project-piece figcaption { font-size: 11px; }
   .project-folder__tab { padding-left: 10px; padding-right: calc(var(--folder-slant) + 6px); }
 }
 @media (max-width: 400px) { .project-folder__content { padding-inline: 20px; } }
-@media (hover: hover) and (pointer: fine) { .project-folder__tab:hover .project-folder__label { scale: 1.04; } }
-@media (prefers-reduced-motion: reduce) { .project-folder, .project-folder__label { transition: none !important; } }
-
-/* Low landscape windows need the same folders, with a more economical reading area. */
+@media (hover: hover) and (pointer: fine) {
+  .project-folder__tab:hover .project-folder__label { scale: 1.04; }
+  .project-notes > summary:hover { scale: 1.02; transform-origin: left center; }
+}
+@media (prefers-reduced-motion: reduce) { .project-folder, .project-folder__content, .project-folder__label { transition: none !important; } }
 @media (max-height: 500px) {
   :is(.armado-shell, .club-shell) { inset: max(8px, env(safe-area-inset-top)) 16px auto; }
   :is(.armado-home, .club-home), :is(.armado-home, .club-home) .identity__glyph { width: 40px; height: 40px; }
-  .project-folder__content { padding-block: 20px; }
 }
 @media (min-width: 480px) and (max-height: 500px) {
   :is(.armado-intro, .club-intro) { padding: 60px 24px 0; }
@@ -56,27 +120,10 @@
   .club-intro__composition { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; width: min(100%, 1070px); margin: 0; }
   .club-intro__copy { margin: 0; }
   :is(.armado-intro__description, .club-intro__description) { font-size: 11px; line-height: 1.25; }
-  .project-folder__content { display: grid; grid-template-columns: minmax(140px, .38fr) minmax(0, .62fr); align-items: center; gap: 24px; padding-inline: 28px; }
-  .project-folder__content :is(.armado-art, .club-art) { margin-top: 0; }
-  .project-folder__content :is(.armado-copy, .club-copy) p { font-size: 12px; line-height: 1.35; }
-  .project-folder__content :is(.armado-copy, .club-copy) h2 { font-size: 20px; }
-  .project-folder__content:has(.armado-illustration) { grid-template-columns: minmax(140px, .38fr) minmax(0, .62fr); align-content: center; }
-  .project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1; grid-row: 1; }
-  .project-folder__content .armado-illustration { grid-column: 2; grid-row: 1; width: min(60%, 180px); justify-self: start; }
-  .project-folder__content .armado-references { grid-column: 2; grid-row: 1; width: min(28%, 85px); justify-self: end; }
-  .project-folder__content .armado-final { width: min(100%, 200px); margin: 0; }
-  .project-folder__content .armado-final img { max-height: max(100px, calc(100cqh - 40px)); }
-  .project-folder__content .armado-posters { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .project-folder__content .club-brandboard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .project-folder__content .club-brandboard__marks .club-piece { width: 100%; max-width: 140px; }
-  .project-folder__content .club-brandboard__marks .club-image-button { height: clamp(56px, 30cqh, 100px); }
-  .project-folder__content .club-brandboard__marks img { height: 100%; }
-  .project-folder__content .club-brandboard__icons { margin-top: 0; }
-  .project-folder__content .club-brandboard__icons img { height: clamp(24px, 14cqh, 44px); }
-  .project-folder__content .club-templates { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-  .project-folder__content .club-templates .club-image-button { height: max(100px, calc(100cqh - 76px)); }
-  .project-folder__content .club-process { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 12px; }
-}
-@media (max-width: 479px) {
-  .project-folder__content .club-templates .club-image-button { height: clamp(120px, calc((100cqh - 290px) / 2), 240px); }
+  .project-folder__content { padding-inline: 28px; gap: 20px 24px; }
+  .project-folder__content :is(.armado-copy, .club-copy) { display: block; }
+  .project-folder__content :is(.armado-copy, .club-copy) h2 { font-size: 20px; margin-bottom: 10px; }
+  .project-folder__content .project-folder__lead { font-size: 13px; }
+  .project-folder__content .project-gallery--templates .club-image-button { height: max(130px, calc(100cqh - 160px)); }
+  .project-folder__content .project-gallery--posters .armado-image-button { height: max(130px, calc(100cqh - 160px)); }
 }

@@ -2,6 +2,15 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Interiores de carpetas y continuidad — 15 de noviembre de 2026
+
+- Refinamiento autorizado únicamente en El Armado y Club de Economía; no migrar otros proyectos ni cargar casos pendientes todavía.
+- En escritorio, título y una introducción breve comparten la cabecera de una grilla de doce columnas. Las piezas usan una fila más amplia, con tamaños propios según contenido y composición centrada verticalmente cuando sobra altura. Contener marcas y referencias, conservar proporciones y no agrandar bitmaps para llenar huecos.
+- En móvil, título, resumen y pieza principal tienen padding lateral de 20–24px y separaciones de 24–28px. Referencias, pruebas y aplicaciones adicionales quedan en desplegables nativos; en escritorio se muestran abiertas. El texto de proceso también se consulta bajo demanda. Al abrir, cerrar o cambiar de tamaño, recalcular la lectura disponible sin saltos de posición.
+- Paleta en franja con nombres y HEX; ilustración principal con referencias menores; pruebas de afiches en columnas uniformes; entrega final como pieza principal. Club conserva su secuencia de síntesis, marca, aplicaciones y trama, las plantillas de ejemplo y la aclaración de HEX muestreados. No modificar archivos originales ni sumar hechos nuevos a los textos.
+- El contenido nunca se oculta con `visibility`, `opacity`, `display` ni un porcentaje de avance. Las hojas siguientes lo cubren físicamente. Las piezas de las carpetas estacionadas comienzan fuera del viewport y acompañan la entrada de su hoja. La franja superior queda fuera del lector y reserva la altura de la pila para que no asomen fragmentos de contenido en los escalones.
+- Usar la geometría real de las superficies para `inert`; conservar texto e imágenes mientras exista una parte descubierta. Cambiar de solapa mantiene el desplazamiento interno leído; activar el lector nativo antes de restaurar su offset. Tocar la carpeta actual no reinicia su lectura. Sin JS o con movimiento reducido, conservar la lectura normal y todos los desplegables accesibles.
+
 ## Archivo compacto y carpetas — 14 de noviembre de 2026
 
 ### Auditoría responsive de carpetas

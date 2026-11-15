@@ -99,3 +99,9 @@ En móvil las solapas conservan su secuencia horizontal, reducen los nombres y u
 El borde de cada hoja usa un trazado SVG continuo, sin cortes en las curvas o diagonales. La reserva inferior considera todas las solapas y las áreas seguras. En ventanas horizontales bajas se compactan encabezado, apertura y grillas para aprovechar el espacio. Se mantiene el texto completo y las proporciones originales de las imágenes.
 
 El lector de una carpeta seleccionada deja pasar el gesto al recorrido al alcanzar su extremo o cuando el contenido ya entra completo. Rueda, touch y teclado retoman la misma sección. Las validaciones abarcan 32 formatos de ambos proyectos, entre 320 y 2560px de ancho, incluyendo ventanas de 320px de alto, además de lectura completa, zoom, rotación y fallbacks.
+
+### Interiores de carpeta y continuidad visual — 15 de noviembre de 2026
+
+El Armado y Club de Economía usan cabeceras más breves y una grilla amplia, con composiciones específicas para paletas, ilustraciones, marcas, afiches y aplicaciones. Cuando sobra altura en escritorio, el conjunto se centra; en móvil se prioriza una pieza principal con más margen y referencias/variantes desplegables. Los grupos adicionales se muestran abiertos en escritorio. Los textos de proceso se consultan bajo demanda. Se conservan las 26 referencias de imagen de ambas páginas y todos sus archivos originales.
+
+Las piezas permanecen dibujadas durante todo el recorrido: la siguiente carpeta las cubre físicamente, sin cortes de visibilidad a mitad de una transición. Las carpetas estacionadas mantienen su contenido fuera del viewport hasta entrar. La lectura se conserva al recuperar una solapa y se recalcula al expandir contenido. Este cambio no migra todavía OLAS u Orfeo.

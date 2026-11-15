@@ -2,6 +2,12 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Interiores y continuidad — 15 de noviembre de 2026
+
+El Armado y Club son los únicos casos autorizados para este refinamiento. En escritorio usar una cabecera breve y una grilla ancha para las piezas, centrando la composición si sobra alto. En móvil priorizar título, resumen y pieza principal, con padding de 20–24px y referencias/variantes en `details` nativos. Los grupos adicionales se abren por defecto desde 768px. El proceso puede desplegarse sin agregar texto al recorrido principal. Mantener nombres, proporciones, paletas, archivos originales y aclaraciones de procedencia.
+
+No ocultar contenido por porcentaje de scroll: solo la superficie opaca de otra carpeta debe sacarlo de vista. Las piezas estacionadas entran desde fuera de pantalla con su hoja; reservar el alto de los escalones fuera del área de lectura de cada carpeta. `inert` depende de la cobertura geométrica. Restaurar el offset leído al recuperar una carpeta y recalcular el recorrido al abrir/cerrar desplegables sin mover la página. Probar ida/vuelta alrededor de cada cambio de sección, disclosures, ventanas bajas, teclado, zoom y fallback normal antes de publicar.
+
 ## Carpetas completas — REWORK del 14 de noviembre de 2026
 
 El Armado y Club comparten el recorrido `project-folders.js` / `project-folders.css` en escritorio y móvil. La apertura permanece fuera de las carpetas. Cada sección posterior es una hoja de ancho completo con su solapa unida físicamente al borde; al inicio asoman desde abajo y el scroll las sube hasta apilarlas con escalones de 12px, sin escala ni profundidad. Esta dirección reemplaza el ensamblado de escritorio y el rail separado de solapas.
