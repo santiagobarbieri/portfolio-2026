@@ -5,15 +5,15 @@
 .club-colour--grey { border: 0; }
 
 .project-folders-ready :is(.armado-sheet, .club-sheet) { padding: 0; height: var(--folder-scroll-height); }
-.project-folders-ready :is(.armado-stage, .club-stage) { position: sticky; top: 0; display: block; width: 100%; max-width: none; height: 100dvh; margin: 0; overflow: clip; }
+.project-folders-ready :is(.armado-stage, .club-stage) { position: sticky; top: 0; display: block; width: 100%; max-width: none; height: 100dvh; --folder-safe-bottom: env(safe-area-inset-bottom, 0px); margin: 0; overflow: clip; }
 .project-folders-ready :is(.armado-intro, .club-intro) { position: absolute; inset: 0 0 auto; z-index: 0; width: 100%; }
 .project-folders-ready :is(.armado-chapter, .club-chapter):not(:first-child) { position: absolute; inset: 0; display: block; padding: 0; margin: 0; border: 0; background: transparent; z-index: var(--folder-order); pointer-events: none; }
-.project-folder { --folder-shape: polygon(0 30px, var(--folder-tab-x) 30px, var(--folder-tab-x) 5px, calc(var(--folder-tab-x) + 5px) 0, calc(var(--folder-tab-x) + var(--folder-tab-width) - var(--folder-slant)) 0, calc(var(--folder-tab-x) + var(--folder-tab-width) - 5px) 26px, calc(var(--folder-tab-x) + var(--folder-tab-width)) 30px, 100% 30px, 100% 100%, 0 100%); clip-path: var(--folder-shape); --folder-surface: #d2ddcc; --bg: #d2ddcc; --fg: #360f17; --mute: #360f17; position: absolute; inset: 0 0 auto; height: var(--folder-height); color: var(--fg); transform: translate3d(0, var(--folder-y), 0); pointer-events: auto; }
+.project-folder { --folder-surface: #d2ddcc; --bg: #d2ddcc; --fg: #360f17; --mute: #360f17; position: absolute; inset: 0 0 auto; height: var(--folder-height); color: var(--fg); transform: translate3d(0, var(--folder-y), 0); pointer-events: none; }
 .club-page .project-folder { --folder-surface: #d9d9d9; --bg: #d9d9d9; --fg: #000; --mute: #454545; }
 .project-folder.project-folder--palette { --folder-surface: #c8c8c8; --bg: #c8c8c8; --fg: #151515; --mute: #303030; }
-.project-folder::before, .project-folder::after { position: absolute; z-index: -1; inset: 0; background: var(--fg); clip-path: var(--folder-shape); content: ""; }
-.project-folder::after { inset: 1px 0 0; background: var(--folder-surface); }
-.project-folder__window { position: absolute; inset: 31px 0 0; overflow: clip; }
+.project-folder__shape { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.project-folder__shape path { fill: var(--folder-surface); stroke: var(--fg); stroke-width: 1; stroke-linejoin: round; }
+.project-folder__window { position: absolute; inset: 31px 0 0; overflow: clip; pointer-events: auto; container-type: size; }
 .project-folder__content { display: grid; grid-template-columns: minmax(220px, .37fr) minmax(0, .63fr); align-items: center; gap: 48px; width: min(100%, 1250px); min-height: 100%; padding: 56px 48px; margin-inline: auto; transform: translateY(var(--folder-shift, 0)); }
 .project-folder__content :is(.armado-copy, .club-copy) { width: 100%; max-width: 420px; margin: 0; border: 0; padding: 0; }
 .project-folder__content :is(.armado-art, .club-art) { margin: 0; }
@@ -22,15 +22,15 @@
 .project-folder__content .armado-illustration { grid-column: 2; grid-row: 1; justify-self: start; width: min(60%, 330px); }
 .project-folder__content .armado-references { grid-column: 2; grid-row: 1; justify-self: end; width: 110px; }
 .project-folder__content .armado-final { width: min(100%, 290px); justify-self: center; }
-.project-folder__tab { position: absolute; z-index: 2; top: 0; left: var(--folder-tab-x); display: flex; align-items: flex-start; width: var(--folder-tab-width); height: 44px; padding: 7px calc(var(--folder-slant) + 8px) 12px 18px; color: inherit; text-align: left; font-weight: 600; line-height: 1.15; --interaction-scale: 1; }
+.project-folder__tab { pointer-events: auto; clip-path: polygon(0 0, calc(100% - var(--folder-slant)) 0, 100% 30px, 100% 100%, 0 100%); position: absolute; z-index: 2; top: 0; left: var(--folder-tab-x); display: flex; align-items: flex-start; width: var(--folder-tab-width); height: 44px; padding: 7px calc(var(--folder-slant) + 8px) 12px 18px; color: inherit; text-align: left; font-weight: 600; line-height: 1.15; --interaction-scale: 1; }
 .project-folder__label { display: block; min-width: 0; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transform-origin: left center; transition: scale 180ms var(--ease); }
 .project-folder:is([data-stacked="true"], [data-preview="true"]) .project-folder__content { visibility: hidden; }
-.project-folder--manual .project-folder__window { overflow-y: auto; overscroll-behavior-y: contain; }
+.project-folder--manual .project-folder__window { overflow-y: auto; overscroll-behavior-y: auto; }
 .project-folder__tab:focus-visible { outline-offset: -3px; }
 .project-folder__tab:focus-visible .project-folder__label { scale: 1.04; }
-.project-folders-ready [data-folder-manual="true"] .project-folder { transition: transform 220ms var(--ease); }
+.project-folders-ready :is([data-folder-manual="true"], .project-folders-resuming) .project-folder { transition: transform 220ms var(--ease); }
 @media (max-width: 767px) {
-  .project-folder__content { display: block; padding: 32px 24px 40px; }
+  .project-folder__content { display: block; padding: 28px 24px 32px; }
   .project-folder__content :is(.armado-art, .club-art) { margin-top: 28px; }
   .project-folder__content:has(.armado-illustration) { display: grid; grid-template-columns: minmax(0, 1fr) 27%; gap: 28px 20px; align-content: start; }
   .project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1 / -1; grid-row: 1; }
@@ -42,3 +42,41 @@
 @media (max-width: 400px) { .project-folder__content { padding-inline: 20px; } }
 @media (hover: hover) and (pointer: fine) { .project-folder__tab:hover .project-folder__label { scale: 1.04; } }
 @media (prefers-reduced-motion: reduce) { .project-folder, .project-folder__label { transition: none !important; } }
+
+/* Low landscape windows need the same folders, with a more economical reading area. */
+@media (max-height: 500px) {
+  :is(.armado-shell, .club-shell) { inset: max(8px, env(safe-area-inset-top)) 16px auto; }
+  :is(.armado-home, .club-home), :is(.armado-home, .club-home) .identity__glyph { width: 40px; height: 40px; }
+  .project-folder__content { padding-block: 20px; }
+}
+@media (min-width: 480px) and (max-height: 500px) {
+  :is(.armado-intro, .club-intro) { padding: 60px 24px 0; }
+  .armado-intro__composition { grid-template-columns: minmax(52px, .6fr) minmax(0, 1.4fr) minmax(0, 1.6fr); gap: 20px; width: min(100%, 1070px); max-width: none; margin: 0; }
+  .armado-intro__copy { grid-column: auto; padding: 0; margin: 0; }
+  .club-intro__composition { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; width: min(100%, 1070px); margin: 0; }
+  .club-intro__copy { margin: 0; }
+  :is(.armado-intro__description, .club-intro__description) { font-size: 11px; line-height: 1.25; }
+  .project-folder__content { display: grid; grid-template-columns: minmax(140px, .38fr) minmax(0, .62fr); align-items: center; gap: 24px; padding-inline: 28px; }
+  .project-folder__content :is(.armado-art, .club-art) { margin-top: 0; }
+  .project-folder__content :is(.armado-copy, .club-copy) p { font-size: 12px; line-height: 1.35; }
+  .project-folder__content :is(.armado-copy, .club-copy) h2 { font-size: 20px; }
+  .project-folder__content:has(.armado-illustration) { grid-template-columns: minmax(140px, .38fr) minmax(0, .62fr); align-content: center; }
+  .project-folder__content:has(.armado-illustration) .armado-copy { grid-column: 1; grid-row: 1; }
+  .project-folder__content .armado-illustration { grid-column: 2; grid-row: 1; width: min(60%, 180px); justify-self: start; }
+  .project-folder__content .armado-references { grid-column: 2; grid-row: 1; width: min(28%, 85px); justify-self: end; }
+  .project-folder__content .armado-final { width: min(100%, 200px); margin: 0; }
+  .project-folder__content .armado-final img { max-height: max(100px, calc(100cqh - 40px)); }
+  .project-folder__content .armado-posters { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .project-folder__content .club-brandboard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .project-folder__content .club-brandboard__marks .club-piece { width: 100%; max-width: 140px; }
+  .project-folder__content .club-brandboard__marks .club-image-button { height: clamp(56px, 30cqh, 100px); }
+  .project-folder__content .club-brandboard__marks img { height: 100%; }
+  .project-folder__content .club-brandboard__icons { margin-top: 0; }
+  .project-folder__content .club-brandboard__icons img { height: clamp(24px, 14cqh, 44px); }
+  .project-folder__content .club-templates { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .project-folder__content .club-templates .club-image-button { height: max(100px, calc(100cqh - 76px)); }
+  .project-folder__content .club-process { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 12px; }
+}
+@media (max-width: 479px) {
+  .project-folder__content .club-templates .club-image-button { height: clamp(120px, calc((100cqh - 290px) / 2), 240px); }
+}

@@ -8,6 +8,10 @@ El Armado y Club comparten el recorrido `project-folders.js` / `project-folders.
 
 En móvil se conserva la secuencia horizontal: reducir el tamaño de los nombres y usar ellipsis cuando todavía no entren, manteniendo el nombre completo accesible. No trasladar solapas a otra fila ni convertirlas en botones separados de la hoja. Tocar una intercambia su lugar con la frontal sin desplazar la página. Conservar lectura completa de piezas largas, zoom individual, carga cubierta por Rose y lectura vertical normal sin JS o con movimiento reducido. Las tarjetas de paleta usan gris neutro ajeno a la identidad (#C8C8C8), sin bordes en los colores. No migrar los otros proyectos hasta recibir sus referencias.
 
+### Verificación de proporciones y scroll
+
+Las hojas dibujan su contorno con un único SVG de stroke constante. Medir la reserva inferior según cantidad de solapas y safe area, además del viewport real. Revisar teléfono vertical/horizontal, tablet, escritorio, ultrapanorámico y ventanas bajas. La apertura no invade encabezado ni solapas. Contener las piezas en su espacio y evitar scroll innecesario. Cuando una carpeta seleccionada sí requiere lectura interna, sus extremos liberan rueda, touch y teclado al recorrido de la misma sección. No dejar gestos atrapados en tarjetas sin overflow.
+
 ## Club de Economía — extensión autorizada
 
 Santi autorizó replicar la ficha acumulativa de El Armado en Club de Economía. `club-de-economia.html`, su CSS y módulo JS propios conservan el contenido existente, la paleta gris/celeste/negro y Albert Sans en textos y piezas. Los títulos usan Albert Sans 600, a ancho natural y sin mayúsculas forzadas, compartida en typography.css por toda la web. El registro declara `page` para Archivo y la redirección antigua. Seis etapas, marca fija a la izquierda, ensamblado reversible en escritorio y solapas verticales en móvil. No migrar otros casos sin indicación. No inventar eventos a partir de las plantillas.

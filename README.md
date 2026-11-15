@@ -93,3 +93,9 @@ Hasta 900px, el Archivo usa una sola barra superior de 64px más safe area y un 
 El Armado y Club siguen ahora el modelo REWORK en ambas interfaces. La apertura tiene espacio propio y las carpetas posteriores asoman desde abajo. Cada pestaña está unida a su hoja completa; el scroll la sube hasta formar el apilado con pequeños escalones, sin encoger ni alejar las superficies. La paleta tiene fondo gris neutro y las muestras no llevan contornos.
 
 En móvil las solapas conservan su secuencia horizontal, reducen los nombres y usan «…» cuando hace falta. El nombre completo sigue disponible para tecnologías de asistencia. Tocar una cambia la carpeta frontal sin saltos de página; el contenido largo conserva su lectura completa. Con movimiento reducido o sin JavaScript queda una lectura vertical normal. El Armado abre con ilustración, logotipo y descripción según la referencia; el enlace de Instagram queda pendiente de una URL real.
+
+### Auditoría responsive de las carpetas
+
+El borde de cada hoja usa un trazado SVG continuo, sin cortes en las curvas o diagonales. La reserva inferior considera todas las solapas y las áreas seguras. En ventanas horizontales bajas se compactan encabezado, apertura y grillas para aprovechar el espacio. Se mantiene el texto completo y las proporciones originales de las imágenes.
+
+El lector de una carpeta seleccionada deja pasar el gesto al recorrido al alcanzar su extremo o cuando el contenido ya entra completo. Rueda, touch y teclado retoman la misma sección. Las validaciones abarcan 32 formatos de ambos proyectos, entre 320 y 2560px de ancho, incluyendo ventanas de 320px de alto, además de lectura completa, zoom, rotación y fallbacks.

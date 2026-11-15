@@ -4,6 +4,14 @@ Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo s
 
 ## Archivo compacto y carpetas — 14 de noviembre de 2026
 
+### Auditoría responsive de carpetas
+
+- El borde de cada hoja es un único trazado SVG con curvas y stroke no escalable, calculado con las medidas reales; no simularlo desplazando dos polígonos que cortan las diagonales. La superficie decorativa no intercepta punteros; ventana y solapa conservan sus áreas táctiles.
+- La reserva inferior inicial contempla cantidad de carpetas, escalones, área táctil de 44px y safe area. Ninguna solapa debe quedar bajo el borde de una pantalla horizontal baja. Medir el alto real de la superficie (100dvh) y conservar la lectura al cambiar la altura.
+- En ventanas bajas se compacta el encabezado y la apertura pasa a composición horizontal. Afiches, logos y plantillas se contienen en grillas apropiadas a esa proporción; no agrandar piezas hasta imponer un scroll innecesario. El contenido que realmente no cabe se sigue leyendo completo con scroll.
+- Al seleccionar una carpeta, el lector nativo solo captura desplazamiento si hay contenido por recorrer. Al llegar a un extremo —o cuando no hay overflow— rueda, touch y teclas retoman el recorrido desde esa misma sección, sin atrapar el gesto ni volver a otra sección de la posición anterior. No usar overscroll containment en lectores que no desbordan. Conservar Space/Enter para activar botones, y no interceptar edición ni pinch zoom.
+
+
 - Hasta 900px, Archivo tiene una sola barra superior de 64px más safe area: nombre, rótulo/contador, índice de tres barras y símbolo. Sin dock inferior permanente. El índice nativo `details` reúne filtros, destinos personales, páginas y listas en una vista clara independiente; Escape y selección de filtro lo cierran. Bloquear el fondo solo mientras está abierto y devolver el foco al control. Los grupos y el contenido existente se conservan.
 - El loop compacto es una sola columna, con portadas completas de hasta 300px de ancho y 56svh de alto. Todas las tarjetas comparten eje; reciclar en ambos sentidos. En escritorio se conserva la composición de dos columnas. Mantener encabezado y navegación quietos, independientes de la física de las cards.
 - Dirección vigente REWORK: El Armado y Club usan carpetas completas tanto en escritorio como en móvil, en reemplazo del ensamblado y de la botonera separada anteriores. La apertura queda fuera del conjunto de carpetas; las siguientes secciones asoman desde el borde inferior desde el inicio. Cada solapa pertenece físicamente al borde superior de su superficie, de ancho completo, con curva/diagonal y el mismo color que el cuerpo.

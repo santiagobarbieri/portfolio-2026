@@ -15,6 +15,9 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
   let start = 0;
   let lastY = 0;
   let total = 0;
+  let resumeTimer;
+  let touchY = null;
+  let touchResumed = false;
   const cap = 30;
   const step = 12;
 
@@ -37,14 +40,22 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       label.className = "project-folder__label";
       label.textContent = section.dataset.sectionName;
       tab.append(label);
+      const outline = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      outline.classList.add("project-folder__shape");
+      outline.setAttribute("aria-hidden", "true");
+      outline.setAttribute("focusable", "false");
+      outline.setAttribute("preserveAspectRatio", "none");
+      const edge = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      edge.setAttribute("vector-effect", "non-scaling-stroke");
+      outline.append(edge);
       const viewport = document.createElement("div");
       viewport.className = "project-folder__window";
       const content = document.createElement("div");
       content.className = "project-folder__content";
       viewport.append(content);
-      card.append(tab, viewport);
+      card.append(outline, tab, viewport);
       tab.addEventListener("click", () => select(index));
-      return { section, original, card, tab, label, viewport, content, from: 0, duration: 0, overflow: 0, peek: 0 };
+      return { section, original, card, tab, label, outline, edge, viewport, content, from: 0, duration: 0, overflow: 0, peek: 0 };
     });
     order = records.map((_, index) => index);
     selected = null;
@@ -59,6 +70,10 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (!enabled) return;
     enabled = measured = false;
     selected = null;
+    clearTimeout(resumeTimer);
+    stage.classList.remove("project-folders-resuming");
+    touchY = null;
+    touchResumed = false;
     intro.inert = false;
     document.body.classList.remove("project-folders-ready");
     sheet.style.removeProperty("--folder-scroll-height");
@@ -80,11 +95,13 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     const entering = old ? clamp(offset / old.duration) : 0;
     const wasReading = old && offset >= old.duration;
     const header = document.querySelector(".armado-shell, .club-shell");
-    rail = Math.max(76, header.getBoundingClientRect().bottom + 6);
-    const height = innerHeight;
+    const height = stage.clientHeight;
+    rail = Math.max(height < 500 ? 60 : 76, header.getBoundingClientRect().bottom + 6);
     const width = stage.clientWidth;
     const panelHeight = Math.max(140, height - rail - (records.length - 1) * step);
-    const peek = height - Math.min(210, height * .21);
+    const safeBottom = parseFloat(getComputedStyle(stage).getPropertyValue("--folder-safe-bottom")) || 0;
+    const reserve = Math.max(Math.min(210, height * .21), (records.length - 1) * step + 44 + safeBottom + 24);
+    const peek = Math.max(rail + 56, height - reserve);
     stage.style.setProperty("--folder-height", `${panelHeight}px`);
     stage.style.setProperty("--folder-hero-limit", `${peek}px`);
     const left = width < 640 ? 8 : Math.min(64, width * .0423);
@@ -95,6 +112,11 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       record.card.style.setProperty("--folder-tab-x", `${left + index * slot}px`);
       record.card.style.setProperty("--folder-tab-width", `${slot + slant}px`);
       record.card.style.setProperty("--folder-slant", `${slant}px`);
+      const x = left + index * slot;
+      const end = x + slot + slant;
+      const shoulder = end - slant;
+      record.outline.setAttribute("viewBox", `0 0 ${width} ${panelHeight}`);
+      record.edge.setAttribute("d", `M 0 ${cap + .5} H ${x} V 6.5 Q ${x} .5 ${x + 6} .5 H ${shoulder - 3} Q ${shoulder + 1} .5 ${shoulder + 4} 4.5 L ${end - 7} ${cap - 4.5} Q ${end - 3} ${cap + .5} ${end + 3} ${cap + .5} H ${width} V ${panelHeight} H 0 Z`);
       record.peek = peek + index * step;
       record.from = cursor;
       record.duration = Math.max(250, height * .82);
@@ -147,7 +169,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       record.card.dataset.preview = String(!manual && progress < .03);
       record.card.dataset.stacked = String(behind);
       record.card.classList.toggle("project-folder--manual", manual && index === front);
-      record.viewport.toggleAttribute("data-lenis-prevent", manual && index === front);
+      record.viewport.toggleAttribute("data-lenis-prevent", manual && index === front && record.overflow > 1);
       if (!manual || index !== front) record.viewport.scrollTop = 0;
       const shift = manual ? 0 : clamp(y - record.from - record.duration, 0, record.overflow);
       record.content.style.setProperty("--folder-shift", `${-shift.toFixed(2)}px`);
@@ -169,6 +191,82 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     paint();
     onChange(index + 1);
   }
+
+  function canRead(record, delta) {
+    const position = record.viewport.scrollTop;
+    const end = Math.max(0, record.viewport.scrollHeight - record.viewport.clientHeight);
+    return delta > 0 ? position < end - 1 : position > 1;
+  }
+
+  function resume(delta, immediate = false) {
+    if (selected === null) return;
+    const record = records[selected];
+    const position = record.from + record.duration + record.viewport.scrollTop;
+    selected = null;
+    clearTimeout(resumeTimer);
+    stage.classList.add("project-folders-resuming");
+    motion.scrollTo(start + position, { immediate: true });
+    onChange(paint());
+    motion.scrollTo(start + clamp(position + delta, 0, total), { immediate });
+    resumeTimer = setTimeout(() => stage.classList.remove("project-folders-resuming"), 240);
+  }
+
+  stage.addEventListener("wheel", (event) => {
+    if (selected === null || isZoomOpen() || !event.deltaY || event.ctrlKey) return;
+    const record = records[selected];
+    const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+    if (record.viewport.contains(event.target) && canRead(record, delta)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    resume(delta);
+  }, { passive: false });
+
+  stage.addEventListener("touchstart", (event) => {
+    touchY = event.touches.length === 1 ? event.touches[0].clientY : null;
+    touchResumed = false;
+  }, { passive: true });
+  stage.addEventListener("touchmove", (event) => {
+    if (!enabled || isZoomOpen() || touchY === null || event.touches.length !== 1) return;
+    const nextY = event.touches[0].clientY;
+    const delta = touchY - nextY;
+    touchY = nextY;
+    if (!delta) return;
+    if (touchResumed) {
+      event.preventDefault();
+      motion.scrollTo(clamp(scrollY + delta, start, start + total), { immediate: true });
+      onChange(paint());
+      return;
+    }
+    if (selected === null) return;
+    const record = records[selected];
+    if (record.viewport.contains(event.target) && canRead(record, delta)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    resume(delta, true);
+    touchResumed = true;
+  }, { passive: false });
+  for (const name of ["touchend", "touchcancel"]) stage.addEventListener(name, () => { touchY = null; touchResumed = false; }, { passive: true });
+
+  document.addEventListener("keydown", (event) => {
+    if (selected === null || isZoomOpen() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.target.closest("input, textarea, select, [contenteditable=true]")) return;
+    if (event.key === " " && event.target.closest("button, summary")) return;
+    let delta;
+    if (event.key === "ArrowDown") delta = 40;
+    else if (event.key === "ArrowUp") delta = -40;
+    else if (event.key === "PageDown" || (event.key === " " && !event.shiftKey)) delta = innerHeight * .8;
+    else if (event.key === "PageUp" || (event.key === " " && event.shiftKey)) delta = -innerHeight * .8;
+    else if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      selected = null;
+      motion.scrollTo(event.key === "Home" ? start : start + total, { immediate: true });
+      onChange(paint());
+      return;
+    } else return;
+    event.preventDefault();
+    const record = records[selected];
+    if (canRead(record, delta)) record.viewport.scrollBy({ top: delta, behavior: "auto" });
+    else resume(delta);
+  });
 
   function goTo(index, immediate = false) {
     if (!enabled || !measured) return;
