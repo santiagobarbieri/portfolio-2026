@@ -2,9 +2,13 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Extensión a OLAS y Orfeo — 15 de noviembre de 2026
+
+La extensión a los dos casos restantes está autorizada. Los cuatro proyectos del Archivo usan carpetas; OLAS y Orfeo comparten el controlador `project-case.js` y las composiciones de `project-case.css`. Sus HTML autónomos contienen textos, imágenes y disclosures sin depender del JSON para la lectura. El registro conserva metadatos y rutas compatibles. No modificar la selección, autoría o correspondencia de fotografías por adoptar la estructura común. Usar las piezas existentes, respetar `gallery: false`, zoom individual sin descargas y la procedencia de los HEX. Librería y Exploraciones conservan su experiencia, actualmente deshabilitada en la navegación.
+
 ## Interiores y continuidad — 15 de noviembre de 2026
 
-El Armado y Club son los únicos casos autorizados para este refinamiento. En escritorio usar una cabecera breve y una grilla ancha para las piezas, centrando la composición si sobra alto. En móvil priorizar título, resumen y pieza principal, con padding de 20–24px y referencias/variantes en `details` nativos. Los grupos adicionales se abren por defecto desde 768px. El proceso puede desplegarse sin agregar texto al recorrido principal. Mantener nombres, proporciones, paletas, archivos originales y aclaraciones de procedencia.
+El Armado, Club, OLAS y Orfeo están autorizados para este refinamiento. En escritorio usar una cabecera breve y una grilla ancha para las piezas, centrando la composición si sobra alto. En móvil priorizar título, resumen y pieza principal, con padding de 20–24px y referencias/variantes en `details` nativos. Los grupos adicionales se abren por defecto desde 768px. El proceso puede desplegarse sin agregar texto al recorrido principal. Mantener nombres, proporciones, paletas, archivos originales y aclaraciones de procedencia.
 
 No ocultar contenido por porcentaje de scroll: solo la superficie opaca de otra carpeta debe sacarlo de vista. Las piezas estacionadas entran desde fuera de pantalla con su hoja; reservar el alto de los escalones fuera del área de lectura de cada carpeta. `inert` depende de la cobertura geométrica. Restaurar el offset leído al recuperar una carpeta y recalcular el recorrido al abrir/cerrar desplegables sin mover la página. Probar ida/vuelta alrededor de cada cambio de sección, disclosures, ventanas bajas, teclado, zoom y fallback normal antes de publicar.
 

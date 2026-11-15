@@ -124,7 +124,8 @@
     "order": -1,
     "kind": "project",
     "details": "data/projects/olas-ditella.json",
-    "family": "identity"
+    "family": "identity",
+    "page": "./olas-ditella.html"
   },
   {
     "slug": "el-armado",
@@ -184,6 +185,8 @@
     "kind": "project",
     "alt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
     "details": "data/projects/orfeo.json",
-    "family": "identity"
+    "family": "identity",
+    "page": "./orfeo.html",
+    "objective": "Dirección creativa"
   }
 ]

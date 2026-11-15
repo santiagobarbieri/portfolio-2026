@@ -106,7 +106,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     const reading = old ? Math.max(0, offset - old.duration) : 0;
     const entering = old ? clamp(offset / old.duration) : 0;
     const wasReading = old && offset >= old.duration;
-    const header = document.querySelector(".armado-shell, .club-shell");
+    const header = document.querySelector(".armado-shell, .club-shell, .case-shell");
     const height = stage.clientHeight;
     rail = Math.max(height < 500 ? 60 : 76, header.getBoundingClientRect().bottom + 6);
     const width = stage.clientWidth;

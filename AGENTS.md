@@ -2,13 +2,21 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Carpetas en todos los proyectos del Archivo — 15 de noviembre de 2026
+
+Santi autorizó extender la nueva dirección a los proyectos restantes. Los cuatro casos para terceros —El Armado, Club de Economía, OLAS Di Tella y Orfeo— usan ahora carpetas completas y lectura reversible. OLAS vive en `olas-ditella.html` y Orfeo en `orfeo.html`; comparten `project-case.js` y `project-case.css`, además del motor de carpetas existente. El contenido esencial está escrito en HTML. Archivo y sus enlaces de respaldo navegan en la misma pestaña; las rutas genéricas anteriores redirigen mediante el registro.
+
+OLAS usa azul profundo y menta, con cinco afiches uniformes, marca/exploraciones, iconografía y stickers. Orfeo usa marfil y carbón, con colección, campaña fotográfica, sistema de marca y familias de lacres/estampillas. Conservar Viamonte marrón, Talcahuano negro y Lavalle azul, y los créditos de Juana y del equipo. Cada uno tiene apertura y cinco carpetas. La paleta usa superficie gris y distingue los colores presentes en piezas de los valores muestreados; no inventar especificaciones oficiales. Las variantes estáticas conservan las exclusiones de ampliación originales. No añadir videos, web comercial, métricas, autoría gráfica ni enlaces que no estén confirmados.
+
+La estructura y el motor son comunes, pero cada tipo de pieza tiene su grilla y escala. Mantener las carpetas a ancho completo, solapas con nombre/ellipsis, escalones de 12px, padding responsive, lectura completa de piezas largas y cobertura física sin cortes de visibilidad. Librería, Exploraciones, Contacto y Sobre mí siguen con candado y Coming soon; este cambio no las reactiva.
+
 ## Destinos pendientes — 15 de noviembre de 2026
 
 Librería, Exploraciones, Sobre mí y Contacto aparecen en el índice del Archivo con un candado discreto y el rótulo «Coming soon», también en móvil. Son rótulos estáticos con `aria-disabled`, sin enlaces, foco ni acciones de cursor. Conservar sus páginas, código y contenido para seguir trabajándolos; no crear autenticación ni borrar las experiencias. Tienda conserva su estado pendiente existente. No reactivar estos enlaces sin indicación de Santi.
 
 ## Interiores de carpetas y continuidad — 15 de noviembre de 2026
 
-- Refinamiento autorizado únicamente en El Armado y Club de Economía; no migrar otros proyectos ni cargar casos pendientes todavía.
+- El refinamiento se extiende por autorización posterior a OLAS y Orfeo. No cargar proyectos nuevos ni reactivar los destinos pendientes sin indicación.
 - En escritorio, título y una introducción breve comparten la cabecera de una grilla de doce columnas. Las piezas usan una fila más amplia, con tamaños propios según contenido y composición centrada verticalmente cuando sobra altura. Contener marcas y referencias, conservar proporciones y no agrandar bitmaps para llenar huecos.
 - En móvil, título, resumen y pieza principal tienen padding lateral de 20–24px y separaciones de 24–28px. Referencias, pruebas y aplicaciones adicionales quedan en desplegables nativos; en escritorio se muestran abiertas. El texto de proceso también se consulta bajo demanda. Al abrir, cerrar o cambiar de tamaño, recalcular la lectura disponible sin saltos de posición.
 - Paleta en franja con nombres y HEX; ilustración principal con referencias menores; pruebas de afiches en columnas uniformes; entrega final como pieza principal. Club conserva su secuencia de síntesis, marca, aplicaciones y trama, las plantillas de ejemplo y la aclaración de HEX muestreados. No modificar archivos originales ni sumar hechos nuevos a los textos.

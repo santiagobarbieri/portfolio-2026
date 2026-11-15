@@ -105,3 +105,9 @@ El lector de una carpeta seleccionada deja pasar el gesto al recorrido al alcanz
 El Armado y Club de Economía usan cabeceras más breves y una grilla amplia, con composiciones específicas para paletas, ilustraciones, marcas, afiches y aplicaciones. Cuando sobra altura en escritorio, el conjunto se centra; en móvil se prioriza una pieza principal con más margen y referencias/variantes desplegables. Los grupos adicionales se muestran abiertos en escritorio. Los textos de proceso se consultan bajo demanda. Se conservan las 26 referencias de imagen de ambas páginas y todos sus archivos originales.
 
 Las piezas permanecen dibujadas durante todo el recorrido: la siguiente carpeta las cubre físicamente, sin cortes de visibilidad a mitad de una transición. Las carpetas estacionadas mantienen su contenido fuera del viewport hasta entrar. La lectura se conserva al recuperar una solapa y se recalcula al expandir contenido. Este cambio no migra todavía OLAS u Orfeo.
+
+### OLAS y Orfeo · extensión de las carpetas
+
+Los cuatro proyectos del Archivo comparten el apilado de carpetas, sus controles y la lectura completa. OLAS (`olas-ditella.html`) conserva cinco afiches, marca y exploraciones, iconografía y stickers sobre azul/menta. Orfeo (`orfeo.html`) organiza la colección, las fotografías de campaña y las familias de marca, lacres y estampillas sobre marfil/carbón. Sus 44 piezas únicas existentes se conservan; las exclusiones previas del zoom y los créditos también.
+
+Ambas páginas tienen HTML legible sin JavaScript y usan `project-case.js` / `project-case.css` para las mejoras compartidas. Los enlaces anteriores `project.html?p=olas-ditella` y `project.html?p=orfeo` redirigen a los nuevos destinos; Archivo los abre en la pestaña actual. Las cuatro secciones con Coming soon siguen desactivadas en el índice.

@@ -19,10 +19,10 @@
 .project-variants-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .project-reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 
-.project-folders-ready :is(.armado-sheet, .club-sheet) { padding: 0; height: var(--folder-scroll-height); }
-.project-folders-ready :is(.armado-stage, .club-stage) { position: sticky; top: 0; display: block; width: 100%; max-width: none; height: 100dvh; --folder-safe-bottom: env(safe-area-inset-bottom, 0px); margin: 0; overflow: clip; }
-.project-folders-ready :is(.armado-intro, .club-intro) { position: absolute; inset: 0 0 auto; z-index: 0; width: 100%; }
-.project-folders-ready :is(.armado-chapter, .club-chapter):not(:first-child) { position: absolute; inset: 0; display: block; padding: 0; margin: 0; border: 0; background: transparent; z-index: var(--folder-order); pointer-events: none; }
+.project-folders-ready :is(.armado-sheet, .club-sheet, .case-sheet) { padding: 0; height: var(--folder-scroll-height); }
+.project-folders-ready :is(.armado-stage, .club-stage, .case-stage) { position: sticky; top: 0; display: block; width: 100%; max-width: none; height: 100dvh; --folder-safe-bottom: env(safe-area-inset-bottom, 0px); margin: 0; overflow: clip; }
+.project-folders-ready :is(.armado-intro, .club-intro, .case-intro) { position: absolute; inset: 0 0 auto; z-index: 0; width: 100%; }
+.project-folders-ready :is(.armado-chapter, .club-chapter, .case-chapter):not(:first-child) { position: absolute; inset: 0; display: block; padding: 0; margin: 0; border: 0; background: transparent; z-index: var(--folder-order); pointer-events: none; }
 .project-folder { --folder-surface: #d2ddcc; --bg: #d2ddcc; --fg: #360f17; --mute: #360f17; position: absolute; inset: 0 0 auto; height: var(--folder-height); color: var(--fg); transform: translate3d(0, var(--folder-y), 0); pointer-events: none; }
 .club-page .project-folder { --folder-surface: #d9d9d9; --bg: #d9d9d9; --fg: #000; --mute: #454545; }
 .project-folder.project-folder--palette { --folder-surface: #c8c8c8; --bg: #c8c8c8; --fg: #151515; --mute: #303030; }
@@ -31,11 +31,11 @@
 .project-folder__window { position: absolute; inset: calc(31px + var(--folder-stack-clearance, 60px)) 0 0; overflow: clip; pointer-events: auto; container-type: size; scrollbar-width: none; }
 .project-folder__window::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .project-folder__content { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-content: center; align-items: start; gap: 40px 24px; width: min(100%, 1440px); min-height: 100%; padding: max(0px, calc(clamp(36px, 5vh, 64px) - var(--folder-stack-clearance, 60px))) clamp(32px, 5vw, 80px) 40px; margin-inline: auto; transform: translateY(var(--folder-shift, 0)); }
-.project-folder__content :is(.armado-copy, .club-copy) { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-column: 1 / -1; gap: 0 24px; width: 100%; max-width: none; margin: 0; padding: 0; border: 0; }
-.project-folder__content :is(.armado-copy, .club-copy) h2 { grid-column: 1 / 4; grid-row: 1; margin: 0; font-size: 24px; line-height: 1.15; }
+.project-folder__content :is(.armado-copy, .club-copy, .case-copy) { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-column: 1 / -1; gap: 0 24px; width: 100%; max-width: none; margin: 0; padding: 0; border: 0; }
+.project-folder__content :is(.armado-copy, .club-copy, .case-copy) h2 { grid-column: 1 / 4; grid-row: 1; margin: 0; font-size: 24px; line-height: 1.15; }
 .project-folder__content .project-folder__lead { grid-column: 4 / -1; grid-row: 1; max-width: 58ch; margin: 0; font-size: 14px; line-height: 1.5; }
-.project-folder__content :is(.armado-copy, .club-copy) > .project-notes { grid-column: 4 / -1; max-width: 58ch; margin-top: 8px; }
-.project-folder__content :is(.armado-art, .club-art) { grid-column: 1 / -1; min-width: 0; margin: 0; }
+.project-folder__content :is(.armado-copy, .club-copy, .case-copy) > .project-notes { grid-column: 4 / -1; max-width: 58ch; margin-top: 8px; }
+.project-folder__content :is(.armado-art, .club-art, .case-art) { grid-column: 1 / -1; min-width: 0; margin: 0; }
 .project-folder__content :is(.armado-palette, .club-palette) { grid-column: 4 / -1; width: 100%; max-width: 900px; padding: 0; }
 .project-folder__content :is(.armado-palette, .club-palette) ul { gap: 28px; }
 .project-folder__content :is(.armado-colour, .club-colour) { width: 100%; max-width: 128px; }
@@ -74,10 +74,10 @@
 }
 @media (max-width: 767px) {
   .project-folder__content { display: block; padding: 0 24px 32px; }
-  .project-folder__content :is(.armado-copy, .club-copy) { display: block; }
-  .project-folder__content :is(.armado-copy, .club-copy) h2 { font-size: 22px; margin: 0 0 14px; }
+  .project-folder__content :is(.armado-copy, .club-copy, .case-copy) { display: block; }
+  .project-folder__content :is(.armado-copy, .club-copy, .case-copy) h2 { font-size: 22px; margin: 0 0 14px; }
   .project-folder__content .project-folder__lead { max-width: 38ch; font-size: 14px; line-height: 1.5; }
-  .project-folder__content :is(.armado-art, .club-art) { margin-top: 28px; }
+  .project-folder__content :is(.armado-art, .club-art, .case-art) { margin-top: 28px; }
   .project-folder__content :is(.armado-palette, .club-palette) ul { gap: 16px; }
   .project-folder__content .armado-illustration { width: min(72%, 260px); margin-inline: auto; }
   .project-folder__content .armado-references { width: 100%; margin-top: 24px; }
@@ -114,15 +114,15 @@
   :is(.armado-home, .club-home), :is(.armado-home, .club-home) .identity__glyph { width: 40px; height: 40px; }
 }
 @media (min-width: 480px) and (max-height: 500px) {
-  :is(.armado-intro, .club-intro) { padding: 60px 24px 0; }
+  :is(.armado-intro, .club-intro, .case-intro) { padding: 60px 24px 0; }
   .armado-intro__composition { grid-template-columns: minmax(52px, .6fr) minmax(0, 1.4fr) minmax(0, 1.6fr); gap: 20px; width: min(100%, 1070px); max-width: none; margin: 0; }
   .armado-intro__copy { grid-column: auto; padding: 0; margin: 0; }
   .club-intro__composition { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; width: min(100%, 1070px); margin: 0; }
   .club-intro__copy { margin: 0; }
   :is(.armado-intro__description, .club-intro__description) { font-size: 11px; line-height: 1.25; }
   .project-folder__content { padding-inline: 28px; gap: 20px 24px; }
-  .project-folder__content :is(.armado-copy, .club-copy) { display: block; }
-  .project-folder__content :is(.armado-copy, .club-copy) h2 { font-size: 20px; margin-bottom: 10px; }
+  .project-folder__content :is(.armado-copy, .club-copy, .case-copy) { display: block; }
+  .project-folder__content :is(.armado-copy, .club-copy, .case-copy) h2 { font-size: 20px; margin-bottom: 10px; }
   .project-folder__content .project-folder__lead { font-size: 13px; }
   .project-folder__content .project-gallery--templates .club-image-button { height: max(130px, calc(100cqh - 160px)); }
   .project-folder__content .project-gallery--posters .armado-image-button { height: max(130px, calc(100cqh - 160px)); }
