@@ -2,6 +2,10 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Destinos pendientes — 15 de noviembre de 2026
+
+Librería, Exploraciones, Sobre mí y Contacto aparecen en el índice del Archivo con un candado discreto y el rótulo «Coming soon», también en móvil. Son rótulos estáticos con `aria-disabled`, sin enlaces, foco ni acciones de cursor. Conservar sus páginas, código y contenido para seguir trabajándolos; no crear autenticación ni borrar las experiencias. Tienda conserva su estado pendiente existente. No reactivar estos enlaces sin indicación de Santi.
+
 ## Interiores de carpetas y continuidad — 15 de noviembre de 2026
 
 - Refinamiento autorizado únicamente en El Armado y Club de Economía; no migrar otros proyectos ni cargar casos pendientes todavía.

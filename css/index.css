@@ -83,6 +83,9 @@
 .archive-pages { display: grid; gap: 4px; flex: 0 0 auto; }
 .archive-pages__pending { color: var(--mute); }
 .archive-pages__status { font-size: var(--text-meta); font-weight: 300; }
+.archive-pending { gap: 10px; color: var(--mute); cursor: default; }
+.archive-pending__state { display: inline-flex; flex: none; align-items: center; gap: 5px; font-size: var(--text-meta); font-weight: 300; white-space: nowrap; }
+.archive-pending__lock { display: block; flex: none; }
 
 /* Personal destinations stay separate from page links, filters and external lists. */
 .archive-personal { display: grid; gap: 4px; flex: 0 0 auto; }
@@ -127,6 +130,9 @@
   .archive-personal { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .archive-pages { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .archive-pages__status { display: none; }
+  .archive-pending { flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; padding-block: 6px; }
+  .archive-pending__state { gap: 4px; font-size: 10px; }
+  .archive-pending__lock { width: 10px; height: 12px; }
   .archive-directory__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; align-items: start; }
   .archive-directory .directory-list { padding-left: 0; overflow-wrap: anywhere; }
   .archive-directory .directory-list li { display: grid; align-items: center; min-height: 36px; }
