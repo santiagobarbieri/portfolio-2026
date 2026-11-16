@@ -2,6 +2,12 @@
 
 El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. Las tarjetas anteriores al punto de entrada permanecen visibles desde el inicio para completar ambas columnas, también al recargar o volver de un proyecto. Sobre mí es un recorrido independiente en construcción. El lateral separa filtros, Sobre mí/Contacto/Tienda y Redes/Herramientas. Contacto abre otra pestaña; Tienda abrirá Gumroad cuando exista su URL. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Tienda y el retrato de Sobre mí están pendientes de contenido. El logo vuelve al Archivo.
 
+## Estado actual
+
+La versión de escritorio es la prioridad de trabajo. Hasta 900px se muestra «Versión móvil en desarrollo.» y una indicación para visitar el sitio desde una computadora. Los módulos interactivos no se inician en la primera carga de esas pantallas; al ampliar la ventana se activa el escritorio con su carga habitual. El aviso existe en HTML/CSS y sigue visible sin JavaScript. El desarrollo de la versión reducida queda pausado.
+
+Las carpetas de los cuatro proyectos muestran todas sus piezas en grillas estáticas, sin desplegables ni scroll interno. El desplazamiento de la página mueve las hojas; las imágenes conservan su zoom individual.
+
 ## Publicación
 
 - Sitio: https://portfolio-2026-ruby-three-66.vercel.app
@@ -111,3 +117,7 @@ Las piezas permanecen dibujadas durante todo el recorrido: la siguiente carpeta 
 Los cuatro proyectos del Archivo comparten el apilado de carpetas, sus controles y la lectura completa. OLAS (`olas-ditella.html`) conserva cinco afiches, marca y exploraciones, iconografía y stickers sobre azul/menta. Orfeo (`orfeo.html`) organiza la colección, las fotografías de campaña y las familias de marca, lacres y estampillas sobre marfil/carbón. Sus 44 piezas únicas existentes se conservan; las exclusiones previas del zoom y los créditos también.
 
 Ambas páginas tienen HTML legible sin JavaScript y usan `project-case.js` / `project-case.css` para las mejoras compartidas. Los enlaces anteriores `project.html?p=olas-ditella` y `project.html?p=orfeo` redirigen a los nuevos destinos; Archivo los abre en la pestaña actual. Las cuatro secciones con Coming soon siguen desactivadas en el índice.
+
+### Carpetas completas, sin lectores ni desplegables
+
+En los cuatro proyectos, el interior de cada solapa es una grilla estática: todas las piezas aparecen directamente. Las filas y columnas se ajustan al área disponible sin deformar las imágenes. Se eliminaron los desplegables y los desplazamientos internos; rueda, touch y teclado mueven las carpetas a través de la página. Los textos son breves y los créditos quedan visibles. Las imágenes conservan la ampliación individual y no se retiraron piezas. Con movimiento reducido o sin JavaScript, sigue disponible la lectura vertical normal.

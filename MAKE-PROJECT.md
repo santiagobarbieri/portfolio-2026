@@ -2,6 +2,14 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Escritorio primero — 16 de noviembre de 2026
+
+La experiencia móvil está pausada por indicación de Santi. Las páginas públicas muestran un aviso temporal hasta 900px y reservan los módulos interactivos para escritorio mediante `desktop-gate.js`. Mantener la pantalla y la carga cubierta por Rose; no desarrollar nuevas grillas, transiciones o controles móviles hasta que se retome esa fase. El contenido de cada proyecto sigue existiendo en HTML y el fallback de escritorio permanece disponible sin JS.
+
+## Corrección vigente: todo visible dentro de cada solapa
+
+Santi retiró el scroll interno y los desplegables de las carpetas de los cuatro casos. Cada sección usa una `.folder-board` con piezas y captions estáticos, o una paleta completa. El motor mide el espacio, conserva proporciones y ajusta la grilla; el scroll de página únicamente mueve las hojas. Textos y créditos son breves y visibles. No añadir lectores, disclosures ni paginación para hacer caber contenidos. Verificar límites reales, sin usar `overflow: clip` para ocultar piezas sobrantes. La máscara sirve para el apilado. El zoom individual conserva el acceso a la resolución original y las exclusiones de la selección existente. El fallback usa scroll normal de la página.
+
 ## Extensión a OLAS y Orfeo — 15 de noviembre de 2026
 
 La extensión a los dos casos restantes está autorizada. Los cuatro proyectos del Archivo usan carpetas; OLAS y Orfeo comparten el controlador `project-case.js` y las composiciones de `project-case.css`. Sus HTML autónomos contienen textos, imágenes y disclosures sin depender del JSON para la lectura. El registro conserva metadatos y rutas compatibles. No modificar la selección, autoría o correspondencia de fotografías por adoptar la estructura común. Usar las piezas existentes, respetar `gallery: false`, zoom individual sin descargas y la procedencia de los HEX. Librería y Exploraciones conservan su experiencia, actualmente deshabilitada en la navegación.

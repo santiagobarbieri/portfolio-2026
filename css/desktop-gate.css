@@ -1,0 +1,32 @@
+.mobile-status { display: none; }
+@media (max-width: 900px) {
+  html, html.lenis, html.lenis body { height: 100%; overflow: hidden; }
+  body { height: 100dvh; overflow: hidden; }
+  body > :not(.mobile-status):not(script):not(style) { visibility: hidden !important; pointer-events: none !important; }
+  html body > .mobile-status {
+    --bg: #0a0a0a;
+    --fg: #f1ece0;
+    --mute: #b3aea5;
+    position: fixed;
+    z-index: 2147483646;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding: max(32px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+    overflow: auto;
+    background: var(--bg);
+    color: var(--fg);
+    visibility: visible !important;
+    pointer-events: auto;
+    font-family: var(--font);
+    text-align: left;
+  }
+  .mobile-status, .mobile-status * { cursor: auto !important; }
+  .mobile-status:focus { outline: none; }
+  .mobile-status__logo { position: absolute; top: max(24px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); width: 26px; height: 26px; background: currentColor; mask: url("../assets/Favicon.svg") center / contain no-repeat; }
+  .mobile-status__content { width: min(100%, 540px); margin-inline: auto; }
+  .mobile-status__name { margin: 0 0 24px; color: var(--mute); font-size: 12px; font-weight: 300; line-height: 1.4; }
+  .mobile-status__title { max-width: 16ch; margin: 0 0 20px; font-size: clamp(26px, 5vw, 40px); font-weight: 600; line-height: 1.1; letter-spacing: -.02em; }
+  .mobile-status__description { max-width: 36ch; margin: 0; color: var(--mute); font-size: 14px; font-weight: 300; line-height: 1.5; }
+}

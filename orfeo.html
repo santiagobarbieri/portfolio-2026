@@ -23,10 +23,20 @@
     <link rel="stylesheet" href="./css/project-folders.css">
     <link rel="stylesheet" href="./css/project-case.css">
     <link rel="stylesheet" href="./css/typography.css">
+    <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
-    <script type="module" src="./js/project-case.js"></script>
+    <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
+    <script type="module" data-desktop-src="./js/project-case.js"></script>
   </head>
   <body class="case-page case-page--orfeo" data-project-name="Orfeo">
+    <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
+      <span class="mobile-status__logo" aria-hidden="true"></span>
+      <div class="mobile-status__content">
+        <p class="mobile-status__name">Santiago Barbieri · Portfolio</p>
+        <h2 class="mobile-status__title" id="mobile-status-title">Versión móvil en desarrollo.</h2>
+        <p class="mobile-status__description">Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.</p>
+      </div>
+    </section>
     <div class="site-loader" role="status">
       <span class="site-loader__rose" aria-hidden="true"></span>
       <span class="site-loader__label visually-hidden">Cargando Orfeo</span>
@@ -65,7 +75,7 @@
             <h2>Paleta</h2>
             <p class="project-folder__lead">Colores extraídos de las aplicaciones gráficas; valores de referencia.</p>
           </div>
-          <div class="case-art case-palette" data-sheet-art="palette">
+          <div class="case-art case-palette folder-palette" data-sheet-art="palette">
             <ul aria-label="Colores del proyecto">
               <li>
                 <span class="case-colour case-colour--0" aria-hidden="true"></span>
@@ -111,80 +121,91 @@
             <h2>La colección</h2>
             <p class="project-folder__lead">Viamonte, Talcahuano y Lavalle: tres sweaters para el primer lanzamiento.</p>
           </div>
-          <div class="case-art case-collection-board" data-sheet-art="collection">
-            <figure class="project-piece case-media case-media--landscape">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4710.JPG" aria-label="Ampliar Viamonte" aria-haspopup="dialog">
-                <img src="./assets/images/orfeo/IMG_4710-800.webp" width="800" height="533" alt="Detalle de un sweater marrón tejido en la colección de ORFEO" srcset="./assets/images/orfeo/IMG_4710-1600.webp 1600w, ./assets/images/orfeo/IMG_4710-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Viamonte</figcaption>
-            </figure>
-            <figure class="project-piece case-media case-media--landscape">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4775.JPG" aria-label="Ampliar Talcahuano" aria-haspopup="dialog">
-                <img src="./assets/images/orfeo/IMG_4775-800.webp" width="800" height="533" alt="Detalle de camisa y sweater negro en la colección de ORFEO" srcset="./assets/images/orfeo/IMG_4775-1600.webp 1600w, ./assets/images/orfeo/IMG_4775-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Talcahuano</figcaption>
-            </figure>
-            <figure class="project-piece case-media case-media--landscape">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4800.JPG" aria-label="Ampliar Lavalle" aria-haspopup="dialog">
-                <img src="./assets/images/orfeo/IMG_4800-800.webp" width="800" height="533" alt="Vista posterior de un sweater azul tejido en la colección de ORFEO" srcset="./assets/images/orfeo/IMG_4800-1600.webp 1600w, ./assets/images/orfeo/IMG_4800-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Lavalle</figcaption>
-            </figure>
+          <div class="folder-board" data-sheet-art="landscape" data-board-kind="landscape">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4710.JPG" aria-label="Ampliar Viamonte" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/IMG_4710-800.webp" width="800" height="533" alt="Detalle de un sweater marrón tejido en la colección de ORFEO" srcset="./assets/images/orfeo/IMG_4710-1600.webp 1600w, ./assets/images/orfeo/IMG_4710-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Viamonte">Viamonte</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4775.JPG" aria-label="Ampliar Talcahuano" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/IMG_4775-800.webp" width="800" height="533" alt="Detalle de camisa y sweater negro en la colección de ORFEO" srcset="./assets/images/orfeo/IMG_4775-1600.webp 1600w, ./assets/images/orfeo/IMG_4775-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Talcahuano">Talcahuano</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4800.JPG" aria-label="Ampliar Lavalle" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/IMG_4800-800.webp" width="800" height="533" alt="Vista posterior de un sweater azul tejido en la colección de ORFEO" srcset="./assets/images/orfeo/IMG_4800-1600.webp 1600w, ./assets/images/orfeo/IMG_4800-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Lavalle">Lavalle</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
         <section class="case-chapter" id="campana" data-sheet-section data-section-name="En la Esquina" aria-label="En la Esquina">
           <div class="case-copy" data-sheet-copy>
             <h2>En la Esquina</h2>
-            <p class="project-folder__lead">Las prendas acompañan recorridos cotidianos por Buenos Aires.</p>
-            <details class="project-notes ">
-              <summary data-cursor-action="Ver detalles">El lanzamiento</summary>
-              <div class="project-notes__body">
-                <p>Para su primer drop, En la Esquina, ORFEO reunió tres sweaters —Talcahuano, Lavalle y Viamonte— y una campaña centrada en la vida cotidiana de Buenos Aires. Mi participación abarcó el desarrollo creativo del lanzamiento, la producción y edición audiovisual y el desarrollo y la gestión técnica de la página web, en colaboración con el equipo de ORFEO.</p>
-              </div>
-            </details>
+            <p class="project-folder__lead">Viamonte, Talcahuano y Lavalle acompañan la vida cotidiana de Buenos Aires.</p>
           </div>
-          <div class="case-art case-photo-board" data-sheet-art="photos">
-            <figure class="project-piece case-media case-media--portrait">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4109.JPG" aria-label="Ampliar Viamonte · Escalinata" aria-haspopup="dialog">
-                <img src="./assets/images/orfeo/IMG_4109-800.webp" width="800" height="1200" alt="Modelo con sweater marrón en una escalinata porteña" srcset="./assets/images/orfeo/IMG_4109-1600.webp 1536w, ./assets/images/orfeo/IMG_4109-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Viamonte · Escalinata</figcaption>
-            </figure>
-            <details class="project-notes case-board__more project-notes--variants" data-folder-disclosure open>
-              <summary data-cursor-action="Ver detalles">Más fotografías · 5</summary>
-              <div class="case-photo-grid">
-                <figure class="project-piece case-media case-media--portrait">
+          <div class="folder-board" data-sheet-art="photos" data-board-kind="photos">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4109.JPG" aria-label="Ampliar Viamonte · Escalinata" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/IMG_4109-800.webp" width="800" height="1200" alt="Modelo con sweater marrón en una escalinata porteña" srcset="./assets/images/orfeo/IMG_4109-1600.webp 1536w, ./assets/images/orfeo/IMG_4109-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Viamonte · Escalinata">Viamonte · Escalinata</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4246.JPG" aria-label="Ampliar Talcahuano" aria-haspopup="dialog">
                     <img src="./assets/images/orfeo/IMG_4246-800.webp" width="800" height="1200" alt="Modelo con sweater negro durante un viaje en transporte público" srcset="./assets/images/orfeo/IMG_4246-1600.webp 1536w, ./assets/images/orfeo/IMG_4246-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Talcahuano</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--portrait">
+                </div>
+                <figcaption title="Talcahuano">Talcahuano</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4484.JPG" aria-label="Ampliar Lavalle" aria-haspopup="dialog">
                     <img src="./assets/images/orfeo/IMG_4484-800.webp" width="800" height="1200" alt="Modelo con sweater azul en un recorrido urbano" srcset="./assets/images/orfeo/IMG_4484-1600.webp 1536w, ./assets/images/orfeo/IMG_4484-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Lavalle</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--portrait">
+                </div>
+                <figcaption title="Lavalle">Lavalle</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4144.JPG" aria-label="Ampliar Viamonte · Entrada" aria-haspopup="dialog">
                     <img src="./assets/images/orfeo/IMG_4144-800.webp" width="800" height="1200" alt="Modelo con sweater marrón junto a la entrada de un edificio" srcset="./assets/images/orfeo/IMG_4144-1600.webp 1536w, ./assets/images/orfeo/IMG_4144-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Viamonte · Entrada</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--portrait">
+                </div>
+                <figcaption title="Viamonte · Entrada">Viamonte · Entrada</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4452.JPG" aria-label="Ampliar Viamonte · Recorrido" aria-haspopup="dialog">
                     <img src="./assets/images/orfeo/IMG_4452-800.webp" width="800" height="1200" alt="Modelo con sweater marrón tejido de Viamonte junto a un árbol" srcset="./assets/images/orfeo/IMG_4452-1600.webp 1536w, ./assets/images/orfeo/IMG_4452-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Viamonte · Recorrido</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--portrait">
+                </div>
+                <figcaption title="Viamonte · Recorrido">Viamonte · Recorrido</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/IMG_4685.JPG" aria-label="Ampliar Lavalle · Recorrido" aria-haspopup="dialog">
                     <img src="./assets/images/orfeo/IMG_4685-800.webp" width="800" height="1200" alt="Modelo con sweater azul junto a un árbol" srcset="./assets/images/orfeo/IMG_4685-1600.webp 1536w, ./assets/images/orfeo/IMG_4685-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Lavalle · Recorrido</figcaption>
-                </figure>
-              </div>
-            </details>
+                </div>
+                <figcaption title="Lavalle · Recorrido">Lavalle · Recorrido</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
         <section class="case-chapter" id="marca" data-sheet-section data-section-name="Sistema de marca" aria-label="Sistema de marca">
@@ -192,118 +213,128 @@
             <h2>Sistema de marca</h2>
             <p class="project-folder__lead">Logotipo, monograma y sus aplicaciones de color.</p>
           </div>
-          <div class="case-art case-orfeo-brand" data-sheet-art="brand">
-            <div class="case-mark-pair">
-              <figure class="project-piece case-media case-media--brand">
-                <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/logo%20%281%29.png" aria-label="Ampliar Logotipo" aria-haspopup="dialog">
-                  <img src="./assets/images/orfeo/logo%20%281%29.png" width="4134" height="4134" alt="Logotipo de ORFEO sobre fondo claro" loading="lazy" decoding="async">
-                </button>
-                <figcaption>Logotipo</figcaption>
+          <div class="folder-board" data-sheet-art="brand" data-board-kind="brand">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="mark">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/logo%20%281%29.png" aria-label="Ampliar Logotipo" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/logo%20%281%29.png" width="4134" height="4134" alt="Logotipo de ORFEO sobre fondo claro" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Logotipo">Logotipo</figcaption>
               </figure>
-              <figure class="project-piece case-media case-media--monogram">
-                <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/favicon.png" aria-label="Ampliar Monograma" aria-haspopup="dialog">
-                  <img src="./assets/images/orfeo/favicon.png" width="1080" height="1080" alt="Monograma ORF sobre fondo claro" loading="lazy" decoding="async">
-                </button>
-                <figcaption>Monograma</figcaption>
+              <figure class="folder-piece" data-piece-role="mark">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/favicon.png" aria-label="Ampliar Monograma" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/favicon.png" width="1080" height="1080" alt="Monograma ORF sobre fondo claro" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Monograma">Monograma</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular negra" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Carbón">Carbón</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular verde" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Oliva">Oliva</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular marrón" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Marrón">Marrón</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular azul" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Marino">Marino</figcaption>
               </figure>
             </div>
-            <details class="project-notes case-board__more" data-folder-disclosure open>
-              <summary data-cursor-action="Ver detalles">Aplicaciones de color</summary>
-              <div class="case-variants-grid case-variants-grid--four">
-                <figure class="project-piece case-media case-media--small">
-                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular negra" loading="lazy" decoding="async">
-                  <figcaption>Carbón</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--small">
-                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular verde" loading="lazy" decoding="async">
-                  <figcaption>Oliva</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--small">
-                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular marrón" loading="lazy" decoding="async">
-                  <figcaption>Marrón</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--small">
-                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png" width="1080" height="1080" alt="Marca ORFEO en una aplicación circular azul" loading="lazy" decoding="async">
-                  <figcaption>Marino</figcaption>
-                </figure>
-              </div>
-            </details>
           </div>
         </section>
         <section class="case-chapter" id="grafica" data-sheet-section data-section-name="Sellos y gráfica" aria-label="Sellos y gráfica">
           <div class="case-copy" data-sheet-copy>
             <h2>Sellos y gráfica</h2>
-            <p class="project-folder__lead">Lacres, ornamentos y estampillas del universo visual de ORFEO.</p>
-            <details class="project-notes ">
-              <summary data-cursor-action="Ver detalles">Trabajo en equipo</summary>
-              <div class="project-notes__body">
-                <p>La narrativa del lanzamiento fue una construcción colectiva. Federico y Bautista fundaron la marca; Juana trabajó en fotografía, edición fotográfica y estética visual. El trabajo presentado aquí sitúa mi aporte en la dirección creativa del primer drop, el contenido audiovisual y la página web.</p>
-              </div>
-            </details>
+            <p class="project-folder__lead">Lacres, ornamentos y estampillas de ORFEO.</p>
           </div>
-          <div class="case-art case-graphics-board" data-sheet-art="graphics">
-            <div class="case-graphic-family">
-              <figure class="project-piece case-media case-media--seal">
-                <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937.png" aria-label="Ampliar Lacre" aria-haspopup="dialog">
-                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en bordó" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                </button>
-                <figcaption>Lacre</figcaption>
-              </figure>
-              <details class="project-notes case-board__more" data-folder-disclosure open>
-                <summary data-cursor-action="Ver detalles">Otros lacres</summary>
-                <div class="case-variants-grid case-variants-grid--three">
-                  <figure class="project-piece case-media case-media--small">
-                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en verde" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                    <figcaption>Lacre 02</figcaption>
-                  </figure>
-                  <figure class="project-piece case-media case-media--small">
-                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en azul" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                    <figcaption>Lacre 03</figcaption>
-                  </figure>
-                  <figure class="project-piece case-media case-media--small">
-                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en marrón" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                    <figcaption>Lacre 04</figcaption>
-                  </figure>
+          <div class="folder-board" data-sheet-art="symbols" data-board-kind="symbols">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937.png" aria-label="Ampliar Lacre" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en bordó" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
                 </div>
-              </details>
-            </div>
-            <figure class="project-piece case-media case-media--ornament">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972.png" aria-label="Ampliar Back to Basics" aria-haspopup="dialog">
-                <img src="./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp" width="1600" height="1600" alt="Sello oval de ORFEO con el lema Back to Basics" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Back to Basics</figcaption>
-            </figure>
-            <figure class="project-piece case-media case-media--ornament">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136.png" aria-label="Ampliar Estampilla ornamental" aria-haspopup="dialog">
-                <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp" width="800" height="800" alt="Estampilla ilustrada de ORFEO en tonos claros" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Estampilla ornamental</figcaption>
-            </figure>
-            <div class="case-graphic-family">
-              <figure class="project-piece case-media case-media--ornament">
-                <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714.png" aria-label="Ampliar Estampilla ilustrada" aria-haspopup="dialog">
-                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp" width="800" height="800" alt="Estampilla gráfica de ORFEO en rojo y amarillo" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                </button>
-                <figcaption>Estampilla ilustrada</figcaption>
+                <figcaption title="Lacre">Lacre</figcaption>
               </figure>
-              <details class="project-notes case-board__more" data-folder-disclosure open>
-                <summary data-cursor-action="Ver detalles">Variantes de estampilla</summary>
-                <div class="case-variants-grid case-variants-grid--three">
-                  <figure class="project-piece case-media case-media--small">
-                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp" width="800" height="800" alt="Estampilla gráfica de ORFEO sobre fondo claro" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                    <figcaption>Variante 01</figcaption>
-                  </figure>
-                  <figure class="project-piece case-media case-media--small">
-                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp" width="800" height="800" alt="Estampilla gráfica de ORFEO sobre fondo oscuro" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-                    <figcaption>Variante 02</figcaption>
-                  </figure>
-                  <figure class="project-piece case-media case-media--small">
-                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001047.154.png" width="3543" height="3543" alt="Variante de estampilla gráfica de ORFEO en blanco" loading="lazy" decoding="async">
-                    <figcaption>Variante 03</figcaption>
-                  </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en verde" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                 </div>
-              </details>
+                <figcaption title="Lacre 02">Lacre 02</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en azul" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Lacre 03">Lacre 03</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp" width="800" height="800" alt="Sello en relieve de ORFEO en marrón" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Lacre 04">Lacre 04</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972.png" aria-label="Ampliar Back to Basics" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp" width="1600" height="1600" alt="Sello oval de ORFEO con el lema Back to Basics" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Back to Basics">Back to Basics</figcaption>
+              </figure>
+              <figure class="folder-piece folder-piece--neutral" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136.png" aria-label="Ampliar Estampilla ornamental" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp" width="800" height="800" alt="Estampilla ilustrada de ORFEO en tonos claros" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Estampilla ornamental">Estampilla ornamental</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714.png" aria-label="Ampliar Estampilla ilustrada" aria-haspopup="dialog">
+                    <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp" width="800" height="800" alt="Estampilla gráfica de ORFEO en rojo y amarillo" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Estampilla ilustrada">Estampilla ilustrada</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp" width="800" height="800" alt="Estampilla gráfica de ORFEO sobre fondo claro" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Variante 01">Variante 01</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp" width="800" height="800" alt="Estampilla gráfica de ORFEO sobre fondo oscuro" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Variante 02">Variante 02</figcaption>
+              </figure>
+              <figure class="folder-piece folder-piece--neutral" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001047.154.png" width="3543" height="3543" alt="Variante de estampilla gráfica de ORFEO en blanco" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Variante 03">Variante 03</figcaption>
+              </figure>
             </div>
+            <p class="folder-board__note">Federico y Bautista, fundadores. Fotografía, edición fotográfica y estética visual: Juana. Dirección creativa del lanzamiento, audiovisual y web: Santiago Barbieri.</p>
           </div>
         </section>
       </div>

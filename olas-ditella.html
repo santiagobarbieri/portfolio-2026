@@ -23,10 +23,20 @@
     <link rel="stylesheet" href="./css/project-folders.css">
     <link rel="stylesheet" href="./css/project-case.css">
     <link rel="stylesheet" href="./css/typography.css">
+    <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
-    <script type="module" src="./js/project-case.js"></script>
+    <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
+    <script type="module" data-desktop-src="./js/project-case.js"></script>
   </head>
   <body class="case-page case-page--olas" data-project-name="OLAS Di Tella">
+    <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
+      <span class="mobile-status__logo" aria-hidden="true"></span>
+      <div class="mobile-status__content">
+        <p class="mobile-status__name">Santiago Barbieri · Portfolio</p>
+        <h2 class="mobile-status__title" id="mobile-status-title">Versión móvil en desarrollo.</h2>
+        <p class="mobile-status__description">Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.</p>
+      </div>
+    </section>
     <div class="site-loader" role="status">
       <span class="site-loader__rose" aria-hidden="true"></span>
       <span class="site-loader__label visually-hidden">Cargando OLAS Di Tella</span>
@@ -64,7 +74,7 @@
             <h2>Paleta</h2>
             <p class="project-folder__lead">Verde, menta, azul profundo y blanco presentes en las piezas de la identidad.</p>
           </div>
-          <div class="case-art case-palette" data-sheet-art="palette">
+          <div class="case-art case-palette folder-palette" data-sheet-art="palette">
             <ul aria-label="Colores del proyecto">
               <li>
                 <span class="case-colour case-colour--0" aria-hidden="true"></span>
@@ -101,50 +111,53 @@
         <section class="case-chapter" id="marca" data-sheet-section data-section-name="Marca" aria-label="Marca">
           <div class="case-copy" data-sheet-copy>
             <h2>Marca</h2>
-            <p class="project-folder__lead">La O se convierte en una ola que señala hacia adelante.</p>
-            <details class="project-notes ">
-              <summary data-cursor-action="Ver detalles">De la O a la ola</summary>
-              <div class="project-notes__body">
-                <p>OLAS, Organización de Liderazgo, Autonomía y Soluciones, comenzó con propuestas más literales y tonos amarillos. Juntos definimos una dirección en verdes y azules vinculada al mar, la naturaleza y el cambio. El isotipo transforma la O del nombre en una ola que señala hacia adelante.</p>
-              </div>
-            </details>
+            <p class="project-folder__lead">De propuestas literales y tonos amarillos a verdes y azules. La O se convierte en una ola que señala hacia adelante.</p>
           </div>
-          <div class="case-art case-brand-board" data-sheet-art="brand">
-            <figure class="project-piece case-media case-media--wordmark olas-wordmark">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/Logo.svg" aria-label="Ampliar Marca principal" aria-haspopup="dialog">
-                <img src="./assets/images/olas-ditella/Logo.svg" width="1286" height="405" alt="Logotipo vectorial de OLAS con una ola y una flecha" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Marca principal</figcaption>
-            </figure>
-            <details class="project-notes case-board__more" data-folder-disclosure open>
-              <summary data-cursor-action="Ver detalles">Exploraciones</summary>
-              <div class="case-variants-grid">
-                <figure class="project-piece case-media case-media--exploration">
+          <div class="folder-board" data-sheet-art="brand" data-board-kind="brand">
+            <div class="folder-board__grid">
+              <figure class="folder-piece folder-piece--dark" data-piece-role="mark">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/Logo.svg" aria-label="Ampliar Marca principal" aria-haspopup="dialog">
+                    <img src="./assets/images/olas-ditella/Logo.svg" width="1286" height="405" alt="Logotipo vectorial de OLAS con una ola y una flecha" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Marca principal">Marca principal</figcaption>
+              </figure>
+              <figure class="folder-piece folder-piece--dark" data-piece-role="mark">
+                <div class="folder-piece__visual">
                   <img src="./assets/images/olas-ditella/BANNER.png" width="1286" height="405" alt="Marca OLAS en formato horizontal" loading="lazy" decoding="async">
-                  <figcaption>Exportación PNG</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--exploration">
+                </div>
+                <figcaption title="Exportación PNG">Exportación PNG</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/VARIANTES%201.png" aria-label="Ampliar Exploración 01" aria-haspopup="dialog">
                     <img src="./assets/images/olas-ditella/VARIANTES%201.png" width="1230" height="698" alt="Propuesta de marca OLA con símbolo de ola sobre azul" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Exploración 01</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--exploration">
+                </div>
+                <figcaption title="Exploración 01">Exploración 01</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
                   <img src="./assets/images/olas-ditella/VARIANTES%202.png" width="384" height="113" alt="Propuesta de marca O.L.A. con el nombre de la agrupación" loading="lazy" decoding="async">
-                  <figcaption>Exploración 02</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--exploration">
+                </div>
+                <figcaption title="Exploración 02">Exploración 02</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/VARIANTES%204.jpeg" aria-label="Ampliar Exploración 03" aria-haspopup="dialog">
                     <img src="./assets/images/olas-ditella/VARIANTES%204.jpeg" width="1536" height="1024" alt="Propuesta amarilla de marca La Ola sobre blanco" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Exploración 03</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--exploration">
+                </div>
+                <figcaption title="Exploración 03">Exploración 03</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
                   <img src="./assets/images/olas-ditella/VARIANTES%205.jpeg" width="1220" height="778" alt="Propuesta de marca OLAS con flecha hacia la derecha" loading="lazy" decoding="async">
-                  <figcaption>Exploración 04</figcaption>
-                </figure>
-              </div>
-            </details>
+                </div>
+                <figcaption title="Exploración 04">Exploración 04</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
         <section class="case-chapter" id="iconografia" data-sheet-section data-section-name="Iconografía" aria-label="Iconografía">
@@ -152,38 +165,43 @@
             <h2>Iconografía</h2>
             <p class="project-folder__lead">El símbolo y los elementos que construyen la ola.</p>
           </div>
-          <div class="case-art case-symbol-board" data-sheet-art="symbols">
-            <div class="case-mark-pair">
-              <figure class="project-piece case-media case-media--symbol">
-                <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/Vectores%202.svg" aria-label="Ampliar Ola" aria-haspopup="dialog">
-                  <img src="./assets/images/olas-ditella/Vectores%202.svg" width="7939" height="6965" alt="OLAS — recurso vectorial 2" loading="lazy" decoding="async">
-                </button>
-                <figcaption>Ola</figcaption>
+          <div class="folder-board" data-sheet-art="symbols" data-board-kind="symbols">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/Vectores%202.svg" aria-label="Ampliar Ola" aria-haspopup="dialog">
+                    <img src="./assets/images/olas-ditella/Vectores%202.svg" width="7939" height="6965" alt="OLAS — recurso vectorial 2" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Ola">Ola</figcaption>
               </figure>
-              <figure class="project-piece case-media case-media--symbol">
-                <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/New%20Project%20%283%29.svg" aria-label="Ampliar Variación del símbolo" aria-haspopup="dialog">
-                  <img src="./assets/images/olas-ditella/New%20Project%20%283%29.svg" width="1080" height="1080" alt="OLAS — recurso vectorial adicional" loading="lazy" decoding="async">
-                </button>
-                <figcaption>Variación del símbolo</figcaption>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/New%20Project%20%283%29.svg" aria-label="Ampliar Variación del símbolo" aria-haspopup="dialog">
+                    <img src="./assets/images/olas-ditella/New%20Project%20%283%29.svg" width="1080" height="1080" alt="OLAS — recurso vectorial adicional" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Variación del símbolo">Variación del símbolo</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/olas-ditella/Vectores%201.svg" width="518" height="642" alt="OLAS — recurso vectorial 1" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Fragmento 1">Fragmento 1</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/olas-ditella/Vectores%203.svg" width="642" height="501" alt="OLAS — recurso vectorial 3" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Fragmento 2">Fragmento 2</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
+                  <img src="./assets/images/olas-ditella/Vectores%204.svg" width="563" height="435" alt="OLAS — recurso vectorial 4" loading="lazy" decoding="async">
+                </div>
+                <figcaption title="Fragmento 3">Fragmento 3</figcaption>
               </figure>
             </div>
-            <details class="project-notes case-board__more" data-folder-disclosure open>
-              <summary data-cursor-action="Ver detalles">Elementos de construcción</summary>
-              <div class="case-variants-grid case-variants-grid--three">
-                <figure class="project-piece case-media case-media--fragment">
-                  <img src="./assets/images/olas-ditella/Vectores%201.svg" width="518" height="642" alt="OLAS — recurso vectorial 1" loading="lazy" decoding="async">
-                  <figcaption>Fragmento 1</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--fragment">
-                  <img src="./assets/images/olas-ditella/Vectores%203.svg" width="642" height="501" alt="OLAS — recurso vectorial 3" loading="lazy" decoding="async">
-                  <figcaption>Fragmento 2</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--fragment">
-                  <img src="./assets/images/olas-ditella/Vectores%204.svg" width="563" height="435" alt="OLAS — recurso vectorial 4" loading="lazy" decoding="async">
-                  <figcaption>Fragmento 3</figcaption>
-                </figure>
-              </div>
-            </details>
           </div>
         </section>
         <section class="case-chapter" id="afiches" data-sheet-section data-section-name="Afiches" aria-label="Afiches">
@@ -191,42 +209,49 @@
             <h2>Afiches</h2>
             <p class="project-folder__lead">Cinco piezas para anunciar la agrupación y el inicio de la precampaña.</p>
           </div>
-          <div class="case-art case-poster-board" data-sheet-art="posters">
-            <figure class="project-piece case-media case-media--poster">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/poster%201.png" aria-label="Ampliar Tu voz transforma" aria-haspopup="dialog">
-                <img src="./assets/images/olas-ditella/poster%201-800.webp" width="800" height="1132" alt="Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde" srcset="./assets/images/olas-ditella/poster%201-1600.webp 1600w, ./assets/images/olas-ditella/poster%201-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Tu voz transforma</figcaption>
-            </figure>
-            <details class="project-notes case-board__more project-notes--variants" data-folder-disclosure open>
-              <summary data-cursor-action="Ver detalles">Otros afiches · 4</summary>
-              <div class="case-variants-grid case-variants-grid--posters">
-                <figure class="project-piece case-media case-media--poster">
+          <div class="folder-board" data-sheet-art="posters" data-board-kind="posters">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/poster%201.png" aria-label="Ampliar Tu voz transforma" aria-haspopup="dialog">
+                    <img src="./assets/images/olas-ditella/poster%201-800.webp" width="800" height="1132" alt="Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde" srcset="./assets/images/olas-ditella/poster%201-1600.webp 1600w, ./assets/images/olas-ditella/poster%201-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Tu voz transforma">Tu voz transforma</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/poster%202.png" aria-label="Ampliar No te quedes callado" aria-haspopup="dialog">
                     <img src="./assets/images/olas-ditella/poster%202-800.webp" width="800" height="1132" alt="Afiche de OLAS con el mensaje No te quedes callado" srcset="./assets/images/olas-ditella/poster%202-1600.webp 1600w, ./assets/images/olas-ditella/poster%202-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>No te quedes callado</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--poster">
+                </div>
+                <figcaption title="No te quedes callado">No te quedes callado</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/poster%203.png" aria-label="Ampliar Tu voz importa" aria-haspopup="dialog">
                     <img src="./assets/images/olas-ditella/poster%203-800.webp" width="800" height="1132" alt="Afiche de OLAS con el mensaje Tu voz importa" srcset="./assets/images/olas-ditella/poster%203-1600.webp 1600w, ./assets/images/olas-ditella/poster%203-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Tu voz importa</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--poster">
+                </div>
+                <figcaption title="Tu voz importa">Tu voz importa</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/poster%204.png" aria-label="Ampliar Cambio · Micrófono" aria-haspopup="dialog">
                     <img src="./assets/images/olas-ditella/poster%204-800.webp" width="800" height="1132" alt="Afiche de OLAS con un micrófono y la palabra Cambio" srcset="./assets/images/olas-ditella/poster%204-1600.webp 1600w, ./assets/images/olas-ditella/poster%204-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Cambio · Micrófono</figcaption>
-                </figure>
-                <figure class="project-piece case-media case-media--poster">
+                </div>
+                <figcaption title="Cambio · Micrófono">Cambio · Micrófono</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
                   <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/poster%205.png" aria-label="Ampliar Cambio · Megáfono" aria-haspopup="dialog">
                     <img src="./assets/images/olas-ditella/poster%205-800.webp" width="800" height="1132" alt="Afiche de OLAS con un megáfono y la palabra Cambio" srcset="./assets/images/olas-ditella/poster%205-1600.webp 1600w, ./assets/images/olas-ditella/poster%205-800.webp 800w" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" loading="lazy" decoding="async">
                   </button>
-                  <figcaption>Cambio · Megáfono</figcaption>
-                </figure>
-              </div>
-            </details>
+                </div>
+                <figcaption title="Cambio · Megáfono">Cambio · Megáfono</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
         <section class="case-chapter" id="stickers" data-sheet-section data-section-name="Stickers" aria-label="Stickers">
@@ -234,22 +259,23 @@
             <h2>Stickers</h2>
             <p class="project-folder__lead">La ola y la flecha, reunidas en una aplicación circular.</p>
           </div>
-          <div class="case-art case-sticker-board" data-sheet-art="stickers">
-            <figure class="project-piece case-media case-media--sticker">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png" aria-label="Ampliar Fondo negro" aria-haspopup="dialog">
-                <img src="./assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png" width="1080" height="1080" alt="Sticker circular de OLAS con ola y flecha sobre negro" loading="lazy" decoding="async">
-              </button>
-              <figcaption>Fondo negro</figcaption>
-            </figure>
-            <details class="project-notes case-board__more" data-folder-disclosure open>
-              <summary data-cursor-action="Ver detalles">Variante de fondo</summary>
-              <div class="case-variants-grid">
-                <figure class="project-piece case-media case-media--sticker case-media--small">
+          <div class="folder-board" data-sheet-art="symbols" data-board-kind="symbols">
+            <div class="folder-board__grid">
+              <figure class="folder-piece" data-piece-role="primary">
+                <div class="folder-piece__visual">
+                  <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png" aria-label="Ampliar Fondo negro" aria-haspopup="dialog">
+                    <img src="./assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png" width="1080" height="1080" alt="Sticker circular de OLAS con ola y flecha sobre negro" loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <figcaption title="Fondo negro">Fondo negro</figcaption>
+              </figure>
+              <figure class="folder-piece" data-piece-role="variant">
+                <div class="folder-piece__visual">
                   <img src="./assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png" width="1080" height="1080" alt="Sticker circular de OLAS con ola y flecha sobre verde" loading="lazy" decoding="async">
-                  <figcaption>Fondo verde</figcaption>
-                </figure>
-              </div>
-            </details>
+                </div>
+                <figcaption title="Fondo verde">Fondo verde</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
       </div>

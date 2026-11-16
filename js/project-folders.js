@@ -20,17 +20,6 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
   let touchResumed = false;
   const cap = 30;
   const step = 12;
-  const compact = matchMedia("(max-width: 767px)");
-  const disclosures = [...stage.querySelectorAll("[data-folder-disclosure]")];
-  let disclosureFrame = 0;
-  function fitDisclosures() { disclosures.forEach((details) => { details.open = !compact.matches; }); }
-  fitDisclosures();
-  compact.addEventListener("change", fitDisclosures);
-  stage.addEventListener("toggle", (event) => {
-    if (event.target.tagName !== "DETAILS" || !enabled) return;
-    cancelAnimationFrame(disclosureFrame);
-    disclosureFrame = requestAnimationFrame(() => { measure(true); onChange(paint()); });
-  }, true);
 
   function enable() {
     if (enabled) return;
@@ -66,7 +55,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       viewport.append(content);
       card.append(outline, tab, viewport);
       tab.addEventListener("click", () => select(index));
-      return { section, original, card, tab, label, outline, edge, viewport, content, from: 0, duration: 0, overflow: 0, peek: 0, shift: 0, reveal: 0, read: 0 };
+      return { section, original, card, tab, label, outline, edge, viewport, content, from: 0, duration: 0, peek: 0, reveal: 0 };
     });
     order = records.map((_, index) => index);
     selected = null;
@@ -98,14 +87,53 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     }
   }
 
+  function fitBoard(record) {
+    const palette = record.content.querySelector(".folder-palette");
+    if (palette) {
+      const list = palette.querySelector("ul");
+      const count = list.children.length;
+      palette.style.setProperty("--swatch-count", count);
+      const labelHeight = Math.max(...[...list.children].map((item) => item.lastElementChild.offsetHeight));
+      const gap = parseFloat(getComputedStyle(list).columnGap) || 10;
+      palette.style.setProperty("--swatch-size", `${Math.max(12, Math.min(128, (list.clientWidth - (count - 1) * gap) / count, list.clientHeight - labelHeight - 12))}px`);
+      return;
+    }
+    const board = record.content.querySelector(".folder-board");
+    if (!board) return;
+    const grid = board.querySelector(".folder-board__grid");
+    const pieces = [...grid.children];
+    if (board.dataset.boardKind === "illustration") return;
+    const width = grid.clientWidth;
+    const height = grid.clientHeight;
+    const gap = innerHeight < 500 ? 6 : innerWidth < 768 ? 10 : 20;
+    const maxColumns = board.dataset.boardKind === "photos" ? 3 : Math.min(8, pieces.length);
+    const metrics = pieces.map((piece) => {
+      const img = piece.querySelector("img");
+      return { ratio: (img.naturalWidth || Number(img.getAttribute("width"))) / (img.naturalHeight || Number(img.getAttribute("height"))), limit: parseFloat(getComputedStyle(piece).getPropertyValue("--piece-limit")) || 440, caption: piece.querySelector("figcaption").offsetHeight, weight: piece.dataset.pieceRole === "primary" ? 1.3 : 1 };
+    });
+    let best = { score: -1, columns: 1, rows: pieces.length };
+    for (let columns = 1; columns <= maxColumns; columns++) {
+      const rows = Math.ceil(pieces.length / columns);
+      const cellWidth = (width - (columns - 1) * gap) / columns;
+      const cellHeight = (height - (rows - 1) * gap) / rows;
+      if (cellWidth < 24 || cellHeight < 16) continue;
+      const score = metrics.reduce((sum, m) => {
+        const w = Math.max(0, Math.min(cellWidth, m.limit, (cellHeight - m.caption - 6) * m.ratio));
+        return sum + w * w / m.ratio * m.weight;
+      }, 0);
+      if (score > best.score) best = { score, columns, rows };
+    }
+    grid.style.setProperty("--board-cols", best.columns);
+    grid.style.setProperty("--board-rows", best.rows);
+    grid.style.setProperty("--board-gap", `${gap}px`);
+  }
+
   function measure(preserve = true) {
     if (!enabled) return;
     const previous = measured ? Math.max(0, scrollY - start) : 0;
     const old = measured ? [...records].reverse().find((record) => previous >= record.from) : null;
     const offset = old ? previous - old.from : 0;
-    const reading = old ? Math.max(0, offset - old.duration) : 0;
     const entering = old ? clamp(offset / old.duration) : 0;
-    const wasReading = old && offset >= old.duration;
     const header = document.querySelector(".armado-shell, .club-shell, .case-shell");
     const height = stage.clientHeight;
     rail = Math.max(height < 500 ? 60 : 76, header.getBoundingClientRect().bottom + 6);
@@ -115,7 +143,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     const reserve = Math.max(Math.min(210, height * .21), (records.length - 1) * step + 44 + safeBottom + 24);
     const peek = Math.max(rail + 56, height - reserve);
     stage.style.setProperty("--folder-height", `${panelHeight}px`);
-    stage.style.setProperty("--folder-stack-clearance", `${(records.length - 1) * step + 12}px`);
+    stage.style.setProperty("--folder-stack-clearance", `${(records.length - 1) * step + 4}px`);
     stage.style.setProperty("--folder-hero-limit", `${peek}px`);
     const left = width < 640 ? 8 : Math.min(64, width * .0423);
     const slant = width < 640 ? 16 : 28;
@@ -136,7 +164,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       record.windowTop = record.viewport.offsetTop;
       record.contentHeight = record.content.offsetHeight;
       record.padding = parseFloat(getComputedStyle(record.content).paddingTop);
-      record.overflow = Math.max(0, record.contentHeight - record.viewport.clientHeight);
+      fitBoard(record);
       const font = width < 640 ? 11 : 13;
       record.tab.style.fontSize = `${font}px`;
       const available = slot - (width < 640 ? 12 : 20);
@@ -145,14 +173,14 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       context.font = getComputedStyle(record.tab).font;
       const desired = context.measureText(record.label.textContent).width;
       if (width < 640) record.tab.style.fontSize = `${Math.max(9, Math.min(font, font * available / Math.max(1, desired)))}px`;
-      cursor += record.duration + record.overflow;
+      cursor += record.duration;
     });
     total = cursor;
     sheet.style.setProperty("--folder-scroll-height", `${height + total}px`);
     start = sheet.getBoundingClientRect().top + scrollY;
     motion.resize();
     if (old && preserve && selected === null) {
-      const position = wasReading ? old.duration + Math.min(reading, old.overflow) : entering * old.duration;
+      const position = entering * old.duration;
       motion.scrollTo(start + old.from + position, { immediate: true });
     }
     lastY = scrollY;
@@ -189,24 +217,14 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       record.card.dataset.front = String(index === front);
       record.card.dataset.preview = String(!manual && progress < .03);
       record.card.dataset.stacked = String(manual ? index !== front : index < current);
-      record.card.classList.toggle("project-folder--manual", manual && index === front);
-      record.viewport.toggleAttribute("data-lenis-prevent", manual && index === front && record.overflow > 1);
-      let shift;
-      if (manual) shift = index === front ? 0 : record.read - record.viewport.scrollTop;
-      else {
-        record.card.classList.remove("project-folder--entering");
-        shift = clamp(y - record.from - record.duration, 0, record.overflow);
-        record.viewport.scrollTop = 0;
-      }
-      // Parked content starts outside the screen and travels with its sheet. Nothing fades or hides.
+      // The board stays complete. Only its sheet enters/leaves the viewport.
       const reveal = manual ? 0 : Math.max(0, height - record.peek - record.windowTop + 4) * (1 - progress);
-      record.content.style.setProperty("--folder-shift", `${(reveal - shift).toFixed(2)}px`);
-      record.shift = shift;
+      if (!manual) record.card.classList.remove("project-folder--entering");
+      record.content.style.setProperty("--folder-shift", `${reveal.toFixed(2)}px`);
       record.reveal = reveal;
-      record.read = shift + record.viewport.scrollTop;
       const cover = Math.min(height, ...poses.filter((other) => other.rank > rank).map((other) => other.top + cap));
-      const contentTop = top + record.windowTop + record.padding + reveal - record.read;
-      const contentBottom = top + record.windowTop + record.contentHeight + reveal - record.read;
+      const contentTop = top + record.windowTop + record.padding + reveal;
+      const contentBottom = top + record.windowTop + record.contentHeight + reveal;
       record.content.inert = contentTop >= cover || contentBottom <= Math.max(0, top + record.windowTop);
       record.tab.setAttribute("aria-pressed", String(index === front));
     });
@@ -219,7 +237,6 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (selected === index) return;
     if (selected === null && active === index + 1 && scrollY - start >= records[index].from + records[index].duration) return;
     records.forEach((record) => {
-      record.read = Math.max(0, record.shift + record.viewport.scrollTop);
       record.card.classList.toggle("project-folder--entering", record.reveal > 0);
     });
     const slot = order.indexOf(index);
@@ -227,23 +244,14 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     selected = index;
     motion.scrollTo(scrollY, { immediate: true });
     lastY = scrollY;
-    // Enable native scrolling before restoring a reader offset (overflow: clip cannot scroll).
-    records[index].card.classList.add("project-folder--manual");
-    records[index].viewport.scrollTop = records[index].read;
     paint();
     onChange(index + 1);
-  }
-
-  function canRead(record, delta) {
-    const position = record.viewport.scrollTop;
-    const end = Math.max(0, record.viewport.scrollHeight - record.viewport.clientHeight);
-    return delta > 0 ? position < end - 1 : position > 1;
   }
 
   function resume(delta, immediate = false) {
     if (selected === null) return;
     const record = records[selected];
-    const position = record.from + record.duration + record.viewport.scrollTop;
+    const position = record.from + record.duration;
     selected = null;
     clearTimeout(resumeTimer);
     stage.classList.add("project-folders-resuming");
@@ -255,9 +263,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
 
   stage.addEventListener("wheel", (event) => {
     if (selected === null || isZoomOpen() || !event.deltaY || event.ctrlKey) return;
-    const record = records[selected];
     const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
-    if (record.viewport.contains(event.target) && canRead(record, delta)) return;
     event.preventDefault();
     event.stopPropagation();
     resume(delta);
@@ -280,8 +286,6 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       return;
     }
     if (selected === null) return;
-    const record = records[selected];
-    if (record.viewport.contains(event.target) && canRead(record, delta)) return;
     event.preventDefault();
     event.stopPropagation();
     resume(delta, true);
@@ -291,7 +295,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
 
   document.addEventListener("keydown", (event) => {
     if (selected === null || isZoomOpen() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.target.closest("input, textarea, select, [contenteditable=true]")) return;
-    if (event.key === " " && event.target.closest("button, summary")) return;
+    if (event.key === " " && event.target.closest("button")) return;
     let delta;
     if (event.key === "ArrowDown") delta = 40;
     else if (event.key === "ArrowUp") delta = -40;
@@ -305,9 +309,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       return;
     } else return;
     event.preventDefault();
-    const record = records[selected];
-    if (canRead(record, delta)) record.viewport.scrollBy({ top: delta, behavior: "auto" });
-    else resume(delta);
+    resume(delta);
   });
 
   function goTo(index, immediate = false) {
@@ -322,16 +324,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (!enabled || !measured || isZoomOpen() || !event.target.matches(":focus-visible")) return;
     const index = records.findIndex((record) => record.content.contains(event.target));
     if (index < 0) return;
-    const record = records[index];
-    if (selected === index) {
-      const box = event.target.getBoundingClientRect();
-      const frame = record.viewport.getBoundingClientRect();
-      if (box.top < frame.top || box.bottom > frame.bottom) record.viewport.scrollTop += box.top - frame.top - 24;
-      return;
-    }
-    const offset = event.target.getBoundingClientRect().top - record.content.getBoundingClientRect().top;
-    motion.scrollTo(start + record.from + record.duration + clamp(offset - 24, 0, record.overflow), { immediate: true });
-    paint();
+    if (selected !== index) select(index);
   });
   return { enable, disable, measure, paint, goTo, get enabled() { return enabled; } };
 }

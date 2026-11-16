@@ -20,10 +20,20 @@
     
     <link rel="stylesheet" href="./css/contact.css">
     <link rel="stylesheet" href="./css/typography.css">
+    <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
-    <script type="module" src="./js/contact.js"></script>
+    <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
+    <script type="module" data-desktop-src="./js/contact.js"></script>
   </head>
   <body class="contact-page">
+    <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
+      <span class="mobile-status__logo" aria-hidden="true"></span>
+      <div class="mobile-status__content">
+        <p class="mobile-status__name">Santiago Barbieri · Portfolio</p>
+        <h2 class="mobile-status__title" id="mobile-status-title">Versión móvil en desarrollo.</h2>
+        <p class="mobile-status__description">Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.</p>
+      </div>
+    </section>
     <div class="site-loader" role="status"><span class="site-loader__rose" aria-hidden="true"></span><span class="site-loader__label visually-hidden">Cargando Contacto</span></div>
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 

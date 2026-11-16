@@ -2,6 +2,23 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Prioridad escritorio; móvil en desarrollo — 16 de noviembre de 2026
+
+Santi pausó expresamente el desarrollo de la versión reducida. Priorizar y cerrar transiciones, contenido y distribución de escritorio antes de retomar móvil. Hasta 900px, todas las páginas públicas muestran únicamente una pantalla negra con la marca pequeña, «Versión móvil en desarrollo.» y la indicación de visitar el portfolio desde una computadora. No agregar nuevas adaptaciones de la experiencia móvil por ahora.
+
+`desktop-gate.css` y el aviso escrito en cada HTML funcionan incluso sin JavaScript. `desktop-gate.js` difiere los módulos de la experiencia hasta disponer de un viewport de escritorio; el bootstrap de Rose se conserva al activarlos y dispone de fallback si el archivo de entrada falla. El aviso sustituye también cualquier diálogo abierto al reducir una ventana, conserva navegación/foco accesibles y no simula una carga. Los menús y el contenido del sitio quedan inaccesibles mientras se muestra el aviso. Al ampliar la ventana se recupera el escritorio sin iniciar módulos por duplicado. Mantener los cuatro destinos con candado y Coming soon.
+
+La corrección de carpetas sigue vigente: sin scroll interno ni desplegables y todas las piezas completas. Validar esta experiencia en escritorio; los tamaños pequeños solo requieren que el aviso temporal se vea y funcione correctamente.
+
+## Solapas sin scroll interno ni desplegables — 15 de noviembre de 2026
+
+Esta corrección posterior de Santi reemplaza los lectores internos y disclosures de las carpetas de los cuatro proyectos. No usar `details`, acordeones, paginación ni áreas desplazables dentro de las solapas. Toda pieza de cada sección permanece visible en una grilla estática. El scroll de la página solo mueve las hojas; no desplaza el contenido dentro de ellas ni añade tramos de lectura a la misma carpeta.
+
+- `project-folders.js` mide el área disponible y elige filas/columnas según cantidad de piezas, proporciones originales y jerarquía. Solo ajusta el tamaño de los medios, nunca estira imágenes ni escala el texto completo. Las fotos conservan un máximo de tres columnas. Los logos, variantes y referencias tienen límites de tamaño propios; todas las piezas y exclusiones de ampliación se conservan.
+- `.folder-board` / `.folder-piece` presentan los medios y captions directamente en el HTML. Textos breves y créditos visibles sustituyen los desplegables de proceso. Las paletas muestran todas las muestras en su superficie gris. En horizontal bajo, texto y grilla van uno al lado del otro para aprovechar la altura.
+- `.project-folder__window` usa `overflow: clip` como máscara física, sin scroll. Verificar que copy, piezas, captions y notas entren completos en cada carpeta abierta, también a 320px y en horizontal bajo; no basta ocultar la barra o recortar lo que sobra. Conservar zoom individual sin descargas y las proporciones originales.
+- Rueda, touch y teclado continúan el recorrido de la página al recuperar una solapa. No capturar gestos para un lector interno. Con movimiento reducido o sin JS, conservar lectura vertical normal de la página, sin lectores internos ni desplegables.
+
 ## Carpetas en todos los proyectos del Archivo — 15 de noviembre de 2026
 
 Santi autorizó extender la nueva dirección a los proyectos restantes. Los cuatro casos para terceros —El Armado, Club de Economía, OLAS Di Tella y Orfeo— usan ahora carpetas completas y lectura reversible. OLAS vive en `olas-ditella.html` y Orfeo en `orfeo.html`; comparten `project-case.js` y `project-case.css`, además del motor de carpetas existente. El contenido esencial está escrito en HTML. Archivo y sus enlaces de respaldo navegan en la misma pestaña; las rutas genéricas anteriores redirigen mediante el registro.

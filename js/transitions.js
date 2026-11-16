@@ -11,7 +11,7 @@
     let claimed = false;
     // Recover on an actual module failure; slow downloads keep their loader.
     const recover = (event) => {
-      const scriptFailed = event.target instanceof HTMLScriptElement && event.target.type === "module";
+      const scriptFailed = event.target instanceof HTMLScriptElement && (event.target.type === "module" || event.target.hasAttribute("data-desktop-gate"));
       const codeFailed = event instanceof ErrorEvent && /\/js\//.test(event.filename);
       if (!scriptFailed && !codeFailed) return;
       setTimeout(() => {
