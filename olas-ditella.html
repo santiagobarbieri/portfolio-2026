@@ -11,7 +11,7 @@
     <meta property="og:description" content="Identidad visual para OLAS, agrupación estudiantil de la Universidad Torcuato Di Tella, y su campaña de octubre de 2026.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://portfolio-2026-ruby-three-66.vercel.app/assets/images/olas-ditella/poster%201-1600.webp">
-    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./assets/favicon-olas-ditella.svg" type="image/svg+xml">
     <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
@@ -23,12 +23,13 @@
     <link rel="stylesheet" href="./css/project-folders.css">
     <link rel="stylesheet" href="./css/project-case.css">
     <link rel="stylesheet" href="./css/typography.css">
+    <link rel="stylesheet" href="./css/project-identity.css">
     <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
     <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
     <script type="module" data-desktop-src="./js/project-case.js"></script>
   </head>
-  <body class="case-page case-page--olas" data-project-name="OLAS Di Tella">
+  <body class="case-page case-page--olas identity-project" data-identity="olas-ditella" data-project-name="OLAS Di Tella">
     <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
       <span class="mobile-status__logo" aria-hidden="true"></span>
       <div class="mobile-status__content">
@@ -43,29 +44,49 @@
     </div>
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
     <a class="skip-link" href="#paleta" data-sheet-complete>Ver la ficha completa</a>
-    <header class="case-shell">
-      <a class="case-close" href="./index.html" data-cursor-action="Volver al archivo">
-        <span aria-hidden="true">×</span>
-        Cerrar
-      </a>
-      <output class="case-remaining visually-hidden" data-remaining aria-live="polite" aria-label="Sección 1 de 6">1/6</output>
-      <a class="case-home" href="./index.html" aria-label="Volver al archivo" data-cursor-action="Volver al archivo">
-        <span class="identity__glyph" aria-hidden="true"></span>
+    <header class="case-shell project-bar">
+      <div class="project-bar__main">
+        <a class="case-close" data-cursor-action="Volver al archivo" href="./index.html">
+          <span aria-hidden="true">
+            ×
+          </span>
+          Cerrar
+        </a>
+        <span aria-hidden="true" class="project-bar__separator">
+          |
+        </span>
+        <p class="project-bar__title">
+          OLAS Di Tella · Identidad y campaña
+        </p>
+        <nav aria-label="Enlaces oficiales de OLAS Di Tella" class="project-bar__links" data-project-links="">
+          <!-- TODO: incorporar las URLs oficiales confirmadas por Santiago. -->
+        </nav>
+      </div>
+      <output aria-label="Sección 1 de 6" aria-live="polite" class="case-remaining visually-hidden" data-remaining="">
+        1/6
+      </output>
+      <a aria-label="Volver al archivo" class="case-home" data-cursor-action="Volver al archivo" href="./index.html">
+        <span aria-hidden="true" class="identity__glyph">
+        </span>
       </a>
     </header>
     <main class="case-sheet" id="main-content" tabindex="-1" data-sheet>
       <div class="case-stage" data-sheet-stage>
-        <header class="case-chapter case-intro" data-sheet-section data-section-name="Introducción">
-          <div class="case-intro__composition">
-            <figure class="project-piece case-intro__mark">
-              <button class="case-image-button" type="button" data-zoom-original="assets/images/olas-ditella/Logo.svg" aria-label="Ampliar Logotipo vectorial de OLAS con una ola y una flecha" aria-haspopup="dialog">
-                <img src="./assets/images/olas-ditella/Logo.svg" width="1286" height="405" alt="Logotipo vectorial de OLAS con una ola y una flecha" fetchpriority="high">
-              </button>
-            </figure>
-            <div class="case-intro__copy">
-              <h1>OLAS Di Tella</h1>
-              <p class="case-intro__eyebrow">Identidad visual · Octubre de 2026</p>
-              <p>Una identidad para Organización de Liderazgo, Autonomía y Soluciones, agrupación estudiantil de la Universidad Torcuato Di Tella.</p>
+        <header class="case-chapter case-intro project-opening" data-section-name="Introducción" data-sheet-section="">
+          <div class="case-intro__composition project-opening__composition">
+            <button aria-haspopup="dialog" aria-label="Ampliar logotipo de OLAS Di Tella" class="case-image-button project-opening__mark" data-zoom-original="assets/images/olas-ditella/Logo.svg" type="button">
+              <img alt="OLAS Di Tella" fetchpriority="high" height="405" src="./assets/images/olas-ditella/Logo.svg" width="1286">
+            </button>
+            <div class="project-opening__copy">
+              <h1>
+                OLAS Di Tella
+              </h1>
+              <p class="project-opening__eyebrow">
+                Universidad Torcuato Di Tella · Octubre de 2026
+              </p>
+              <p class="project-opening__description">
+                Una identidad para la agrupación estudiantil OLAS y su campaña «Tu voz transforma». La O se convierte en una ola y organiza el sistema de marca, afiches y stickers.
+              </p>
             </div>
           </div>
         </header>
@@ -108,7 +129,7 @@
             <p class="project-palette-source">Colores presentes en las piezas de identidad.</p>
           </div>
         </section>
-        <section class="case-chapter" id="marca" data-sheet-section data-section-name="Marca" aria-label="Marca">
+        <section class="case-chapter" id="marca" data-sheet-section data-section-name="Marca" aria-label="Marca" data-folder-tone="mint">
           <div class="case-copy" data-sheet-copy>
             <h2>Marca</h2>
             <p class="project-folder__lead">De propuestas literales y tonos amarillos a verdes y azules. La O se convierte en una ola que señala hacia adelante.</p>
@@ -160,7 +181,7 @@
             </div>
           </div>
         </section>
-        <section class="case-chapter" id="iconografia" data-sheet-section data-section-name="Iconografía" aria-label="Iconografía">
+        <section class="case-chapter" id="iconografia" data-sheet-section data-section-name="Iconografía" aria-label="Iconografía" data-folder-tone="deep-green">
           <div class="case-copy" data-sheet-copy>
             <h2>Iconografía</h2>
             <p class="project-folder__lead">El símbolo y los elementos que construyen la ola.</p>
@@ -204,7 +225,7 @@
             </div>
           </div>
         </section>
-        <section class="case-chapter" id="afiches" data-sheet-section data-section-name="Afiches" aria-label="Afiches">
+        <section class="case-chapter" id="afiches" data-sheet-section data-section-name="Afiches" aria-label="Afiches" data-folder-tone="green">
           <div class="case-copy" data-sheet-copy>
             <h2>Afiches</h2>
             <p class="project-folder__lead">Cinco piezas para anunciar la agrupación y el inicio de la precampaña.</p>
@@ -254,7 +275,7 @@
             </div>
           </div>
         </section>
-        <section class="case-chapter" id="stickers" data-sheet-section data-section-name="Stickers" aria-label="Stickers">
+        <section class="case-chapter" id="stickers" data-sheet-section data-section-name="Stickers" aria-label="Stickers" data-folder-tone="white">
           <div class="case-copy" data-sheet-copy>
             <h2>Stickers</h2>
             <p class="project-folder__lead">La ola y la flecha, reunidas en una aplicación circular.</p>

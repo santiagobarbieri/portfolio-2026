@@ -2,6 +2,7 @@ import { initShell } from "./shell.js";
 import { initSmoothScroll } from "./motion.js";
 import { startLoading, waitForImages } from "./loading.js";
 import { createImageZoom } from "./image-zoom.js";
+import { initProjectMultimedia } from "./project-multimedia.js";
 import { createFolderStack } from "./project-folders.js";
 
 const complete = startLoading(`Cargando ${document.body.dataset.projectName}`);
@@ -15,6 +16,10 @@ let resizeFrame = 0;
 let initialized = false;
 let zoomActive = false;
 const zoom = createImageZoom({
+  onOpen: () => { zoomActive = true; motion.stop(); },
+  onClose: () => { motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
+});
+initProjectMultimedia({
   onOpen: () => { zoomActive = true; motion.stop(); },
   onClose: () => { motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
 });

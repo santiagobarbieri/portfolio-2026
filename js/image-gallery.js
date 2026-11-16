@@ -45,7 +45,7 @@ function makeDownload(item, index) {
 }
 
 /** One project-wide, bounded filmstrip; every image owns its caption and download. */
-export function createImageGallery({ onOpen, onClose } = {}) {
+export function createImageGallery({ onOpen, onClose, downloads = true } = {}) {
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let dialog = null;
   let viewport, track, counter;
@@ -62,6 +62,8 @@ export function createImageGallery({ onOpen, onClose } = {}) {
   let animation = 0;
   let drag = null;
   let destination = null;
+  let layoutWidth = 0;
+  let layoutHeight = 0;
 
   function nearest(value = position) {
     const phase = modulo(value, cycleWidth);
@@ -85,6 +87,8 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     cancelAnimationFrame(animation);
     destination = null;
     const width = viewport.clientWidth;
+    layoutWidth = width;
+    layoutHeight = viewport.clientHeight;
     const imageHeight = Math.max(1, viewport.clientHeight - 80);
     sizes = items.map((item, index) => {
       const ratio = (item.w || 1) / (item.h || 1);
@@ -133,7 +137,7 @@ export function createImageGallery({ onOpen, onClose } = {}) {
       node.setAttribute("aria-hidden", String(!visible));
       node.toggleAttribute("data-current", i === current);
       const right = left + (widths[n] + sizes[n].w) / 2 - 8;
-      download.tabIndex = visible && right - 44 >= 0 && right <= viewport.clientWidth ? 0 : -1;
+      if (download) download.tabIndex = visible && right - 44 >= 0 && right <= viewport.clientWidth ? 0 : -1;
       if (visible || Math.abs(i - current) <= 1) image.loading = "eager";
     }
     slots.forEach((slot, key) => {
@@ -249,7 +253,9 @@ export function createImageGallery({ onOpen, onClose } = {}) {
       slots.clear();
       onClose?.();
     });
-    new ResizeObserver(() => layout()).observe(viewport);
+    new ResizeObserver(() => {
+      if (viewport.clientWidth !== layoutWidth || viewport.clientHeight !== layoutHeight) layout();
+    }).observe(viewport);
   }
 
   function makeSlot(sequence) {
@@ -278,8 +284,9 @@ export function createImageGallery({ onOpen, onClose } = {}) {
     });
     image.addEventListener("error", () => { node.classList.add("image-gallery__slide--error"); busy(); });
     const caption = element("figcaption", "image-gallery__caption", item.name || String(index + 1).padStart(2, "0"));
-    const download = makeDownload(item, index);
-    frame.append(image, download);
+    const download = downloads ? makeDownload(item, index) : null;
+    frame.append(image);
+    if (download) frame.append(download);
     piece.append(frame, caption);
     node.append(piece);
     node.style.position = "absolute";

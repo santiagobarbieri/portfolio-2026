@@ -1,20 +1,21 @@
 [
   {
     "slug": "club-de-economia-utdt",
-    "code": "XX–00",
+    "code": "",
     "title": "Club de Economía — UTDT",
     "type": "Identidad visual",
     "category": "identidad",
     "family": "identity",
-    "description": "Identidad visual y sistema gráfico para el relanzamiento del Club de Economía de la Universidad Torcuato Di Tella.",
-    "cover": "assets/images/club-de-economia-utdt/VARIANTE.png",
-    "w": 1080,
-    "h": 1080,
-    "alt": "Marca del Club de Economía en celeste sobre fondo negro",
+    "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.",
+    "cover": "assets/images/club-de-economia-utdt/loop-symbol-800.webp",
+    "w": 800,
+    "h": 800,
+    "alt": "Isotipo claro del Club de Economía sobre celeste",
     "order": -3,
     "kind": "project",
     "details": "data/projects/club-de-economia-utdt.json",
-    "page": "./club-de-economia.html"
+    "page": "./club-de-economia.html",
+    "year": "2026"
   },
   {
     "slug": "stephen-king",
@@ -112,11 +113,11 @@
   },
   {
     "slug": "olas-ditella",
-    "code": "XX–00",
+    "code": "",
     "title": "OLAS Di Tella",
-    "type": "Identidad visual",
+    "type": "Identidad y campaña",
     "category": "identidad",
-    "description": "Identidad visual para OLAS, agrupación estudiantil de la Universidad Torcuato Di Tella, y su campaña de octubre de 2026.",
+    "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.",
     "cover": "assets/images/olas-ditella/poster%201-1600.webp",
     "w": 1600,
     "h": 2263,
@@ -125,15 +126,16 @@
     "kind": "project",
     "details": "data/projects/olas-ditella.json",
     "family": "identity",
-    "page": "./olas-ditella.html"
+    "page": "./olas-ditella.html",
+    "year": "2026"
   },
   {
     "slug": "el-armado",
-    "code": "EA–02",
+    "code": "",
     "title": "El Armado",
     "type": "Identidad visual",
     "category": "identidad",
-    "description": "Segunda edición de la fiesta de música y karaoke en La Dama de Bollini.",
+    "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.",
     "cover": "assets/images/el-armado/Cover.png",
     "alt": "Identidad de El Armado: micrófono y botella ilustrados sobre fondo bordó",
     "w": 1080,
@@ -152,7 +154,8 @@
     ],
     "details": "data/projects/el-armado.json",
     "family": "identity",
-    "page": "./el-armado.html"
+    "page": "./el-armado.html",
+    "year": "2026"
   },
   {
     "slug": "fotos-en-zapallar",
@@ -173,20 +176,21 @@
   },
   {
     "slug": "orfeo",
-    "code": "O–00",
+    "code": "",
     "title": "Orfeo",
-    "type": "Identidad visual",
+    "type": "Dirección creativa",
     "category": "identidad",
-    "description": "Dirección creativa, contenido audiovisual y desarrollo web para En la Esquina, el primer drop de ORFEO en Buenos Aires.",
-    "cover": "assets/images/orfeo/PORTADA-1600.webp",
-    "w": 1600,
-    "h": 1067,
+    "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.",
+    "cover": "assets/images/orfeo/wordmark-1200.webp",
+    "w": 1200,
+    "h": 1200,
     "order": 2,
     "kind": "project",
-    "alt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
+    "alt": "Logotipo de ORFEO en carbón sobre marfil",
     "details": "data/projects/orfeo.json",
     "family": "identity",
     "page": "./orfeo.html",
-    "objective": "Dirección creativa"
+    "objective": "Dirección creativa",
+    "year": "2026"
   }
 ]

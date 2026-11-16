@@ -1,4 +1,3 @@
-import { makeProjectType } from "./project-type.js";
 import { initArchiveMotion } from "./motion.js";
 import { initArchivePhysics } from "./archive-physics.js";
 import { waitForImages } from "./loading.js";
@@ -42,8 +41,8 @@ function createCard(project) {
     media.append(placeholder);
   }
   const caption = node("div", "archive-card__caption");
-  if (project.code && !/^XX[–—-]00$/.test(project.code)) caption.append(node("span", "archive-card__code", project.code));
-  const type = makeProjectType(project.family);
+  if (project.year) caption.append(node("span", "archive-card__year", project.year));
+  const type = project.type ? node("p", "project-type", project.type) : null;
   if (type) {
     type.classList.add("archive-card__type");
     caption.append(type);

@@ -2,6 +2,18 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Identidad y aperturas compartidas — 16 de noviembre de 2026
+
+Dirección posterior de Santi para los cuatro casos del Archivo:
+
+- Las aperturas comparten la composición de Orfeo: logo a la izquierda y nombre, contexto e introducción a la derecha. Nunca usar una fotografía como apertura. Las fotografías de Orfeo se reúnen en Multimedia; no atribuir la autoría de la marca a Santiago.
+- `project-identity.css` centraliza apertura, barra fija y colores de cada carpeta. Las solapas usan colores de la paleta del caso, con texto que contraste. Paleta conserva una superficie gris neutra ajena a la identidad. No teñir ni modificar los originales.
+- La barra mantiene Cerrar, nombre/objetivo y enlaces oficiales siempre visibles. Usar únicamente URLs confirmadas por Santi; no inferir cuentas por nombre. La marca pequeña de Santiago y el favicon conservan un color propio de la identidad. El contorno del favicon aporta contraste sin aclarar todas las marcas ni añadir fondos.
+- Al tocar una solapa desde la pila cerrada, las hojas suben ordenadamente con un desfase corto. Después se conserva el cambio de orden en el mismo lugar. El scroll puede retomar el recorrido sin esperar ni quedar atrapado; no ocultar el contenido durante el apilado.
+- Los casos con muchas fotos pueden usar `data-multimedia`: una imagen con nombre/contador y flechas dentro de la carpeta, sin scroll interno; al activarla se abre el carrusel de fotografías. Sin descargas en trabajos para clientes. Las imágenes esenciales existen en HTML; la lectura reducida o sin JS permanece disponible. No borrar ni reemplazar originales.
+- Las portadas del loop son logos o afiches, con fondos distintos del negro. Club usa el isotipo blanco sobre celeste; Orfeo, su logotipo sobre marfil. Los captions muestran disciplina concreta, año confirmado y descripción breve completa. Retirar códigos arbitrarios y los recortes con puntos suspensivos. Conservar loop, física y regreso al punto del Archivo.
+- Móvil continúa pausado con su aviso hasta 900px. Librería, Exploraciones, Sobre mí y Contacto siguen con candado y Coming soon.
+
 ## Escritorio primero — 16 de noviembre de 2026
 
 La experiencia móvil está pausada por indicación de Santi. Las páginas públicas muestran un aviso temporal hasta 900px y reservan los módulos interactivos para escritorio mediante `desktop-gate.js`. Mantener la pantalla y la carga cubierta por Rose; no desarrollar nuevas grillas, transiciones o controles móviles hasta que se retome esa fase. El contenido de cada proyecto sigue existiendo en HTML y el fallback de escritorio permanece disponible sin JS.

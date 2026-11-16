@@ -22,10 +22,10 @@
   min-height: 88px;
   padding: 16px 0 8px;
 }
-.archive-card__code { grid-column: 2; grid-row: 1; color: var(--mute); font-size: var(--text-meta); line-height: var(--leading-meta); }
+.archive-card__year { grid-column: 2; grid-row: 1; color: var(--mute); font-size: var(--text-meta); line-height: var(--leading-meta); }
 .archive-card__title { grid-column: 1; grid-row: 1; font-size: var(--text-title); line-height: var(--leading-title); transform-origin: left center; transition: scale var(--interaction-duration) var(--ease); }
 .archive-card__type { grid-column: 1; grid-row: 2; }
-.archive-card__description { grid-column: 1; grid-row: 3; display: -webkit-box; max-width: 240px; color: var(--mute); font-size: var(--text-meta); line-height: var(--leading-meta); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.archive-card__description { grid-column: 1; grid-row: 3; display: block; max-width: 100%; color: var(--mute); font-size: var(--text-meta); line-height: var(--leading-meta); }
 .archive-card__placeholder { position: relative; min-height: 200px; aspect-ratio: 3 / 2; }
 .archive-card__placeholder--portrait { aspect-ratio: 4 / 5; }
 .archive-card__placeholder--square { aspect-ratio: 1; }
@@ -146,3 +146,7 @@
   .archive-page .site-footer { display: none; }
   :root:has(.archive-index[open]) { overflow: hidden; }
 }
+
+/* Logos and posters carry the project identity before entering a case. */
+.archive-card[data-slug="club-de-economia-utdt"] .archive-card__media { background: #42aebd; }
+.archive-card[data-slug="orfeo"] .archive-card__media { background: #feffed; }

@@ -8,6 +8,12 @@ La versión de escritorio es la prioridad de trabajo. Hasta 900px se muestra «V
 
 Las carpetas de los cuatro proyectos muestran todas sus piezas en grillas estáticas, sin desplegables ni scroll interno. El desplazamiento de la página mueve las hojas; las imágenes conservan su zoom individual.
 
+## Proyectos: apertura y carpetas
+
+Los cuatro casos comparten una apertura de marca, nombre y contexto. Cada carpeta toma un color de su identidad; la paleta se presenta sobre gris. La barra fija conserva cierre, proyecto y enlaces oficiales confirmados. El primer toque sobre la pila abre las hojas en orden.
+
+Orfeo reúne sus diez fotografías en Multimedia: una vista con flechas dentro de la carpeta y un carrusel amplio al tocar la imagen, sin descargas de assets del cliente. El Archivo utiliza logos o afiches con fondos claros o de color, y descripciones completas acompañadas de disciplina y año.
+
 ## Publicación
 
 - Sitio: https://portfolio-2026-ruby-three-66.vercel.app

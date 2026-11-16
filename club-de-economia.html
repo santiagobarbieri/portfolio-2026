@@ -11,7 +11,7 @@
     <meta property="og:description" content="Diagonales, color y un sistema gráfico para el relanzamiento del Club de Economía. Un proyecto de Santiago Barbieri.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://portfolio-2026-ruby-three-66.vercel.app/assets/images/club-de-economia-utdt/OFICIAL.png">
-    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./assets/favicon-club-de-economia.svg" type="image/svg+xml">
     <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
@@ -23,12 +23,13 @@
     <link rel="stylesheet" href="./css/club-de-economia.css">
     <link rel="stylesheet" href="./css/project-folders.css">
     <link rel="stylesheet" href="./css/typography.css">
+    <link rel="stylesheet" href="./css/project-identity.css">
     <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
     <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
     <script type="module" data-desktop-src="./js/club-de-economia.js"></script>
   </head>
-  <body class="club-page">
+  <body class="club-page identity-project" data-identity="club-de-economia">
     <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
       <span class="mobile-status__logo" aria-hidden="true"></span>
       <div class="mobile-status__content">
@@ -43,26 +44,49 @@
     </div>
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
     <a class="skip-link" href="#paleta" data-sheet-complete>Ver la ficha completa</a>
-    <header class="club-shell">
-      <a class="club-close" href="./index.html" data-cursor-action="Volver al archivo">
-        <span aria-hidden="true">×</span>
-        Cerrar
-      </a>
-      <output class="club-counter visually-hidden" data-remaining aria-live="polite" aria-label="Sección 1 de 6">1/6</output>
-      <a class="club-home" href="./index.html" aria-label="Volver al archivo" data-cursor-action="Volver al archivo">
-        <span class="identity__glyph" aria-hidden="true"></span>
+    <header class="club-shell project-bar">
+      <div class="project-bar__main">
+        <a class="club-close" data-cursor-action="Volver al archivo" href="./index.html">
+          <span aria-hidden="true">
+            ×
+          </span>
+          Cerrar
+        </a>
+        <span aria-hidden="true" class="project-bar__separator">
+          |
+        </span>
+        <p class="project-bar__title">
+          Club de Economía — UTDT · Identidad visual
+        </p>
+        <nav aria-label="Enlaces oficiales de Club de Economía — UTDT" class="project-bar__links" data-project-links="">
+          <!-- TODO: incorporar las URLs oficiales confirmadas por Santiago. -->
+        </nav>
+      </div>
+      <output aria-label="Sección 1 de 6" aria-live="polite" class="club-counter visually-hidden" data-remaining="">
+        1/6
+      </output>
+      <a aria-label="Volver al archivo" class="club-home" data-cursor-action="Volver al archivo" href="./index.html">
+        <span aria-hidden="true" class="identity__glyph">
+        </span>
       </a>
     </header>
     <main class="club-sheet" id="main-content" tabindex="-1" data-sheet>
       <div class="club-stage" data-sheet-stage>
-        <header class="club-chapter club-intro" data-sheet-section data-section-name="Introducción">
-          <div class="club-intro__composition">
-            <button class="club-image-button club-wordmark club-intro__mark" type="button" data-zoom-original="assets/images/club-de-economia-utdt/OFICIAL.png" aria-label="Ampliar marca del Club de Economía" aria-haspopup="dialog">
-              <img src="./assets/images/club-de-economia-utdt/OFICIAL.png" width="1080" height="1080" alt="Club de Economía" fetchpriority="high">
+        <header class="club-chapter club-intro project-opening" data-section-name="Introducción" data-sheet-section="">
+          <div class="club-intro__composition project-opening__composition">
+            <button aria-haspopup="dialog" aria-label="Ampliar logotipo de Club de Economía — UTDT" class="club-image-button project-opening__mark project-opening__mark--club" data-zoom-original="assets/images/club-de-economia-utdt/OFICIAL.png" type="button">
+              <img alt="Club de Economía — UTDT" fetchpriority="high" height="1080" src="./assets/images/club-de-economia-utdt/OFICIAL.png" width="1080">
             </button>
-            <div class="club-copy club-intro__copy" data-sheet-copy>
-              <h1 class="club-intro__title visually-hidden">Club de Economía — Construcción de identidad</h1>
-              <p class="club-intro__description">Una identidad propia para el relanzamiento del Club de Economía de la Universidad Torcuato Di Tella. Diseño de marca y sistema gráfico, 2026.</p>
+            <div class="project-opening__copy">
+              <h1>
+                Club de Economía — UTDT
+              </h1>
+              <p class="project-opening__eyebrow">
+                Universidad Torcuato Di Tella · 2026
+              </p>
+              <p class="project-opening__description">
+                Marca y sistema gráfico para el relanzamiento del Club de Economía. Las diagonales conectan una identidad propia con la vida universitaria.
+              </p>
             </div>
           </div>
         </header>
@@ -98,7 +122,7 @@
             <p class="project-palette-source">Valores de referencia muestreados de las piezas.</p>
           </div>
         </section>
-        <section class="club-chapter" id="sintesis" data-sheet-section data-section-name="Síntesis" aria-labelledby="process-title">
+        <section class="club-chapter" id="sintesis" data-sheet-section data-section-name="Síntesis" aria-labelledby="process-title" data-folder-tone="cyan">
           <div class="club-copy" data-sheet-copy>
             <h2 id="process-title">Síntesis</h2>
             <p class="project-folder__lead">La flecha ascendente dio paso a las diagonales: menos elementos para conservar el movimiento y el vínculo con la universidad.</p>
@@ -132,7 +156,7 @@
             </div>
           </div>
         </section>
-        <section class="club-chapter" id="sistema" data-sheet-section data-section-name="Sistema de marca" aria-labelledby="system-title">
+        <section class="club-chapter" id="sistema" data-sheet-section data-section-name="Sistema de marca" aria-labelledby="system-title" data-folder-tone="light-grey">
           <div class="club-copy" data-sheet-copy>
             <h2 id="system-title">Sistema de marca</h2>
             <p class="project-folder__lead">Una marca que combina isotipo y logotipo, con aplicaciones a una tinta.</p>
@@ -184,7 +208,7 @@
             </div>
           </div>
         </section>
-        <section class="club-chapter" id="plantillas" data-sheet-section data-section-name="Plantillas para redes" aria-labelledby="templates-title">
+        <section class="club-chapter" id="plantillas" data-sheet-section data-section-name="Plantillas para redes" aria-labelledby="templates-title" data-folder-tone="cyan">
           <div class="club-copy" data-sheet-copy>
             <h2 id="templates-title">Plantillas para redes</h2>
             <p class="project-folder__lead">Un sistema para posts e historias. Las piezas conservan campos de ejemplo.</p>
@@ -226,7 +250,7 @@
             </div>
           </div>
         </section>
-        <section class="club-chapter" id="trama" data-sheet-section data-section-name="Trama" aria-labelledby="pattern-title">
+        <section class="club-chapter" id="trama" data-sheet-section data-section-name="Trama" aria-labelledby="pattern-title" data-folder-tone="black">
           <div class="club-copy" data-sheet-copy>
             <h2 id="pattern-title">Trama</h2>
             <p class="project-folder__lead">Las diagonales del símbolo se extienden a una trama para redes.</p>

@@ -16,6 +16,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
   let lastY = 0;
   let total = 0;
   let resumeTimer;
+  let openingTimer;
   let touchY = null;
   let touchResumed = false;
   const cap = 30;
@@ -71,6 +72,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     enabled = measured = false;
     selected = null;
     clearTimeout(resumeTimer);
+    finishOpening();
     stage.classList.remove("project-folders-resuming");
     touchY = null;
     touchResumed = false;
@@ -99,7 +101,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       return;
     }
     const board = record.content.querySelector(".folder-board");
-    if (!board) return;
+    if (!board || board.matches("[data-multimedia]")) return;
     const grid = board.querySelector(".folder-board__grid");
     const pieces = [...grid.children];
     if (board.dataset.boardKind === "illustration") return;
@@ -192,7 +194,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (!enabled || !measured) return 0;
     const y = clamp(scrollY - start, 0, total);
     // Scrolling the page resumes the ordered journey; a tab itself never moves it.
-    if (selected !== null && Math.abs(scrollY - lastY) > 2) selected = null;
+    if (selected !== null && Math.abs(scrollY - lastY) > 2) { selected = null; finishOpening(); }
     lastY = scrollY;
     const manual = selected !== null;
     let current = -1;
@@ -207,7 +209,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       return { rank, progress, top: record.peek + (rail + rank * step - record.peek) * progress };
     });
     const height = stage.clientHeight;
-    const hero = intro.querySelector("[class$='intro__composition']");
+    const hero = intro.querySelector(".project-opening__composition, [class$='intro__composition']");
     const heroTop = hero.getBoundingClientRect().top;
     intro.inert = Math.min(...poses.map((pose) => pose.top + cap)) <= heroTop;
     records.forEach((record, index) => {
@@ -232,15 +234,28 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     return active;
   }
 
+  function finishOpening() {
+    clearTimeout(openingTimer);
+    stage.classList.remove("project-folders-opening");
+    records.forEach((record) => record.card.style.removeProperty("--folder-open-delay"));
+  }
+
   function select(index) {
     if (!enabled || !measured || isZoomOpen()) return;
     if (selected === index) return;
     if (selected === null && active === index + 1 && scrollY - start >= records[index].from + records[index].duration) return;
+    const openingAll = selected === null && scrollY - start < records[0].duration * .12;
+    finishOpening();
     records.forEach((record) => {
       record.card.classList.toggle("project-folder--entering", record.reveal > 0);
     });
     const slot = order.indexOf(index);
     [order[slot], order[order.length - 1]] = [order[order.length - 1], order[slot]];
+    if (openingAll) {
+      stage.classList.add("project-folders-opening");
+      records.forEach((record, i) => record.card.style.setProperty("--folder-open-delay", `${order.indexOf(i) * 65}ms`));
+      openingTimer = setTimeout(finishOpening, 420 + (records.length - 1) * 65);
+    }
     selected = index;
     motion.scrollTo(scrollY, { immediate: true });
     lastY = scrollY;
@@ -250,6 +265,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
 
   function resume(delta, immediate = false) {
     if (selected === null) return;
+    finishOpening();
     const record = records[selected];
     const position = record.from + record.duration;
     selected = null;
@@ -303,6 +319,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     else if (event.key === "PageUp" || (event.key === " " && event.shiftKey)) delta = -innerHeight * .8;
     else if (event.key === "Home" || event.key === "End") {
       event.preventDefault();
+      finishOpening();
       selected = null;
       motion.scrollTo(event.key === "Home" ? start : start + total, { immediate: true });
       onChange(paint());
@@ -314,6 +331,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
 
   function goTo(index, immediate = false) {
     if (!enabled || !measured) return;
+    finishOpening();
     selected = null;
     const record = records[index - 1];
     motion.scrollTo(index === 0 ? start : start + record.from + record.duration, { immediate });

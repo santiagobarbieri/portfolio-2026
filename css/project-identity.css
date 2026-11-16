@@ -1,0 +1,61 @@
+/* Shared opening and fixed navigation; project colours remain local. */
+.identity-project[data-identity="el-armado"] { --project-symbol: #9e6b7a; }
+.identity-project[data-identity="club-de-economia"] { --project-symbol: #42aebd; }
+.identity-project[data-identity="olas-ditella"] { --project-symbol: #9fddbd; }
+.identity-project[data-identity="orfeo"] { --project-symbol: #394a1c; }
+.identity-project .project-bar { inset: 16px 16px auto 24px; align-items: center; gap: 24px; }
+.project-bar__main { display: flex; align-items: center; gap: 16px; min-width: 0; min-height: 50px; }
+.project-bar__main > a { flex: none; }
+.project-bar__separator { opacity: .45; }
+.project-bar__title { min-width: 0; margin: 0; font-size: 12px; font-weight: 600; line-height: 1.4; }
+.project-bar__links { display: flex; align-items: center; gap: 20px; flex: none; pointer-events: auto; }
+.project-bar__links:has(a)::before { content: "|"; opacity: .45; }
+.project-bar__links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 12px; font-weight: 600; }
+.project-bar__links a span { display: inline-block; transition: translate 180ms var(--ease); }
+.identity-project :is(.armado-home, .club-home, .case-home) { flex: none; color: var(--project-symbol); }
+.identity-project .identity__glyph { color: var(--project-symbol); filter: drop-shadow(0 0 .35px var(--fg)); }
+.identity-project .project-opening { display: flex; align-items: center; min-height: 100svh; padding: 100px 8vw 28px; }
+.project-folders-ready.identity-project .project-opening { min-height: 0; height: var(--folder-hero-limit, 80svh); }
+.identity-project .project-opening__composition { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 76px); width: min(100%, 1160px); max-width: none; margin-inline: auto; }
+.project-opening__copy { min-width: 0; width: 100%; max-width: 440px; }
+.identity-project .project-opening h1 { margin: 0 0 12px; font-size: 28px; line-height: 1.15; }
+.project-opening__eyebrow { margin: 0 0 18px; color: var(--mute); font-size: 14px; line-height: 1.5; }
+.project-opening__description { margin: 0; font-size: 14px; line-height: 1.5; }
+.project-opening__credit { margin-top: 16px; color: var(--mute); font-size: 12px; line-height: 1.5; }
+.identity-project .project-opening__mark { position: relative; width: min(100%, 500px); justify-self: center; padding: 0; }
+.identity-project .project-opening__mark img { display: block; width: 100%; height: auto; max-height: 240px; object-fit: contain; }
+.identity-project .project-opening__mark--club { aspect-ratio: 800 / 182; overflow: clip; }
+.identity-project .project-opening__mark--club img { position: absolute; width: 135%; max-width: none; height: auto; max-height: none; left: -17.5%; top: -247.25275%; }
+/* Trim the export's empty canvas in the view, preserving every part of the mark. */
+.identity-project .project-opening__mark--orfeo { aspect-ratio: 3128 / 1277; overflow: clip; }
+.identity-project .project-opening__mark--orfeo img { position: absolute; width: 132.161%; max-width: none; height: auto; max-height: none; left: -16.081%; top: -111.903%; }
+.identity-project [data-folder-tone] { background: var(--sheet-bg); color: var(--sheet-fg); --bg: var(--sheet-bg); --fg: var(--sheet-fg); --mute: var(--sheet-fg); }
+.identity-project [data-folder-tone] .project-folder:not(.project-folder--palette) { --folder-surface: var(--sheet-bg); --bg: var(--sheet-bg); --fg: var(--sheet-fg); --mute: var(--sheet-fg); }
+[data-identity="el-armado"] [data-folder-tone="bone"] { --sheet-bg: #d2ddcc; --sheet-fg: #360f17; }
+[data-identity="el-armado"] [data-folder-tone="mauve"] { --sheet-bg: #9e6b7a; --sheet-fg: #140307; }
+[data-identity="el-armado"] [data-folder-tone="green"] { --sheet-bg: #9ae4a3; --sheet-fg: #360f17; }
+[data-identity="club-de-economia"] [data-folder-tone="cyan"] { --sheet-bg: #42aebd; --sheet-fg: #061014; }
+[data-identity="club-de-economia"] [data-folder-tone="light-grey"] { --sheet-bg: #d9d9d9; --sheet-fg: #111; }
+[data-identity="club-de-economia"] [data-folder-tone="black"] { --sheet-bg: #000; --sheet-fg: #d9d9d9; }
+[data-identity="olas-ditella"] [data-folder-tone="mint"] { --sheet-bg: #9fddbd; --sheet-fg: #175055; }
+[data-identity="olas-ditella"] [data-folder-tone="deep-green"] { --sheet-bg: #175055; --sheet-fg: #fbfdfd; }
+[data-identity="olas-ditella"] [data-folder-tone="green"] { --sheet-bg: #4c997f; --sheet-fg: #061a15; }
+[data-identity="olas-ditella"] [data-folder-tone="white"] { --sheet-bg: #fbfdfd; --sheet-fg: #175055; }
+[data-identity="orfeo"] [data-folder-tone="ivory"] { --sheet-bg: #feffed; --sheet-fg: #18191a; }
+[data-identity="orfeo"] [data-folder-tone="navy"] { --sheet-bg: #0c1d34; --sheet-fg: #feffed; }
+[data-identity="orfeo"] [data-folder-tone="olive"] { --sheet-bg: #394a1c; --sheet-fg: #feffed; }
+@media (min-width: 901px) and (max-height: 600px) {
+  .identity-project .project-bar { top: 6px; }
+  .identity-project .project-opening { padding: 72px 6vw 16px; }
+  .identity-project .project-opening__composition { gap: 40px; }
+  .identity-project .project-opening__mark { max-width: 360px; }
+  .identity-project .project-opening h1 { font-size: 24px; margin-bottom: 8px; }
+  .project-opening__eyebrow { margin-bottom: 10px; font-size: 12px; }
+  .project-opening__description { font-size: 12px; line-height: 1.4; }
+  .project-opening__credit { margin-top: 10px; font-size: 11px; }
+}
+@media (hover: hover) and (pointer: fine) { .project-bar__links a:hover span { translate: 2px -2px; } }
+@media (prefers-reduced-motion: reduce) { .project-bar__links a span { transition: none; } }
+
+.project-bar__links:not(:has(a)) { display: none; }
+.identity-project[data-identity="orfeo"] [data-folder-tone="navy"] .folder-piece__visual { background: #feffed; }

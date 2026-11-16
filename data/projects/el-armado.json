@@ -1,16 +1,16 @@
 {
   "slug": "el-armado",
-  "code": "EA–02",
+  "code": "",
   "title": "El Armado",
   "type": "Identidad visual",
-  "description": "Segunda edición de la fiesta de música y karaoke en La Dama de Bollini.",
+  "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.",
   "cover": "assets/images/el-armado/Cover.png",
   "w": 1080,
   "h": 1350,
-  "hero": "assets/images/el-armado/FLYER A4 - EL ARMADO.png",
-  "heroW": 2480,
-  "heroH": 3508,
-  "heroAlt": "Afiche de El Armado con logotipo, micrófono y botella sobre fondo bordó",
+  "hero": "assets/images/el-armado-web/marca-863.webp",
+  "heroW": 863,
+  "heroH": 343,
+  "heroAlt": "Logotipo de El Armado",
   "meta": [
     [
       "Lugar",
@@ -224,5 +224,7 @@
     ]
   },
   "family": "identity",
-  "presentation": "illustrated-identity"
+  "presentation": "illustrated-identity",
+  "year": "2026",
+  "heroOriginal": "assets/images/el-armado/Logo.png"
 }

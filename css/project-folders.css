@@ -89,3 +89,10 @@
 }
 @media (hover: hover) and (pointer: fine) { .project-folder__tab:hover .project-folder__label { scale: 1.04; } }
 @media (prefers-reduced-motion: reduce) { .project-folder, .project-folder__content, .project-folder__label { transition: none !important; } }
+
+/* From the closed stack, the sheets rise in order before settling in place. */
+.project-folders-ready .project-folders-opening .project-folder,
+.project-folders-opening .project-folder--entering .project-folder__content {
+  transition: transform 380ms var(--ease);
+  transition-delay: var(--folder-open-delay, 0ms);
+}

@@ -1,10 +1,10 @@
 {
   "slug": "olas-ditella",
-  "code": "XX–00",
+  "code": "",
   "title": "OLAS Di Tella",
-  "type": "Identidad visual",
+  "type": "Identidad y campaña",
   "category": "identidad",
-  "description": "Identidad visual para OLAS, agrupación estudiantil de la Universidad Torcuato Di Tella, y su campaña de octubre de 2026.",
+  "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.",
   "cover": "assets/images/olas-ditella/poster%201-1600.webp",
   "w": 1600,
   "h": 2263,
@@ -12,7 +12,7 @@
   "hero": "assets/images/olas-ditella/Logo.svg",
   "heroW": 1286,
   "heroH": 405,
-  "heroAlt": "Logotipo vectorial de OLAS con una ola y una flecha",
+  "heroAlt": "Logotipo de OLAS Di Tella",
   "meta": [
     [
       "Agrupación",
@@ -319,5 +319,7 @@
     ]
   },
   "family": "identity",
-  "presentation": "identity-system"
+  "presentation": "identity-system",
+  "year": "2026",
+  "heroOriginal": "assets/images/olas-ditella/Logo.svg"
 }

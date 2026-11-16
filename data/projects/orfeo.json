@@ -1,18 +1,18 @@
 {
   "slug": "orfeo",
-  "code": "O–00",
+  "code": "",
   "title": "Orfeo",
-  "type": "Identidad visual",
+  "type": "Dirección creativa",
   "category": "identidad",
-  "description": "Dirección creativa, contenido audiovisual y desarrollo web para En la Esquina, el primer drop de ORFEO en Buenos Aires.",
-  "cover": "assets/images/orfeo/PORTADA-1600.webp",
-  "w": 1600,
-  "h": 1067,
-  "alt": "Detalle de camisa, sweater tejido y chaqueta en la campaña de ORFEO",
-  "hero": "assets/images/orfeo/IMG_4868-1600.webp",
-  "heroW": 1600,
-  "heroH": 1067,
-  "heroAlt": "Tres modelos con los sweaters de la colección de ORFEO",
+  "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.",
+  "cover": "assets/images/orfeo/wordmark-1200.webp",
+  "w": 1200,
+  "h": 1200,
+  "alt": "Logotipo de ORFEO en carbón sobre marfil",
+  "hero": "assets/images/orfeo/wordmark-1200.webp",
+  "heroW": 1200,
+  "heroH": 1200,
+  "heroAlt": "Logotipo de Orfeo",
   "meta": [
     [
       "Colección",
@@ -553,8 +553,8 @@
       "text": "La narrativa del lanzamiento fue una construcción colectiva. Federico y Bautista fundaron la marca; Juana trabajó en fotografía, edición fotográfica y estética visual. El trabajo presentado aquí sitúa mi aporte en la dirección creativa del primer drop, el contenido audiovisual y la página web."
     }
   ],
-  "coverOriginal": "assets/images/orfeo/PORTADA.JPG",
-  "heroOriginal": "assets/images/orfeo/IMG_4868.JPG",
+  "coverOriginal": "assets/images/orfeo/logo%20%281%29.png",
+  "heroOriginal": "assets/images/orfeo/logo%20%281%29.png",
   "palette": {
     "title": "Paleta de aplicaciones",
     "description": "Colores extraídos de las aplicaciones gráficas; valores de referencia.",
@@ -591,14 +591,10 @@
   "presentation": "fashion-campaign",
   "heroSources": [
     {
-      "src": "assets/images/orfeo/IMG_4868-1600.webp",
-      "w": 1600,
-      "h": 1067
-    },
-    {
-      "src": "assets/images/orfeo/IMG_4868-800.webp",
-      "w": 800,
-      "h": 533
+      "src": "assets/images/orfeo/wordmark-1200.webp",
+      "w": 1200,
+      "h": 1200
     }
-  ]
+  ],
+  "year": "2026"
 }

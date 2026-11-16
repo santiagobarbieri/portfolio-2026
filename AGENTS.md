@@ -2,6 +2,18 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Identidad y aperturas compartidas — 16 de noviembre de 2026
+
+Dirección posterior de Santi para los cuatro casos del Archivo:
+
+- Las aperturas comparten la composición de Orfeo: logo a la izquierda y nombre, contexto e introducción a la derecha. Nunca usar una fotografía como apertura. Las fotografías de Orfeo se reúnen en Multimedia; no atribuir la autoría de la marca a Santiago.
+- `project-identity.css` centraliza apertura, barra fija y colores de cada carpeta. Las solapas usan colores de la paleta del caso, con texto que contraste. Paleta conserva una superficie gris neutra ajena a la identidad. No teñir ni modificar los originales.
+- La barra mantiene Cerrar, nombre/objetivo y enlaces oficiales siempre visibles. Usar únicamente URLs confirmadas por Santi; no inferir cuentas por nombre. La marca pequeña de Santiago y el favicon conservan un color propio de la identidad. El contorno del favicon aporta contraste sin aclarar todas las marcas ni añadir fondos.
+- Al tocar una solapa desde la pila cerrada, las hojas suben ordenadamente con un desfase corto. Después se conserva el cambio de orden en el mismo lugar. El scroll puede retomar el recorrido sin esperar ni quedar atrapado; no ocultar el contenido durante el apilado.
+- Los casos con muchas fotos pueden usar `data-multimedia`: una imagen con nombre/contador y flechas dentro de la carpeta, sin scroll interno; al activarla se abre el carrusel de fotografías. Sin descargas en trabajos para clientes. Las imágenes esenciales existen en HTML; la lectura reducida o sin JS permanece disponible. No borrar ni reemplazar originales.
+- Las portadas del loop son logos o afiches, con fondos distintos del negro. Club usa el isotipo blanco sobre celeste; Orfeo, su logotipo sobre marfil. Los captions muestran disciplina concreta, año confirmado y descripción breve completa. Retirar códigos arbitrarios y los recortes con puntos suspensivos. Conservar loop, física y regreso al punto del Archivo.
+- Móvil continúa pausado con su aviso hasta 900px. Librería, Exploraciones, Sobre mí y Contacto siguen con candado y Coming soon.
+
 ## Prioridad escritorio; móvil en desarrollo — 16 de noviembre de 2026
 
 Santi pausó expresamente el desarrollo de la versión reducida. Priorizar y cerrar transiciones, contenido y distribución de escritorio antes de retomar móvil. Hasta 900px, todas las páginas públicas muestran únicamente una pantalla negra con la marca pequeña, «Versión móvil en desarrollo.» y la indicación de visitar el portfolio desde una computadora. No agregar nuevas adaptaciones de la experiencia móvil por ahora.

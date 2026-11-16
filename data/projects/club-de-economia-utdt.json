@@ -1,21 +1,21 @@
 {
   "slug": "club-de-economia-utdt",
-  "code": "XX–00",
+  "code": "",
   "title": "Club de Economía — UTDT",
   "type": "Identidad visual",
   "category": "identidad",
   "family": "identity",
   "presentation": "identity-system",
-  "description": "Identidad visual y sistema gráfico para el relanzamiento del Club de Economía de la Universidad Torcuato Di Tella.",
-  "cover": "assets/images/club-de-economia-utdt/VARIANTE.png",
-  "w": 1080,
-  "h": 1080,
-  "alt": "Marca del Club de Economía en celeste sobre fondo negro",
-  "coverOriginal": "assets/images/club-de-economia-utdt/VARIANTE.png",
+  "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.",
+  "cover": "assets/images/club-de-economia-utdt/loop-symbol-800.webp",
+  "w": 800,
+  "h": 800,
+  "alt": "Isotipo claro del Club de Economía sobre celeste",
+  "coverOriginal": "assets/images/club-de-economia-utdt/logo%20azul%20blanco.png",
   "hero": "assets/images/club-de-economia-utdt/OFICIAL.png",
   "heroW": 1080,
   "heroH": 1080,
-  "heroAlt": "Marca oficial del Club de Economía: diagonales celestes y nombre negro sobre gris claro",
+  "heroAlt": "Logotipo del Club de Economía",
   "heroName": "Marca oficial — fondo claro",
   "meta": [
     [
@@ -308,5 +308,7 @@
     }
   ],
   "heroSize": "medium",
-  "page": "./club-de-economia.html"
+  "page": "./club-de-economia.html",
+  "year": "2026",
+  "heroOriginal": "assets/images/club-de-economia-utdt/OFICIAL.png"
 }

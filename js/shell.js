@@ -70,8 +70,20 @@ async function updateFavicon() {
         .filter(({ luminance }) => luminance !== null)
         .sort((a, b) => a.luminance - b.luminance);
       if (!palette.length) return;
-      const { colour } = scheme.matches ? palette[palette.length - 1] : palette[0];
-      svg.querySelectorAll("path").forEach((path) => path.setAttribute("fill", colour));
+      const identityColour = style.getPropertyValue("--project-symbol").trim();
+      const { colour } = identityColour ? { colour: identityColour } : scheme.matches ? palette[palette.length - 1] : palette[0];
+      // Keep each identity's hue. A thin edge supplies contrast on browser chrome.
+      const chrome = scheme.matches ? .015 : .87;
+      const luminance = faviconLuminance(colour);
+      const contrast = (Math.max(chrome, luminance) + .05) / (Math.min(chrome, luminance) + .05);
+      svg.setAttribute("viewBox", "-1 -1 52 52");
+      svg.querySelectorAll("path").forEach((path) => {
+        path.setAttribute("fill", colour);
+        path.setAttribute("stroke", scheme.matches ? "#f1ece0" : "#18191a");
+        path.setAttribute("stroke-width", identityColour && contrast < 3 ? ".9" : "0");
+        path.setAttribute("stroke-linejoin", "round");
+        path.setAttribute("paint-order", "stroke fill");
+      });
       const href = `data:image/svg+xml,${encodeURIComponent(new XMLSerializer().serializeToString(svg))}`;
       if (icon.href !== href) icon.href = href;
     };
