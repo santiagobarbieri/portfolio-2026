@@ -2,6 +2,14 @@
 
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
+## Cierre explícito de carpetas — 16 de noviembre de 2026
+
+Una vez que toda la pila se abrió —con scroll o al tocar una solapa— queda abierta. La rueda, Home/End y volver hacia arriba no cierran el conjunto. «Colapsar» aparece arriba junto al logo y es la única acción que devuelve todas las carpetas a la apertura. Las solapas siguen intercambiándose en su lugar. Mantener el estado al redimensionar y al cerrar un visor, sin reanudar el scroll de fondo mientras la pila esté abierta. Con movimiento reducido o sin JS se conserva la lectura normal. El borde SVG de todas las carpetas es siempre negro (#000), independientemente de su superficie o texto.
+
+## Solapas sin negro — 16 de noviembre de 2026
+
+Las superficies y sus solapas nunca usan negro ni carbón. Elegir otro color de la paleta del proyecto o un gris claro con contraste suficiente; Trama de Club usa el gris claro #D9D9D9. La tarjeta Paleta conserva su gris neutro. Esta regla no recolorea las imágenes originales ni cambia el aviso móvil.
+
 ## Identidad y aperturas compartidas — 16 de noviembre de 2026
 
 Dirección posterior de Santi para los cuatro casos del Archivo:

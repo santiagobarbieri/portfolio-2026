@@ -17,11 +17,11 @@ let initialized = false;
 let zoomActive = false;
 const zoom = createImageZoom({
   onOpen: () => { zoomActive = true; motion.stop(); },
-  onClose: () => { motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
+  onClose: () => { if (!folders.expanded) motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
 });
 initProjectMultimedia({
   onOpen: () => { zoomActive = true; motion.stop(); },
-  onClose: () => { motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
+  onClose: () => { if (!folders.expanded) motion.start(); requestAnimationFrame(() => { zoomActive = false; }); },
 });
 const folders = createFolderStack({ stage, chapters, motion, isZoomOpen: () => zoomActive, onChange: updateCounter });
 

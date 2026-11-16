@@ -5,20 +5,19 @@ const ease = (value) => value * value * (3 - 2 * value);
 export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => false, onChange = () => {} }) {
   const sheet = stage.parentElement;
   const intro = chapters[0];
+  const collapseButton = document.querySelector("[data-folder-collapse]");
   let records = [];
   let enabled = false;
   let measured = false;
   let order = [];
   let selected = null;
+  let expanded = false;
   let active = 0;
   let rail = 0;
   let start = 0;
-  let lastY = 0;
   let total = 0;
-  let resumeTimer;
   let openingTimer;
   let touchY = null;
-  let touchResumed = false;
   const cap = 30;
   const step = 12;
 
@@ -71,11 +70,9 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (!enabled) return;
     enabled = measured = false;
     selected = null;
-    clearTimeout(resumeTimer);
+    setExpanded(false);
     finishOpening();
-    stage.classList.remove("project-folders-resuming");
     touchY = null;
-    touchResumed = false;
     intro.inert = false;
     document.body.classList.remove("project-folders-ready");
     sheet.style.removeProperty("--folder-scroll-height");
@@ -185,7 +182,6 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       const position = entering * old.duration;
       motion.scrollTo(start + old.from + position, { immediate: true });
     }
-    lastY = scrollY;
     measured = true;
     paint();
   }
@@ -193,9 +189,11 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
   function paint() {
     if (!enabled || !measured) return 0;
     const y = clamp(scrollY - start, 0, total);
-    // Scrolling the page resumes the ordered journey; a tab itself never moves it.
-    if (selected !== null && Math.abs(scrollY - lastY) > 2) { selected = null; finishOpening(); }
-    lastY = scrollY;
+    if (!expanded && total > 0 && y >= total - .5) {
+      selected = records.length - 1;
+      setExpanded(true);
+    }
+    // A completed pile remains open; only the explicit collapse action resets it.
     const manual = selected !== null;
     let current = -1;
     records.forEach((record, index) => {
@@ -221,7 +219,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
       record.card.dataset.stacked = String(manual ? index !== front : index < current);
       // The board stays complete. Only its sheet enters/leaves the viewport.
       const reveal = manual ? 0 : Math.max(0, height - record.peek - record.windowTop + 4) * (1 - progress);
-      if (!manual) record.card.classList.remove("project-folder--entering");
+      if (!manual && !stage.classList.contains("project-folders-collapsing")) record.card.classList.remove("project-folder--entering");
       record.content.style.setProperty("--folder-shift", `${reveal.toFixed(2)}px`);
       record.reveal = reveal;
       const cover = Math.min(height, ...poses.filter((other) => other.rank > rank).map((other) => other.top + cap));
@@ -236,9 +234,37 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
 
   function finishOpening() {
     clearTimeout(openingTimer);
-    stage.classList.remove("project-folders-opening");
+    stage.classList.remove("project-folders-opening", "project-folders-collapsing");
     records.forEach((record) => record.card.style.removeProperty("--folder-open-delay"));
   }
+
+  function setExpanded(value) {
+    expanded = value;
+    document.body.classList.toggle("project-folders-expanded", value);
+    if (collapseButton) collapseButton.hidden = !value;
+    if (value) motion.stop();
+    else if (!isZoomOpen()) motion.start();
+  }
+
+  function collapse() {
+    if (!enabled || !measured || !expanded || isZoomOpen()) return;
+    finishOpening();
+    order = records.map((_, index) => index);
+    selected = null;
+    records.forEach((record, index) => {
+      record.card.classList.add("project-folder--entering");
+      record.card.style.setProperty("--folder-open-delay", `${(records.length - 1 - index) * 65}ms`);
+    });
+    stage.classList.add("project-folders-collapsing");
+    setExpanded(false);
+    motion.scrollTo(start, { immediate: true });
+    paint();
+    onChange(0);
+    records[0].tab.focus({ preventScroll: true });
+    openingTimer = setTimeout(finishOpening, 420 + (records.length - 1) * 65);
+  }
+
+  collapseButton?.addEventListener("click", collapse);
 
   function select(index) {
     if (!enabled || !measured || isZoomOpen()) return;
@@ -258,79 +284,35 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     }
     selected = index;
     motion.scrollTo(scrollY, { immediate: true });
-    lastY = scrollY;
+    setExpanded(true);
     paint();
     onChange(index + 1);
   }
 
-  function resume(delta, immediate = false) {
-    if (selected === null) return;
-    finishOpening();
-    const record = records[selected];
-    const position = record.from + record.duration;
-    selected = null;
-    clearTimeout(resumeTimer);
-    stage.classList.add("project-folders-resuming");
-    motion.scrollTo(start + position, { immediate: true });
-    onChange(paint());
-    motion.scrollTo(start + clamp(position + delta, 0, total), { immediate });
-    resumeTimer = setTimeout(() => stage.classList.remove("project-folders-resuming"), 240);
-  }
-
   stage.addEventListener("wheel", (event) => {
-    if (selected === null || isZoomOpen() || !event.deltaY || event.ctrlKey) return;
-    const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+    if (!expanded || isZoomOpen() || !event.deltaY || event.ctrlKey) return;
     event.preventDefault();
     event.stopPropagation();
-    resume(delta);
   }, { passive: false });
 
   stage.addEventListener("touchstart", (event) => {
     touchY = event.touches.length === 1 ? event.touches[0].clientY : null;
-    touchResumed = false;
   }, { passive: true });
   stage.addEventListener("touchmove", (event) => {
-    if (!enabled || isZoomOpen() || touchY === null || event.touches.length !== 1) return;
-    const nextY = event.touches[0].clientY;
-    const delta = touchY - nextY;
-    touchY = nextY;
-    if (!delta) return;
-    if (touchResumed) {
-      event.preventDefault();
-      motion.scrollTo(clamp(scrollY + delta, start, start + total), { immediate: true });
-      onChange(paint());
-      return;
-    }
-    if (selected === null) return;
-    event.preventDefault();
-    event.stopPropagation();
-    resume(delta, true);
-    touchResumed = true;
+    if (!expanded || isZoomOpen() || touchY === null || event.touches.length !== 1) return;
+    if (event.touches[0].clientY !== touchY) event.preventDefault();
   }, { passive: false });
-  for (const name of ["touchend", "touchcancel"]) stage.addEventListener(name, () => { touchY = null; touchResumed = false; }, { passive: true });
+  for (const name of ["touchend", "touchcancel"]) stage.addEventListener(name, () => { touchY = null; }, { passive: true });
 
   document.addEventListener("keydown", (event) => {
-    if (selected === null || isZoomOpen() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.target.closest("input, textarea, select, [contenteditable=true]")) return;
+    if (!expanded || isZoomOpen() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.target.closest("input, textarea, select, [contenteditable=true]")) return;
     if (event.key === " " && event.target.closest("button")) return;
-    let delta;
-    if (event.key === "ArrowDown") delta = 40;
-    else if (event.key === "ArrowUp") delta = -40;
-    else if (event.key === "PageDown" || (event.key === " " && !event.shiftKey)) delta = innerHeight * .8;
-    else if (event.key === "PageUp" || (event.key === " " && event.shiftKey)) delta = -innerHeight * .8;
-    else if (event.key === "Home" || event.key === "End") {
-      event.preventDefault();
-      finishOpening();
-      selected = null;
-      motion.scrollTo(event.key === "Home" ? start : start + total, { immediate: true });
-      onChange(paint());
-      return;
-    } else return;
-    event.preventDefault();
-    resume(delta);
+    if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)) event.preventDefault();
   });
 
   function goTo(index, immediate = false) {
     if (!enabled || !measured) return;
+    if (expanded) { if (index > 0) select(index - 1); return; }
     finishOpening();
     selected = null;
     const record = records[index - 1];
@@ -344,5 +326,5 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (index < 0) return;
     if (selected !== index) select(index);
   });
-  return { enable, disable, measure, paint, goTo, get enabled() { return enabled; } };
+  return { enable, disable, measure, paint, goTo, collapse, get enabled() { return enabled; }, get expanded() { return expanded; } };
 }

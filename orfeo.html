@@ -67,10 +67,13 @@
       <output aria-label="Sección 1 de 6" aria-live="polite" class="case-remaining visually-hidden" data-remaining="">
         1/6
       </output>
-      <a aria-label="Volver al archivo" class="case-home" data-cursor-action="Volver al archivo" href="./index.html">
-        <span aria-hidden="true" class="identity__glyph">
-        </span>
-      </a>
+      <div class="project-bar__actions">
+        <button class="project-bar__collapse" type="button" data-folder-collapse aria-label="Colapsar todas las secciones" aria-controls="main-content" hidden>Colapsar</button>
+        <a aria-label="Volver al archivo" class="case-home" data-cursor-action="Volver al archivo" href="./index.html">
+          <span aria-hidden="true" class="identity__glyph">
+          </span>
+        </a>
+      </div>
     </header>
     <main class="case-sheet" id="main-content" tabindex="-1" data-sheet>
       <div class="case-stage" data-sheet-stage>

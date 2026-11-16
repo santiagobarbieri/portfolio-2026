@@ -36,7 +36,6 @@
 [data-identity="el-armado"] [data-folder-tone="green"] { --sheet-bg: #9ae4a3; --sheet-fg: #360f17; }
 [data-identity="club-de-economia"] [data-folder-tone="cyan"] { --sheet-bg: #42aebd; --sheet-fg: #061014; }
 [data-identity="club-de-economia"] [data-folder-tone="light-grey"] { --sheet-bg: #d9d9d9; --sheet-fg: #111; }
-[data-identity="club-de-economia"] [data-folder-tone="black"] { --sheet-bg: #000; --sheet-fg: #d9d9d9; }
 [data-identity="olas-ditella"] [data-folder-tone="mint"] { --sheet-bg: #9fddbd; --sheet-fg: #175055; }
 [data-identity="olas-ditella"] [data-folder-tone="deep-green"] { --sheet-bg: #175055; --sheet-fg: #fbfdfd; }
 [data-identity="olas-ditella"] [data-folder-tone="green"] { --sheet-bg: #4c997f; --sheet-fg: #061a15; }
@@ -59,3 +58,9 @@
 
 .project-bar__links:not(:has(a)) { display: none; }
 .identity-project[data-identity="orfeo"] [data-folder-tone="navy"] .folder-piece__visual { background: #feffed; }
+
+/* An expanded pile stays open until its explicit collapse action. */
+:root:has(.identity-project.project-folders-expanded) { overflow: hidden; }
+.project-bar__actions { display: flex; align-items: center; gap: 20px; flex: none; }
+.project-bar__collapse { display: inline-flex; align-items: center; min-height: 44px; padding: 0; font-size: 12px; font-weight: 600; pointer-events: auto; }
+.project-bar__collapse[hidden] { display: none; }
