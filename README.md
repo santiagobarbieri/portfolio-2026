@@ -6,15 +6,13 @@ El único home es `index.html`: Archivo, con proyectos intercalados en dos colum
 
 La versión de escritorio es la prioridad de trabajo. Hasta 900px se muestra «Versión móvil en desarrollo.» y una indicación para visitar el sitio desde una computadora. Los módulos interactivos no se inician en la primera carga de esas pantallas; al ampliar la ventana se activa el escritorio con su carga habitual. El aviso existe en HTML/CSS y sigue visible sin JavaScript. El desarrollo de la versión reducida queda pausado.
 
-El Armado prueba una lectura editorial crema en dos columnas alternadas basada en «El Armado Redo.png», con textos debajo de cada pieza, paleta rectangular y cuatro variantes en 2×2. El recorrido se repite en ambos sentidos mediante reciclaje fuera de pantalla, con el scroll suave y la física del Archivo aplicada al conjunto imagen y texto. Sus imágenes conservan ampliación individual sin descargas y el visor pausa el fondo.
+El Armado, Club de Economía, OLAS y Orfeo comparten la lectura editorial: piezas en dos columnas alternadas, textos debajo y un loop continuo en ambos sentidos. «Fin del recorrido» señala el cierre antes de volver al comienzo. No hay una barra de fondo en la cabecera: los controles flotan sobre el contenido.
 
-Las carpetas de Club de Economía, OLAS y Orfeo muestran todas sus piezas en grillas estáticas, sin desplegables ni scroll interno. El desplazamiento de la página mueve las hojas; las imágenes conservan su zoom individual.
+## Presentación de los proyectos actuales
 
-## Proyectos: apertura y carpetas
+`project-editorial.css`, `project-editorial.js` y `project-editorial-loop.js` comparten la composición y el movimiento del Archivo. El reciclaje ocurre fuera de pantalla, conserva el foco y mantiene una sola representación accesible por bloque. Sin JavaScript queda la ficha completa; con movimiento reducido, el loop usa scroll nativo y no aplica resortes.
 
-Los cuatro casos comparten una apertura de marca, nombre y contexto. Club, OLAS y Orfeo conservan las solapas: explicación y referencias van a la izquierda; imágenes y grillas, a la derecha, con una reserva inferior amplia para mantenerlas sobre las siguientes hojas. Cada carpeta toma un color de su identidad; la paleta se presenta sobre gris. La barra fija conserva cierre, proyecto y enlaces oficiales confirmados. El primer toque sobre la pila abre las hojas en orden. Una vez abierta por completo, la pila se mantiene así hasta tocar «Colapsar», junto al logo. Las carpetas tienen siempre borde negro y superficies de color o gris claro; nunca negras.
-
-Orfeo reúne sus diez fotografías en Multimedia: una vista con flechas dentro de la carpeta y un carrusel amplio al tocar la imagen, sin descargas de assets del cliente. El Archivo utiliza logos o afiches con fondos claros o de color, y descripciones completas acompañadas de disciplina y año.
+El Armado conserva la referencia crema/vino y variantes 2×2. Club usa gris y distingue sus plantillas de redes. OLAS presenta cinco afiches por fila, en una composición de ancho completo. Orfeo organiza la marca por familias y conserva sus diez fotografías en Multimedia, con flechas y carrusel al ampliar. Todas las piezas originales y las exclusiones de zoom se mantienen. Los clientes no ofrecen descargas y sus visores pausan el fondo.
 
 ## Publicación
 
@@ -22,7 +20,7 @@ Orfeo reúne sus diez fotografías en Multimedia: una vista con flechas dentro d
 - GitHub (privado): https://github.com/santiagobarbieri/portfolio-2026
 - Proyecto de Vercel: `portfolio-2026`. La rama `main` está conectada para publicar automáticamente cada push.
 
-Vercel sirve HTML, CSS, JavaScript y JSON directamente: no hay instalación ni compilación. `.vercelignore` excluye notas internas, el prototipo local BOOKS y el video fuente pendiente de convertir. Los originales de las piezas publicadas se conservan para sus descargas.
+Vercel sirve HTML, CSS, JavaScript y JSON directamente: no hay instalación ni compilación. `.vercelignore` excluye notas internas, el prototipo local BOOKS y el video fuente pendiente de convertir. Los originales se conservan intactos. Las descargas solo están habilitadas en las colecciones personales que las admiten.
 
 ## Vista local
 

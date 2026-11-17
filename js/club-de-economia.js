@@ -1,1 +1,1 @@
-import "./project-case.js";
+import "./project-editorial.js";
