@@ -1,5 +1,10 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## El Armado — prueba editorial exclusiva del 17 de noviembre de 2026
+
+Solo El Armado sigue ahora «El Armado Redo.png»: fondo crema #F2EDE3, wordmark y símbolo vino, lectura vertical normal en dos columnas alternadas. Apertura y afiche final a la izquierda, paleta rectangular y cuatro variantes en 2×2 a la derecha; ilustración con referencias pequeñas al costado. Cada texto queda debajo de su pieza. Sin carpetas, Colapsar ni motor de apilado en este caso. `el-armado.css` y su módulo de entrada son locales; conservar los otros tres proyectos y el Archivo. Albert Sans, Rose antes de revelar, ampliación individual sin descargas y aviso móvil hasta 900px siguen vigentes. Los originales permanecen intactos; la marca vino usa su alfa como máscara CSS. Esta excepción no reemplaza las reglas de carpetas de Club, OLAS ni Orfeo.
+
+
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
 ## Solapas en dos columnas — 16 de noviembre de 2026

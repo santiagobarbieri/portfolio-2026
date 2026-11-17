@@ -1,5 +1,10 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## El Armado — prueba editorial exclusiva del 17 de noviembre de 2026
+
+Solo El Armado sigue ahora «El Armado Redo.png»: fondo crema #F2EDE3, wordmark y símbolo vino, lectura vertical normal en dos columnas alternadas. Apertura y afiche final a la izquierda, paleta rectangular y cuatro variantes en 2×2 a la derecha; ilustración con referencias pequeñas al costado. Cada texto queda debajo de su pieza. Sin carpetas, Colapsar ni motor de apilado en este caso. `el-armado.css` y su módulo de entrada son locales; conservar los otros tres proyectos y el Archivo. Albert Sans, Rose antes de revelar, ampliación individual sin descargas y aviso móvil hasta 900px siguen vigentes. Los originales permanecen intactos; la marca vino usa su alfa como máscara CSS. Esta excepción no reemplaza las reglas de carpetas de Club, OLAS ni Orfeo.
+
+
 Guía para Codex. Define qué es el sitio, cómo se ve, cómo se mueve y cómo se organiza el código. Para crear la página de un proyecto, leer además `MAKE-PROJECT.md`.
 
 ## Solapas en dos columnas — 16 de noviembre de 2026

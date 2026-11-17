@@ -6,11 +6,13 @@ El único home es `index.html`: Archivo, con proyectos intercalados en dos colum
 
 La versión de escritorio es la prioridad de trabajo. Hasta 900px se muestra «Versión móvil en desarrollo.» y una indicación para visitar el sitio desde una computadora. Los módulos interactivos no se inician en la primera carga de esas pantallas; al ampliar la ventana se activa el escritorio con su carga habitual. El aviso existe en HTML/CSS y sigue visible sin JavaScript. El desarrollo de la versión reducida queda pausado.
 
-Las carpetas de los cuatro proyectos muestran todas sus piezas en grillas estáticas, sin desplegables ni scroll interno. El desplazamiento de la página mueve las hojas; las imágenes conservan su zoom individual.
+El Armado prueba una lectura editorial crema en dos columnas alternadas basada en «El Armado Redo.png», con textos debajo de cada pieza, paleta rectangular y cuatro variantes en 2×2. Sus imágenes conservan ampliación individual sin descargas.
+
+Las carpetas de Club de Economía, OLAS y Orfeo muestran todas sus piezas en grillas estáticas, sin desplegables ni scroll interno. El desplazamiento de la página mueve las hojas; las imágenes conservan su zoom individual.
 
 ## Proyectos: apertura y carpetas
 
-Los cuatro casos comparten una apertura de marca, nombre y contexto. Dentro de cada solapa, explicación y referencias van a la izquierda; imágenes y grillas, a la derecha, con una reserva inferior amplia para mantenerlas sobre las siguientes hojas. Cada carpeta toma un color de su identidad; la paleta se presenta sobre gris. La barra fija conserva cierre, proyecto y enlaces oficiales confirmados. El primer toque sobre la pila abre las hojas en orden. Una vez abierta por completo, la pila se mantiene así hasta tocar «Colapsar», junto al logo. Las carpetas tienen siempre borde negro y superficies de color o gris claro; nunca negras.
+Los cuatro casos comparten una apertura de marca, nombre y contexto. Club, OLAS y Orfeo conservan las solapas: explicación y referencias van a la izquierda; imágenes y grillas, a la derecha, con una reserva inferior amplia para mantenerlas sobre las siguientes hojas. Cada carpeta toma un color de su identidad; la paleta se presenta sobre gris. La barra fija conserva cierre, proyecto y enlaces oficiales confirmados. El primer toque sobre la pila abre las hojas en orden. Una vez abierta por completo, la pila se mantiene así hasta tocar «Colapsar», junto al logo. Las carpetas tienen siempre borde negro y superficies de color o gris claro; nunca negras.
 
 Orfeo reúne sus diez fotografías en Multimedia: una vista con flechas dentro de la carpeta y un carrusel amplio al tocar la imagen, sin descargas de assets del cliente. El Archivo utiliza logos o afiches con fondos claros o de color, y descripciones completas acompañadas de disciplina y año.
 

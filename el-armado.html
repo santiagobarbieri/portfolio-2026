@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="dark">
-    <title>El Armado | Identidad</title>
+    <meta name="color-scheme" content="light">
+    <title>
+      El Armado | Identidad
+    </title>
     <meta name="description" content="El recorrido de la identidad de El Armado: paleta, ilustraciones, afiches y pieza final para su segunda edición en La Dama de Bollini.">
-    <meta name="theme-color" content="#360f17">
+    <meta name="theme-color" content="#f2ede3">
     <meta property="og:title" content="El Armado | Identidad">
     <meta property="og:description" content="De las primeras decisiones de color a la pieza final de El Armado. Un proyecto de Santiago Barbieri.">
     <meta property="og:type" content="website">
@@ -14,264 +16,199 @@
     <link rel="icon" href="./assets/favicon-el-armado.svg" type="image/svg+xml">
     <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/images/el-armado-web/marca-863.webp" as="image" type="image/webp">
     <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/shell.css">
     <link rel="stylesheet" href="./css/cursor.css">
     <link rel="stylesheet" href="./css/motion.css">
     <link rel="stylesheet" href="./css/image-zoom.css">
-    <link rel="stylesheet" href="./css/el-armado.css">
-    <link rel="stylesheet" href="./css/project-folders.css">
     <link rel="stylesheet" href="./css/typography.css">
-    <link rel="stylesheet" href="./css/project-identity.css">
+    <link rel="stylesheet" href="./css/el-armado.css">
     <link rel="stylesheet" href="./css/desktop-gate.css">
-    <script src="./js/transitions.js"></script>
-    <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
-    <script type="module" data-desktop-src="./js/el-armado.js"></script>
+    <script src="./js/transitions.js">
+    </script>
+    <script src="./js/desktop-gate.js" defer data-desktop-gate>
+    </script>
+    <script type="module" data-desktop-src="./js/el-armado.js">
+    </script>
   </head>
-  <body class="armado-page identity-project" data-identity="el-armado">
+  <body class="armado-page" data-identity="el-armado">
     <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
-      <span class="mobile-status__logo" aria-hidden="true"></span>
+      <span class="mobile-status__logo" aria-hidden="true">
+      </span>
       <div class="mobile-status__content">
-        <p class="mobile-status__name">Santiago Barbieri · Portfolio</p>
-        <h2 class="mobile-status__title" id="mobile-status-title">Versión móvil en desarrollo.</h2>
-        <p class="mobile-status__description">Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.</p>
+        <p class="mobile-status__name">
+          Santiago Barbieri · Portfolio
+        </p>
+        <h2 class="mobile-status__title" id="mobile-status-title">
+          Versión móvil en desarrollo.
+        </h2>
+        <p class="mobile-status__description">
+          Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.
+        </p>
       </div>
     </section>
     <div class="site-loader" role="status">
-      <span class="site-loader__rose" aria-hidden="true"></span>
-      <span class="site-loader__label visually-hidden">Cargando El Armado</span>
+      <span class="site-loader__rose" aria-hidden="true">
+      </span>
+      <span class="site-loader__label visually-hidden">
+        Cargando El Armado
+      </span>
     </div>
-    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
-    <a class="skip-link" href="#paleta" data-sheet-complete>Ver la ficha completa</a>
-    <header class="armado-shell project-bar">
-      <div class="project-bar__main">
-        <a class="armado-close" data-cursor-action="Volver al archivo" href="./index.html">
+    <a class="skip-link" href="#main-content">
+      Saltar al contenido principal
+    </a>
+    <header class="armado-shell" aria-label="Proyecto El Armado">
+      <div class="armado-shell__main">
+        <a class="armado-close" href="./index.html" data-cursor-action="Volver al archivo">
           <span aria-hidden="true">
             ×
           </span>
           Cerrar
         </a>
-        <span aria-hidden="true" class="project-bar__separator">
+        <span class="armado-shell__separator" aria-hidden="true">
           |
         </span>
-        <p class="project-bar__title">
+        <p>
           El Armado · Identidad visual
         </p>
-        <nav aria-label="Enlaces oficiales de El Armado" class="project-bar__links" data-project-links="">
-          <!-- TODO: incorporar las URLs oficiales confirmadas por Santiago. -->
-        </nav>
+        <!-- TODO: añadir únicamente enlaces oficiales confirmados por Santiago. -->
       </div>
-      <output aria-label="Sección 1 de 5" aria-live="polite" class="armado-remaining visually-hidden" data-remaining="">
-        1/5
-      </output>
-      <div class="project-bar__actions">
-        <button class="project-bar__collapse" type="button" data-folder-collapse aria-label="Colapsar todas las secciones" aria-controls="main-content" hidden>Colapsar</button>
-        <a aria-label="Volver al archivo" class="armado-home" data-cursor-action="Volver al archivo" href="./index.html">
-          <span aria-hidden="true" class="identity__glyph">
-          </span>
-        </a>
-      </div>
+      <a class="armado-home" href="./index.html" aria-label="Volver al archivo" data-cursor-action="Volver al archivo">
+        <span class="identity__glyph" aria-hidden="true">
+        </span>
+      </a>
     </header>
-    <main class="armado-sheet" id="main-content" tabindex="-1" data-sheet>
-      <div class="armado-stage" data-sheet-stage>
-        <header class="armado-chapter armado-intro project-opening" data-section-name="Introducción" data-sheet-section="">
-          <div class="armado-intro__composition project-opening__composition">
-            <button aria-haspopup="dialog" aria-label="Ampliar logotipo de El Armado" class="armado-image-button project-opening__mark" data-zoom-original="assets/images/el-armado/Logo.png" type="button">
-              <img alt="El Armado" fetchpriority="high" height="343" src="./assets/images/el-armado-web/marca-863.webp" width="863">
+    <main class="armado-editorial" id="main-content" tabindex="-1">
+      <header class="armado-intro">
+        <h1 aria-label="El Armado">
+          <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar logotipo de El Armado" data-zoom-original="assets/images/el-armado/Logo.png" data-zoom-alt="El Armado">
+            <span class="armado-wordmark">
+              <img src="./assets/images/el-armado-web/marca-863.webp" width="863" height="343" alt="El Armado" fetchpriority="high">
+            </span>
+          </button>
+        </h1>
+        <p class="armado-intro__context">
+          <strong>
+            Segunda edición · Buenos Aires, 2026
+          </strong>
+        </p>
+        <p class="armado-description">
+          Identidad para un encuentro de karaoke, música en vivo y tragos en La Dama de Bollini. Una marca ilustrada que combina manos, un micrófono y una botella.
+        </p>
+      </header>
+      <section class="armado-section armado-section--palette" id="paleta" aria-labelledby="palette-title">
+        <div class="armado-palette__bars" aria-hidden="true">
+          <span class="armado-colour--wine">
+          </span>
+          <span class="armado-colour--bone">
+          </span>
+          <span class="armado-colour--green">
+          </span>
+          <span class="armado-colour--mauve">
+          </span>
+        </div>
+        <h2 id="palette-title">
+          01 – Paleta cromática
+        </h2>
+        <ul class="armado-palette__legend" aria-label="Colores de la identidad">
+          <li>
+            <span class="armado-colour--wine" aria-hidden="true">
+            </span>
+            Vino
+            <span>
+              #360F17
+            </span>
+          </li>
+          <li>
+            <span class="armado-colour--bone" aria-hidden="true">
+            </span>
+            Hueso
+            <span>
+              #D2DDCC
+            </span>
+          </li>
+          <li>
+            <span class="armado-colour--mauve" aria-hidden="true">
+            </span>
+            Malva
+            <span>
+              #9E6B7A
+            </span>
+          </li>
+          <li>
+            <span class="armado-colour--green" aria-hidden="true">
+            </span>
+            Verde
+            <span>
+              #9AE4A3
+            </span>
+          </li>
+        </ul>
+      </section>
+      <section class="armado-section armado-section--illustration" id="ilustraciones" aria-labelledby="illustrations-title">
+        <div class="armado-illustration__art">
+          <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Manos sosteniendo un micrófono malva y una botella verde" data-zoom-original="assets/images/el-armado/Iconography 1.png" data-zoom-alt="Manos sosteniendo un micrófono malva y una botella verde">
+            <img src="./assets/images/el-armado-web/ilustracion-color-760.webp" width="760" height="754" alt="Manos sosteniendo un micrófono malva y una botella verde" loading="lazy" decoding="async">
+          </button>
+          <div class="armado-references" role="group" aria-label="Referencias de la ilustración">
+            <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Referencia de manos y micrófono" data-zoom-original="assets/images/el-armado/REFERENCIAS 2.png" data-zoom-alt="Referencia de manos y micrófono">
+              <img src="./assets/images/el-armado/REFERENCIAS%202.png" width="222" height="260" alt="Referencia de manos y micrófono" loading="lazy" decoding="async">
             </button>
-            <div class="project-opening__copy">
-              <h1>
-                El Armado
-              </h1>
-              <p class="project-opening__eyebrow">
-                Segunda edición · Buenos Aires, 2026
-              </p>
-              <p class="project-opening__description">
-                Identidad para un encuentro de karaoke, música en vivo y tragos en La Dama de Bollini. Una marca ilustrada que combina manos, un micrófono y una botella.
-              </p>
-            </div>
+            <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Referencia de botella y copas" data-zoom-original="assets/images/el-armado/REFERENCIAS 3.png" data-zoom-alt="Referencia de botella y copas">
+              <img src="./assets/images/el-armado/REFERENCIAS%203.png" width="163" height="204" alt="Referencia de botella y copas" loading="lazy" decoding="async">
+            </button>
           </div>
-        </header>
-        <section aria-labelledby="palette-title" class="armado-chapter folder-section" data-section-name="Paleta" data-sheet-section="" id="paleta">
-          <div class="armado-copy folder-copy" data-sheet-copy="">
-            <h2 id="palette-title">
-              Paleta
-            </h2>
-            <p class="project-folder__lead">
-              Una base bordó constante y tres acentos para esta edición: hueso, malva y verde.
-            </p>
-          </div>
-          <div class="armado-art armado-palette folder-palette folder-art" data-sheet-art="palette">
-            <ul aria-label="Colores de la identidad">
-              <li>
-                <span aria-hidden="true" class="armado-colour armado-colour--wine">
-                </span>
-                <span>
-                  vino
-                  <small>
-                    #360F17
-                  </small>
-                </span>
-              </li>
-              <li>
-                <span aria-hidden="true" class="armado-colour armado-colour--bone">
-                </span>
-                <span>
-                  hueso
-                  <small>
-                    #D2DDCC
-                  </small>
-                </span>
-              </li>
-              <li>
-                <span aria-hidden="true" class="armado-colour armado-colour--mauve">
-                </span>
-                <span>
-                  malva
-                  <small>
-                    #9E6B7A
-                  </small>
-                </span>
-              </li>
-              <li>
-                <span aria-hidden="true" class="armado-colour armado-colour--green">
-                </span>
-                <span>
-                  verde
-                  <small>
-                    #9AE4A3
-                  </small>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section aria-labelledby="illustrations-title" class="armado-chapter folder-section" data-folder-tone="bone" data-section-name="Ilustraciones" data-sheet-section="" id="ilustraciones">
-          <div class="armado-copy folder-copy" data-sheet-copy="">
-            <h2 id="illustrations-title">
-              Ilustraciones
-            </h2>
-            <p class="project-folder__lead">
-              Calco digital en Figma Draw a partir de referencias de manos y micrófono. La botella reemplaza a la copa.
-            </p>
-            <div aria-label="Referencias" class="folder-references">
-              <figure class="folder-piece" data-piece-role="reference">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar referencia de manos y micrófono" class="armado-image-button" data-zoom-original="assets/images/el-armado/REFERENCIAS 2.png" type="button">
-                    <img alt="Referencia gráfica: afiche de karaoke con manos y micrófono" decoding="async" height="260" loading="lazy" src="./assets/images/el-armado/REFERENCIAS%202.png" width="222">
-                  </button>
-                </div>
-                <figcaption title="Manos y micrófono">
-                  Manos y micrófono
-                </figcaption>
-              </figure>
-              <figure class="folder-piece" data-piece-role="reference">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar referencia de botella y copas" class="armado-image-button" data-zoom-original="assets/images/el-armado/REFERENCIAS 3.png" type="button">
-                    <img alt="Referencia de una botella y copas dibujadas a mano" decoding="async" height="204" loading="lazy" src="./assets/images/el-armado/REFERENCIAS%203.png" width="163">
-                  </button>
-                </div>
-                <figcaption title="Botella y copas">
-                  Botella y copas
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-          <div class="folder-board folder-art" data-board-kind="single" data-sheet-art="illustration">
-            <div class="folder-board__grid">
-              <figure class="folder-piece" data-piece-role="primary">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar ilustración de El Armado" class="armado-image-button" data-zoom-original="assets/images/el-armado/Iconography 1.png" type="button">
-                    <img alt="Manos sosteniendo un micrófono malva y una botella verde" decoding="async" height="754" loading="lazy" src="./assets/images/el-armado-web/ilustracion-color-760.webp" width="760">
-                  </button>
-                </div>
-                <figcaption title="Ilustración">
-                  Ilustración
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-        <section aria-labelledby="posters-title" class="armado-chapter folder-section" data-folder-tone="mauve" data-section-name="Afiches" data-sheet-section="" id="afiches">
-          <div class="armado-copy folder-copy" data-sheet-copy="">
-            <h2 id="posters-title">
-              Afiches
-            </h2>
-            <p class="project-folder__lead">
-              Cuatro pruebas de color para ajustar el contraste y la jerarquía del afiche.
-            </p>
-          </div>
-          <div class="folder-board folder-art" data-board-kind="posters" data-sheet-art="posters">
-            <div class="folder-board__grid">
-              <figure class="folder-piece" data-piece-role="primary">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar variante de afiche en tonos ocres" class="armado-image-button" data-zoom-original="assets/images/el-armado/VARIANTES 2.png" type="button">
-                    <img alt="Variante de afiche en tonos ocres y fondo vino" decoding="async" height="401" loading="lazy" src="./assets/images/el-armado/VARIANTES%202.png" width="284">
-                  </button>
-                </div>
-                <figcaption title="Tonos ocres">
-                  Tonos ocres
-                </figcaption>
-              </figure>
-              <figure class="folder-piece" data-piece-role="primary">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar variante de afiche azul y rosa" class="armado-image-button" data-zoom-original="assets/images/el-armado/VARIANTES 5.png" type="button">
-                    <img alt="Variante de afiche azul y rosa sobre blanco" decoding="async" height="401" loading="lazy" src="./assets/images/el-armado/VARIANTES%205.png" width="283">
-                  </button>
-                </div>
-                <figcaption title="Azul y rosa">
-                  Azul y rosa
-                </figcaption>
-              </figure>
-              <figure class="folder-piece" data-piece-role="primary">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar variante de afiche naranja y verde" class="armado-image-button" data-zoom-original="assets/images/el-armado/VARIANTES 4.png" type="button">
-                    <img alt="Variante de afiche naranja y verde sobre blanco" decoding="async" height="401" loading="lazy" src="./assets/images/el-armado/VARIANTES%204.png" width="284">
-                  </button>
-                </div>
-                <figcaption title="Naranja y verde">
-                  Naranja y verde
-                </figcaption>
-              </figure>
-              <figure class="folder-piece" data-piece-role="primary">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar variante de afiche con manos naranjas" class="armado-image-button" data-zoom-original="assets/images/el-armado/VARIANTES 1.png" type="button">
-                    <img alt="Variante de afiche con manos naranjas sobre blanco" decoding="async" height="401" loading="lazy" src="./assets/images/el-armado/VARIANTES%201.png" width="284">
-                  </button>
-                </div>
-                <figcaption title="Manos naranjas">
-                  Manos naranjas
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-        <section aria-labelledby="final-title" class="armado-chapter folder-section" data-folder-tone="bone" data-section-name="Entrega final" data-sheet-section="" id="entrega-final">
-          <div class="armado-copy folder-copy" data-sheet-copy="">
-            <h2 id="final-title">
-              Entrega final
-            </h2>
-            <p class="project-folder__lead">
-              La versión final reúne marca, ilustración y datos de la segunda edición.
-            </p>
-          </div>
-          <div class="folder-board folder-art" data-board-kind="posters" data-sheet-art="posters">
-            <div class="folder-board__grid">
-              <figure class="folder-piece" data-piece-role="primary">
-                <div class="folder-piece__visual">
-                  <button aria-haspopup="dialog" aria-label="Ampliar afiche final de El Armado" class="armado-image-button" data-zoom-original="assets/images/el-armado/FLYER A4 - EL ARMADO.png" type="button">
-                    <img alt="Afiche final de El Armado con logotipo, ilustración y datos de la segunda edición" decoding="async" height="707" loading="lazy" src="./assets/images/el-armado-web/afiche-500.webp" width="500">
-                  </button>
-                </div>
-                <figcaption title="Afiche final · Segunda edición">
-                  Afiche final · Segunda edición
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+        <h2 id="illustrations-title">
+          02 – Ilustración
+        </h2>
+        <p class="armado-description">
+          Calco digital en Figma Draw a partir de referencias de manos y micrófono. La botella reemplaza a la copa.
+        </p>
+      </section>
+      <section class="armado-section armado-section--variants" id="afiches" aria-labelledby="posters-title">
+        <ul class="armado-variants" aria-label="Cuatro variantes descartadas de afiche">
+          <li>
+            <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Variante de afiche en tonos ocres y fondo vino" data-zoom-original="assets/images/el-armado/VARIANTES 2.png" data-zoom-alt="Variante de afiche en tonos ocres y fondo vino">
+              <img src="./assets/images/el-armado/VARIANTES%202.png" width="284" height="401" alt="Variante de afiche en tonos ocres y fondo vino" loading="lazy" decoding="async">
+            </button>
+          </li>
+          <li>
+            <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Variante de afiche azul y rosa sobre blanco" data-zoom-original="assets/images/el-armado/VARIANTES 5.png" data-zoom-alt="Variante de afiche azul y rosa sobre blanco">
+              <img src="./assets/images/el-armado/VARIANTES%205.png" width="283" height="401" alt="Variante de afiche azul y rosa sobre blanco" loading="lazy" decoding="async">
+            </button>
+          </li>
+          <li>
+            <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Variante de afiche naranja y verde sobre blanco" data-zoom-original="assets/images/el-armado/VARIANTES 4.png" data-zoom-alt="Variante de afiche naranja y verde sobre blanco">
+              <img src="./assets/images/el-armado/VARIANTES%204.png" width="284" height="401" alt="Variante de afiche naranja y verde sobre blanco" loading="lazy" decoding="async">
+            </button>
+          </li>
+          <li>
+            <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Variante de afiche con manos naranjas sobre blanco" data-zoom-original="assets/images/el-armado/VARIANTES 1.png" data-zoom-alt="Variante de afiche con manos naranjas sobre blanco">
+              <img src="./assets/images/el-armado/VARIANTES%201.png" width="284" height="401" alt="Variante de afiche con manos naranjas sobre blanco" loading="lazy" decoding="async">
+            </button>
+          </li>
+        </ul>
+        <h2 id="posters-title">
+          03 – Variantes descartadas
+        </h2>
+        <p class="armado-description">
+          Realizamos cuatro pruebas de color para ajustar el contraste y la jerarquía del afiche.
+        </p>
+      </section>
+      <section class="armado-section armado-section--final" id="entrega-final" aria-labelledby="final-title">
+        <button class="armado-image" type="button" aria-haspopup="dialog" aria-label="Ampliar Afiche final de El Armado, segunda edición" data-zoom-original="assets/images/el-armado/FLYER A4 - EL ARMADO.png" data-zoom-alt="Afiche final de El Armado, segunda edición">
+          <img src="./assets/images/el-armado-web/afiche-1000.webp" width="1000" height="1415" alt="Afiche final de El Armado, segunda edición" loading="lazy" decoding="async" srcset="./assets/images/el-armado-web/afiche-500.webp 500w, ./assets/images/el-armado-web/afiche-1000.webp 1000w" sizes="(min-width: 934px) 400px, calc((100vw - 134px) / 2)">
+        </button>
+        <h2 id="final-title">
+          04 – Afiche final
+        </h2>
+        <p class="armado-description">
+          La versión final reúne marca, ilustración y datos de la segunda edición.
+        </p>
+      </section>
     </main>
   </body>
 </html>
