@@ -21,7 +21,7 @@
 .armado-editorial { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px 70px; width: min(870px, calc(100% - 64px)); margin: clamp(180px, 15.807vw, 240px) auto 0; padding-bottom: 207px; }
 .armado-editorial > * { min-width: 0; }
 .armado-intro { grid-column: 1; }
-.armado-intro h1 { margin: 0; line-height: 0; }
+.armado-intro__mark { margin: 0; line-height: 0; }
 .armado-intro__context { margin-top: 18px; font-size: 16px; line-height: 1.25; }
 .armado-description { max-width: 310px; margin-top: 2px; font-size: 12px; line-height: 1.1; }
 .armado-image { display: block; width: 100%; padding: 0; text-align: left; --interaction-scale: 1; --interaction-origin: center; }
@@ -53,7 +53,6 @@
 .armado-variants .armado-image { aspect-ratio: 284 / 401; }
 .armado-variants img { width: 100%; height: 100%; object-fit: contain; }
 .armado-section--final { grid-column: 1; grid-row: 5; margin-top: -122px; }
-.armado-page .image-zoom :focus-visible { outline-color: #f1ece0; }
 
 @media (hover: hover) and (pointer: fine) {
   .armado-image:hover img { scale: 1.015; }
@@ -63,4 +62,21 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .armado-page *, .armado-page *::before { transition: none !important; }
+}
+
+/* The static editorial layout remains the measurement source and no-JS fallback. */
+.armado-editorial--loop { display: block; padding-bottom: 0; overflow-anchor: none; --armado-column: calc((100% - 70px) / 2); }
+.armado-loop-stream { position: relative; overflow-anchor: none; }
+.armado-editorial.armado-loop-measure { position: absolute; top: 0; left: -10000px; width: var(--armado-measure-width); margin: 0; padding: 0; visibility: hidden; pointer-events: none; }
+.armado-loop-row { position: relative; height: var(--armado-advance); pointer-events: none; overflow-anchor: none; }
+.armado-loop-card { position: relative; width: var(--armado-column); pointer-events: auto; }
+.armado-loop-card--right { margin-left: calc((100% + 70px) / 2); }
+.armado-loop-card .armado-motion { width: 100%; margin: 0; }
+.armado-loop-card--right .armado-references { right: 100%; left: auto; }
+.armado-loop-card .archive-card__link--moving { transform: translate3d(0, clamp(calc(0px - var(--armado-drift-limit, 24px)), var(--archive-drift, 0px), var(--armado-drift-limit, 24px)), 0); }
+.armado-loop-measure { position: absolute; top: 0; left: -10000px; width: var(--armado-measure-width); margin: 0; padding: 0; visibility: hidden; pointer-events: none; }
+.armado-editorial :is(h2, .armado-intro__context) { transform-origin: left center; transition: scale var(--interaction-duration) var(--ease); }
+.armado-editorial :is(.armado-intro, .armado-section):has(.armado-image:focus-visible) :is(h2, .armado-intro__context) { scale: var(--hover-control-scale); }
+@media (hover: hover) and (pointer: fine) {
+  .armado-editorial :is(.armado-intro, .armado-section):has(.armado-image:hover) :is(h2, .armado-intro__context) { scale: var(--hover-control-scale); }
 }

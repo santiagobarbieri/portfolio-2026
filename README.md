@@ -6,7 +6,7 @@ El único home es `index.html`: Archivo, con proyectos intercalados en dos colum
 
 La versión de escritorio es la prioridad de trabajo. Hasta 900px se muestra «Versión móvil en desarrollo.» y una indicación para visitar el sitio desde una computadora. Los módulos interactivos no se inician en la primera carga de esas pantallas; al ampliar la ventana se activa el escritorio con su carga habitual. El aviso existe en HTML/CSS y sigue visible sin JavaScript. El desarrollo de la versión reducida queda pausado.
 
-El Armado prueba una lectura editorial crema en dos columnas alternadas basada en «El Armado Redo.png», con textos debajo de cada pieza, paleta rectangular y cuatro variantes en 2×2. Sus imágenes conservan ampliación individual sin descargas.
+El Armado prueba una lectura editorial crema en dos columnas alternadas basada en «El Armado Redo.png», con textos debajo de cada pieza, paleta rectangular y cuatro variantes en 2×2. El recorrido se repite en ambos sentidos mediante reciclaje fuera de pantalla, con el scroll suave y la física del Archivo aplicada al conjunto imagen y texto. Sus imágenes conservan ampliación individual sin descargas y el visor pausa el fondo.
 
 Las carpetas de Club de Economía, OLAS y Orfeo muestran todas sus piezas en grillas estáticas, sin desplegables ni scroll interno. El desplazamiento de la página mueve las hojas; las imágenes conservan su zoom individual.
 
