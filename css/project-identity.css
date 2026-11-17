@@ -1,5 +1,5 @@
 /* Shared opening and fixed navigation; project colours remain local. */
-.identity-project[data-identity="el-armado"] { --project-symbol: #9e6b7a; }
+.identity-project[data-identity="el-armado"] { --project-symbol: #d2ddcc; }
 .identity-project[data-identity="club-de-economia"] { --project-symbol: #42aebd; }
 .identity-project[data-identity="olas-ditella"] { --project-symbol: #9fddbd; }
 .identity-project[data-identity="orfeo"] { --project-symbol: #394a1c; }
@@ -33,8 +33,6 @@
 .identity-project [data-folder-tone] .project-folder:not(.project-folder--palette) { --folder-surface: var(--sheet-bg); --bg: var(--sheet-bg); --fg: var(--sheet-fg); --mute: var(--sheet-fg); }
 [data-identity="el-armado"] [data-folder-tone="bone"] { --sheet-bg: #d2ddcc; --sheet-fg: #360f17; }
 [data-identity="el-armado"] [data-folder-tone="mauve"] { --sheet-bg: #9e6b7a; --sheet-fg: #140307; }
-[data-identity="el-armado"] [data-folder-tone="green"] { --sheet-bg: #9ae4a3; --sheet-fg: #360f17; }
-[data-identity="club-de-economia"] [data-folder-tone="cyan"] { --sheet-bg: #42aebd; --sheet-fg: #061014; }
 [data-identity="club-de-economia"] [data-folder-tone="light-grey"] { --sheet-bg: #d9d9d9; --sheet-fg: #111; }
 [data-identity="olas-ditella"] [data-folder-tone="mint"] { --sheet-bg: #9fddbd; --sheet-fg: #175055; }
 [data-identity="olas-ditella"] [data-folder-tone="deep-green"] { --sheet-bg: #175055; --sheet-fg: #fbfdfd; }
@@ -64,3 +62,8 @@
 .project-bar__actions { display: flex; align-items: center; gap: 20px; flex: none; }
 .project-bar__collapse { display: inline-flex; align-items: center; min-height: 44px; padding: 0; font-size: 12px; font-weight: 600; pointer-events: auto; }
 .project-bar__collapse[hidden] { display: none; }
+
+/* Quiet surfaces for Club; its cyan remains in the artwork and symbol. */
+[data-identity="club-de-economia"] [data-folder-tone="paper"] { --sheet-bg: #e8e8e8; --sheet-fg: #111; }
+[data-identity="club-de-economia"] [data-folder-tone="mist"] { --sheet-bg: #f1f1f1; --sheet-fg: #111; }
+[data-identity="club-de-economia"] [data-folder-tone="silver"] { --sheet-bg: #dedede; --sheet-fg: #111; }

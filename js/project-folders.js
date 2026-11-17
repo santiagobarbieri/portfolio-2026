@@ -79,6 +79,7 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     stage.style.removeProperty("--folder-height");
     stage.style.removeProperty("--folder-stack-clearance");
     stage.style.removeProperty("--folder-hero-limit");
+    stage.style.removeProperty("--folder-bottom-gap");
     for (const record of records) {
       record.content.inert = false;
       record.section.replaceChildren(...record.original);
@@ -87,6 +88,12 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
   }
 
   function fitBoard(record) {
+    const references = record.content.querySelector(".folder-references");
+    if (references) {
+      const bottom = record.content.getBoundingClientRect().bottom - parseFloat(getComputedStyle(record.content).paddingBottom);
+      const available = bottom - references.getBoundingClientRect().top;
+      references.style.setProperty("--reference-height", `${Math.max(32, Math.min(148, available))}px`);
+    }
     const palette = record.content.querySelector(".folder-palette");
     if (palette) {
       const list = palette.querySelector("ul");
@@ -101,7 +108,6 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     if (!board || board.matches("[data-multimedia]")) return;
     const grid = board.querySelector(".folder-board__grid");
     const pieces = [...grid.children];
-    if (board.dataset.boardKind === "illustration") return;
     const width = grid.clientWidth;
     const height = grid.clientHeight;
     const gap = innerHeight < 500 ? 6 : innerWidth < 768 ? 10 : 20;
@@ -144,6 +150,8 @@ export function createFolderStack({ stage, chapters, motion, isZoomOpen = () => 
     stage.style.setProperty("--folder-height", `${panelHeight}px`);
     stage.style.setProperty("--folder-stack-clearance", `${(records.length - 1) * step + 4}px`);
     stage.style.setProperty("--folder-hero-limit", `${peek}px`);
+    // Keep the last row above the next parked sheet, with an extra clear strip.
+    stage.style.setProperty("--folder-bottom-gap", `${Math.max(80, reserve - records.length * step + 10)}px`);
     const left = width < 640 ? 8 : Math.min(64, width * .0423);
     const slant = width < 640 ? 16 : 28;
     const slot = Math.min(150, (width - left * 2 - slant) / records.length);

@@ -10,7 +10,7 @@ Las carpetas de los cuatro proyectos muestran todas sus piezas en grillas estát
 
 ## Proyectos: apertura y carpetas
 
-Los cuatro casos comparten una apertura de marca, nombre y contexto. Cada carpeta toma un color de su identidad; la paleta se presenta sobre gris. La barra fija conserva cierre, proyecto y enlaces oficiales confirmados. El primer toque sobre la pila abre las hojas en orden. Una vez abierta por completo, la pila se mantiene así hasta tocar «Colapsar», junto al logo. Las carpetas tienen siempre borde negro y superficies de color o gris claro; nunca negras.
+Los cuatro casos comparten una apertura de marca, nombre y contexto. Dentro de cada solapa, explicación y referencias van a la izquierda; imágenes y grillas, a la derecha, con una reserva inferior amplia para mantenerlas sobre las siguientes hojas. Cada carpeta toma un color de su identidad; la paleta se presenta sobre gris. La barra fija conserva cierre, proyecto y enlaces oficiales confirmados. El primer toque sobre la pila abre las hojas en orden. Una vez abierta por completo, la pila se mantiene así hasta tocar «Colapsar», junto al logo. Las carpetas tienen siempre borde negro y superficies de color o gris claro; nunca negras.
 
 Orfeo reúne sus diez fotografías en Multimedia: una vista con flechas dentro de la carpeta y un carrusel amplio al tocar la imagen, sin descargas de assets del cliente. El Archivo utiliza logos o afiches con fondos claros o de color, y descripciones completas acompañadas de disciplina y año.
 

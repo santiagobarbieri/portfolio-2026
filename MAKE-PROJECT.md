@@ -2,6 +2,14 @@
 
 Instrucciones para Codex. Santi sube las imágenes de un proyecto a `assets/images/<slug>/` y te pide: *"armá el proyecto `<slug>`"*. Tu trabajo es leer esa carpeta, generar el JSON del proyecto y registrarlo. Los casos existentes usan `project.html` desde su JSON. La dirección posterior de Santi autoriza páginas autónomas: El Armado es el primer piloto, en `el-armado.html`. No convertir los otros casos automáticamente. Lee primero `AGENTS.md` (diseño, componentes, movimiento).
 
+## Solapas en dos columnas — 16 de noviembre de 2026
+
+Cada solapa de escritorio tiene explicación a la izquierda y piezas principales a la derecha. `.folder-copy` reúne título, texto, enlaces confirmados, notas de paleta y referencias pequeñas; `.folder-art` reúne la imagen principal, la grilla o Multimedia. Las referencias se mantienen dentro de la columna izquierda y conservan su escala y ampliación. No volver a una cabecera horizontal de ancho completo.
+
+El área de contenido reserva una franja inferior amplia, calculada según el viewport y las carpetas estacionadas. Ninguna pieza, caption o control debe quedar bajo la siguiente hoja cerrada. Ajustar las grillas al área real; no recortar contenido, agregar scroll interno ni ocultarlo por progreso. Mantener Colapsar como única acción para cerrar la pila completa y los bordes siempre negros.
+
+Club usa superficies en escala de grises. La entrega final de El Armado usa hueso, y su símbolo pequeño y favicon también son hueso. Evitar repetir fondos de acento intensos; conservar los colores originales de las piezas y de las muestras de paleta. Se retiraron los créditos personales visibles de Orfeo por indicación de Santi; no reinsertarlos ni convertir la omisión en una atribución de toda la marca a Santiago. El desarrollo móvil continúa pausado.
+
 ## Cierre explícito de carpetas — 16 de noviembre de 2026
 
 Una vez que toda la pila se abrió —con scroll o al tocar una solapa— queda abierta. La rueda, Home/End y volver hacia arriba no cierran el conjunto. «Colapsar» aparece arriba junto al logo y es la única acción que devuelve todas las carpetas a la apertura. Las solapas siguen intercambiándose en su lugar. Mantener el estado al redimensionar y al cerrar un visor, sin reanudar el scroll de fondo mientras la pila esté abierta. Con movimiento reducido o sin JS se conserva la lectura normal. El borde SVG de todas las carpetas es siempre negro (#000), independientemente de su superficie o texto.
