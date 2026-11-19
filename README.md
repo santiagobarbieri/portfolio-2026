@@ -6,13 +6,13 @@ El único home es `index.html`: Archivo, con proyectos intercalados en dos colum
 
 La versión de escritorio es la prioridad de trabajo. Hasta 900px se muestra «Versión móvil en desarrollo.» y una indicación para visitar el sitio desde una computadora. Los módulos interactivos no se inician en la primera carga de esas pantallas; al ampliar la ventana se activa el escritorio con su carga habitual. El aviso existe en HTML/CSS y sigue visible sin JavaScript. El desarrollo de la versión reducida queda pausado.
 
-El Armado, Club de Economía, OLAS y Orfeo comparten la lectura editorial: piezas en dos columnas alternadas, textos debajo y un loop continuo en ambos sentidos. «Fin del recorrido» señala el cierre antes de volver al comienzo. No hay una barra de fondo en la cabecera: los controles flotan sobre el contenido.
+El Armado, Club de Economía, OLAS y Orfeo comparten la lectura editorial: piezas en dos columnas alternadas, textos debajo y un loop continuo en ambos sentidos. «Fin del recorrido» señala el cierre antes de volver al comienzo. No hay una barra de fondo en la cabecera: los controles flotan sobre el contenido. Todos los bloques, incluido el cierre, respetan las dos columnas. Las referencias permanecen dentro de su columna y las imágenes se ajustan a su celda sin tapar captions.
 
 ## Presentación de los proyectos actuales
 
 `project-editorial.css`, `project-editorial.js` y `project-editorial-loop.js` comparten la composición y el movimiento del Archivo. El reciclaje ocurre fuera de pantalla, conserva el foco y mantiene una sola representación accesible por bloque. Sin JavaScript queda la ficha completa; con movimiento reducido, el loop usa scroll nativo y no aplica resortes.
 
-El Armado conserva la referencia crema/vino y variantes 2×2. Club usa gris y distingue sus plantillas de redes. OLAS presenta cinco afiches por fila, en una composición de ancho completo. Orfeo organiza la marca por familias y conserva sus diez fotografías en Multimedia, con flechas y carrusel al ampliar. Todas las piezas originales y las exclusiones de zoom se mantienen. Los clientes no ofrecen descargas y sus visores pausan el fondo.
+El Armado conserva la referencia crema/vino y variantes 2×2. Club usa gris y distingue sus plantillas de redes. OLAS presenta cuatro afiches en 2×2 dentro de su columna. Orfeo organiza la marca por familias y conserva sus diez fotografías en Multimedia, con flechas y carrusel al ampliar. Todas las piezas originales y las exclusiones de zoom se mantienen. Los clientes no ofrecen descargas y sus visores pausan el fondo.
 
 ## Publicación
 

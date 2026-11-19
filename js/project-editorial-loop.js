@@ -60,41 +60,23 @@ export function createEditorialLoop({ main, motion, physics }) {
     const rects = blocks.map((block) => block.getBoundingClientRect());
     const origins = [];
     const extent = [];
+    const columns = templates.map((template) => template.dataset.editorialSide === "right" ? 1 : 0);
     for (let index = 0; index < blocks.length; index++) {
-      const block = blocks[index];
-      const wide = templates[index].hasAttribute("data-editorial-wide");
+      const visual = blocks[index].querySelector("[data-editorial-visual]");
+      const height = rects[index].height;
+      const advance = visual ? visual.getBoundingClientRect().height + (index === 0 ? 140 : 40) : height + 128;
       let y = index ? origins[index - 1] + extent[index - 1].advance : 0;
-      if (index) {
-        // Full-width pieces and the restart clear both columns; regular pieces clear their own.
-        const precedingWide = templates[index - 1].hasAttribute("data-editorial-wide");
-        if (wide) y = Math.max(y, ...origins.map((origin, n) => origin + rects[n].height + (keys[index] === "restart" ? 128 : 80)));
-        else if (precedingWide) y = Math.max(y, origins[index - 1] + rects[index - 1].height + 96);
-        else for (let n = 0; n < index; n++) {
-          if (n % 2 === index % 2 || templates[n].hasAttribute("data-editorial-wide")) y = Math.max(y, origins[n] + rects[n].height + 80);
-        }
+      for (let n = 0; n < index; n++) {
+        // Reserve the complete caption and notes, plus room for both cards' springs.
+        if (columns[n] === columns[index]) y = Math.max(y, origins[n] + rects[n].height + 96);
+        // A quiet end separates complete cycles while staying inside one column.
+        if (keys[index] === "restart") y = Math.max(y, origins[n] + rects[n].height + 128);
       }
       origins.push(y);
-      const visual = block.querySelector("[data-editorial-visual]");
-      let advance = visual ? visual.getBoundingClientRect().height + (index === 0 ? 140 : 40) : rects[index].height + 128;
-      if (main.hasAttribute("data-editorial-model") && index < blocks.length - 1) advance = rects[index + 1].top - rects[index].top;
-      extent.push({ advance: Math.max(140, advance), height: rects[index].height });
+      extent.push({ advance: Math.max(140, advance), height });
     }
     metrics = extent.map((item, index) => ({ ...item, advance: index < extent.length - 1 ? origins[index + 1] - origins[index] : item.advance }));
-    const refs = bank.querySelector(".editorial-references");
-    let clearance = 80;
-    if (refs) {
-      const ref = refs.getBoundingClientRect();
-      const own = blocks.findIndex((block) => block.contains(refs));
-      const refTop = origins[own] + ref.top - rects[own].top;
-      const refBottom = refTop + ref.height;
-      rects.forEach((rect, index) => {
-        if (index === own || rect.left >= ref.right || rect.right <= ref.left) return;
-        const end = origins[index] + rect.height;
-        const gap = end <= refTop ? refTop - end : origins[index] >= refBottom ? origins[index] - refBottom : 0;
-        clearance = Math.min(clearance, gap);
-      });
-    }
-    main.style.setProperty("--editorial-drift-limit", `${Math.max(0, Math.min(32, (clearance - 16) / 2))}px`);
+    main.style.setProperty("--editorial-drift-limit", "32px");
     bank.remove();
     width = innerWidth;
   }
@@ -175,8 +157,8 @@ export function createEditorialLoop({ main, motion, physics }) {
       }
     });
     identify(copy, `loop-${sequence < 0 ? "m" + -sequence : sequence}`);
-    const wide = templates[index].hasAttribute("data-editorial-wide");
-    card.className = `editorial-loop-card${wide ? " editorial-loop-card--wide" : index % 2 ? " editorial-loop-card--right" : ""}`;
+    const right = templates[index].dataset.editorialSide === "right";
+    card.className = `editorial-loop-card${right ? " editorial-loop-card--right" : ""}`;
     card.dataset.kind = key;
     card.dataset.slug = `${slug}-${key}`;
     row.style.setProperty("--editorial-advance", `${metrics[index].advance}px`);

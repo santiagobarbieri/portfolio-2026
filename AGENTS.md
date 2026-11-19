@@ -1,12 +1,18 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Corrección de grilla y solapamientos — 19 de noviembre de 2026
+
+Mantener siempre las dos columnas exteriores, también en afiches y en «Fin del recorrido». Ningún bloque puede ocupar ambas. OLAS muestra cuatro afiches (1, 2, 3 y 5) en una grilla 2×2 dentro de su columna; el 4 se omite por redundancia editorial y su archivo original se conserva.
+
+Las imágenes, botones, captions y referencias deben caber en sus celdas reales: tracks `minmax(0,1fr)` y mínimos cero impiden que el tamaño intrínseco de las imágenes invada textos o filas. Las referencias de El Armado se mantienen dentro de su propia columna, al costado de la ilustración. Medir las alturas completas, con captions/notas, y reservar separación para la física y el hover. El cierre separa todas las piezas antes del siguiente inicio, conservando ancho de una columna. Auditar hijos y captions, además de los contenedores, en múltiples tamaños y con el loop en ambas direcciones.
+
 ## Dirección vigente — recorrido editorial de clientes · 17 de noviembre de 2026
 
 Santi autorizó extender la prueba de «El Armado Redo.png» a Club de Economía, OLAS y Orfeo. Esta dirección reemplaza las instrucciones anteriores de carpetas, apilado y Colapsar para esos cuatro casos. Las piezas se leen de arriba hacia abajo en dos columnas alternadas, con títulos y textos debajo. `project-editorial.css`, `project-editorial.js` y `project-editorial-loop.js` comparten presentación, carga y reciclaje. No modificar el loop del Archivo ni los originales para esta adaptación.
 
 - El recorrido termina con «Fin del recorrido», el nombre del caso y «Volvemos al inicio», con espacio antes de la siguiente apertura. El marcador no tiene franja de fondo ni detiene el loop. Cada vuelta conserva la composición; la apertura comienza a la izquierda.
 - La cabecera es transparente: Cerrar, nombre/objetivo y símbolo pequeño flotan sobre el recorrido, sin barra opaca que tape imágenes. Solo usar enlaces oficiales confirmados.
-- El Armado conserva la referencia crema/vino y variantes 2×2. Club usa gris y sus piezas originales, con la aclaración de que las piezas de redes son plantillas. OLAS reúne sus cinco afiches en una fila de ancho completo. Orfeo mantiene Multimedia con diez fotos y separa sellos, ornamentos y estampillas por familias.
+- El Armado conserva la referencia crema/vino y variantes 2×2. Club usa gris y sus piezas originales, con la aclaración de que las piezas de redes son plantillas. OLAS reúne cuatro afiches en 2×2 dentro de una sola columna. Orfeo mantiene Multimedia con diez fotos y separa sellos, ornamentos y estampillas por familias.
 - Conservar fuentes, paletas y notas sobre valores muestreados. No reinsertar nombres personales retirados de Orfeo ni atribuir toda su identidad a Santiago. No inventar cuentas o créditos.
 - Reutilizar scroll suave y física del Archivo, con límites según los espacios reales. Reciclar solo fuera de pantalla con compensación exacta; mantener un h1, IDs únicos, una representación accesible por bloque y foco estable. El visor pausa el fondo. Sin JavaScript, la ficha completa sigue en HTML; movimiento reducido conserva el loop sin resortes.
 - Ampliación individual limitada por resolución, sin descargas de assets de clientes. Solo Multimedia de Orfeo usa el carrusel sin descargas. El aviso móvil hasta 900px y Rose antes de revelar el contenido siguen vigentes.
