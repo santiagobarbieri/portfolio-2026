@@ -43,11 +43,11 @@
 .personal-archive__meta { grid-column: 1; grid-row: 2; min-width: 0; color: var(--mute); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
 .personal-archive__download { grid-column: 2; grid-row: 1 / span 2; align-self: start; min-height: 32px; display: inline-flex; align-items: flex-start; padding-top: 2px; font-size: 11px; --interaction-origin: right top; }
 .personal-archive-page[data-columns="4"] .personal-archive__caption,
-.personal-archive-page[data-columns="6"] .personal-archive__caption { display: flex; flex-direction: column; gap: 5px; padding-top: 10px; }
+.personal-archive-page[data-columns="6"] .personal-archive__caption { display: flex; flex-direction: column; gap: 3px; padding-top: 8px; }
 .personal-archive-page[data-columns="4"] .personal-archive__name,
 .personal-archive-page[data-columns="6"] .personal-archive__name { font-size: 12px; }
 .personal-archive-page[data-columns="4"] .personal-archive__download,
-.personal-archive-page[data-columns="6"] .personal-archive__download { align-self: flex-start; --interaction-origin: left top; }
+.personal-archive-page[data-columns="6"] .personal-archive__download { align-self: flex-start; min-height: 24px; padding-top: 0; --interaction-origin: left top; }
 .personal-archive__measure { position: absolute; left: -10000px; top: 0; width: 100%; visibility: hidden; pointer-events: none; }
 .personal-archive__measure .personal-archive__cell { margin-left: 0; }
 .personal-archive__empty { max-width: 100%; padding: 96px 0; color: var(--mute); font-size: 14px; }

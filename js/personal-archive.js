@@ -84,7 +84,7 @@ async function initArchive() {
 
   function reveal(image) {
     if (image.dataset.requested) return;
-    image.dataset.requested = "";
+    image.dataset.requested = "true";
     const item = selected[Number(image.dataset.preview)];
     if (!item) return;
     const media = image.parentElement;
@@ -106,7 +106,8 @@ async function initArchive() {
     const index = modulo(sequence, selected.length), item = selected[index];
     const card = element("article", "personal-archive__cell");
     Object.assign(card.dataset, { itemSequence: sequence, itemId: item.id, slug: item.id });
-    const lane = modulo(sequence, columns), split = columns / 2;
+    const lane = measuring || columns === 2 ? modulo(sequence, columns) : metric(sequence).lane;
+    const split = columns / 2;
     const x = Math.floor(lane / split) * (half + gap) + (lane % split) * (tile + (split > 1 ? 16 : 0));
     card.style.setProperty("--piece-left", `${measuring ? 0 : x}px`);
     const body = element("div", "personal-archive__motion archive-card__link");
@@ -138,17 +139,45 @@ async function initArchive() {
     bank.setAttribute("aria-hidden", "true"); bank.inert = true;
     selected.forEach((_, index) => bank.append(makeCard(index, true)));
     main.append(bank);
-    metrics = [...bank.children].map((card, index) => ({
-      height: card.getBoundingClientRect().height,
-      advance: Math.max(28, tile * selected[index].h / selected[index].w / (columns - 1)),
-    }));
-    // Every same-lane successor clears the entire image, caption and hover allowance.
-    // Increasing an advance only improves the other cyclic constraints.
-    metrics.forEach((item, index) => {
-      let span = 0;
-      for (let n = 0; n < columns; n++) span += metrics[(index + n) % metrics.length].advance;
-      item.advance += Math.max(0, item.height + 80 - span);
-    });
+    const heights = [...bank.children].map((card) => card.getBoundingClientRect().height);
+    if (columns === 2) {
+      // Preserve the original alternating two-column walk.
+      metrics = heights.map((height, index) => ({
+        height,
+        advance: Math.max(28, tile * selected[index].h / selected[index].w),
+      }));
+      metrics.forEach((item, index) => {
+        const span = item.advance + metrics[(index + 1) % metrics.length].advance;
+        item.advance += Math.max(0, item.height + 80 - span);
+      });
+    } else {
+      // Each lane owns its own bottom; another lane never waits for it.
+      // Three catalogue turns keep the small cycle-closing gutter infrequent.
+      const gutter = columns === 4 ? 32 : 28;
+      const unit = 64;
+      const median = [...heights].sort((a, b) => a - b)[Math.floor(heights.length / 2)] + gutter;
+      const phases = columns === 4 ? [0, .5, .25, .75] : [0, .5, .2, .7, .35, .85];
+      const starts = phases.map((phase) => Math.round(phase * median * unit));
+      const bottoms = [...starts];
+      const count = selected.length * Math.max(3, Math.ceil(columns * 3 / selected.length));
+      const entries = [];
+      for (let sequence = 0; sequence < count; sequence++) {
+        let lane = 0;
+        for (let candidate = 1; candidate < columns; candidate++) {
+          if (bottoms[candidate] < bottoms[lane]) lane = candidate;
+        }
+        const height = heights[sequence % selected.length];
+        const start = bottoms[lane];
+        entries.push({ lane, height, start });
+        bottoms[lane] += Math.ceil((height + gutter) * unit);
+      }
+      const cycle = Math.max(entries.at(-1).start, ...bottoms.map((bottom, lane) => bottom - starts[lane]));
+      metrics = entries.map((entry, index) => ({
+        height: entry.height,
+        lane: entry.lane,
+        advance: ((entries[index + 1]?.start ?? cycle) - entry.start) / unit,
+      }));
+    }
     bank.remove(); width = innerWidth;
   }
 
@@ -318,8 +347,30 @@ async function initArchive() {
     const sequence = Number(event.target.closest("[data-item-sequence]").dataset.itemSequence);
     const delta = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns }[event.key];
     if (!delta) return;
-    event.preventDefault(); const next = stream.querySelector(`[data-item-sequence="${sequence + delta}"] .personal-archive__open`);
-    if (next) { next.focus({ preventScroll: true }); const r = next.getBoundingClientRect(); if (r.top < 32 || r.bottom > innerHeight - 32) motion.scrollTo(scrollY + r.top - 144, { immediate: true }); recycle(); }
+    event.preventDefault();
+    let next;
+    if (columns === 2) {
+      next = stream.querySelector(`[data-item-sequence="${sequence + delta}"] .personal-archive__open`);
+    } else {
+      const lane = metric(sequence).lane;
+      const horizontal = event.key === "ArrowLeft" || event.key === "ArrowRight";
+      const target = lane + (horizontal ? delta : 0);
+      const current = event.target.getBoundingClientRect();
+      const candidates = rows.filter((row) => {
+        const other = Number(row.dataset.sequence);
+        if (other === sequence || metric(other).lane !== target) return false;
+        const y = row.firstElementChild.getBoundingClientRect().top;
+        return horizontal || (event.key === "ArrowUp" ? y < current.top : y > current.top);
+      });
+      candidates.sort((a, b) => Math.abs(a.getBoundingClientRect().top - current.top) - Math.abs(b.getBoundingClientRect().top - current.top));
+      next = candidates[0]?.querySelector(".personal-archive__open");
+    }
+    if (next) {
+      next.focus({ preventScroll: true });
+      const r = next.getBoundingClientRect();
+      if (r.top < 32 || r.bottom > innerHeight - 32) motion.scrollTo(scrollY + r.top - 144, { immediate: true });
+      recycle();
+    }
   });
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || document.querySelector("dialog[open]")) return;
@@ -334,6 +385,7 @@ async function initArchive() {
     const position = anchor(); cancelAnimationFrame(resizeFrame);
     resizeFrame = requestAnimationFrame(() => { render(position); pendingResize = false; });
   }, { passive: true });
+  matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", () => requestAnimationFrame(recycle));
   window.addEventListener("pagehide", save);
   window.addEventListener("pageshow", (event) => { if (event.persisted) { motion.resize(); recycle(); } });
   history.scrollRestoration = "manual";

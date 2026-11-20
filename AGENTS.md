@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Archivo — vistas compactas intercaladas · 20 de noviembre de 2026
+
+La vista de dos columnas conserva su geometría. En cuatro y seis, acomodar cada pieza en la columna que termina antes, midiendo imagen y caption completos. Usar inicios desfasados y separaciones de 32/28px por columna, en vez de trasladar a todas las piezas el avance vertical de la vista de dos. La física se limita a los espacios reales. Mantener el marco, la calle central, el loop bidireccional, la pieza anclada al cambiar densidad, filtros, visor y carga bajo demanda. La navegación con flechas sigue la ubicación visual de las piezas.
+
 ## Archivo personal — recorrido y densidad · 20 de noviembre de 2026
 
 `self-made.html` adopta POSTERS REFFFF: fondo negro, controles fijos en el lateral izquierdo y símbolo pequeño en el derecho. La vista inicial de dos columnas alterna piezas completas con nombre, formato/colección y descarga debajo. El selector 2/4/6 subdivide únicamente las dos columnas centrales del marco compartido, conservando la calle central. Búsqueda y filtros nativos por formato y orden desplazan sus controles en el lateral. No inventar fechas ni cargar afiches de clientes como trabajo personal; el catálogo actual conserva 84 piezas: 67 afiches A4, 11 tapas y 6 fotografías. Los afiches A4 se seleccionaron de ALT y Descargas, omitiendo mockups, estampas, materiales de consulta y piezas de clientes. Se preservan las imágenes originales en sus carpetas locales; las nuevas publicaciones y descargas son WebP de tamaño completo, con versiones de 400, 800 y 1600 px para carga bajo demanda. No anunciar estos WebP como archivos fuente originales. El inventario local de incorporaciones queda en AUDIT para revisión.
