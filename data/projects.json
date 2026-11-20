@@ -80,24 +80,7 @@
         "w": 1080
       }
     ],
-    "preview": [
-      {
-        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp",
-        "alt": "Plantilla de post claro con campos de ejemplo"
-      },
-      {
-        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp",
-        "alt": "Plantilla de post oscuro con campos de ejemplo"
-      },
-      {
-        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp",
-        "alt": "Plantilla de historia clara con campos de ejemplo"
-      },
-      {
-        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp",
-        "alt": "Plantilla de historia oscura con campos de ejemplo"
-      }
-    ]
+    "preview": []
   },
   {
     "slug": "stephen-king",

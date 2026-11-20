@@ -11,8 +11,9 @@
 .archive-card__link { position: relative; z-index: 1; display: block; }
 .archive-card__media { position: relative; overflow: clip; min-height: 96px; }
 .archive-card__image { width: 100%; }
-.archive-card__quick-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--portfolio-paper); opacity: 0; pointer-events: none; transition: opacity 160ms var(--ease); }
+.archive-card__quick-preview { position: absolute; inset: 9%; width: 82%; height: 82%; object-fit: scale-down; background: transparent; opacity: 0; pointer-events: none; transition: opacity 160ms var(--ease); }
 .archive-card__link--previewing .archive-card__quick-preview { opacity: 1; }
+.archive-card__link--previewing .archive-card__image { opacity: 0; }
 .archive-card__caption {
   position: absolute;
   top: 100%;
@@ -150,8 +151,6 @@
 }
 
 /* Logos and posters carry the project identity before entering a case. */
-.archive-card[data-slug="club-de-economia-utdt"] .archive-card__media { background: #42aebd; }
-.archive-card[data-slug="orfeo"] .archive-card__media { background: #feffed; }
 
 /* The side rails follow the same four-column grid as the project cases. */
 @media (min-width: 901px) {

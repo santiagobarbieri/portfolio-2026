@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Vista previa contenida — 20 de noviembre de 2026
+
+Las vistas previas del Archivo muestran la pieza completa centrada dentro del 82% de la caja, sin fondo auxiliar ni recorte; conservar los fondos propios de las imágenes. La portada se oculta visualmente durante el preview y vuelve al salir, sin cambiar la geometría. Club de Economía conserva solo su portada y no tiene secuencia de hover.
+
 ## Apolo y dirección vigente — 20 de noviembre de 2026
 
 Datos y comandos en el lateral izquierdo; símbolo de Santiago en el derecho. Las dos columnas centrales conservan el recorrido infinito. Todos los casos usan el blanco del portfolio `--portfolio-paper: #f1ece0`; los colores de las piezas originales se preservan.
