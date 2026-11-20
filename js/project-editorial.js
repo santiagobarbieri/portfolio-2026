@@ -40,12 +40,18 @@ function label(board, index) {
   board.dataset.galleryIndex = index;
   board.querySelector("[data-gallery-label]").textContent = `${String(index + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")} · ${items[index].name}`;
   board.querySelector("[data-gallery-open]").setAttribute("aria-label", `Abrir carrusel: ${items[index].name}`);
+  board.querySelectorAll('[data-gallery-select]').forEach((button, n) => {
+    const selected = n === index;
+    button.setAttribute('aria-pressed', String(selected));
+    // A fixed four-slot rail avoids resizing the editorial card on each selection.
+    button.hidden = n < Math.floor(index / 4) * 4 || n >= Math.floor(index / 4) * 4 + 4;
+  });
 }
 
-async function step(board, direction) {
+async function step(board, direction, selected) {
   const items = galleries.get(board.dataset.editorialGallery);
   const state = requests.get(board) || { index: Number(board.dataset.galleryIndex), token: 0 };
-  state.index = (state.index + direction + items.length) % items.length;
+  state.index = selected ?? (state.index + direction + items.length) % items.length;
   const token = ++state.token;
   requests.set(board, state);
   const image = previewImage(items[state.index]);
@@ -103,6 +109,7 @@ async function prepareMultimedia() {
     open.append(previewImage(items[0])); stage.append(open);
     const controls = document.createElement("div");
     controls.className = "editorial-multimedia__controls";
+    if (items.length === 1) controls.classList.add('editorial-multimedia__controls--single');
     for (const direction of [-1, 1]) {
       const button = document.createElement("button");
       button.type = "button";
@@ -110,6 +117,7 @@ async function prepareMultimedia() {
       button.dataset.galleryStep = direction;
       button.textContent = direction < 0 ? "←" : "→";
       button.setAttribute("aria-label", direction < 0 ? "Foto anterior" : "Foto siguiente");
+      button.hidden = items.length < 2;
       controls.append(button);
       if (direction < 0) {
         const output = document.createElement("output");
@@ -121,6 +129,27 @@ async function prepareMultimedia() {
     }
     board.className = "editorial-multimedia";
     board.append(source, stage, controls);
+    if (board.hasAttribute('data-gallery-thumbnails') && items.length > 1) {
+      board.classList.add('editorial-multimedia--thumbnails');
+      const rail = document.createElement('div');
+      rail.className = 'editorial-multimedia__thumbnails';
+      rail.setAttribute('role', 'group');
+      rail.setAttribute('aria-label', 'Elegir fotografía');
+      items.forEach((item, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'editorial-multimedia__thumbnail';
+        button.dataset.gallerySelect = index;
+        button.setAttribute('aria-label', item.name);
+        const thumb = previewImage(item);
+        // Thumbnails use their smallest source, never the fullscreen asset.
+        thumb.removeAttribute('srcset');
+        thumb.src = item.sources[0]?.src || item.src;
+        thumb.loading = 'lazy';
+        button.append(thumb); rail.append(button);
+      });
+      stage.append(rail);
+    }
     label(board, 0);
   }
 }
@@ -134,6 +163,8 @@ document.addEventListener("click", (event) => {
   }
   const next = event.target.closest("[data-gallery-step]");
   if (next) { step(next.closest("[data-editorial-gallery]"), Number(next.dataset.galleryStep)); return; }
+  const selected = event.target.closest('[data-gallery-select]');
+  if (selected) { step(selected.closest('[data-editorial-gallery]'), 0, Number(selected.dataset.gallerySelect)); return; }
   const open = event.target.closest("[data-gallery-open]");
   if (open) {
     open.focus({ preventScroll: true });
@@ -143,6 +174,14 @@ document.addEventListener("click", (event) => {
   }
   const button = event.target.closest("[data-zoom-original]");
   if (button) zoom.open({ src: button.dataset.zoomOriginal, alt: button.dataset.zoomAlt || button.querySelector("img")?.alt });
+});
+// Only one campaign clip plays at a time, including recycled loop occurrences.
+document.addEventListener('play', (event) => {
+  if (!(event.target instanceof HTMLVideoElement)) return;
+  document.querySelectorAll('video').forEach((video) => { if (video !== event.target) video.pause(); });
+}, true);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) document.querySelectorAll('video').forEach((video) => video.pause());
 });
 document.addEventListener("keydown", (event) => {
   const board = event.target.closest("[data-editorial-gallery]");

@@ -1,6 +1,7 @@
 import { initArchiveMotion } from "./motion.js";
 import { initArchivePhysics } from "./archive-physics.js";
 import { waitForImages } from "./loading.js";
+import { initArchivePreview } from "./archive-preview.js";
 
 const storageKey = "portfolio-archive-state";
 const modulo = (value, count) => ((value % count) + count) % count;
@@ -24,6 +25,10 @@ function createCard(project) {
   if (project.cover) {
     const image = node("img", "archive-card__image");
     image.src = new URL(project.cover, document.baseURI).href;
+    if (project.coverSources?.length) {
+      image.srcset = project.coverSources.map((source) => `${source.src} ${source.w}w`).join(', ');
+      image.sizes = '(min-width: 1600px) 400px, 28vw';
+    }
     image.alt = project.alt || `${project.title} — ${project.type}`;
     image.width = project.w;
     image.height = project.h;
@@ -61,13 +66,18 @@ export async function initArchive() {
   const stream = document.querySelector("[data-archive-stream]");
   if (!stream) return;
   let templates = [...stream.querySelectorAll(".archive-card")];
+  let projects = [];
   try {
     const response = await fetch(new URL("../data/projects.json", import.meta.url), { signal: AbortSignal.timeout(15000) });
-    if (response.ok) templates = (await response.json()).filter((project) => project.archive !== false).map(createCard);
+    if (response.ok) {
+      projects = (await response.json()).filter((project) => project.archive !== false);
+      templates = projects.map(createCard);
+    }
   } catch {
     // Full HTML cards remain the source if the registry is unavailable.
   }
   await document.fonts.ready;
+  const preview = initArchivePreview(stream, projects);
 
   const previousState = storedState();
   const catalogue = templates.map((card) => card.dataset.slug).join("|");
@@ -151,6 +161,7 @@ export async function initArchive() {
   }
 
   function releaseCard(card) {
+    preview.release(card);
     physics.forget(card.querySelector(".archive-card__link"));
     const pool = cardPool.get(card.dataset.slug) || [];
     cardPool.set(card.dataset.slug, pool);
@@ -222,6 +233,7 @@ export async function initArchive() {
   }
 
   function render(position = { sequence: 0, offset: -main.offsetTop }) {
+    preview.stop();
     physics.reset();
     working = true;
     selected = sorted();

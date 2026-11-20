@@ -1,5 +1,5 @@
 const modulo = (value, count) => ((value % count) + count) % count;
-const controls = "button, a[href]";
+const controls = "button, a[href], video[controls]";
 const rowControls = (row) => [...row.querySelectorAll(controls)].filter((control) => !control.closest("[hidden]"));
 
 /** Local editorial loop; Archivo's native-scroll compensation and springs stay shared. */
@@ -132,6 +132,7 @@ export function createEditorialLoop({ main, motion, physics }) {
     const key = keys[index];
     let card = row.firstElementChild;
     if (card) {
+      card.querySelectorAll('video').forEach((video) => video.pause());
       physics.forget(card.querySelector(".archive-card__link"));
       const available = pool.get(card.dataset.kind) || [];
       available.push(card);
@@ -173,6 +174,7 @@ export function createEditorialLoop({ main, motion, physics }) {
     const focus = focusedRow ? { sequence: Number(focusedRow.dataset.sequence), index: rowControls(focusedRow).indexOf(document.activeElement) } : null;
     rows.forEach((row) => {
       const card = row.firstElementChild;
+      card.querySelectorAll('video').forEach((video) => video.pause());
       const available = pool.get(card.dataset.kind) || [];
       available.push(card);
       pool.set(card.dataset.kind, available);

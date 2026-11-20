@@ -11,6 +11,8 @@
 .archive-card__link { position: relative; z-index: 1; display: block; }
 .archive-card__media { position: relative; overflow: clip; min-height: 96px; }
 .archive-card__image { width: 100%; }
+.archive-card__quick-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--portfolio-paper); opacity: 0; pointer-events: none; transition: opacity 160ms var(--ease); }
+.archive-card__link--previewing .archive-card__quick-preview { opacity: 1; }
 .archive-card__caption {
   position: absolute;
   top: 100%;
@@ -156,12 +158,12 @@
   .archive-page .identity__logo {
     position: fixed;
     top: 40px;
-    left: var(--portfolio-edge);
-    right: auto;
+    left: auto;
+    right: var(--portfolio-edge);
     display: block;
     width: 64px;
     height: 64px;
-    --interaction-origin: left top;
+    --interaction-origin: right top;
   }
 
   .archive-page .identity__logo .identity__glyph {
@@ -169,7 +171,7 @@
     height: 64px;
     margin: 0;
     scale: .5;
-    transform-origin: left top;
+    transform-origin: right top;
   }
 
   .portfolio-commands {

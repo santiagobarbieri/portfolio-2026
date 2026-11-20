@@ -1,0 +1,205 @@
+{
+  "slug": "apolo-studios",
+  "code": "",
+  "title": "Apolo Studios",
+  "type": "Identidad y dirección creativa",
+  "category": "identidad",
+  "family": "identity",
+  "description": "Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.",
+  "cover": "assets/images/archive-covers/apolo-studios-800.webp",
+  "w": 800,
+  "h": 1000,
+  "alt": "Firma de Apolo Studios en blanco sobre azul",
+  "order": -4,
+  "kind": "project",
+  "details": "data/projects/apolo-studios.json",
+  "page": "./apolo-studios.html",
+  "year": "2024–2026",
+  "coverSources": [
+    {
+      "src": "assets/images/archive-covers/apolo-studios-400.webp",
+      "w": 400
+    },
+    {
+      "src": "assets/images/archive-covers/apolo-studios-800.webp",
+      "w": 800
+    },
+    {
+      "src": "assets/images/archive-covers/apolo-studios-1080.webp",
+      "w": 1080
+    }
+  ],
+  "preview": [
+    {
+      "src": "assets/images/apolo-studios-web/sahara-01-480.webp",
+      "alt": "Sahara · Subte 01"
+    },
+    {
+      "src": "assets/images/apolo-studios-web/sahara-02-480.webp",
+      "alt": "Sahara · Subte 02"
+    },
+    {
+      "src": "assets/images/apolo-studios-web/menorca-01-480.webp",
+      "alt": "Menorca · Gorra marrón · Campaña"
+    },
+    {
+      "src": "assets/images/apolo-studios-web/menorca-07-480.webp",
+      "alt": "Menorca · Gorra gris"
+    }
+  ],
+  "meta": [
+    [
+      "Proyecto",
+      "Apolo Studios"
+    ],
+    [
+      "Lugar",
+      "Buenos Aires, Argentina"
+    ],
+    [
+      "Periodo",
+      "2024–2026"
+    ],
+    [
+      "Rol",
+      "Cofundador y director creativo"
+    ]
+  ],
+  "intro": [
+    "Identidad, gráficas de prendas y dirección creativa de Apolo Studios. Buenos Aires, 2024–2026."
+  ],
+  "sections": [
+    {
+      "title": "Marca",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-web/mark-1068.webp",
+          "w": 1068,
+          "h": 528,
+          "alt": "Apolo Studios: firma azul con iniciales y sol"
+        }
+      ]
+    },
+    {
+      "title": "Variantes",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-web/variants-1600.webp",
+          "w": 1600,
+          "h": 1439,
+          "alt": "Variantes de logotipo desarrolladas para Apolo Studios"
+        }
+      ]
+    },
+    {
+      "title": "Circles",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-web/circles-01-960.webp",
+          "w": 960,
+          "h": 1280,
+          "alt": "Circles · Frente al espejo"
+        }
+      ]
+    },
+    {
+      "title": "Sahara",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-web/sahara-01-1080.webp",
+          "w": 1080,
+          "h": 1350,
+          "alt": "Sahara · Subte 01"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/sahara-02-1080.webp",
+          "w": 1080,
+          "h": 1350,
+          "alt": "Sahara · Subte 02"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/sahara-03-1080.webp",
+          "w": 1080,
+          "h": 1350,
+          "alt": "Sahara · Subte 03"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/sahara-04-1080.webp",
+          "w": 1080,
+          "h": 1350,
+          "alt": "Sahara · Subte 04"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/sahara-05-1080.webp",
+          "w": 1080,
+          "h": 1350,
+          "alt": "Sahara · Subte 05"
+        }
+      ]
+    },
+    {
+      "title": "Menorca",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-web/menorca-01-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Gorra marrón · Campaña"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-02-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Gorra marrón · Perfil"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-03-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Campaña · Retrato"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-04-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Campaña · Perfil"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-05-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Gorra gris · Campaña"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-06-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Campaña · Retrato de frente"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-07-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Gorra gris"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-08-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Gorra marrón"
+        },
+        {
+          "src": "assets/images/apolo-studios-web/menorca-09-1080.webp",
+          "w": 1080,
+          "h": 1080,
+          "alt": "Menorca · Gorra azul"
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,55 @@
 [
   {
+    "slug": "apolo-studios",
+    "code": "",
+    "title": "Apolo Studios",
+    "type": "Identidad y dirección creativa",
+    "category": "identidad",
+    "family": "identity",
+    "description": "Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.",
+    "cover": "assets/images/archive-covers/apolo-studios-800.webp",
+    "w": 800,
+    "h": 1000,
+    "alt": "Firma de Apolo Studios en blanco sobre azul",
+    "order": -4,
+    "kind": "project",
+    "details": "data/projects/apolo-studios.json",
+    "page": "./apolo-studios.html",
+    "year": "2024–2026",
+    "coverSources": [
+      {
+        "src": "assets/images/archive-covers/apolo-studios-400.webp",
+        "w": 400
+      },
+      {
+        "src": "assets/images/archive-covers/apolo-studios-800.webp",
+        "w": 800
+      },
+      {
+        "src": "assets/images/archive-covers/apolo-studios-1080.webp",
+        "w": 1080
+      }
+    ],
+    "preview": [
+      {
+        "src": "assets/images/apolo-studios-web/sahara-01-480.webp",
+        "alt": "Sahara · Subte 01"
+      },
+      {
+        "src": "assets/images/apolo-studios-web/sahara-02-480.webp",
+        "alt": "Sahara · Subte 02"
+      },
+      {
+        "src": "assets/images/apolo-studios-web/menorca-01-480.webp",
+        "alt": "Menorca · Gorra marrón · Campaña"
+      },
+      {
+        "src": "assets/images/apolo-studios-web/menorca-07-480.webp",
+        "alt": "Menorca · Gorra gris"
+      }
+    ]
+  },
+  {
     "slug": "club-de-economia-utdt",
     "code": "",
     "title": "Club de Economía — UTDT",
@@ -7,15 +57,47 @@
     "category": "identidad",
     "family": "identity",
     "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.",
-    "cover": "assets/images/club-de-economia-utdt/loop-symbol-800.webp",
+    "cover": "assets/images/archive-covers/club-de-economia-utdt-800.webp",
     "w": 800,
-    "h": 800,
-    "alt": "Isotipo claro del Club de Economía sobre celeste",
+    "h": 1000,
+    "alt": "Logotipo del Club de Economía sobre celeste",
     "order": -3,
     "kind": "project",
     "details": "data/projects/club-de-economia-utdt.json",
     "page": "./club-de-economia.html",
-    "year": "2026"
+    "year": "2026",
+    "coverSources": [
+      {
+        "src": "assets/images/archive-covers/club-de-economia-utdt-400.webp",
+        "w": 400
+      },
+      {
+        "src": "assets/images/archive-covers/club-de-economia-utdt-800.webp",
+        "w": 800
+      },
+      {
+        "src": "assets/images/archive-covers/club-de-economia-utdt-1080.webp",
+        "w": 1080
+      }
+    ],
+    "preview": [
+      {
+        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp",
+        "alt": "Plantilla de post claro con campos de ejemplo"
+      },
+      {
+        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp",
+        "alt": "Plantilla de post oscuro con campos de ejemplo"
+      },
+      {
+        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp",
+        "alt": "Plantilla de historia clara con campos de ejemplo"
+      },
+      {
+        "src": "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp",
+        "alt": "Plantilla de historia oscura con campos de ejemplo"
+      }
+    ]
   },
   {
     "slug": "stephen-king",
@@ -118,16 +200,48 @@
     "type": "Identidad y campaña",
     "category": "identidad",
     "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.",
-    "cover": "assets/images/olas-ditella/poster%201-1600.webp",
-    "w": 1600,
-    "h": 2263,
-    "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde",
+    "cover": "assets/images/archive-covers/olas-ditella-800.webp",
+    "w": 800,
+    "h": 1000,
+    "alt": "Logotipo de OLAS sobre verde",
     "order": -1,
     "kind": "project",
     "details": "data/projects/olas-ditella.json",
     "family": "identity",
     "page": "./olas-ditella.html",
-    "year": "2026"
+    "year": "2026",
+    "coverSources": [
+      {
+        "src": "assets/images/archive-covers/olas-ditella-400.webp",
+        "w": 400
+      },
+      {
+        "src": "assets/images/archive-covers/olas-ditella-800.webp",
+        "w": 800
+      },
+      {
+        "src": "assets/images/archive-covers/olas-ditella-1080.webp",
+        "w": 1080
+      }
+    ],
+    "preview": [
+      {
+        "src": "assets/images/olas-ditella/poster%201-800.webp",
+        "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde"
+      },
+      {
+        "src": "assets/images/olas-ditella/poster%202-800.webp",
+        "alt": "Afiche de OLAS con el mensaje No te quedes callado"
+      },
+      {
+        "src": "assets/images/olas-ditella/poster%203-800.webp",
+        "alt": "Afiche de OLAS con el mensaje Tu voz importa"
+      },
+      {
+        "src": "assets/images/olas-ditella/poster%205-800.webp",
+        "alt": "Afiche de OLAS con un megáfono y la palabra Cambio"
+      }
+    ]
   },
   {
     "slug": "el-armado",
@@ -136,10 +250,10 @@
     "type": "Identidad visual",
     "category": "identidad",
     "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.",
-    "cover": "assets/images/el-armado/Cover.png",
-    "alt": "Identidad de El Armado: micrófono y botella ilustrados sobre fondo bordó",
-    "w": 1080,
-    "h": 1350,
+    "cover": "assets/images/archive-covers/el-armado-800.webp",
+    "alt": "Logotipo de El Armado en hueso sobre vino",
+    "w": 800,
+    "h": 1000,
     "order": 0,
     "kind": "project",
     "meta": [
@@ -155,7 +269,35 @@
     "details": "data/projects/el-armado.json",
     "family": "identity",
     "page": "./el-armado.html",
-    "year": "2026"
+    "year": "2026",
+    "coverSources": [
+      {
+        "src": "assets/images/archive-covers/el-armado-400.webp",
+        "w": 400
+      },
+      {
+        "src": "assets/images/archive-covers/el-armado-800.webp",
+        "w": 800
+      },
+      {
+        "src": "assets/images/archive-covers/el-armado-1080.webp",
+        "w": 1080
+      }
+    ],
+    "preview": [
+      {
+        "src": "assets/images/el-armado-web/ilustracion-color-760.webp",
+        "alt": "Manos sosteniendo un micrófono malva y una botella verde"
+      },
+      {
+        "src": "assets/images/el-armado/VARIANTES%205.png",
+        "alt": "Variante de afiche azul y rosa sobre blanco"
+      },
+      {
+        "src": "assets/images/el-armado-web/afiche-1000.webp",
+        "alt": "Afiche final de El Armado, segunda edición"
+      }
+    ]
   },
   {
     "slug": "fotos-en-zapallar",
@@ -181,16 +323,48 @@
     "type": "Dirección creativa",
     "category": "identidad",
     "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.",
-    "cover": "assets/images/orfeo/wordmark-1200.webp",
-    "w": 1200,
-    "h": 1200,
+    "cover": "assets/images/archive-covers/orfeo-800.webp",
+    "w": 800,
+    "h": 1000,
     "order": 2,
     "kind": "project",
-    "alt": "Logotipo de ORFEO en carbón sobre marfil",
+    "alt": "Logotipo de ORFEO sobre carbón",
     "details": "data/projects/orfeo.json",
     "family": "identity",
     "page": "./orfeo.html",
     "objective": "Dirección creativa",
-    "year": "2026"
+    "year": "2026",
+    "coverSources": [
+      {
+        "src": "assets/images/archive-covers/orfeo-400.webp",
+        "w": 400
+      },
+      {
+        "src": "assets/images/archive-covers/orfeo-800.webp",
+        "w": 800
+      },
+      {
+        "src": "assets/images/archive-covers/orfeo-1080.webp",
+        "w": 1080
+      }
+    ],
+    "preview": [
+      {
+        "src": "assets/images/orfeo/IMG_4868-1600.webp",
+        "alt": "Tres modelos con los sweaters de la colección de ORFEO"
+      },
+      {
+        "src": "assets/images/orfeo/IMG_4710-800.webp",
+        "alt": "Detalle de un sweater marrón tejido en la colección de ORFEO"
+      },
+      {
+        "src": "assets/images/orfeo/IMG_4775-800.webp",
+        "alt": "Detalle de camisa y sweater negro en la colección de ORFEO"
+      },
+      {
+        "src": "assets/images/orfeo/IMG_4800-800.webp",
+        "alt": "Vista posterior de un sweater azul tejido en la colección de ORFEO"
+      }
+    ]
   }
 ]

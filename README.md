@@ -1,5 +1,13 @@
 # Santiago Barbieri — Portafolio
 
+## Apolo y dirección vigente — 20 de noviembre de 2026
+
+Datos y comandos en el lateral izquierdo; símbolo de Santiago en el derecho. Las dos columnas centrales conservan el recorrido infinito. Todos los casos usan el blanco del portfolio `--portfolio-paper: #f1ece0`; los colores de las piezas originales se preservan.
+
+Apolo Studios presenta identidad, variantes, video de Menorca y cuatro drops: Everywhere, Circles, Sahara y Menorca. Santiago confirmó el espejo como Circles, la serie del subte como Sahara y VIDEO 1.mov como Menorca. Everywhere queda identificado por nombre; sus fotos y las adicionales de Circles están pendientes. No asignar imágenes de otras campañas. Conceptos y Orbit se retoman después. Las imágenes públicas son derivados WebP y el video MP4 bajo demanda; los originales locales se conservan.
+
+La sección personal se llama **Lado B**, aún con candado. Las cinco portadas nuevas de assets reemplazan las anteriores. Hover y foco muestran una selección del caso, sin alterar la geometría de las tarjetas ni precargar el catálogo completo. Con movimiento reducido se muestra una sola vista previa.
+
 El marco compartido usa cuatro columnas: logo a la izquierda, dos columnas centrales de recorrido infinito y datos/comandos a la derecha. Los laterales son más angostos. Archivo y los cuatro proyectos usan los mismos límites en `portfolio-grid.css`. Las paletas se muestran sin fondos auxiliares; se omiten las variantes raster blancas de bajo contraste y la marca vectorial OLAS se presenta en negro. Los originales se conservan.
 
 El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. Las tarjetas anteriores al punto de entrada permanecen visibles desde el inicio para completar ambas columnas, también al recargar o volver de un proyecto. Sobre mí es un recorrido independiente en construcción. El lateral separa filtros, Sobre mí/Contacto/Tienda y Redes/Herramientas. Contacto abre otra pestaña; Tienda abrirá Gumroad cuando exista su URL. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Tienda y el retrato de Sobre mí están pendientes de contenido. El logo vuelve al Archivo.

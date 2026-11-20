@@ -17,6 +17,7 @@
 :root {
   color-scheme: dark;
   --bg: #0a0a0a;
+  --portfolio-paper: #f1ece0;
   --accent: #ffffff;
   --hover-surface: color-mix(in srgb, var(--fg) 4%, transparent);
   --fg: #f1ece0;
@@ -56,7 +57,7 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #f1ece0;
+  --bg: var(--portfolio-paper);
   --fg: #0a0a0a;
   --mute: #6b675f;
   --line: #807d76;

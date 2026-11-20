@@ -1,5 +1,13 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Apolo y dirección vigente — 20 de noviembre de 2026
+
+Datos y comandos en el lateral izquierdo; símbolo de Santiago en el derecho. Las dos columnas centrales conservan el recorrido infinito. Todos los casos usan el blanco del portfolio `--portfolio-paper: #f1ece0`; los colores de las piezas originales se preservan.
+
+Apolo Studios presenta identidad, variantes, video de Menorca y cuatro drops: Everywhere, Circles, Sahara y Menorca. Santiago confirmó el espejo como Circles, la serie del subte como Sahara y VIDEO 1.mov como Menorca. Everywhere queda identificado por nombre; sus fotos y las adicionales de Circles están pendientes. No asignar imágenes de otras campañas. Conceptos y Orbit se retoman después. Las imágenes públicas son derivados WebP y el video MP4 bajo demanda; los originales locales se conservan.
+
+La sección personal se llama **Lado B**, aún con candado. Las cinco portadas nuevas de assets reemplazan las anteriores. Hover y foco muestran una selección del caso, sin alterar la geometría de las tarjetas ni precargar el catálogo completo. Con movimiento reducido se muestra una sola vista previa.
+
 ## Cuatro columnas y piezas sin soportes — 19 de noviembre de 2026
 
 La marca comparte una grilla de cuatro columnas en Archivo y los cuatro casos publicados: lateral izquierdo con logo; dos columnas centrales de contenido con scroll infinito; lateral derecho con datos y comandos. Los laterales son más angostos (proporción 1 / 1,7 / 1,7 / 1). `portfolio-grid.css` define el mismo marco, columnas y calles para las cinco páginas. Mantener las piezas y sus referencias dentro de la columna central que les corresponde; los laterales permanecen fijos. No volver a barras superiores que crucen el recorrido. La versión móvil sigue pausada hasta 900px.

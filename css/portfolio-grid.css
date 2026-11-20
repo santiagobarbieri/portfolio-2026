@@ -8,7 +8,7 @@
     --portfolio-column: calc(var(--portfolio-rail) * 1.7);
     --portfolio-center-left: calc(var(--portfolio-edge) + var(--portfolio-rail) + var(--portfolio-gap));
     --portfolio-center-width: calc(var(--portfolio-column) * 2 + var(--portfolio-gap));
-    --portfolio-command-left: calc(var(--portfolio-center-left) + var(--portfolio-center-width) + var(--portfolio-gap));
+    --portfolio-command-left: var(--portfolio-edge);
     --frame-margin: var(--portfolio-edge);
     --sidebar-width: var(--portfolio-rail);
     --column-gap: var(--portfolio-gap);
@@ -62,12 +62,12 @@
   .editorial-home {
     position: fixed;
     top: var(--frame-top);
-    left: var(--portfolio-edge);
-    right: auto;
+    left: auto;
+    right: var(--portfolio-edge);
     width: 64px;
     height: 64px;
-    --interaction-origin: left top;
+    --interaction-origin: right top;
   }
 
-  .editorial-home .identity__glyph { transform-origin: left top; }
+  .editorial-home .identity__glyph { transform-origin: right top; }
 }
