@@ -1,5 +1,7 @@
 # Santiago Barbieri — Portafolio
 
+El marco compartido usa cuatro columnas: logo a la izquierda, dos columnas centrales de recorrido infinito y datos/comandos a la derecha. Los laterales son más angostos. Archivo y los cuatro proyectos usan los mismos límites en `portfolio-grid.css`. Las paletas se muestran sin fondos auxiliares; se omiten las variantes raster blancas de bajo contraste y la marca vectorial OLAS se presenta en negro. Los originales se conservan.
+
 El único home es `index.html`: Archivo, con proyectos intercalados en dos columnas y loop continuo. Las tarjetas anteriores al punto de entrada permanecen visibles desde el inicio para completar ambas columnas, también al recargar o volver de un proyecto. Sobre mí es un recorrido independiente en construcción. El lateral separa filtros, Sobre mí/Contacto/Tienda y Redes/Herramientas. Contacto abre otra pestaña; Tienda abrirá Gumroad cuando exista su URL. `nav.html` redirige al home y `project.html?p=<slug>` muestra cada proyecto. Tienda y el retrato de Sobre mí están pendientes de contenido. El logo vuelve al Archivo.
 
 ## Estado actual

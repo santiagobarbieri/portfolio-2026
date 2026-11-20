@@ -24,6 +24,7 @@
   <link href="./css/image-zoom.css" rel="stylesheet"/>
   <link href="./css/typography.css" rel="stylesheet"/>
   <link href="./css/project-editorial.css" rel="stylesheet"/>
+  <link href="./css/portfolio-grid.css" rel="stylesheet"/>
   <link href="./css/desktop-gate.css" rel="stylesheet"/>
   <script src="./js/transitions.js">
   </script>
@@ -60,18 +61,28 @@
   </a>
   <header aria-label="Proyecto OLAS Di Tella" class="editorial-shell">
    <div class="editorial-shell__main">
-    <a class="editorial-close" data-cursor-action="Volver al archivo" href="./index.html">
-     <span aria-hidden="true">
-      ×
-     </span>
-     Cerrar
-    </a>
-    <span aria-hidden="true" class="editorial-shell__separator">
-     |
-    </span>
-    <p>
-     OLAS Di Tella · Identidad visual
-    </p>
+    <div class="editorial-project-data">
+     <p class="editorial-project-data__name">
+      OLAS Di Tella
+     </p>
+     <p class="editorial-project-data__type">
+      Identidad visual
+     </p>
+     <p class="editorial-project-data__context">
+      Universidad Torcuato Di Tella · Octubre de 2026
+     </p>
+    </div>
+    <nav aria-label="Comandos del proyecto" class="editorial-commands">
+     <a class="editorial-close" data-cursor-action="Volver al archivo" href="./index.html">
+      <span aria-hidden="true">
+       ×
+      </span>
+      Cerrar
+     </a>
+     <a class="editorial-start" data-cursor-action="Volver al inicio" data-editorial-start="" href="#presentacion">
+      Inicio del recorrido ↑
+     </a>
+    </nav>
    </div>
    <a aria-label="Volver al archivo" class="editorial-home" data-cursor-action="Volver al archivo" href="./index.html">
     <span aria-hidden="true" class="identity__glyph">
@@ -82,7 +93,7 @@
    <h1 class="visually-hidden">
     OLAS Di Tella
    </h1>
-   <header class="editorial-part editorial-intro" data-editorial-order="0" data-editorial-part="intro" data-editorial-side="left">
+   <header class="editorial-part editorial-intro" data-editorial-order="0" data-editorial-part="intro" data-editorial-side="left" id="presentacion">
     <button aria-haspopup="dialog" aria-label="Ampliar logotipo de OLAS Di Tella" class="editorial-image editorial-mark editorial-mark--olas" data-editorial-visual="" data-zoom-original="assets/images/olas-ditella/Logo.svg" type="button">
      <img alt="OLAS Di Tella" fetchpriority="high" height="405" src="./assets/images/olas-ditella/Logo.svg" width="1286"/>
     </button>
@@ -150,7 +161,7 @@
    </section>
    <section aria-labelledby="marca-title" class="editorial-part editorial-section" data-editorial-order="2" data-editorial-part="marca" data-editorial-side="left" id="marca">
     <div class="editorial-board editorial-board--brand" data-editorial-visual="">
-     <figure class="editorial-piece editorial-piece--dark" data-piece-role="mark">
+     <figure class="editorial-piece editorial-piece--black-svg" data-piece-role="mark">
       <div class="editorial-piece__visual">
        <button aria-haspopup="dialog" aria-label="Ampliar Marca principal" class="editorial-image" data-zoom-original="assets/images/olas-ditella/Logo.svg" type="button">
         <img alt="Logotipo vectorial de OLAS con una ola y una flecha" decoding="async" height="405" loading="lazy" src="./assets/images/olas-ditella/Logo.svg" width="1286"/>
@@ -158,14 +169,6 @@
       </div>
       <figcaption title="Marca principal">
        Marca principal
-      </figcaption>
-     </figure>
-     <figure class="editorial-piece editorial-piece--dark" data-piece-role="mark">
-      <div class="editorial-piece__visual">
-       <img alt="Marca OLAS en formato horizontal" decoding="async" height="405" loading="lazy" src="./assets/images/olas-ditella/BANNER.png" width="1286"/>
-      </div>
-      <figcaption title="Exportación PNG">
-       Exportación PNG
       </figcaption>
      </figure>
      <figure class="editorial-piece" data-piece-role="variant">
@@ -250,7 +253,7 @@
        Fragmento 2
       </figcaption>
      </figure>
-     <figure class="editorial-piece" data-piece-role="variant">
+     <figure class="editorial-piece editorial-piece--black-svg" data-piece-role="variant">
       <div class="editorial-piece__visual">
        <img alt="OLAS — recurso vectorial 4" decoding="async" height="435" loading="lazy" src="./assets/images/olas-ditella/Vectores%204.svg" width="563"/>
       </div>

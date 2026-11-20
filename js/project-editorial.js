@@ -129,6 +129,9 @@ document.addEventListener("click", (event) => {
   if (event.target.closest('.skip-link[href="#main-content"]')) {
     event.preventDefault(); main.focus({ preventScroll: true }); return;
   }
+  if (event.target.closest("[data-editorial-start]")) {
+    event.preventDefault(); loop.goTo("intro"); main.focus({ preventScroll: true }); return;
+  }
   const next = event.target.closest("[data-gallery-step]");
   if (next) { step(next.closest("[data-editorial-gallery]"), Number(next.dataset.galleryStep)); return; }
   const open = event.target.closest("[data-gallery-open]");

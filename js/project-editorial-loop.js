@@ -289,6 +289,16 @@ export function createEditorialLoop({ main, motion, physics }) {
   document.addEventListener("visibilitychange", () => { if (document.hidden) save(); });
   return {
     start, recycle,
+    goTo(key) {
+      if (!started || paused) return;
+      const candidates = rows.filter((row) => row.firstElementChild.dataset.kind === key);
+      candidates.sort((a, b) => Math.abs(top + a.offsetTop - scrollY - 144) - Math.abs(top + b.offsetTop - scrollY - 144));
+      if (candidates[0]) {
+        physics.reset();
+        motion.scrollTo(top + candidates[0].offsetTop - 144, { immediate: true });
+        recycle();
+      }
+    },
     pause() { paused = true; physics.reset(); },
     resume() { paused = false; resize(); recycle(); },
     get paused() { return paused; },

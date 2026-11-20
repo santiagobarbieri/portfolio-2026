@@ -150,3 +150,91 @@
 /* Logos and posters carry the project identity before entering a case. */
 .archive-card[data-slug="club-de-economia-utdt"] .archive-card__media { background: #42aebd; }
 .archive-card[data-slug="orfeo"] .archive-card__media { background: #feffed; }
+
+/* The side rails follow the same four-column grid as the project cases. */
+@media (min-width: 901px) {
+  .archive-page .identity__logo {
+    position: fixed;
+    top: 40px;
+    left: var(--portfolio-edge);
+    right: auto;
+    display: block;
+    width: 64px;
+    height: 64px;
+    --interaction-origin: left top;
+  }
+
+  .archive-page .identity__logo .identity__glyph {
+    width: 64px;
+    height: 64px;
+    margin: 0;
+    scale: .5;
+    transform-origin: left top;
+  }
+
+  .portfolio-commands {
+    position: fixed;
+    z-index: 6;
+    top: 40px;
+    bottom: 112px;
+    left: var(--portfolio-command-left);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: var(--portfolio-rail);
+    min-width: 0;
+    min-height: 0;
+    padding-right: 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+
+  .portfolio-commands::-webkit-scrollbar { display: none; }
+
+  .archive-page .portfolio-commands > :is(.identity__copy, .site-navigation, .archive-index) {
+    position: static;
+    inset: auto;
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .portfolio-commands .archive-intro { max-width: none; }
+
+  .portfolio-commands .archive-controls {
+    position: static;
+    inset: auto;
+    gap: 24px;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .portfolio-commands :is(.archive-pending, .archive-pages__pending) {
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 0;
+  }
+
+  .archive-page .site-footer {
+    inset: auto auto 16px var(--portfolio-command-left);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: var(--portfolio-rail);
+  }
+
+  .archive-page :is(.site-footer__location, .site-footer__signature) {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+}

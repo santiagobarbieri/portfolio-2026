@@ -25,6 +25,7 @@
   <link href="./css/image-zoom.css" rel="stylesheet"/>
   <link href="./css/typography.css" rel="stylesheet"/>
   <link href="./css/project-editorial.css" rel="stylesheet"/>
+  <link href="./css/portfolio-grid.css" rel="stylesheet"/>
   <link href="./css/desktop-gate.css" rel="stylesheet"/>
   <script src="./js/transitions.js">
   </script>
@@ -61,18 +62,28 @@
   </a>
   <header aria-label="Proyecto El Armado" class="editorial-shell">
    <div class="editorial-shell__main">
-    <a class="editorial-close" data-cursor-action="Volver al archivo" href="./index.html">
-     <span aria-hidden="true">
-      ×
-     </span>
-     Cerrar
-    </a>
-    <span aria-hidden="true" class="editorial-shell__separator">
-     |
-    </span>
-    <p>
-     El Armado · Identidad visual
-    </p>
+    <div class="editorial-project-data">
+     <p class="editorial-project-data__name">
+      El Armado
+     </p>
+     <p class="editorial-project-data__type">
+      Identidad visual
+     </p>
+     <p class="editorial-project-data__context">
+      Segunda edición · Buenos Aires, 2026
+     </p>
+    </div>
+    <nav aria-label="Comandos del proyecto" class="editorial-commands">
+     <a class="editorial-close" data-cursor-action="Volver al archivo" href="./index.html">
+      <span aria-hidden="true">
+       ×
+      </span>
+      Cerrar
+     </a>
+     <a class="editorial-start" data-cursor-action="Volver al inicio" data-editorial-start="" href="#presentacion">
+      Inicio del recorrido ↑
+     </a>
+    </nav>
    </div>
    <a aria-label="Volver al archivo" class="editorial-home" data-cursor-action="Volver al archivo" href="./index.html">
     <span aria-hidden="true" class="identity__glyph">
@@ -83,7 +94,7 @@
    <h1 class="visually-hidden">
     El Armado
    </h1>
-   <header class="editorial-intro editorial-part" data-editorial-order="0" data-editorial-part="intro" data-editorial-side="left">
+   <header class="editorial-intro editorial-part" data-editorial-order="0" data-editorial-part="intro" data-editorial-side="left" id="presentacion">
     <div class="editorial-intro__mark" data-editorial-visual="">
      <button aria-haspopup="dialog" aria-label="Ampliar logotipo de El Armado" class="editorial-image" data-zoom-alt="El Armado" data-zoom-original="assets/images/el-armado/Logo.png" type="button">
       <span class="editorial-wordmark">

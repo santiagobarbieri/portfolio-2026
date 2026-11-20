@@ -25,6 +25,7 @@
   <link href="./css/image-gallery.css" rel="stylesheet"/>
   <link href="./css/typography.css" rel="stylesheet"/>
   <link href="./css/project-editorial.css" rel="stylesheet"/>
+  <link href="./css/portfolio-grid.css" rel="stylesheet"/>
   <link href="./css/desktop-gate.css" rel="stylesheet"/>
   <script src="./js/transitions.js">
   </script>
@@ -61,18 +62,28 @@
   </a>
   <header aria-label="Proyecto Orfeo" class="editorial-shell">
    <div class="editorial-shell__main">
-    <a class="editorial-close" data-cursor-action="Volver al archivo" href="./index.html">
-     <span aria-hidden="true">
-      ×
-     </span>
-     Cerrar
-    </a>
-    <span aria-hidden="true" class="editorial-shell__separator">
-     |
-    </span>
-    <p>
-     Orfeo · Dirección creativa
-    </p>
+    <div class="editorial-project-data">
+     <p class="editorial-project-data__name">
+      Orfeo
+     </p>
+     <p class="editorial-project-data__type">
+      Dirección creativa
+     </p>
+     <p class="editorial-project-data__context">
+      En la Esquina · Buenos Aires, 2026
+     </p>
+    </div>
+    <nav aria-label="Comandos del proyecto" class="editorial-commands">
+     <a class="editorial-close" data-cursor-action="Volver al archivo" href="./index.html">
+      <span aria-hidden="true">
+       ×
+      </span>
+      Cerrar
+     </a>
+     <a class="editorial-start" data-cursor-action="Volver al inicio" data-editorial-start="" href="#presentacion">
+      Inicio del recorrido ↑
+     </a>
+    </nav>
    </div>
    <a aria-label="Volver al archivo" class="editorial-home" data-cursor-action="Volver al archivo" href="./index.html">
     <span aria-hidden="true" class="identity__glyph">
@@ -83,7 +94,7 @@
    <h1 class="visually-hidden">
     Orfeo
    </h1>
-   <header class="editorial-part editorial-intro" data-editorial-order="0" data-editorial-part="intro" data-editorial-side="left">
+   <header class="editorial-part editorial-intro" data-editorial-order="0" data-editorial-part="intro" data-editorial-side="left" id="presentacion">
     <button aria-haspopup="dialog" aria-label="Ampliar logotipo de Orfeo" class="editorial-image editorial-mark editorial-mark--orfeo" data-editorial-visual="" data-zoom-original="assets/images/orfeo/logo%20%281%29.png" type="button">
      <img alt="Orfeo" fetchpriority="high" height="1200" src="./assets/images/orfeo/wordmark-1200.webp" width="1200"/>
     </button>
@@ -387,16 +398,6 @@
        Back to Basics
       </figcaption>
      </figure>
-     <figure class="editorial-piece editorial-piece--neutral" data-piece-role="primary">
-      <div class="editorial-piece__visual">
-       <button aria-haspopup="dialog" aria-label="Ampliar Estampilla ornamental" class="editorial-image" data-zoom-original="assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136.png" type="button">
-        <img alt="Estampilla ilustrada de ORFEO en tonos claros" decoding="async" height="800" loading="lazy" sizes="(max-width: 767px) 80vw, (max-width: 1200px) 28vw, 340px" src="./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp" srcset="./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-1600.webp 1600w, ./assets/images/orfeo/New%20Project%20-%202026-05-15T140807.136-800.webp 800w" width="800"/>
-       </button>
-      </div>
-      <figcaption title="Estampilla ornamental">
-       Estampilla ornamental
-      </figcaption>
-     </figure>
     </div>
     <h2 id="sellos-title">
      05 – Sellos y ornamentos
@@ -428,14 +429,6 @@
       </div>
       <figcaption title="Variante 02">
        Variante 02
-      </figcaption>
-     </figure>
-     <figure class="editorial-piece editorial-piece--neutral" data-piece-role="variant">
-      <div class="editorial-piece__visual">
-       <img alt="Variante de estampilla gráfica de ORFEO en blanco" decoding="async" height="3543" loading="lazy" src="./assets/images/orfeo/New%20Project%20-%202026-05-15T001047.154.png" width="3543"/>
-      </div>
-      <figcaption title="Variante 03">
-       Variante 03
       </figcaption>
      </figure>
     </div>

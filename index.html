@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/accordion.css">
     <link rel="stylesheet" href="./css/motion.css">
     <link rel="stylesheet" href="./css/typography.css">
+    <link rel="stylesheet" href="./css/portfolio-grid.css">
     <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
     <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
@@ -43,105 +44,105 @@
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
     <header class="site-header">
-      <nav class="site-navigation" aria-label="Navegación principal">
-        <span class="tab navigation-shortcut archive-label" aria-current="page">Archivo</span>
-        <span class="archive-header-status" data-archive-mobile-status role="status" aria-live="polite">4 proyectos</span>
-        <p class="archive-intro">Archivo de proyectos realizados para marcas y organizaciones.</p>
-      </nav>
-      <div class="identity">
+      <a class="identity__logo" href="./index.html" aria-label="Santiago Barbieri — Archivo" data-cursor-action="Volver al archivo"><span class="identity__glyph" aria-hidden="true"></span></a>
+      <aside class="portfolio-commands" data-lenis-prevent aria-label="Información y navegación del portfolio">
         <a class="identity__copy" href="./index.html" aria-label="Santiago Barbieri — Archivo" data-cursor-action="Volver al archivo">
           <strong class="identity__name">Santiago Barbieri</strong>
           <span class="identity__role">Diseñador gráfico, desarrollador<br>web y fotógrafo</span>
         </a>
-        <a class="identity__logo" href="./index.html" aria-label="Santiago Barbieri — Archivo" data-cursor-action="Volver al archivo"><span class="identity__glyph" aria-hidden="true"></span></a>
-      </div>
-      <details class="archive-index" data-archive-index open>
-        <summary class="archive-index__toggle" aria-label="Índice de navegación" data-cursor-action="Índice"><span class="archive-index__icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="visually-hidden">Índice</span></summary>
-      <aside class="archive-controls" data-lenis-prevent aria-label="Filtros y navegación del archivo">
-        <div class="archive-index__intro"><h2>Índice</h2><p>Diseño gráfico, desarrollo web y fotografía.</p></div>
-      <details class="archive-filter-panel" data-archive-filter-panel open>
-        <summary class="archive-filter-toggle" aria-label="Ordenar proyectos">
-          <svg class="archive-filter-toggle__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
-            <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12"/>
-            <circle cx="10" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="7" cy="18" r="2"/>
-          </svg>
-          <span>Filtros y orden</span>
-        </summary>
-        <div class="archive-filters" data-lenis-prevent role="search" aria-label="Filtrar y organizar el archivo">
-          <details class="archive-filter-menu" data-filter-menu="category" hidden>
-            <summary class="tab"><span data-filter-label>Todos los proyectos</span></summary>
-            <fieldset class="archive-filter-options">
-              <legend class="visually-hidden">Filtrar proyectos</legend>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="all" checked><span>Todos los proyectos</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="identity"><span>Identidad visual</span></label>
-            </fieldset>
-          </details>
-          <details class="archive-filter-menu" data-filter-menu="order">
-            <summary class="tab"><span data-filter-label>Más recientes primero</span></summary>
-            <fieldset class="archive-filter-options">
-              <legend class="visually-hidden">Ordenar proyectos</legend>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="newest" checked><span>Más recientes primero</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="oldest"><span>Más antiguos primero</span></label>
-              <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="az"><span>A — Z</span></label>
-            </fieldset>
-          </details>
-          <p class="archive-results" data-archive-status role="status" aria-live="polite">4 proyectos</p>
-        </div>
-      </details>
-        <nav class="archive-personal" aria-label="Trabajo personal">
-          <span class="tab archive-pending" aria-disabled="true">
-            <span>Librería</span>
-            <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-          </span>
-          <span class="tab archive-pending" aria-disabled="true">
-            <span>Exploraciones</span>
-            <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-          </span>
+        <nav class="site-navigation" aria-label="Navegación principal">
+          <span class="tab navigation-shortcut archive-label" aria-current="page">Archivo</span>
+          <span class="archive-header-status" data-archive-mobile-status role="status" aria-live="polite">4 proyectos</span>
+          <p class="archive-intro">Archivo de proyectos realizados para marcas y organizaciones.</p>
         </nav>
-        <nav class="archive-pages" aria-label="Sobre mí, Contacto y Tienda">
-          <span class="tab archive-pending" aria-disabled="true">
-            <span>Sobre mí</span>
-            <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-          </span>
-          <span class="tab archive-pending" aria-disabled="true">
-            <span>Contacto</span>
-            <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-          </span>
-          <span class="tab archive-pages__pending" aria-disabled="true" title="Gumroad — enlace pendiente">Tienda<span class="archive-pages__status">Próximamente</span></span>
-        </nav>
-        <nav class="archive-directory" aria-label="Redes y Herramientas">
-          <div class="archive-directory__list">
-          <details class="accordion archive-directory__group">
-            <summary class="tab accordion__trigger">Redes</summary>
-          <div class="accordion__content">
-            <!-- TODO: add the real profile URLs. -->
-            <ul class="directory-list" aria-label="Redes sociales pendientes de vincular">
-              <li><span aria-disabled="true" title="Enlace pendiente">Instagram</span></li>
-              <li><span aria-disabled="true" title="Enlace pendiente">Behance</span></li>
-              <li><span aria-disabled="true" title="Enlace pendiente">LinkedIn</span></li>
-            </ul>
-          </div>
-                  </details>
-          <details class="accordion archive-directory__group">
-            <summary class="tab accordion__trigger">Herramientas</summary>
-          <div class="accordion__content">
-            <!-- TODO: add approved URLs for available tools. -->
-            <ul class="directory-list" aria-label="Herramientas">
-              <li><span aria-disabled="true" title="Enlace pendiente">Basement</span></li>
-              <li><span class="directory-item--unavailable" aria-disabled="true">Endo<span class="visually-hidden"> — próximamente</span></span></li>
-              <li><span class="directory-item--unavailable" aria-disabled="true">Ruin<span class="visually-hidden"> — próximamente</span></span></li>
-              <li><span class="directory-item--unavailable" aria-disabled="true">Foundry<span class="visually-hidden"> — próximamente</span></span></li>
-              <li><span class="directory-item--unavailable" aria-disabled="true">Marble<span class="visually-hidden"> — próximamente</span></span></li>
-              <li><span aria-disabled="true" title="Enlace pendiente">Margin</span></li>
-              <li><span aria-disabled="true" title="Enlace pendiente">Assembly</span></li>
-              <li><span aria-disabled="true" title="Enlace pendiente">Orbit</span></li>
-            </ul>
-          </div>
-                  </details>
-          </div>
-        </nav>
+        <details class="archive-index" data-archive-index open>
+          <summary class="archive-index__toggle" aria-label="Índice de navegación" data-cursor-action="Índice"><span class="archive-index__icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="visually-hidden">Índice</span></summary>
+          <aside class="archive-controls" data-lenis-prevent aria-label="Filtros y navegación del archivo">
+            <div class="archive-index__intro"><h2>Índice</h2><p>Diseño gráfico, desarrollo web y fotografía.</p></div>
+            <details class="archive-filter-panel" data-archive-filter-panel open>
+              <summary class="archive-filter-toggle" aria-label="Ordenar proyectos">
+                <svg class="archive-filter-toggle__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
+                  <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12"/>
+                  <circle cx="10" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="7" cy="18" r="2"/>
+                </svg>
+                <span>Filtros y orden</span>
+              </summary>
+              <div class="archive-filters" data-lenis-prevent role="search" aria-label="Filtrar y organizar el archivo">
+                <details class="archive-filter-menu" data-filter-menu="category" hidden>
+                  <summary class="tab"><span data-filter-label>Todos los proyectos</span></summary>
+                  <fieldset class="archive-filter-options">
+                    <legend class="visually-hidden">Filtrar proyectos</legend>
+                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="all" checked><span>Todos los proyectos</span></label>
+                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="identity"><span>Identidad visual</span></label>
+                  </fieldset>
+                </details>
+                <details class="archive-filter-menu" data-filter-menu="order">
+                  <summary class="tab"><span data-filter-label>Más recientes primero</span></summary>
+                  <fieldset class="archive-filter-options">
+                    <legend class="visually-hidden">Ordenar proyectos</legend>
+                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="newest" checked><span>Más recientes primero</span></label>
+                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="oldest"><span>Más antiguos primero</span></label>
+                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="az"><span>A — Z</span></label>
+                  </fieldset>
+                </details>
+                <p class="archive-results" data-archive-status role="status" aria-live="polite">4 proyectos</p>
+              </div>
+            </details>
+            <nav class="archive-personal" aria-label="Trabajo personal">
+              <span class="tab archive-pending" aria-disabled="true">
+                <span>Librería</span>
+                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
+              </span>
+              <span class="tab archive-pending" aria-disabled="true">
+                <span>Exploraciones</span>
+                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
+              </span>
+            </nav>
+            <nav class="archive-pages" aria-label="Sobre mí, Contacto y Tienda">
+              <span class="tab archive-pending" aria-disabled="true">
+                <span>Sobre mí</span>
+                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
+              </span>
+              <span class="tab archive-pending" aria-disabled="true">
+                <span>Contacto</span>
+                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
+              </span>
+              <span class="tab archive-pages__pending" aria-disabled="true" title="Gumroad — enlace pendiente">Tienda<span class="archive-pages__status">Próximamente</span></span>
+            </nav>
+            <nav class="archive-directory" aria-label="Redes y Herramientas">
+              <div class="archive-directory__list">
+                <details class="accordion archive-directory__group">
+                  <summary class="tab accordion__trigger">Redes</summary>
+                  <div class="accordion__content">
+                    <!-- TODO: add the real profile URLs. -->
+                    <ul class="directory-list" aria-label="Redes sociales pendientes de vincular">
+                      <li><span aria-disabled="true" title="Enlace pendiente">Instagram</span></li>
+                      <li><span aria-disabled="true" title="Enlace pendiente">Behance</span></li>
+                      <li><span aria-disabled="true" title="Enlace pendiente">LinkedIn</span></li>
+                    </ul>
+                  </div>
+                </details>
+                <details class="accordion archive-directory__group">
+                  <summary class="tab accordion__trigger">Herramientas</summary>
+                  <div class="accordion__content">
+                    <!-- TODO: add approved URLs for available tools. -->
+                    <ul class="directory-list" aria-label="Herramientas">
+                      <li><span aria-disabled="true" title="Enlace pendiente">Basement</span></li>
+                      <li><span class="directory-item--unavailable" aria-disabled="true">Endo<span class="visually-hidden"> — próximamente</span></span></li>
+                      <li><span class="directory-item--unavailable" aria-disabled="true">Ruin<span class="visually-hidden"> — próximamente</span></span></li>
+                      <li><span class="directory-item--unavailable" aria-disabled="true">Foundry<span class="visually-hidden"> — próximamente</span></span></li>
+                      <li><span class="directory-item--unavailable" aria-disabled="true">Marble<span class="visually-hidden"> — próximamente</span></span></li>
+                      <li><span aria-disabled="true" title="Enlace pendiente">Margin</span></li>
+                      <li><span aria-disabled="true" title="Enlace pendiente">Assembly</span></li>
+                      <li><span aria-disabled="true" title="Enlace pendiente">Orbit</span></li>
+                    </ul>
+                  </div>
+                </details>
+              </div>
+            </nav>
+          </aside>
+        </details>
       </aside>
-      </details>
     </header>
 
     <main class="archive-main" id="main-content" tabindex="-1">

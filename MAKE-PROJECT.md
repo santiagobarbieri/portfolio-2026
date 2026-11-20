@@ -1,5 +1,12 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Cuatro columnas y piezas sin soportes — 19 de noviembre de 2026
+
+La marca comparte una grilla de cuatro columnas en Archivo y los cuatro casos publicados: lateral izquierdo con logo; dos columnas centrales de contenido con scroll infinito; lateral derecho con datos y comandos. Los laterales son más angostos (proporción 1 / 1,7 / 1,7 / 1). `portfolio-grid.css` define el mismo marco, columnas y calles para las cinco páginas. Mantener las piezas y sus referencias dentro de la columna central que les corresponde; los laterales permanecen fijos. No volver a barras superiores que crucen el recorrido. La versión móvil sigue pausada hasta 900px.
+
+No agregar fondos auxiliares a paletas ni a piezas de poco contraste. Las paletas conservan sus colores y HEX reales, sin paneles grises. Omitir del caso las versiones raster blancas que necesitaban un soporte para verse: dos descartados y el isotipo claro de Club, el banner PNG de OLAS y las dos estampillas claras de Orfeo. El SVG de marca OLAS y el fragmento vectorial claro 4 se presentan negros sobre el lienzo. La marca también se amplía en negro con un velo claro. Los vectores que ya tienen color y contraste conservan sus colores. Preservar los fondos que formen parte de la pieza original, sus archivos y la selección de descargas desactivada para clientes.
+
+
 ## Corrección de grilla y solapamientos — 19 de noviembre de 2026
 
 Mantener siempre las dos columnas exteriores, también en afiches y en «Fin del recorrido». Ningún bloque puede ocupar ambas. OLAS muestra cuatro afiches (1, 2, 3 y 5) en una grilla 2×2 dentro de su columna; el 4 se omite por redundancia editorial y su archivo original se conserva.
