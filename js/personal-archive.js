@@ -8,9 +8,9 @@ const main = document.querySelector("main");
 const stream = document.querySelector("[data-personal-stream]");
 const view = document.body.dataset.personalView;
 const storageKey = `portfolio:personal-grid:v1:${view}`;
-const complete = startLoading(view === "all" ? "Cargando Lado B" : "Cargando Afiches");
+const complete = startLoading(view === "all" ? "Cargando Archivo" : "Cargando Afiches");
 const close = document.querySelector("[data-close-personal]");
-close.dataset.cursorAction = "Volver al archivo";
+close.dataset.cursorAction = "Volver a proyectos";
 function closeArchive(event) {
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   const previous = document.referrer ? new URL(document.referrer) : null;
@@ -72,7 +72,7 @@ async function initGrid() {
   } });
   stream.style.setProperty("--piece-ratio", Math.max(...items.map((item) => item.h / item.w)));
   stream.setAttribute("role", "grid");
-  stream.setAttribute("aria-label", view === "all" ? "Lado B: archivo visual infinito" : "Afiches: archivo visual infinito");
+  stream.setAttribute("aria-label", view === "all" ? "Archivo: archivo visual infinito" : "Afiches: archivo visual infinito");
   stream.setAttribute("aria-rowcount", "-1");
 
   function reveal(image) {

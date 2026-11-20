@@ -22,7 +22,7 @@
         const fallback = document.querySelector(".entry-fallback");
         if (fallback) {
           fallback.querySelector("h1").textContent = "No se pudo cargar el proyecto";
-          fallback.querySelector("p").textContent = "Recargá la página o volvé al archivo para intentarlo otra vez.";
+          fallback.querySelector("p").textContent = "Recargá la página o volvé a Proyectos para intentarlo otra vez.";
         }
       }, Math.max(0, 700 - (performance.now() - started)));
     };

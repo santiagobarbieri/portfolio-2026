@@ -40,8 +40,8 @@ export function createImageZoom({ onOpen, onClose } = {}) {
       const home = document.createElement("a");
       home.className = "image-zoom__home";
       home.href = "./index.html";
-      home.setAttribute("aria-label", "Volver al archivo");
-      home.dataset.cursorAction = "Volver al archivo";
+      home.setAttribute("aria-label", "Volver a proyectos");
+      home.dataset.cursorAction = "Volver a proyectos";
       const mark = document.createElement("span");
       mark.className = "identity__glyph";
       mark.setAttribute("aria-hidden", "true");

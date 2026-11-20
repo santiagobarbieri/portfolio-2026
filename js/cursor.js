@@ -6,7 +6,7 @@ function interactionAt(target) {
   if (control.dataset.cursorAction) return { control, text: control.dataset.cursorAction };
   const action = (text) => ({ control, text });
   if (control.matches(".archive-card__link")) return action("Abrir\nproyecto");
-  if (control.matches(".identity, [data-close-entry]")) return action("Volver\nal archivo");
+  if (control.matches(".identity, [data-close-entry]")) return action("Volver\na proyectos");
   if (control.matches(".image-gallery__close")) return action("Cerrar\nvisor");
   if (control.matches("[data-gallery-previous]")) return action("Imagen\nanterior");
   if (control.matches("[data-gallery-next]")) return action("Imagen\nsiguiente");
@@ -30,7 +30,7 @@ function interactionAt(target) {
   if (control.matches("input[type=checkbox], select")) return action("Elegir\nopción");
   if (control.matches("input, textarea")) return action("Escribir");
   if (control.matches('a[target="_blank"]')) return action("Abrir\npestaña");
-  if (control.matches("a[href]")) return action(control.getAttribute("href").startsWith("#") ? "Ir a\nsección" : "Volver\nal archivo");
+  if (control.matches("a[href]")) return action(control.getAttribute("href").startsWith("#") ? "Ir a\nsección" : "Volver\na proyectos");
   return action("Activar");
 }
 

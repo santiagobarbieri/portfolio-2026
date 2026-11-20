@@ -13,7 +13,7 @@ const title = document.querySelector("[data-entry-title]");
 const slug = new URLSearchParams(window.location.search).get("p");
 
 const closeLink = document.querySelector("[data-close-entry]");
-if (closeLink) closeLink.dataset.cursorAction = "Volver al archivo";
+if (closeLink) closeLink.dataset.cursorAction = "Volver a proyectos";
 
 function closeEntry(event) {
   if (event?.metaKey || event?.ctrlKey || event?.shiftKey || event?.altKey) return;
@@ -392,7 +392,7 @@ function renderProject(project) {
 function renderFallback(name, message) {
   setPageTitle(name);
   content.className = "entry-fallback";
-  const link = makeElement("a", "entry-fallback__link", "Volver al archivo ↗");
+  const link = makeElement("a", "entry-fallback__link", "Volver a proyectos ↗");
   link.href = "./index.html";
   content.replaceChildren(makeElement("h1", null, name), makeElement("p", null, message), link);
 }
@@ -412,7 +412,7 @@ async function renderEntry() {
     const projects = await response.json();
     let project = projects.find((item) => item.slug === slug);
     if (!project) {
-      renderFallback("Entrada no encontrada", "Este proyecto no está disponible. Podés explorar los demás desde el archivo.");
+      renderFallback("Entrada no encontrada", "Este proyecto no está disponible. Podés explorar los demás desde Proyectos.");
       return;
     }
     if (project.page) {
@@ -433,7 +433,7 @@ async function renderEntry() {
     }
     renderProject(project);
   } catch {
-    renderFallback("No se pudo cargar el proyecto", "Revisá tu conexión e intentá abrirlo otra vez desde el archivo.");
+    renderFallback("No se pudo cargar el proyecto", "Revisá tu conexión e intentá abrirlo otra vez desde Proyectos.");
   }
 }
 

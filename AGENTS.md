@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Navegación vigente — 20 de noviembre de 2026
+
+El home `index.html` se llama **Proyectos**. La sección personal antes llamada Lado B se activa como **Archivo**, en `self-made.html`, con su grilla visual y visor existentes. Los botones de regreso al home dicen Proyectos; Archivo identifica únicamente el trabajo personal. Librería, Sobre mí, Contacto y Tienda conservan sus estados pendientes. Esta activación no autoriza rediseñar las áreas restantes ni implementar las propuestas de la auditoría.
+
 ## Vista previa contenida — 20 de noviembre de 2026
 
 Las vistas previas del Archivo muestran la pieza completa centrada dentro del 82% de la caja, sin fondo auxiliar ni recorte; conservar los fondos propios de las imágenes. La portada se oculta visualmente durante el preview y vuelve al salir, sin cambiar la geometría. Club de Economía conserva solo su portada y no tiene secuencia de hover.

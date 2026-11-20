@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portafolio
 
+## Navegación vigente — 20 de noviembre de 2026
+
+El home `index.html` se llama **Proyectos**. La sección personal antes llamada Lado B se activa como **Archivo**, en `self-made.html`, con su grilla visual y visor existentes. Los botones de regreso al home dicen Proyectos; Archivo identifica únicamente el trabajo personal. Librería, Sobre mí, Contacto y Tienda conservan sus estados pendientes. Esta activación no autoriza rediseñar las áreas restantes ni implementar las propuestas de la auditoría.
+
 ## Apolo y dirección vigente — 20 de noviembre de 2026
 
 Datos y comandos en el lateral izquierdo; símbolo de Santiago en el derecho. Las dos columnas centrales conservan el recorrido infinito. Todos los casos usan el blanco del portfolio `--portfolio-paper: #f1ece0`; los colores de las piezas originales se preservan.

@@ -18,7 +18,7 @@ if (requested) {
   label.textContent = "Librería";
   close.replaceChildren(arrow, label);
   document.body.classList.replace("books-page--library", "books-page--shelf");
-} else close.dataset.cursorAction = "Volver al archivo";
+} else close.dataset.cursorAction = "Volver a proyectos";
 
 function closeBooks(event) {
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
