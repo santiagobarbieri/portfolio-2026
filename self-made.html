@@ -1,76 +1,2034 @@
-<!doctype html>
-<html lang="es" data-theme="light" data-load-screen>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="light">
-    <title>Archivo — Santiago Barbieri</title>
-    <meta name="description" content="Archivo visual de trabajos personales de Santiago Barbieri: tapas de libros, fotografías y futuras piezas gráficas.">
-    <meta name="theme-color" content="#f1ece0">
-    <meta property="og:title" content="Archivo — Santiago Barbieri">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
-    <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/shell.css">
-    <link rel="stylesheet" href="./css/cursor.css">
-    <link rel="stylesheet" href="./css/image-gallery.css">
-    <link rel="stylesheet" href="./css/personal-archive.css">
-    <link rel="stylesheet" href="./css/motion.css">
-    <link rel="stylesheet" href="./css/typography.css">
-    <link rel="stylesheet" href="./css/desktop-gate.css">
-    <script src="./js/transitions.js"></script>
-    <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
-    <script type="module" data-desktop-src="./js/personal-archive.js"></script>
-  </head>
-  <body class="personal-archive-page" data-personal-view="all">
-    <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
-      <span class="mobile-status__logo" aria-hidden="true"></span>
-      <div class="mobile-status__content">
-        <p class="mobile-status__name">Santiago Barbieri · Portfolio</p>
-        <h2 class="mobile-status__title" id="mobile-status-title">Versión móvil en desarrollo.</h2>
-        <p class="mobile-status__description">Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.</p>
-      </div>
-    </section>
-    <div class="site-loader" role="status">
-      <span class="site-loader__rose" aria-hidden="true"></span>
-      <span class="site-loader__label visually-hidden">Cargando Archivo</span>
+<!DOCTYPE html>
+<html data-load-screen="" data-theme="dark" lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+  <meta content="dark" name="color-scheme"/>
+  <title>
+   Archivo — Santiago Barbieri
+  </title>
+  <meta content="Archivo personal de Santiago Barbieri: afiches, tapas de libros y fotografías en un recorrido infinito, con vistas de dos, cuatro y seis columnas." name="description"/>
+  <meta content="#0a0a0a" name="theme-color"/>
+  <meta content="Archivo — Santiago Barbieri" property="og:title"/>
+  <meta content="website" property="og:type"/>
+  <link href="./assets/Favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link as="image" href="./assets/Spin%20Rose.svg" rel="preload" type="image/svg+xml"/>
+  <link as="font" crossorigin="" href="./assets/fonts/albert-sans-300.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="./assets/fonts/albert-sans-600.woff2" rel="preload" type="font/woff2"/>
+  <link href="./css/base.css" rel="stylesheet"/>
+  <link href="./css/shell.css" rel="stylesheet"/>
+  <link href="./css/cursor.css" rel="stylesheet"/>
+  <link href="./css/image-gallery.css" rel="stylesheet"/>
+  <link href="./css/personal-archive.css" rel="stylesheet"/>
+  <link href="./css/motion.css" rel="stylesheet"/>
+  <link href="./css/typography.css" rel="stylesheet"/>
+  <link href="./css/portfolio-grid.css" rel="stylesheet"/>
+  <link href="./css/desktop-gate.css" rel="stylesheet"/>
+  <script src="./js/transitions.js">
+  </script>
+  <script data-desktop-gate="" defer="" src="./js/desktop-gate.js">
+  </script>
+  <script data-desktop-src="./js/personal-archive.js" type="module">
+  </script>
+ </head>
+ <body class="personal-archive-page" data-columns="2" data-personal-view="all">
+  <section aria-labelledby="mobile-status-title" class="mobile-status" tabindex="-1">
+   <span aria-hidden="true" class="mobile-status__logo">
+   </span>
+   <div class="mobile-status__content">
+    <p class="mobile-status__name">
+     Santiago Barbieri · Portfolio
+    </p>
+    <h2 class="mobile-status__title" id="mobile-status-title">
+     Versión móvil en desarrollo.
+    </h2>
+    <p class="mobile-status__description">
+     Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.
+    </p>
+   </div>
+  </section>
+  <div class="site-loader" role="status">
+   <span aria-hidden="true" class="site-loader__rose">
+   </span>
+   <span class="site-loader__label visually-hidden">
+    Cargando Archivo
+   </span>
+  </div>
+  <a class="skip-link" href="#main-content">
+   Saltar al contenido principal
+  </a>
+  <header class="personal-archive__bar">
+   <aside aria-label="Comandos del Archivo" class="personal-archive__sidebar" data-lenis-prevent="">
+    <div class="personal-archive__heading">
+     <a class="personal-archive__close" data-close-personal="" data-cursor-action="Volver a proyectos" href="./index.html">
+      <span aria-hidden="true">
+       ×
+      </span>
+      Cerrar
+     </a>
+     <span aria-hidden="true" class="personal-archive__separator">
+      |
+     </span>
+     <h1>
+      Archivo
+     </h1>
     </div>
-    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
-    <header class="personal-archive__bar">
-      <a class="personal-archive__close" href="./index.html" data-close-personal aria-label="Cerrar Archivo y volver a Proyectos">Cerrar</a>
-      <a class="personal-archive__logo identity__logo" href="./index.html" aria-label="Santiago Barbieri — Proyectos" data-cursor-action="Volver a proyectos"><span class="identity__glyph" aria-hidden="true"></span></a>
-    </header>
-    <main class="personal-archive__main" id="main-content" tabindex="-1">
-      <h1 class="visually-hidden">Archivo</h1>
-      <p class="visually-hidden" data-personal-status role="status"></p>
-      <div class="personal-archive__stream" data-personal-stream>
-        <div class="personal-archive__row">
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp" aria-label="Ampliar ’Salem’s Lot"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-01-400.webp" width="400" height="566" alt="Portada de &#x27;SALEM&#x27;S LOT en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">01</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/zapallar/IMG_4660-1600.webp" aria-label="Ampliar 2"><span class="personal-archive__media"><img src="./assets/images/personal-previews/fotos-en-zapallar-01-400.webp" width="400" height="225" alt="Paseo costero, rocas y vegetación de Zapallar frente al mar" loading="lazy" decoding="async"></span><span class="personal-archive__number">02</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/Variante%202-800.webp" aria-label="Ampliar ’Salem’s Lot — Variante 02"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-02-400.webp" width="400" height="566" alt="Stephen King — variante 2" loading="lazy" decoding="async"></span><span class="personal-archive__number">03</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/zapallar/IMG_4726-800.webp" aria-label="Ampliar 4"><span class="personal-archive__media"><img src="./assets/images/personal-previews/fotos-en-zapallar-02-400.webp" width="400" height="266" alt="Árboles y jardines en una calle de Zapallar" loading="lazy" decoding="async"></span><span class="personal-archive__number">04</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/CARRIE-800.webp" aria-label="Ampliar Carrie"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-03-400.webp" width="400" height="566" alt="Portada de CARRIE en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">05</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/zapallar/IMG_4665-800.webp" aria-label="Ampliar 6"><span class="personal-archive__media"><img src="./assets/images/personal-previews/fotos-en-zapallar-03-400.webp" width="400" height="534" alt="Botellas y objetos en los estantes de un comercio" loading="lazy" decoding="async"></span><span class="personal-archive__number">06</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/CUJO-800.webp" aria-label="Ampliar Cujo"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-04-400.webp" width="400" height="566" alt="Portada de CUJO en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">07</span></a></figure>
-        </div>
-        <div class="personal-archive__row">
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/zapallar/IMG_4673-800.webp" aria-label="Ampliar 8"><span class="personal-archive__media"><img src="./assets/images/personal-previews/fotos-en-zapallar-04-400.webp" width="400" height="534" alt="Bandera de Chile junto a automóviles y árboles" loading="lazy" decoding="async"></span><span class="personal-archive__number">08</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/IT-800.webp" aria-label="Ampliar IT"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-05-400.webp" width="400" height="566" alt="Portada de IT en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">09</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/zapallar/DSC01575-800.webp" aria-label="Ampliar 10"><span class="personal-archive__media"><img src="./assets/images/personal-previews/fotos-en-zapallar-05-400.webp" width="400" height="266" alt="Atardecer sobre el mar con nubes oscuras y siluetas de la costa" loading="lazy" decoding="async"></span><span class="personal-archive__number">10</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/MISERY-800.webp" aria-label="Ampliar Misery"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-06-400.webp" width="400" height="566" alt="Portada de MISERY en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">11</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/zapallar/IMG_4748-800.webp" aria-label="Ampliar 12"><span class="personal-archive__media"><img src="./assets/images/personal-previews/fotos-en-zapallar-06-400.webp" width="400" height="266" alt="Reflejo del sol sobre el mar al atardecer" loading="lazy" decoding="async"></span><span class="personal-archive__number">12</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/PET%20SEMATARY-800.webp" aria-label="Ampliar Pet Sematary"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-07-400.webp" width="400" height="566" alt="Portada de PET SEMATARY en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">13</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/THE%20DARK%20TOWER-800.webp" aria-label="Ampliar The Dark Tower"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-08-400.webp" width="400" height="566" alt="Portada de THE DARK TOWER en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">14</span></a></figure>
-        </div>
-        <div class="personal-archive__row">
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp" aria-label="Ampliar The Dead Zone"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-09-400.webp" width="400" height="566" alt="Portada de THE DEAD ZONE en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">15</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/THE%20GREEN%20MILE-800.webp" aria-label="Ampliar The Green Mile"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-10-400.webp" width="400" height="566" alt="Portada de THE GREEN MILE en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">16</span></a></figure>
-          <figure class="personal-archive__cell"><a class="personal-archive__open" href="./assets/images/stephen-king/THE%20SHINING-800.webp" aria-label="Ampliar The Shining"><span class="personal-archive__media"><img src="./assets/images/personal-previews/stephen-king-11-400.webp" width="400" height="566" alt="Portada de THE SHINING en la serie Stephen King" loading="lazy" decoding="async"></span><span class="personal-archive__number">17</span></a></figure>
-        </div>
+    <form aria-label="Buscar y organizar piezas" class="personal-archive__controls" data-personal-controls="" role="search">
+     <div class="personal-archive__search">
+      <label for="personal-search">
+       Buscar
+      </label>
+      <input autocomplete="off" data-personal-search="" disabled="" id="personal-search" name="q" placeholder="Título, colección…" type="search"/>
+     </div>
+     <details class="personal-archive__menu" data-personal-menu="order">
+      <summary>
+       <span data-menu-label="">
+        Orden de archivo
+       </span>
+      </summary>
+      <fieldset class="personal-archive__options">
+       <legend class="visually-hidden">
+        Ordenar piezas
+       </legend>
+       <label>
+        <input checked="" disabled="" name="personal-order" type="radio" value="archive"/>
+        <span>
+         Orden de archivo
+        </span>
+       </label>
+       <label>
+        <input disabled="" name="personal-order" type="radio" value="az"/>
+        <span>
+         A – Z
+        </span>
+       </label>
+       <label>
+        <input disabled="" name="personal-order" type="radio" value="za"/>
+        <span>
+         Z – A
+        </span>
+       </label>
+      </fieldset>
+     </details>
+     <details class="personal-archive__menu" data-personal-menu="kind">
+      <summary>
+       <span data-menu-label="">
+        Todas las piezas
+       </span>
+      </summary>
+      <fieldset class="personal-archive__options">
+       <legend class="visually-hidden">
+        Filtrar por formato
+       </legend>
+       <label>
+        <input checked="" disabled="" name="personal-kind" type="radio" value="all"/>
+        <span>
+         Todas las piezas
+        </span>
+       </label>
+       <label>
+        <input disabled="" name="personal-kind" type="radio" value="poster"/>
+        <span>
+         Afiches
+        </span>
+       </label>
+       <label>
+        <input disabled="" name="personal-kind" type="radio" value="book"/>
+        <span>
+         Tapas de libros
+        </span>
+       </label>
+       <label>
+        <input disabled="" name="personal-kind" type="radio" value="photo"/>
+        <span>
+         Fotografía
+        </span>
+       </label>
+      </fieldset>
+     </details>
+     <fieldset class="personal-archive__density">
+      <legend class="visually-hidden">
+       Cantidad de columnas
+      </legend>
+      <button aria-label="Ver en 2 columnas" aria-pressed="true" data-cursor-action="2 columnas" data-density="2" disabled="" type="button">
+       2
+      </button>
+      <button aria-label="Ver en 4 columnas" aria-pressed="false" data-cursor-action="4 columnas" data-density="4" disabled="" type="button">
+       4
+      </button>
+      <button aria-label="Ver en 6 columnas" aria-pressed="false" data-cursor-action="6 columnas" data-density="6" disabled="" type="button">
+       6
+      </button>
+     </fieldset>
+     <p aria-live="polite" class="personal-archive__status" data-personal-status="" role="status">
+      84 piezas
+     </p>
+     <button class="personal-archive__reset" data-personal-reset="" disabled="" hidden="" type="button">
+      Limpiar filtros
+     </button>
+     <noscript>
+      <p>
+       La selección se puede recorrer sin JavaScript. Activá JavaScript para buscar o cambiar de vista.
+      </p>
+     </noscript>
+    </form>
+   </aside>
+   <a aria-label="Volver a Proyectos" class="personal-archive__logo identity__logo" data-cursor-action="Volver a proyectos" href="./index.html">
+    <span aria-hidden="true" class="identity__glyph">
+    </span>
+   </a>
+  </header>
+  <main class="personal-archive__main" id="main-content" tabindex="-1">
+   <div class="personal-archive__stream" data-personal-stream="">
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar 100 Horses" class="personal-archive__open" href="./assets/images/personal-posters/100-horses-800.webp">
+        <span class="personal-archive__media">
+         <img alt="100 Horses, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/100-horses-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         100 Horses
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de 100 Horses" class="personal-archive__download" download="" href="./assets/images/personal-posters/100-horses-2480.webp">
+         Descargar
+        </a>
+       </div>
       </div>
-    </main>
-  </body>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Carrie" class="personal-archive__open" href="./assets/images/personal-posters/carrie-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Carrie, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/carrie-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Carrie
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Carrie" class="personal-archive__download" download="" href="./assets/images/personal-posters/carrie-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Pulp Fiction" class="personal-archive__open" href="./assets/images/personal-posters/pulp-fiction-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Pulp Fiction, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/pulp-fiction-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Pulp Fiction
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Pulp Fiction" class="personal-archive__download" download="" href="./assets/images/personal-posters/pulp-fiction-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Faust" class="personal-archive__open" href="./assets/images/personal-posters/faust-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Faust, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/faust-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Faust
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Faust" class="personal-archive__download" download="" href="./assets/images/personal-posters/faust-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Blood Meridian" class="personal-archive__open" href="./assets/images/personal-posters/blood-meridian-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Blood Meridian, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/blood-meridian-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Blood Meridian
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Blood Meridian" class="personal-archive__download" download="" href="./assets/images/personal-posters/blood-meridian-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Nosferatu" class="personal-archive__open" href="./assets/images/personal-posters/nosferatu-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Nosferatu, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/nosferatu-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Nosferatu
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Nosferatu" class="personal-archive__download" download="" href="./assets/images/personal-posters/nosferatu-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar 1984" class="personal-archive__open" href="./assets/images/personal-posters/1984-800.webp">
+        <span class="personal-archive__media">
+         <img alt="1984, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/1984-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         1984
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de 1984" class="personal-archive__download" download="" href="./assets/images/personal-posters/1984-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Animal Farm" class="personal-archive__open" href="./assets/images/personal-posters/animal-farm-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Animal Farm, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/animal-farm-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Animal Farm
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Animal Farm" class="personal-archive__download" download="" href="./assets/images/personal-posters/animal-farm-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Animal Farm — Variante 02" class="personal-archive__open" href="./assets/images/personal-posters/animal-farm-variante-02-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Animal Farm — Variante 02, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/animal-farm-variante-02-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Animal Farm — Variante 02
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Animal Farm — Variante 02" class="personal-archive__download" download="" href="./assets/images/personal-posters/animal-farm-variante-02-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Bugonia" class="personal-archive__open" href="./assets/images/personal-posters/bugonia-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Bugonia, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/bugonia-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Bugonia
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Bugonia" class="personal-archive__download" download="" href="./assets/images/personal-posters/bugonia-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Seventeen Minutes" class="personal-archive__open" href="./assets/images/personal-posters/seventeen-minutes-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Seventeen Minutes, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/seventeen-minutes-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Seventeen Minutes
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Seventeen Minutes" class="personal-archive__download" download="" href="./assets/images/personal-posters/seventeen-minutes-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Paris, Texas" class="personal-archive__open" href="./assets/images/personal-posters/paris-texas-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Paris, Texas, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/paris-texas-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Paris, Texas
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Paris, Texas" class="personal-archive__download" download="" href="./assets/images/personal-posters/paris-texas-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Nothing Ever Happened Here" class="personal-archive__open" href="./assets/images/personal-posters/nothing-ever-happened-here-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Nothing Ever Happened Here, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/nothing-ever-happened-here-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Nothing Ever Happened Here
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Nothing Ever Happened Here" class="personal-archive__download" download="" href="./assets/images/personal-posters/nothing-ever-happened-here-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar He Who Ruled All" class="personal-archive__open" href="./assets/images/personal-posters/he-who-ruled-all-800.webp">
+        <span class="personal-archive__media">
+         <img alt="He Who Ruled All, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/he-who-ruled-all-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         He Who Ruled All
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de He Who Ruled All" class="personal-archive__download" download="" href="./assets/images/personal-posters/he-who-ruled-all-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar She Was Everyone" class="personal-archive__open" href="./assets/images/personal-posters/she-was-everyone-800.webp">
+        <span class="personal-archive__media">
+         <img alt="She Was Everyone, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/she-was-everyone-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         She Was Everyone
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de She Was Everyone" class="personal-archive__download" download="" href="./assets/images/personal-posters/she-was-everyone-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar No Man’s Son" class="personal-archive__open" href="./assets/images/personal-posters/no-mans-son-800.webp">
+        <span class="personal-archive__media">
+         <img alt="No Man’s Son, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/no-mans-son-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         No Man’s Son
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de No Man’s Son" class="personal-archive__download" download="" href="./assets/images/personal-posters/no-mans-son-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Very Last of the Crusaders" class="personal-archive__open" href="./assets/images/personal-posters/the-very-last-of-the-crusaders-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Very Last of the Crusaders, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-very-last-of-the-crusaders-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Very Last of the Crusaders
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Very Last of the Crusaders" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-very-last-of-the-crusaders-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Endo Explore — Cadena" class="personal-archive__open" href="./assets/images/personal-posters/endo-explore-cadena-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Endo Explore — Cadena, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/endo-explore-cadena-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Endo Explore — Cadena
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Endo Explore — Cadena" class="personal-archive__download" download="" href="./assets/images/personal-posters/endo-explore-cadena-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Endo Explore — Ornamento" class="personal-archive__open" href="./assets/images/personal-posters/endo-explore-ornamento-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Endo Explore — Ornamento, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/endo-explore-ornamento-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Endo Explore — Ornamento
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Endo Explore — Ornamento" class="personal-archive__download" download="" href="./assets/images/personal-posters/endo-explore-ornamento-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Endo Explore — Vegetal" class="personal-archive__open" href="./assets/images/personal-posters/endo-explore-vegetal-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Endo Explore — Vegetal, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/endo-explore-vegetal-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Endo Explore — Vegetal
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Endo Explore — Vegetal" class="personal-archive__download" download="" href="./assets/images/personal-posters/endo-explore-vegetal-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Endo Explore — Mosaico" class="personal-archive__open" href="./assets/images/personal-posters/endo-explore-mosaico-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Endo Explore — Mosaico, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/endo-explore-mosaico-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Endo Explore — Mosaico
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Endo Explore — Mosaico" class="personal-archive__download" download="" href="./assets/images/personal-posters/endo-explore-mosaico-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Endo Explore — Naranja" class="personal-archive__open" href="./assets/images/personal-posters/endo-explore-naranja-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Endo Explore — Naranja, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/endo-explore-naranja-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Endo Explore — Naranja
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Endo Explore — Naranja" class="personal-archive__download" download="" href="./assets/images/personal-posters/endo-explore-naranja-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Meeting with the Sphinx" class="personal-archive__open" href="./assets/images/personal-posters/meeting-with-the-sphinx-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Meeting with the Sphinx, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/meeting-with-the-sphinx-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Meeting with the Sphinx
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Meeting with the Sphinx" class="personal-archive__download" download="" href="./assets/images/personal-posters/meeting-with-the-sphinx-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Nobody — Figura 01" class="personal-archive__open" href="./assets/images/personal-posters/nobody-figura-01-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Nobody — Figura 01, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/nobody-figura-01-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Nobody — Figura 01
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Nobody — Figura 01" class="personal-archive__download" download="" href="./assets/images/personal-posters/nobody-figura-01-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Follow the Light" class="personal-archive__open" href="./assets/images/personal-posters/follow-the-light-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Follow the Light, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/follow-the-light-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Follow the Light
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Follow the Light" class="personal-archive__download" download="" href="./assets/images/personal-posters/follow-the-light-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Eyes Wide Shut" class="personal-archive__open" href="./assets/images/personal-posters/eyes-wide-shut-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Eyes Wide Shut, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/eyes-wide-shut-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Eyes Wide Shut
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Eyes Wide Shut" class="personal-archive__download" download="" href="./assets/images/personal-posters/eyes-wide-shut-1190.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Otro día en el planeta Tierra" class="personal-archive__open" href="./assets/images/personal-posters/otro-dia-en-el-planeta-tierra-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Otro día en el planeta Tierra, afiche personal en formato A4" decoding="async" height="1129" loading="lazy" src="./assets/images/personal-posters/otro-dia-en-el-planeta-tierra-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Otro día en el planeta Tierra
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Otro día en el planeta Tierra" class="personal-archive__download" download="" href="./assets/images/personal-posters/otro-dia-en-el-planeta-tierra-2953.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Old King from the North" class="personal-archive__open" href="./assets/images/personal-posters/the-old-king-from-the-north-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Old King from the North, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-old-king-from-the-north-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Old King from the North
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Old King from the North" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-old-king-from-the-north-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sgt. Pepper’s Lonely Hearts Club Band" class="personal-archive__open" href="./assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sgt. Pepper’s Lonely Hearts Club Band, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sgt. Pepper’s Lonely Hearts Club Band
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sgt. Pepper’s Lonely Hearts Club Band" class="personal-archive__download" download="" href="./assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Beatles" class="personal-archive__open" href="./assets/images/personal-posters/the-beatles-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Beatles, afiche personal en formato A4" decoding="async" height="1129" loading="lazy" src="./assets/images/personal-posters/the-beatles-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Beatles
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Beatles" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-beatles-2953.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Copenhague" class="personal-archive__open" href="./assets/images/personal-posters/copenhague-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Copenhague, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/copenhague-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Copenhague
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Copenhague" class="personal-archive__download" download="" href="./assets/images/personal-posters/copenhague-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Slowthai" class="personal-archive__open" href="./assets/images/personal-posters/slowthai-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Slowthai, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/slowthai-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Slowthai
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Slowthai" class="personal-archive__download" download="" href="./assets/images/personal-posters/slowthai-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The End of the Beginning" class="personal-archive__open" href="./assets/images/personal-posters/the-end-of-the-beginning-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The End of the Beginning, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-end-of-the-beginning-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The End of the Beginning
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The End of the Beginning" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-end-of-the-beginning-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Where Is My Mind?" class="personal-archive__open" href="./assets/images/personal-posters/where-is-my-mind-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Where Is My Mind?, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/where-is-my-mind-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Where Is My Mind?
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Where Is My Mind?" class="personal-archive__download" download="" href="./assets/images/personal-posters/where-is-my-mind-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Stop Making Sense" class="personal-archive__open" href="./assets/images/personal-posters/stop-making-sense-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Stop Making Sense, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/stop-making-sense-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Stop Making Sense
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Stop Making Sense" class="personal-archive__download" download="" href="./assets/images/personal-posters/stop-making-sense-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sin título — 01" class="personal-archive__open" href="./assets/images/personal-posters/reflejos-azules-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sin título — 01, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/reflejos-azules-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sin título — 01
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sin título — 01" class="personal-archive__download" download="" href="./assets/images/personal-posters/reflejos-azules-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar This Is the End" class="personal-archive__open" href="./assets/images/personal-posters/this-is-the-end-800.webp">
+        <span class="personal-archive__media">
+         <img alt="This Is the End, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/this-is-the-end-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         This Is the End
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de This Is the End" class="personal-archive__download" download="" href="./assets/images/personal-posters/this-is-the-end-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Fly" class="personal-archive__open" href="./assets/images/personal-posters/fly-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Fly, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/fly-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Fly
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Fly" class="personal-archive__download" download="" href="./assets/images/personal-posters/fly-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Ziggy Stardust" class="personal-archive__open" href="./assets/images/personal-posters/ziggy-stardust-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Ziggy Stardust, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/ziggy-stardust-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Ziggy Stardust
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Ziggy Stardust" class="personal-archive__download" download="" href="./assets/images/personal-posters/ziggy-stardust-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Wild Horses" class="personal-archive__open" href="./assets/images/personal-posters/wild-horses-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Wild Horses, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/wild-horses-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Wild Horses
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Wild Horses" class="personal-archive__download" download="" href="./assets/images/personal-posters/wild-horses-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Unexpected" class="personal-archive__open" href="./assets/images/personal-posters/unexpected-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Unexpected, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/unexpected-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Unexpected
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Unexpected" class="personal-archive__download" download="" href="./assets/images/personal-posters/unexpected-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Talking Heads" class="personal-archive__open" href="./assets/images/personal-posters/talking-heads-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Talking Heads, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/talking-heads-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Talking Heads
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Talking Heads" class="personal-archive__download" download="" href="./assets/images/personal-posters/talking-heads-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Dylan — Amarillo" class="personal-archive__open" href="./assets/images/personal-posters/dylan-amarillo-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Dylan — Amarillo, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/dylan-amarillo-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Dylan — Amarillo
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Dylan — Amarillo" class="personal-archive__download" download="" href="./assets/images/personal-posters/dylan-amarillo-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Dylan" class="personal-archive__open" href="./assets/images/personal-posters/dylan-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Dylan, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/dylan-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Dylan
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Dylan" class="personal-archive__download" download="" href="./assets/images/personal-posters/dylan-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Celestial Bodies" class="personal-archive__open" href="./assets/images/personal-posters/celestial-bodies-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Celestial Bodies, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/celestial-bodies-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Celestial Bodies
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Celestial Bodies" class="personal-archive__download" download="" href="./assets/images/personal-posters/celestial-bodies-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Wild West" class="personal-archive__open" href="./assets/images/personal-posters/wild-west-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Wild West, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/wild-west-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Wild West
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Wild West" class="personal-archive__download" download="" href="./assets/images/personal-posters/wild-west-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Movement" class="personal-archive__open" href="./assets/images/personal-posters/movement-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Movement, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/movement-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Movement
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Movement" class="personal-archive__download" download="" href="./assets/images/personal-posters/movement-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sin título — 02" class="personal-archive__open" href="./assets/images/personal-posters/retrato-azul-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sin título — 02, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/retrato-azul-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sin título — 02
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sin título — 02" class="personal-archive__download" download="" href="./assets/images/personal-posters/retrato-azul-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Caballos — Rosa" class="personal-archive__open" href="./assets/images/personal-posters/caballos-rosa-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Caballos — Rosa, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/caballos-rosa-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Caballos — Rosa
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Caballos — Rosa" class="personal-archive__download" download="" href="./assets/images/personal-posters/caballos-rosa-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Dreamers" class="personal-archive__open" href="./assets/images/personal-posters/dreamers-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Dreamers, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/dreamers-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Dreamers
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Dreamers" class="personal-archive__download" download="" href="./assets/images/personal-posters/dreamers-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Endo Explore — Candelabro" class="personal-archive__open" href="./assets/images/personal-posters/endo-explore-candelabro-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Endo Explore — Candelabro, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/endo-explore-candelabro-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Endo Explore — Candelabro
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Endo Explore — Candelabro" class="personal-archive__download" download="" href="./assets/images/personal-posters/endo-explore-candelabro-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Seventh Seal" class="personal-archive__open" href="./assets/images/personal-posters/the-seventh-seal-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Seventh Seal, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-seventh-seal-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Seventh Seal
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Seventh Seal" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-seventh-seal-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Seventh Seal — Variante 02" class="personal-archive__open" href="./assets/images/personal-posters/the-seventh-seal-variante-02-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Seventh Seal — Variante 02, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-seventh-seal-variante-02-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Seventh Seal — Variante 02
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Seventh Seal — Variante 02" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-seventh-seal-variante-02-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Eyes Wide Shut — Variante 02" class="personal-archive__open" href="./assets/images/personal-posters/eyes-wide-shut-variante-02-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Eyes Wide Shut — Variante 02, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/eyes-wide-shut-variante-02-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Eyes Wide Shut — Variante 02
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Eyes Wide Shut — Variante 02" class="personal-archive__download" download="" href="./assets/images/personal-posters/eyes-wide-shut-variante-02-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Stand Out" class="personal-archive__open" href="./assets/images/personal-posters/stand-out-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Stand Out, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/stand-out-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Stand Out
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Stand Out" class="personal-archive__download" download="" href="./assets/images/personal-posters/stand-out-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Distorted Realities" class="personal-archive__open" href="./assets/images/personal-posters/distorted-realities-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Distorted Realities, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/distorted-realities-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Distorted Realities
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Distorted Realities" class="personal-archive__download" download="" href="./assets/images/personal-posters/distorted-realities-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Basement" class="personal-archive__open" href="./assets/images/personal-posters/basement-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Basement, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/basement-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Basement
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Basement" class="personal-archive__download" download="" href="./assets/images/personal-posters/basement-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Shining" class="personal-archive__open" href="./assets/images/personal-posters/the-shining-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Shining, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-shining-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Shining
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Shining" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-shining-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Faust — Variante 02" class="personal-archive__open" href="./assets/images/personal-posters/faust-variante-02-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Faust — Variante 02, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/faust-variante-02-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Faust — Variante 02
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Faust — Variante 02" class="personal-archive__download" download="" href="./assets/images/personal-posters/faust-variante-02-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sin título — 03" class="personal-archive__open" href="./assets/images/personal-posters/composicion-azul-y-verde-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sin título — 03, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/composicion-azul-y-verde-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sin título — 03
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sin título — 03" class="personal-archive__download" download="" href="./assets/images/personal-posters/composicion-azul-y-verde-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sin título — 04" class="personal-archive__open" href="./assets/images/personal-posters/retrato-celeste-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sin título — 04, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/retrato-celeste-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sin título — 04
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sin título — 04" class="personal-archive__download" download="" href="./assets/images/personal-posters/retrato-celeste-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar La Chimera" class="personal-archive__open" href="./assets/images/personal-posters/la-chimera-800.webp">
+        <span class="personal-archive__media">
+         <img alt="La Chimera, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/la-chimera-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         La Chimera
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de La Chimera" class="personal-archive__download" download="" href="./assets/images/personal-posters/la-chimera-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sin título — 05" class="personal-archive__open" href="./assets/images/personal-posters/movimiento-caballo-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sin título — 05, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/movimiento-caballo-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sin título — 05
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sin título — 05" class="personal-archive__download" download="" href="./assets/images/personal-posters/movimiento-caballo-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Light Sources — Luz violeta" class="personal-archive__open" href="./assets/images/personal-posters/light-sources-luz-violeta-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Light Sources — Luz violeta, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/light-sources-luz-violeta-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Light Sources — Luz violeta
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Light Sources — Luz violeta" class="personal-archive__download" download="" href="./assets/images/personal-posters/light-sources-luz-violeta-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Under the Light House" class="personal-archive__open" href="./assets/images/personal-posters/under-the-light-house-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Under the Light House, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/under-the-light-house-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Under the Light House
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Under the Light House" class="personal-archive__download" download="" href="./assets/images/personal-posters/under-the-light-house-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Monk" class="personal-archive__open" href="./assets/images/personal-posters/the-monk-800.webp">
+        <span class="personal-archive__media">
+         <img alt="The Monk, afiche personal en formato A4" decoding="async" height="1132" loading="lazy" src="./assets/images/personal-posters/the-monk-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Monk
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de The Monk" class="personal-archive__download" download="" href="./assets/images/personal-posters/the-monk-2480.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Sayonara" class="personal-archive__open" href="./assets/images/personal-posters/sayonara-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Sayonara, afiche personal en formato A4" decoding="async" height="1129" loading="lazy" src="./assets/images/personal-posters/sayonara-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Sayonara
+        </h2>
+        <p class="personal-archive__meta">
+         Afiche · A4
+        </p>
+        <a aria-label="Descargar WebP de Sayonara" class="personal-archive__download" download="" href="./assets/images/personal-posters/sayonara-2953.webp">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar ’Salem’s Lot" class="personal-archive__open" href="./assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de &#x27;SALEM&#x27;S LOT en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         ’Salem’s Lot
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de ’Salem’s Lot" class="personal-archive__download" download="" href="./assets/images/stephen-king/%27SALEM%27S%20LOT.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Fotografía 01" class="personal-archive__open" href="./assets/images/zapallar/IMG_4660-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Paseo costero, rocas y vegetación de Zapallar frente al mar" decoding="async" height="449" loading="lazy" src="./assets/images/zapallar/IMG_4660-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Fotografía 01
+        </h2>
+        <p class="personal-archive__meta">
+         Zapallar · Fotografía
+        </p>
+        <a aria-label="Descargar original de Fotografía 01" class="personal-archive__download" download="" href="./assets/images/zapallar/IMG_4660.jpg">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar ’Salem’s Lot — Variante 02" class="personal-archive__open" href="./assets/images/stephen-king/Variante%202-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Stephen King — variante 2" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/Variante%202-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         ’Salem’s Lot — Variante 02
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de ’Salem’s Lot — Variante 02" class="personal-archive__download" download="" href="./assets/images/stephen-king/Variante%202.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Árboles y jardines" class="personal-archive__open" href="./assets/images/zapallar/IMG_4726-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Árboles y jardines en una calle de Zapallar" decoding="async" height="532" loading="lazy" src="./assets/images/zapallar/IMG_4726-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Árboles y jardines
+        </h2>
+        <p class="personal-archive__meta">
+         Zapallar · Fotografía
+        </p>
+        <a aria-label="Descargar original de Árboles y jardines" class="personal-archive__download" download="" href="./assets/images/zapallar/IMG_4726.JPG">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Carrie" class="personal-archive__open" href="./assets/images/stephen-king/CARRIE-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de CARRIE en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/CARRIE-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Carrie
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de Carrie" class="personal-archive__download" download="" href="./assets/images/stephen-king/CARRIE.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Detalles cotidianos" class="personal-archive__open" href="./assets/images/zapallar/IMG_4665-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Botellas y objetos en los estantes de un comercio" decoding="async" height="1067" loading="lazy" src="./assets/images/zapallar/IMG_4665-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Detalles cotidianos
+        </h2>
+        <p class="personal-archive__meta">
+         Zapallar · Fotografía
+        </p>
+        <a aria-label="Descargar original de Detalles cotidianos" class="personal-archive__download" download="" href="./assets/images/zapallar/IMG_4665.JPG">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Cujo" class="personal-archive__open" href="./assets/images/stephen-king/CUJO-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de CUJO en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/CUJO-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Cujo
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de Cujo" class="personal-archive__download" download="" href="./assets/images/stephen-king/CUJO.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Bandera de Chile" class="personal-archive__open" href="./assets/images/zapallar/IMG_4673-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Bandera de Chile junto a automóviles y árboles" decoding="async" height="1067" loading="lazy" src="./assets/images/zapallar/IMG_4673-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Bandera de Chile
+        </h2>
+        <p class="personal-archive__meta">
+         Zapallar · Fotografía
+        </p>
+        <a aria-label="Descargar original de Bandera de Chile" class="personal-archive__download" download="" href="./assets/images/zapallar/IMG_4673.JPG">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar IT" class="personal-archive__open" href="./assets/images/stephen-king/IT-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de IT en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/IT-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         IT
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de IT" class="personal-archive__download" download="" href="./assets/images/stephen-king/IT.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Luz de tarde" class="personal-archive__open" href="./assets/images/zapallar/DSC01575-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Atardecer sobre el mar con nubes oscuras y siluetas de la costa" decoding="async" height="532" loading="lazy" src="./assets/images/zapallar/DSC01575-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Luz de tarde
+        </h2>
+        <p class="personal-archive__meta">
+         Zapallar · Fotografía
+        </p>
+        <a aria-label="Descargar original de Luz de tarde" class="personal-archive__download" download="" href="./assets/images/zapallar/DSC01575.JPG">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Misery" class="personal-archive__open" href="./assets/images/stephen-king/MISERY-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de MISERY en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/MISERY-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Misery
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de Misery" class="personal-archive__download" download="" href="./assets/images/stephen-king/MISERY.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Reflejos sobre el mar" class="personal-archive__open" href="./assets/images/zapallar/IMG_4748-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Reflejo del sol sobre el mar al atardecer" decoding="async" height="532" loading="lazy" src="./assets/images/zapallar/IMG_4748-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Reflejos sobre el mar
+        </h2>
+        <p class="personal-archive__meta">
+         Zapallar · Fotografía
+        </p>
+        <a aria-label="Descargar original de Reflejos sobre el mar" class="personal-archive__download" download="" href="./assets/images/zapallar/IMG_4748.JPG">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar Pet Sematary" class="personal-archive__open" href="./assets/images/stephen-king/PET%20SEMATARY-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de PET SEMATARY en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/PET%20SEMATARY-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         Pet Sematary
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de Pet Sematary" class="personal-archive__download" download="" href="./assets/images/stephen-king/PET%20SEMATARY.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Dark Tower" class="personal-archive__open" href="./assets/images/stephen-king/THE%20DARK%20TOWER-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de THE DARK TOWER en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/THE%20DARK%20TOWER-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Dark Tower
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de The Dark Tower" class="personal-archive__download" download="" href="./assets/images/stephen-king/THE%20DARK%20TOWER.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Dead Zone" class="personal-archive__open" href="./assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de THE DEAD ZONE en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Dead Zone
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de The Dead Zone" class="personal-archive__download" download="" href="./assets/images/stephen-king/THE%20DEAD%20ZONE.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Green Mile" class="personal-archive__open" href="./assets/images/stephen-king/THE%20GREEN%20MILE-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de THE GREEN MILE en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/THE%20GREEN%20MILE-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Green Mile
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de The Green Mile" class="personal-archive__download" download="" href="./assets/images/stephen-king/THE%20GREEN%20MILE.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+    <div class="personal-archive__row">
+     <article class="personal-archive__cell">
+      <div class="personal-archive__motion">
+       <a aria-label="Ampliar The Shining" class="personal-archive__open" href="./assets/images/stephen-king/THE%20SHINING-800.webp">
+        <span class="personal-archive__media">
+         <img alt="Portada de THE SHINING en la serie Stephen King" decoding="async" height="1132" loading="lazy" src="./assets/images/stephen-king/THE%20SHINING-800.webp" width="800"/>
+        </span>
+       </a>
+       <div class="personal-archive__caption">
+        <h2 class="personal-archive__name">
+         The Shining
+        </h2>
+        <p class="personal-archive__meta">
+         Stephen King · Tapa de libro
+        </p>
+        <a aria-label="Descargar original de The Shining" class="personal-archive__download" download="" href="./assets/images/stephen-king/THE%20SHINING.png">
+         Descargar
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+   </div>
+  </main>
+ </body>
 </html>

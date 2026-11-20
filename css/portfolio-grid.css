@@ -1,6 +1,6 @@
 /* The portfolio always has two narrow rails and two central content columns. */
 @media (min-width: 901px) {
-  :root:has(.archive-page, .editorial-page) {
+  :root:has(.archive-page, .editorial-page, .personal-archive-page) {
     --portfolio-frame: min(1480px, calc(100vw - 32px));
     --portfolio-edge: calc((100vw - var(--portfolio-frame)) / 2);
     --portfolio-gap: clamp(32px, 4.63vw, 70px);

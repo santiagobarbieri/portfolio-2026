@@ -26,7 +26,8 @@ function makeDownload(item, index) {
   const link = element("a", "image-gallery__download");
   link.href = source.href;
   link.download = filename;
-  link.setAttribute("aria-label", `Descargar ${name}: ${filename} — original ${format}`);
+  const downloadLabel = item.downloadLabel || "Descargar original";
+  link.setAttribute("aria-label", `${downloadLabel}: ${name} · ${filename} · ${format}`);
   link.dataset.cursorAction = `Descargar ${format}`;
   const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   icon.setAttribute("viewBox", "0 0 24 24");
@@ -39,7 +40,7 @@ function makeDownload(item, index) {
   icon.append(path);
   const detail = element("span", "image-gallery__download-info");
   detail.setAttribute("aria-hidden", "true");
-  detail.append(element("span", "image-gallery__download-label", "Descargar original"), element("span", "image-gallery__download-file", `${format} · ${filename}`));
+  detail.append(element("span", "image-gallery__download-label", downloadLabel), element("span", "image-gallery__download-file", `${format} · ${filename}`));
   link.append(icon, detail);
   return link;
 }

@@ -1,5 +1,11 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Archivo personal — recorrido y densidad · 20 de noviembre de 2026
+
+`self-made.html` adopta POSTERS REFFFF: fondo negro, controles fijos en el lateral izquierdo y símbolo pequeño en el derecho. La vista inicial de dos columnas alterna piezas completas con nombre, formato/colección y descarga debajo. El selector 2/4/6 subdivide únicamente las dos columnas centrales del marco compartido, conservando la calle central. Búsqueda y filtros nativos por formato y orden desplazan sus controles en el lateral. No inventar fechas ni cargar afiches de clientes como trabajo personal; el catálogo actual conserva 84 piezas: 67 afiches A4, 11 tapas y 6 fotografías. Los afiches A4 se seleccionaron de ALT y Descargas, omitiendo mockups, estampas, materiales de consulta y piezas de clientes. Se preservan las imágenes originales en sus carpetas locales; las nuevas publicaciones y descargas son WebP de tamaño completo, con versiones de 400, 800 y 1600 px para carga bajo demanda. No anunciar estos WebP como archivos fuente originales. El inventario local de incorporaciones queda en AUDIT para revisión.
+
+El loop se mantiene en ambas direcciones, con física limitada por las separaciones reales y DOM acotado. Los cambios de densidad conservan la pieza y su posición; los filtros, densidad y desplazamiento se recuerdan por sesión. El visor pausa el fondo y conserva descargas de originales personales, foco y selección filtrada. Sin JavaScript existe una selección completa en HTML. Móvil sigue pausado hasta 900px.
+
 ## Navegación vigente — 20 de noviembre de 2026
 
 El home `index.html` se llama **Proyectos**. La sección personal antes llamada Lado B se activa como **Archivo**, en `self-made.html`, con su grilla visual y visor existentes. Los botones de regreso al home dicen Proyectos; Archivo identifica únicamente el trabajo personal. Librería, Sobre mí, Contacto y Tienda conservan sus estados pendientes. Esta activación no autoriza rediseñar las áreas restantes ni implementar las propuestas de la auditoría.
