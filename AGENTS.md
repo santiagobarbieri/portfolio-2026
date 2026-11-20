@@ -2,7 +2,7 @@
 
 ## Videos automáticos y silenciosos · 20 de noviembre de 2026
 
-Todos los videos públicos se reproducen automáticamente, en loop y sin sonido. Con JavaScript, `project-videos.js` reproduce solo las ocurrencias visibles y pausa el resto; las copias de medición y del buffer no deben arrancar. Reanudar al volver a la pestaña, al escritorio o al cerrar un visor. Conservar controles nativos, dimensiones, póster, tiempo de reproducción y originales. Esta política sustituye la reproducción manual anterior. El aviso móvil no reproduce contenido oculto.
+Todos los videos públicos se reproducen automáticamente, en loop y sin sonido. Con JavaScript, `project-videos.js` reproduce solo las ocurrencias visibles y pausa el resto; las copias de medición y del buffer no deben arrancar. Reanudar al volver a la pestaña, al escritorio o al cerrar un visor. Presentar únicamente el video: sin controles, foco de teclado, arrastre, picture-in-picture ni reproducción remota. El video no recibe interacción de puntero; el scroll de la página sigue disponible sobre su superficie. Conservar dimensiones, póster, tiempo de reproducción y originales. Esta política sustituye la reproducción manual anterior. El aviso móvil no reproduce contenido oculto.
 
 ## Club de Economía — relato del proceso · 20 de noviembre de 2026
 

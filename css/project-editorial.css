@@ -112,8 +112,8 @@
 .editorial-multimedia__thumbnail { display: grid; place-items: center; min-width: 0; min-height: 0; padding: 0; opacity: .5; --interaction-origin: center; }
 .editorial-multimedia__thumbnail[aria-pressed="true"] { opacity: 1; }
 .editorial-multimedia__thumbnail img { width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: contain; }
-.editorial-video { width: 100%; aspect-ratio: 16 / 9; }
-.editorial-video video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.editorial-video { width: 100%; aspect-ratio: 16 / 9; user-select: none; }
+.editorial-video video { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none; }
 .editorial-page--apolo-studios [data-editorial-part="circles"] .editorial-multimedia__stage { aspect-ratio: 3 / 4; }
 .editorial-restart { min-height: 224px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; margin-top: 64px; text-align: left; }
 .editorial-restart__symbol { color: var(--editorial-brand); font-size: 30px; line-height: 1; }

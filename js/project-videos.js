@@ -37,6 +37,10 @@ export function initProjectVideos(main) {
       if (visible.has(video)) continue;
       // Native autoplay remains in the HTML fallback. The observer owns it here.
       video.autoplay = false;
+      video.controls = false;
+      video.disablePictureInPicture = video.disableRemotePlayback = true;
+      video.tabIndex = -1;
+      video.draggable = false;
       video.defaultMuted = video.muted = true;
       video.loop = video.playsInline = true;
       video.pause();

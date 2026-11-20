@@ -2,7 +2,7 @@
 
 ### Club de Economía: relato del proceso
 
-La ficha recorre el contexto institucional, la exploración con flecha, su síntesis en diagonales y la construcción de marca, color, trama, publicaciones e historias. Incorpora la marca vectorial, la referencia UTDT atribuida y un estudio de movimiento de 20s con póster y reproducción automática, silenciosa y en loop. Las aplicaciones con datos de ejemplo se identifican como plantillas. Conserva las dos columnas centrales, el loop bidireccional y la ampliación sin descargas de materiales de cliente.
+La ficha recorre el contexto institucional, la exploración con flecha, su síntesis en diagonales y la construcción de marca, color, trama, publicaciones e historias. Incorpora la marca vectorial, la referencia UTDT atribuida y un estudio de movimiento de 20s con póster y reproducción automática, silenciosa y en loop, sin controles ni interacción sobre el video. Las aplicaciones con datos de ejemplo se identifican como plantillas. Conserva las dos columnas centrales, el loop bidireccional y la ampliación sin descargas de materiales de cliente.
 
 ## Archivo — vistas compactas intercaladas · 20 de noviembre de 2026
 

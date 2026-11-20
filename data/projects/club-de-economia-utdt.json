@@ -326,7 +326,8 @@
         "autoplay": true,
         "muted": true,
         "loop": true,
-        "playsInline": true
+        "playsInline": true,
+        "controls": false
       }
     }
   ],
