@@ -1,5 +1,11 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Club de Economía — proceso paso a paso · 20 de noviembre de 2026
+
+El caso separa referencia institucional, exploración, síntesis y aplicaciones antes del cierre. Cada bloque responde qué decisión se tomó y por qué. Marca vectorial nítida; exploraciones pequeñas sin zoom; variantes junto a su original; posts 4:5 e historias 9:16 separados; motion vertical con póster y reproducción manual bajo demanda. Los nuevos pasos viven en el HTML esencial y los metadatos acompañan el mismo orden. No extrapolar este rediseño a otros proyectos sin revisarlos con Santi.
+
+Atribuir la marca UTDT como referencia. No inventar autores, métricas, eventos, anuncio de relanzamiento ni fotos faltantes. Los anuncios publicados son plantillas con datos de ejemplo; los valores HEX provienen de las piezas. Mantener las dos columnas y auditar alturas completas con notas/captions y continuidad en ambas direcciones. El hover de Club en Proyectos sigue desactivado.
+
 ## Archivo — vistas compactas intercaladas · 20 de noviembre de 2026
 
 La vista de dos columnas conserva su geometría. En cuatro y seis, acomodar cada pieza en la columna que termina antes, midiendo imagen y caption completos. Usar inicios desfasados y separaciones de 32/28px por columna, en vez de trasladar a todas las piezas el avance vertical de la vista de dos. La física se limita a los espacios reales. Mantener el marco, la calle central, el loop bidireccional, la pieza anclada al cambiar densidad, filtros, visor y carga bajo demanda. La navegación con flechas sigue la ubicación visual de las piezas.

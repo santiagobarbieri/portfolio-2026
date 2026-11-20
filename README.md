@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portafolio
 
+### Club de Economía: relato del proceso
+
+La ficha recorre el contexto institucional, la exploración con flecha, su síntesis en diagonales y la construcción de marca, color, trama, publicaciones e historias. Incorpora la marca vectorial, la referencia UTDT atribuida y un estudio de movimiento de 20s con póster y reproducción manual bajo demanda. Las aplicaciones con datos de ejemplo se identifican como plantillas. Conserva las dos columnas centrales, el loop bidireccional y la ampliación sin descargas de materiales de cliente.
+
 ## Archivo — vistas compactas intercaladas · 20 de noviembre de 2026
 
 La vista de dos columnas conserva su geometría. En cuatro y seis, acomodar cada pieza en la columna que termina antes, midiendo imagen y caption completos. Usar inicios desfasados y separaciones de 32/28px por columna, en vez de trasladar a todas las piezas el avance vertical de la vista de dos. La física se limita a los espacios reales. Mantener el marco, la calle central, el loop bidireccional, la pieza anclada al cambiar densidad, filtros, visor y carga bajo demanda. La navegación con flechas sigue la ubicación visual de las piezas.

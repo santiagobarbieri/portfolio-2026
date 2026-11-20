@@ -1,5 +1,13 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Club de Economía — relato del proceso · 20 de noviembre de 2026
+
+La ficha cuenta decisiones en orden: contexto del relanzamiento, referencia institucional UTDT, exploraciones con flecha, síntesis en diagonales, marca y tipografía, color, trama, posts, historias y estudio de movimiento. Texto breve en primera persona, basado en el brief. No afirmar métricas, eventos realizados, autoría de animación ni una secuencia cronológica entre las dos exploraciones descartadas. Las piezas de redes conservan campos de ejemplo y se identifican como plantillas. No inventar el anuncio «Nos reinventamos» ni fotos ausentes.
+
+`brand-final.svg` es la marca vectorial aportada; `utdt-reference.svg` es una referencia institucional claramente atribuida, nunca una marca diseñada por Santiago. El estudio animado se exporta del SVG completo a MP4 H.264 de 20s, sin audio, con póster y carga solo al reproducir; termina con la marca original. No usar los clips incompletos como entrega final ni alterar sus originales. `club-story.css` limita los ajustes al caso: proporciones nativas de posts/historias, referencias pequeñas, variantes secundarias y velo claro para ampliar los vectores negros.
+
+Conservar el marco de cuatro columnas, las dos centrales en loop, el cierre separado, ampliación individual sin descargas y el aviso móvil vigente. El home conserva exclusivamente la portada de Club, sin secuencia de hover.
+
 ## Archivo — vistas compactas intercaladas · 20 de noviembre de 2026
 
 La vista de dos columnas conserva su geometría. En cuatro y seis, acomodar cada pieza en la columna que termina antes, midiendo imagen y caption completos. Usar inicios desfasados y separaciones de 32/28px por columna, en vez de trasladar a todas las piezas el avance vertical de la vista de dos. La física se limita a los espacios reales. Mantener el marco, la calle central, el loop bidireccional, la pieza anclada al cambiar densidad, filtros, visor y carga bajo demanda. La navegación con flechas sigue la ubicación visual de las piezas.
