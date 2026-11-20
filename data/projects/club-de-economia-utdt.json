@@ -322,7 +322,11 @@
         "h": 1280,
         "duration": 20,
         "audio": false,
-        "preload": "none"
+        "preload": "none",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "playsInline": true
       }
     }
   ],

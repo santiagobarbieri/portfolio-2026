@@ -4,18 +4,20 @@ import { startLoading, waitForImages } from "./loading.js";
 import { createImageZoom } from "./image-zoom.js";
 import { initArchivePhysics } from "./archive-physics.js";
 import { createEditorialLoop } from "./project-editorial-loop.js";
+import { initProjectVideos } from "./project-videos.js";
 
 const main = document.querySelector("main");
 const complete = startLoading(`Cargando ${document.body.dataset.projectName}`);
 const physics = initArchivePhysics();
+const videos = initProjectVideos(main);
 let loop;
 const motion = initSmoothScroll({ onFrame: (frame) => {
   loop?.recycle();
   if (!loop?.paused) physics.feed(frame);
 } });
 loop = createEditorialLoop({ main, motion, physics });
-const pause = () => { loop.pause(); motion.stop(); };
-const resume = () => requestAnimationFrame(() => { loop.resume(); motion.start(); });
+const pause = () => { videos.pause(); loop.pause(); motion.stop(); };
+const resume = () => requestAnimationFrame(() => { loop.resume(); videos.resume(); motion.start(); });
 const zoom = createImageZoom({ onOpen: pause, onClose: resume });
 const galleries = new Map();
 const requests = new WeakMap();
@@ -174,14 +176,6 @@ document.addEventListener("click", (event) => {
   }
   const button = event.target.closest("[data-zoom-original]");
   if (button) zoom.open({ src: button.dataset.zoomOriginal, alt: button.dataset.zoomAlt || button.querySelector("img")?.alt });
-});
-// Only one campaign clip plays at a time, including recycled loop occurrences.
-document.addEventListener('play', (event) => {
-  if (!(event.target instanceof HTMLVideoElement)) return;
-  document.querySelectorAll('video').forEach((video) => { if (video !== event.target) video.pause(); });
-}, true);
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) document.querySelectorAll('video').forEach((video) => video.pause());
 });
 document.addEventListener("keydown", (event) => {
   const board = event.target.closest("[data-editorial-gallery]");

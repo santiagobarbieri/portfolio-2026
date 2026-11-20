@@ -20,6 +20,7 @@
 
   function update() {
     if (smallScreen.matches) {
+      document.querySelectorAll("video").forEach((video) => { video.autoplay = false; video.pause(); });
       document.querySelectorAll("dialog[open]").forEach((dialog) => dialog.close());
       root.removeAttribute("data-page-loading");
       document.querySelector(".site-loader")?.setAttribute("hidden", "");

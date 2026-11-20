@@ -1,10 +1,14 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Videos automáticos y silenciosos · 20 de noviembre de 2026
+
+Todos los videos públicos se reproducen automáticamente, en loop y sin sonido. Con JavaScript, `project-videos.js` reproduce solo las ocurrencias visibles y pausa el resto; las copias de medición y del buffer no deben arrancar. Reanudar al volver a la pestaña, al escritorio o al cerrar un visor. Conservar controles nativos, dimensiones, póster, tiempo de reproducción y originales. Esta política sustituye la reproducción manual anterior. El aviso móvil no reproduce contenido oculto.
+
 ## Club de Economía — relato del proceso · 20 de noviembre de 2026
 
 La ficha cuenta decisiones en orden: contexto del relanzamiento, referencia institucional UTDT, exploraciones con flecha, síntesis en diagonales, marca y tipografía, color, trama, posts, historias y estudio de movimiento. Texto breve en primera persona, basado en el brief. No afirmar métricas, eventos realizados, autoría de animación ni una secuencia cronológica entre las dos exploraciones descartadas. Las piezas de redes conservan campos de ejemplo y se identifican como plantillas. No inventar el anuncio «Nos reinventamos» ni fotos ausentes.
 
-`brand-final.svg` es la marca vectorial aportada; `utdt-reference.svg` es una referencia institucional claramente atribuida, nunca una marca diseñada por Santiago. El estudio animado se exporta del SVG completo a MP4 H.264 de 20s, sin audio, con póster y carga solo al reproducir; termina con la marca original. No usar los clips incompletos como entrega final ni alterar sus originales. `club-story.css` limita los ajustes al caso: proporciones nativas de posts/historias, referencias pequeñas, variantes secundarias y velo claro para ampliar los vectores negros.
+`brand-final.svg` es la marca vectorial aportada; `utdt-reference.svg` es una referencia institucional claramente atribuida, nunca una marca diseñada por Santiago. El estudio animado se exporta del SVG completo a MP4 H.264 de 20s, sin audio, con póster y reproducción automática al entrar en pantalla; termina con la marca original. No usar los clips incompletos como entrega final ni alterar sus originales. `club-story.css` limita los ajustes al caso: proporciones nativas de posts/historias, referencias pequeñas, variantes secundarias y velo claro para ampliar los vectores negros.
 
 Conservar el marco de cuatro columnas, las dos centrales en loop, el cierre separado, ampliación individual sin descargas y el aviso móvil vigente. El home conserva exclusivamente la portada de Club, sin secuencia de hover.
 

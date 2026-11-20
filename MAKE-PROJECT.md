@@ -1,8 +1,12 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Videos automáticos y silenciosos · 20 de noviembre de 2026
+
+Todos los videos públicos se reproducen automáticamente, en loop y sin sonido. Con JavaScript, `project-videos.js` reproduce solo las ocurrencias visibles y pausa el resto; las copias de medición y del buffer no deben arrancar. Reanudar al volver a la pestaña, al escritorio o al cerrar un visor. Conservar controles nativos, dimensiones, póster, tiempo de reproducción y originales. Esta política sustituye la reproducción manual anterior. El aviso móvil no reproduce contenido oculto.
+
 ## Club de Economía — proceso paso a paso · 20 de noviembre de 2026
 
-El caso separa referencia institucional, exploración, síntesis y aplicaciones antes del cierre. Cada bloque responde qué decisión se tomó y por qué. Marca vectorial nítida; exploraciones pequeñas sin zoom; variantes junto a su original; posts 4:5 e historias 9:16 separados; motion vertical con póster y reproducción manual bajo demanda. Los nuevos pasos viven en el HTML esencial y los metadatos acompañan el mismo orden. No extrapolar este rediseño a otros proyectos sin revisarlos con Santi.
+El caso separa referencia institucional, exploración, síntesis y aplicaciones antes del cierre. Cada bloque responde qué decisión se tomó y por qué. Marca vectorial nítida; exploraciones pequeñas sin zoom; variantes junto a su original; posts 4:5 e historias 9:16 separados; motion vertical con póster y reproducción automática, silenciosa y en loop. Los nuevos pasos viven en el HTML esencial y los metadatos acompañan el mismo orden. No extrapolar este rediseño a otros proyectos sin revisarlos con Santi.
 
 Atribuir la marca UTDT como referencia. No inventar autores, métricas, eventos, anuncio de relanzamiento ni fotos faltantes. Los anuncios publicados son plantillas con datos de ejemplo; los valores HEX provienen de las piezas. Mantener las dos columnas y auditar alturas completas con notas/captions y continuidad en ambas direcciones. El hover de Club en Proyectos sigue desactivado.
 
