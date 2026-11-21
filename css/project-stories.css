@@ -1,0 +1,9 @@
+/* Local narrative additions; preserve the shared two-column geometry. */
+.editorial-page--el-armado .story-single-portrait { display: block; max-width: 280px; margin-inline: auto; }
+.editorial-page--orfeo .editorial-part[data-editorial-order="10"] { grid-row: 11; }
+.story-single-portrait .editorial-piece__visual { height: auto; aspect-ratio: 9 / 16; }
+.editorial-page--orfeo [data-editorial-part="viamonte"] .editorial-multimedia__stage,
+.editorial-page--orfeo [data-editorial-part="talcahuano"] .editorial-multimedia__stage,
+.editorial-page--orfeo [data-editorial-part="lavalle"] .editorial-multimedia__stage { aspect-ratio: 3 / 4; }
+
+.editorial-page--orfeo [data-gallery-thumbnails] .editorial-multimedia__thumbnails { grid-template-rows: repeat(3, minmax(0, 1fr)); }

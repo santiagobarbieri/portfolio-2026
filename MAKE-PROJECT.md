@@ -376,3 +376,9 @@ Books sin `shelf` abre un índice de estantes, no el primer proyecto automática
 `heroSize: compact|medium|wide` limita la apertura dentro del visor compartido sin modificar el archivo original. El tamaño de cada item conserva su prioridad. Obra propia es el nombre público del archivo personal en self-made.html; Posters está retirado temporalmente.
 
 En Club de Economía, mostrar la paleta muestreada #42AEBD / #D9D9D9 / #000000, declarar el origen de los valores, conservar las plantillas como plantillas y no añadir aplicaciones descritas pero no entregadas. El código de proyecto sigue pendiente (XX–00, oculto en la UI).
+
+## Relatos y selección de los casos de clientes · 21 de noviembre de 2026
+
+La revisión posterior a Apolo alcanza El Armado, OLAS, Orfeo y Club. Conservar el home y su estructura mientras Santi define el feed. El Armado conecta color, construcción de la ilustración, pruebas, afiche final y adaptación a historia. OLAS explica la O/ola, sus recursos y la campaña; sus cuatro afiches existentes usan ahora derivados de originales grandes cotejados visualmente. Orfeo distingue las tres prendas con galerías de frente, detalle y contexto, más una selección de campaña; no atribuir a Santiago toda la marca, la fotografía ni los resultados comerciales. Club conserva su secuencia reciente, las plantillas y el estudio de movimiento como ejemplos. No agregar fotos genéricas ni entregables ausentes.
+
+Los cuatro HTML contienen la historia esencial; `story` en sus datos registra su orden y textos. Los derivados nuevos conservan proporción, procedencia y originales locales. Sin descargas en casos de clientes. Videos mudos, automáticos y sin controles. Mantener cuatro columnas, galerías accesibles, loop, cierre explícito y móvil pausado. La selección y correspondencias quedan documentadas en AUDIT. Las variantes pequeñas de El Armado siguen pendientes de exportaciones mayores; no inventar detalle.

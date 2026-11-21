@@ -31,7 +31,9 @@
       "Dirección creativa, producción y edición audiovisual, desarrollo y gestión web"
     ]
   ],
-  "intro": [],
+  "intro": [
+    "Para el primer drop de ORFEO, En la Esquina, participé en la dirección creativa, la producción y edición audiovisual y el desarrollo web, junto a su equipo. La campaña vincula tres sweaters con escenas y recorridos cotidianos de Buenos Aires."
+  ],
   "sections": [
     {
       "n": "01",
@@ -592,5 +594,109 @@
       "h": 1200
     }
   ],
-  "year": "2026"
+  "year": "2026",
+  "story": [
+    {
+      "key": "intro",
+      "title": "Tres prendas, una historia porteña",
+      "description": "Para el primer drop de ORFEO, En la Esquina, participé en la dirección creativa, la producción y edición audiovisual y el desarrollo web, junto a su equipo. La campaña vincula tres sweaters con escenas y recorridos cotidianos de Buenos Aires.",
+      "images": [
+        "assets/images/orfeo/wordmark-1200.webp"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "01 – Un tono sobrio para la ciudad",
+      "description": "Marino, marrón y carbón conectan la identidad con las prendas. Oliva y marfil aparecen en las aplicaciones gráficas. Son colores observados en las piezas, no una especificación técnica de producción.",
+      "images": []
+    },
+    {
+      "key": "viamonte",
+      "title": "02 – Viamonte: el tejido de cerca",
+      "description": "El tejido trenzado y el marrón definen Viamonte. La selección pasa de la prenda al detalle y de ahí a la escalinata: el producto se entiende por su textura y por el contexto en el que se usa.",
+      "images": [
+        "assets/images/orfeo-story/viamonte-frente-800.webp",
+        "assets/images/orfeo/IMG_4710-800.webp",
+        "assets/images/orfeo/IMG_4109-800.webp"
+      ]
+    },
+    {
+      "key": "talcahuano",
+      "title": "03 – Talcahuano: una superficie más simple",
+      "description": "Talcahuano cambia la textura por una superficie negra lisa. El contraste con la camisa y las escenas de transporte mantienen la relación entre vestimenta clásica y rutina urbana.",
+      "images": [
+        "assets/images/orfeo-story/talcahuano-frente-800.webp",
+        "assets/images/orfeo/IMG_4775-800.webp",
+        "assets/images/orfeo/IMG_4246-800.webp"
+      ]
+    },
+    {
+      "key": "lavalle",
+      "title": "04 – Lavalle: otra lectura del tejido",
+      "description": "Lavalle comparte el tejido trenzado de Viamonte, en azul. La vista de frente, la espalda y el recorrido urbano permiten ver cómo se comporta la misma prenda fuera de una fotografía de detalle.",
+      "images": [
+        "assets/images/orfeo-story/lavalle-frente-800.webp",
+        "assets/images/orfeo/IMG_4800-800.webp",
+        "assets/images/orfeo/IMG_4484-800.webp"
+      ]
+    },
+    {
+      "key": "campana",
+      "title": "05 – La ciudad conecta las escenas",
+      "description": "La campaña se apoya en pequeñas situaciones de un día en Buenos Aires. La arquitectura, los desplazamientos y las prendas dan continuidad entre imágenes que también pueden leerse por separado. Las tres historias comparten el universo de En la Esquina.",
+      "images": [
+        "assets/images/orfeo/IMG_4868-1600.webp",
+        "assets/images/orfeo/IMG_4144-800.webp",
+        "assets/images/orfeo/IMG_4685-800.webp"
+      ]
+    },
+    {
+      "key": "marca",
+      "title": "06 – Una identidad que acompaña",
+      "description": "Logotipo y monograma trabajan a distintas escalas. Las aplicaciones sobrias acompañan a las prendas sin convertir cada fotografía en una pieza cargada de información. Estos recursos de la identidad de ORFEO dan contexto a la dirección creativa de la campaña.",
+      "images": [
+        "assets/images/orfeo/logo%20%281%29.png",
+        "assets/images/orfeo/favicon.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png"
+      ]
+    },
+    {
+      "key": "lacres",
+      "title": "07 – El sello como objeto",
+      "description": "La marca toma volumen en estos lacres. Las variantes conservan el relieve y cambian de color: una misma firma con un carácter más material.",
+      "images": [
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp"
+      ]
+    },
+    {
+      "key": "sellos",
+      "title": "08 – Volver a las bases",
+      "description": "El sello oval reúne ORFEO y «Back to Basics». El lema conecta los recursos gráficos con el punto de partida de la marca: recuperar códigos clásicos para el uso cotidiano.",
+      "images": [
+        "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp"
+      ]
+    },
+    {
+      "key": "estampilla",
+      "title": "09 – Ampliar el universo gráfico",
+      "description": "La estampilla suma ilustración, marco y textura al lenguaje de la identidad. Sus variantes se muestran juntas para comparar el contraste sin confundirlas con familias distintas.",
+      "images": [
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp"
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "El proyecto reúne dirección creativa, contenido audiovisual y web para el primer lanzamiento; la ciudad es el hilo que conecta las piezas.",
+      "images": []
+    }
+  ]
 }

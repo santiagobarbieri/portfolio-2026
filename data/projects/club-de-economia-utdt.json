@@ -334,5 +334,94 @@
   "heroSize": "medium",
   "page": "./club-de-economia.html",
   "year": "2026",
-  "heroOriginal": "assets/images/club-de-economia-utdt/brand-final.svg"
+  "heroOriginal": "assets/images/club-de-economia-utdt/brand-final.svg",
+  "story": [
+    {
+      "key": "intro",
+      "title": "Una identidad para volver a presentarse",
+      "description": "Para el relanzamiento del Club de Economía, diseñé una marca y un sistema de piezas para comunicar sus charlas. La búsqueda fue darle una identidad propia dentro de la UTDT, simple de usar y de continuar.",
+      "images": [
+        "assets/images/club-de-economia-utdt/brand-final.svg"
+      ]
+    },
+    {
+      "key": "origen",
+      "title": "01 – Partir de un lenguaje conocido",
+      "description": "Las franjas diagonales ya eran un código reconocible dentro de la universidad. Tomé ese punto de partida para que el club se sintiera parte de la Di Tella, sin repetir su marca.",
+      "images": [
+        "assets/images/club-de-economia-utdt/utdt-reference.svg"
+      ]
+    },
+    {
+      "key": "exploracion",
+      "title": "02 – La primera respuesta fue una flecha",
+      "description": "Probé una flecha ascendente atravesando las franjas. Comunicaba crecimiento, pero era una referencia demasiado literal: contorno, relleno, flecha y franjas competían por atención.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Descartado%202.png",
+        "assets/images/club-de-economia-utdt/Descartado%204.png"
+      ]
+    },
+    {
+      "key": "sintesis",
+      "title": "03 – Quitar la flecha, conservar la dirección",
+      "description": "Me quedé con las diagonales. Al retirar la flecha y el contorno, el símbolo conservó la idea de movimiento y el vínculo con la universidad, con menos elementos y una forma que también se resuelve a una tinta.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Isotipo.png",
+        "assets/images/club-de-economia-utdt/Isotipo%202.png"
+      ]
+    },
+    {
+      "key": "marca",
+      "title": "04 – Un símbolo, un nombre",
+      "description": "El isotipo puede trabajar solo o acompañado del nombre en dos líneas. La tipografía es Albert Sans: Semi Bold para destacar y Medium para la información. Una familia y dos pesos mantienen el sistema fácil de replicar.",
+      "images": [
+        "assets/images/club-de-economia-utdt/brand-final.svg",
+        "assets/images/club-de-economia-utdt/VARIANTE.png"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "05 – Celeste para diferenciar",
+      "description": "El celeste distingue al club del amarillo institucional. El gris claro y el negro completan las versiones clara y oscura.",
+      "images": []
+    },
+    {
+      "key": "trama",
+      "title": "06 – De la marca a un lenguaje gráfico",
+      "description": "Extendí las diagonales a una trama para el header. La misma geometría pasa de una firma compacta a una composición horizontal y permite reconocer la identidad más allá del logo.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Twitter%20header-800.webp"
+      ]
+    },
+    {
+      "key": "publicaciones",
+      "title": "07 – Una estructura que se puede continuar",
+      "description": "La plantilla reserva un lugar para cada dato: invitado, imagen, fecha, horario y aula. Las versiones clara y oscura mantienen la jerarquía. El anuncio puede cambiar de contenido sin volver a diseñarse desde cero.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp",
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp"
+      ]
+    },
+    {
+      "key": "historias",
+      "title": "08 – El mismo sistema en vertical",
+      "description": "En historias, la composición se alarga y los datos se agrupan para la lectura vertical. La marca y las jerarquías se conservan; cambia el espacio en el que se organiza la información.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp",
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp"
+      ]
+    },
+    {
+      "key": "movimiento",
+      "title": "09 – Cerrar con la marca",
+      "description": "Este estudio de movimiento recorre gráficos, porcentajes y tipografía antes de reunir las diagonales con el nombre del club. Los valores son ejemplos del estudio, no resultados ni estadísticas de la organización.",
+      "images": []
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "De una referencia institucional a una marca propia y un conjunto de piezas reutilizables. El siguiente anuncio cambia de contenido y conserva el sistema.",
+      "images": []
+    }
+  ]
 }

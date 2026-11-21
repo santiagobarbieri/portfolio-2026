@@ -31,7 +31,9 @@
       "Identidad visual"
     ]
   ],
-  "intro": [],
+  "intro": [
+    "Desarrollé la identidad de OLAS para su campaña estudiantil en la Universidad Torcuato Di Tella. La búsqueda fue pasar de un nombre a un lenguaje reconocible: una ola que señala hacia adelante y mensajes que invitan a participar."
+  ],
   "sections": [
     {
       "n": "01",
@@ -161,59 +163,74 @@
       "block": "grid",
       "items": [
         {
-          "src": "assets/images/olas-ditella/poster%201-800.webp",
+          "src": "assets/images/olas-ditella-story/afiche-1-800.webp",
           "w": 800,
           "h": 1132,
           "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde",
-          "original": "assets/images/olas-ditella/poster%201.png",
+          "original": "assets/images/olas-ditella-story/afiche-1-1600.webp",
           "sources": [
             {
-              "src": "assets/images/olas-ditella/poster%201-1600.webp",
-              "w": 1600,
-              "h": 2263
+              "src": "assets/images/olas-ditella-story/afiche-1-400.webp",
+              "w": 400,
+              "h": 566
             },
             {
-              "src": "assets/images/olas-ditella/poster%201-800.webp",
+              "src": "assets/images/olas-ditella-story/afiche-1-800.webp",
               "w": 800,
               "h": 1132
+            },
+            {
+              "src": "assets/images/olas-ditella-story/afiche-1-1600.webp",
+              "w": 1600,
+              "h": 2263
             }
           ]
         },
         {
-          "src": "assets/images/olas-ditella/poster%202-800.webp",
+          "src": "assets/images/olas-ditella-story/afiche-2-800.webp",
           "w": 800,
           "h": 1132,
           "alt": "Afiche de OLAS con el mensaje No te quedes callado",
-          "original": "assets/images/olas-ditella/poster%202.png",
+          "original": "assets/images/olas-ditella-story/afiche-2-1600.webp",
           "sources": [
             {
-              "src": "assets/images/olas-ditella/poster%202-1600.webp",
-              "w": 1600,
-              "h": 2263
+              "src": "assets/images/olas-ditella-story/afiche-2-400.webp",
+              "w": 400,
+              "h": 566
             },
             {
-              "src": "assets/images/olas-ditella/poster%202-800.webp",
+              "src": "assets/images/olas-ditella-story/afiche-2-800.webp",
               "w": 800,
               "h": 1132
+            },
+            {
+              "src": "assets/images/olas-ditella-story/afiche-2-1600.webp",
+              "w": 1600,
+              "h": 2263
             }
           ]
         },
         {
-          "src": "assets/images/olas-ditella/poster%203-800.webp",
+          "src": "assets/images/olas-ditella-story/afiche-3-800.webp",
           "w": 800,
           "h": 1132,
           "alt": "Afiche de OLAS con el mensaje Tu voz importa",
-          "original": "assets/images/olas-ditella/poster%203.png",
+          "original": "assets/images/olas-ditella-story/afiche-3-1600.webp",
           "sources": [
             {
-              "src": "assets/images/olas-ditella/poster%203-1600.webp",
-              "w": 1600,
-              "h": 2263
+              "src": "assets/images/olas-ditella-story/afiche-3-400.webp",
+              "w": 400,
+              "h": 566
             },
             {
-              "src": "assets/images/olas-ditella/poster%203-800.webp",
+              "src": "assets/images/olas-ditella-story/afiche-3-800.webp",
               "w": 800,
               "h": 1132
+            },
+            {
+              "src": "assets/images/olas-ditella-story/afiche-3-1600.webp",
+              "w": 1600,
+              "h": 2263
             }
           ]
         },
@@ -237,21 +254,26 @@
           ]
         },
         {
-          "src": "assets/images/olas-ditella/poster%205-800.webp",
+          "src": "assets/images/olas-ditella-story/afiche-4-800.webp",
           "w": 800,
           "h": 1132,
           "alt": "Afiche de OLAS con un megáfono y la palabra Cambio",
-          "original": "assets/images/olas-ditella/poster%205.png",
+          "original": "assets/images/olas-ditella-story/afiche-4-1600.webp",
           "sources": [
             {
-              "src": "assets/images/olas-ditella/poster%205-1600.webp",
-              "w": 1600,
-              "h": 2263
+              "src": "assets/images/olas-ditella-story/afiche-4-400.webp",
+              "w": 400,
+              "h": 566
             },
             {
-              "src": "assets/images/olas-ditella/poster%205-800.webp",
+              "src": "assets/images/olas-ditella-story/afiche-4-800.webp",
               "w": 800,
               "h": 1132
+            },
+            {
+              "src": "assets/images/olas-ditella-story/afiche-4-1600.webp",
+              "w": 1600,
+              "h": 2263
             }
           ]
         }
@@ -321,5 +343,71 @@
   "family": "identity",
   "presentation": "identity-system",
   "year": "2026",
-  "heroOriginal": "assets/images/olas-ditella/Logo.svg"
+  "heroOriginal": "assets/images/olas-ditella/Logo.svg",
+  "story": [
+    {
+      "key": "intro",
+      "title": "Dar forma a una voz estudiantil",
+      "description": "Desarrollé la identidad de OLAS para su campaña estudiantil en la Universidad Torcuato Di Tella. La búsqueda fue pasar de un nombre a un lenguaje reconocible: una ola que señala hacia adelante y mensajes que invitan a participar.",
+      "images": [
+        "assets/images/olas-ditella/Logo.svg"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "01 – Cambiar el clima de la identidad",
+      "description": "La búsqueda dejó atrás los amarillos de las primeras propuestas y se concentró en verdes y azules, asociados al mar, la naturaleza y el cambio. El menta y el blanco aportan contraste dentro de las piezas.",
+      "images": []
+    },
+    {
+      "key": "marca",
+      "title": "02 – De la O a la ola",
+      "description": "Las exploraciones muestran distintas maneras de representar el nombre. En la marca elegida, la O se convierte en una ola con dirección hacia adelante. El símbolo deja de acompañar la palabra y pasa a formar parte de ella.",
+      "images": [
+        "assets/images/olas-ditella/Logo.svg",
+        "assets/images/olas-ditella/VARIANTES%201.png",
+        "assets/images/olas-ditella/VARIANTES%202.png",
+        "assets/images/olas-ditella/VARIANTES%204.jpeg",
+        "assets/images/olas-ditella/VARIANTES%205.jpeg"
+      ]
+    },
+    {
+      "key": "iconografia",
+      "title": "03 – Separar para volver a componer",
+      "description": "La ola también puede leerse fuera del logotipo. Sus curvas y fragmentos permiten reconocer la misma forma a distintas escalas, desde un detalle hasta una pieza completa.",
+      "images": [
+        "assets/images/olas-ditella/Vectores%202.svg",
+        "assets/images/olas-ditella/New%20Project%20%283%29.svg",
+        "assets/images/olas-ditella/Vectores%201.svg",
+        "assets/images/olas-ditella/Vectores%203.svg",
+        "assets/images/olas-ditella/Vectores%204.svg"
+      ]
+    },
+    {
+      "key": "afiches",
+      "title": "04 – Una invitación, distintas voces",
+      "description": "Los afiches de precampaña presentan la agrupación con una estructura compartida: «Tu voz transforma» arriba y un collage que cambia el mensaje. Voz, escucha y cambio funcionan como distintas entradas a la misma campaña.",
+      "images": [
+        "assets/images/olas-ditella-story/afiche-1-800.webp",
+        "assets/images/olas-ditella-story/afiche-2-800.webp",
+        "assets/images/olas-ditella-story/afiche-3-800.webp",
+        "assets/images/olas-ditella-story/afiche-4-800.webp"
+      ]
+    },
+    {
+      "key": "stickers",
+      "title": "05 – Concentrar el mensaje",
+      "description": "En los stickers, la identidad se reduce a la ola y la flecha dentro de un círculo. El símbolo conserva su dirección cuando el texto y el collage ya no están.",
+      "images": [
+        "assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png",
+        "assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png"
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "De la letra al símbolo y del símbolo a la campaña: una misma dirección para piezas de formatos distintos.",
+      "images": []
+    }
+  ]
 }

@@ -226,5 +226,67 @@
   "family": "identity",
   "presentation": "illustrated-identity",
   "year": "2026",
-  "heroOriginal": "assets/images/el-armado/Logo.png"
+  "heroOriginal": "assets/images/el-armado/Logo.png",
+  "story": [
+    {
+      "key": "intro",
+      "title": "Un encuentro, una imagen compartida",
+      "description": "Para la segunda edición de El Armado, desarrollé una identidad que reúne música, karaoke y tragos en una sola escena: dos manos, un micrófono y una botella. La propuesta se realizó para La Dama de Bollini, Buenos Aires.",
+      "images": [
+        "assets/images/el-armado-web/marca-863.webp"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "01 – El vino como punto de partida",
+      "description": "El vino sostiene el fondo de la identidad. El hueso da contraste a la marca y a las manos; el malva distingue el micrófono y el verde, la botella. Cada color tiene un lugar dentro de la misma escena.",
+      "images": []
+    },
+    {
+      "key": "ilustraciones",
+      "title": "02 – Construir el gesto",
+      "description": "Usé calco digital en Figma Draw para construir las manos y el micrófono a partir de referencias. La botella ocupa el lugar de la copa: la ilustración reúne las dos actividades del encuentro sin sumar otro símbolo.",
+      "images": [
+        "assets/images/el-armado-web/ilustracion-color-760.webp",
+        "assets/images/el-armado/REFERENCIAS%202.png",
+        "assets/images/el-armado/REFERENCIAS%203.png"
+      ]
+    },
+    {
+      "key": "afiches",
+      "title": "03 – Probar el contraste",
+      "description": "Estas cuatro exploraciones mantienen la composición y cambian sus relaciones de color. Permiten comparar qué domina primero: el nombre, las manos o los objetos. Son pruebas del proceso, no cuatro eventos distintos.",
+      "images": [
+        "assets/images/el-armado/VARIANTES%202.png",
+        "assets/images/el-armado/VARIANTES%205.png",
+        "assets/images/el-armado/VARIANTES%204.png",
+        "assets/images/el-armado/VARIANTES%201.png"
+      ]
+    },
+    {
+      "key": "entrega-final",
+      "title": "04 – Reunir la información",
+      "description": "La pieza final recupera el fondo vino y ordena el recorrido de lectura: nombre, ilustración y datos del encuentro. El tamaño de la marca sostiene la identidad; la escena explica el tono del evento.",
+      "images": [
+        "assets/images/el-armado-web/afiche-1000.webp"
+      ]
+    },
+    {
+      "key": "historia",
+      "title": "05 – Del afiche a la historia",
+      "description": "La adaptación vertical conserva marca, ilustración y datos de la edición. Cambia el formato, pero la escena sigue siendo el centro de la comunicación.",
+      "images": [
+        "assets/images/el-armado-story/historia-800.webp"
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "Color, gesto y tipografía se reúnen en una identidad para compartir el encuentro.",
+      "images": []
+    }
+  ],
+  "intro": [
+    "Para la segunda edición de El Armado, desarrollé una identidad que reúne música, karaoke y tragos en una sola escena: dos manos, un micrófono y una botella. La propuesta se realizó para La Dama de Bollini, Buenos Aires."
+  ]
 }
