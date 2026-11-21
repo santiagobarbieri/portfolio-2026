@@ -1,3 +1,4 @@
+import { initLaunchPanel } from "./launch-panel.js";
 import { initArchiveMotion } from "./motion.js";
 import { initArchivePhysics } from "./archive-physics.js";
 import { waitForImages } from "./loading.js";
@@ -156,6 +157,10 @@ export async function initArchive() {
       row.replaceChildren(card);
     }
     card.classList.toggle("archive-card--right", modulo(sequence, 2) === 1);
+    if (document.body.classList.contains('archive-page--launch')) {
+      const available = document.body.classList.contains('launch-folded') ? '100vw - 104px' : '50vw';
+      card.querySelector('.archive-card__image')?.setAttribute('sizes', `calc((${available} - 48px - clamp(20px, 2vw, 40px)) / 2)`);
+    }
     rowObserver.observe(row);
     return row;
   }
@@ -468,4 +473,14 @@ export async function initArchive() {
     resizeFrame = requestAnimationFrame(() => render(atBeginning ? undefined : position));
   }, { passive: true });
   await waitForImages(stream);
+  initLaunchPanel({
+    main,
+    layout: (mutate) => {
+      const position = anchor();
+      preview.stop();
+      mutate();
+      render(position);
+    },
+    advance: (y) => { motion.scrollTo(y, { immediate: true }); recycle(); },
+  });
 }

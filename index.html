@@ -23,12 +23,13 @@
     <link rel="stylesheet" href="./css/motion.css">
     <link rel="stylesheet" href="./css/typography.css">
     <link rel="stylesheet" href="./css/portfolio-grid.css">
+    <link rel="stylesheet" href="./css/launch-panel.css">
     <link rel="stylesheet" href="./css/desktop-gate.css">
     <script src="./js/transitions.js"></script>
     <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
     <script type="module" data-desktop-src="./js/main.js"></script>
   </head>
-  <body class="archive-page">
+  <body class="archive-page archive-page--launch">
     <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
       <span class="mobile-status__logo" aria-hidden="true"></span>
       <div class="mobile-status__content">
@@ -45,7 +46,7 @@
 
     <header class="site-header">
       <a class="identity__logo" href="./index.html" aria-label="Santiago Barbieri — Proyectos" data-cursor-action="Volver a proyectos"><span class="identity__glyph" aria-hidden="true"></span></a>
-      <aside class="portfolio-commands" data-lenis-prevent aria-label="Información y navegación del portfolio">
+      <aside class="portfolio-commands" id="portfolio-command-panel" data-lenis-prevent aria-label="Información y navegación del portfolio">
         <a class="identity__copy" href="./index.html" aria-label="Santiago Barbieri — Proyectos" data-cursor-action="Volver a proyectos">
           <strong class="identity__name">Santiago Barbieri</strong>
           <span class="identity__role">Diseñador gráfico, desarrollador<br>web y fotógrafo</span>
@@ -115,9 +116,16 @@
                 <li><span aria-disabled="true" title="Enlace pendiente">LinkedIn</span></li>
               </ul>
             </nav>
+
           </aside>
         </details>
       </aside>
+            <div class="launch-playback" data-launch-playback hidden>
+              <button type="button" class="launch-playback__button" data-launch-play aria-pressed="false" data-cursor-action="Pausar recorrido">Pausar recorrido</button>
+              <p class="launch-playback__status" data-launch-status>Automático tras 5 segundos sin interacción.</p>
+            </div>
+      <button class="launch-toggle" type="button" data-launch-toggle aria-expanded="true" aria-controls="portfolio-command-panel" aria-label="Plegar panel" data-cursor-action="Plegar panel" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M9 4v16m7-11-3 3 3 3"/></svg></button>
+      <span class="launch-rail-label" aria-hidden="true">Santiago Barbieri</span>
     </header>
 
     <main class="archive-main" id="main-content" tabindex="-1">
