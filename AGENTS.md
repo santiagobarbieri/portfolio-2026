@@ -1,5 +1,10 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Navegación simplificada · 21 de noviembre de 2026
+
+Herramientas está retirada de la navegación. Redes muestra Instagram, Behance y LinkedIn como una lista siempre visible, sin desplegable ni chevron. No inventar URLs mientras los perfiles sigan pendientes. Conservar el resto del índice y el loop.
+
+
 ## Apolo — identidad, prendas y campañas · 21 de noviembre de 2026
 
 El recorrido de Apolo avanza por apertura/rol, distintas firmas, colores observados, producción y preparación, Everywhere, Circles, Sahara y Menorca, video de Menorca y cierre. Santi autorizó buscar más material en sus carpetas: se incorporan derivados de fotos cotejadas con sus referencias y prendas, conservando originales. Las dos imágenes de producción son contexto general; no atribuir todas las prendas de esos encuadres a Circles o Everywhere. La foto del café de Everywhere coincide con Figma. No fijar fechas individuales, autoría fotográfica ni una cronología entre las variantes de marca. No publicar planes internos ni colecciones no confirmadas.
