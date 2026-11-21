@@ -1,5 +1,11 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Apolo — identidad, prendas y campañas · 21 de noviembre de 2026
+
+El recorrido de Apolo avanza por apertura/rol, distintas firmas, colores observados, producción y preparación, Everywhere, Circles, Sahara y Menorca, video de Menorca y cierre. Santi autorizó buscar más material en sus carpetas: se incorporan derivados de fotos cotejadas con sus referencias y prendas, conservando originales. Las dos imágenes de producción son contexto general; no atribuir todas las prendas de esos encuadres a Circles o Everywhere. La foto del café de Everywhere coincide con Figma. No fijar fechas individuales, autoría fotográfica ni una cronología entre las variantes de marca. No publicar planes internos ni colecciones no confirmadas.
+
+Mantener el marco de cuatro columnas y las dos centrales en loop. Cada campaña tiene una selección breve y distintas vistas, con carousel sin descargas; no sumar tomas casi iguales o muy oscuras por cantidad. `apolo-story.css` ajusta únicamente esta ficha. Las paletas son valores observados en las piezas y la prenda marrón, no una especificación de producción. El preview de Apolo en Proyectos toma una imagen de cada drop; las portadas y el motor del home no cambian. La reestructuración del home como feed de piezas queda como propuesta para conversar con Santi. Videos automáticos, en loop, mudos y sin controles, con pausas fuera de pantalla; móvil sigue pausado.
+
 ## Videos automáticos y silenciosos · 20 de noviembre de 2026
 
 Todos los videos públicos se reproducen automáticamente, en loop y sin sonido. Con JavaScript, `project-videos.js` reproduce solo las ocurrencias visibles y pausa el resto; las copias de medición y del buffer no deben arrancar. Reanudar al volver a la pestaña, al escritorio o al cerrar un visor. Presentar únicamente el video: sin controles, foco de teclado, arrastre, picture-in-picture ni reproducción remota. El video no recibe interacción de puntero; el scroll de la página sigue disponible sobre su superficie. Conservar dimensiones, póster, tiempo de reproducción y originales. Esta política sustituye la reproducción manual anterior. El aviso móvil no reproduce contenido oculto.

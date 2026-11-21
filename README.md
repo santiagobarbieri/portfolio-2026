@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portafolio
 
+## Apolo Studios: de la idea a la prenda
+
+La ficha reúne identidad, producción y cuatro lanzamientos con fotografías seleccionadas de los originales: Everywhere, Circles, Sahara y Menorca. Los textos explican las decisiones y la selección distingue campaña, detalle y preparación. Conserva el marco común, el loop bidireccional, galerías sin descargas y video automático sin controles. Las imágenes publicadas son derivados WebP; los originales locales permanecen intactos.
+
 ### Club de Economía: relato del proceso
 
 La ficha recorre el contexto institucional, la exploración con flecha, su síntesis en diagonales y la construcción de marca, color, trama, publicaciones e historias. Incorpora la marca vectorial, la referencia UTDT atribuida y un estudio de movimiento de 20s con póster y reproducción automática, silenciosa y en loop, sin controles ni interacción sobre el video. Las aplicaciones con datos de ejemplo se identifican como plantillas. Conserva las dos columnas centrales, el loop bidireccional y la ampliación sin descargas de materiales de cliente.

@@ -1,0 +1,11 @@
+/* Apolo uses the shared frame; each collection keeps its natural image proportions. */
+.editorial-page--apolo-studios .editorial-description { max-width: 100%; line-height: 1.4; }
+.editorial-page--apolo-studios .editorial-intro [data-editorial-visual] { width: min(100%, 340px); }
+.apolo-board--process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.apolo-board--process .editorial-piece__visual { height: auto; aspect-ratio: 3 / 4; }
+.editorial-page--apolo-studios [data-editorial-part="sahara"] .editorial-multimedia__stage { aspect-ratio: 3 / 4; }
+.editorial-page--apolo-studios [data-editorial-part="menorca"] .editorial-multimedia__stage { aspect-ratio: 1; }
+.editorial-page--apolo-studios .apolo-colour--0 { background: #09247C; }
+.editorial-page--apolo-studios .apolo-colour--1 { background: #C4C2A5; }
+.editorial-page--apolo-studios .apolo-colour--2 { background: #423934; }
+.editorial-page--apolo-studios .apolo-colour--3 { background: #000000; }

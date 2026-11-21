@@ -31,20 +31,20 @@
   ],
   "preview": [
     {
-      "src": "assets/images/apolo-studios-web/sahara-01-480.webp",
-      "alt": "Sahara · Subte 01"
+      "src": "assets/images/apolo-studios-story/everywhere-cafe-480.webp",
+      "alt": "Everywhere · En el café"
     },
     {
-      "src": "assets/images/apolo-studios-web/sahara-02-480.webp",
-      "alt": "Sahara · Subte 02"
+      "src": "assets/images/apolo-studios-story/circles-front-back-480.webp",
+      "alt": "Circles · Frente y espalda"
     },
     {
-      "src": "assets/images/apolo-studios-web/menorca-01-480.webp",
-      "alt": "Menorca · Gorra marrón · Campaña"
+      "src": "assets/images/apolo-studios-story/sahara-two-signatures-480.webp",
+      "alt": "Sahara · Dos firmas de espalda"
     },
     {
-      "src": "assets/images/apolo-studios-web/menorca-07-480.webp",
-      "alt": "Menorca · Gorra gris"
+      "src": "assets/images/apolo-studios-story/menorca-brown-480.webp",
+      "alt": "Menorca · Gorra marrón"
     }
   ],
   "meta": [
@@ -66,23 +66,13 @@
     ]
   ],
   "intro": [
-    "Identidad, gráficas de prendas y dirección creativa de Apolo Studios. Buenos Aires, 2024–2026."
+    "Cofundé Apolo Studios en Buenos Aires en 2024. Desde la identidad hasta las gráficas de las prendas y las campañas, trabajé alrededor de una idea: llevar lo abstracto a una realidad palpable."
   ],
   "sections": [
     {
-      "title": "Marca",
-      "block": "gallery",
-      "items": [
-        {
-          "src": "assets/images/apolo-studios-web/mark-1068.webp",
-          "w": 1068,
-          "h": 528,
-          "alt": "Apolo Studios: firma azul con iniciales y sol"
-        }
-      ]
-    },
-    {
-      "title": "Variantes",
+      "n": "01",
+      "title": "Una marca que fue cambiando",
+      "text": "Fui desarrollando distintas firmas para acompañar las prendas y las colecciones. Lo vintage, lo clásico y la curiosidad ayudaron a definir qué propuestas tenían lugar dentro del universo de Apolo.",
       "block": "gallery",
       "items": [
         {
@@ -94,112 +84,580 @@
       ]
     },
     {
-      "title": "Circles",
-      "block": "gallery",
-      "items": [
+      "n": "02",
+      "title": "Colores que se repiten",
+      "text": "El azul se repite en distintas firmas. Crudo, marrón y negro aparecen en las gráficas y en las prendas; sus proporciones cambian con cada colección.",
+      "block": "palette",
+      "colors": [
         {
-          "src": "assets/images/apolo-studios-web/circles-01-960.webp",
-          "w": 960,
-          "h": 1280,
-          "alt": "Circles · Frente al espejo"
+          "name": "Azul",
+          "hex": "#09247C",
+          "source": "artwork"
+        },
+        {
+          "name": "Crudo",
+          "hex": "#C4C2A5",
+          "source": "artwork"
+        },
+        {
+          "name": "Marrón",
+          "hex": "#423934",
+          "source": "photography"
+        },
+        {
+          "name": "Negro",
+          "hex": "#000000",
+          "source": "artwork"
         }
       ]
     },
     {
-      "title": "Sahara",
+      "n": "03",
+      "title": "Del archivo a la prenda",
+      "text": "El trabajo no terminaba en la gráfica. También había que resolver cómo se veía en la prenda y preparar las piezas para mostrarlas en una sesión.",
       "block": "gallery",
       "items": [
         {
-          "src": "assets/images/apolo-studios-web/sahara-01-1080.webp",
-          "w": 1080,
-          "h": 1350,
-          "alt": "Sahara · Subte 01"
+          "src": "assets/images/apolo-studios-story/process-print-480.webp",
+          "original": "assets/images/apolo-studios-story/process-print-1204.webp",
+          "w": 480,
+          "h": 638,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/process-print-240.webp",
+              "w": 240,
+              "h": 319
+            },
+            {
+              "src": "assets/images/apolo-studios-story/process-print-480.webp",
+              "w": 480,
+              "h": 638
+            },
+            {
+              "src": "assets/images/apolo-studios-story/process-print-1080.webp",
+              "w": 1080,
+              "h": 1435
+            },
+            {
+              "src": "assets/images/apolo-studios-story/process-print-1204.webp",
+              "w": 1204,
+              "h": 1600
+            }
+          ],
+          "alt": "Producción · La gráfica sobre la prenda",
+          "name": "Producción · La gráfica sobre la prenda"
         },
         {
-          "src": "assets/images/apolo-studios-web/sahara-02-1080.webp",
-          "w": 1080,
-          "h": 1350,
-          "alt": "Sahara · Subte 02"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/sahara-03-1080.webp",
-          "w": 1080,
-          "h": 1350,
-          "alt": "Sahara · Subte 03"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/sahara-04-1080.webp",
-          "w": 1080,
-          "h": 1350,
-          "alt": "Sahara · Subte 04"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/sahara-05-1080.webp",
-          "w": 1080,
-          "h": 1350,
-          "alt": "Sahara · Subte 05"
+          "src": "assets/images/apolo-studios-story/process-session-480.webp",
+          "original": "assets/images/apolo-studios-story/process-session-1600.webp",
+          "w": 480,
+          "h": 319,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/process-session-240.webp",
+              "w": 240,
+              "h": 160
+            },
+            {
+              "src": "assets/images/apolo-studios-story/process-session-480.webp",
+              "w": 480,
+              "h": 319
+            },
+            {
+              "src": "assets/images/apolo-studios-story/process-session-1080.webp",
+              "w": 1080,
+              "h": 718
+            },
+            {
+              "src": "assets/images/apolo-studios-story/process-session-1600.webp",
+              "w": 1600,
+              "h": 1064
+            }
+          ],
+          "alt": "En la sesión · Las prendas",
+          "name": "En la sesión · Las prendas"
         }
       ]
     },
     {
-      "title": "Menorca",
+      "n": "04",
+      "title": "Everywhere: las primeras prendas",
+      "text": "El primer drop llevó Apolo a las remeras y a una escena cotidiana. La firma pequeña del frente y las gráficas de espalda trabajan a dos escalas: reconocer la marca de cerca y darle presencia a distancia.",
       "block": "gallery",
       "items": [
         {
-          "src": "assets/images/apolo-studios-web/menorca-01-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Gorra marrón · Campaña"
+          "src": "assets/images/apolo-studios-story/everywhere-cafe-480.webp",
+          "original": "assets/images/apolo-studios-story/everywhere-cafe-1600.webp",
+          "w": 480,
+          "h": 360,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-cafe-240.webp",
+              "w": 240,
+              "h": 180
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-cafe-480.webp",
+              "w": 480,
+              "h": 360
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-cafe-1080.webp",
+              "w": 1080,
+              "h": 810
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-cafe-1600.webp",
+              "w": 1600,
+              "h": 1200
+            }
+          ],
+          "alt": "Everywhere · En el café",
+          "name": "Everywhere · En el café"
         },
         {
-          "src": "assets/images/apolo-studios-web/menorca-02-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Gorra marrón · Perfil"
+          "src": "assets/images/apolo-studios-story/everywhere-back-480.webp",
+          "original": "assets/images/apolo-studios-story/everywhere-back-1600.webp",
+          "w": 480,
+          "h": 853,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-back-240.webp",
+              "w": 240,
+              "h": 427
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-back-480.webp",
+              "w": 480,
+              "h": 853
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-back-1080.webp",
+              "w": 1080,
+              "h": 1920
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-back-1600.webp",
+              "w": 1600,
+              "h": 2844
+            }
+          ],
+          "alt": "Everywhere · Gráfica en la espalda",
+          "name": "Everywhere · Gráfica en la espalda"
         },
         {
-          "src": "assets/images/apolo-studios-web/menorca-03-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Campaña · Retrato"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/menorca-04-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Campaña · Perfil"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/menorca-05-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Gorra gris · Campaña"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/menorca-06-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Campaña · Retrato de frente"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/menorca-07-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Gorra gris"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/menorca-08-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Gorra marrón"
-        },
-        {
-          "src": "assets/images/apolo-studios-web/menorca-09-1080.webp",
-          "w": 1080,
-          "h": 1080,
-          "alt": "Menorca · Gorra azul"
+          "src": "assets/images/apolo-studios-story/everywhere-street-480.webp",
+          "original": "assets/images/apolo-studios-story/everywhere-street-1600.webp",
+          "w": 480,
+          "h": 853,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-street-240.webp",
+              "w": 240,
+              "h": 427
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-street-480.webp",
+              "w": 480,
+              "h": 853
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-street-1080.webp",
+              "w": 1080,
+              "h": 1920
+            },
+            {
+              "src": "assets/images/apolo-studios-story/everywhere-street-1600.webp",
+              "w": 1600,
+              "h": 2844
+            }
+          ],
+          "alt": "Everywhere · Dos gráficas en la calle",
+          "name": "Everywhere · Dos gráficas en la calle"
         }
       ]
+    },
+    {
+      "n": "05",
+      "title": "Circles: la espalda toma protagonismo",
+      "text": "En Circles, la gráfica ocupa la espalda y la firma del frente queda más contenida. Las figuras blancas y la tipografía azul construyen la imagen principal de la remera.",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-story/circles-front-back-480.webp",
+          "original": "assets/images/apolo-studios-story/circles-front-back-1600.webp",
+          "w": 480,
+          "h": 722,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/circles-front-back-240.webp",
+              "w": 240,
+              "h": 361
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-front-back-480.webp",
+              "w": 480,
+              "h": 722
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-front-back-1080.webp",
+              "w": 1080,
+              "h": 1624
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-front-back-1600.webp",
+              "w": 1600,
+              "h": 2406
+            }
+          ],
+          "alt": "Circles · Frente y espalda",
+          "name": "Circles · Frente y espalda"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/circles-back-480.webp",
+          "original": "assets/images/apolo-studios-story/circles-back-1600.webp",
+          "w": 480,
+          "h": 722,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/circles-back-240.webp",
+              "w": 240,
+              "h": 361
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-back-480.webp",
+              "w": 480,
+              "h": 722
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-back-1080.webp",
+              "w": 1080,
+              "h": 1624
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-back-1600.webp",
+              "w": 1600,
+              "h": 2406
+            }
+          ],
+          "alt": "Circles · La gráfica puesta",
+          "name": "Circles · La gráfica puesta"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/circles-stairs-480.webp",
+          "original": "assets/images/apolo-studios-story/circles-stairs-1600.webp",
+          "w": 480,
+          "h": 269,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/circles-stairs-240.webp",
+              "w": 240,
+              "h": 135
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-stairs-480.webp",
+              "w": 480,
+              "h": 269
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-stairs-1080.webp",
+              "w": 1080,
+              "h": 606
+            },
+            {
+              "src": "assets/images/apolo-studios-story/circles-stairs-1600.webp",
+              "w": 1600,
+              "h": 898
+            }
+          ],
+          "alt": "Circles · En las escaleras",
+          "name": "Circles · En las escaleras"
+        }
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Sahara: dos formas de firmar",
+      "text": "En Sahara, Seekers y A. Studios aparecen en dos buzos distintos. La campaña los reúne en la calle y en el subte: las firmas salen de la gráfica y se muestran sobre las prendas.",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-story/sahara-two-signatures-480.webp",
+          "original": "assets/images/apolo-studios-story/sahara-two-signatures-1600.webp",
+          "w": 480,
+          "h": 853,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/sahara-two-signatures-240.webp",
+              "w": 240,
+              "h": 427
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-two-signatures-480.webp",
+              "w": 480,
+              "h": 853
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-two-signatures-1080.webp",
+              "w": 1080,
+              "h": 1919
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-two-signatures-1600.webp",
+              "w": 1600,
+              "h": 2844
+            }
+          ],
+          "alt": "Sahara · Dos firmas de espalda",
+          "name": "Sahara · Dos firmas de espalda"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/sahara-street-480.webp",
+          "original": "assets/images/apolo-studios-story/sahara-street-1600.webp",
+          "w": 480,
+          "h": 853,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/sahara-street-240.webp",
+              "w": 240,
+              "h": 427
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-street-480.webp",
+              "w": 480,
+              "h": 853
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-street-1080.webp",
+              "w": 1080,
+              "h": 1919
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-street-1600.webp",
+              "w": 1600,
+              "h": 2844
+            }
+          ],
+          "alt": "Sahara · Las prendas en la calle",
+          "name": "Sahara · Las prendas en la calle"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/sahara-front-480.webp",
+          "original": "assets/images/apolo-studios-story/sahara-front-1600.webp",
+          "w": 480,
+          "h": 853,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/sahara-front-240.webp",
+              "w": 240,
+              "h": 427
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-front-480.webp",
+              "w": 480,
+              "h": 853
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-front-1080.webp",
+              "w": 1080,
+              "h": 1919
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-front-1600.webp",
+              "w": 1600,
+              "h": 2844
+            }
+          ],
+          "alt": "Sahara · Firma A. Studios",
+          "name": "Sahara · Firma A. Studios"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/sahara-subway-480.webp",
+          "original": "assets/images/apolo-studios-story/sahara-subway-1600.webp",
+          "w": 480,
+          "h": 853,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/sahara-subway-240.webp",
+              "w": 240,
+              "h": 427
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-subway-480.webp",
+              "w": 480,
+              "h": 853
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-subway-1080.webp",
+              "w": 1080,
+              "h": 1919
+            },
+            {
+              "src": "assets/images/apolo-studios-story/sahara-subway-1600.webp",
+              "w": 1600,
+              "h": 2844
+            }
+          ],
+          "alt": "Sahara · Dentro del subte",
+          "name": "Sahara · Dentro del subte"
+        }
+      ]
+    },
+    {
+      "n": "07",
+      "title": "Menorca: concentrar la identidad",
+      "text": "En Menorca, la gorra concentra el diseño. El nombre bordado y las variaciones de color definen la pieza. Retratos, producto y detalles muestran cómo cambia su lectura de cerca y en uso.",
+      "block": "gallery",
+      "items": [
+        {
+          "src": "assets/images/apolo-studios-story/menorca-brown-480.webp",
+          "original": "assets/images/apolo-studios-story/menorca-brown-1080.webp",
+          "w": 480,
+          "h": 480,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/menorca-brown-240.webp",
+              "w": 240,
+              "h": 240
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-brown-480.webp",
+              "w": 480,
+              "h": 480
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-brown-1080.webp",
+              "w": 1080,
+              "h": 1080
+            }
+          ],
+          "alt": "Menorca · Gorra marrón",
+          "name": "Menorca · Gorra marrón"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/menorca-blue-480.webp",
+          "original": "assets/images/apolo-studios-story/menorca-blue-1080.webp",
+          "w": 480,
+          "h": 480,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/menorca-blue-240.webp",
+              "w": 240,
+              "h": 240
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-blue-480.webp",
+              "w": 480,
+              "h": 480
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-blue-1080.webp",
+              "w": 1080,
+              "h": 1080
+            }
+          ],
+          "alt": "Menorca · Gorra azul",
+          "name": "Menorca · Gorra azul"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/menorca-grey-480.webp",
+          "original": "assets/images/apolo-studios-story/menorca-grey-1080.webp",
+          "w": 480,
+          "h": 480,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/menorca-grey-240.webp",
+              "w": 240,
+              "h": 240
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-grey-480.webp",
+              "w": 480,
+              "h": 480
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-grey-1080.webp",
+              "w": 1080,
+              "h": 1080
+            }
+          ],
+          "alt": "Menorca · Gorra gris",
+          "name": "Menorca · Gorra gris"
+        },
+        {
+          "src": "assets/images/apolo-studios-story/menorca-cafe-480.webp",
+          "original": "assets/images/apolo-studios-story/menorca-cafe-1600.webp",
+          "w": 480,
+          "h": 640,
+          "sources": [
+            {
+              "src": "assets/images/apolo-studios-story/menorca-cafe-240.webp",
+              "w": 240,
+              "h": 320
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-cafe-480.webp",
+              "w": 480,
+              "h": 640
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-cafe-1080.webp",
+              "w": 1080,
+              "h": 1440
+            },
+            {
+              "src": "assets/images/apolo-studios-story/menorca-cafe-1600.webp",
+              "w": 1600,
+              "h": 2133
+            }
+          ],
+          "alt": "Menorca · En el café",
+          "name": "Menorca · En el café"
+        }
+      ]
+    },
+    {
+      "n": "08",
+      "title": "Menorca, en movimiento",
+      "text": "Video de campaña · Cuarto drop.",
+      "block": "text",
+      "video": {
+        "src": "assets/images/apolo-studios-web/menorca.mp4",
+        "poster": "assets/images/apolo-studios-web/menorca-video-poster.webp",
+        "w": 576,
+        "h": 324,
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false
+      }
     }
-  ]
+  ],
+  "palette": {
+    "title": "Colores observados en las piezas",
+    "description": "Valores de referencia muestreados de gráficas y fotografía de la prenda marrón.",
+    "source": "observed",
+    "colors": [
+      {
+        "name": "Azul",
+        "hex": "#09247C",
+        "source": "artwork"
+      },
+      {
+        "name": "Crudo",
+        "hex": "#C4C2A5",
+        "source": "artwork"
+      },
+      {
+        "name": "Marrón",
+        "hex": "#423934",
+        "source": "photography"
+      },
+      {
+        "name": "Negro",
+        "hex": "#000000",
+        "source": "artwork"
+      }
+    ]
+  }
 }
