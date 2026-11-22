@@ -1,5 +1,17 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Previews, Archivo y contenido personal · 22 de noviembre de 2026
+
+Santiago autorizó las seis mejoras propuestas: previews en las tarjetas, índice con disciplina/año, firma sonora por proyecto, Archivo mixto, Sobre mí personal y envío de Contacto. Mantener la cámara, aperturas/cierres, corredor y aviso móvil existentes.
+
+Los previews esperan 650ms de hover, usan dos o tres piezas reales en su proporción nativa y cambian cada 1700ms con una pausa en la portada. Club conserva solo su portada, respetando la restricción específica anterior. No precargar los interiores de todos los casos. Movimiento reducido conserva un preview estático; cargar y decodificar antes de cambiar, ignorar respuestas obsoletas y resetear al navegar. El sonido se genera localmente con perfiles de ruido filtrado: tela para Apolo/Orfeo, papel para OLAS/El Armado y señal corta para Club. Únicamente en hover de puntero real; nunca por scroll o avance automático.
+
+?view=archive reúne los 84 trabajos personales, intercalando afiches, tapas y fotos. Conservar ?view=posters y ?view=photos. Filtros, búsqueda y selector 2/4/6 viven en el lateral; el filtro de fotografía mantiene tres columnas. Medir alto completo de imagen y caption para la distribución escalonada, reservar separación y preservar la pieza visible al cambiar densidad. Liberar observadores y cargas al filtrar o salir.
+
+Sobre mí muestra datos confirmados, sin retrato inventado ni favoritos atribuidos. Gustos ofrece enlaces a tres trabajos reales vinculados a música, cine y Stephen King; no afirmar que sean sus obras favoritas. Santiago todavía debe indicar sus selecciones y aportar el retrato original.
+
+Contacto tiene validación, revisión, transporte POST y estados de carga/error/reintento/confirmación. El destino real todavía no está definido: contactSettings.endpoint/email vacíos y sin proveedor en Vercel. Mantener deshabilitado Enviar consulta hasta tener una conexión válida. Solo mostrar éxito ante respuesta JSON afirmativa del proveedor. No publicar secretos, inventar emails ni enviar consultas de prueba a una casilla real. La verificación se hace con un endpoint local aislado. No considerar conectado el envío mientras falte el dato pedido a Santiago.
+
 ## Logo corredor · 22 de noviembre de 2026
 
 El símbolo de Santiago conserva 17px y el enlace de regreso a Proyectos. El hover y foco visible lo transforman en el corredor de logo-runner.js, usando los diez fotogramas SVG aportados por Santiago, sin alterar sus trazados. El logo y corredor siguen el color de la sección abierta (Sobre mí, Contacto, Archivo) o la identidad del proyecto; Proyectos vuelve a negro. En la apertura de un proyecto, el contorno mantiene contraste con el fondo de ese mismo color. No aplicar este efecto a las marcas de los clientes.

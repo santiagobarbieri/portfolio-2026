@@ -13,7 +13,7 @@ El símbolo del encabezado se transforma en un corredor al pasar el puntero o re
 
 ## Estado del contenido
 
-Cinco proyectos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT y El Armado. El Archivo reúne los afiches y fotografías personales existentes. Sobre mí conserva el retrato pendiente y textos en edición; Contacto prepara un resumen sin enviarlo ni guardar datos. Tienda y URLs aún no definidas siguen indicadas como pendientes. Móvil muestra un aviso de desarrollo hasta 900 px.
+Cinco proyectos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT y El Armado. El Archivo reúne 84 afiches, tapas y fotografías personales, intercalados y filtrables. Sobre mí usa una presentación breve con datos confirmados y selecciones tomadas del trabajo personal; el retrato original y los favoritos indicados por Santiago siguen pendientes. Contacto valida y permite revisar la consulta; su transporte de envío está implementado pero falta configurar el destino real. Tienda y URLs aún no definidas siguen indicadas como pendientes. Móvil muestra un aviso de desarrollo hasta 900 px.
 
 Las portadas están preparadas antes de revelar el inicio. Las imágenes interiores se cargan bajo demanda, conservan sus dimensiones y ofrecen reintento si fallan. El visor amplía cada pieza sin descargas de clientes. Los videos se reproducen mudos, en loop y sin controles; se pausan fuera de vista, detrás del visor o con la pestaña oculta.
 
@@ -23,6 +23,7 @@ Las portadas están preparadas antes de revelar el inicio. Las imágenes interio
 - `assets/`: únicamente recursos referenciados por esta versión, más su licencia tipográfica.
 - `css/desktop-gate.css`: aviso temporal de móvil en desarrollo.
 - `assets/scripts/logo-runner.js` y `css/logo-runner.css`: efecto del logo con los diez fotogramas SVG aportados.
+- `css/editorial-update.css`: índice ampliado, previews, Archivo, Sobre mí y formulario guiado.
 - `build.mjs`: empaquetado estático para Vercel.
 - `vercel.json`: build y compatibilidad con direcciones anteriores.
 - `AGENTS.md` y `MAKE-PROJECT.md`: criterios e historial de decisiones.
@@ -56,9 +57,23 @@ Los cierres retiran el contenido en su posición de lectura y recuperan el color
 | OLAS | Afiches, stickers, vectores y logo transparente cargan. | Revisión editorial de textos y selección, cuando se retome el caso. |
 | Club de Economía | Símbolos, plantillas y video cargan; portada única en el inicio. | Variante completa del logo sin fondo con contraste sobre celeste. |
 | El Armado | Afiches, historia, ilustración y logo hueso cargan. | Revisión editorial de textos, cuando se retome el caso. |
-| Sobre mí | Tres pestañas con teclado, URL y composición de escritorio. | Retrato original y biografía definitiva. |
-| Contacto | Valida el formulario y prepara un resumen honesto. | Conectar el envío real. |
+| Sobre mí | Presentación personal, credenciales y tres selecciones reales del Archivo; conserva teclado y URL. | Retrato original y selección personal de músicos, películas y libros. |
+| Contacto | Validación, revisión, envío asíncrono, error, reintento y confirmación probados con un endpoint local. | Correo de destino y endpoint del proveedor real. |
 | Tienda y Redes | Los destinos ausentes indican que están en preparación. | URLs definitivas de tienda y perfiles. |
 | Móvil | Aviso de desarrollo, sin reproducir el recorrido oculto. | Diseño y desarrollo específicos, aún pausados. |
 
 No se extrajeron logos de capturas ni se quitaron fondos automáticamente. No se modifican originales del respaldo externo. Los grupos fotográficos de tres piezas conservan su selección actual; su edición visual se puede revisar por proyecto.
+
+## Nuevas interacciones — 22 de noviembre de 2026
+
+Las tarjetas conservan cámara y geometría. Después de 650ms de hover muestran dos o tres piezas decodificadas, alternadas cada 1700ms con la portada, sin fondos auxiliares ni recortes. Club conserva únicamente su portada. Las piezas se solicitan al interactuar, no en la carga inicial; se descartan respuestas obsoletas y se cancela el preview al navegar. Movimiento reducido conserva una sola imagen de preview. El índice muestra disciplina y año al hover o foco, además de señalar el caso actual.
+
+Cinco perfiles breves de ruido filtrado distinguen tela, papel y una señal digital. Se generan localmente y solo suenan ante un hover real tras desbloquear el audio con un gesto; scroll y avance automático continúan silenciosos.
+
+Archivo ofrece una entrada mixta de 84 piezas (67 afiches, 11 tapas y 6 fotos), búsqueda, filtros y densidades 2/4/6. El filtro de fotos conserva tres columnas. La distribución calcula las alturas completas de imagen y caption, con pequeños desfases y sin superposiciones. Se probaron 920, 1024, 1512 y 1920px. No se añadieron archivos originales ni obras ajenas.
+
+### Configurar el envío de Contacto
+
+El objeto `contactSettings` de `index.html` contiene `endpoint` y `email`, ambos vacíos hasta que Santiago indique el destino. No hay un proveedor ni variables de correo configurados en Vercel. Un endpoint público de formulario debe aceptar POST FormData y devolver JSON con `ok: true` o `success: true` tras confirmar la recepción. No poner claves privadas en el HTML. El formulario tiene espera máxima, bloqueo de doble envío, reintento con datos conservados y cancelación al salir. Una respuesta no confirmada nunca muestra éxito.
+
+Con endpoint vacío el envío sigue deshabilitado y permanece disponible Copiar resumen. Si solo se configura email, se ofrece Abrir en mi correo y se explica que el envío se completa en la aplicación de correo. Las pruebas de éxito y fallo se realizaron contra un servidor local aislado, sin enviar correos reales. La conexión final sigue pendiente de la respuesta de Santiago.

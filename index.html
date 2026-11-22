@@ -369,6 +369,7 @@
 
     .study-home { display: inline-flex; padding: 5px; margin: -5px; color: inherit; text-decoration: none; }
   </style>
+  <link rel="stylesheet" href="./css/editorial-update.css">
 </head>
 <body class="study-loading">
   <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
@@ -405,7 +406,8 @@
     <details class="study-nav-group study-nav-group--archive">
       <summary class="study-nav-trigger">Archivo<svg class="study-chevron" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="m1 3 3.5 3L8 3"/></svg></summary>
       <ul class="study-submenu">
-        <li><button type="button" data-view="posters" aria-label="Archivo de afiches"><span>Posters</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+        <li><button type="button" data-view="archive" aria-label="Explorar todo el archivo"><span>Todo el archivo</span></button></li>
+        <li><button type="button" data-view="posters" aria-label="Archivo de afiches"><span>Afiches</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
         <li><button type="button" data-view="photos" aria-label="Archivo de fotografías"><span>Fotografía</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
       </ul>
     </details>
@@ -451,6 +453,12 @@
       const config = Object.freeze({ perspective: 6000, pitch: -11, yaw: -31, gap: 300, size: 680 });
       const projects = [...document.querySelectorAll('[data-project]')];
       const names = projects.map(button => button.textContent);
+      projects.forEach((button,id) => {
+        const item = catalogue[id], detail = document.createElement('small');
+        detail.className = 'study-project-meta'; detail.textContent = `${item.type} · ${item.year}`;
+        button.append(detail); button.style.setProperty('--project-ink',item.surface);
+        button.setAttribute('aria-label',`${item.title}. ${item.type}, ${item.year}`);
+      });
       const notice = document.querySelector('[data-notice]');
       const view = {};
       const info = document.querySelector('.study-card-info');
@@ -469,7 +477,7 @@
       // Widen the support; the original 4:5 cover stays centered at its native ratio.
       const coverWidth = config.size * .80, coverHeight = config.size * .60;
       let enteredAt = Infinity, infoSequence = null, pageName = '', lastFocus = null, openingToken = 0, pageVideoObserver = null;
-      let clearCaseJourney = null, activeProjectTransition = null;
+      let clearCaseJourney = null, clearPageExtras = null, activeProjectTransition = null;
 
       const navigation = document.querySelector('.study-navigation');
       const index = document.querySelector('.study-projects');
@@ -486,14 +494,62 @@
         const face = document.createElement('div');
         face.className = 'study-plane__face';
         const image = document.createElement('img'); image.className = 'study-plane__image'; image.alt = ''; image.draggable = false; image.decoding = 'async'; face.append(image);
+        const preview = document.createElement('img'); preview.className = 'study-plane__preview'; preview.alt = ''; preview.draggable = false; preview.decoding = 'async'; face.append(preview);
         element.append(face); camera.append(element);
-        return { element, face, image, sequence: null };
+        return { element, face, image, preview, sequence: null };
       }
       let scale = 1, position = 0, offset = 0, target = 0, raf = 0, previous = 0;
       let driftRebase = 0, dragging = null, reducedAt = -Infinity;
       let hovered = null, lastHoverSerial = -1;
       let audio = null, master = null, noise = null, soundCount = 0, voices = 0;
       let hoverSoundAt = -Infinity, noticeTimer;
+
+      const previewSources = catalogue.map(item => {
+        if (item.slug === 'club-de-economia-utdt') return [];
+        const blocks = item.blocks.filter(block => block.images?.length);
+        const chosen = item.slug === 'apolo-studios' ? blocks.slice(0,3) : blocks.slice(0,2);
+        return chosen.map(block => block.images[0]).filter(Boolean);
+      });
+      const previewCache = new Map();
+      let previewState = null, previewVersion = 0;
+      function stopPreview() {
+        previewVersion += 1;
+        if (previewState) {
+          previewState.record.face.classList.remove('has-preview');
+          previewState.record.element.removeAttribute('data-preview');
+        }
+        previewState = null;
+      }
+      function loadPreview(media) {
+        if (!previewCache.has(media.src)) {
+          const image = new Image(); image.decoding = 'async'; image.src = media.src;
+          previewCache.set(media.src, image.decode().then(() => image).catch(() => null));
+        }
+        return previewCache.get(media.src);
+      }
+      function updatePreview() {
+        const sequence = hovered;
+        if (sequence === null || pageName || activeProjectTransition || dragging || smallScreen.matches || document.hidden || document.body.classList.contains('study-loading')) { stopPreview(); return; }
+        const sources = previewSources[modulo(sequence,catalogue.length)];
+        if (!sources.length) { if (previewState) stopPreview(); return; }
+        const record = planes[modulo(sequence,planes.length)];
+        if (!record || record.sequence !== sequence) return;
+        if (!previewState || previewState.sequence !== sequence || previewState.record !== record) {
+          stopPreview(); previewState = { sequence, record, next: performance.now()+650, frame: -1, pending: false };
+        }
+        const state = previewState;
+        if (state.pending || performance.now() < state.next || preference.matches && state.frame >= 0) return;
+        state.frame = (state.frame+1) % (sources.length+1); state.next = performance.now()+1700;
+        if (state.frame === sources.length) { record.face.classList.remove('has-preview'); record.element.removeAttribute('data-preview'); return; }
+        state.pending = true; const version = previewVersion;
+        loadPreview(sources[state.frame]).then(image => {
+          if (version !== previewVersion || previewState !== state || record.sequence !== sequence) return;
+          state.pending = false; state.next = performance.now()+1700;
+          if (!image) return;
+          record.preview.src = image.src;
+          record.face.classList.add('has-preview'); record.element.dataset.preview = String(state.frame+1);
+        });
+      }
 
       // Audio is generated locally and unlocked by the first real click or key.
       async function unlockSound() {
@@ -517,7 +573,7 @@
         } catch { /* Another gesture can retry an interrupted browser audio unlock. */ }
       }
       // A short filtered paper flick, with no pitched oscillator or musical scale.
-      function hoverSound() {
+      function hoverSound(sequence) {
         if (!audio || audio.state !== 'running' || document.hidden || voices >= 4) return;
         const now = performance.now();
         if (now - hoverSoundAt < 125) return;
@@ -526,15 +582,23 @@
         const softness = audio.createBiquadFilter(), gain = audio.createGain();
         const pan = audio.createStereoPanner?.();
         const start = audio.currentTime;
-        const duration = .046;
+        const profiles = [
+          { name:'tela-apolo', duration:.064, frequency:820, cutoff:1900, peak:.075, attack:.007 },
+          { name:'tela-orfeo', duration:.058, frequency:600, cutoff:1450, peak:.07, attack:.006 },
+          { name:'papel-olas', duration:.045, frequency:1800, cutoff:3800, peak:.09, attack:.003 },
+          { name:'digital-club', duration:.027, frequency:3100, cutoff:6200, peak:.055, attack:.0015 },
+          { name:'papel-armado', duration:.052, frequency:1250, cutoff:3200, peak:.085, attack:.004 }
+        ];
+        const profile = profiles[modulo(sequence,catalogue.length)];
+        const duration = profile.duration;
         source.buffer = noise;
         filter.type = 'bandpass';
-        filter.frequency.value = 1650;
+        filter.frequency.value = profile.frequency;
         filter.Q.value = .65;
-        softness.type = 'lowpass'; softness.frequency.value = 3400; softness.Q.value = .55;
-        const peak = .115;
+        softness.type = 'lowpass'; softness.frequency.value = profile.cutoff; softness.Q.value = .55;
+        const peak = profile.peak;
         gain.gain.setValueAtTime(0, start);
-        gain.gain.linearRampToValueAtTime(peak, start + .003);
+        gain.gain.linearRampToValueAtTime(peak, start + profile.attack);
         gain.gain.exponentialRampToValueAtTime(peak * .25, start + .014);
         gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
         source.connect(filter); filter.connect(softness); softness.connect(gain);
@@ -545,7 +609,7 @@
         voices += 1;
         source.onended = () => { source.disconnect(); filter.disconnect(); softness.disconnect(); gain.disconnect(); pan?.disconnect(); voices -= 1; };
         source.start(start, .02); source.stop(start + duration + .003);
-        stage.dataset.soundCount = String(++soundCount);
+        stage.dataset.soundCount = String(++soundCount); stage.dataset.soundProfile = profile.name;
       }
       document.addEventListener('pointerdown', event => { if (event.isTrusted) unlockSound(); }, { capture: true });
       document.addEventListener('keydown', event => { if (event.isTrusted) unlockSound(); }, { capture: true });
@@ -604,7 +668,7 @@
           }
         }
         if (next !== hovered) {
-          if (next !== null && pointer.serial !== lastHoverSerial) hoverSound();
+          if (next !== null && pointer.serial !== lastHoverSerial) hoverSound(next);
           hovered = next;
         }
         lastHoverSerial = pointer.serial;
@@ -620,6 +684,7 @@
           const z = (position - sequence) * config.gap * scale;
           wanted.add(sequence);
           if (record.sequence !== sequence) {
+            record.face.classList.remove('has-preview'); record.element.removeAttribute('data-preview');
             record.sequence = sequence;
             record.element.dataset.sequence = String(sequence);
             record.image.src = catalogue[modulo(sequence, catalogue.length)].cover;
@@ -651,6 +716,7 @@
         stage.dataset.position = position.toFixed(5);
         stage.dataset.drift = drift().toFixed(5);
         positionInfo();
+        updatePreview();
         updateStudyCursor();
       }
       function measure() {
@@ -991,7 +1057,7 @@
       function readPageAddress() {
         const query = new URL(location.href).searchParams;
         const project = catalogue.findIndex(item => item.slug === query.get('project'));
-        const view = ['about','contact','posters','photos'].includes(query.get('view')) ? query.get('view') : '';
+        const view = ['about','contact','archive','posters','photos'].includes(query.get('view')) ? query.get('view') : '';
         const tab = ['testament','credentials','tastes'].includes(query.get('tab')) ? query.get('tab') : 'testament';
         return { project, view, tab };
       }
@@ -1039,7 +1105,7 @@
       function activeMenu(kind) {
         document.querySelectorAll('.study-nav-group').forEach(group => {
           const trigger = group.querySelector('.study-nav-trigger');
-          const matches = kind === 'about' ? group.classList.contains('study-nav-group--about') : kind === 'contact' ? group.classList.contains('study-nav-group--contact') : ['posters','photos'].includes(kind) && group.classList.contains('study-nav-group--archive');
+          const matches = kind === 'about' ? group.classList.contains('study-nav-group--about') : kind === 'contact' ? group.classList.contains('study-nav-group--contact') : ['archive','posters','photos'].includes(kind) && group.classList.contains('study-nav-group--archive');
           group.classList.toggle('is-page-active', matches);
           if (matches) { trigger.setAttribute('aria-current','page'); trigger.setAttribute('aria-label','Volver a proyectos'); }
           else { trigger.removeAttribute('aria-current'); const originalLabel = menuLabels.get(trigger); if (originalLabel) trigger.setAttribute('aria-label',originalLabel); else trigger.removeAttribute('aria-label'); }
@@ -1049,6 +1115,7 @@
       }
       function beginPage(kind, title, color = '') {
         rememberPageAddress();
+        stopPreview(); clearPageExtras?.(); clearPageExtras = null;
         cancelPanelAnimation();
         cancelCoverWait(); clearTimeout(noticeTimer); notice.replaceChildren(); notice.classList.remove('is-loading'); if (lightbox.open) lightbox.close();
         releasePageMedia(pageContent);
@@ -1066,13 +1133,14 @@
         activeMenu(kind); headingState(title, color); page.focus({ preventScroll: true });
         if (kind !== 'project') {
           delete page.dataset.projectId; document.body.classList.remove('study-case-on-cover','study-close-on-cover');
-          document.title = `${{about:'Sobre mí',contact:'Contacto',posters:'Archivo de afiches',photos:'Archivo de fotografías'}[kind]} — Santiago Barbieri`;
+          document.title = `${{about:'Sobre mí',contact:'Contacto',archive:'Archivo',posters:'Archivo de afiches',photos:'Archivo de fotografías'}[kind]} — Santiago Barbieri`;
           syncPageAddress(kind); revealPanel(kind);
         }
       }
       function closePageImmediately(keepPosition = false, transition = null) {
         const holdingTransition = transition && activeProjectTransition === transition;
         rememberPageAddress();
+        stopPreview(); clearPageExtras?.(); clearPageExtras = null;
         cancelPanelAnimation();
         cancelCoverWait(); clearTimeout(noticeTimer); notice.replaceChildren(); notice.classList.remove('is-loading'); if (lightbox.open) lightbox.close(); releasePageMedia(pageContent);
         if (activeProjectTransition && !holdingTransition) finishProjectTransition(activeProjectTransition);
@@ -1113,7 +1181,7 @@
         else openArchive(kind);
       }));
       document.querySelector('.study-nav-group--archive > summary').addEventListener('click', event => {
-        if (['posters','photos'].includes(pageName)) { event.preventDefault(); closePage(); }
+        if (['archive','posters','photos'].includes(pageName)) { event.preventDefault(); closePage(); }
       });
       function openAbout(tab = 'testament') {
         activeAboutTab = ['testament','credentials','tastes'].includes(tab) ? tab : 'testament'; tab = activeAboutTab;
@@ -1139,49 +1207,184 @@
         tabs.querySelectorAll('button').forEach(b => { const active = b.dataset.aboutTab === tab; b.setAttribute('aria-selected',String(active)); b.tabIndex = active ? 0 : -1; });
         area.replaceChildren(); area.className = 'study-about-panel'; area.setAttribute('aria-label', {testament:'Testamento',credentials:'Credenciales',tastes:'Gustos'}[tab]);
         if (tab === 'testament') {
-          const layout = el('div','study-about-testament'); layout.append(el('h2','study-page-title','Hola, soy Santiago.'));
-          const portrait = el('div','study-portrait-pending','Retrato pendiente'); portrait.setAttribute('role','img'); portrait.setAttribute('aria-label','Espacio reservado para el retrato de Santiago'); layout.append(portrait);
-          const text = el('div','study-about-text');
-          [
-            'Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa cómo una idea cambia al pasar a una prenda, una campaña o una pantalla.',
-            'Soy cofundador y director creativo de Apolo Studios. Este portfolio reúne ese trabajo junto con identidades y campañas para marcas y organizaciones, además de mis exploraciones personales.'
-          ].forEach(p => text.append(el('p','',p)));
-          text.append(el('p','study-page-note','Testamento en edición. El texto definitivo y el retrato todavía están en preparación.')); layout.append(text); area.append(layout);
+          const intro = el('article','study-about-intro');
+          intro.append(el('p','study-about-kicker','Santiago Barbieri · Buenos Aires'),el('h2','','Una idea, varias formas.'));
+          const body = el('div','study-about-intro__body');
+          body.append(el('p','','Soy Santiago. Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa lo que le pasa a una idea cuando cambia de formato: de una marca a una prenda, de una imagen a una campaña.'),el('p','','Soy cofundador y director creativo de Apolo Studios. Acá reúno ese trabajo, los proyectos para marcas y organizaciones y un archivo de exploraciones personales.'));
+          intro.append(body);
+          const practice = el('div','study-about-practice'); ['Identidad','Dirección creativa','Web','Fotografía'].forEach(text => practice.append(el('span','',text))); intro.append(practice);
+          const contact = el('button','study-text-button study-about-contact','Conversemos'); contact.type = 'button'; contact.addEventListener('click',openContact); intro.append(contact); area.append(intro);
         } else if (tab === 'credentials') {
           const list = el('div','study-credentials');
           [['Desarrollo web','Desarrollo web','Coderhouse'],['CAE','Inglés · Nivel C1','Cambridge University']].forEach(([title,detail,issuer]) => { const row=el('article','study-credential');row.append(el('h2','',title),el('p','',detail),el('p','',issuer));list.append(row); }); area.append(list);
         } else {
-          const list = el('dl','study-tastes'); [['Base','Buenos Aires, Argentina'],['Trabajo','Diseño gráfico, dirección creativa, web y fotografía'],['Intereses','Música, diseño, cine y cámaras']].forEach(([label,value]) => { const row = el('div'); row.append(el('dt','',label),el('dd','',value)); list.append(row); }); area.append(list);
+          area.append(el('p','study-about-kicker','Música, cine, libros y ciudad'),el('h2','study-page-title','También aparecen en mis gráficas.'));
+          const selection = el('div','study-about-interests');
+          [['poster-100-horses','Música','100 Horses · Geese'],['poster-paris-texas','Cine','Paris, Texas'],['stephen-king-01','Libros','Stephen King']].forEach(([id,title,description]) => {
+            let item = archiveItems.find(x => x.id === id);
+            if (!item && title === 'Libros') item = archiveItems.find(x => x.kind === 'book');
+            if (!item) return;
+            const article = el('article','study-about-interest'), button = el('button'); button.type = 'button'; button.setAttribute('aria-label',`Ver ${title.toLocaleLowerCase('es')} en el archivo`);
+            button.append(imageNode({src:item.thumbnail?.src||item.src,alt:item.alt||item.name,w:item.thumbnail?.w||item.w,h:item.thumbnail?.h||item.h}));
+            button.addEventListener('click',() => { archivePreferences.query = item.name; openArchive('archive'); });
+            article.append(button,el('h3','',title),el('p','',description)); selection.append(article);
+          });
+          area.append(selection,el('p','study-about-location','Buenos Aires, Argentina. Diseño, fotografía y recorridos cotidianos.'));
         }
       }
+
+      const contactSettings = Object.freeze({ endpoint: '', email: '' });
       function openContact() {
         beginPage('contact','¡TRABAJEMOS JUNTOS!','#ef3333');
-        const form=el('form','study-contact');form.noValidate=true;
-        form.innerHTML='<p class="study-form-progress" aria-live="polite" data-form-progress></p><div data-form-step></div><div class="study-form-actions"><button class="study-text-button" type="button" data-form-back>Anterior</button><button class="study-text-button" type="submit" data-form-next>Continuar ↗︎</button></div>';
-        const data={kind:'Un proyecto',brand:'',idea:'',deadline:'',budget:'',name:'',email:''};let step=0;
-        const area=form.querySelector('[data-form-step]'),back=form.querySelector('[data-form-back]'),next=form.querySelector('[data-form-next]');
-        const fields=[['kind','¿Qué tenés en mente?','select',false],['brand','Marca o empresa','text',false],['idea','La idea y lo que querés lograr','textarea',true],['deadline','Plazo o fecha ideal','text',false],['budget','Presupuesto estimado','text',false],['name','Tu nombre','text',true],['email','Correo electrónico','email',true]];
-        function save(){area.querySelectorAll('[name]').forEach(input=>{data[input.name]=input.value;});}
-        function summary(){return `Consulta: ${data.kind}\nMarca: ${data.brand||'A definir'}\nIdea: ${data.idea}\nPlazo: ${data.deadline||'A definir'}\nPresupuesto: ${data.budget||'A definir'}\nNombre: ${data.name}\nEmail: ${data.email}`;}
-        function paint(){
-          area.replaceChildren();form.querySelector('[data-form-progress]').textContent=`${step+1} / 4`;back.hidden=step===0;next.hidden=step===3;
-          if(step===3){area.append(el('h2','study-page-title','Tu consulta, lista para revisar.'));const text=el('textarea','study-contact-summary');text.value=summary();text.readOnly=true;text.setAttribute('aria-label','Resumen de tu consulta');text.style.width='100%';text.style.minHeight='220px';area.append(text,el('p','study-page-note','El envío está en preparación. Por ahora podés copiar el resumen; este formulario no envía ni guarda tus datos.'));const copy=el('button','study-text-button','Copiar resumen');copy.type='button';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(summary());copy.textContent='Resumen copiado';}catch{text.focus();text.select();copy.textContent='Seleccionado para copiar';}});area.append(copy);return;}
-          const legend=el('h2','study-page-title',['Contame qué tenés en mente.','Un poco más de contexto.','¿Cómo te contacto?'][step]);area.append(legend);
-          const selected=step===0?['kind','brand','idea']:step===1?['deadline','budget']:['name','email'];
-          fields.filter(([key])=>selected.includes(key)).forEach(([key,label,type,required])=>{const wrapper=el('label','study-field',label+(required?' · obligatorio':' · opcional'));const input=el(type==='textarea'?'textarea':type==='select'?'select':'input');input.name=key;input.id=`study-contact-${key}`;wrapper.htmlFor=input.id;if(type==='select'){['Un proyecto','Una consulta'].forEach(v=>{const o=el('option','',v);o.value=v;input.append(o);});}else if(type!=='textarea')input.type=type;input.value=data[key];input.required=required;if(key==='name')input.autocomplete='name';if(key==='email')input.autocomplete='email';if(key==='brand')input.autocomplete='organization';wrapper.append(input);area.append(wrapper);});
+        const form = el('form','study-contact'); form.noValidate = true;
+        form.innerHTML = '<p class="study-form-progress" aria-live="polite" data-form-progress></p><div data-form-step></div><div class="study-form-actions"><button class="study-text-button" type="button" data-form-back>Anterior</button><button class="study-text-button" type="submit" data-form-next>Continuar</button></div>';
+        const data = {kind:'Un proyecto',brand:'',idea:'',deadline:'',budget:'',name:'',email:''};
+        let step = 0, sending = false, request = null, requestTimer = 0;
+        const area = form.querySelector('[data-form-step]'), back = form.querySelector('[data-form-back]'), next = form.querySelector('[data-form-next]');
+        const fields = [['kind','¿Qué tenés en mente?','select',true],['brand','Marca o empresa','text',false],['idea','La idea y lo que querés lograr','textarea',true],['deadline','Plazo o fecha ideal','text',false],['budget','Presupuesto estimado','text',false],['name','Tu nombre','text',true],['email','Correo electrónico','email',true]];
+        function save() { area.querySelectorAll('[name]').forEach(input => { if (input.name in data) data[input.name] = input.value.trim(); }); }
+        function summary() { return `Consulta: ${data.kind}\nMarca: ${data.brand||'A definir'}\nIdea: ${data.idea}\nPlazo: ${data.deadline||'A definir'}\nPresupuesto: ${data.budget||'A definir'}\nNombre: ${data.name}\nEmail: ${data.email}`; }
+        async function send(status, button) {
+          if (sending || !contactSettings.endpoint) return;
+          if (!navigator.onLine) { status.textContent = 'No hay conexión. Tu consulta sigue acá; podés reintentar cuando vuelva.'; return; }
+          sending = true; back.disabled = button.disabled = true; form.setAttribute('aria-busy','true'); button.textContent = 'Enviando…'; status.classList.remove('study-contact-error'); status.textContent = '';
+          const rose = el('span','study-loader__rose study-contact-loader'); rose.setAttribute('aria-hidden','true'); button.prepend(rose);
+          request = new AbortController(); requestTimer = setTimeout(() => request.abort(),15000);
+          const payload = new FormData(); Object.entries(data).forEach(([key,value]) => payload.append(key,value)); payload.append('message',summary()); payload.append('_subject',`Portfolio · ${data.kind} · ${data.name}`);
+          try {
+            const response = await fetch(contactSettings.endpoint,{method:'POST',body:payload,headers:{Accept:'application/json'},signal:request.signal});
+            const body = await response.json().catch(() => null);
+            const acknowledged = body && (body.ok === true || body.success === true || body.success === 'true') && !body.errors?.length;
+            if (!response.ok || !acknowledged) throw new Error('delivery');
+            if (!form.isConnected) return;
+            form.replaceChildren(el('h2','study-page-title','Gracias por escribirme.'),el('p','study-page-copy','Tu consulta fue enviada. Te responderé al correo que dejaste.'));
+            const close = el('button','study-text-button study-about-contact','Volver a proyectos'); close.type = 'button'; close.addEventListener('click',closePage); form.append(close); form.querySelector('h2').tabIndex = -1; form.querySelector('h2').focus({preventScroll:true});
+          } catch {
+            if (!form.isConnected) return;
+            status.classList.add('study-contact-error'); status.textContent = 'No se pudo confirmar el envío. Conservamos tu consulta en esta pantalla: podés reintentar o copiar el resumen.';
+          } finally {
+            clearTimeout(requestTimer); requestTimer = 0; request = null; sending = false; form.removeAttribute('aria-busy'); back.disabled = false;
+            if (button.isConnected) { button.disabled = false; button.textContent = 'Reintentar envío'; }
+          }
         }
-        back.addEventListener('click',()=>{save();step=Math.max(0,step-1);paint();});form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;save();step=Math.min(3,step+1);paint();});paint();pageContent.append(form);
-      }
-      function openArchive(kind) {
-        beginPage(kind,kind==='posters'?'ARCHIVO · POSTERS':'ARCHIVO · FOTOGRAFÍA','#ff6b2c');
-        const items=archiveItems.filter(item=>item.kind===(kind==='posters'?'poster':'photo'));
-        const head=el('header','study-archive-heading');head.append(el('h2','study-page-title',kind==='posters'?'Afiches':'Fotografías'),el('span','study-page-note',`${items.length} piezas`));
-        const grid=el('div','study-archive-grid');grid.style.gridTemplateColumns=`repeat(${kind==='photos'?3:2},minmax(0,1fr))`;
-        if(kind==='posters'){
-          const density=el('nav','study-page-index');density.setAttribute('aria-label','Cantidad de columnas');[2,4,6].forEach(count=>{const b=el('button','',`${count} columnas`);b.type='button';b.setAttribute('aria-pressed',String(count===2));b.addEventListener('click',()=>{grid.style.gridTemplateColumns=`repeat(${count},minmax(0,1fr))`;density.querySelectorAll('button').forEach(n=>n.setAttribute('aria-pressed',String(n===b)));});density.append(b);});pageContent.append(density);
+        function paint() {
+          area.replaceChildren(); form.querySelector('[data-form-progress]').textContent = `${step+1} / 4`; back.hidden = step === 0; next.hidden = step === 3;
+          if (step === 3) {
+            area.append(el('h2','study-page-title','Revisá tu consulta.'));
+            const review = el('dl','study-contact-review');
+            fields.forEach(([key,label]) => { const row = el('div'); row.append(el('dt','',label),el('dd','',data[key]||'A definir')); review.append(row); }); area.append(review);
+            const status = el('p','study-contact-status'); status.setAttribute('role','status'); status.setAttribute('aria-live','polite');
+            const submit = el('button','study-text-button study-contact-submit','Enviar consulta'); submit.type = 'button';
+            if (contactSettings.endpoint) submit.addEventListener('click',() => send(status,submit));
+            else if (contactSettings.email) {
+              submit.textContent = 'Abrir en mi correo'; submit.addEventListener('click',() => { location.href = `mailto:${contactSettings.email}?subject=${encodeURIComponent('Consulta desde el portfolio')}&body=${encodeURIComponent(summary())}`; });
+              status.textContent = 'Se abrirá tu aplicación de correo con la consulta preparada. El envío se completa desde ahí.';
+            } else { submit.disabled = true; status.textContent = 'El envío está en preparación. Podés copiar el resumen de tu consulta.'; }
+            const copy = el('button','study-text-button study-contact-submit','Copiar resumen'); copy.type = 'button';
+            copy.addEventListener('click',async() => {
+              try { await navigator.clipboard.writeText(summary()); status.textContent = 'Resumen copiado.'; }
+              catch { const text = el('textarea','study-contact-summary'); text.value = summary(); text.readOnly = true; text.setAttribute('aria-label','Resumen para copiar'); area.append(text); text.focus(); text.select(); status.textContent = 'Seleccionamos el resumen para que puedas copiarlo.'; }
+            });
+            area.append(submit,copy,status); return;
+          }
+          area.append(el('h2','study-page-title',['Contame qué tenés en mente.','Un poco más de contexto.','¿Cómo te contacto?'][step]));
+          const selected = step === 0 ? ['kind','brand','idea'] : step === 1 ? ['deadline','budget'] : ['name','email'];
+          fields.filter(([key]) => selected.includes(key)).forEach(([key,label,type,required]) => {
+            const wrapper = el('label','study-field',label+(required?' · obligatorio':' · opcional'));
+            const input = el(type === 'textarea' ? 'textarea' : type === 'select' ? 'select' : 'input'); input.name = key; input.id = `study-contact-${key}`; wrapper.htmlFor = input.id;
+            if (type === 'select') ['Un proyecto','Una consulta'].forEach(value => { const option = el('option','',value); option.value = value; input.append(option); });
+            else if (type !== 'textarea') input.type = type;
+            input.value = data[key]; input.required = required; if (type !== 'select') input.maxLength = type === 'textarea' ? 4000 : 200;
+            if (key === 'name') input.autocomplete = 'name'; if (key === 'email') input.autocomplete = 'email'; if (key === 'brand') input.autocomplete = 'organization';
+            wrapper.append(input); area.append(wrapper);
+          });
         }
-        items.forEach((item,i)=>{const figure=el('figure','study-archive-piece'),button=el('button');button.type='button';button.setAttribute('aria-label',`Ampliar ${item.name||item.alt||'fotografía'}`);button.setAttribute('aria-haspopup','dialog');const image=imageNode({src:item.thumbnail?.src||item.src,alt:item.alt||item.name,w:item.thumbnail?.w||item.w,h:item.thumbnail?.h||item.h});button.append(image);button.addEventListener('click',()=>openLightbox(item.src,item.alt||item.name));figure.append(button,el('figcaption','',`${String(i+1).padStart(2,'0')}${item.name?' · '+item.name:''}`));grid.append(figure);});pageContent.append(head,grid);
+        back.addEventListener('click',() => { if (sending) return; save(); step = Math.max(0,step-1); paint(); });
+        form.addEventListener('submit',event => { event.preventDefault(); if (sending || step === 3 || !form.reportValidity()) return; save(); step = Math.min(3,step+1); paint(); });
+        clearPageExtras = () => { request?.abort(); clearTimeout(requestTimer); };
+        paint(); pageContent.append(form);
       }
+
+      let archivePreferences = { density: 4, query: '' };
+      function openArchive(kind = 'archive') {
+        const initial = kind === 'photos' ? 'photo' : kind === 'posters' ? 'poster' : 'all';
+        beginPage(kind, 'ARCHIVO', '#ff6b2c');
+        let filter = initial, density = kind === 'posters' ? 2 : archivePreferences.density;
+        const controller = new AbortController(); let layoutFrame = 0, measuredWidth = 0;
+        const head = el('header','study-archive-intro');
+        head.append(el('p','study-about-kicker','Trabajo personal'),el('h2','study-page-title','Sin un único formato.'),el('p','','Afiches, tapas y fotografías. Un lugar para las piezas que hago por iniciativa propia, entre un proyecto y otro.'));
+        const tools = el('nav','study-page-index study-archive-tools'); tools.setAttribute('aria-label','Explorar el archivo');
+        const formats = el('div','study-archive-toolgroup'); formats.append(el('span','','Formato'));
+        const options = [['all','Todo'],['poster','Afiches'],['book','Tapas'],['photo','Fotografías']];
+        const searchGroup = el('div','study-archive-toolgroup'), label = el('label','','Buscar una pieza'); label.htmlFor = 'archive-search';
+        const search = el('input'); search.type = 'search'; search.id = 'archive-search'; search.name = 'archive-search'; search.value = archivePreferences.query; search.autocomplete = 'off';
+        searchGroup.append(label,search);
+        const densityGroup = el('div','study-archive-toolgroup'); densityGroup.append(el('span','','Columnas'));
+        const densities = el('div','study-archive-density'); densityGroup.append(densities);
+        const count = el('p','study-archive-count'); count.setAttribute('role','status');
+        tools.append(formats,searchGroup,densityGroup,count);
+        const grid = el('div','study-archive-grid is-editorial'); grid.setAttribute('aria-label','Piezas del archivo');
+        const empty = el('p','study-archive-empty','No encontré piezas con esa búsqueda.'); empty.hidden = true;
+        pageContent.append(tools,head,grid,empty);
+        const formatNames = {poster:'Afiche',book:'Tapa',photo:'Fotografía'};
+        const columns = () => filter === 'photo' ? 3 : density;
+        function layout() {
+          layoutFrame = 0; if (!grid.isConnected) return;
+          const n = columns(), gap = n === 6 ? 18 : 24, width = (grid.clientWidth-gap*(n-1))/n;
+          const heights = Array.from({length:n},(_,i) => filter === 'photo' ? 0 : [0,72,24,108,48,84][i]);
+          [...grid.children].forEach(figure => {
+            figure.style.width = `${width}px`;
+            const col = heights.indexOf(Math.min(...heights));
+            figure.style.transform = `translate(${col*(width+gap)}px,${heights[col]}px)`;
+            heights[col] += figure.offsetHeight+34;
+          });
+          grid.style.height = `${grid.childElementCount ? Math.max(...heights)-34 : 0}px`;
+        }
+        function schedule() { if (!layoutFrame) layoutFrame = requestAnimationFrame(layout); }
+        function paint() {
+          releasePageMedia(grid); grid.replaceChildren();
+          const query = search.value.trim().toLocaleLowerCase('es'); archivePreferences.query = search.value;
+          let ordered = archiveItems;
+          if (filter === 'all') {
+            const pools = {poster:archiveItems.filter(x => x.kind === 'poster'),book:archiveItems.filter(x => x.kind === 'book'),photo:archiveItems.filter(x => x.kind === 'photo')};
+            ordered = []; const pattern = ['poster','poster','book','poster','photo','poster','poster','poster'];
+            while (Object.values(pools).some(pool => pool.length)) pattern.forEach(kind => { if (pools[kind].length) ordered.push(pools[kind].shift()); });
+          }
+          const items = ordered.filter(item => (filter === 'all' || item.kind === filter) && `${item.name||''} ${item.alt||''}`.toLocaleLowerCase('es').includes(query));
+          count.textContent = `${items.length} ${items.length === 1 ? 'pieza' : 'piezas'}`; empty.hidden = Boolean(items.length);
+          formats.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.format === filter)));
+          densityGroup.hidden = filter === 'photo'; densities.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',String(Number(b.dataset.columns) === density)));
+          items.forEach((item,i) => {
+            const figure = el('figure','study-archive-piece'), button = el('button'); button.type = 'button'; figure.dataset.archiveId = item.id;
+            button.setAttribute('aria-label',`Ampliar ${item.name||item.alt}`); button.setAttribute('aria-haspopup','dialog');
+            button.append(imageNode({src:item.thumbnail?.src||item.src,alt:item.alt||item.name,w:item.thumbnail?.w||item.w,h:item.thumbnail?.h||item.h}));
+            button.addEventListener('click',() => openLightbox(item.src,item.alt||item.name));
+            const caption = el('figcaption'); caption.append(el('span','',`${String(i+1).padStart(2,'0')} · ${item.name||''}`),el('span','study-archive-kind',formatNames[item.kind]));
+            figure.append(button,caption); grid.append(figure);
+          });
+          layout();
+        }
+        options.forEach(([value,text]) => {
+          const button = el('button','',text); button.type = 'button'; button.dataset.format = value;
+          button.addEventListener('click',() => { filter = value; page.scrollTop = 0; paint(); }); formats.append(button);
+        });
+        [2,4,6].forEach(value => {
+          const button = el('button','',String(value)); button.type = 'button'; button.dataset.columns = String(value); button.setAttribute('aria-label',`${value} columnas`);
+          button.addEventListener('click',() => {
+            const anchor = [...grid.children].find(n => n.getBoundingClientRect().bottom > page.getBoundingClientRect().top+100);
+            const top = anchor?.getBoundingClientRect().top;
+            density = archivePreferences.density = value; layout();
+            densities.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',String(b === button)));
+            if (anchor) page.scrollTop += anchor.getBoundingClientRect().top-top;
+          }); densities.append(button);
+        });
+        search.addEventListener('input',() => { page.scrollTop = 0; paint(); });
+        const observer = new ResizeObserver(entries => { const width = entries[0].contentRect.width; if (Math.abs(width-measuredWidth)>1) { measuredWidth = width; schedule(); } }); observer.observe(grid);
+        window.addEventListener('resize',schedule,{passive:true,signal:controller.signal});
+        clearPageExtras = () => { controller.abort(); observer.disconnect(); cancelAnimationFrame(layoutFrame); };
+        paint();
+      }
+
       document.querySelector('[data-lightbox-close]').addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
 
@@ -1329,6 +1532,7 @@
           finishAnimations() { state.animations.forEach(animation => animation.finish()); }
         };
         activeProjectTransition = state; syncCaseVideos();
+        stopPreview();
         document.body.dataset.projectTransition = phase;
         stage.inert = true; navigation.inert = true; index.inert = true; page.inert = true;
         pointer.inside = false; hovered = null; info.classList.remove('is-visible');
@@ -1601,17 +1805,17 @@
       }));
       document.addEventListener('visibilitychange', () => {
         syncCaseVideos();
-        if (document.hidden) { stopPainting(); dragging = null; pointer.inside = false; stage.classList.remove('is-dragging'); }
+        if (document.hidden) { stopPreview(); stopPainting(); dragging = null; pointer.inside = false; stage.classList.remove('is-dragging'); }
         else { previous = 0; position = drift() + offset; draw(); wake(); }
       });
-      window.addEventListener('pagehide', stopPainting);
+      window.addEventListener('pagehide', () => { stopPreview(); stopPainting(); });
       window.addEventListener('pageshow', wake);
       window.addEventListener('resize', () => { measure(); if (lightbox.open) fitLightbox(); activeProjectTransition?.finishAnimations(); }, { passive: true });
       preference.addEventListener('change', () => { offset = target; if (preference.matches) activeProjectTransition?.finishAnimations(); });
       const updateStudyCursor = setupStudyCursor();
       smallScreen.addEventListener('change', () => {
         if (smallScreen.matches) {
-          stopPainting(); if (lightbox.open) lightbox.close(); syncCaseVideos();
+          stopPreview(); stopPainting(); if (lightbox.open) lightbox.close(); syncCaseVideos();
           document.querySelector('.mobile-status').focus({ preventScroll: true });
         } else {
           measure(); wake(); if (document.body.classList.contains('study-loading')) prepare(); else syncCaseVideos();
