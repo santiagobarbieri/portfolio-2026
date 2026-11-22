@@ -22,7 +22,7 @@
   --hover-surface: color-mix(in srgb, var(--fg) 4%, transparent);
   --fg: #f1ece0;
   /* AA contrast for small text; these stay slightly stronger than the mockups. */
-  --mute: #98958e;
+  --mute: #b7b3ab;
   --line: #45443f;
   --font: "Albert Sans", system-ui, sans-serif;
   --frame-margin: 16px;
@@ -59,7 +59,7 @@
   color-scheme: light;
   --bg: var(--portfolio-paper);
   --fg: #0a0a0a;
-  --mute: #6b675f;
+  --mute: #514d47;
   --line: #807d76;
 }
 

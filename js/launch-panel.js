@@ -16,19 +16,22 @@ export function initLaunchPanel({ main, layout, advance }) {
   let remainder = 0;
   let lastActivity = performance.now();
   let departed = false;
+  let folding = false;
+  let currentFrame = 0;
   try { paused = sessionStorage.getItem('portfolio-idle-paused') === 'true'; } catch {}
 
   function blocked() {
-    return departed || paused || reduce.matches || !desktop.matches || document.hidden ||
+    return departed || folding || paused || reduce.matches || !desktop.matches || document.hidden ||
       Boolean(document.querySelector('.site-loader:not([hidden]), dialog[open]')) ||
       main.contains(document.activeElement) || Boolean(main.querySelector('.archive-card__link:hover'));
   }
+  function setText(element, text) { if (element.textContent !== text) element.textContent = text; }
   function label(running = false) {
     play.disabled = reduce.matches;
     play.setAttribute('aria-pressed', String(paused));
-    play.textContent = reduce.matches ? 'Recorrido manual' : paused ? 'Activar recorrido' : 'Pausar recorrido';
+    setText(play, reduce.matches ? 'Recorrido manual' : paused ? 'Activar recorrido' : 'Pausar recorrido');
     play.dataset.cursorAction = paused ? 'Activar recorrido' : 'Pausar recorrido';
-    status.textContent = reduce.matches ? 'Movimiento reducido activado.' : paused ? 'Recorrido automático en pausa.' : running ? 'Recorrido automático · interactuá para detenerlo.' : 'Automático tras 5 segundos sin interacción.';
+    setText(status, reduce.matches ? 'Movimiento reducido activado.' : paused ? 'Recorrido automático en pausa.' : running ? 'Los proyectos siguen. Interactuá para detenerlos.' : 'Recorré los proyectos o dejalos pasar.');
   }
   function stop() {
     clearTimeout(timer); timer = 0;
@@ -60,18 +63,35 @@ export function initLaunchPanel({ main, layout, advance }) {
   body.classList.add("launch-ready");
   toggle.hidden = false;
   playback.hidden = false;
-  toggle.addEventListener('click', () => {
+  toggle.addEventListener('click', async () => {
+    if (folding) return;
     activity();
     const folded = !body.classList.contains('launch-folded');
-    layout(() => {
+    const update = () => layout(() => {
       body.classList.toggle('launch-folded', folded);
       panel.inert = folded;
       toggle.setAttribute('aria-expanded', String(!folded));
-      const text = folded ? 'Expandir panel' : 'Plegar panel';
+      const text = folded ? 'Expandir panel' : 'Reducir panel';
       toggle.setAttribute('aria-label', text);
       toggle.dataset.cursorAction = text;
+      toggle.querySelector('.launch-toggle__label').textContent = text;
     });
-    try { sessionStorage.setItem('portfolio-launch-folded', String(folded)); } catch {}
+    folding = true;
+    toggle.disabled = true;
+    try {
+      if (document.startViewTransition && !reduce.matches && !document.hidden) {
+        document.documentElement.classList.add('launch-changing');
+        const transition = document.startViewTransition(update);
+        await transition.finished.catch(() => {});
+      } else update();
+      sessionStorage.setItem('portfolio-launch-folded', String(folded));
+    } catch { /* A denied session store does not prevent changing the panel. */ }
+    finally {
+      document.documentElement.classList.remove('launch-changing');
+      folding = false;
+      toggle.disabled = false;
+      activity();
+    }
   });
   play.addEventListener('click', () => {
     paused = !paused;
@@ -97,10 +117,56 @@ export function initLaunchPanel({ main, layout, advance }) {
   document.addEventListener('visibilitychange', activity);
   window.addEventListener('pagehide', () => { departed = true; stop(); });
   window.addEventListener('pageshow', () => { departed = false; activity(); });
-  reduce.addEventListener('change', activity);
+  reduce.addEventListener('change', () => {
+    if (reduce.matches) panel.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
+    activity();
+  });
   desktop.addEventListener('change', activity);
   try {
-    if (sessionStorage.getItem('portfolio-launch-folded') === 'true') toggle.click();
+    if (sessionStorage.getItem('portfolio-launch-folded') === 'true') {
+      layout(() => { body.classList.add('launch-folded'); panel.inert = true; });
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Expandir panel');
+      toggle.dataset.cursorAction = 'Expandir panel';
+      toggle.querySelector('.launch-toggle__label').textContent = 'Expandir panel';
+    }
   } catch {}
+
+  function reveal() {
+    if (reduce.matches || !desktop.matches) return;
+    const elements = [document.querySelector('.launch-identity'), ...panel.querySelectorAll('.launch-headline > span'), panel.querySelector('.launch-description'), panel.querySelector('.launch-destinations')].filter(Boolean);
+    elements.forEach((element, index) => element.animate(
+      [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }],
+      { duration: 560, delay: Math.min(index * 55, 220), easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }
+    ));
+  }
+  if (document.documentElement.hasAttribute('data-page-loading')) {
+    const loaderObserver = new MutationObserver(() => {
+      if (!document.documentElement.hasAttribute('data-page-loading')) { loaderObserver.disconnect(); reveal(); }
+    });
+    loaderObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-page-loading'] });
+  } else reveal();
+
+  const current = document.querySelector('[data-launch-current]');
+  function updateCurrent() {
+    currentFrame = 0;
+    if (!desktop.matches || document.hidden || departed) return;
+    let best = null, score = 0;
+    main.querySelectorAll('.archive-card').forEach(card => {
+      const rect = card.querySelector('.archive-card__media').getBoundingClientRect();
+      const visible = Math.max(0, Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top));
+      if (visible > score) { best = card; score = visible; }
+    });
+    if (best) {
+      const link = best.querySelector('.archive-card__link');
+      const title = best.querySelector('.archive-card__title').textContent;
+      if (current.textContent !== title) { current.textContent = title; current.href = link.href; }
+    }
+  }
+  function observeCurrent() { if (!currentFrame && !document.hidden && !departed) currentFrame = requestAnimationFrame(updateCurrent); }
+  window.addEventListener('scroll', observeCurrent, { passive: true });
+  window.addEventListener('resize', observeCurrent, { passive: true });
+  window.addEventListener('pagehide', () => { cancelAnimationFrame(currentFrame); currentFrame = 0; });
+  observeCurrent();
   activity();
 }

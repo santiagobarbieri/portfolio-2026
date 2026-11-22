@@ -236,3 +236,9 @@
     background: transparent;
   }
 }
+
+/* Decoded preview layers crossfade without exposing an empty cover. */
+.archive-card__link--previewing .archive-card__quick-preview { opacity: 0; }
+.archive-card__link--previewing .archive-card__quick-preview.is-visible { opacity: 1; }
+.archive-card__quick-preview.is-front { z-index: 2; }
+.archive-card__quick-preview.preview-instant { transition: none; }

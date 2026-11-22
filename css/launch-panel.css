@@ -37,3 +37,80 @@
   .archive-page--launch.launch-folded .site-footer { display: none; }
   .launch-folded .launch-rail-label { display: block; position: fixed; top: 156px; left: 43px; writing-mode: vertical-rl; font-size: 12px; }
 }
+
+/* The introduction has its own paper/ink tokens; artwork keeps its colours. */
+@media (min-width: 901px) {
+  .archive-page--launch { --launch-paper: var(--portfolio-paper); --launch-ink: #171714; --launch-muted: #55514b; }
+  .archive-page--launch .site-header { --bg: var(--launch-paper); --fg: var(--launch-ink); --mute: var(--launch-muted); --accent: var(--launch-ink); color: var(--fg); }
+  .archive-page--launch .site-header::before { content: none; }
+  .launch-surface { position: fixed; inset: 0 auto 0 0; width: var(--launch-width); background: var(--launch-paper); }
+  .archive-page--launch .portfolio-commands { top: 36px; gap: 28px; }
+  .archive-page--launch .identity__name { font-size: 16px; line-height: 1.25; margin: 0 0 5px; }
+  .archive-page--launch .identity__role { font-size: 13px; line-height: 1.4; letter-spacing: 0; max-width: none; color: var(--mute); }
+  .launch-intro { margin-top: 8px; }
+  .launch-headline { font-size: clamp(36px, 4.25vw, 72px); line-height: 1.02; letter-spacing: -.045em; font-weight: 600; }
+  .launch-headline > span { display: block; }
+  .launch-description { max-width: 47ch; margin-top: 24px; font-size: 16px; line-height: 1.5; }
+  .launch-personal-note { margin-top: 14px; color: var(--mute); font-size: 13px; line-height: 1.5; }
+  .launch-personal-note a { color: var(--fg); font-weight: 600; }
+  .launch-destinations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .archive-page--launch .launch-destinations :is(.site-navigation, .archive-personal) { position: static; inset: auto; display: block; width: auto; margin: 0; grid-column: auto; grid-row: auto; }
+  .launch-destinations .tab { font-size: 22px; line-height: 1.3; min-height: 38px; padding: 0; }
+  .archive-page--launch .archive-intro, .launch-destination-copy { max-width: none; margin-top: 4px; font-size: 13px; line-height: 1.5; color: var(--mute); }
+  .archive-page--launch .archive-controls { gap: 22px 24px; }
+  .archive-page--launch .archive-filter-panel { grid-column: 1; min-width: 0; }
+  .archive-page--launch .archive-filters .tab { font-size: 13px; line-height: 1.4; min-height: 32px; }
+  .archive-page--launch .archive-filter-option span, .archive-page--launch .archive-results { font-size: 12px; }
+  .archive-page--launch .archive-pages { grid-column: 2; grid-row: 1; min-width: 0; gap: 9px; }
+  .launch-section-label, .archive-page--launch .archive-directory__title { font-size: 12px; font-weight: 600; margin: 0; }
+  .launch-pending-list { display: flex; flex-wrap: wrap; gap: 5px 14px; font-size: 13px; line-height: 1.5; color: var(--mute); }
+  .archive-page--launch .archive-directory { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 20px; }
+  .archive-page--launch .directory-list { display: flex; flex-wrap: wrap; gap: 7px 18px; font-size: 13px; padding: 0; }
+  .archive-page--launch .directory-list li { min-height: 0; line-height: 1.5; }
+  .archive-page--launch .archive-card__title { font-size: 18px; }
+  .archive-page--launch .archive-card__description, .archive-page--launch .archive-card__type { font-size: 13px; line-height: 1.5; }
+  .archive-page--launch .archive-card__year { font-size: 12px; }
+  .archive-page--launch .site-footer { --bg: var(--launch-paper); --fg: var(--launch-ink); --mute: var(--launch-muted); color: var(--mute); font-size: 12px; }
+  .archive-page--launch .launch-toggle:not([hidden]) { display: flex; align-items: center; justify-content: center; gap: 8px; top: 24px; left: calc(var(--launch-width) - 218px); width: 138px; min-height: 44px; padding: 8px; font-size: 12px; }
+  .launch-toggle svg { flex: none; transition-duration: 260ms; }
+  .archive-page--launch .launch-playback:not([hidden]) { bottom: 76px; gap: 5px; }
+  .launch-current { font-size: 12px; line-height: 1.4; color: var(--mute); margin-bottom: 6px; }
+  .launch-current a { margin-left: 8px; color: var(--fg); font-weight: 600; }
+  .launch-playback__button { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+  .launch-playback__button::before { content: "Ⅱ"; font-size: 15px; }
+  .launch-playback__button[aria-pressed="true"]::before { content: "▷"; }
+  .launch-playback__button:disabled::before { display: none; }
+  .launch-playback__status { max-width: none; font-size: 12px; }
+  .archive-page--launch.launch-ready .portfolio-commands { bottom: 182px; }
+  .archive-page--launch.launch-folded .launch-toggle:not([hidden]) { top: 78px; left: 30px; width: 44px; padding: 10px; }
+  .launch-folded .launch-toggle__label, .launch-folded .launch-current { display: none; }
+  .launch-folded .launch-playback__button::before { display: none; }
+  .launch-folded .launch-rail-label { font-size: 13px; }
+  @media (max-height: 760px) {
+    .archive-page--launch .portfolio-commands { top: 28px; gap: 20px; }
+    .launch-headline { font-size: clamp(32px, 3.2vw, 48px); }
+    .launch-description { margin-top: 18px; font-size: 14px; }
+    .launch-personal-note { margin-top: 10px; }
+    .launch-destinations .tab { font-size: 20px; }
+  }
+}
+@keyframes launch-out { to { opacity: 0; } }
+@keyframes launch-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+html.launch-changing::view-transition-old(root) { animation: launch-out 150ms ease-out both; mix-blend-mode: normal; }
+html.launch-changing::view-transition-new(root) { animation: launch-in 320ms cubic-bezier(.22,1,.36,1) both; mix-blend-mode: normal; }
+@media (prefers-reduced-motion: reduce) {
+  .launch-toggle svg { transition: none; }
+  html.launch-changing::view-transition-old(root), html.launch-changing::view-transition-new(root) { animation: none; }
+}
+@media (min-width: 901px) {
+  .archive-page--launch .archive-card__title { grid-column: 1 / -1; grid-row: 1; }
+  .archive-page--launch .archive-card__year { grid-column: 2; grid-row: 2; }
+  .archive-page--launch .archive-card__description { grid-column: 1 / -1; }
+}
+
+/* The name and fold control stay above the panel's own scroll area. */
+@media (min-width: 901px) {
+  .archive-page--launch .site-header > .launch-identity { position: fixed; top: 36px; left: var(--launch-padding); width: calc(var(--launch-width) - var(--launch-padding) - 224px); min-width: 190px; padding: 0; }
+  .archive-page--launch .portfolio-commands { top: 104px; }
+  .archive-page--launch.launch-folded .launch-identity { display: none; }
+}

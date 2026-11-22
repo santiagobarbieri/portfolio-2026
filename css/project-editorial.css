@@ -157,3 +157,14 @@
 .editorial-page--club-de-economia [data-editorial-part="sistema"] .editorial-board { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .editorial-page--club-de-economia [data-editorial-part="sistema"] .editorial-piece { grid-column: span 2; }
 .editorial-page--club-de-economia [data-editorial-part="sistema"] .editorial-piece[data-piece-role="mark"] { grid-column: span 3; }
+
+/* Readable project narratives; the loop measures the complete captions. */
+.editorial-description { max-width: 100%; font-size: 14px; line-height: 1.45; }
+.editorial-note { font-size: 12px; line-height: 1.5; }
+.editorial-section h2 { font-size: 17px; line-height: 1.3; }
+.editorial-piece figcaption, .editorial-multimedia__label { font-size: 12px; line-height: 1.45; }
+.editorial-shell__main .editorial-project-data__type,
+.editorial-shell__main .editorial-project-data__context { font-size: 12px; }
+
+.editorial-page :focus-visible { outline-color: currentColor; }
+.editorial-page .editorial-home:focus-visible { outline-color: #111; }

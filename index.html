@@ -1,146 +1,436 @@
-<!doctype html>
-<html lang="es" data-theme="dark" data-load-screen>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="dark light">
-    <title>Proyectos — Santiago Barbieri</title>
-    <meta name="description" content="Portafolio de Santiago Barbieri. Diseño gráfico, desarrollo web y fotografía desde Buenos Aires, Argentina.">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta property="og:title" content="Santiago Barbieri — Portafolio">
-    <meta property="og:description" content="Diseño gráfico, desarrollo web y fotografía. Buenos Aires, Argentina.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="./assets/Favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="./assets/Spin%20Rose.svg" as="image" type="image/svg+xml">
-    <link rel="preload" href="./assets/fonts/albert-sans-300.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./assets/fonts/albert-sans-600.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/shell.css">
-    <link rel="stylesheet" href="./css/cursor.css">
-    <link rel="stylesheet" href="./css/project-type.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/accordion.css">
-    <link rel="stylesheet" href="./css/motion.css">
-    <link rel="stylesheet" href="./css/typography.css">
-    <link rel="stylesheet" href="./css/portfolio-grid.css">
-    <link rel="stylesheet" href="./css/launch-panel.css">
-    <link rel="stylesheet" href="./css/desktop-gate.css">
-    <script src="./js/transitions.js"></script>
-    <script src="./js/desktop-gate.js" defer data-desktop-gate></script>
-    <script type="module" data-desktop-src="./js/main.js"></script>
-  </head>
-  <body class="archive-page archive-page--launch">
-    <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
-      <span class="mobile-status__logo" aria-hidden="true"></span>
-      <div class="mobile-status__content">
-        <p class="mobile-status__name">Santiago Barbieri · Portfolio</p>
-        <h2 class="mobile-status__title" id="mobile-status-title">Versión móvil en desarrollo.</h2>
-        <p class="mobile-status__description">Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.</p>
-      </div>
+<!DOCTYPE html>
+<html data-load-screen="" data-theme="dark" lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+  <meta content="dark light" name="color-scheme"/>
+  <title>
+   Proyectos — Santiago Barbieri
+  </title>
+  <meta content="Portafolio de Santiago Barbieri. Diseño gráfico, desarrollo web y fotografía desde Buenos Aires, Argentina." name="description"/>
+  <meta content="#0a0a0a" name="theme-color"/>
+  <meta content="Santiago Barbieri — Portafolio" property="og:title"/>
+  <meta content="Diseño gráfico, desarrollo web y fotografía. Buenos Aires, Argentina." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <link href="./assets/Favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link as="image" href="./assets/Spin%20Rose.svg" rel="preload" type="image/svg+xml"/>
+  <link as="font" crossorigin="" href="./assets/fonts/albert-sans-300.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="./assets/fonts/albert-sans-600.woff2" rel="preload" type="font/woff2"/>
+  <link href="./css/base.css" rel="stylesheet"/>
+  <link href="./css/shell.css" rel="stylesheet"/>
+  <link href="./css/cursor.css" rel="stylesheet"/>
+  <link href="./css/project-type.css" rel="stylesheet"/>
+  <link href="./css/index.css" rel="stylesheet"/>
+  <link href="./css/accordion.css" rel="stylesheet"/>
+  <link href="./css/motion.css" rel="stylesheet"/>
+  <link href="./css/typography.css" rel="stylesheet"/>
+  <link href="./css/portfolio-grid.css" rel="stylesheet"/>
+  <link href="./css/launch-panel.css" rel="stylesheet"/>
+  <link href="./css/desktop-gate.css" rel="stylesheet"/>
+  <script src="./js/transitions.js">
+  </script>
+  <script data-desktop-gate="" defer="" src="./js/desktop-gate.js">
+  </script>
+  <script data-desktop-src="./js/main.js" type="module">
+  </script>
+ </head>
+ <body class="archive-page archive-page--launch">
+  <section aria-labelledby="mobile-status-title" class="mobile-status" tabindex="-1">
+   <span aria-hidden="true" class="mobile-status__logo">
+   </span>
+   <div class="mobile-status__content">
+    <p class="mobile-status__name">
+     Santiago Barbieri · Portfolio
+    </p>
+    <h2 class="mobile-status__title" id="mobile-status-title">
+     Versión móvil en desarrollo.
+    </h2>
+    <p class="mobile-status__description">
+     Por ahora, visitá el portfolio desde una computadora para explorar los proyectos.
+    </p>
+   </div>
+  </section>
+  <div class="site-loader" role="status">
+   <span aria-hidden="true" class="site-loader__rose">
+   </span>
+   <span class="site-loader__label visually-hidden">
+    Cargando proyectos
+   </span>
+  </div>
+  <a class="skip-link" href="#main-content">
+   Saltar al contenido principal
+  </a>
+  <header class="site-header">
+   <div aria-hidden="true" class="launch-surface">
+   </div>
+   <a aria-label="Santiago Barbieri — Proyectos" class="identity__logo" data-cursor-action="Volver a proyectos" href="./index.html">
+    <span aria-hidden="true" class="identity__glyph">
+    </span>
+   </a>
+   <a aria-label="Santiago Barbieri — Proyectos" class="identity__copy launch-identity" data-cursor-action="Volver a proyectos" href="./index.html">
+    <strong class="identity__name">
+     Santiago Barbieri
+    </strong>
+    <span class="identity__role">
+     Diseñador gráfico · Buenos Aires
+    </span>
+   </a>
+   <aside aria-label="Información y navegación del portfolio" class="portfolio-commands" data-lenis-prevent="" id="portfolio-command-panel">
+    <section aria-labelledby="launch-title" class="launch-intro">
+     <h1 class="launch-headline" id="launch-title">
+      <span>
+       Identidades,
+      </span>
+      <span>
+       imágenes y
+      </span>
+      <span>
+       lo que las conecta.
+      </span>
+     </h1>
+     <p class="launch-description">
+      Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa cómo una idea cambia al pasar a una prenda, una campaña o una pantalla.
+     </p>
+     <p class="launch-personal-note">
+      Cofundador y director creativo de
+      <a data-cursor-action="Conocer Apolo Studios" href="./apolo-studios.html">
+       Apolo Studios
+      </a>
+     </p>
     </section>
-    <div class="site-loader" role="status">
-      <span class="site-loader__rose" aria-hidden="true"></span>
-      <span class="site-loader__label visually-hidden">Cargando proyectos</span>
+    <div class="launch-destinations">
+     <nav aria-label="Navegación principal" class="site-navigation">
+      <span aria-current="page" class="tab navigation-shortcut archive-label">
+       Proyectos
+      </span>
+      <span aria-live="polite" class="archive-header-status" data-archive-mobile-status="" role="status">
+       5 proyectos
+      </span>
+      <p class="archive-intro">
+       Identidades, campañas y colaboraciones.
+      </p>
+     </nav>
+     <nav aria-label="Trabajo personal" class="archive-personal">
+      <a class="tab" data-cursor-action="Abrir archivo" href="./self-made.html">
+       Archivo
+      </a>
+      <p class="launch-destination-copy">
+       Afiches, tapas, fotos y pruebas.
+      </p>
+     </nav>
     </div>
-    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
-
-    <header class="site-header">
-      <a class="identity__logo" href="./index.html" aria-label="Santiago Barbieri — Proyectos" data-cursor-action="Volver a proyectos"><span class="identity__glyph" aria-hidden="true"></span></a>
-      <aside class="portfolio-commands" id="portfolio-command-panel" data-lenis-prevent aria-label="Información y navegación del portfolio">
-        <a class="identity__copy" href="./index.html" aria-label="Santiago Barbieri — Proyectos" data-cursor-action="Volver a proyectos">
-          <strong class="identity__name">Santiago Barbieri</strong>
-          <span class="identity__role">Diseñador gráfico, desarrollador<br>web y fotógrafo</span>
-        </a>
-        <nav class="site-navigation" aria-label="Navegación principal">
-          <span class="tab navigation-shortcut archive-label" aria-current="page">Proyectos</span>
-          <span class="archive-header-status" data-archive-mobile-status role="status" aria-live="polite">5 proyectos</span>
-          <p class="archive-intro">Proyectos realizados para marcas y organizaciones.</p>
-        </nav>
-        <details class="archive-index" data-archive-index open>
-          <summary class="archive-index__toggle" aria-label="Índice de navegación" data-cursor-action="Índice"><span class="archive-index__icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="visually-hidden">Índice</span></summary>
-          <aside class="archive-controls" data-lenis-prevent aria-label="Filtros y navegación de proyectos">
-            <div class="archive-index__intro"><h2>Índice</h2><p>Diseño gráfico, desarrollo web y fotografía.</p></div>
-            <details class="archive-filter-panel" data-archive-filter-panel open>
-              <summary class="archive-filter-toggle" aria-label="Ordenar proyectos">
-                <svg class="archive-filter-toggle__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
-                  <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12"/>
-                  <circle cx="10" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="7" cy="18" r="2"/>
-                </svg>
-                <span>Filtros y orden</span>
-              </summary>
-              <div class="archive-filters" data-lenis-prevent role="search" aria-label="Filtrar y organizar proyectos">
-                <details class="archive-filter-menu" data-filter-menu="category" hidden>
-                  <summary class="tab"><span data-filter-label>Todos los proyectos</span></summary>
-                  <fieldset class="archive-filter-options">
-                    <legend class="visually-hidden">Filtrar proyectos</legend>
-                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="all" checked><span>Todos los proyectos</span></label>
-                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-category" value="identity"><span>Identidad visual</span></label>
-                  </fieldset>
-                </details>
-                <details class="archive-filter-menu" data-filter-menu="order">
-                  <summary class="tab"><span data-filter-label>Más recientes primero</span></summary>
-                  <fieldset class="archive-filter-options">
-                    <legend class="visually-hidden">Ordenar proyectos</legend>
-                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="newest" checked><span>Más recientes primero</span></label>
-                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="oldest"><span>Más antiguos primero</span></label>
-                    <label class="archive-filter-option"><input class="visually-hidden" type="radio" name="archive-order" value="az"><span>A — Z</span></label>
-                  </fieldset>
-                </details>
-                <p class="archive-results" data-archive-status role="status" aria-live="polite">5 proyectos</p>
-              </div>
-            </details>
-            <nav class="archive-personal" aria-label="Trabajo personal">
-              <span class="tab archive-pending" aria-disabled="true">
-                <span>Librería</span>
-                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-              </span>
-              <a class="tab" href="./self-made.html" data-cursor-action="Abrir archivo">Archivo</a>
-            </nav>
-            <nav class="archive-pages" aria-label="Sobre mí, Contacto y Tienda">
-              <span class="tab archive-pending" aria-disabled="true">
-                <span>Sobre mí</span>
-                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-              </span>
-              <span class="tab archive-pending" aria-disabled="true">
-                <span>Contacto</span>
-                <span class="archive-pending__state"><svg class="archive-pending__lock" width="12" height="14" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="11" height="8" rx="1.5"/><path d="M5 7.5V5a3 3 0 0 1 6 0v2.5"/></svg><span>Coming soon</span></span>
-              </span>
-              <span class="tab archive-pages__pending" aria-disabled="true" title="Gumroad — enlace pendiente">Tienda<span class="archive-pages__status">Próximamente</span></span>
-            </nav>
-            <nav class="archive-directory" aria-labelledby="social-links-title">
-              <p class="archive-directory__title" id="social-links-title">Redes</p>
-              <!-- TODO: add the real profile URLs. -->
-              <ul class="directory-list" aria-label="Redes sociales pendientes de vincular">
-                <li><span aria-disabled="true" title="Enlace pendiente">Instagram</span></li>
-                <li><span aria-disabled="true" title="Enlace pendiente">Behance</span></li>
-                <li><span aria-disabled="true" title="Enlace pendiente">LinkedIn</span></li>
-              </ul>
-            </nav>
-
-          </aside>
+    <details class="archive-index" data-archive-index="" open="">
+     <summary aria-label="Índice de navegación" class="archive-index__toggle" data-cursor-action="Índice">
+      <span aria-hidden="true" class="archive-index__icon">
+       <span>
+       </span>
+       <span>
+       </span>
+       <span>
+       </span>
+      </span>
+      <span class="visually-hidden">
+       Índice
+      </span>
+     </summary>
+     <aside aria-label="Filtros y navegación de proyectos" class="archive-controls" data-lenis-prevent="">
+      <div class="archive-index__intro">
+       <h2>
+        Índice
+       </h2>
+       <p>
+        Diseño gráfico, desarrollo web y fotografía.
+       </p>
+      </div>
+      <details class="archive-filter-panel launch-order" data-archive-filter-panel="" open="">
+       <summary aria-label="Ordenar proyectos" class="archive-filter-toggle">
+        <svg aria-hidden="true" class="archive-filter-toggle__icon" fill="none" focusable="false" height="20" stroke="currentColor" stroke-width="1.4" viewbox="0 0 24 24" width="20">
+         <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12">
+         </path>
+         <circle cx="10" cy="6" r="2">
+         </circle>
+         <circle cx="16" cy="12" r="2">
+         </circle>
+         <circle cx="7" cy="18" r="2">
+         </circle>
+        </svg>
+        <span>
+         Filtros y orden
+        </span>
+       </summary>
+       <div aria-label="Filtrar y organizar proyectos" class="archive-filters" data-lenis-prevent="" role="search">
+        <details class="archive-filter-menu" data-filter-menu="category" hidden="">
+         <summary class="tab">
+          <span data-filter-label="">
+           Todos los proyectos
+          </span>
+         </summary>
+         <fieldset class="archive-filter-options">
+          <legend class="visually-hidden">
+           Filtrar proyectos
+          </legend>
+          <label class="archive-filter-option">
+           <input checked="" class="visually-hidden" name="archive-category" type="radio" value="all"/>
+           <span>
+            Todos los proyectos
+           </span>
+          </label>
+          <label class="archive-filter-option">
+           <input class="visually-hidden" name="archive-category" type="radio" value="identity"/>
+           <span>
+            Identidad visual
+           </span>
+          </label>
+         </fieldset>
         </details>
-      </aside>
-            <div class="launch-playback" data-launch-playback hidden>
-              <button type="button" class="launch-playback__button" data-launch-play aria-pressed="false" data-cursor-action="Pausar recorrido">Pausar recorrido</button>
-              <p class="launch-playback__status" data-launch-status>Automático tras 5 segundos sin interacción.</p>
-            </div>
-      <button class="launch-toggle" type="button" data-launch-toggle aria-expanded="true" aria-controls="portfolio-command-panel" aria-label="Plegar panel" data-cursor-action="Plegar panel" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M9 4v16m7-11-3 3 3 3"/></svg></button>
-      <span class="launch-rail-label" aria-hidden="true">Santiago Barbieri</span>
-    </header>
-
-    <main class="archive-main" id="main-content" tabindex="-1">
-      <h1 class="visually-hidden">Proyectos — Santiago Barbieri</h1>
-      <div class="archive-stream" data-archive-stream>
-<div class="archive-row" data-sequence="0"><article class="archive-card" data-category="identidad" data-family="identity" data-order="-4" data-slug="apolo-studios"><a aria-label="Abrir Apolo Studios" class="archive-card__link" href="./apolo-studios.html"><div class="archive-card__media"><img alt="Firma de Apolo Studios en blanco sobre azul" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/apolo-studios-800.webp" width="800"/></div><div class="archive-card__caption"><span class="archive-card__year">2024–2026</span><p class="project-type archive-card__type">Identidad y dirección creativa</p><h2 class="archive-card__title">Apolo Studios</h2><p class="archive-card__description">Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.</p></div></a></article></div><div class="archive-row" data-sequence="1"><article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="-3" data-slug="club-de-economia-utdt"><a aria-label="Abrir Club de Economía — UTDT" class="archive-card__link" href="./club-de-economia.html"><div class="archive-card__media"><img alt="Logotipo del Club de Economía sobre celeste" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/club-de-economia-utdt-800.webp" width="800"/></div><div class="archive-card__caption"><span class="archive-card__year">2026</span><p class="project-type archive-card__type">Identidad visual</p><h2 class="archive-card__title">Club de Economía — UTDT</h2><p class="archive-card__description">Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.</p></div></a></article></div><div class="archive-row" data-sequence="2"><article class="archive-card" data-category="identidad" data-family="identity" data-order="-1" data-slug="olas-ditella"><a aria-label="Abrir OLAS Di Tella" class="archive-card__link" href="./olas-ditella.html"><div class="archive-card__media"><img alt="Logotipo de OLAS sobre verde" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/olas-ditella-800.webp" width="800"/></div><div class="archive-card__caption"><span class="archive-card__year">2026</span><p class="project-type archive-card__type">Identidad y campaña</p><h2 class="archive-card__title">OLAS Di Tella</h2><p class="archive-card__description">Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.</p></div></a></article></div><div class="archive-row" data-sequence="3"><article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="0" data-slug="el-armado"><a aria-label="Abrir El Armado" class="archive-card__link" href="./el-armado.html"><div class="archive-card__media"><img alt="Logotipo de El Armado en hueso sobre vino" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/el-armado-800.webp" width="800"/></div><div class="archive-card__caption"><span class="archive-card__year">2026</span><p class="project-type archive-card__type">Identidad visual</p><h2 class="archive-card__title">El Armado</h2><p class="archive-card__description">Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.</p></div></a></article></div><div class="archive-row" data-sequence="4"><article class="archive-card" data-category="identidad" data-family="identity" data-order="2" data-slug="orfeo"><a aria-label="Abrir Orfeo" class="archive-card__link" href="./orfeo.html"><div class="archive-card__media"><img alt="Logotipo de ORFEO sobre carbón" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/orfeo-800.webp" width="800"/></div><div class="archive-card__caption"><span class="archive-card__year">2026</span><p class="project-type archive-card__type">Dirección creativa</p><h2 class="archive-card__title">Orfeo</h2><p class="archive-card__description">Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.</p></div></a></article></div>
-      </div>
-    </main>
-
-    <footer class="site-footer">
-      <div class="site-footer__location">
-        <p>Buenos Aires, Argentina</p>
-        <time data-local-clock>Hora de Buenos Aires</time>
-      </div>
-      <span class="site-footer__signature">Portafolio</span>
-    </footer>
-  </body>
+        <details class="archive-filter-menu" data-filter-menu="order">
+         <summary aria-label="Ordenar proyectos" class="tab">
+          <span data-filter-label="">
+           Más recientes primero
+          </span>
+         </summary>
+         <fieldset class="archive-filter-options">
+          <legend class="visually-hidden">
+           Ordenar proyectos
+          </legend>
+          <label class="archive-filter-option">
+           <input checked="" class="visually-hidden" name="archive-order" type="radio" value="newest"/>
+           <span>
+            Más recientes primero
+           </span>
+          </label>
+          <label class="archive-filter-option">
+           <input class="visually-hidden" name="archive-order" type="radio" value="oldest"/>
+           <span>
+            Más antiguos primero
+           </span>
+          </label>
+          <label class="archive-filter-option">
+           <input class="visually-hidden" name="archive-order" type="radio" value="az"/>
+           <span>
+            A — Z
+           </span>
+          </label>
+         </fieldset>
+        </details>
+        <p aria-live="polite" class="archive-results" data-archive-status="" role="status">
+         5 proyectos
+        </p>
+       </div>
+      </details>
+      <nav aria-label="Secciones en preparación" class="archive-pages">
+       <p class="launch-section-label">
+        En preparación
+       </p>
+       <ul class="launch-pending-list">
+        <li>
+         <span aria-disabled="true">
+          Librería
+         </span>
+        </li>
+        <li>
+         <span aria-disabled="true">
+          Sobre mí
+         </span>
+        </li>
+        <li>
+         <span aria-disabled="true">
+          Contacto
+         </span>
+        </li>
+        <li>
+         <span aria-disabled="true">
+          Tienda
+         </span>
+        </li>
+       </ul>
+      </nav>
+      <nav aria-labelledby="social-links-title" class="archive-directory">
+       <p class="archive-directory__title" id="social-links-title">
+        Redes
+       </p>
+       <!-- TODO: add the real profile URLs. -->
+       <ul aria-label="Redes sociales pendientes de vincular" class="directory-list">
+        <li>
+         <span aria-disabled="true" title="Enlace pendiente">
+          Instagram
+         </span>
+        </li>
+        <li>
+         <span aria-disabled="true" title="Enlace pendiente">
+          Behance
+         </span>
+        </li>
+        <li>
+         <span aria-disabled="true" title="Enlace pendiente">
+          LinkedIn
+         </span>
+        </li>
+       </ul>
+      </nav>
+     </aside>
+    </details>
+   </aside>
+   <div class="launch-playback" data-launch-playback="" hidden="">
+    <p class="launch-current">
+     En recorrido
+     <a data-cursor-action="Abrir proyecto" data-launch-current="" href="./apolo-studios.html">
+      Apolo Studios
+     </a>
+    </p>
+    <button aria-pressed="false" class="launch-playback__button" data-cursor-action="Pausar recorrido" data-launch-play="" type="button">
+     Pausar recorrido
+    </button>
+    <p class="launch-playback__status" data-launch-status="">
+     Automático tras 5 segundos sin interacción.
+    </p>
+   </div>
+   <button aria-controls="portfolio-command-panel" aria-expanded="true" aria-label="Plegar panel" class="launch-toggle" data-cursor-action="Plegar panel" data-launch-toggle="" hidden="" type="button">
+    <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-width="1.3" viewbox="0 0 24 24" width="20">
+     <rect height="16" rx="1" width="18" x="3" y="4">
+     </rect>
+     <path d="M9 4v16m7-11-3 3 3 3">
+     </path>
+    </svg>
+    <span class="launch-toggle__label">
+     Reducir panel
+    </span>
+   </button>
+   <span aria-hidden="true" class="launch-rail-label">
+    Santiago Barbieri
+   </span>
+  </header>
+  <main aria-label="Proyectos seleccionados" class="archive-main" id="main-content" tabindex="-1">
+   <div class="archive-stream" data-archive-stream="">
+    <div class="archive-row" data-sequence="0">
+     <article class="archive-card" data-category="identidad" data-family="identity" data-order="-4" data-slug="apolo-studios">
+      <a aria-label="Abrir Apolo Studios" class="archive-card__link" href="./apolo-studios.html">
+       <div class="archive-card__media">
+        <img alt="Firma de Apolo Studios en blanco sobre azul" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/apolo-studios-800.webp" width="800"/>
+       </div>
+       <div class="archive-card__caption">
+        <span class="archive-card__year">
+         2024–2026
+        </span>
+        <p class="project-type archive-card__type">
+         Identidad y dirección creativa
+        </p>
+        <h2 class="archive-card__title">
+         Apolo Studios
+        </h2>
+        <p class="archive-card__description">
+         Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.
+        </p>
+       </div>
+      </a>
+     </article>
+    </div>
+    <div class="archive-row" data-sequence="1">
+     <article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="-3" data-slug="club-de-economia-utdt">
+      <a aria-label="Abrir Club de Economía — UTDT" class="archive-card__link" href="./club-de-economia.html">
+       <div class="archive-card__media">
+        <img alt="Logotipo del Club de Economía sobre celeste" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/club-de-economia-utdt-800.webp" width="800"/>
+       </div>
+       <div class="archive-card__caption">
+        <span class="archive-card__year">
+         2026
+        </span>
+        <p class="project-type archive-card__type">
+         Identidad visual
+        </p>
+        <h2 class="archive-card__title">
+         Club de Economía — UTDT
+        </h2>
+        <p class="archive-card__description">
+         Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.
+        </p>
+       </div>
+      </a>
+     </article>
+    </div>
+    <div class="archive-row" data-sequence="2">
+     <article class="archive-card" data-category="identidad" data-family="identity" data-order="-1" data-slug="olas-ditella">
+      <a aria-label="Abrir OLAS Di Tella" class="archive-card__link" href="./olas-ditella.html">
+       <div class="archive-card__media">
+        <img alt="Logotipo de OLAS sobre verde" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/olas-ditella-800.webp" width="800"/>
+       </div>
+       <div class="archive-card__caption">
+        <span class="archive-card__year">
+         2026
+        </span>
+        <p class="project-type archive-card__type">
+         Identidad y campaña
+        </p>
+        <h2 class="archive-card__title">
+         OLAS Di Tella
+        </h2>
+        <p class="archive-card__description">
+         Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.
+        </p>
+       </div>
+      </a>
+     </article>
+    </div>
+    <div class="archive-row" data-sequence="3">
+     <article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="0" data-slug="el-armado">
+      <a aria-label="Abrir El Armado" class="archive-card__link" href="./el-armado.html">
+       <div class="archive-card__media">
+        <img alt="Logotipo de El Armado en hueso sobre vino" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/el-armado-800.webp" width="800"/>
+       </div>
+       <div class="archive-card__caption">
+        <span class="archive-card__year">
+         2026
+        </span>
+        <p class="project-type archive-card__type">
+         Identidad visual
+        </p>
+        <h2 class="archive-card__title">
+         El Armado
+        </h2>
+        <p class="archive-card__description">
+         Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.
+        </p>
+       </div>
+      </a>
+     </article>
+    </div>
+    <div class="archive-row" data-sequence="4">
+     <article class="archive-card" data-category="identidad" data-family="identity" data-order="2" data-slug="orfeo">
+      <a aria-label="Abrir Orfeo" class="archive-card__link" href="./orfeo.html">
+       <div class="archive-card__media">
+        <img alt="Logotipo de ORFEO sobre carbón" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/orfeo-800.webp" width="800"/>
+       </div>
+       <div class="archive-card__caption">
+        <span class="archive-card__year">
+         2026
+        </span>
+        <p class="project-type archive-card__type">
+         Dirección creativa
+        </p>
+        <h2 class="archive-card__title">
+         Orfeo
+        </h2>
+        <p class="archive-card__description">
+         Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.
+        </p>
+       </div>
+      </a>
+     </article>
+    </div>
+   </div>
+  </main>
+  <footer class="site-footer">
+   <div class="site-footer__location">
+    <p>
+     Buenos Aires, Argentina
+    </p>
+    <time data-local-clock="">
+     Hora de Buenos Aires
+    </time>
+   </div>
+   <span class="site-footer__signature">
+    Portafolio
+   </span>
+  </footer>
+ </body>
 </html>

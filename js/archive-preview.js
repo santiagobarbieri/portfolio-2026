@@ -3,13 +3,14 @@ export function initArchivePreview(stream, projects) {
   const catalogue = new Map(projects.map((project) => [project.slug, project.preview || []]));
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let active, timer, generation = 0, pointer = null;
+  let active, timer, fadeTimer, generation = 0, pointer = null;
 
   function stop() {
     clearTimeout(timer);
+    clearTimeout(fadeTimer);
     generation += 1;
     active?.classList.remove('archive-card__link--previewing');
-    active?.querySelector('.archive-card__quick-preview')?.remove();
+    active?.querySelectorAll('.archive-card__quick-preview').forEach(image => image.remove());
     active = null;
   }
 
@@ -21,11 +22,16 @@ export function initArchivePreview(stream, projects) {
     active = link;
     const token = generation;
     let index = 0;
-    const overlay = document.createElement('img');
-    overlay.className = 'archive-card__quick-preview';
-    overlay.alt = ''; // The link and original cover keep their accessible name.
-    overlay.setAttribute('aria-hidden', 'true');
-    link.querySelector('.archive-card__media').append(overlay);
+    const layers = Array.from({ length: 2 }, () => {
+      const image = document.createElement('img');
+      image.className = 'archive-card__quick-preview';
+      image.alt = '';
+      image.setAttribute('aria-hidden', 'true');
+      return image;
+    });
+    link.querySelector('.archive-card__media').append(...layers);
+    let layerIndex = 0;
+    let shown = false;
 
     async function show() {
       if (token !== generation) return;
@@ -39,11 +45,25 @@ export function initArchivePreview(stream, projects) {
       try {
         await image.decode();
         if (token !== generation || !link.isConnected) return;
+        const overlay = layers[layerIndex];
+        const previous = layers[1 - layerIndex];
         overlay.src = image.src;
+        layers.forEach(layer => layer.classList.remove('is-front'));
+        overlay.classList.add('is-front');
+        if (!shown || reduced.matches) overlay.classList.add('preview-instant');
+        overlay.classList.add('is-visible');
         link.classList.add('archive-card__link--previewing');
+        clearTimeout(fadeTimer);
+        fadeTimer = setTimeout(() => {
+          if (token !== generation) return;
+          previous.classList.remove('is-visible');
+          overlay.classList.remove('preview-instant');
+        }, reduced.matches ? 0 : 200);
+        layerIndex = 1 - layerIndex;
+        shown = true;
       } catch { /* Keep the original cover if an optional preview is unavailable. */ }
       index = (index + 1) % items.length;
-      if (!reduced.matches && token === generation) timer = setTimeout(show, 1100);
+      if (!reduced.matches && token === generation) timer = setTimeout(show, 1450);
     }
     timer = setTimeout(show, 320);
   }
