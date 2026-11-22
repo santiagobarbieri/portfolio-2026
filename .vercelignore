@@ -14,3 +14,10 @@ preview.command
 assets/images/orfeo/TALCAHUANO.mov
 
 BOOKS/
+
+# Revisión local de archivos; pendiente de selección por Santiago.
+AUDIT/
+
+# Historical source is preserved in GitHub, never served by the current site.
+VERSION 1 - PORTFOLIO/
+dist/

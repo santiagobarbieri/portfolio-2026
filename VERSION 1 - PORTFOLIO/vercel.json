@@ -1,0 +1,30 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": ".",
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/sandbox.html",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/sandbox",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/posters.html",
+      "destination": "/self-made.html",
+      "permanent": false
+    },
+    {
+      "source": "/posters",
+      "destination": "/self-made.html",
+      "permanent": false
+    }
+  ]
+}

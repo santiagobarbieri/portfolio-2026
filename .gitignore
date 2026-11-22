@@ -7,3 +7,10 @@ node_modules/
 *.log
 /.codex/
 /.agents/
+
+# Revisión local de archivos; pendiente de selección por Santiago.
+/AUDIT/
+
+# Build output and the existing local review collection.
+/dist/
+/VERSION 1 - PORTFOLIO/AUDIT/

@@ -1,0 +1,4266 @@
+{
+  "date": "2026-11-22",
+  "description": "Archivos conservados fuera de la versión pública actual; AUDIT continúa siendo local.",
+  "moved": [
+    {
+      "from": ".DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/.DS_Store",
+      "bytes": 10244,
+      "sha256": "fe9b1e6ff5448086cab62861dfebcb28ca57482c4b120655149753cb16065337"
+    },
+    {
+      "from": "AUDIT/COMPROBACION.json",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/COMPROBACION.json",
+      "bytes": 327,
+      "sha256": "0eb0f0a13944f4b0c438bd04415ca49c14a28bda935c5056dabb103bda1fa977"
+    },
+    {
+      "from": "AUDIT/INVENTARIO.csv",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/INVENTARIO.csv",
+      "bytes": 12128,
+      "sha256": "42780d5e548ccfe5e2ac76e39ef3a3a24f0cd292f74436cc63efd651f8777116"
+    },
+    {
+      "from": "AUDIT/LEEME.md",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/LEEME.md",
+      "bytes": 8571,
+      "sha256": "f55244c594b91cfb0525818968814e13e6fa5d7aec4fcd7e15566d5780957d58"
+    },
+    {
+      "from": "AUDIT/MANIFIESTO.json",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/MANIFIESTO.json",
+      "bytes": 26666,
+      "sha256": "be70e123be05bc1c14d90830da3d2a36e4bfadee42e225be4ee0bac666906244"
+    },
+    {
+      "from": "AUDIT/apolo-story-20261121.json",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/apolo-story-20261121.json",
+      "bytes": 37744,
+      "sha256": "3eb81f492c12336a6aeb4670f2c9fbd6fc006b59f236f2b7eb92003fb13b8fde"
+    },
+    {
+      "from": "AUDIT/archivo-2026-11-20/imported.json",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/archivo-2026-11-20/imported.json",
+      "bytes": 88334,
+      "sha256": "781e1a0ca6f0085b358a82146c9f639ef075e3a77958169b0c281bec1a443d1e"
+    },
+    {
+      "from": "AUDIT/archivo-2026-11-20/incorporaciones.md",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/archivo-2026-11-20/incorporaciones.md",
+      "bytes": 8242,
+      "sha256": "9320869d10550fea33df0602eeefd9e594c77f1859738345452379eeb820a2fb"
+    },
+    {
+      "from": "AUDIT/archivo-2026-11-20/revision.html",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/archivo-2026-11-20/revision.html",
+      "bytes": 22250,
+      "sha256": "f34fd16d4f5f88cf7a8c8704fc6477b6cf43d4d8f05a481b5974a2353c370bcc"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/club-de-economia-utdt/Descartado.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/club-de-economia-utdt/Descartado.png",
+      "bytes": 10690,
+      "sha256": "00adf637b0d365f09cb2d142edba896afd4aad7e5188467016689c56e81ad101"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 1.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 1.png",
+      "bytes": 93407,
+      "sha256": "a9ea7a87939b66bc63361be624cc6b1f010fe07f79db81fb878f5d65179a2ce2"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 2.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 2.png",
+      "bytes": 130460,
+      "sha256": "cda5cd43ccdec12a11e50bc3307c0d237e0d870afb2f85bf0c9e554cbbea3472"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 3.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 3.png",
+      "bytes": 14475,
+      "sha256": "855eeb73b8c83b8b05a750e2cf5dd51b9d7ad56cbfd2be0146c71d78b788220f"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 4.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/REFERENCIAS 4.png",
+      "bytes": 68579,
+      "sha256": "a107bac5c3cb6f60140bddd4f94fc2bfca966091f501f5145a4c43eee92e230e"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 1.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 1.png",
+      "bytes": 185325,
+      "sha256": "dc78940cc6ae489c9bab6084caac5553898c2f76aaa2edad0e21432c4f607b7c"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 2.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 2.png",
+      "bytes": 85704,
+      "sha256": "b88fc778a7d49fe8ed3cdb3b42f002cda6f7fe0986a43836570c3247c8225c44"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 3.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 3.png",
+      "bytes": 205690,
+      "sha256": "56a5768eeed33e24aa4ab6ec1e7bcf61ac1d450547bdd085511b048f4e1a477a"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 4.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 4.png",
+      "bytes": 205870,
+      "sha256": "ff15207c771d9a524d1678470789e02721917fedf6bbcb004afe837a9e470a8c"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 5.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 5.png",
+      "bytes": 200419,
+      "sha256": "76596380167ce95221f050b1476d8ce6a438d1691aeb3a07f21728fc4f9ad6f7"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 6.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/el-armado/VARIANTES 6.png",
+      "bytes": 198252,
+      "sha256": "13dffb5a7e3a1a46a1a20f29f14a0cdd90bd94d6a6ffe35d13c6d7e83aca1366"
+    },
+    {
+      "from": "AUDIT/baja-resolucion-en-uso/assets/images/olas-ditella/VARIANTES 2.png",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/baja-resolucion-en-uso/assets/images/olas-ditella/VARIANTES 2.png",
+      "bytes": 12887,
+      "sha256": "cf844055e41c01ac536a8cd205a4f46d60fdc14c2632d66761b6e15c0977c38e"
+    },
+    {
+      "from": "AUDIT/club-de-economia-recorrido-20261120.json",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/club-de-economia-recorrido-20261120.json",
+      "bytes": 3136,
+      "sha256": "63e7cbe558c2b5bfdeda210da09590f72813c1b91a4694d23016b398348a26f7"
+    },
+    {
+      "from": "AUDIT/index.html",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/index.html",
+      "bytes": 30493,
+      "sha256": "a46ad1b6af1be477a8f9c0702dd5b58200dcb6636b4c2e6e14e7b602cb0e4ab1"
+    },
+    {
+      "from": "AUDIT/project-stories-20261121.json",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/project-stories-20261121.json",
+      "bytes": 6623,
+      "sha256": "8d2111ae8caee2f41e6859c516f8c8b75a35993230b0f4d6e967b86c1f9ebb18"
+    },
+    {
+      "from": "AUDIT/sin-uso/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/.DS_Store",
+      "bytes": 10244,
+      "sha256": "19e7b43b4811a99ac2407b047fa74b2417c2d922e8fe66bec5512dfe89fde613"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/.DS_Store",
+      "bytes": 8196,
+      "sha256": "70d37afd9aefea51d4682421d1f99530b3a0ae2cb9eb0e019b37c16bf4658438"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/Spin Portal.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/Spin Portal.svg",
+      "bytes": 15947,
+      "sha256": "5bbe6c3e38da7a0e6867fd4369e8c7894416276147415ea6631d8d2683eff014"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/Spin Sun.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/Spin Sun.svg",
+      "bytes": 6062,
+      "sha256": "ad2db5f728357e8fb8188132b91951dfbd92e0040d23916c6ba257d76fe2df94"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/.DS_Store",
+      "bytes": 12292,
+      "sha256": "969f8e46acce5c02178e23c8e33addcbc7ecaf0a35107fd01fc93773a4776c70"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/club-de-economia-utdt/.DS_Store",
+      "bytes": 6148,
+      "sha256": "2b3c7cc6d18d6b5770242200b741e67b6fd5b9fdd90329391b90d097f59822b7"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 1.png",
+      "bytes": 4162,
+      "sha256": "3a52b25a44b4185a7633acef025908b846cf3c95f109e917fb2a18d17d2e57d1"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 2.png",
+      "bytes": 4171,
+      "sha256": "fb858b75dd14ddf271b14fb2ebdf3ef52c64c7ad94928433bfe30c9e2716db0f"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 3.png",
+      "bytes": 4159,
+      "sha256": "4fd4695fb7b01a68a86bbe3a3f3afba8d6ce556964660765eb749c646c128775"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 4.png",
+      "bytes": 4313,
+      "sha256": "35ab082d20c8765bad70eefaedffb6753ab74e9e35be97175733a9e4d4a072ee"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 5.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 5.png",
+      "bytes": 4481,
+      "sha256": "9b787ef6c7462b7679e74189088282a8b0394e53b819e51687930fb13146e0ca"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 6.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 6.png",
+      "bytes": 2765,
+      "sha256": "346a28df499129e1b6e95d12ae51558b50ffe3c1997d0b8deb36a9c68b881857"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 7.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 7.png",
+      "bytes": 4367,
+      "sha256": "1c6929f96ee6c96c71226b43580e316825aa9336d6c0967c0e64215abd541f53"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 8.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 8.png",
+      "bytes": 3054,
+      "sha256": "0bf3d3c755ba5ffe2a3906d2369eaa62c204bd0c4f4488ce861933d836f9f3da"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/Icono Descartado 9.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Icono Descartado 9.png",
+      "bytes": 149,
+      "sha256": "375dacadb8c2215f99c513d2984a2a47c44d6825251486f1a29767be2882eb78"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/club-de-economia-utdt/logo azul negro.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/logo azul negro.png",
+      "bytes": 28289,
+      "sha256": "cd02eb16345e13425680658d802bfed22bcfe2b9d7d06c1d8fb0d1e38c768e78"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/el-armado/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/el-armado/.DS_Store",
+      "bytes": 6148,
+      "sha256": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/el-armado-web/ilustracion-trazo-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/ilustracion-trazo-400.webp",
+      "bytes": 44718,
+      "sha256": "3d3b520916ec6f195bb3db003a2704f494e310f40b9d264174a743e5e7f588e5"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/olas-ditella/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/olas-ditella/.DS_Store",
+      "bytes": 8196,
+      "sha256": "94d6fb88f08837e5a0733b4dc472d17145fcf4eb41362a0d84dfa01610454a79"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/orfeo/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/orfeo/.DS_Store",
+      "bytes": 10244,
+      "sha256": "c9b526406f79980e2bbeb583ec5df8d926ac1b7164883c27b71de3ae638d7a3b"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/orfeo/PORTADA-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/PORTADA-800.webp",
+      "bytes": 83558,
+      "sha256": "3c482a62e2e31011c0d4b346f2027a75a768a76f0305bb064492691fe36538f6"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/orfeo/TALCAHUANO.mov",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/TALCAHUANO.mov",
+      "bytes": 65545877,
+      "sha256": "6275a16a6825776588a4ecaf608a98b246378e6313c625ea29982a917f52b898"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/stephen-king/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/stephen-king/.DS_Store",
+      "bytes": 6148,
+      "sha256": "ca9738dac18eaf55c89f5c7a5d26bfcd3d6d944e95efcee69a9ccbbaeaa2799b"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/images/zapallar/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/images/zapallar/.DS_Store",
+      "bytes": 6148,
+      "sha256": "a2c62315276e402815ba15641c7aed88d9309f95d4a2d4e176f235ec672930ba"
+    },
+    {
+      "from": "AUDIT/sin-uso/assets/vendor/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/AUDIT/sin-uso/assets/vendor/.DS_Store",
+      "bytes": 6148,
+      "sha256": "df87ea1bc568ea29487797d1f0523bd41705258da271901c5a6dbf288eb1c573"
+    },
+    {
+      "from": "AUDIT/sin-uso/css/archive-about.css",
+      "to": "VERSION 1 - PORTFOLIO/css/archive-about.css",
+      "bytes": 3819,
+      "sha256": "a962b8fe321a530ce85eb41d966b6752ac580c7c9ab11b602c83cda33484ae73"
+    },
+    {
+      "from": "AUDIT/sin-uso/css/nav.css",
+      "to": "VERSION 1 - PORTFOLIO/css/nav.css",
+      "bytes": 4510,
+      "sha256": "a0236dc94ecca422038e100fae884fad5653106aa1f7a394d490fd707ee0a953"
+    },
+    {
+      "from": "AUDIT/sin-uso/js/archive-about.js",
+      "to": "VERSION 1 - PORTFOLIO/js/archive-about.js",
+      "bytes": 2674,
+      "sha256": "515a65920365fb77883c07fb43993ab6ae7207096d1cd858cb6559b3b640bdfa"
+    },
+    {
+      "from": "AUDIT/sin-uso/js/nav.js",
+      "to": "VERSION 1 - PORTFOLIO/js/nav.js",
+      "bytes": 5942,
+      "sha256": "d22837f6bcdb169524588910092bd9e4859eca3c2feb0df440777b401c425d0e"
+    },
+    {
+      "from": "BOOKS/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/.DS_Store",
+      "bytes": 6148,
+      "sha256": "47963bc8801cf3e12a156eb2809a349ed87ceb903f4c84ecdc18a2ac7859889b"
+    },
+    {
+      "from": "BOOKS/Book Viewer.html",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/Book Viewer.html",
+      "bytes": 24942,
+      "sha256": "2ea491d06150bc2a2f4b002c860d89e08debe71f8a5c68d9fbc014f725fce5dd"
+    },
+    {
+      "from": "BOOKS/assets/'SALEM'S LOT.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/'SALEM'S LOT.png",
+      "bytes": 3438611,
+      "sha256": "cf243fbd8cf161c3a724d01eae3e0e0a26e8bc4add1f037642a8756f2193030f"
+    },
+    {
+      "from": "BOOKS/assets/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/.DS_Store",
+      "bytes": 6148,
+      "sha256": "8664bc5e9a742f56c784c5a7cbc9d82709b56f831d8c4c1e6816f69c0cd3345e"
+    },
+    {
+      "from": "BOOKS/assets/CARRIE.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/CARRIE.png",
+      "bytes": 4374327,
+      "sha256": "dc835ca951fc543ee3ca2a1743b8f8a8780120e2f7f1bd3db498f6ab34d32718"
+    },
+    {
+      "from": "BOOKS/assets/CUJO.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/CUJO.png",
+      "bytes": 8562268,
+      "sha256": "f7baa8f06343b6a8cc96b6ec6816a1d3d82caf1d319296b7ec7b2e789604c067"
+    },
+    {
+      "from": "BOOKS/assets/IT.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/IT.png",
+      "bytes": 6386500,
+      "sha256": "3b32e19f1ec1de394ebb773c1c789e95bb71cda4e9f2cdefa37c0d02beb1e548"
+    },
+    {
+      "from": "BOOKS/assets/MISERY.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/MISERY.png",
+      "bytes": 5202986,
+      "sha256": "e5b8c56f288f68993ba2eb547481f931de73289bbfd94c0d4be56c57b9484010"
+    },
+    {
+      "from": "BOOKS/assets/PET SEMATARY.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/PET SEMATARY.png",
+      "bytes": 6453309,
+      "sha256": "89b5d1b26cfa619cc8b54ac644d414d02a71dcc77ea77b19e1de2e1a80c78c81"
+    },
+    {
+      "from": "BOOKS/assets/THE DARK TOWER.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/THE DARK TOWER.png",
+      "bytes": 16531723,
+      "sha256": "47866f7f40690051152016e9a8eb4ee948dd3e912bc31da231d505fda4b9f1d8"
+    },
+    {
+      "from": "BOOKS/assets/THE DEAD ZONE.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/THE DEAD ZONE.png",
+      "bytes": 8487244,
+      "sha256": "8fcfc904d8863546534598430d37636a8ef6804e38bc7eb8e355c02f8c3ccbf8"
+    },
+    {
+      "from": "BOOKS/assets/THE GREEN MILE.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/THE GREEN MILE.png",
+      "bytes": 5597186,
+      "sha256": "c14d1d72af22857840de120cbd6141d27fb8f4b8788a049587eead58cab92218"
+    },
+    {
+      "from": "BOOKS/assets/THE SHINING.png",
+      "to": "VERSION 1 - PORTFOLIO/BOOKS/assets/THE SHINING.png",
+      "bytes": 6722499,
+      "sha256": "9cd64082e17e92f9c89537920ceb2cc1b228c5d3f3a583132c1a74cac192df35"
+    },
+    {
+      "from": "about.html",
+      "to": "VERSION 1 - PORTFOLIO/about.html",
+      "bytes": 7402,
+      "sha256": "c9bbc35b6b7f4e84fc21f130f73b62620059364717cbd28bbd6cac293ff8dd06"
+    },
+    {
+      "from": "apolo-studios.html",
+      "to": "VERSION 1 - PORTFOLIO/apolo-studios.html",
+      "bytes": 24544,
+      "sha256": "2b897236848ab3699f90d6f54326a8512614ecac8c80670bed21409317702352"
+    },
+    {
+      "from": "assets/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/assets/.DS_Store",
+      "bytes": 10244,
+      "sha256": "e55c36edf1e3bae6a4e79868f16191362bbf5b1f5c46cf208dd7ecef555403e0"
+    },
+    {
+      "from": "assets/PORTADA - APOLO.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/PORTADA - APOLO.png",
+      "bytes": 62966,
+      "sha256": "7a27c488356fd777f9bf2e2b75818d4015f6dd15509783fd36f898fe656a9085"
+    },
+    {
+      "from": "assets/PORTADA - CLUB ECONOMIA.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/PORTADA - CLUB ECONOMIA.png",
+      "bytes": 25656,
+      "sha256": "c1e0b86e68d602800bfd94db386d2ce2a769e6a710783b687a81b63cc6f751c3"
+    },
+    {
+      "from": "assets/PORTADA - EL ARMADO.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/PORTADA - EL ARMADO.png",
+      "bytes": 21799,
+      "sha256": "2f0638164554e5821989c0c1797dfe3819cf7c453ea37e76fb0c4db6b42202f8"
+    },
+    {
+      "from": "assets/PORTADA - OLAS.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/PORTADA - OLAS.png",
+      "bytes": 34678,
+      "sha256": "48a78d1fca156d0aefcd96ff577543fd9698b061e0cd75d05900af299644fdca"
+    },
+    {
+      "from": "assets/PORTADA - ORFEO.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/PORTADA - ORFEO.png",
+      "bytes": 29467,
+      "sha256": "ea5ea80e9030712ede5ae06d3c63dd923a47bf3b9ab8e54172b1bb0730f584ad"
+    },
+    {
+      "from": "assets/Spin Rose.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/Spin Rose.svg",
+      "bytes": 12979,
+      "sha256": "4598b481dcc5db777d40c693f879c61f84fe613fd0da1498409ba770a5c66f86"
+    },
+    {
+      "from": "assets/favicon-apolo-studios.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/favicon-apolo-studios.svg",
+      "bytes": 666,
+      "sha256": "22e711e17099323cc00f48a83a9870822e0b6b7c95d67cab7802781478106186"
+    },
+    {
+      "from": "assets/favicon-club-de-economia.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/favicon-club-de-economia.svg",
+      "bytes": 666,
+      "sha256": "a19f6ed36cf7077cf8e4d338927fbbf874b683002402b272abf332f62090642a"
+    },
+    {
+      "from": "assets/favicon-el-armado.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/favicon-el-armado.svg",
+      "bytes": 666,
+      "sha256": "cf2c6fb9b962272e7a4a741760c48b030df416a702da64fc80cd31ce453443d5"
+    },
+    {
+      "from": "assets/favicon-olas-ditella.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/favicon-olas-ditella.svg",
+      "bytes": 666,
+      "sha256": "8245fb34ed9ba4171ad4b1e0ab0fc7c3f4cb7f712300e3fec9fdd319c8694b89"
+    },
+    {
+      "from": "assets/favicon-orfeo.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/favicon-orfeo.svg",
+      "bytes": 666,
+      "sha256": "892087ce938ba25fa26f0377f46428d8b777cc9133c60d623226b2bce49585df"
+    },
+    {
+      "from": "assets/fonts/anybody/OFL.txt",
+      "to": "VERSION 1 - PORTFOLIO/assets/fonts/anybody/OFL.txt",
+      "bytes": 4486,
+      "sha256": "7f0313b042b462fcae1934436cc747f9fd4433e3b08fd6459a4a5104b0bbd5db"
+    },
+    {
+      "from": "assets/fonts/anybody/anybody-variable.woff2",
+      "to": "VERSION 1 - PORTFOLIO/assets/fonts/anybody/anybody-variable.woff2",
+      "bytes": 93188,
+      "sha256": "13d2def88d1baf71441bd5878a25991c3e8372b7b195af1198891905327bcdfc"
+    },
+    {
+      "from": "assets/images/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/.DS_Store",
+      "bytes": 14340,
+      "sha256": "5d5cc048f28392c711c44fef761a6e8513971226d18a6d8b4b12017ce6737686"
+    },
+    {
+      "from": "assets/images/apolo-studios/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/.DS_Store",
+      "bytes": 10244,
+      "sha256": "f0843fd55c75aa14cb6304c37f89c98ec2f99d7b063c539f09022ad2d3ee718a"
+    },
+    {
+      "from": "assets/images/apolo-studios/01-brand/.DS_Store",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/01-brand/.DS_Store",
+      "bytes": 6148,
+      "sha256": "b89cf0f222edcd9f8ec1e3fb0f08850195b30362115d11ec15bca849e2cca562"
+    },
+    {
+      "from": "assets/images/apolo-studios/01-brand/Logo Variante 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/01-brand/Logo Variante 1.png",
+      "bytes": 59005,
+      "sha256": "c9b0a1621fa8a0092c9cf31ef2f7409239d37ebb56030a4c8c83583848422b94"
+    },
+    {
+      "from": "assets/images/apolo-studios/01-brand/Logo Variante 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/01-brand/Logo Variante 2.png",
+      "bytes": 275622,
+      "sha256": "60eae572601068751091e4b6c211898f9d682447502c1932b7cf4ec273997500"
+    },
+    {
+      "from": "assets/images/apolo-studios/01-brand/Sticker 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/01-brand/Sticker 2.png",
+      "bytes": 4116858,
+      "sha256": "2a650dd19fc472f8be10c43c3422f1e29703336fc0b713289807bee18ddddbbf"
+    },
+    {
+      "from": "assets/images/apolo-studios/01-brand/Sticker 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/01-brand/Sticker 3.png",
+      "bytes": 4170441,
+      "sha256": "4a3a20284bb51f12995ad2c555f11319ce196eda0e9fc4bedfb67de6186e5d5e"
+    },
+    {
+      "from": "assets/images/apolo-studios/01-brand/Sticker.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/01-brand/Sticker.png",
+      "bytes": 4241255,
+      "sha256": "30d9aba7d279307356852a105380cfe1cb0240e5cde51c7c31e9602a8024f3a9"
+    },
+    {
+      "from": "assets/images/apolo-studios/1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/1.png",
+      "bytes": 1892419,
+      "sha256": "2e81d9f2af2aacf53fc929a7d5d6a630e809ac3d49d1fcbe1434dc5be757bae5"
+    },
+    {
+      "from": "assets/images/apolo-studios/2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/2.png",
+      "bytes": 1821305,
+      "sha256": "6a7434b7683c91c2a9c6042cfdfb297ff94304af8fd41e4fe82dde1069041b41"
+    },
+    {
+      "from": "assets/images/apolo-studios/4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/4.png",
+      "bytes": 2096291,
+      "sha256": "d44ccb897c61286f1a3592f8cc2aa4b3c9579f141dca0c4d20b547f00ac2dec4"
+    },
+    {
+      "from": "assets/images/apolo-studios/5.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/5.png",
+      "bytes": 2259871,
+      "sha256": "47a881abc174627aceac24f1f36919f392ad0e727225f22e5462d2a5ca4abf76"
+    },
+    {
+      "from": "assets/images/apolo-studios/6.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/6.png",
+      "bytes": 1899498,
+      "sha256": "6884a87bc0049e8c0f27d88c65c7dd5f991c0fc399cdcdc2e39cdf0a1aceabf8"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (1).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (1).png",
+      "bytes": 914986,
+      "sha256": "30dfb31ba7a3e66fc7a472557892371d460985acf5be80a14ce5043df26baadb"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (2).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (2).png",
+      "bytes": 19353,
+      "sha256": "d3df0cb42650a44aba1c2e5f170561fe4a7eae675e48c732fd3518438369427b"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (3).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (3).png",
+      "bytes": 916493,
+      "sha256": "f7828de730b8bcac2b942483b8d6a96eaa15025477cd5f6a546c526254f1d907"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (4).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (4).png",
+      "bytes": 158197,
+      "sha256": "47ddb2fe3aad756e5b9571993b4cb539386142ab4c51c1116be858ed25a15435"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (5).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (5).png",
+      "bytes": 531976,
+      "sha256": "fe5ce34e4301bc71594925244e143e1156cfeb5f9c3dc75d8d7ff37094f7ff19"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (6).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (6).png",
+      "bytes": 973680,
+      "sha256": "171dcbc96e6f334f1d8fc7f1d3ac1231cc745057343a3a19d7ac33cdb6d2b16c"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (7).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (7).png",
+      "bytes": 605702,
+      "sha256": "34ee1684391bfb91d40c0783c70880e876a29f0e44fbf53fda8a2a7649d27db7"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (8).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (8).png",
+      "bytes": 158920,
+      "sha256": "0a5dfcc782339313755e0a7eb4a3d9df6acaf7614be2cf8f9075f7d2ea2d985d"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo (9).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo (9).png",
+      "bytes": 1013450,
+      "sha256": "b92ed8c353adadccae9329629d1d85f705584011673ab46d10303f6c20690a1b"
+    },
+    {
+      "from": "assets/images/apolo-studios/Apolo logo.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Apolo logo.png",
+      "bytes": 48035,
+      "sha256": "1f1e8461d93eddd78084f08bacdaaa86e04cf950aeaf7c47a6ec434ed21826c3"
+    },
+    {
+      "from": "assets/images/apolo-studios/Background (12).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Background (12).png",
+      "bytes": 13544,
+      "sha256": "e227f5eb3bcad94488fa6a8f6582deadeab3ef7bfe920c57a6bac25a9156bb42"
+    },
+    {
+      "from": "assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat (2).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat (2).png",
+      "bytes": 6047796,
+      "sha256": "3265118fc318205aaf242dd030e408309330b545c9b29d71162470d18dc2ecfe"
+    },
+    {
+      "from": "assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat (3).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat (3).png",
+      "bytes": 6051009,
+      "sha256": "153f95d7717f88ff16e4e8149f9e748fb96a662e7236d7d2cdf31862e756be9f"
+    },
+    {
+      "from": "assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat (4).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat (4).png",
+      "bytes": 5836241,
+      "sha256": "0b3506bd8ae2f0687f8ed37d6819adefa8db58b9812fc51e9525d607837dfb07"
+    },
+    {
+      "from": "assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Bendito_Mockup-ELT-Free-Hat.png",
+      "bytes": 5952779,
+      "sha256": "62df2cdcc8c08805a114006e688967faffc9e21ff0a80c2b12597e22f324f192"
+    },
+    {
+      "from": "assets/images/apolo-studios/CAM.mp4",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/CAM.mp4",
+      "bytes": 293643,
+      "sha256": "2c099d76c5c04dc0c64547c55598795d2725b0cc5bd708af03ab5a0208bbb574"
+    },
+    {
+      "from": "assets/images/apolo-studios/Circle_Sticker_Mockup_4 (2).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Circle_Sticker_Mockup_4 (2).png",
+      "bytes": 4001162,
+      "sha256": "4ae0e4f2f682f62bcfacfc1e76f97f76bfd3f9dfce7609c83480e158835da907"
+    },
+    {
+      "from": "assets/images/apolo-studios/DSC00281.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/DSC00281.JPG",
+      "bytes": 14246691,
+      "sha256": "81bab3934392b2897f55e5d5b1b4b35ec534488f2c1da5dabbf6a03ecfaf0151"
+    },
+    {
+      "from": "assets/images/apolo-studios/DSC00342.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/DSC00342.JPG",
+      "bytes": 18824277,
+      "sha256": "809f2505ebc4733161724e62fa52dfb0b6f4aa31874605b36bdd50c6f6e20be3"
+    },
+    {
+      "from": "assets/images/apolo-studios/DSC00456.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/DSC00456.png",
+      "bytes": 23744252,
+      "sha256": "12ab03e1321a558c4caa02a9d6c84320b50f6ae86f8a95761ade3c6b0d9d7c6c"
+    },
+    {
+      "from": "assets/images/apolo-studios/DSC00764.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/DSC00764.JPG",
+      "bytes": 13296698,
+      "sha256": "8c56de2c0c5206740430dd03dde16d42992f9463eb352692ef1c007e9674731d"
+    },
+    {
+      "from": "assets/images/apolo-studios/DSC01063.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/DSC01063.JPG",
+      "bytes": 4816896,
+      "sha256": "be3e672e6f1f5245971d1f090ab0d7eb864072aebd661c5e28ece02b96d33d98"
+    },
+    {
+      "from": "assets/images/apolo-studios/IMG_2957 2.jpg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/IMG_2957 2.jpg",
+      "bytes": 1461359,
+      "sha256": "8b9ca652b0b337ebbe8ac73f6a69f29a1b0cb93193093f6e6c62600a789894d5"
+    },
+    {
+      "from": "assets/images/apolo-studios/IMG_4043.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/IMG_4043.JPG",
+      "bytes": 1724838,
+      "sha256": "f9e7c36ce423864a821917884d31cf2670a6fb1464c25a2e297ebea534843852"
+    },
+    {
+      "from": "assets/images/apolo-studios/IMG_4044.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/IMG_4044.JPG",
+      "bytes": 1383834,
+      "sha256": "cfe708d31fa24bbf75946485f43043cf37123952d529f02b2a4f1780aeeb84ef"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project (47).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project (47).png",
+      "bytes": 8930,
+      "sha256": "e75a1a889489a1d6a32b82793e9b2d57b0978b571df55e732a6af29306e51cd8"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project (6).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project (6).png",
+      "bytes": 565837,
+      "sha256": "8cbf607be4e3f098e9e18fbf5eebc51e476af2554cd7a8989c34c231229d05ec"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-08-20T195549.469.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-08-20T195549.469.png",
+      "bytes": 1169533,
+      "sha256": "a51aff0c41934bbc120f557daf5ab475cb3b44e27cbaa1cf4b160fefba462599"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-11-12T202430.963.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-11-12T202430.963.png",
+      "bytes": 3081130,
+      "sha256": "288cf24f7d63012a5b880fcb455d6930ef6bdbcd0e1799210b30e0a90ce5ca6c"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-11-24T200254.442 (1).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-11-24T200254.442 (1).png",
+      "bytes": 143405,
+      "sha256": "5d5af7f699bd4f79e2b6a5de64a4b49321dae966f2b8c34cacc39d7173eec56b"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-11-24T200254.442.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-11-24T200254.442.png",
+      "bytes": 716107,
+      "sha256": "cdd299598211ac58c0d9c4a0939768dc639e9f6da1d2a39c534219116104ddbe"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-12-16T141516.913 (1).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-12-16T141516.913 (1).png",
+      "bytes": 1218599,
+      "sha256": "2304028588182096c2ee87b2a43420fbe6bba8c44d333408f2883b1a858ac67b"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-12-16T141922.930.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-12-16T141922.930.png",
+      "bytes": 14709,
+      "sha256": "98774a09167c76a05f61d7a422cff0141c075f3553c77b7c21c80d4cf5a26fbf"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-12-25T204525.875.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-12-25T204525.875.png",
+      "bytes": 125910,
+      "sha256": "275a5f1e54ef4068a024af7aae5705a619d305ea63a83849d804bc6801ff5217"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2024-12-25T204636.686.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2024-12-25T204636.686.png",
+      "bytes": 124129,
+      "sha256": "65b1ca152ab2135e1c348d324036223d92aa9c0a9645f1c8cd9d1ffbd34c4e3b"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-10-17T214825.076.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-10-17T214825.076.png",
+      "bytes": 324434,
+      "sha256": "de14f802b325bce7be9ab2f628e76bfb3ad5064dcccd367de71cc251626c6f48"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-10-17T223616.274.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-10-17T223616.274.png",
+      "bytes": 227608,
+      "sha256": "842b88c9b46cc14ccf5824e1ec52caa5ba6436e2f6c27983191c42385967f480"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163459.355.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163459.355.png",
+      "bytes": 1309674,
+      "sha256": "8ccab45d75749c3ccdf82361386ea2dacebdefe1cde92595bdf6bb3e367f4f22"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163504.781.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163504.781.png",
+      "bytes": 1275922,
+      "sha256": "795b0f7d38a914b2294b5cc6765450b786c4894fdc2d00fbf0cb9750602948fc"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163509.388.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163509.388.png",
+      "bytes": 1203650,
+      "sha256": "ae57608715d4a074feb35c72dcdab2dc80994a8cba0ff3c5934058a22b653276"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163745.311.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163745.311.png",
+      "bytes": 1761340,
+      "sha256": "99d1cadcf0f7c96d39adcdb5f1644719c938f4da8dca21e9ab575ec4e29fdff7"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163750.222.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163750.222.png",
+      "bytes": 1923419,
+      "sha256": "5b9ce35167fec8d91b48b31a03fbbda04360a6c2b2dc3c0a131d5cbea4c921ab"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163843.462.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163843.462.png",
+      "bytes": 1795464,
+      "sha256": "a4f792408e323d239c64c079dbda9ebd647a775839059c31a328a699e10bed8d"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163848.413.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163848.413.png",
+      "bytes": 1745010,
+      "sha256": "8b379b0fac0b035b5ec62f76ef3ffec53ad8a49db47b8e71533f876d22065477"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163925.227.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163925.227.png",
+      "bytes": 1750401,
+      "sha256": "d71cf59479e6f35663746ce1421e2c2c4804a01e3069ce2b13c72267c63e8436"
+    },
+    {
+      "from": "assets/images/apolo-studios/New Project - 2025-11-01T163929.641.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/New Project - 2025-11-01T163929.641.png",
+      "bytes": 1753231,
+      "sha256": "3bbe8a38bafe8d304949144c40268035d2fe6ce0f2b35acfe0595a2f72740e36"
+    },
+    {
+      "from": "assets/images/apolo-studios/Pagez Magz 4 copy.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Pagez Magz 4 copy.png",
+      "bytes": 38301,
+      "sha256": "19e892944944c4876658f1336ae0a1620fb80f2798749cb5ebdd3e55e4011086"
+    },
+    {
+      "from": "assets/images/apolo-studios/Pagez Magz 4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Pagez Magz 4.png",
+      "bytes": 210303,
+      "sha256": "54828194a8a27f70f9339611600be8eb549f82f7c3e9b6ddc3a50339e1a050d4"
+    },
+    {
+      "from": "assets/images/apolo-studios/Paper_Bag_Mockup_3 (1).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Paper_Bag_Mockup_3 (1).png",
+      "bytes": 1907075,
+      "sha256": "578a359194fc52b0c4376658c098a89a91a7208ec1c6d7f9e16e3437558e5dcf"
+    },
+    {
+      "from": "assets/images/apolo-studios/Paper_Bag_Mockup_3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Paper_Bag_Mockup_3.png",
+      "bytes": 1896792,
+      "sha256": "db7b166f95d23f71a5e31d1260bb153c44e8f75e097b350ffb0ffe0aadf79a2e"
+    },
+    {
+      "from": "assets/images/apolo-studios/Remera Mockup 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Remera Mockup 1.png",
+      "bytes": 10721019,
+      "sha256": "ce057f392aa381cea836d0b900ef44266e261332d48f60a00adbb9d4932d642c"
+    },
+    {
+      "from": "assets/images/apolo-studios/Remera Mockup 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Remera Mockup 2.png",
+      "bytes": 9875924,
+      "sha256": "65440ba29d794dd0decc92ff38acc4552140bf738c6ae5e8742e018e90632c22"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (1).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (1).png",
+      "bytes": 7173508,
+      "sha256": "332a85c757c844652ebdc6280a9648277cb4f91b80d02b3b9522502a7d213c3c"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (2).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (2).png",
+      "bytes": 7180164,
+      "sha256": "7cf642f2bbca671dd133a7e9f06302cc24114a1962edb7e740a4117a5979231c"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (3).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (3).png",
+      "bytes": 7390569,
+      "sha256": "4b046e1d6fc11580bd92d65752cb228a83250a2585a32df179b4c0688868ab26"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (4).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (4).png",
+      "bytes": 7321063,
+      "sha256": "4dde74ba03a302ff1543e5ad76f00ea6f9189e6badc09da45d455930c1430cd5"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (5).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (5).png",
+      "bytes": 7243426,
+      "sha256": "fafe4a1531c49e5b8e113ee559dec506b5ce3190957048e0a0f34205079f5c9d"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (6).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup (6).png",
+      "bytes": 7302840,
+      "sha256": "0a3d0259cb1b3f0cf3081a77425f19c575e802fb1ea21b30d49d097ce6047025"
+    },
+    {
+      "from": "assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/Tote_Bag_on_the_Ground_Mockup.png",
+      "bytes": 7165132,
+      "sha256": "8c9cd16b2d5d7deec09ec13586eec4b5ca9b5ad392aef2b6374df24e00bd323d"
+    },
+    {
+      "from": "assets/images/apolo-studios/VIDEO 1.mov",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/VIDEO 1.mov",
+      "bytes": 16492138,
+      "sha256": "c8df77fe4590fd54385bfccd4b3b235d37bf00cd50731d079eaa706a04511218"
+    },
+    {
+      "from": "assets/images/apolo-studios/WhatsApp Image 2024-06-14 at 12.45.51.jpeg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/WhatsApp Image 2024-06-14 at 12.45.51.jpeg",
+      "bytes": 169751,
+      "sha256": "849f2812d903f65b132cd3b9e9858578517049ededc46494c55b32db55efeed1"
+    },
+    {
+      "from": "assets/images/apolo-studios/WhatsApp Image 2024-06-17 at 11.09.31.jpeg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/WhatsApp Image 2024-06-17 at 11.09.31.jpeg",
+      "bytes": 241006,
+      "sha256": "9eb55211100e9e2782bce75fa4c95c88261240f0234f3a0692103731e98b9e73"
+    },
+    {
+      "from": "assets/images/apolo-studios/WhatsApp Image 2024-09-23 at 21.22.31.jpeg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/WhatsApp Image 2024-09-23 at 21.22.31.jpeg",
+      "bytes": 74183,
+      "sha256": "b355c4b1a48524275a50c08a404ea80dcf74facc890cd9b789be20da47e5f9f8"
+    },
+    {
+      "from": "assets/images/apolo-studios/project.md",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios/project.md",
+      "bytes": 9214,
+      "sha256": "76be9a46ff5e07effef1ce3b3321f2eaa36b36d662a1db326374c326cacc391d"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-back-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-back-1080.webp",
+      "bytes": 298124,
+      "sha256": "68b554bd74a519a4328b3d15935549e1cc05be22254ff3e1a029ddfac0dd10df"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-back-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-back-1600.webp",
+      "bytes": 518186,
+      "sha256": "0e5e67015ecb51513b738e64207d23fab2e1f2ba06fa386a73e440e7caf54711"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-back-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-back-240.webp",
+      "bytes": 28588,
+      "sha256": "a2d190dd42d8c84d773ef7eb7e6a464df40a46812ed1327f100172ccb58ec9b8"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-front-back-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-front-back-1080.webp",
+      "bytes": 206274,
+      "sha256": "e44e9cf02f666e293e12c427395168967513d6e19c447820dc6b4a01066c5aeb"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-front-back-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-front-back-1600.webp",
+      "bytes": 379250,
+      "sha256": "7a1f73725cfb7c6e5b624207625ab7fcfa88705d9d4c0be5307af6572f0edbcc"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-front-back-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-front-back-240.webp",
+      "bytes": 13446,
+      "sha256": "99c3ee0abc6dcf01a965441ad00b88900c63096698b8160ee5242afef0df519f"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-stairs-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-stairs-1080.webp",
+      "bytes": 104332,
+      "sha256": "365fd0cd47dcad4f97473945b2c4aef1fce7a50e68ed7dc92f0046d62d16111c"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-stairs-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-stairs-1600.webp",
+      "bytes": 209592,
+      "sha256": "b291e0daad7a1e1b5779470c57cad4c723ce5af54610af54d7ba97f27f633f3b"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/circles-stairs-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/circles-stairs-240.webp",
+      "bytes": 6702,
+      "sha256": "d3a0d59e8f0ac033f33e9be6128ca6d6c782bb38e9674ffce48cd840ab53b62a"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-back-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-back-1080.webp",
+      "bytes": 521386,
+      "sha256": "0e04c8947522ab6b90e3c521e448663b6320254fc45fe6d0cb594404f4ed8e2e"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-back-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-back-1600.webp",
+      "bytes": 949718,
+      "sha256": "903b638ecd784eb3a935e89b708933082bf58ba5a1aaa36de3e04e67cb097227"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-back-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-back-240.webp",
+      "bytes": 27680,
+      "sha256": "091d099b0d0a73702ead532bf63331a62cf761bf93885ef6465f91fcfa8b2067"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-cafe-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-cafe-1080.webp",
+      "bytes": 136666,
+      "sha256": "d98fefc4f74e77fa6db40da51ba5e398aa95d299206a5e312242e9e28df698a8"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-cafe-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-cafe-1600.webp",
+      "bytes": 255644,
+      "sha256": "27596619edbfd60d5d1b16f5af978387f6836766a49abf7ec2fec3b20d1c7a4c"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-cafe-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-cafe-240.webp",
+      "bytes": 11530,
+      "sha256": "9699c45d9ffe7eb68dfd8349e65eb28faab1c4730a91fb151cb7f2d0605dccc0"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-street-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-street-1080.webp",
+      "bytes": 534988,
+      "sha256": "7403bf042292c99431d10366ba559f6165bc598a81146a8c8ea5a7f611b5e558"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-street-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-street-1600.webp",
+      "bytes": 987506,
+      "sha256": "24756988f16bebcfe63a271ec06a59d6ec0837ccfbefef38cd3cb2d389e94cf3"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/everywhere-street-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/everywhere-street-240.webp",
+      "bytes": 35906,
+      "sha256": "47feb1e3761fdb40d7eb5d654c2ed11440bc72b5bc2f215499882a633a5e8ca4"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-blue-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-blue-1080.webp",
+      "bytes": 98960,
+      "sha256": "9b7d7131ceb7c194b69c6c8fe23c6d28e0ba282e727ac9cc07bea0309ff51335"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-blue-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-blue-240.webp",
+      "bytes": 9610,
+      "sha256": "c7a722072fa5d7657054e6f7199115f4aff17f851fb3b03e6fa05461e381e6b3"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-brown-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-brown-1080.webp",
+      "bytes": 89982,
+      "sha256": "2dadea2e70cc41ed1086da732071e56f89f82b14f08296609bac82509a881137"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-brown-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-brown-240.webp",
+      "bytes": 11202,
+      "sha256": "a0db10809694dc4796e42eef6ad1529c12cb662c2f59be6cd8abd5237817afd1"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-cafe-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-cafe-1080.webp",
+      "bytes": 194398,
+      "sha256": "9d18f90fa27a007d8671344fee40fed024b68cb82b6dd4acf090ec3d38940253"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-cafe-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-cafe-1600.webp",
+      "bytes": 328330,
+      "sha256": "2171f900fd775a45c46d14daf2ab561e6f0fb32356f2f3f3d654c599a18b6f00"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-cafe-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-cafe-240.webp",
+      "bytes": 13904,
+      "sha256": "f80079bbbaff40447aa6d1db9774f5d358ef9521fb4c0510c5004518dd42ea6e"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-grey-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-grey-1080.webp",
+      "bytes": 88068,
+      "sha256": "a19bf4136c8356d7186ac2eb5178035db29b52147f115e6edea6ad6258583e79"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/menorca-grey-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/menorca-grey-240.webp",
+      "bytes": 9158,
+      "sha256": "454e905b6bebeba8bc867c8633728825e98fdee3acf832b5ff9516df997790fc"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-print-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-print-1080.webp",
+      "bytes": 129432,
+      "sha256": "2744dcedd9ac6d0d63d91f1bbd291d33db8a15ba912e9b38b95b0320045520c3"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-print-1204.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-print-1204.webp",
+      "bytes": 146562,
+      "sha256": "0f114ed54c9e2c19e87e1b1cabbf9abab289a68a558c9a5251eb9bf3c220269c"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-print-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-print-240.webp",
+      "bytes": 17436,
+      "sha256": "73d82f7f09f539ff3bb09d3879bd1218fe5177ef460d17a14458f772802178e0"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-print-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-print-480.webp",
+      "bytes": 46624,
+      "sha256": "4e13e4e83b85310fbe7e6d6db3290ba7f17b4d80ed0a303ab6abf48061798c1a"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-session-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-session-1080.webp",
+      "bytes": 90038,
+      "sha256": "62d98cdeeaebfe1c7893a176866307f8f80da0316ea51d6488a25db87a2dc492"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-session-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-session-1600.webp",
+      "bytes": 156272,
+      "sha256": "51073c1d8d4253f29d6b6fb8fef028cb799dc42ad79412af915433230f4305ec"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-session-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-session-240.webp",
+      "bytes": 8422,
+      "sha256": "2a33832e3188dbbf2f907844635a1b50df469df1f10d43476b2a73f836fc93f4"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/process-session-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/process-session-480.webp",
+      "bytes": 24598,
+      "sha256": "a1b9b278851443c9cca275cee313bf49b85092def9ece44daeee3ff06fec053a"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-front-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-front-1080.webp",
+      "bytes": 189100,
+      "sha256": "284a65cb0e2c8fd74e990e141f895b67227da1147878619e229d92ae6baa98d2"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-front-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-front-1600.webp",
+      "bytes": 464366,
+      "sha256": "795cb90961000a61fc391b8f6b8f0f1c83c01b3de8c81f53160347d9929c417c"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-front-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-front-240.webp",
+      "bytes": 16438,
+      "sha256": "25c52f62042e4383d3426fc5bbfb3f7227436daa8f2b38d77f77187042b0f97f"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-street-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-street-1080.webp",
+      "bytes": 289338,
+      "sha256": "6975c5b1ccb5e5ed6fd20cb99669f7c38eade4fc2c454f19cf1ed422a608dfe9"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-street-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-street-1600.webp",
+      "bytes": 520344,
+      "sha256": "d256c6637964f3c53530458fb682698bb078948607c4f8fed9195ed84d7928eb"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-street-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-street-240.webp",
+      "bytes": 30078,
+      "sha256": "1769a895ac795f0b4a2a52eaa44d965d3deab676b75f0769e96c9a93060fccf7"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-subway-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-subway-1080.webp",
+      "bytes": 156656,
+      "sha256": "1d83a6dbc0e2417a7f420c2a059570d7e8b9b3d1cd85eca667f2238bb6586662"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-subway-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-subway-1600.webp",
+      "bytes": 391052,
+      "sha256": "7f8b1b52c10b2f5da5176d959b3c1582331b198d39f88bbd36eb780e666d3fa6"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-subway-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-subway-240.webp",
+      "bytes": 15538,
+      "sha256": "2c78e45baf880085db05790f94bbe12438e09eedea3634bccfd07b68e07f40ab"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-two-signatures-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-two-signatures-1080.webp",
+      "bytes": 127100,
+      "sha256": "423fcecd610e130ee459390a164b76f067e48022719942c840647e6e538584f8"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-two-signatures-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-two-signatures-1600.webp",
+      "bytes": 330560,
+      "sha256": "2f9fc1b71b818725476f8e29a6a1126d528279fd57a1fae9a8112e330760e052"
+    },
+    {
+      "from": "assets/images/apolo-studios-story/sahara-two-signatures-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-story/sahara-two-signatures-240.webp",
+      "bytes": 14440,
+      "sha256": "e71dca0901f6da131166867015a157b37ab535136f81171249c427fd9104e2a8"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/circles-01-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/circles-01-240.webp",
+      "bytes": 8408,
+      "sha256": "5d17e4a0cae0ba3ffb2f760cd08ace81223466dbcf32035d6b1ee659ad38e76a"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/circles-01-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/circles-01-480.webp",
+      "bytes": 22182,
+      "sha256": "4a18b6fd79848683c08e43cf5a6ec8475eef116c37fa41d759e47cdf85115200"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/circles-01-960.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/circles-01-960.webp",
+      "bytes": 55626,
+      "sha256": "17c75f1f3eecb06b0e5c58c886c8883b6395dd7482cc96c71cb7650ca816d962"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/mark-1068.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/mark-1068.webp",
+      "bytes": 28804,
+      "sha256": "d64d543eb655abfddb87201dd81acf4014b1b456d5184678b66f03f17114a4d3"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/mark-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/mark-400.webp",
+      "bytes": 34214,
+      "sha256": "bbfb33eb77ec32ef862dade3f1ca7a17a91df20f2227377f137e0485e8a005af"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/mark-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/mark-800.webp",
+      "bytes": 71632,
+      "sha256": "da51e0f0d2c46f9927ab297bbc1f677206bad32559ba8f58a7e9fbdd961eb1c1"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-01-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-01-1080.webp",
+      "bytes": 88840,
+      "sha256": "41673f5bbcc1a0386b9ef7195a5e6f75995607a47c597655f3923efeef03ad3e"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-01-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-01-240.webp",
+      "bytes": 10980,
+      "sha256": "11531b53e85ebe5d0b41a6093f7b117f5daf89e57c552d22b7ee6926e9336fc3"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-01-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-01-480.webp",
+      "bytes": 27684,
+      "sha256": "5c747cb049e03d6a0623ca9fe78ed513d8a1ead0ea6d4954bfc7db3d6f493459"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-02-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-02-1080.webp",
+      "bytes": 86386,
+      "sha256": "7b2a5dbead04535961b30967fc6b29cf225acb750562d5945338e1088fa44264"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-02-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-02-240.webp",
+      "bytes": 9846,
+      "sha256": "f6f08b5635886356957b0d58b79d9d99e944b2d21ddbbac360d478cc9f280770"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-02-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-02-480.webp",
+      "bytes": 24476,
+      "sha256": "3ebbc97782144e7c92e0fe8ed6fecc137fdfe2539376dbf54ae7495d2d64d143"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-03-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-03-1080.webp",
+      "bytes": 82918,
+      "sha256": "bb8291d380e24e13b4e886d9846c82372541a509eabef5741c4749a9f98387d9"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-03-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-03-240.webp",
+      "bytes": 9384,
+      "sha256": "06efeaeb6c3382acb1b9ccf7c493c142af0ac0ea27275b177b52fcbf233e96bb"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-03-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-03-480.webp",
+      "bytes": 26678,
+      "sha256": "451dbdf838f5d61f644ab5b316c4173cef37b38e6a041d1a10e716073b143784"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-04-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-04-1080.webp",
+      "bytes": 110584,
+      "sha256": "9c419d38d4dfce58f4e5fb02f86cb645cc07c23462bc9fcfb7d55d414fee261e"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-04-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-04-240.webp",
+      "bytes": 8780,
+      "sha256": "09146cdb9c5fb5e0512a9e5217e17459fe6c9bfafb89b51995e4a2623e4ea92d"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-04-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-04-480.webp",
+      "bytes": 28656,
+      "sha256": "cb87fe93fd06ebd2679430b61b7e351d1b0d348b7028ffa801b84b1714612d9e"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-05-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-05-1080.webp",
+      "bytes": 90338,
+      "sha256": "0a54d463653c4b33e9f91598877d0dce4eee23bf99ba71a93412c2a9779c6e58"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-05-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-05-240.webp",
+      "bytes": 8818,
+      "sha256": "8ae0a6f27d05441c73233886d79b2039b401a4107a472979cd2076b639040ad1"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-05-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-05-480.webp",
+      "bytes": 26718,
+      "sha256": "b3f30797b2ca5da6b41640a6b8575557d5886ca0246af164660d72195827474f"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-06-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-06-1080.webp",
+      "bytes": 96618,
+      "sha256": "e2d50cefcf5a401e41f352a458ed9558744c79595be159083772d9c737a617ec"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-06-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-06-240.webp",
+      "bytes": 9384,
+      "sha256": "f6fc77e0c07d5762185b2e6b6a255ebcb5bf9cd52e210bd93fe1e6cc08293c33"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-06-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-06-480.webp",
+      "bytes": 27040,
+      "sha256": "7ac773c908f84c97195c9666e14b8badce0a4e18e85ac65b33992ac1707d0ca7"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-07-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-07-1080.webp",
+      "bytes": 86378,
+      "sha256": "a65a75a6dbc1fee989278dca22dbdf11fbea970763a0333dc26ddb6ebf032675"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-07-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-07-240.webp",
+      "bytes": 8828,
+      "sha256": "946d4fdce4a8d0f9a0ba3f14b14b4d4fe77a64f9150d7547dba451e5ba209040"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-07-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-07-480.webp",
+      "bytes": 24818,
+      "sha256": "ac40a4d5ac56adfe0ad79609db2a163423163de498de91be506309ebc1426c36"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-08-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-08-1080.webp",
+      "bytes": 92218,
+      "sha256": "0ef7f61cd3439a0bce947a029e1bc154f4b8b516b14ddb2cfa42faf1d31e1aef"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-08-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-08-240.webp",
+      "bytes": 8942,
+      "sha256": "6b567efc367bbf6d4305a786e6110f3dd49ffb60ae4cd599fd5321bee31c3c8b"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-08-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-08-480.webp",
+      "bytes": 26502,
+      "sha256": "5a64a90f5842afa2c75493f34255a6d0b000c2a97698574e5bd7d1920d4f427d"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-09-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-09-1080.webp",
+      "bytes": 79302,
+      "sha256": "5002dc11073021c7c0c2ba12522bfd356a0724059f88ee632cee7017da68016c"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-09-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-09-240.webp",
+      "bytes": 9538,
+      "sha256": "8bb950f6f70c896ad21630aed033b136a0df1235d48286b282c70661879220b5"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/menorca-09-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/menorca-09-480.webp",
+      "bytes": 25174,
+      "sha256": "694584414cbe931164421a21d37459cbc10f6e1e410573cec0bb77ff1194e782"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-01-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-01-1080.webp",
+      "bytes": 82668,
+      "sha256": "e2fe6b0e70b93bea250a4f61e2ba454f845817cef8de586a3d787345ac36fade"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-01-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-01-240.webp",
+      "bytes": 10234,
+      "sha256": "de86b18fc2b8f055448769257bf55f5ca368dbfeba5041dd0c447d2c85a52ca0"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-01-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-01-480.webp",
+      "bytes": 24878,
+      "sha256": "caf4b1988ea19704f658c2e1fe4a945c59c2f58376148edc650d4ec30517469a"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-02-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-02-1080.webp",
+      "bytes": 72492,
+      "sha256": "b4ccf274b3bcad6e2467aab815a2870b26634b2a32be04b3a82da9b501b8ac40"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-02-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-02-240.webp",
+      "bytes": 5880,
+      "sha256": "6ea5ea38ce59ab650ec616505cc04691a990acc2ec0ba49cda912e58f6680994"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-02-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-02-480.webp",
+      "bytes": 16432,
+      "sha256": "d5b0bbdc3b7600e25b0a0cee800d0aeb1f124c666e55bfbc0cb7becdda75850f"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-03-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-03-1080.webp",
+      "bytes": 111884,
+      "sha256": "016e45267f27aa05c4fbb0a327f8489331c709ce958e83c7505a017360dbe938"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-03-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-03-240.webp",
+      "bytes": 12058,
+      "sha256": "a551810c49aad5dce7b9c44a20fa9279a63760a747e2d36a949f84263d41d7f7"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-03-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-03-480.webp",
+      "bytes": 33782,
+      "sha256": "3f804a9c7a69bf0e177ba283f8778d4b48b71086538993ee9a209cb728e6039a"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-04-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-04-1080.webp",
+      "bytes": 139896,
+      "sha256": "6c48ca13cf1569210a81b24486312214ae511cdc8bd01fce0af76bc1e57f798c"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-04-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-04-240.webp",
+      "bytes": 9606,
+      "sha256": "6d11e0652ec743dfa051ec5c12798be60bd8b93a0c5d0e6b5f4a298bfdaaa3f8"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-04-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-04-480.webp",
+      "bytes": 24470,
+      "sha256": "f30c46c4d13dbf1d673443f6705beba679f72b24f689dd2b98cf9baaa7396a6a"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-05-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-05-1080.webp",
+      "bytes": 90720,
+      "sha256": "6ea319f7ee1cabbd7472e71e51c13fe40bcd70f36746d8f7b5364acb37f2e366"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-05-240.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-05-240.webp",
+      "bytes": 10572,
+      "sha256": "67e4aae6573c1e99c2f78cbe776f71e5b8d30ea194368c5baaca8a8228581698"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/sahara-05-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/sahara-05-480.webp",
+      "bytes": 26922,
+      "sha256": "7309b0b674026ad55340c87dae400b49f8888f2d438d344580759fc394dbd675"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/variants-1000.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/variants-1000.webp",
+      "bytes": 91434,
+      "sha256": "3916be285782642635ec4f8060611bcb0d549bd5ab15dde21483384f76af4f87"
+    },
+    {
+      "from": "assets/images/apolo-studios-web/variants-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/apolo-studios-web/variants-1600.webp",
+      "bytes": 153334,
+      "sha256": "86978052ea3818e9f3133fcb9769fe8291574658f4a18bc65314d6f37614b441"
+    },
+    {
+      "from": "assets/images/archive-covers/apolo-studios-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/apolo-studios-1080.webp",
+      "bytes": 46234,
+      "sha256": "2cdf30030ad4f59516036a058e302ddc90fb0b84f3fb160311bf35a78f54726f"
+    },
+    {
+      "from": "assets/images/archive-covers/apolo-studios-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/apolo-studios-400.webp",
+      "bytes": 15654,
+      "sha256": "c5ed53ad92a8c7ff463637d865410b90e147c1a87ccb6b2cf2b09a89d36baafa"
+    },
+    {
+      "from": "assets/images/archive-covers/club-de-economia-utdt-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/club-de-economia-utdt-1080.webp",
+      "bytes": 14796,
+      "sha256": "55dc15d96c7cc622e54fff6bdc1e6bb455e199b79838ab0a999e3befd20da635"
+    },
+    {
+      "from": "assets/images/archive-covers/club-de-economia-utdt-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/club-de-economia-utdt-400.webp",
+      "bytes": 5314,
+      "sha256": "6232ab0b79feadb813b0ca71621b50b8ac9c261c14309813fac5b523e2171c8f"
+    },
+    {
+      "from": "assets/images/archive-covers/el-armado-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/el-armado-1080.webp",
+      "bytes": 11890,
+      "sha256": "7d7e2d3b10e3c1b6d769b88db1b5ffec9b8ec487b01072505922f43cf8b0f0f8"
+    },
+    {
+      "from": "assets/images/archive-covers/el-armado-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/el-armado-400.webp",
+      "bytes": 4778,
+      "sha256": "80150d8d5622c5bae1bc943b962f369d16e512d481208bdf22f7e01767a4a796"
+    },
+    {
+      "from": "assets/images/archive-covers/olas-ditella-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/olas-ditella-1080.webp",
+      "bytes": 15634,
+      "sha256": "f46bf422db69155ba492b8c63e668ccbf9b2f8b4f550ad061d5fe917476f9298"
+    },
+    {
+      "from": "assets/images/archive-covers/olas-ditella-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/olas-ditella-400.webp",
+      "bytes": 5190,
+      "sha256": "7ef6c00adfa18f1941df9056c87932240a7e5673ed12083abe791fe266a07aad"
+    },
+    {
+      "from": "assets/images/archive-covers/orfeo-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/orfeo-1080.webp",
+      "bytes": 18214,
+      "sha256": "296bdffc7dabc0d20086b761053d916e7762e9a459ac166f2c84d36a56b084fe"
+    },
+    {
+      "from": "assets/images/archive-covers/orfeo-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/archive-covers/orfeo-400.webp",
+      "bytes": 6512,
+      "sha256": "4cebe4d68fa85f86f7eff7525e1ec8dd93e89b764f59e5b5f1646e63f8bba020"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - Ig variante-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - Ig variante-1080.webp",
+      "bytes": 33822,
+      "sha256": "39e63f5dde2da038500f7d81aebeed3ef70eddbe22a4be563fb269f5d45adbcc"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - Ig variante.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - Ig variante.png",
+      "bytes": 383482,
+      "sha256": "3a5b81663616b9fa9c68d211e4520d845fc8460f3eb6126bb7615dd23957af62"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - Ig-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - Ig-1080.webp",
+      "bytes": 26842,
+      "sha256": "1cbb65f854b9a5d4262a79b6065132e6d1c8cb5b4111108f9cbecbd479319fa4"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - Ig.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - Ig.png",
+      "bytes": 248395,
+      "sha256": "65dca722734b77e30c65542e8b243949df5b9c3ceb77588dcecde2fbc1791a8a"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - post variante-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - post variante-1080.webp",
+      "bytes": 32502,
+      "sha256": "f391e199c93b4c30465622fc50364cf1e5626d0272039d7b5fe7b020f0ba4d6f"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - post variante.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - post variante.png",
+      "bytes": 378927,
+      "sha256": "ebdf4f74c9635c5c9eec2a13fefae2edc269852bb6d66cb904a76a72a3044af3"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - post-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - post-1080.webp",
+      "bytes": 25560,
+      "sha256": "f73c9f7f566b005ee872fcb42d84724804b6c731e46d0703cbe07c8765ad89b5"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Anuncio de Charla - post.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Anuncio de Charla - post.png",
+      "bytes": 241140,
+      "sha256": "c0ac908a682499c6b93a922e5b5498c7b03e4dc9442f2cd7832309d0e0b41435"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Descartado 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Descartado 2.png",
+      "bytes": 17118,
+      "sha256": "279ad6b4392b27fe1df639464b0a9abe54217f31c9b4f21bb426d761da541b2a"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Descartado 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Descartado 3.png",
+      "bytes": 17515,
+      "sha256": "20dd7f41a087039c4c39287db54a7e9d0c804225cb42f19cb97ac34d7e075d55"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Descartado 4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Descartado 4.png",
+      "bytes": 20489,
+      "sha256": "346a57125950cc3908027d8d7a7f74ad25b39ffeda0aee415128af6534cae455"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Descartado.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Descartado.png",
+      "bytes": 10690,
+      "sha256": "00adf637b0d365f09cb2d142edba896afd4aad7e5188467016689c56e81ad101"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/OFICIAL.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/OFICIAL.png",
+      "bytes": 21036,
+      "sha256": "aa3854678ecb147ffd4ffc3e040d5fa533306b073bac86fe34e90e74d7a83d92"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Twitter header-1500.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Twitter header-1500.webp",
+      "bytes": 46910,
+      "sha256": "f95485da50f4833e4524b90c7b467c7cb62f75e883c7288479c728b3e7afe45e"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/Twitter header.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/Twitter header.png",
+      "bytes": 303051,
+      "sha256": "2fe2b3198c3ca712ad765e7fb30b1968957982f7dd5b860305b834139d07b33b"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/VARIANTE.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/VARIANTE.png",
+      "bytes": 22033,
+      "sha256": "feec51a857b833205e02838387052ee6fcc0d3d9d95346734e179ee61515076b"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/brand-final.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/brand-final.svg",
+      "bytes": 9474,
+      "sha256": "1d619c3140ba4671b247f50054dd1dee8fe97debfd4e85d88df291fad9b40409"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/club-de-economia (1).md",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/club-de-economia (1).md",
+      "bytes": 5382,
+      "sha256": "38fb22e78522098d8bbeadb042d60491fb386596ef0916f07764561af65d1e59"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/logo azul blanco.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/logo azul blanco.png",
+      "bytes": 28093,
+      "sha256": "9341a89ce07578186707f21b23b2f0b5d58f0c8fa9816dd8cfd311f8bdc58bdc"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/logo negro azul.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/logo negro azul.png",
+      "bytes": 25111,
+      "sha256": "c96b9c651a7d9edcf344d4f5412e49209676bc16131e542448b040d6b0b12077"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/loop-symbol-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/loop-symbol-800.webp",
+      "bytes": 5252,
+      "sha256": "03be2c493cbbc7170b6d4a05ea82e39cb82934be724c014cca49d0994312b326"
+    },
+    {
+      "from": "assets/images/club-de-economia-utdt/utdt-reference.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/club-de-economia-utdt/utdt-reference.svg",
+      "bytes": 5784,
+      "sha256": "494d230c49af68971f8ff694c20909fd5170c7d09af5b50757fa4fe8cc1b10b9"
+    },
+    {
+      "from": "assets/images/el-armado/Cover.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/Cover.png",
+      "bytes": 297113,
+      "sha256": "bd1188d86ca5ae85ec43e34a719da1f3e835cd4f37c199d73f89fef6ad96da72"
+    },
+    {
+      "from": "assets/images/el-armado/FLYER A4 - EL ARMADO.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/FLYER A4 - EL ARMADO.png",
+      "bytes": 439165,
+      "sha256": "1dfeead7267e50931042421494020d463f724254788e016250c6707b846ba022"
+    },
+    {
+      "from": "assets/images/el-armado/HISTORIA IG - EL ARMADO (1).png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/HISTORIA IG - EL ARMADO (1).png",
+      "bytes": 283850,
+      "sha256": "dbab22fe9c1df274dd5737d6fa6903d3b89c2a8b8dee5316930e5148f6013e62"
+    },
+    {
+      "from": "assets/images/el-armado/Iconography 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/Iconography 1.png",
+      "bytes": 164304,
+      "sha256": "d87c4f4726018e74e0c771cd3ebb3ec6def5d96a20af4966f180155674817404"
+    },
+    {
+      "from": "assets/images/el-armado/Iconography 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/Iconography 2.png",
+      "bytes": 421880,
+      "sha256": "2a340a2001a23e5596e603fbd80981b97d4f847d896690d796071d33ec938172"
+    },
+    {
+      "from": "assets/images/el-armado/Logo.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/Logo.png",
+      "bytes": 14516,
+      "sha256": "d83df3383ace16dff1bd6125489704e08b35cfaf952cb30b16ddb0eae32b6c1d"
+    },
+    {
+      "from": "assets/images/el-armado/REFERENCIAS 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/REFERENCIAS 1.png",
+      "bytes": 93407,
+      "sha256": "a9ea7a87939b66bc63361be624cc6b1f010fe07f79db81fb878f5d65179a2ce2"
+    },
+    {
+      "from": "assets/images/el-armado/REFERENCIAS 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/REFERENCIAS 2.png",
+      "bytes": 130460,
+      "sha256": "cda5cd43ccdec12a11e50bc3307c0d237e0d870afb2f85bf0c9e554cbbea3472"
+    },
+    {
+      "from": "assets/images/el-armado/REFERENCIAS 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/REFERENCIAS 3.png",
+      "bytes": 14475,
+      "sha256": "855eeb73b8c83b8b05a750e2cf5dd51b9d7ad56cbfd2be0146c71d78b788220f"
+    },
+    {
+      "from": "assets/images/el-armado/REFERENCIAS 4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/REFERENCIAS 4.png",
+      "bytes": 68579,
+      "sha256": "a107bac5c3cb6f60140bddd4f94fc2bfca966091f501f5145a4c43eee92e230e"
+    },
+    {
+      "from": "assets/images/el-armado/VARIANTES 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/VARIANTES 1.png",
+      "bytes": 185325,
+      "sha256": "dc78940cc6ae489c9bab6084caac5553898c2f76aaa2edad0e21432c4f607b7c"
+    },
+    {
+      "from": "assets/images/el-armado/VARIANTES 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/VARIANTES 2.png",
+      "bytes": 85704,
+      "sha256": "b88fc778a7d49fe8ed3cdb3b42f002cda6f7fe0986a43836570c3247c8225c44"
+    },
+    {
+      "from": "assets/images/el-armado/VARIANTES 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/VARIANTES 3.png",
+      "bytes": 205690,
+      "sha256": "56a5768eeed33e24aa4ab6ec1e7bcf61ac1d450547bdd085511b048f4e1a477a"
+    },
+    {
+      "from": "assets/images/el-armado/VARIANTES 4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/VARIANTES 4.png",
+      "bytes": 205870,
+      "sha256": "ff15207c771d9a524d1678470789e02721917fedf6bbcb004afe837a9e470a8c"
+    },
+    {
+      "from": "assets/images/el-armado/VARIANTES 5.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/VARIANTES 5.png",
+      "bytes": 200419,
+      "sha256": "76596380167ce95221f050b1476d8ce6a438d1691aeb3a07f21728fc4f9ad6f7"
+    },
+    {
+      "from": "assets/images/el-armado/VARIANTES 6.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/VARIANTES 6.png",
+      "bytes": 198252,
+      "sha256": "13dffb5a7e3a1a46a1a20f29f14a0cdd90bd94d6a6ffe35d13c6d7e83aca1366"
+    },
+    {
+      "from": "assets/images/el-armado/Variante Logo.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado/Variante Logo.png",
+      "bytes": 209523,
+      "sha256": "b55699aea0521f01a36e0ada7a3774f488b6703fa978371fbfd5bfaf67db7069"
+    },
+    {
+      "from": "assets/images/el-armado-story/historia-1080.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-story/historia-1080.webp",
+      "bytes": 85986,
+      "sha256": "974ac33429bbfa92a4880473deecd5360d0462ad0ab49292950f5f5c41940995"
+    },
+    {
+      "from": "assets/images/el-armado-story/historia-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-story/historia-400.webp",
+      "bytes": 29222,
+      "sha256": "1856364c6dd1ef5b8bad1d0a228cecd4049b6dc96ca3e13c120da9bfb07872c3"
+    },
+    {
+      "from": "assets/images/el-armado-web/afiche-500.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/afiche-500.webp",
+      "bytes": 41468,
+      "sha256": "a5a46a7c55b3a4b6861884bfb8b42dc5d94af95ef478fa1ed9ef8f06bf0ce4c8"
+    },
+    {
+      "from": "assets/images/el-armado-web/historia-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/historia-400.webp",
+      "bytes": 30474,
+      "sha256": "52b7fc01dfe335e81a6f5c756648a6cd153c31cfcf424f25e5852e0cc068d43b"
+    },
+    {
+      "from": "assets/images/el-armado-web/historia-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/historia-800.webp",
+      "bytes": 67098,
+      "sha256": "56bf4f9be5af232f36e269a23b9addfd2cae0e96bb724759ad8bdf9c21b3ab1b"
+    },
+    {
+      "from": "assets/images/el-armado-web/ilustracion-color-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/ilustracion-color-400.webp",
+      "bytes": 47540,
+      "sha256": "52aa4d1fbf0208cd6eaa8735f4be9e3860caa8c82bdaeb2b39b83e4de2f78931"
+    },
+    {
+      "from": "assets/images/el-armado-web/ilustracion-trazo-976.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/ilustracion-trazo-976.webp",
+      "bytes": 173090,
+      "sha256": "6adddfdd243974413e57d5142960d4a76d19922fe1514e7ffa5a40f42834ffdf"
+    },
+    {
+      "from": "assets/images/el-armado-web/marca-480.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/marca-480.webp",
+      "bytes": 14772,
+      "sha256": "dd3df5f5909dc6dca10772232d8fec49303d9ef9d0828dcbbcf6a29fa2e6506a"
+    },
+    {
+      "from": "assets/images/el-armado-web/marca-863.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/marca-863.webp",
+      "bytes": 8268,
+      "sha256": "0930f3d4821841e26bebe535356cb977d9f77f45132d63e9887d2d30ebf0f7a6"
+    },
+    {
+      "from": "assets/images/el-armado-web/sello-320.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/sello-320.webp",
+      "bytes": 10842,
+      "sha256": "7734bc41ab50626ee5ba7b6ce0e41bc555b9c84135fb7af45927fc720532a4fb"
+    },
+    {
+      "from": "assets/images/el-armado-web/sello-640.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/el-armado-web/sello-640.webp",
+      "bytes": 23792,
+      "sha256": "f66f6c55339f041fb9757be608daa110ee101fdfe95a2f4bdab0bb8bfb3d864c"
+    },
+    {
+      "from": "assets/images/olas-ditella/BANNER.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/BANNER.png",
+      "bytes": 37091,
+      "sha256": "3254a5a1b7e9c625233e0c74f48e72f0898e02bd4903277bbec55aa2097a79dc"
+    },
+    {
+      "from": "assets/images/olas-ditella/Logo.svg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/Logo.svg",
+      "bytes": 26084,
+      "sha256": "cba28caac410a1021746e95adb653da275afb2c16c16e03e2a23d5c596a846e3"
+    },
+    {
+      "from": "assets/images/olas-ditella/OLAS.md",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/OLAS.md",
+      "bytes": 680,
+      "sha256": "7e5344a93b412c958500f8eb9f8feb1fb9f0a4b3a88d5bb269fcb5e6478daeee"
+    },
+    {
+      "from": "assets/images/olas-ditella/VARIANTES 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/VARIANTES 1.png",
+      "bytes": 36988,
+      "sha256": "60f94b5d0b20d50e7a112f965091a2205a8aa5307a0910538ce74fd7a6305c36"
+    },
+    {
+      "from": "assets/images/olas-ditella/VARIANTES 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/VARIANTES 2.png",
+      "bytes": 12887,
+      "sha256": "cf844055e41c01ac536a8cd205a4f46d60fdc14c2632d66761b6e15c0977c38e"
+    },
+    {
+      "from": "assets/images/olas-ditella/VARIANTES 4.jpeg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/VARIANTES 4.jpeg",
+      "bytes": 29916,
+      "sha256": "a956b074becd3de07a297be35b0bca8569690acda2c8927116f7a39fb99bd07d"
+    },
+    {
+      "from": "assets/images/olas-ditella/VARIANTES 5.jpeg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/VARIANTES 5.jpeg",
+      "bytes": 41105,
+      "sha256": "ce4a71875e7392c7790d50530b4b1f450f66f6cf47c514884e6307fba967bb8c"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 1-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 1-1600.webp",
+      "bytes": 201512,
+      "sha256": "2ef7202f339a0a35dc02084042f0f75690445bde23a42a3a5375f7d0ef62ebcb"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 1-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 1-800.webp",
+      "bytes": 76056,
+      "sha256": "9857e505763007408a1d90ce235071333fab07eabcf9b462028b78d7ccdeb3eb"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 1.png",
+      "bytes": 6267199,
+      "sha256": "2f1c5615592baf5fb3add8192cfbbdd0091ce0428cbbf56a073b05d71184bdb1"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 2-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 2-1600.webp",
+      "bytes": 148152,
+      "sha256": "977c842f4e540a457300ec59e3f361784921e32e93b587dec40db68a33239f1c"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 2-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 2-800.webp",
+      "bytes": 54164,
+      "sha256": "31c89e67aa778697bc4281b6116c781010c35b64fedb81538e337e57f86546b4"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 2.png",
+      "bytes": 5555536,
+      "sha256": "864bba83e44c44fb8a0aaa9a64dbc4fce69442ad04eded5d773daf73e39900f7"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 3-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 3-1600.webp",
+      "bytes": 127916,
+      "sha256": "18b088d23468f95b997351ae515b5652680a8084ecf1f67317f162295fe5648e"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 3-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 3-800.webp",
+      "bytes": 47174,
+      "sha256": "f88c227cd5093b090f6707152c16f850239e9af7794cd80df326b9650c314b56"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 3.png",
+      "bytes": 4882598,
+      "sha256": "640e8d341f109c1a292a10a751f7ae1985eabd8ea3fddb1a1081b7d4760eadf9"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 4-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 4-1600.webp",
+      "bytes": 112814,
+      "sha256": "19b49cef60064f4b9904bb4ffd0bb2b5f242b68030541264cc1e0b0a800fc7b1"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 4-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 4-800.webp",
+      "bytes": 42186,
+      "sha256": "a7e8d6f4a0c0240bfc8b4a03e3f46551035f27185f6a08b079e0178e1fd8508c"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 4.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 4.png",
+      "bytes": 5115178,
+      "sha256": "0b82c21550bcd1e6767f6536f90e9cee0f603613337faa255c57d0ab385637aa"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 5-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 5-1600.webp",
+      "bytes": 140278,
+      "sha256": "9c86c2fce205cd0b6206197a83e21fce63251949ab322d8d1c586d6503cbf78b"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 5-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 5-800.webp",
+      "bytes": 51094,
+      "sha256": "deaa69b334f1494d15109678fe37a9a5883e46b3186e9fad4c66df47ab399feb"
+    },
+    {
+      "from": "assets/images/olas-ditella/poster 5.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella/poster 5.png",
+      "bytes": 4967124,
+      "sha256": "d4d60dd1fa7a1e1704aa1320700d47ea68bd52d8ee3c97f8a5d893a7425a36e6"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-1-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-1-1600.webp",
+      "bytes": 225532,
+      "sha256": "82590def65aa5172426e90bf8d9fd073a2a0f1eddc86b084eb2f88662ed49268"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-1-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-1-400.webp",
+      "bytes": 26204,
+      "sha256": "3369dbfcc65fa9af3276667ee3a7736b3ec0ef0ad2b3f5bbc8178c7bcdeb53cb"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-2-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-2-1600.webp",
+      "bytes": 166648,
+      "sha256": "86196262c12f8e8077a1aad3da70d6bf3bf6d067557d6324fb3accb3982e7fd1"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-2-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-2-400.webp",
+      "bytes": 22006,
+      "sha256": "53c31462c65d2f47d2170d18cca5dcb5981fec0a261f6ad04607fc29d24e1498"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-3-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-3-1600.webp",
+      "bytes": 145554,
+      "sha256": "a6ca24a8de5aee06ec35b50bbdbbd1c9cfd799a38f7e1bec5a1dff34a82a733a"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-3-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-3-400.webp",
+      "bytes": 20152,
+      "sha256": "8dafbfeec74cb210ece93fb03c7b656b7a8a9e32c7c7af524c6ea91f095f14ed"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-4-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-4-1600.webp",
+      "bytes": 158584,
+      "sha256": "efbde4c817ea4ac446dc70bf46590fc0928e5ba0526d42b4a8914d4c3cdbb591"
+    },
+    {
+      "from": "assets/images/olas-ditella-story/afiche-4-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/olas-ditella-story/afiche-4-400.webp",
+      "bytes": 21146,
+      "sha256": "fafe393c224ac2b62c40d05fd2f902176ea177dd9b031dcd92d4bda11da6be03"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4109-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4109-1600.webp",
+      "bytes": 406572,
+      "sha256": "840839b2c0b314e642eea082fb99bd8bdc82d2d96c7a9ccda3ddc20871468af8"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4109.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4109.JPG",
+      "bytes": 811902,
+      "sha256": "8db6b0bac8b02edaae34ef5b59ccb6049694c67003b4813976fe94ec35d2c5f1"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4144-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4144-1600.webp",
+      "bytes": 278172,
+      "sha256": "3246d01bf0868a4278deeb718a5799a282c14fd82a228902ced940e981bd6d4e"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4144.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4144.JPG",
+      "bytes": 666492,
+      "sha256": "ab06c04abcce515f955cb8051826906f7b00f8408996dba3e48912fa13e3e167"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4246-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4246-1600.webp",
+      "bytes": 294178,
+      "sha256": "c3fd2a1b1d98460f19e25b51989cec659496087db342c8bf38009e2d62d122c6"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4246.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4246.JPG",
+      "bytes": 729106,
+      "sha256": "c29bc9a74c5144ec93d1b268e3351f0c0881dd048c40f478c0f24661f5f0642c"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4452-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4452-1600.webp",
+      "bytes": 447974,
+      "sha256": "5a270f50a57bf8b5e7aed109e806ea95daca7f57ff007cbf8f278ffdd4da09a4"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4452-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4452-800.webp",
+      "bytes": 205214,
+      "sha256": "9a2fd1c270e210a6ff29a37cda77ef2dd0b3ea6d0ef7ae382761cba072322b84"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4452.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4452.JPG",
+      "bytes": 888229,
+      "sha256": "c10071ef7705380b0d53ed2edaf227be2f357a849992a984b1216561e3e65916"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4484-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4484-1600.webp",
+      "bytes": 252808,
+      "sha256": "2f2f63ffa12e73cda806118efaa340187e90ac42953803119068e9ef27cce8a8"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4484.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4484.JPG",
+      "bytes": 586396,
+      "sha256": "d42f9ead5de60999ca5cb549f5c0c1c8d4567474cd9d6ee9fb0f5f6aab5e6bb3"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4685-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4685-1600.webp",
+      "bytes": 459734,
+      "sha256": "5dd2ea81e9170603cdc4b22442d1b4957be27157e32503983f44eecec65c6d9b"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4685.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4685.JPG",
+      "bytes": 882192,
+      "sha256": "ee46df5b983754e0c2d9e4c4ba416c0d8e458ca8d2eef4c574c4231e519b2a4a"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4710-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4710-1600.webp",
+      "bytes": 390878,
+      "sha256": "e477e03274454c9c0797537a9e1ba289589db3b012cd5910e9b61a5c930df45a"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4710.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4710.JPG",
+      "bytes": 1113320,
+      "sha256": "21b0a8fa4e0b12ebdd95f8ea4684690b24758887079c21b16be333469bde0eb3"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4775-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4775-1600.webp",
+      "bytes": 133038,
+      "sha256": "8fe8def44fbe0122c45ad521e7e267fa4d4c8056f4183c3cf153c617d65ff431"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4775.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4775.JPG",
+      "bytes": 623080,
+      "sha256": "4d3492494f69569ff525bf46aeb08cc68a99c76d5f82037016502502e0e19f6d"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4800-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4800-1600.webp",
+      "bytes": 255054,
+      "sha256": "68a072bb121215932b51bad76c911fd5cc96a76fb77614040725b210819a81d5"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4800.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4800.JPG",
+      "bytes": 836093,
+      "sha256": "0489a2ff5027b2218bd75cdc0b7c2800074fd97dc5ef47b9bd72afbfbe118a83"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4868-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4868-800.webp",
+      "bytes": 41710,
+      "sha256": "f9369545ac5ce29696df49aa8a14df6e2dd703e8b560c7a6c0b6974db6e695a5"
+    },
+    {
+      "from": "assets/images/orfeo/IMG_4868.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/IMG_4868.JPG",
+      "bytes": 602645,
+      "sha256": "a5cea15aba58d1822b566a2804185fcce160e54b5d8f29b297722a838065c626"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-14T233653.972-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-14T233653.972-800.webp",
+      "bytes": 49580,
+      "sha256": "34eab6ac8def0c9cc20bcc10fa7456984ab61c3691604c7db212317e21b099e1"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-14T233653.972.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-14T233653.972.png",
+      "bytes": 757870,
+      "sha256": "7d49b9ed42f66ff0df0bb47d7668d4eb31b6822b97576303d75ce12ed1f1c3d0"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T000714.714-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T000714.714-1600.webp",
+      "bytes": 124946,
+      "sha256": "431fd630a1562720237d64fef35d300b8f7c019ccc3cd75e4d08884cb63e8899"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T000714.714.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T000714.714.png",
+      "bytes": 281067,
+      "sha256": "e6e9e8ca545c5a1998c8e2686e793e618d0edf2ea8009ca100570a3b643b14e5"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T000735.657-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T000735.657-1600.webp",
+      "bytes": 115392,
+      "sha256": "c332545375715a1f8168d9dae9eac926b666144715d5bf2ca8216c47437644c4"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T000735.657.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T000735.657.png",
+      "bytes": 277333,
+      "sha256": "88827660bb126c7216869b654bea34077925669aae9976fff7be06d3f12957e1"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T000851.918-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T000851.918-1600.webp",
+      "bytes": 79956,
+      "sha256": "b5b522d9ce40bf4fa10cc0e8572d35edb6f18b5d48f5eaad78d2ffaad2cf2d0d"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T000851.918.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T000851.918.png",
+      "bytes": 265094,
+      "sha256": "855db2e69464c2965f221517ca6d8e4b980bc98d04c98a10fceb41c5dcda20c3"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T001047.154.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T001047.154.png",
+      "bytes": 178042,
+      "sha256": "9b5537ed3267b33eb2cf25f3edcfcc6171ccc200b617dce9327bd3b76f551864"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002752.937-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002752.937-1600.webp",
+      "bytes": 101918,
+      "sha256": "fa237f8a572f015f447a8f1adcc5bd2f0752eba9cb1e12b07362fe6e108633ba"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002752.937.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002752.937.png",
+      "bytes": 343162,
+      "sha256": "bb4c20669f8a554d4ac2f71cdaf331fe257fa06caf53960a0c671d793bada433"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002807.082-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002807.082-1600.webp",
+      "bytes": 104122,
+      "sha256": "797681088c429dc745dd3f6ac408d8ea359de86e2d3d503aa9d0a0cb5012575c"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002807.082.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002807.082.png",
+      "bytes": 343169,
+      "sha256": "7f5686dfbb14d1510d13fb5e53df8ac2c0b0f4f16ad29435185cc3e4836f5c72"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002835.717-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002835.717-1600.webp",
+      "bytes": 97320,
+      "sha256": "54fb5fd56e9d6fa93818918dee539b643c151832ed96312a9336ee8e93b2d90a"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002835.717.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002835.717.png",
+      "bytes": 343167,
+      "sha256": "2d2962d16e5641fae84650c36afe98eadcc85c1d4fc5e19e7ab38f1636881f4b"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002850.326-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002850.326-1600.webp",
+      "bytes": 96820,
+      "sha256": "14c2523ae6fdc4318cb6d3acc473fcb91283f892d3570d5283131b91fa2aa77c"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T002850.326.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T002850.326.png",
+      "bytes": 343168,
+      "sha256": "b283f73704ac86cf8194499515e6b9ec83303142cc35568728ba011256e09093"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T140807.136-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T140807.136-1600.webp",
+      "bytes": 310698,
+      "sha256": "3cb0e573e6d1677d85fea5fc2e7979f307e4a6b470c34e75e2c78fbbe790c9e6"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T140807.136-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T140807.136-800.webp",
+      "bytes": 114790,
+      "sha256": "6fd0462b4b7accfaa49537102f1353c190e33524353558179ff2d01a8677300b"
+    },
+    {
+      "from": "assets/images/orfeo/New Project - 2026-05-15T140807.136.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/New Project - 2026-05-15T140807.136.png",
+      "bytes": 313464,
+      "sha256": "ca21d4105f6a24e30c0c469c3693864f9d59567e4b90cc5572123c551ffcf295"
+    },
+    {
+      "from": "assets/images/orfeo/ORFEO.md",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/ORFEO.md",
+      "bytes": 19321,
+      "sha256": "ed7dca0eca65dea74325996b2cdc3a0b939ab34e7530c99450333da0ea02c13d"
+    },
+    {
+      "from": "assets/images/orfeo/PORTADA-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/PORTADA-1600.webp",
+      "bytes": 316334,
+      "sha256": "f2a676073d2261dc6cae1d5db4d172247bd4bee8882ba23b489c2a8dc2e5e9c1"
+    },
+    {
+      "from": "assets/images/orfeo/PORTADA.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/PORTADA.JPG",
+      "bytes": 1033891,
+      "sha256": "4f56f7107291007f0c0e289a7a48d9b85e157454908ee8826f3d2dce4b9ba616"
+    },
+    {
+      "from": "assets/images/orfeo/wordmark-1200.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo/wordmark-1200.webp",
+      "bytes": 18512,
+      "sha256": "58cbe5ddd5167d676244ed9838ff20dd3d3af37650b5a333eee91963df12c383"
+    },
+    {
+      "from": "assets/images/orfeo-story/lavalle-frente-1536.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo-story/lavalle-frente-1536.webp",
+      "bytes": 388764,
+      "sha256": "d8e56fbec2060e4e264a11d621c1e003904016edb8f1184b24834cbbd1242d25"
+    },
+    {
+      "from": "assets/images/orfeo-story/lavalle-frente-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo-story/lavalle-frente-400.webp",
+      "bytes": 36584,
+      "sha256": "acf19282fa713575e80cec21c76d6a4f121e1bd03845a07400f8ea2dd7e18755"
+    },
+    {
+      "from": "assets/images/orfeo-story/talcahuano-frente-1536.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo-story/talcahuano-frente-1536.webp",
+      "bytes": 447238,
+      "sha256": "025717e931eeb0286aa534e00000a9509124008a9d3532f4e2e596372e54b7a6"
+    },
+    {
+      "from": "assets/images/orfeo-story/talcahuano-frente-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo-story/talcahuano-frente-400.webp",
+      "bytes": 19938,
+      "sha256": "3822b7ad6b26184060965ba088e3a298a87d8eaac1c11b39c788b02498b56f88"
+    },
+    {
+      "from": "assets/images/orfeo-story/viamonte-frente-1536.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo-story/viamonte-frente-1536.webp",
+      "bytes": 354190,
+      "sha256": "a724f3dec24a9760c75d8004d1767980509851c5bf126a22dca0241a228eaa23"
+    },
+    {
+      "from": "assets/images/orfeo-story/viamonte-frente-400.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/orfeo-story/viamonte-frente-400.webp",
+      "bytes": 42330,
+      "sha256": "6c027e5b56b34016f5d09bd98094d168c955d085d5a69a714d37abf297ea7c3a"
+    },
+    {
+      "from": "assets/images/personal-posters/100-horses-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/100-horses-1600.webp",
+      "bytes": 1258456,
+      "sha256": "eb6118aac9d9590732566f8633256f20e9d5ed0d2df89f76f4acd48e77771a83"
+    },
+    {
+      "from": "assets/images/personal-posters/100-horses-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/100-horses-800.webp",
+      "bytes": 178838,
+      "sha256": "6a9ec85c614279b2d094556536fcc35539d662added833e897045723e91f686c"
+    },
+    {
+      "from": "assets/images/personal-posters/1984-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/1984-1600.webp",
+      "bytes": 233594,
+      "sha256": "07a69f4e2015fdca28f697cb57deafead8ab568509255aca83fa18c8dcadb4b3"
+    },
+    {
+      "from": "assets/images/personal-posters/1984-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/1984-800.webp",
+      "bytes": 65396,
+      "sha256": "52b4a07c7c93efd1acbbd84ad42f7731935fe1b015451219de083c7aa375d889"
+    },
+    {
+      "from": "assets/images/personal-posters/animal-farm-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/animal-farm-1600.webp",
+      "bytes": 827990,
+      "sha256": "8177ec13f57390c94145ad46925d4816f1bb7b1757cec044da6e2e54c1e175d1"
+    },
+    {
+      "from": "assets/images/personal-posters/animal-farm-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/animal-farm-800.webp",
+      "bytes": 98650,
+      "sha256": "a52d007cea3ab56379c2658be6695c1895809a26a363457260999bb83f388b31"
+    },
+    {
+      "from": "assets/images/personal-posters/animal-farm-variante-02-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/animal-farm-variante-02-1600.webp",
+      "bytes": 241810,
+      "sha256": "9cff306ebac187f445f53f83e621f57b7c7a91ef7eaf2bde96f31696742c3158"
+    },
+    {
+      "from": "assets/images/personal-posters/animal-farm-variante-02-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/animal-farm-variante-02-800.webp",
+      "bytes": 57800,
+      "sha256": "3e0e8f2e4a5dbe3cc7e3487a7c431bca50f42e5757fe4eb0d4efd47ca9889015"
+    },
+    {
+      "from": "assets/images/personal-posters/basement-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/basement-1600.webp",
+      "bytes": 345848,
+      "sha256": "9b6b3c9cba1939662ec22efac11148cfc31c8fc977327d83a297f7739b85547d"
+    },
+    {
+      "from": "assets/images/personal-posters/basement-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/basement-800.webp",
+      "bytes": 90412,
+      "sha256": "1ee7e5429be0099ca6ffc79f623c7d7af39ae89216c38c8845568bbd490cb429"
+    },
+    {
+      "from": "assets/images/personal-posters/blood-meridian-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/blood-meridian-1600.webp",
+      "bytes": 284730,
+      "sha256": "4a151ebf2be764f9d21abc23d5df090b2c6c36ab211499e962d2821e503d217b"
+    },
+    {
+      "from": "assets/images/personal-posters/blood-meridian-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/blood-meridian-800.webp",
+      "bytes": 80750,
+      "sha256": "2c42c80c24c1daf5bb6fb323b2d0590221a7436b5e628f9a8ee69befe1363aad"
+    },
+    {
+      "from": "assets/images/personal-posters/bugonia-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/bugonia-1600.webp",
+      "bytes": 374656,
+      "sha256": "247100cce886debee0e87b18e97d0617e3e52c50faba949d529770edc926d1d0"
+    },
+    {
+      "from": "assets/images/personal-posters/bugonia-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/bugonia-800.webp",
+      "bytes": 120312,
+      "sha256": "a8d1f5bbc8c9bbb5109c6fbae3681a63b2a28590da4aed899070ee210a609145"
+    },
+    {
+      "from": "assets/images/personal-posters/caballos-rosa-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/caballos-rosa-1600.webp",
+      "bytes": 375136,
+      "sha256": "360cd33ddd064822f1e5677d5802c1c21cf434130120891ba96be018697dc2e6"
+    },
+    {
+      "from": "assets/images/personal-posters/caballos-rosa-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/caballos-rosa-800.webp",
+      "bytes": 83856,
+      "sha256": "a1159353805b4dbac7341e465ec308b5427751ca5c8b6f9845857e7a71bacf6a"
+    },
+    {
+      "from": "assets/images/personal-posters/carrie-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/carrie-1600.webp",
+      "bytes": 572546,
+      "sha256": "231bc5c7dfd104a7f02ef62b9a33e36229ee38d6a7c1d47e66ef58bf161b4999"
+    },
+    {
+      "from": "assets/images/personal-posters/carrie-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/carrie-800.webp",
+      "bytes": 152232,
+      "sha256": "b74ba41df38bb1e41c0d21047dfd702b277dfa647d346dddae6cffa04cbbf324"
+    },
+    {
+      "from": "assets/images/personal-posters/celestial-bodies-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/celestial-bodies-1600.webp",
+      "bytes": 726606,
+      "sha256": "9eb2502c59677ddfc5ba54a4377adae693c9d3d3fd586b776b3e7ce9cc93dbbc"
+    },
+    {
+      "from": "assets/images/personal-posters/celestial-bodies-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/celestial-bodies-800.webp",
+      "bytes": 76164,
+      "sha256": "619ef6b055cdb156a90d2c3efed4848dc8abe81ae0a279980721637384bc50be"
+    },
+    {
+      "from": "assets/images/personal-posters/composicion-azul-y-verde-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/composicion-azul-y-verde-1600.webp",
+      "bytes": 66986,
+      "sha256": "e55f6326e9288f17d1df8fc8abd41bdce0dbe577c3cdad0a695cac29a04bc3d8"
+    },
+    {
+      "from": "assets/images/personal-posters/composicion-azul-y-verde-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/composicion-azul-y-verde-800.webp",
+      "bytes": 19544,
+      "sha256": "5254b900bf01526367b7213681cf30ed0150ddaba4bac283f2ff34fb48256510"
+    },
+    {
+      "from": "assets/images/personal-posters/copenhague-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/copenhague-1600.webp",
+      "bytes": 398510,
+      "sha256": "57541c3fcbf784b586eaab2d2d898a36e4b6f86caf5610e04420a8632df03c9f"
+    },
+    {
+      "from": "assets/images/personal-posters/copenhague-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/copenhague-800.webp",
+      "bytes": 95012,
+      "sha256": "15161b8bd995cfa0dd1cb99283f86764198fdd349475a85dc460ac26f84b053b"
+    },
+    {
+      "from": "assets/images/personal-posters/distorted-realities-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/distorted-realities-1600.webp",
+      "bytes": 668396,
+      "sha256": "6a3e3b7aa5e8be30a1001caf590a82b06c230ee4fcf073b9ae5db320a2fd07ce"
+    },
+    {
+      "from": "assets/images/personal-posters/distorted-realities-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/distorted-realities-800.webp",
+      "bytes": 150136,
+      "sha256": "ad45bee0838c454c335f4d8f1928fcfb3b24a094ca2ff23f49ae539cce280620"
+    },
+    {
+      "from": "assets/images/personal-posters/dreamers-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/dreamers-1600.webp",
+      "bytes": 681596,
+      "sha256": "340a1595c08cf74ffd85ef42b8c0fd9bc0a5364691f3d4ee2ce8671aba3f78e1"
+    },
+    {
+      "from": "assets/images/personal-posters/dreamers-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/dreamers-800.webp",
+      "bytes": 141436,
+      "sha256": "0d7e8707d045b09b81a7e675673dd23e4e6f52c2b7b3b6fa86b0b2a7170f9feb"
+    },
+    {
+      "from": "assets/images/personal-posters/dylan-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/dylan-1600.webp",
+      "bytes": 986104,
+      "sha256": "8c61a2bd698123c30b1c94226efbddf996b6ef3cd6e948f3765c055244fea8b3"
+    },
+    {
+      "from": "assets/images/personal-posters/dylan-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/dylan-800.webp",
+      "bytes": 208488,
+      "sha256": "6abbf2925c2764696a3d23f49b3d1794fc92a491eabea5262b2b24d9e7f07da0"
+    },
+    {
+      "from": "assets/images/personal-posters/dylan-amarillo-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/dylan-amarillo-1600.webp",
+      "bytes": 1105604,
+      "sha256": "a26ec53a373366d7a2bf6c65fee31239308f9269a2956e101295cfdfa57e2430"
+    },
+    {
+      "from": "assets/images/personal-posters/dylan-amarillo-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/dylan-amarillo-800.webp",
+      "bytes": 173776,
+      "sha256": "d69400659c2d6954c0e0f2ab220bcf84f608de0afcdba6ab2ef6b77db92758a7"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-cadena-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-cadena-1600.webp",
+      "bytes": 401700,
+      "sha256": "da6f176367f5f75d497e35305f4891c0540239a6a52ecf70f09a4557991bc2c9"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-cadena-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-cadena-800.webp",
+      "bytes": 89644,
+      "sha256": "3323076b1be01d2dca76e0082f9cdac5b4cd8473e19406acd50bdf31571e27d1"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-candelabro-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-candelabro-1600.webp",
+      "bytes": 221970,
+      "sha256": "fdd3c094f66997ace28536eeedd94993bc5580a7562b1b887d3607ae85c7fdb4"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-candelabro-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-candelabro-800.webp",
+      "bytes": 63216,
+      "sha256": "57f79945c941d9d3ddf2a6b96e6b9889604a9bfbc18a6bce6140c3626edb759a"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-mosaico-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-mosaico-1600.webp",
+      "bytes": 472690,
+      "sha256": "34a3aea7f9557cd3a2bbcaf6ff0808b7349fce47b577d2c3586a6d53752ba0e4"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-mosaico-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-mosaico-800.webp",
+      "bytes": 142368,
+      "sha256": "c5c2bed2e4cde8bba1b5bd3228df8aea7899f3d70bcca887beb29c492f7af167"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-naranja-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-naranja-1600.webp",
+      "bytes": 196636,
+      "sha256": "bfc86ad5475edf9d607bd2dd7dfcf3980c1ad59f0f8b46b5c0d8161fb50350be"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-naranja-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-naranja-800.webp",
+      "bytes": 49716,
+      "sha256": "886cf1f5cdcb4f0ee33e5b9793ab7d39ec3381c95ee74ab92d18471ad5a7b45e"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-ornamento-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-ornamento-1600.webp",
+      "bytes": 308324,
+      "sha256": "128e4cf4bb4b4ad0d9a1ae33b57828082ad03bb3318b658d4997d05255633e88"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-ornamento-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-ornamento-800.webp",
+      "bytes": 76384,
+      "sha256": "124a035a757490a48a7b9b87a128a73d771a2ec7dc65bbe29a46e04f04400a19"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-vegetal-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-vegetal-1600.webp",
+      "bytes": 297454,
+      "sha256": "6ba5d77ab263c73ce3d510b6cfb51f901943a320db050ad2e475ecd57ac08339"
+    },
+    {
+      "from": "assets/images/personal-posters/endo-explore-vegetal-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/endo-explore-vegetal-800.webp",
+      "bytes": 75364,
+      "sha256": "87c30db891ee51fa356dfdec522fa5b715b1082f1f89eae89444070a7b28d950"
+    },
+    {
+      "from": "assets/images/personal-posters/eyes-wide-shut-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/eyes-wide-shut-1600.webp",
+      "bytes": 1355712,
+      "sha256": "9446a63ac58a203b1c650b9b81aa7752bcb6c5f038e10a638b458ddd805bcfde"
+    },
+    {
+      "from": "assets/images/personal-posters/eyes-wide-shut-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/eyes-wide-shut-800.webp",
+      "bytes": 234122,
+      "sha256": "0cdaf4c4c2b2c3bfb804590066689e4050748c0737cf79d0290f93478f25d52c"
+    },
+    {
+      "from": "assets/images/personal-posters/eyes-wide-shut-variante-02-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/eyes-wide-shut-variante-02-1600.webp",
+      "bytes": 202378,
+      "sha256": "f92a2e6f2b14962981493893ad3dfdb5450abd8da42cf723d4299a96dafac8aa"
+    },
+    {
+      "from": "assets/images/personal-posters/eyes-wide-shut-variante-02-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/eyes-wide-shut-variante-02-800.webp",
+      "bytes": 59456,
+      "sha256": "832f4a8168e769966a925da5f08df80b13862767910b432b8051106ac489cf5e"
+    },
+    {
+      "from": "assets/images/personal-posters/faust-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/faust-1600.webp",
+      "bytes": 217820,
+      "sha256": "9d3781ffa17fb7322ae3bb574199cbb5db62fceb15f4163af05ab91e61827c7f"
+    },
+    {
+      "from": "assets/images/personal-posters/faust-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/faust-800.webp",
+      "bytes": 63292,
+      "sha256": "2469414ece32449245102a63a2d5f6b10d98c313a46b0c270400ce613d43f2f4"
+    },
+    {
+      "from": "assets/images/personal-posters/faust-variante-02-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/faust-variante-02-1600.webp",
+      "bytes": 232864,
+      "sha256": "732b861e226f446b74202b72d4af3783801f209677d726d3dfae22822ea177d0"
+    },
+    {
+      "from": "assets/images/personal-posters/faust-variante-02-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/faust-variante-02-800.webp",
+      "bytes": 74370,
+      "sha256": "729efbd9701d6affd72195b528f31224e9608e7b2c296587538c7f6aebbcf6e8"
+    },
+    {
+      "from": "assets/images/personal-posters/fly-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/fly-1600.webp",
+      "bytes": 251288,
+      "sha256": "24cb82d6e7e0b10e4a96604d85c34695ce0be224c019469f8f497efb884cfb90"
+    },
+    {
+      "from": "assets/images/personal-posters/fly-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/fly-800.webp",
+      "bytes": 45836,
+      "sha256": "6569595014cb9aa300102f8c3624a9eded55171f64ebd1617fcf01aaa2c2196e"
+    },
+    {
+      "from": "assets/images/personal-posters/follow-the-light-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/follow-the-light-1600.webp",
+      "bytes": 669872,
+      "sha256": "30b4b4f6fcec92e385de07f4ae31a6f40226fe9009f0295f8fbd51615fc87f69"
+    },
+    {
+      "from": "assets/images/personal-posters/follow-the-light-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/follow-the-light-800.webp",
+      "bytes": 128560,
+      "sha256": "c6756cf61b215e8bf02725c85958a2d710c5741ba7319c9512b87401af37e9ca"
+    },
+    {
+      "from": "assets/images/personal-posters/he-who-ruled-all-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/he-who-ruled-all-1600.webp",
+      "bytes": 217506,
+      "sha256": "bc2e8e261b8e844d38c79e9eb1fceee0c4760c8e37d8fc045176bedf25205597"
+    },
+    {
+      "from": "assets/images/personal-posters/he-who-ruled-all-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/he-who-ruled-all-800.webp",
+      "bytes": 53692,
+      "sha256": "0e3b85fe25a1a6c365186b25b8643c45e5c088997002da26e720b33e77206c7a"
+    },
+    {
+      "from": "assets/images/personal-posters/la-chimera-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/la-chimera-1600.webp",
+      "bytes": 372202,
+      "sha256": "6cf5be67064b8ea1718447971f624ccc25e616413b3086629f5dba481e678dea"
+    },
+    {
+      "from": "assets/images/personal-posters/la-chimera-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/la-chimera-800.webp",
+      "bytes": 83194,
+      "sha256": "50031f94cba17f5000626499d28c522c17c174b031cc25aa31b4ebd8732e8f02"
+    },
+    {
+      "from": "assets/images/personal-posters/light-sources-luz-violeta-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/light-sources-luz-violeta-1600.webp",
+      "bytes": 147446,
+      "sha256": "c649541bbe04aed303f43464b5a5608748e2c969d677ff22be5a9442592fadc9"
+    },
+    {
+      "from": "assets/images/personal-posters/light-sources-luz-violeta-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/light-sources-luz-violeta-800.webp",
+      "bytes": 29750,
+      "sha256": "46c6b32d0b2634f1ab63d66c148e79d9512c7afabf61babaf76c5d1dba7e634f"
+    },
+    {
+      "from": "assets/images/personal-posters/meeting-with-the-sphinx-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/meeting-with-the-sphinx-1600.webp",
+      "bytes": 213662,
+      "sha256": "55098e6c8acc0e3f32a7111383b829cf1253f61112b84e8d435a2cf0ed2d6f9a"
+    },
+    {
+      "from": "assets/images/personal-posters/meeting-with-the-sphinx-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/meeting-with-the-sphinx-800.webp",
+      "bytes": 50238,
+      "sha256": "a81f982685473caf5c86d34f9e25fb0a85e0c5f2233d47aaff1b9ba85adb5fca"
+    },
+    {
+      "from": "assets/images/personal-posters/movement-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/movement-1600.webp",
+      "bytes": 1027094,
+      "sha256": "391e92419f9b65a8d292fb81d845379c14f0683d8c0153a4961029969ceb2562"
+    },
+    {
+      "from": "assets/images/personal-posters/movement-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/movement-800.webp",
+      "bytes": 175604,
+      "sha256": "8f97a1cfd5fac579858a7d75471ed6013dc95e29bb8f0148f260794d60fe3a8d"
+    },
+    {
+      "from": "assets/images/personal-posters/movimiento-caballo-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/movimiento-caballo-1600.webp",
+      "bytes": 492176,
+      "sha256": "0a2529acf13f3b89c206bb64d7bc352056d559f83b0eb4ae1cbb38b69692b9f0"
+    },
+    {
+      "from": "assets/images/personal-posters/movimiento-caballo-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/movimiento-caballo-800.webp",
+      "bytes": 145258,
+      "sha256": "16556a143e666d02f8fd8394f2ad8674ff72d6b5a64bded3f111cc2abcf3497c"
+    },
+    {
+      "from": "assets/images/personal-posters/no-mans-son-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/no-mans-son-1600.webp",
+      "bytes": 515892,
+      "sha256": "f7adc7d0f75b95861f5943e1a2ee2f2a47516e1298c065a3f9060a5212519902"
+    },
+    {
+      "from": "assets/images/personal-posters/no-mans-son-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/no-mans-son-800.webp",
+      "bytes": 69098,
+      "sha256": "ed8501cb5cb487ce79273b1cf9a00bd11f55d58a67bf2ac0ea9a1af14eb19e03"
+    },
+    {
+      "from": "assets/images/personal-posters/nobody-figura-01-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/nobody-figura-01-1600.webp",
+      "bytes": 474520,
+      "sha256": "05aa0179046a4a84977c1670d01966d49919c6f687de3bd4520bb7abbfbeed8e"
+    },
+    {
+      "from": "assets/images/personal-posters/nobody-figura-01-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/nobody-figura-01-800.webp",
+      "bytes": 122930,
+      "sha256": "7e7eca038c996d97607405bccc49a483fb077752f1060134323521d6051d4d54"
+    },
+    {
+      "from": "assets/images/personal-posters/nosferatu-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/nosferatu-1600.webp",
+      "bytes": 389396,
+      "sha256": "f5add776bcdda8656ae8cf7d8e153d99c9ab16437726655220de36b26f8ce82f"
+    },
+    {
+      "from": "assets/images/personal-posters/nosferatu-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/nosferatu-800.webp",
+      "bytes": 109376,
+      "sha256": "171aa94951dac2ca12c44a0a9daaef82a6a901fa055332b35259a236a496bbd0"
+    },
+    {
+      "from": "assets/images/personal-posters/nothing-ever-happened-here-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/nothing-ever-happened-here-1600.webp",
+      "bytes": 308440,
+      "sha256": "de2b32d19d7b2eb7eab55a9d829ed544153a619aeda1cbf9db5be3df06968d1b"
+    },
+    {
+      "from": "assets/images/personal-posters/nothing-ever-happened-here-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/nothing-ever-happened-here-800.webp",
+      "bytes": 96598,
+      "sha256": "d287a032716cfc32cfa0c978502127f1f831deac283fd34763220da00a4cdb0b"
+    },
+    {
+      "from": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/otro-dia-en-el-planeta-tierra-1600.webp",
+      "bytes": 1866916,
+      "sha256": "d2764c4b50b555a6591406924ec601f001a1d5e3901b2aaaef37df2628d2b3a8"
+    },
+    {
+      "from": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/otro-dia-en-el-planeta-tierra-800.webp",
+      "bytes": 387654,
+      "sha256": "37603b4f5588f7433842279040faa3552a98bdab086bb33dc63aac6bfa4392c3"
+    },
+    {
+      "from": "assets/images/personal-posters/paris-texas-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/paris-texas-1600.webp",
+      "bytes": 404590,
+      "sha256": "cdd7615f5ecf6e75c553e94a9454acc3aa60da72a66f5cc3092f3c1ce35bacaf"
+    },
+    {
+      "from": "assets/images/personal-posters/paris-texas-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/paris-texas-800.webp",
+      "bytes": 110852,
+      "sha256": "b37b2b4800c7c76e6a32d1bd684be4eda99c43eb861b8bb948525acfef4719a7"
+    },
+    {
+      "from": "assets/images/personal-posters/pulp-fiction-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/pulp-fiction-1600.webp",
+      "bytes": 758672,
+      "sha256": "dec67c72596e58ef0ef85a510349478d555ef635092e70ad7f4afe22e507063d"
+    },
+    {
+      "from": "assets/images/personal-posters/pulp-fiction-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/pulp-fiction-800.webp",
+      "bytes": 218548,
+      "sha256": "60590ef7a4e26371bc8935c1950c5473a16bab0e8bb557aa3dc95fa3843988ae"
+    },
+    {
+      "from": "assets/images/personal-posters/reflejos-azules-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/reflejos-azules-1600.webp",
+      "bytes": 184724,
+      "sha256": "c22024e0d1596c9e90def207be3120e1632c1c52f4eaa3399f1002db0d5788a1"
+    },
+    {
+      "from": "assets/images/personal-posters/reflejos-azules-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/reflejos-azules-800.webp",
+      "bytes": 49302,
+      "sha256": "812cb9989d1e03bd9975aba9434f984a676e42a782284b1e6fce968cbd489948"
+    },
+    {
+      "from": "assets/images/personal-posters/retrato-azul-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/retrato-azul-1600.webp",
+      "bytes": 494518,
+      "sha256": "fc904d075349e4b1420feadf35b6c864e51195e0a81cbd86b9fff046893b0c6c"
+    },
+    {
+      "from": "assets/images/personal-posters/retrato-azul-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/retrato-azul-800.webp",
+      "bytes": 130472,
+      "sha256": "82a75e04136e945c04254a84d748c0f5155653e29e859cf4630dc410448e9f14"
+    },
+    {
+      "from": "assets/images/personal-posters/retrato-celeste-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/retrato-celeste-1600.webp",
+      "bytes": 177988,
+      "sha256": "bc57716afed43e7cde975d85330911760f7fd4b45f8961f51a54e5deaaf5de2e"
+    },
+    {
+      "from": "assets/images/personal-posters/retrato-celeste-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/retrato-celeste-800.webp",
+      "bytes": 53328,
+      "sha256": "9d65224137e9bf7fb3f01f1196ca91e2d201f7da589e3264e5b1df395e33b225"
+    },
+    {
+      "from": "assets/images/personal-posters/sayonara-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/sayonara-1600.webp",
+      "bytes": 326470,
+      "sha256": "59e030cbded4d4c076e73585fb33864044420a78efec73070ff4e226f5406128"
+    },
+    {
+      "from": "assets/images/personal-posters/sayonara-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/sayonara-800.webp",
+      "bytes": 88544,
+      "sha256": "7bb25bd17f0b1b126d566af61907648e5bb86e7d5cea14119d5203c4ebd7fe3f"
+    },
+    {
+      "from": "assets/images/personal-posters/seventeen-minutes-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/seventeen-minutes-1600.webp",
+      "bytes": 204762,
+      "sha256": "93d5aad9f728ba085b6b26ff1443ded1340c9508846a5e1d85d1901c735f3336"
+    },
+    {
+      "from": "assets/images/personal-posters/seventeen-minutes-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/seventeen-minutes-800.webp",
+      "bytes": 58254,
+      "sha256": "a421d7c6246df518cf27bb4420a55e443790e0ed53e8a2acb72fc4259559d1e3"
+    },
+    {
+      "from": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-1600.webp",
+      "bytes": 383576,
+      "sha256": "b048e919304d34daf24425058576404380b42739fbcf06a2248b879e678ab47e"
+    },
+    {
+      "from": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-800.webp",
+      "bytes": 130314,
+      "sha256": "abc7232d70f7aa8810da2eb47cfa885dee5c24e4aebc330e1e360240be4d8bb1"
+    },
+    {
+      "from": "assets/images/personal-posters/she-was-everyone-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/she-was-everyone-1600.webp",
+      "bytes": 215258,
+      "sha256": "f3a4c88c972a69d03e995cb2482f6d2c51021f996246ad164f6512a7065aa54e"
+    },
+    {
+      "from": "assets/images/personal-posters/she-was-everyone-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/she-was-everyone-800.webp",
+      "bytes": 51848,
+      "sha256": "68e4481bff6e1335846c0a08ce68782e81ea3f8fa9783941d8178b1c0d595907"
+    },
+    {
+      "from": "assets/images/personal-posters/slowthai-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/slowthai-1600.webp",
+      "bytes": 538394,
+      "sha256": "289817c9143fe37762fff0f783d1a3756c081902be86039f49cd9addb11f7a0c"
+    },
+    {
+      "from": "assets/images/personal-posters/slowthai-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/slowthai-800.webp",
+      "bytes": 160010,
+      "sha256": "da0832de944a339d2525eca5ca19b8d23a42d5dc4ef86bbf8c5d87fc38ec2104"
+    },
+    {
+      "from": "assets/images/personal-posters/stand-out-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/stand-out-1600.webp",
+      "bytes": 600738,
+      "sha256": "7e262495c8f000747084064b45e76670791c3e0ff46029245a4e1adc6c362d83"
+    },
+    {
+      "from": "assets/images/personal-posters/stand-out-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/stand-out-800.webp",
+      "bytes": 177694,
+      "sha256": "4c114c03e8bb6ac3852e4089de14f36102a9f6fcbf44134b7d1535a3a66df4d1"
+    },
+    {
+      "from": "assets/images/personal-posters/stop-making-sense-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/stop-making-sense-1600.webp",
+      "bytes": 238072,
+      "sha256": "76f013901db32ec3e0c42905e2ed77be105baf14c00b479dd5991d6725a1a4df"
+    },
+    {
+      "from": "assets/images/personal-posters/stop-making-sense-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/stop-making-sense-800.webp",
+      "bytes": 52782,
+      "sha256": "3e5d54f479fa73921cb32847c08709936f12fe743fe4783cf40b624a7798545b"
+    },
+    {
+      "from": "assets/images/personal-posters/talking-heads-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/talking-heads-1600.webp",
+      "bytes": 256782,
+      "sha256": "c70472cafcb3a0eacb5f9b24df46c323c93bd553d3ba1e3539636358a9136464"
+    },
+    {
+      "from": "assets/images/personal-posters/talking-heads-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/talking-heads-800.webp",
+      "bytes": 83106,
+      "sha256": "46bc8e9f8f3a28622cd1234ba6eaeba9cdc02d6ddcbbb5f156064da677d15908"
+    },
+    {
+      "from": "assets/images/personal-posters/the-beatles-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-beatles-1600.webp",
+      "bytes": 138544,
+      "sha256": "5fd3ae47a6efe6ebcbfb6d115723d48c8106fa67e9b6cfad125badf8fd5736d4"
+    },
+    {
+      "from": "assets/images/personal-posters/the-beatles-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-beatles-800.webp",
+      "bytes": 42144,
+      "sha256": "02dc4cc6b40de81626a83c3fbd28a1c8d162560c98bb7476cf8cb76aa76a3d64"
+    },
+    {
+      "from": "assets/images/personal-posters/the-end-of-the-beginning-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-end-of-the-beginning-1600.webp",
+      "bytes": 715784,
+      "sha256": "5a42dd2b157c0f442cad67a2307743c5d06aace346bbcd12f13d209902f9c09b"
+    },
+    {
+      "from": "assets/images/personal-posters/the-end-of-the-beginning-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-end-of-the-beginning-800.webp",
+      "bytes": 169078,
+      "sha256": "09c0369cb449f91e120b964652368725a6bf9933a6dd55ffc21d02b1f7cf6f7c"
+    },
+    {
+      "from": "assets/images/personal-posters/the-monk-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-monk-1600.webp",
+      "bytes": 172456,
+      "sha256": "cb5560faed38f62c9a599a71857616b38c666049ac833518b8a46e3b69102db2"
+    },
+    {
+      "from": "assets/images/personal-posters/the-monk-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-monk-800.webp",
+      "bytes": 47594,
+      "sha256": "6726927887443fbdc6135a146b2a44e5ddbd15f617858be5639707bb8f69f9f7"
+    },
+    {
+      "from": "assets/images/personal-posters/the-old-king-from-the-north-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-old-king-from-the-north-1600.webp",
+      "bytes": 296170,
+      "sha256": "2240b7d612748046100ef973337d83c1c04c2f88a0827dea1d77ac2064bdcf1b"
+    },
+    {
+      "from": "assets/images/personal-posters/the-old-king-from-the-north-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-old-king-from-the-north-800.webp",
+      "bytes": 73514,
+      "sha256": "5415f687ac4e40290ce420bd9009df44b37d59eba9b3f26ecea42b978e3e6eeb"
+    },
+    {
+      "from": "assets/images/personal-posters/the-seventh-seal-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-seventh-seal-1600.webp",
+      "bytes": 256090,
+      "sha256": "46b408fc455184d8b2e290fdb599cb193c313dbe183d99f85456968f323a3c57"
+    },
+    {
+      "from": "assets/images/personal-posters/the-seventh-seal-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-seventh-seal-800.webp",
+      "bytes": 69814,
+      "sha256": "1f6d7251fb349bca91c76ddf6aff85cc8e9b6815f47bbcb0840480c590cfa0bd"
+    },
+    {
+      "from": "assets/images/personal-posters/the-seventh-seal-variante-02-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-seventh-seal-variante-02-1600.webp",
+      "bytes": 462370,
+      "sha256": "397d25095065e1d49570047677121b0f4f57b05f44e5c08d0c917fa7b3d8c830"
+    },
+    {
+      "from": "assets/images/personal-posters/the-seventh-seal-variante-02-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-seventh-seal-variante-02-800.webp",
+      "bytes": 122662,
+      "sha256": "d26d528db0d5515f2f2c00adb529c53c5a0811b5b8444e7f4b9b2d72dc0eb642"
+    },
+    {
+      "from": "assets/images/personal-posters/the-shining-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-shining-1600.webp",
+      "bytes": 853412,
+      "sha256": "904599ef8a1a91e27964fab91b9175695ce10abba7fe195419a3e9d27b83ec99"
+    },
+    {
+      "from": "assets/images/personal-posters/the-shining-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-shining-800.webp",
+      "bytes": 103854,
+      "sha256": "692811839e654dcf317c26fa49dcf79c2051a7cab33b45c5af1b6b8d5539e448"
+    },
+    {
+      "from": "assets/images/personal-posters/the-very-last-of-the-crusaders-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-very-last-of-the-crusaders-1600.webp",
+      "bytes": 140744,
+      "sha256": "b19761b982df6c7dd383e89720715642bf7c0c43c5808247c4e16629f213fc8f"
+    },
+    {
+      "from": "assets/images/personal-posters/the-very-last-of-the-crusaders-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/the-very-last-of-the-crusaders-800.webp",
+      "bytes": 40766,
+      "sha256": "5ed99a3f3e786bcf3ea96683f35ca22ddf87a3843692de0a43656a5953cb2d27"
+    },
+    {
+      "from": "assets/images/personal-posters/this-is-the-end-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/this-is-the-end-1600.webp",
+      "bytes": 443484,
+      "sha256": "b91d16a5e8b6d6298dca731c1bf8f60d694c6f54477b6e66de81796fd7e5c052"
+    },
+    {
+      "from": "assets/images/personal-posters/this-is-the-end-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/this-is-the-end-800.webp",
+      "bytes": 102914,
+      "sha256": "8d50d864424fd5556d46ccbb99ac0550aa3bab1706aacc56710e752cad5b51fe"
+    },
+    {
+      "from": "assets/images/personal-posters/under-the-light-house-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/under-the-light-house-1600.webp",
+      "bytes": 415706,
+      "sha256": "29f4b5410ae8e3be2600ac2479f0ab9c10588223aa80d7fcbc5cb00d3740a85d"
+    },
+    {
+      "from": "assets/images/personal-posters/under-the-light-house-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/under-the-light-house-800.webp",
+      "bytes": 67608,
+      "sha256": "a92a3b27afe5bc5943deadd54ed5a2c1ed19151e42c5362f379c3078f54300dc"
+    },
+    {
+      "from": "assets/images/personal-posters/unexpected-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/unexpected-1600.webp",
+      "bytes": 660354,
+      "sha256": "84eed3ebdd34eb78f0845c4f62bfb925dacc592448019543a605aa08fbde7137"
+    },
+    {
+      "from": "assets/images/personal-posters/unexpected-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/unexpected-800.webp",
+      "bytes": 124258,
+      "sha256": "6ffcc46b2c568dd90efe392dda400274be43e92a1db477e51b288d94cb0fe400"
+    },
+    {
+      "from": "assets/images/personal-posters/where-is-my-mind-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/where-is-my-mind-1600.webp",
+      "bytes": 573796,
+      "sha256": "b5b122c3c02b9716ff260d69add2576573c89fd5b1ed7e91b30ebac9bb043a69"
+    },
+    {
+      "from": "assets/images/personal-posters/where-is-my-mind-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/where-is-my-mind-800.webp",
+      "bytes": 130726,
+      "sha256": "8f3bc131d5d01dae50c2297e632aa59c01e1a48e881447525ff489df8d49ff21"
+    },
+    {
+      "from": "assets/images/personal-posters/wild-horses-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/wild-horses-1600.webp",
+      "bytes": 461392,
+      "sha256": "bffb402a552f0fa72bce317a4f7b604907bdae29285108adbd70bc94460e0b6a"
+    },
+    {
+      "from": "assets/images/personal-posters/wild-horses-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/wild-horses-800.webp",
+      "bytes": 115150,
+      "sha256": "b4aca239841de8dd854c987684f6cf4531ddacc66bd53b7126fa75fa9c4d585b"
+    },
+    {
+      "from": "assets/images/personal-posters/wild-west-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/wild-west-1600.webp",
+      "bytes": 583686,
+      "sha256": "ce80118f2e13a27c3fd4a05edf058e3a1bee81db231981f9a566c9d990bcb406"
+    },
+    {
+      "from": "assets/images/personal-posters/wild-west-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/wild-west-800.webp",
+      "bytes": 161650,
+      "sha256": "afc079292c2384542039c1bdab1b381d0c3c2c1032e3354b4f4d7b01a8ba1c68"
+    },
+    {
+      "from": "assets/images/personal-posters/ziggy-stardust-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/ziggy-stardust-1600.webp",
+      "bytes": 660224,
+      "sha256": "5c0d6902c2e46877cf89c8724ef608a4fbe237c7eea803bbd8acadffe5d16736"
+    },
+    {
+      "from": "assets/images/personal-posters/ziggy-stardust-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/personal-posters/ziggy-stardust-800.webp",
+      "bytes": 206550,
+      "sha256": "1e475f2492c572320752bb599fdb86e7553bb43d600ab37250c81acf6a0a681c"
+    },
+    {
+      "from": "assets/images/stephen-king/'SALEM'S LOT-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/'SALEM'S LOT-1600.webp",
+      "bytes": 191782,
+      "sha256": "019f8fdd523fd0f6c8edc133d62599b97a095607b1b02ceff4821a0566887ee5"
+    },
+    {
+      "from": "assets/images/stephen-king/'SALEM'S LOT.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/'SALEM'S LOT.png",
+      "bytes": 3438611,
+      "sha256": "cf243fbd8cf161c3a724d01eae3e0e0a26e8bc4add1f037642a8756f2193030f"
+    },
+    {
+      "from": "assets/images/stephen-king/CARRIE-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/CARRIE-1600.webp",
+      "bytes": 181410,
+      "sha256": "2d0223806bfbe112727d372380c1a5023d410909286fa2fe3013b99b54c769d7"
+    },
+    {
+      "from": "assets/images/stephen-king/CARRIE.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/CARRIE.png",
+      "bytes": 4374327,
+      "sha256": "dc835ca951fc543ee3ca2a1743b8f8a8780120e2f7f1bd3db498f6ab34d32718"
+    },
+    {
+      "from": "assets/images/stephen-king/CUJO-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/CUJO-1600.webp",
+      "bytes": 258608,
+      "sha256": "8d73b187323633c5f71e6468174dd582a927329e01347dec73e6084bcc50f381"
+    },
+    {
+      "from": "assets/images/stephen-king/CUJO.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/CUJO.png",
+      "bytes": 8562268,
+      "sha256": "f7baa8f06343b6a8cc96b6ec6816a1d3d82caf1d319296b7ec7b2e789604c067"
+    },
+    {
+      "from": "assets/images/stephen-king/IT-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/IT-1600.webp",
+      "bytes": 213948,
+      "sha256": "ed4f56a041659101d98b1389d4136b175064d8ed964200515927435307e686af"
+    },
+    {
+      "from": "assets/images/stephen-king/IT.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/IT.png",
+      "bytes": 6386500,
+      "sha256": "3b32e19f1ec1de394ebb773c1c789e95bb71cda4e9f2cdefa37c0d02beb1e548"
+    },
+    {
+      "from": "assets/images/stephen-king/MISERY-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/MISERY-1600.webp",
+      "bytes": 418366,
+      "sha256": "941b279e3509e9fbcfcb2c8b1bffe53e05678a74f9f62abfa3b32ed8a6b4002c"
+    },
+    {
+      "from": "assets/images/stephen-king/MISERY.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/MISERY.png",
+      "bytes": 5202986,
+      "sha256": "e5b8c56f288f68993ba2eb547481f931de73289bbfd94c0d4be56c57b9484010"
+    },
+    {
+      "from": "assets/images/stephen-king/PET SEMATARY-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/PET SEMATARY-1600.webp",
+      "bytes": 328176,
+      "sha256": "41ae90fb9b06fd2614d72c35863f6ae37fa61c262ef2bd2e69284ac1a8222bab"
+    },
+    {
+      "from": "assets/images/stephen-king/PET SEMATARY.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/PET SEMATARY.png",
+      "bytes": 6453309,
+      "sha256": "89b5d1b26cfa619cc8b54ac644d414d02a71dcc77ea77b19e1de2e1a80c78c81"
+    },
+    {
+      "from": "assets/images/stephen-king/PORTADA.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/PORTADA.png",
+      "bytes": 70518,
+      "sha256": "f4c60a616eaa771428cf5bb2a2e07a942c5dd73cafa2125a58de6918df16944d"
+    },
+    {
+      "from": "assets/images/stephen-king/THE DARK TOWER-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE DARK TOWER-1600.webp",
+      "bytes": 1234446,
+      "sha256": "809a669de407ba7d2cf22bea9c9531ad7bf2a4f3d5caffc0b21e941e72dbd59f"
+    },
+    {
+      "from": "assets/images/stephen-king/THE DARK TOWER.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE DARK TOWER.png",
+      "bytes": 16531723,
+      "sha256": "47866f7f40690051152016e9a8eb4ee948dd3e912bc31da231d505fda4b9f1d8"
+    },
+    {
+      "from": "assets/images/stephen-king/THE DEAD ZONE-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE DEAD ZONE-1600.webp",
+      "bytes": 253746,
+      "sha256": "a81fb498e0188923e33d84dc7c7be3124a6f74f7f638329a2c63d2d537ba30f9"
+    },
+    {
+      "from": "assets/images/stephen-king/THE DEAD ZONE.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE DEAD ZONE.png",
+      "bytes": 8487244,
+      "sha256": "8fcfc904d8863546534598430d37636a8ef6804e38bc7eb8e355c02f8c3ccbf8"
+    },
+    {
+      "from": "assets/images/stephen-king/THE GREEN MILE-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE GREEN MILE-1600.webp",
+      "bytes": 169420,
+      "sha256": "b9246366bcbc1e6f10df4debdae82427942bee0ff53030d6c9fc984e7fc4ee98"
+    },
+    {
+      "from": "assets/images/stephen-king/THE GREEN MILE.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE GREEN MILE.png",
+      "bytes": 5597186,
+      "sha256": "c14d1d72af22857840de120cbd6141d27fb8f4b8788a049587eead58cab92218"
+    },
+    {
+      "from": "assets/images/stephen-king/THE SHINING-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE SHINING-1600.webp",
+      "bytes": 321966,
+      "sha256": "d37a2f77f2359bf5e1183814d13165567672d87141cad7ca63124d5a623383e4"
+    },
+    {
+      "from": "assets/images/stephen-king/THE SHINING.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/THE SHINING.png",
+      "bytes": 6722499,
+      "sha256": "9cd64082e17e92f9c89537920ceb2cc1b228c5d3f3a583132c1a74cac192df35"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 1-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 1-1600.webp",
+      "bytes": 320426,
+      "sha256": "97e0b37bc55090440be83a0cb788ca574f402958bb3bf002bbd1af35eb05aa5a"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 1-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 1-800.webp",
+      "bytes": 107028,
+      "sha256": "92112a574ec50ab1d845a71a6e917c89518a72f7f8ff27752d949894a723743c"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 1.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 1.png",
+      "bytes": 7368192,
+      "sha256": "6c599e285819f21faed50d8edf83817073faa2752d82af713d62494d42e8c20e"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 2-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 2-1600.webp",
+      "bytes": 289604,
+      "sha256": "3373aa2f9d7ee4b0be0bf2f04b8e42cc8f1c4eadb5b8c1855fc358865d50b8ac"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 2.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 2.png",
+      "bytes": 3189566,
+      "sha256": "8e0c8c7048c8ce916d1917696093fdc321f0b9c58712ccbf40e03b05a9654727"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 3-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 3-1600.webp",
+      "bytes": 368132,
+      "sha256": "ab4dc0af77a0be94055cd1a3de9f8c2f9df3a39a7bbd505cddfb6e296991b437"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 3-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 3-800.webp",
+      "bytes": 114236,
+      "sha256": "27a4c6a3a3456a1c8f392db33c1a3399c64c675a9f2188e3751917ffe811f6cd"
+    },
+    {
+      "from": "assets/images/stephen-king/Variante 3.png",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/stephen-king/Variante 3.png",
+      "bytes": 3785382,
+      "sha256": "d54c13f3a43c4bef873f1afbcfd5ddc54dbfb41c803eccc34e09cc1d547b18a6"
+    },
+    {
+      "from": "assets/images/zapallar/DSC01575-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/DSC01575-1600.webp",
+      "bytes": 72390,
+      "sha256": "0075531ee0015c17b65c1bf5ac223907892ae04428002c7e4ea6dd0bdf4efbce"
+    },
+    {
+      "from": "assets/images/zapallar/DSC01575.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/DSC01575.JPG",
+      "bytes": 3342336,
+      "sha256": "29cebedaa5659d4e2b9e0707f63a77f9a90fc33fe047120a01825835359c1dbf"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4660-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4660-800.webp",
+      "bytes": 110104,
+      "sha256": "a9dcc2b0496d9ae8d40af090aa8671610bb5e5b03c187f54189d8b8e93a15a5e"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4660.jpg",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4660.jpg",
+      "bytes": 4440828,
+      "sha256": "0773de43ab7427ebedb490814c46221b61342897c65e8fa3fcb3df19852acf19"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4665-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4665-1600.webp",
+      "bytes": 578796,
+      "sha256": "7f58d184b8262d70170813510759907ec4d6e34aa4958c1d4c7ee8d3f60ab300"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4665.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4665.JPG",
+      "bytes": 1019227,
+      "sha256": "2bcda27d7b789e74e10de795ab76396d8748c99dfbbd91bc1f15a9250f9a5cbb"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4673-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4673-1600.webp",
+      "bytes": 467008,
+      "sha256": "8ee6afed22863c19d5b3bf09e96c871f86c9a0fec1856fc8fa3e64ce3d46dbc5"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4673.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4673.JPG",
+      "bytes": 993338,
+      "sha256": "a5dadf72587816aec349e460deae804cf4da6e55bd315bab2eb099e1032387d4"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4726-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4726-1600.webp",
+      "bytes": 251570,
+      "sha256": "f313147478496ebf19763482579a130a41aa16c920b41b92d7ac835824398f96"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4726.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4726.JPG",
+      "bytes": 942382,
+      "sha256": "f9c9751a51fd5f12b7a6e184f7412fb09519ae9673793497bd31ea01f6626ec2"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4731-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4731-1600.webp",
+      "bytes": 231002,
+      "sha256": "9f069ea5e13e9adf1f2cc7dd702d32a843f5bcc511da64d2cf9760ae27b6bdd1"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4731-800.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4731-800.webp",
+      "bytes": 80632,
+      "sha256": "33a2c6c48b736cda0bf8e937f6db8a94c2665bbd067b66f15535e494ccd01001"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4731.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4731.JPG",
+      "bytes": 779409,
+      "sha256": "bae52dbbe0764bd872dff324e2c613a0e5c05ecd67df632c014b9993f6fee72d"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4748-1600.webp",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4748-1600.webp",
+      "bytes": 70300,
+      "sha256": "2dd0afc98e6b244c9edd2b06241434b253d7fcfb5085d38f74a2593f841002b8"
+    },
+    {
+      "from": "assets/images/zapallar/IMG_4748.JPG",
+      "to": "VERSION 1 - PORTFOLIO/assets/images/zapallar/IMG_4748.JPG",
+      "bytes": 451932,
+      "sha256": "5a6a2fcccac687ddac156a8e71625e8af5e23a076384527cd09ad348c48a9184"
+    },
+    {
+      "from": "assets/vendor/lenis/LICENSE.txt",
+      "to": "VERSION 1 - PORTFOLIO/assets/vendor/lenis/LICENSE.txt",
+      "bytes": 1088,
+      "sha256": "7d1896b31f2eed9f286b05faca067c4e35b2f109ae7c4ed5105220e2d2820228"
+    },
+    {
+      "from": "assets/vendor/lenis/SOURCE.md",
+      "to": "VERSION 1 - PORTFOLIO/assets/vendor/lenis/SOURCE.md",
+      "bytes": 418,
+      "sha256": "1ea074ccfebcfc65ce39cfc3958a3a96fabcadfae2305bcc4a2dffbb21523fb0"
+    },
+    {
+      "from": "assets/vendor/lenis/lenis.mjs",
+      "to": "VERSION 1 - PORTFOLIO/assets/vendor/lenis/lenis.mjs",
+      "bytes": 32614,
+      "sha256": "c1971e9d7989f6f497544c857f799d3f7c04d13d5e92cd187c4b345e50b253b1"
+    },
+    {
+      "from": "assets/vendor/lenis/lenis.mjs.map",
+      "to": "VERSION 1 - PORTFOLIO/assets/vendor/lenis/lenis.mjs.map",
+      "bytes": 65956,
+      "sha256": "75343d77c2fabace31f6cd701ca6eb787c150f80fe98e6b2ea4a148d0444d7f8"
+    },
+    {
+      "from": "books.html",
+      "to": "VERSION 1 - PORTFOLIO/books.html",
+      "bytes": 5919,
+      "sha256": "ab70f3ea2c767b322b873dbc18485431e7502c78399a424ae1996fe22522868f"
+    },
+    {
+      "from": "club-de-economia.html",
+      "to": "VERSION 1 - PORTFOLIO/club-de-economia.html",
+      "bytes": 16434,
+      "sha256": "e0f6a9006fa8e51de739fc1b4c92b971021ac5221fa7f4f17b114d1bdb5b5dd5"
+    },
+    {
+      "from": "contact.html",
+      "to": "VERSION 1 - PORTFOLIO/contact.html",
+      "bytes": 9914,
+      "sha256": "6fe4b0f720e16e6ca6499f0b670aeecc3147eab72801967637c8ff9c9accd218"
+    },
+    {
+      "from": "css/about.css",
+      "to": "VERSION 1 - PORTFOLIO/css/about.css",
+      "bytes": 3550,
+      "sha256": "b8108c303ce4f219de20908b623f8da3cc1239854f216abaac14b3bc1e490ceb"
+    },
+    {
+      "from": "css/accordion.css",
+      "to": "VERSION 1 - PORTFOLIO/css/accordion.css",
+      "bytes": 2675,
+      "sha256": "54682d91cfa339f97e1bc498920c848bb432cde1dc2b7e7c8269ee4c6538d092"
+    },
+    {
+      "from": "css/apolo-story.css",
+      "to": "VERSION 1 - PORTFOLIO/css/apolo-story.css",
+      "bytes": 965,
+      "sha256": "aeec3c361edf3edcbbccfa57e6b5054d65167224a291e8ace09775503b5c53e4"
+    },
+    {
+      "from": "css/base.css",
+      "to": "VERSION 1 - PORTFOLIO/css/base.css",
+      "bytes": 5556,
+      "sha256": "198128c89ccd98db60fc81fa328599c28af64bd7f7e58b42a52632999c4ce091"
+    },
+    {
+      "from": "css/book-library.css",
+      "to": "VERSION 1 - PORTFOLIO/css/book-library.css",
+      "bytes": 2848,
+      "sha256": "f3c974d7b20906dc602a525b1fd630c041f61886a05b62859f6d266354ca52d6"
+    },
+    {
+      "from": "css/book-shelf.css",
+      "to": "VERSION 1 - PORTFOLIO/css/book-shelf.css",
+      "bytes": 12453,
+      "sha256": "6f27517801479464b1eff5457d710212682f4afe0a12b974afa619f9f1d03142"
+    },
+    {
+      "from": "css/club-de-economia.css",
+      "to": "VERSION 1 - PORTFOLIO/css/club-de-economia.css",
+      "bytes": 5590,
+      "sha256": "3cac810fb0aaab5162d6bc22b54c881a770890ba07e6293a77e65f8da0570817"
+    },
+    {
+      "from": "css/club-story.css",
+      "to": "VERSION 1 - PORTFOLIO/css/club-story.css",
+      "bytes": 2550,
+      "sha256": "58bb85cce86749291fe7fc6bf917957e356782ffe5cf99b59f10c9785729ffef"
+    },
+    {
+      "from": "css/contact.css",
+      "to": "VERSION 1 - PORTFOLIO/css/contact.css",
+      "bytes": 5278,
+      "sha256": "349d5cd5263bbca056c06f23476bbcd4fca2532fc006955a9b3a25b95aaff0da"
+    },
+    {
+      "from": "css/cursor.css",
+      "to": "VERSION 1 - PORTFOLIO/css/cursor.css",
+      "bytes": 1635,
+      "sha256": "c70bbe4e5c75031c20a8ad020a64912745e88daa2ad9634eae4727027a183369"
+    },
+    {
+      "from": "css/el-armado.css",
+      "to": "VERSION 1 - PORTFOLIO/css/el-armado.css",
+      "bytes": 40,
+      "sha256": "bc0984502df03b8ac924e860479a9811dd2a80a2b06390f92ce2030e1980e8f9"
+    },
+    {
+      "from": "css/image-gallery.css",
+      "to": "VERSION 1 - PORTFOLIO/css/image-gallery.css",
+      "bytes": 4928,
+      "sha256": "fe185c3ea6e9241d1049e52c214ee13a587bebac62307c096582aa284fd7d749"
+    },
+    {
+      "from": "css/image-zoom.css",
+      "to": "VERSION 1 - PORTFOLIO/css/image-zoom.css",
+      "bytes": 2163,
+      "sha256": "5742016ee0b03ac435f7fa2de56f952026ac9c3451e92a20583d98038926478a"
+    },
+    {
+      "from": "css/index.css",
+      "to": "VERSION 1 - PORTFOLIO/css/index.css",
+      "bytes": 14295,
+      "sha256": "49eb3442e42ced122ae56ca1ec9f4812ee4e288173990b763ab845687d96c074"
+    },
+    {
+      "from": "css/launch-panel.css",
+      "to": "VERSION 1 - PORTFOLIO/css/launch-panel.css",
+      "bytes": 9005,
+      "sha256": "133b2e69c7ac8fe80275f2d1086bc4823bc758f62aa343c007c9d78869f54446"
+    },
+    {
+      "from": "css/medium-collection.css",
+      "to": "VERSION 1 - PORTFOLIO/css/medium-collection.css",
+      "bytes": 4760,
+      "sha256": "23f77501fc1dd0b57037fb161ba50597b1966528e86219fdfc6bb4f7236dc780"
+    },
+    {
+      "from": "css/motion.css",
+      "to": "VERSION 1 - PORTFOLIO/css/motion.css",
+      "bytes": 575,
+      "sha256": "9187587d555637a637cd8fc9d74bc96a6a806646f220cc23eda4b40f3421491c"
+    },
+    {
+      "from": "css/personal-archive.css",
+      "to": "VERSION 1 - PORTFOLIO/css/personal-archive.css",
+      "bytes": 7204,
+      "sha256": "cddee54fb46499ca17265371d8c1fa62433a906653a39961591f1d507f22cb01"
+    },
+    {
+      "from": "css/portfolio-grid.css",
+      "to": "VERSION 1 - PORTFOLIO/css/portfolio-grid.css",
+      "bytes": 3036,
+      "sha256": "5cb5d54ce9b0b8c51b462c88859f98175e27ec9ef1f4b502ebb5192bb37c8731"
+    },
+    {
+      "from": "css/project-carousel.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-carousel.css",
+      "bytes": 4452,
+      "sha256": "3e0afcc22002cc4808cdec5268faa83d3010cb737d0cc7eaec612e2a4fc4a84b"
+    },
+    {
+      "from": "css/project-case.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-case.css",
+      "bytes": 11516,
+      "sha256": "3980fec2b67d8304f6ab4d4eb977741582d5e96ad561361d138f625be123ce75"
+    },
+    {
+      "from": "css/project-editorial.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-editorial.css",
+      "bytes": 16083,
+      "sha256": "38627c5a9e9ae70e6238449e8e9deffcc9eb56bd4fdc0d7846d22eaf99f4bc35"
+    },
+    {
+      "from": "css/project-folders.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-folders.css",
+      "bytes": 13196,
+      "sha256": "135d79ff3a4f0993086945679a659888809862ef8cc257c2ce4d512855cf1b35"
+    },
+    {
+      "from": "css/project-identity.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-identity.css",
+      "bytes": 6334,
+      "sha256": "9eda82fa4ad046e52a940f540720235672e61d7b76977f3898a8d439ab427698"
+    },
+    {
+      "from": "css/project-multimedia.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-multimedia.css",
+      "bytes": 1974,
+      "sha256": "cdb8cd34dbc28f3a765d897f256af2fdf6c65247f3ebf0b45baa4c8ba5dfc17d"
+    },
+    {
+      "from": "css/project-stories.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-stories.css",
+      "bytes": 773,
+      "sha256": "86a63b179c3b6d4365872c0179c1655031c796431ec0b9eacbd0737b175933fa"
+    },
+    {
+      "from": "css/project-type.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project-type.css",
+      "bytes": 152,
+      "sha256": "40eb00fe9ee34b40dc648bb74e09a6b931e655813810f67c53d7680e353b7ad4"
+    },
+    {
+      "from": "css/project.css",
+      "to": "VERSION 1 - PORTFOLIO/css/project.css",
+      "bytes": 15972,
+      "sha256": "d4ef7891aea5987139553fa6a4e5ae794615fa4ce3db0f935238984ba6c870ab"
+    },
+    {
+      "from": "css/shell.css",
+      "to": "VERSION 1 - PORTFOLIO/css/shell.css",
+      "bytes": 7605,
+      "sha256": "14559d02093377ce62788c6699843a7044b7f310f4db0c863dc550029eeb3a2a"
+    },
+    {
+      "from": "css/shop.css",
+      "to": "VERSION 1 - PORTFOLIO/css/shop.css",
+      "bytes": 468,
+      "sha256": "4cadd8b6821a917773cd6c9ef1b8d01742564e6030399e30798d72f331654409"
+    },
+    {
+      "from": "css/typography.css",
+      "to": "VERSION 1 - PORTFOLIO/css/typography.css",
+      "bytes": 1320,
+      "sha256": "041182a334c4c2c90f7f8a642fff635f260eef5ad8064629471c08538d5402fb"
+    },
+    {
+      "from": "data/personal-work.json",
+      "to": "VERSION 1 - PORTFOLIO/data/personal-work.json",
+      "bytes": 80617,
+      "sha256": "7c96f7bb6334c53a89cdd217ed0393b3096ab86ad8e521d8df236b8e52e3b456"
+    },
+    {
+      "from": "data/projects/apolo-studios.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/apolo-studios.json",
+      "bytes": 29225,
+      "sha256": "a9b978d27692310acd5880f8878fdd72d731e77cd4b539b7599422b1d7af71ae"
+    },
+    {
+      "from": "data/projects/club-de-economia-utdt.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/club-de-economia-utdt.json",
+      "bytes": 20705,
+      "sha256": "df2e1a6657f9558ad42674a47f30c4b4b8b7300b81cbc965d2605b612673139c"
+    },
+    {
+      "from": "data/projects/el-armado.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/el-armado.json",
+      "bytes": 11524,
+      "sha256": "800683e44b04700484460a53c583bb1be6ac03f125fb7257ce8a5ef850ea4d20"
+    },
+    {
+      "from": "data/projects/fotos-en-zapallar.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/fotos-en-zapallar.json",
+      "bytes": 6312,
+      "sha256": "b7232c2dca28a65e93f53e56da2fe740ea5d63fa2e468345987f743f13f61814"
+    },
+    {
+      "from": "data/projects/olas-ditella.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/olas-ditella.json",
+      "bytes": 16545,
+      "sha256": "d0d33d9ef2ba32693b6173692b6fadd31ca8b7ef5748c7399bd7f601aa20e0c9"
+    },
+    {
+      "from": "data/projects/orfeo.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/orfeo.json",
+      "bytes": 29210,
+      "sha256": "3327c97ee73d275662a5cc04d49369a2a5fb58c1cf80b93e7f627b32c73912ac"
+    },
+    {
+      "from": "data/projects/stephen-king.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects/stephen-king.json",
+      "bytes": 29682,
+      "sha256": "7d4e2aebf31f8039908d6940a5341f9805a93dbf0f0639bd3c36321eacd618b0"
+    },
+    {
+      "from": "data/projects.json",
+      "to": "VERSION 1 - PORTFOLIO/data/projects.json",
+      "bytes": 10619,
+      "sha256": "638dfff3073d374d04764b7051e1280fcc2feee637f9475cb9b81b7c9d43bcca"
+    },
+    {
+      "from": "el-armado.html",
+      "to": "VERSION 1 - PORTFOLIO/el-armado.html",
+      "bytes": 10808,
+      "sha256": "344432bf5b3802c61eacedb7499b2bf45a1ffd02cd9d3d3082ffcc0d2c70636d"
+    },
+    {
+      "from": "index.html",
+      "to": "VERSION 1 - PORTFOLIO/index.html",
+      "bytes": 17279,
+      "sha256": "f90a4afc4ed93c22144beb1f9683132667d44ac11c247e04041522e489ce8cbc"
+    },
+    {
+      "from": "js/about.js",
+      "to": "VERSION 1 - PORTFOLIO/js/about.js",
+      "bytes": 2834,
+      "sha256": "b96ec8cd04dc8a6af57b50d9758a2676b62bf99692d55a825b924e55b9982db3"
+    },
+    {
+      "from": "js/accordion.js",
+      "to": "VERSION 1 - PORTFOLIO/js/accordion.js",
+      "bytes": 835,
+      "sha256": "deec4aa883e1bfda2e36f3f92ed8ca24143fd6fb6dfc1a2e40b790fa9eb7adb5"
+    },
+    {
+      "from": "js/archive-physics.js",
+      "to": "VERSION 1 - PORTFOLIO/js/archive-physics.js",
+      "bytes": 6014,
+      "sha256": "b338e52b64bdf12afd58d1c66c4e6c50198cc48f4c787e08c9cc77e34529af1a"
+    },
+    {
+      "from": "js/archive-preview.js",
+      "to": "VERSION 1 - PORTFOLIO/js/archive-preview.js",
+      "bytes": 4125,
+      "sha256": "9ba0964422e150d30c9f64e042a89a0e67651bb0bf55734302b81bcbbf80ddb2"
+    },
+    {
+      "from": "js/book-shelf.js",
+      "to": "VERSION 1 - PORTFOLIO/js/book-shelf.js",
+      "bytes": 28990,
+      "sha256": "c6e64c46dc947a7058a64c2909c4915522d6821a043a8f7ff286f022710b21ae"
+    },
+    {
+      "from": "js/books.js",
+      "to": "VERSION 1 - PORTFOLIO/js/books.js",
+      "bytes": 6175,
+      "sha256": "ac3963fd8f4cff9d7c968b9f273d0c19a2c8938d502579b3bc13673100a95636"
+    },
+    {
+      "from": "js/club-de-economia.js",
+      "to": "VERSION 1 - PORTFOLIO/js/club-de-economia.js",
+      "bytes": 33,
+      "sha256": "852b02465efeaa6d18481bc4333daceafa9b017b4ba00e50006782a525b6ac3f"
+    },
+    {
+      "from": "js/contact.js",
+      "to": "VERSION 1 - PORTFOLIO/js/contact.js",
+      "bytes": 5095,
+      "sha256": "8331e9fa7f19f84c9c960e92ded58878ba91ed34cc70b2fb54a37d2f24c69597"
+    },
+    {
+      "from": "js/cursor.js",
+      "to": "VERSION 1 - PORTFOLIO/js/cursor.js",
+      "bytes": 12181,
+      "sha256": "0d58006b5915601b1b23a355c44063b043577fbb22a5f03e07f72c0c8c38780d"
+    },
+    {
+      "from": "js/desktop-gate.js",
+      "to": "VERSION 1 - PORTFOLIO/js/desktop-gate.js",
+      "bytes": 2632,
+      "sha256": "3b8cf94b9ce4ddf3e87bd380cfd3c53a929721127ce2fd404d9c138125cfe078"
+    },
+    {
+      "from": "js/el-armado-loop.js",
+      "to": "VERSION 1 - PORTFOLIO/js/el-armado-loop.js",
+      "bytes": 87,
+      "sha256": "f9bafea3b4f6e96cbfcea471922944fd440f250530c5d8c0bf5c5b8245246590"
+    },
+    {
+      "from": "js/el-armado.js",
+      "to": "VERSION 1 - PORTFOLIO/js/el-armado.js",
+      "bytes": 33,
+      "sha256": "852b02465efeaa6d18481bc4333daceafa9b017b4ba00e50006782a525b6ac3f"
+    },
+    {
+      "from": "js/image-gallery.js",
+      "to": "VERSION 1 - PORTFOLIO/js/image-gallery.js",
+      "bytes": 14076,
+      "sha256": "8da41ca830ffa1119d0cfc73f9aa0c33f57a09292ab047cf6d5adfafe79cdea1"
+    },
+    {
+      "from": "js/image-zoom.js",
+      "to": "VERSION 1 - PORTFOLIO/js/image-zoom.js",
+      "bytes": 4279,
+      "sha256": "3d3d64b6dcb30cf0a036489fc9447083973034035af371a9ce4a16985db3e834"
+    },
+    {
+      "from": "js/index.js",
+      "to": "VERSION 1 - PORTFOLIO/js/index.js",
+      "bytes": 21905,
+      "sha256": "8db74b9103d4ebeb2c8151510883e1704d5392e9af9476e851e26ca10e261d73"
+    },
+    {
+      "from": "js/launch-panel.js",
+      "to": "VERSION 1 - PORTFOLIO/js/launch-panel.js",
+      "bytes": 8459,
+      "sha256": "b535ebd4f9d30f32d2c08df0cda83a482b148c5ddbab183b0c19263aeca6d619"
+    },
+    {
+      "from": "js/loading.js",
+      "to": "VERSION 1 - PORTFOLIO/js/loading.js",
+      "bytes": 3007,
+      "sha256": "917f92e6a2f78db8c83a0ad944001e147cd9f8eac9525d92eb5f0d5d80f24b52"
+    },
+    {
+      "from": "js/main.js",
+      "to": "VERSION 1 - PORTFOLIO/js/main.js",
+      "bytes": 253,
+      "sha256": "ad7d8f909aca2ab8d4cc5ad1ae3b01345007f59cbc91daa28d2a01f09f9f8cb9"
+    },
+    {
+      "from": "js/medium-collection.js",
+      "to": "VERSION 1 - PORTFOLIO/js/medium-collection.js",
+      "bytes": 7198,
+      "sha256": "a0caee79f3d44a204b905e9b52e04714359bb8bd9913b9b4e0fb21684997d6b4"
+    },
+    {
+      "from": "js/motion.js",
+      "to": "VERSION 1 - PORTFOLIO/js/motion.js",
+      "bytes": 3383,
+      "sha256": "88b0d784d28491cd15bdd8d4b79a7f528b1462b8a12a7ea192c12662183192e4"
+    },
+    {
+      "from": "js/personal-archive.js",
+      "to": "VERSION 1 - PORTFOLIO/js/personal-archive.js",
+      "bytes": 21676,
+      "sha256": "edba5cfd1c45cb0b8bcd891f235d3407d1e4b0b2765132c3f8f8d08118ca2f9d"
+    },
+    {
+      "from": "js/project-assets.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-assets.js",
+      "bytes": 3208,
+      "sha256": "a7799f9d745b22fa2cb4d316b89b15e08731cec58a7e0fcaf6ec8adb6efd20fb"
+    },
+    {
+      "from": "js/project-carousel.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-carousel.js",
+      "bytes": 18426,
+      "sha256": "6989c7f6fcd78ae53f8d503acb076afa1e1a4dd7b7cae5355e9579b9ba13299d"
+    },
+    {
+      "from": "js/project-case.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-case.js",
+      "bytes": 3355,
+      "sha256": "a144b0fffe8f1c740eed7e1290d76e42b6f7226e2d20ab64a42d06e9bf244c2a"
+    },
+    {
+      "from": "js/project-editorial-loop.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-editorial-loop.js",
+      "bytes": 14031,
+      "sha256": "606f868962f45f57dd358c55d377206f8f3313d680d4366e4837e28c75f359d0"
+    },
+    {
+      "from": "js/project-editorial.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-editorial.js",
+      "bytes": 8845,
+      "sha256": "724e20701bd5aca9559e66a8199fda362078e73456b09889b6b6175902d73a82"
+    },
+    {
+      "from": "js/project-folders.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-folders.js",
+      "bytes": 16794,
+      "sha256": "6ecc040dae3e01f482721424ee185b2fcd67b494867b091ada74332a8013c63d"
+    },
+    {
+      "from": "js/project-multimedia.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-multimedia.js",
+      "bytes": 4467,
+      "sha256": "3e8f26a2b41ffbf711e5764b973fc06d938bdc0c5a1742c68ce9d630d8ab040e"
+    },
+    {
+      "from": "js/project-palette.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-palette.js",
+      "bytes": 1216,
+      "sha256": "f41dfc666a2ae544c9af529fe67f601971d95e318004058bc46b511130c74ec1"
+    },
+    {
+      "from": "js/project-type.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-type.js",
+      "bytes": 393,
+      "sha256": "e128ec5a8d1e8caa3ab1888a0df5f2f1aa9268d8006be2d949cde21035344340"
+    },
+    {
+      "from": "js/project-videos.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project-videos.js",
+      "bytes": 2335,
+      "sha256": "767dbc7ef8eecd060f07b4314a75b737217f3448deb2e846269772156ca8d85e"
+    },
+    {
+      "from": "js/project.js",
+      "to": "VERSION 1 - PORTFOLIO/js/project.js",
+      "bytes": 22146,
+      "sha256": "d8eb0e04eeaa8962be0638d46cb3603af912c9a54e54eb7addbaeffbe012788d"
+    },
+    {
+      "from": "js/shell.js",
+      "to": "VERSION 1 - PORTFOLIO/js/shell.js",
+      "bytes": 4491,
+      "sha256": "0f767e98d61a3d4f9fb8a3900fb64b166330a23d69a558a6f322f5788afc18e6"
+    },
+    {
+      "from": "js/shop.js",
+      "to": "VERSION 1 - PORTFOLIO/js/shop.js",
+      "bytes": 53,
+      "sha256": "6fe59a6dc5add4080d24ea6d2f1937e7fa8b2be31dc6aa426fe38d17e2b48854"
+    },
+    {
+      "from": "js/transitions.js",
+      "to": "VERSION 1 - PORTFOLIO/js/transitions.js",
+      "bytes": 2263,
+      "sha256": "329d26f5be123791c9d937d03ecd19e35dac5b45ba205edfe220b68aaa9ff698"
+    },
+    {
+      "from": "nav.html",
+      "to": "VERSION 1 - PORTFOLIO/nav.html",
+      "bytes": 569,
+      "sha256": "0490036eda8169ee76b838b12cf7393320e35b391e5c6a85681faecee3c4e61d"
+    },
+    {
+      "from": "olas-ditella.html",
+      "to": "VERSION 1 - PORTFOLIO/olas-ditella.html",
+      "bytes": 15350,
+      "sha256": "5498463e3a58323312edfa7155f37a0209cbaba744462efec159689e26d3c800"
+    },
+    {
+      "from": "orfeo.html",
+      "to": "VERSION 1 - PORTFOLIO/orfeo.html",
+      "bytes": 29220,
+      "sha256": "6a9f609b58d22ea65a4f20b242b89ca343b10514c315756db8048c01c975dda3"
+    },
+    {
+      "from": "posters.html",
+      "to": "VERSION 1 - PORTFOLIO/posters.html",
+      "bytes": 666,
+      "sha256": "0e807f969cb6bcbaead22fc3ac50e139226e835dee1c0affd019ff249b7b0916"
+    },
+    {
+      "from": "project-audit.md",
+      "to": "VERSION 1 - PORTFOLIO/project-audit.md",
+      "bytes": 16252,
+      "sha256": "61a2d787ad85c0af7b56719237e31bd5abd7684365004ed45b6b726a10b382ba"
+    },
+    {
+      "from": "project.html",
+      "to": "VERSION 1 - PORTFOLIO/project.html",
+      "bytes": 3510,
+      "sha256": "6aeca7ed848688b5b6c816bd2b90a239e5f60027937a317637c429a3f75382fa"
+    },
+    {
+      "from": "self-made.html",
+      "to": "VERSION 1 - PORTFOLIO/self-made.html",
+      "bytes": 91585,
+      "sha256": "3af86db2a5c197a4f2d441dc554249d5084c6a52714fc522656a711b0e43f4e5"
+    },
+    {
+      "from": "shelf-editions.md",
+      "to": "VERSION 1 - PORTFOLIO/shelf-editions.md",
+      "bytes": 6467,
+      "sha256": "ac9dc06fe6af8f52f495f88814497d59c95c4315843fdec77f48f434b535d0ba"
+    },
+    {
+      "from": "shop.html",
+      "to": "VERSION 1 - PORTFOLIO/shop.html",
+      "bytes": 3144,
+      "sha256": "cb47929c3ff2d59c8e6b34021230a6fc28941d138a65c4c197dc8530e7946b21"
+    },
+    {
+      "from": "carousel-study.html",
+      "to": "VERSION 1 - PORTFOLIO/carousel-study.html",
+      "bytes": 178969,
+      "sha256": "659795ed35dcca1e0b24d5cfad5c70c2ed5e49b74c9a90ec68e880e12c7d9d35"
+    }
+  ],
+  "shared_live_dependencies": [
+    "assets/Favicon.svg",
+    "assets/fonts/OFL.txt",
+    "assets/fonts/albert-sans-300.woff2",
+    "assets/fonts/albert-sans-600.woff2",
+    "assets/images/apolo-studios-story/circles-back-480.webp",
+    "assets/images/apolo-studios-story/circles-front-back-480.webp",
+    "assets/images/apolo-studios-story/circles-stairs-480.webp",
+    "assets/images/apolo-studios-story/everywhere-back-480.webp",
+    "assets/images/apolo-studios-story/everywhere-cafe-480.webp",
+    "assets/images/apolo-studios-story/everywhere-street-480.webp",
+    "assets/images/apolo-studios-story/menorca-blue-480.webp",
+    "assets/images/apolo-studios-story/menorca-brown-480.webp",
+    "assets/images/apolo-studios-story/menorca-cafe-480.webp",
+    "assets/images/apolo-studios-story/menorca-grey-480.webp",
+    "assets/images/apolo-studios-story/sahara-front-480.webp",
+    "assets/images/apolo-studios-story/sahara-street-480.webp",
+    "assets/images/apolo-studios-story/sahara-subway-480.webp",
+    "assets/images/apolo-studios-story/sahara-two-signatures-480.webp",
+    "assets/images/apolo-studios-web/menorca-video-poster.webp",
+    "assets/images/apolo-studios-web/menorca.mp4",
+    "assets/images/apolo-studios-web/variants-600.webp",
+    "assets/images/archive-covers/apolo-studios-800.webp",
+    "assets/images/archive-covers/club-de-economia-utdt-800.webp",
+    "assets/images/archive-covers/el-armado-800.webp",
+    "assets/images/archive-covers/olas-ditella-800.webp",
+    "assets/images/archive-covers/orfeo-800.webp",
+    "assets/images/club-de-economia-utdt/Anuncio de Charla - Ig variante-800.webp",
+    "assets/images/club-de-economia-utdt/Anuncio de Charla - Ig-800.webp",
+    "assets/images/club-de-economia-utdt/Anuncio de Charla - post variante-800.webp",
+    "assets/images/club-de-economia-utdt/Anuncio de Charla - post-800.webp",
+    "assets/images/club-de-economia-utdt/Isotipo 2.png",
+    "assets/images/club-de-economia-utdt/Isotipo.png",
+    "assets/images/club-de-economia-utdt/Twitter header-800.webp",
+    "assets/images/club-de-economia-utdt/motion-poster-720.webp",
+    "assets/images/el-armado-story/historia-800.webp",
+    "assets/images/el-armado-web/afiche-1000.webp",
+    "assets/images/el-armado-web/ilustracion-color-760.webp",
+    "assets/images/olas-ditella-story/afiche-1-800.webp",
+    "assets/images/olas-ditella-story/afiche-2-800.webp",
+    "assets/images/olas-ditella-story/afiche-3-800.webp",
+    "assets/images/olas-ditella-story/afiche-4-800.webp",
+    "assets/images/olas-ditella/New Project (3).svg",
+    "assets/images/olas-ditella/Vectores 1.svg",
+    "assets/images/olas-ditella/Vectores 2.svg",
+    "assets/images/olas-ditella/Vectores 3.svg",
+    "assets/images/olas-ditella/Vectores 4.svg",
+    "assets/images/olas-ditella/[2] STICKERS 1.png",
+    "assets/images/olas-ditella/[2] STICKERS 2.png",
+    "assets/images/orfeo-story/lavalle-frente-800.webp",
+    "assets/images/orfeo-story/talcahuano-frente-800.webp",
+    "assets/images/orfeo-story/viamonte-frente-800.webp",
+    "assets/images/orfeo/IMG_4109-800.webp",
+    "assets/images/orfeo/IMG_4144-800.webp",
+    "assets/images/orfeo/IMG_4246-800.webp",
+    "assets/images/orfeo/IMG_4484-800.webp",
+    "assets/images/orfeo/IMG_4685-800.webp",
+    "assets/images/orfeo/IMG_4710-800.webp",
+    "assets/images/orfeo/IMG_4775-800.webp",
+    "assets/images/orfeo/IMG_4800-800.webp",
+    "assets/images/orfeo/IMG_4868-1600.webp",
+    "assets/images/orfeo/New Project - 2026-05-14T233653.972-1600.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T000714.714-800.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T000735.657-800.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T000851.918-800.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T001441.754.png",
+    "assets/images/orfeo/New Project - 2026-05-15T001500.936.png",
+    "assets/images/orfeo/New Project - 2026-05-15T001520.081.png",
+    "assets/images/orfeo/New Project - 2026-05-15T001542.984.png",
+    "assets/images/orfeo/New Project - 2026-05-15T002752.937-800.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T002807.082-800.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T002835.717-800.webp",
+    "assets/images/orfeo/New Project - 2026-05-15T002850.326-800.webp",
+    "assets/images/orfeo/favicon.png",
+    "assets/images/orfeo/logo (1).png",
+    "assets/images/personal-posters/100-horses-2480.webp",
+    "assets/images/personal-posters/100-horses-400.webp",
+    "assets/images/personal-posters/1984-2480.webp",
+    "assets/images/personal-posters/1984-400.webp",
+    "assets/images/personal-posters/animal-farm-2480.webp",
+    "assets/images/personal-posters/animal-farm-400.webp",
+    "assets/images/personal-posters/animal-farm-variante-02-2480.webp",
+    "assets/images/personal-posters/animal-farm-variante-02-400.webp",
+    "assets/images/personal-posters/basement-2480.webp",
+    "assets/images/personal-posters/basement-400.webp",
+    "assets/images/personal-posters/blood-meridian-2480.webp",
+    "assets/images/personal-posters/blood-meridian-400.webp",
+    "assets/images/personal-posters/bugonia-2480.webp",
+    "assets/images/personal-posters/bugonia-400.webp",
+    "assets/images/personal-posters/caballos-rosa-2480.webp",
+    "assets/images/personal-posters/caballos-rosa-400.webp",
+    "assets/images/personal-posters/carrie-2480.webp",
+    "assets/images/personal-posters/carrie-400.webp",
+    "assets/images/personal-posters/celestial-bodies-2480.webp",
+    "assets/images/personal-posters/celestial-bodies-400.webp",
+    "assets/images/personal-posters/composicion-azul-y-verde-2480.webp",
+    "assets/images/personal-posters/composicion-azul-y-verde-400.webp",
+    "assets/images/personal-posters/copenhague-2480.webp",
+    "assets/images/personal-posters/copenhague-400.webp",
+    "assets/images/personal-posters/distorted-realities-2480.webp",
+    "assets/images/personal-posters/distorted-realities-400.webp",
+    "assets/images/personal-posters/dreamers-2480.webp",
+    "assets/images/personal-posters/dreamers-400.webp",
+    "assets/images/personal-posters/dylan-2480.webp",
+    "assets/images/personal-posters/dylan-400.webp",
+    "assets/images/personal-posters/dylan-amarillo-2480.webp",
+    "assets/images/personal-posters/dylan-amarillo-400.webp",
+    "assets/images/personal-posters/endo-explore-cadena-2480.webp",
+    "assets/images/personal-posters/endo-explore-cadena-400.webp",
+    "assets/images/personal-posters/endo-explore-candelabro-2480.webp",
+    "assets/images/personal-posters/endo-explore-candelabro-400.webp",
+    "assets/images/personal-posters/endo-explore-mosaico-2480.webp",
+    "assets/images/personal-posters/endo-explore-mosaico-400.webp",
+    "assets/images/personal-posters/endo-explore-naranja-2480.webp",
+    "assets/images/personal-posters/endo-explore-naranja-400.webp",
+    "assets/images/personal-posters/endo-explore-ornamento-2480.webp",
+    "assets/images/personal-posters/endo-explore-ornamento-400.webp",
+    "assets/images/personal-posters/endo-explore-vegetal-2480.webp",
+    "assets/images/personal-posters/endo-explore-vegetal-400.webp",
+    "assets/images/personal-posters/eyes-wide-shut-1190.webp",
+    "assets/images/personal-posters/eyes-wide-shut-400.webp",
+    "assets/images/personal-posters/eyes-wide-shut-variante-02-2480.webp",
+    "assets/images/personal-posters/eyes-wide-shut-variante-02-400.webp",
+    "assets/images/personal-posters/faust-2480.webp",
+    "assets/images/personal-posters/faust-400.webp",
+    "assets/images/personal-posters/faust-variante-02-2480.webp",
+    "assets/images/personal-posters/faust-variante-02-400.webp",
+    "assets/images/personal-posters/fly-2480.webp",
+    "assets/images/personal-posters/fly-400.webp",
+    "assets/images/personal-posters/follow-the-light-2480.webp",
+    "assets/images/personal-posters/follow-the-light-400.webp",
+    "assets/images/personal-posters/he-who-ruled-all-2480.webp",
+    "assets/images/personal-posters/he-who-ruled-all-400.webp",
+    "assets/images/personal-posters/la-chimera-2480.webp",
+    "assets/images/personal-posters/la-chimera-400.webp",
+    "assets/images/personal-posters/light-sources-luz-violeta-2480.webp",
+    "assets/images/personal-posters/light-sources-luz-violeta-400.webp",
+    "assets/images/personal-posters/meeting-with-the-sphinx-2480.webp",
+    "assets/images/personal-posters/meeting-with-the-sphinx-400.webp",
+    "assets/images/personal-posters/movement-2480.webp",
+    "assets/images/personal-posters/movement-400.webp",
+    "assets/images/personal-posters/movimiento-caballo-2480.webp",
+    "assets/images/personal-posters/movimiento-caballo-400.webp",
+    "assets/images/personal-posters/no-mans-son-2480.webp",
+    "assets/images/personal-posters/no-mans-son-400.webp",
+    "assets/images/personal-posters/nobody-figura-01-2480.webp",
+    "assets/images/personal-posters/nobody-figura-01-400.webp",
+    "assets/images/personal-posters/nosferatu-2480.webp",
+    "assets/images/personal-posters/nosferatu-400.webp",
+    "assets/images/personal-posters/nothing-ever-happened-here-2480.webp",
+    "assets/images/personal-posters/nothing-ever-happened-here-400.webp",
+    "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-2953.webp",
+    "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-400.webp",
+    "assets/images/personal-posters/paris-texas-2480.webp",
+    "assets/images/personal-posters/paris-texas-400.webp",
+    "assets/images/personal-posters/pulp-fiction-2480.webp",
+    "assets/images/personal-posters/pulp-fiction-400.webp",
+    "assets/images/personal-posters/reflejos-azules-2480.webp",
+    "assets/images/personal-posters/reflejos-azules-400.webp",
+    "assets/images/personal-posters/retrato-azul-2480.webp",
+    "assets/images/personal-posters/retrato-azul-400.webp",
+    "assets/images/personal-posters/retrato-celeste-2480.webp",
+    "assets/images/personal-posters/retrato-celeste-400.webp",
+    "assets/images/personal-posters/sayonara-2953.webp",
+    "assets/images/personal-posters/sayonara-400.webp",
+    "assets/images/personal-posters/seventeen-minutes-2480.webp",
+    "assets/images/personal-posters/seventeen-minutes-400.webp",
+    "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-2480.webp",
+    "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-400.webp",
+    "assets/images/personal-posters/she-was-everyone-2480.webp",
+    "assets/images/personal-posters/she-was-everyone-400.webp",
+    "assets/images/personal-posters/slowthai-2480.webp",
+    "assets/images/personal-posters/slowthai-400.webp",
+    "assets/images/personal-posters/stand-out-2480.webp",
+    "assets/images/personal-posters/stand-out-400.webp",
+    "assets/images/personal-posters/stop-making-sense-2480.webp",
+    "assets/images/personal-posters/stop-making-sense-400.webp",
+    "assets/images/personal-posters/talking-heads-2480.webp",
+    "assets/images/personal-posters/talking-heads-400.webp",
+    "assets/images/personal-posters/the-beatles-2953.webp",
+    "assets/images/personal-posters/the-beatles-400.webp",
+    "assets/images/personal-posters/the-end-of-the-beginning-2480.webp",
+    "assets/images/personal-posters/the-end-of-the-beginning-400.webp",
+    "assets/images/personal-posters/the-monk-2480.webp",
+    "assets/images/personal-posters/the-monk-400.webp",
+    "assets/images/personal-posters/the-old-king-from-the-north-2480.webp",
+    "assets/images/personal-posters/the-old-king-from-the-north-400.webp",
+    "assets/images/personal-posters/the-seventh-seal-2480.webp",
+    "assets/images/personal-posters/the-seventh-seal-400.webp",
+    "assets/images/personal-posters/the-seventh-seal-variante-02-2480.webp",
+    "assets/images/personal-posters/the-seventh-seal-variante-02-400.webp",
+    "assets/images/personal-posters/the-shining-2480.webp",
+    "assets/images/personal-posters/the-shining-400.webp",
+    "assets/images/personal-posters/the-very-last-of-the-crusaders-2480.webp",
+    "assets/images/personal-posters/the-very-last-of-the-crusaders-400.webp",
+    "assets/images/personal-posters/this-is-the-end-2480.webp",
+    "assets/images/personal-posters/this-is-the-end-400.webp",
+    "assets/images/personal-posters/under-the-light-house-2480.webp",
+    "assets/images/personal-posters/under-the-light-house-400.webp",
+    "assets/images/personal-posters/unexpected-2480.webp",
+    "assets/images/personal-posters/unexpected-400.webp",
+    "assets/images/personal-posters/where-is-my-mind-2480.webp",
+    "assets/images/personal-posters/where-is-my-mind-400.webp",
+    "assets/images/personal-posters/wild-horses-2480.webp",
+    "assets/images/personal-posters/wild-horses-400.webp",
+    "assets/images/personal-posters/wild-west-2480.webp",
+    "assets/images/personal-posters/wild-west-400.webp",
+    "assets/images/personal-posters/ziggy-stardust-2480.webp",
+    "assets/images/personal-posters/ziggy-stardust-400.webp",
+    "assets/images/personal-previews/fotos-en-zapallar-01-400.webp",
+    "assets/images/personal-previews/fotos-en-zapallar-02-400.webp",
+    "assets/images/personal-previews/fotos-en-zapallar-03-400.webp",
+    "assets/images/personal-previews/fotos-en-zapallar-04-400.webp",
+    "assets/images/personal-previews/fotos-en-zapallar-05-400.webp",
+    "assets/images/personal-previews/fotos-en-zapallar-06-400.webp",
+    "assets/images/personal-previews/stephen-king-01-400.webp",
+    "assets/images/personal-previews/stephen-king-02-400.webp",
+    "assets/images/personal-previews/stephen-king-03-400.webp",
+    "assets/images/personal-previews/stephen-king-04-400.webp",
+    "assets/images/personal-previews/stephen-king-05-400.webp",
+    "assets/images/personal-previews/stephen-king-06-400.webp",
+    "assets/images/personal-previews/stephen-king-07-400.webp",
+    "assets/images/personal-previews/stephen-king-08-400.webp",
+    "assets/images/personal-previews/stephen-king-09-400.webp",
+    "assets/images/personal-previews/stephen-king-10-400.webp",
+    "assets/images/personal-previews/stephen-king-11-400.webp",
+    "assets/images/stephen-king/'SALEM'S LOT-800.webp",
+    "assets/images/stephen-king/CARRIE-800.webp",
+    "assets/images/stephen-king/CUJO-800.webp",
+    "assets/images/stephen-king/IT-800.webp",
+    "assets/images/stephen-king/MISERY-800.webp",
+    "assets/images/stephen-king/PET SEMATARY-800.webp",
+    "assets/images/stephen-king/THE DARK TOWER-800.webp",
+    "assets/images/stephen-king/THE DEAD ZONE-800.webp",
+    "assets/images/stephen-king/THE GREEN MILE-800.webp",
+    "assets/images/stephen-king/THE SHINING-800.webp",
+    "assets/images/stephen-king/Variante 2-800.webp",
+    "assets/images/zapallar/DSC01575-800.webp",
+    "assets/images/zapallar/IMG_4660-1600.webp",
+    "assets/images/zapallar/IMG_4665-800.webp",
+    "assets/images/zapallar/IMG_4673-800.webp",
+    "assets/images/zapallar/IMG_4726-800.webp",
+    "assets/images/zapallar/IMG_4748-800.webp",
+    "assets/videos/club-de-economia/motion-study.mp4",
+    "css/desktop-gate.css"
+  ]
+}

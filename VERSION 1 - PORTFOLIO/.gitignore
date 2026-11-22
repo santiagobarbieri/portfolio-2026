@@ -1,0 +1,12 @@
+.DS_Store
+.vercel/
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+/.codex/
+/.agents/
+
+# Revisión local de archivos; pendiente de selección por Santiago.
+/AUDIT/

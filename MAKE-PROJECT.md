@@ -1,5 +1,11 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Publicación vigente · 22 de noviembre de 2026
+
+La prueba `carousel-study.html` se convierte en el `index.html` público por indicación de Santiago. El carrusel, los cinco casos y las vistas personales funcionan dentro de esa página. Los enlaces antiguos se conservan mediante redirecciones a `?project=<slug>` o `?view=<sección>`. El resto de los HTML, módulos y recursos sin uso actual pasa a `VERSION 1 - PORTFOLIO/`, con inventario de rutas y SHA-256. No usar esa carpeta como fuente pública ni borrar sus originales. AUDIT sigue siendo una colección local ignorada por Git dentro de la versión archivada.
+
+`node build.mjs` genera únicamente `dist/index.html`, `dist/assets/` y `dist/css/`. Vercel sirve `dist/`; la versión anterior nunca se incluye en el deploy. Se conserva el aviso móvil hasta 900px. La descripción de arquitecturas anteriores que aparece más abajo es historial, no el árbol vigente. Al actualizar contenido, editar el catálogo incorporado en `index.html` y conservar imágenes completas, cargas bajo demanda, cursor contextual y reproducción silenciosa de videos. Contacto no simula envíos; los perfiles y tienda pendientes no tienen URLs inventadas.
+
 ## Apolo — identidad, prendas y campañas · 21 de noviembre de 2026
 
 El recorrido de Apolo avanza por apertura/rol, distintas firmas, colores observados, producción y preparación, Everywhere, Circles, Sahara y Menorca, video de Menorca y cierre. Santi autorizó buscar más material en sus carpetas: se incorporan derivados de fotos cotejadas con sus referencias y prendas, conservando originales. Las dos imágenes de producción son contexto general; no atribuir todas las prendas de esos encuadres a Circles o Everywhere. La foto del café de Everywhere coincide con Figma. No fijar fechas individuales, autoría fotográfica ni una cronología entre las variantes de marca. No publicar planes internos ni colecciones no confirmadas.

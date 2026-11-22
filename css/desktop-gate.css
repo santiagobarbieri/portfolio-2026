@@ -19,7 +19,7 @@
     color: var(--fg);
     visibility: visible !important;
     pointer-events: auto;
-    font-family: var(--font);
+    font-family: "Albert Sans", Arial, sans-serif;
     text-align: left;
   }
   .mobile-status, .mobile-status * { cursor: auto !important; }

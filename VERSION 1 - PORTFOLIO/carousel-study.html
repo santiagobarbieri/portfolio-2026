@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Prueba — Santiago Barbieri</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { font: 12px/1.3 Arial, "Helvetica Neue", sans-serif; color: #111; background: #fff; color-scheme: light; --ui-time: 180ms; --ui-ease: cubic-bezier(.2, .75, .2, 1); }
+    * { box-sizing: border-box; }
+    body { margin: 0; height: 100dvh; overflow: hidden; }
+    button, input, summary { font: inherit; }
+    button, summary { cursor: pointer; }
+    button { color: inherit; border: 0; background: transparent; padding: 0; }
+    button, summary { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 1px solid #111; outline-offset: 4px; }
+    ::selection { color: #fff; background: #111; }
+    .study-heading { position: fixed; z-index: 5; top: 46px; left: 16px; display: flex; align-items: center; gap: 9px; margin: 0; font-size: 12px; line-height: 16px; font-weight: 400; text-transform: uppercase; }
+    .study-mark { display: block; flex: 0 0 auto; width: 17px; height: 17px; color: #111; transform-origin: center; transition: transform 260ms var(--ui-ease); }
+    .study-heading:hover .study-mark { transform: rotate(45deg); }
+    .study-navigation { position: fixed; z-index: 10; top: 46px; left: 50%; display: flex; gap: 7px; transform: translateX(-50%); }
+    .study-nav-group { position: relative; width: 104px; }
+    .study-nav-group--about { --nav-color: #03b047; }
+    .study-nav-group--contact { --nav-color: #ef3333; }
+    .study-nav-group--shop { --nav-color: #01a2f2; }
+    .study-nav-group--social { --nav-color: #f9a507; }
+    .study-nav-group--archive { --nav-color: #ff6b2c; }
+    .study-nav-trigger { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 18px; margin: 0; padding: 0 5px; border: 0; background: var(--nav-color); color: #000; font-size: 12px; line-height: 16px; text-transform: uppercase; list-style: none; transform-origin: center; transition: transform var(--ui-time) var(--ui-ease); }
+    .study-nav-trigger::before { content: ""; position: absolute; inset: -10px 0 0; }
+    .study-nav-trigger::-webkit-details-marker { display: none; }
+    .study-nav-trigger svg { flex: 0 0 auto; width: 9px; height: 9px; transition: transform var(--ui-time) var(--ui-ease); }
+    .study-nav-group:hover > .study-nav-trigger, .study-nav-trigger:focus-visible { transform: translateY(-2px) scale(1.025); }
+    .study-nav-group > .study-nav-trigger:active { transform: translateY(0) scale(.975); }
+    .study-nav-group:hover > .study-nav-trigger > svg:not(.study-chevron), .study-nav-trigger:focus-visible > svg:not(.study-chevron) { transform: translate(1.5px, -1.5px); }
+    details[open] > .study-nav-trigger .study-chevron { transform: rotate(180deg); }
+    .study-submenu { display: grid; margin: 0; padding: 0; list-style: none; }
+    .study-submenu li { margin: 0; }
+    .study-submenu button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 18px; padding: 0 3px; border: 1px solid var(--nav-color); border-top: 0; color: #111; background: #fff; font-size: 12px; line-height: 15px; text-align: left; text-transform: uppercase; }
+    .study-submenu button svg { width: 9px; height: 9px; transition: transform var(--ui-time) var(--ui-ease); }
+    .study-submenu button > span { display: inline-block; transform-origin: left center; transition: transform var(--ui-time) var(--ui-ease); }
+    .study-submenu button:is(:hover, :focus-visible) > span { transform: translateX(3px); }
+    .study-submenu button:is(:hover, :focus-visible) svg { transform: translate(1.5px, -1.5px); }
+    .study-submenu button:active > span { transform: translateX(1px) scale(.975); }
+    .study-nav-group[open] .study-submenu > li { animation: study-row-enter 180ms var(--ui-ease) both; }
+    .study-nav-group[open] .study-submenu > li:nth-child(2) { animation-delay: 20ms; }
+    .study-nav-group[open] .study-submenu > li:nth-child(3) { animation-delay: 40ms; }
+    .study-projects { position: fixed; z-index: 5; top: 112px; left: 16px; width: 180px; }
+    .study-projects ul { margin: 0; padding: 0; list-style: none; }
+    .study-projects button { position: relative; display: block; width: 100%; min-height: 19px; font-size: 12px; line-height: 19px; text-align: left; text-transform: uppercase; }
+    .study-projects button > span { display: inline-block; transform-origin: left center; transition: transform var(--ui-time) var(--ui-ease); }
+    .study-projects button:is(:hover, :focus-visible) > span { transform: translateX(6px) scale(1.025); }
+    .study-projects button:active > span { transform: translateX(3px) scale(.975); }
+    .study-projects button::before { content: ""; position: absolute; width: 3px; height: 3px; top: 50%; left: -8px; border-radius: 50%; background: currentColor; opacity: 0; transform: translateY(-50%) scale(0); transition: transform var(--ui-time) var(--ui-ease), opacity var(--ui-time) ease-out; }
+    .study-projects button:is(:hover, :focus-visible, [aria-current="true"])::before { opacity: 1; transform: translateY(-50%) scale(1); }
+    .study-projects button[aria-current="true"] { font-weight: 700; }
+    .study-stage { position: fixed; inset: 0; overflow: clip; cursor: grab; touch-action: none; user-select: none; }
+    .study-stage.is-dragging { cursor: grabbing; }
+    .study-stage:focus-visible { outline-offset: -2px; }
+    .study-scene { position: absolute; inset: 0; perspective: var(--perspective, 6000px); perspective-origin: 50% 50%; }
+    /* One shared camera keeps the planes parallel in real CSS perspective. */
+    .study-camera { position: absolute; top: 50%; left: 50%; width: 0; height: 0; transform-style: preserve-3d; transform: rotateX(var(--pitch, -11deg)) rotateY(var(--yaw, -31deg)); }
+    .study-plane { position: absolute; width: var(--card-width, 680px); height: var(--card-height, 408px); margin-left: calc(var(--card-width, 680px) / -2); margin-top: calc(var(--card-height, 408px) / -2); transform-style: preserve-3d; backface-visibility: hidden; }
+    .study-plane__face { position: absolute; inset: 0; border: 1px solid #1115; background: var(--cover-background, #fff); color: #242424; backface-visibility: hidden; pointer-events: none; }
+    .study-notice { position: fixed; z-index: 12; bottom: 76px; right: 16px; max-width: calc(100% - 32px); color: #555; font-size: 12px; text-align: right; }
+    .study-notice:empty { display: none; }
+    .study-notice:not(:empty) { animation: study-notice-enter 180ms var(--ui-ease) both; }
+    @keyframes study-row-enter { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes study-notice-enter { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .study-noscript { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    @media (max-width: 1000px) {
+      .study-heading { top: 24px; }
+      .study-navigation { top: 66px; width: calc(100% - 32px); gap: 5px; max-width: 548px; }
+      .study-nav-group { flex: 1 1 0; width: auto; min-width: 0; }
+      .study-nav-trigger { gap: 4px; font-size: 11px; }
+      .study-submenu button { font-size: 11px; }
+      .study-projects { top: 112px; width: auto; right: 16px; transform: none; }
+      .study-projects ul { display: flex; flex-wrap: wrap; gap: 2px 14px; }
+      .study-projects button { width: auto; min-height: 22px; line-height: 22px; }
+      .study-stage { left: 0; right: 0; }
+      .study-notice { bottom: 80px; }
+    }
+    @media (max-width: 650px) {
+      .study-navigation { flex-wrap: wrap; justify-content: center; gap: 8px; }
+      .study-nav-group { flex: 0 0 104px; }
+      .study-projects { top: 140px; }
+      .study-heading { font-size: 12px; }
+      .study-notice { bottom: 110px; }
+    }
+    @media (max-width: 370px) {
+      .study-projects { top: 166px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      button, summary, svg, .study-projects button::before, .study-projects button > span, .study-submenu button > span { transition: none !important; }
+      .study-submenu > li, .study-notice:not(:empty) { animation: none !important; }
+      .study-heading:hover .study-mark { transform: none; }
+    }
+
+    @font-face { font-family: "Albert Sans"; src: url("./assets/fonts/albert-sans-300.woff2") format("woff2"); font-weight: 300 400; font-display: swap; }
+    @font-face { font-family: "Albert Sans"; src: url("./assets/fonts/albert-sans-600.woff2") format("woff2"); font-weight: 600 700; font-display: swap; }
+    :root { font-family: "Albert Sans", Arial, sans-serif; }
+    [hidden] { display: none !important; }
+    .study-heading, .study-navigation, .study-projects { z-index: 60; }
+    .study-heading { max-width: calc(50vw - 300px); }
+    .study-heading > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    body[data-study-page]:not([data-study-page="project"]) .study-page-close { display: none; }
+    @media (max-width: 1000px) { .study-heading { max-width: calc(100vw - 110px); } }
+    .study-loading .study-stage { visibility: hidden; }
+    .study-loader { position: fixed; z-index: 110; inset: 0; display: grid; place-items: center; background: #fff; }
+    .study-loader__rose { width: 32px; height: 32px; background: #111; mask: url("data:image/svg+xml,%3Csvg%20width%3D%22298%22%20height%3D%22298%22%20viewBox%3D%220%200%20298%20298%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M37.1931%20111.159C37.6587%20111.483%2051.021%20117.461%2065.4514%20123.883L67.7586%20125.897C74.7999%20132.041%2071.2968%20143.625%2062.0295%20144.825L29.8%20149L62.0295%20153.175C71.2969%20154.375%2074.7999%20165.959%2067.7586%20172.103L65.4513%20174.117C51.0208%20180.539%2037.6586%20186.517%2037.1929%20186.841C37.4585%20186.599%2041.9038%20182.717%2047.4483%20177.879C56.2498%20170.199%2051.8711%20155.719%2040.2869%20154.218L0%20149L40.2869%20143.782C51.8711%20142.281%2056.2498%20127.801%2047.4483%20120.121C41.9039%20115.283%2037.4586%20111.401%2037.1931%20111.159ZM107.684%20225.738C102.02%20240.484%2096.7983%20254.163%2096.6982%20254.721C96.7145%20254.362%2097.1128%20248.474%2097.6125%20241.133C98.4058%20229.479%2085.0704%20222.336%2075.8181%20229.466L0%20298L68.4382%20222.086C75.5684%20212.834%2068.4255%20199.498%2056.7715%20200.292C49.4302%20200.791%2043.5418%20201.19%2043.1826%20201.206C43.7402%20201.106%2057.3795%20195.899%2072.1012%20190.245L75.2172%20190.033C84.5404%20189.399%2090.2548%20200.067%2084.5506%20207.469L29.8%20268.2L90.4545%20213.373C97.8563%20207.669%20108.525%20213.383%20107.89%20222.706L107.684%20225.738ZM174.117%20232.549L172.103%20230.241C165.959%20223.2%20154.375%20226.703%20153.175%20235.97L149%20268.2L144.825%20235.97C143.625%20226.703%20132.041%20223.2%20125.897%20230.241L123.883%20232.549C117.461%20246.979%20111.483%20260.341%20111.159%20260.807C111.401%20260.542%20115.283%20256.096%20120.121%20250.552C127.801%20241.75%20142.281%20246.129%20143.782%20257.713L149%20298L154.218%20257.713C155.719%20246.129%20170.199%20241.75%20177.879%20250.552C182.717%20256.096%20186.599%20260.541%20186.841%20260.807C186.517%20260.341%20180.539%20246.979%20174.117%20232.549ZM225.899%20190.245L222.783%20190.033C213.459%20189.399%20207.745%20200.067%20213.449%20207.469L268.2%20268.2L207.545%20213.373C200.144%20207.669%20189.475%20213.383%20190.11%20222.706L190.316%20225.738C195.979%20240.484%20201.201%20254.163%20201.302%20254.721C201.285%20254.362%20200.887%20248.474%20200.387%20241.133C199.594%20229.479%20212.929%20222.336%20222.182%20229.466L298%20298L229.562%20222.086C222.431%20212.834%20229.574%20199.498%20241.228%20200.292C248.57%20200.791%20254.458%20201.19%20254.817%20201.206C254.26%20201.106%20240.62%20195.899%20225.899%20190.245ZM232.549%20123.883L230.241%20125.897C223.2%20132.041%20226.703%20143.625%20235.97%20144.825L268.2%20149L235.97%20153.175C226.703%20154.375%20223.2%20165.959%20230.241%20172.103L232.549%20174.117C246.979%20180.539%20260.341%20186.517%20260.807%20186.841C260.541%20186.599%20256.096%20182.717%20250.552%20177.879C241.75%20170.199%20246.129%20155.719%20257.713%20154.218L298%20149L257.713%20143.782C246.129%20142.281%20241.75%20127.801%20250.552%20120.121C256.096%20115.283%20260.542%20111.401%20260.807%20111.159C260.341%20111.483%20246.979%20117.461%20232.549%20123.883ZM222.783%20107.813L225.777%20107.61C240.545%20101.938%20254.258%2096.7027%20254.817%2096.6024C254.458%2096.6188%20248.57%2097.0171%20241.228%2097.5168C229.574%2098.3101%20222.431%2084.9746%20229.562%2075.7224L298%200L222.182%2068.3425C212.929%2075.4727%20199.594%2068.3297%20200.387%2056.6758C200.887%2049.3344%20201.285%2043.446%20201.302%2043.0868C201.201%2043.6452%20195.981%2057.3186%20190.319%2072.0619L190.11%2075.1406C189.475%2084.4638%20200.144%2090.1781%20207.545%2084.4739L268.2%2029.8L213.449%2090.3779C207.745%2097.7797%20213.459%20108.448%20222.783%20107.813ZM123.883%2065.4512L125.897%2067.7587C132.041%2074.7999%20143.625%2071.2969%20144.825%2062.0295L149%2029.8L153.175%2062.0295C154.375%2071.2969%20165.959%2074.7999%20172.103%2067.7587L174.117%2065.4514C180.539%2051.021%20186.517%2037.6588%20186.841%2037.1931C186.599%2037.4586%20182.717%2041.9039%20177.879%2047.4483C170.199%2056.2498%20155.719%2051.8711%20154.218%2040.2869L149%200L143.782%2040.287C142.281%2051.8711%20127.801%2056.2498%20120.121%2047.4483C115.283%2041.9038%20111.401%2037.4585%20111.159%2037.193C111.483%2037.6586%20117.461%2051.0208%20123.883%2065.4512ZM72.2225%20107.61C57.4545%20101.938%2043.7417%2096.7027%2043.1826%2096.6025C43.5418%2096.6189%2049.4302%2097.0171%2056.7715%2097.5168C68.4255%2098.3101%2075.5684%2084.9747%2068.4382%2075.7224L0%200L75.8181%2068.3425C85.0704%2075.4727%2098.4058%2068.3297%2097.6125%2056.6758C97.1128%2049.3345%2096.7145%2043.4462%2096.6982%2043.087C96.7983%2043.6454%20102.018%2057.3188%20107.681%2072.0621L107.89%2075.1406C108.525%2084.4638%2097.8563%2090.1781%2090.4545%2084.4739L29.8%2029.8L84.5506%2090.3779C90.2547%2097.7797%2084.5404%20108.448%2075.2172%20107.813L72.2225%20107.61Z%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23F2EDE3%22%2F%3E%0A%3Cpath%20d%3D%22M109.168%20131.345V128.959C112.221%20130.113%20117.58%20132.169%20122.445%20134.042V137.23L119.14%20140.536C114.059%20138.279%20108.555%20135.826%20105.895%20134.618L109.168%20131.345Z%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23D4D4D4%22%2F%3E%0A%3Cpath%20d%3D%22M106.69%20163.021C109.665%20161.678%20114.909%20159.344%20119.673%20157.227L122.445%20159.999V163.881C117.58%20165.754%20112.221%20167.811%20109.168%20168.965V165.499L106.69%20163.021ZM109.168%20131.345L105.895%20134.618C108.555%20135.826%20114.059%20138.279%20119.14%20140.536L122.445%20137.23V134.042C117.58%20132.169%20112.221%20130.113%20109.168%20128.959V131.345ZM128.682%20108.293C129.706%20111.021%20131.869%20116.661%20133.871%20121.862H137.813L140.536%20119.14C138.279%20114.059%20135.826%20108.555%20134.618%20105.895L132.22%20108.293H128.682ZM163.744%20105.101C162.766%20107.227%20160.149%20113.097%20157.701%20118.606L160.957%20121.862H164.129C166.131%20116.661%20168.294%20111.021%20169.318%20108.293H166.936L163.744%20105.101ZM190.466%20128.346C188.272%20129.158%20182.271%20131.458%20176.644%20133.623V137.549L179.394%20140.299C184.903%20137.851%20190.772%20135.234%20192.899%20134.256L190.466%20131.824V128.346ZM192.105%20163.382C189.445%20162.174%20183.941%20159.721%20178.86%20157.464L176.644%20159.68V164.301C182.271%20166.465%20188.272%20168.765%20190.466%20169.578V165.021L192.105%20163.382ZM169.304%20189.592C168.274%20186.849%20166.121%20181.238%20164.129%20176.061H160.263L157.464%20178.86C159.721%20183.941%20162.174%20189.445%20163.382%20192.105L165.895%20189.592H169.304ZM134.979%20191.31C136.322%20188.335%20138.656%20183.091%20140.773%20178.327L138.507%20176.061H133.871C131.879%20181.238%20129.726%20186.849%20128.696%20189.592H133.26L134.979%20191.31Z%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23F2EDE3%22%2F%3E%0A%3Cpath%20d%3D%22M93.6629%20179.775L93.1733%20179.808C89.6271%20181.172%2086.0203%20182.558%2082.6127%20183.864L82.6127%20176.498L77.3502%20171.236C80.7024%20169.742%2084.2539%20168.162%2087.7449%20166.61L88.069%20166.327C93.3499%20161.72%2090.7227%20153.031%2083.7722%20152.131L59.6%20149L83.7721%20145.869C90.7226%20144.969%2093.3499%20136.28%2088.069%20131.673L87.7449%20131.39C83.7876%20129.631%2079.7526%20127.836%2076.0182%20126.17L82.6127%20119.576V113.982C86.0591%20115.304%2089.7093%20116.706%2093.2943%20118.085L93.6629%20118.11C100.655%20118.586%20104.941%20110.585%20100.663%20105.033L59.6%2059.6L105.091%20100.605C110.642%20104.884%20118.643%20100.598%20118.168%2093.6055L118.137%2093.1532C116.58%2089.1059%20114.994%2084.9776%20113.53%2081.1551H121.033L126.17%2076.0183C127.836%2079.7526%20129.631%2083.7875%20131.39%2087.7448L131.673%2088.069C136.28%2093.3499%20144.969%2090.7227%20145.869%2083.7722L149%2059.6L152.131%2083.7721C153.031%2090.7226%20161.72%2093.3499%20166.327%2088.069L166.61%2087.745C168.58%2083.3124%20170.596%2078.7824%20172.424%2074.6864L178.893%2081.1551H184.47C183.006%2084.9775%20181.42%2089.1057%20179.863%2093.153L179.832%2093.6055C179.356%20100.598%20187.358%20104.884%20192.909%20100.605L238.4%2059.6L197.337%20105.033C193.059%20110.585%20197.345%20118.586%20204.337%20118.11L204.705%20118.085C209.252%20116.336%20213.903%20114.55%20218.111%20112.939V120.373L223.313%20125.576C219.218%20127.404%20214.688%20129.42%20210.255%20131.39L209.931%20131.673C204.65%20136.28%20207.277%20144.969%20214.228%20145.869L238.4%20149L214.228%20152.131C207.277%20153.031%20204.65%20161.72%20209.931%20166.327L210.255%20166.61C214.212%20168.369%20218.247%20170.164%20221.982%20171.83L218.111%20175.701V184.908C213.941%20183.311%20209.335%20181.542%20204.827%20179.808L204.337%20179.775C197.345%20179.299%20193.059%20187.3%20197.337%20192.852L238.4%20238.4L192.909%20197.28C187.358%20193.001%20179.356%20197.287%20179.832%20204.28L179.86%20204.685C181.413%20208.722%20182.994%20212.839%20184.455%20216.653H177.158L171.83%20221.982C170.164%20218.247%20168.369%20214.212%20166.61%20210.255L166.327%20209.931C161.72%20204.65%20153.031%20207.277%20152.131%20214.228L149%20238.4L145.869%20214.228C144.969%20207.277%20136.28%20204.65%20131.673%20209.931L131.39%20210.255C129.838%20213.746%20128.258%20217.298%20126.764%20220.65L122.767%20216.653H113.545C115.006%20212.839%20116.587%20208.722%20118.14%20204.685L118.168%20204.28C118.643%20197.287%20110.642%20193.001%20105.091%20197.28L59.6%20238.4L100.663%20192.852C104.941%20187.3%20100.655%20179.299%2093.6629%20179.775ZM109.168%20171.322C104.698%20173.042%2099.9506%20174.866%2095.8902%20176.419V170.999L92.0167%20167.125C95.986%20165.352%20100.633%20163.285%20105.009%20161.341L106.159%20162.49L108.379%20160.552C111.9%20157.48%20110.148%20151.688%20105.515%20151.087L89.4%20149L105.515%20146.913C110.148%20146.312%20111.9%20140.52%20108.379%20137.448L105.542%20134.971L104.209%20136.304C99.6702%20134.287%2094.906%20132.167%2090.9519%20130.399L95.8902%20125.461V121.466C99.9506%20123.019%20104.698%20124.843%20109.168%20126.563V128.207L112.109%20128.407C116.77%20128.724%20119.627%20123.39%20116.775%20119.689L89.4%2089.4L119.727%20116.737C123.428%20119.589%20128.762%20116.732%20128.445%20112.07L128.189%20108.293H126.306C124.519%20103.65%20122.647%2098.774%20121.099%2094.7241H126.627L130.399%2090.9519C132.167%2094.9061%20134.287%2099.6702%20136.304%20104.209L134.971%20105.542L137.448%20108.379C140.52%20111.9%20146.312%20110.148%20146.913%20105.515L149%2089.4L151.087%20105.515C151.688%20110.148%20157.48%20111.9%20160.552%20108.379C161.824%20106.921%20162.931%20105.653%20163.568%20104.925L162.052%20103.409C164.146%2098.6971%20166.322%2093.8095%20168.077%2089.8873L172.914%2094.7241H176.9C175.353%2098.774%20173.481%20103.65%20171.694%20108.293H169.811L169.555%20112.07C169.238%20116.732%20174.572%20119.589%20178.273%20116.737L208.6%2089.4L181.225%20119.689C178.373%20123.39%20181.23%20128.724%20185.891%20128.407C187.822%20128.275%20189.502%20128.161%20190.466%20128.097V125.934C195.279%20124.083%20200.274%20122.165%20204.289%20120.633V126.099L208.113%20129.923C204.19%20131.678%20199.303%20133.854%20194.591%20135.948L193.075%20134.432C192.347%20135.069%20191.079%20136.176%20189.621%20137.448C186.1%20140.52%20187.852%20146.312%20192.485%20146.913L208.6%20149L192.485%20151.087C187.852%20151.688%20186.1%20157.48%20189.621%20160.552L192.458%20163.029L193.791%20161.696C198.33%20163.713%20203.094%20165.833%20207.048%20167.601L204.289%20170.361V177.252C200.274%20175.72%20195.279%20173.802%20190.466%20171.951V169.976C189.502%20169.912%20187.822%20169.648%20185.891%20169.517C181.23%20169.199%20178.373%20174.533%20181.225%20178.234L208.6%20208.6L178.273%20181.186C174.572%20178.334%20169.238%20181.191%20169.555%20185.853L169.809%20189.592H171.694C173.475%20194.22%20175.341%20199.08%20176.886%20203.123H171.527L167.601%20207.048C165.833%20203.094%20163.713%20198.33%20161.696%20193.791L163.029%20192.458L160.552%20189.621C157.48%20186.1%20151.688%20187.852%20151.087%20192.485L149%20208.6L146.913%20192.485C146.312%20187.852%20140.52%20186.1%20137.448%20189.621L135.51%20191.841L136.659%20192.991C134.715%20197.367%20132.648%20202.014%20130.875%20205.983L128.014%20203.123H121.114C122.659%20199.08%20124.525%20194.22%20126.306%20189.592H128.191L128.445%20185.853C128.762%20181.191%20123.428%20178.334%20119.727%20181.186L89.4%20208.6L116.775%20178.234C119.627%20174.533%20116.77%20169.199%20112.109%20169.517L109.168%20169.716V171.322Z%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23F2EDE3%22%2F%3E%0A%3Cpath%20d%3D%22M134.07%20144.768C130.607%20143.229%20126.751%20141.51%20126.639%20141.432C126.692%20141.48%20127.581%20142.257%20128.69%20143.224C130.45%20144.76%20129.574%20147.656%20127.257%20147.956L119.2%20149L127.257%20150.044C129.574%20150.344%20130.45%20153.24%20128.69%20154.776C127.581%20155.743%20126.692%20156.52%20126.639%20156.568C126.754%20156.488%20130.808%20154.681%20134.336%20153.114L135.723%20154.5V156.441C132.119%20157.828%20127.975%20159.416%20127.837%20159.441C127.908%20159.438%20129.086%20159.358%20130.554%20159.258C132.885%20159.1%20134.314%20161.767%20132.888%20163.617L119.2%20178.8L134.364%20165.093C136.214%20163.667%20138.881%20165.096%20138.723%20167.427C138.623%20168.895%20138.543%20170.072%20138.54%20170.144C138.564%20170.01%20140.074%20166.067%20141.435%20162.531H143.753L144.886%20163.664C143.319%20167.192%20141.512%20171.246%20141.432%20171.361C141.48%20171.308%20142.257%20170.419%20143.224%20169.31C144.76%20167.55%20147.656%20168.426%20147.956%20170.743L149%20178.8L150.044%20170.743C150.344%20168.426%20153.24%20167.55%20154.776%20169.31C155.743%20170.419%20156.52%20171.308%20156.568%20171.361C156.49%20171.249%20154.771%20167.393%20153.232%20163.93L154.632%20162.531H156.565C157.925%20166.067%20159.436%20170.01%20159.46%20170.144C159.457%20170.072%20159.377%20168.895%20159.277%20167.427C159.119%20165.096%20161.786%20163.667%20163.636%20165.093L178.8%20178.8L165.112%20163.617C163.686%20161.767%20165.115%20159.1%20167.446%20159.258C168.914%20159.358%20170.092%20159.438%20170.163%20159.441C170.032%20159.418%20166.286%20157.983%20162.822%20156.65V154.34L163.93%20153.232C167.393%20154.771%20171.249%20156.49%20171.361%20156.568C171.308%20156.52%20170.419%20155.743%20169.31%20154.776C167.55%20153.24%20168.426%20150.344%20170.743%20150.044L178.8%20149L170.743%20147.956C168.426%20147.656%20167.55%20144.76%20169.31%20143.224C170.419%20142.257%20171.308%20141.48%20171.361%20141.432C171.252%20141.508%20167.588%20143.142%20164.197%20144.649L162.822%20143.275V141.311C166.286%20139.979%20170.032%20138.544%20170.163%20138.52C170.092%20138.524%20168.914%20138.603%20167.446%20138.703C165.115%20138.862%20163.686%20136.195%20165.112%20134.344L178.8%20119.2L163.636%20132.868C161.786%20134.295%20159.119%20132.866%20159.277%20130.535C159.377%20129.067%20159.457%20127.889%20159.46%20127.817C159.436%20127.952%20157.925%20131.894%20156.565%20135.431H154.979L153.351%20133.803C154.858%20130.412%20156.492%20126.748%20156.568%20126.639C156.52%20126.692%20155.743%20127.581%20154.776%20128.69C153.24%20130.45%20150.344%20129.574%20150.044%20127.257L149%20119.2L147.956%20127.257C147.656%20129.574%20144.76%20130.45%20143.224%20128.69C142.257%20127.581%20141.48%20126.692%20141.432%20126.639C141.51%20126.751%20143.229%20130.607%20144.768%20134.07L143.407%20135.431H141.435C140.074%20131.894%20138.564%20127.952%20138.54%20127.817C138.543%20127.889%20138.623%20129.067%20138.723%20130.535C138.881%20132.866%20136.214%20134.295%20134.364%20132.868L119.2%20119.2L132.888%20134.344C134.314%20136.195%20132.885%20138.862%20130.554%20138.703C129.086%20138.603%20127.908%20138.524%20127.837%20138.52C127.975%20138.545%20132.119%20140.134%20135.723%20141.521V143.115L134.07%20144.768Z%22%20fill%3D%22%23F2EDE3%22%2F%3E%0A%3C%2Fsvg%3E%0A") center/contain no-repeat; animation: study-rose 1.6s steps(8, end) infinite; }
+    @keyframes study-rose { to { transform: rotate(360deg); } }
+    .study-plane__face { border-color: #0002; background: var(--cover-background, #fff); }
+    .study-plane__image { display: block; width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+    .study-card-info { position: absolute; z-index: auto; display: block; width: 194px; padding: 12px 14px; color: #111; background: #fff; text-decoration: none; opacity: 0; visibility: hidden; transform-style: preserve-3d; backface-visibility: hidden; transition: opacity 160ms ease, visibility 160ms; }
+    .study-card-info.is-visible { opacity: 1; visibility: visible; }
+    .study-card-info h2 { margin: 0 0 8px; font-size: 16px; font-weight: 600; line-height: 1.15; }
+    .study-card-info p { margin: 0 0 12px; font-size: 12px; line-height: 1.35; }
+    .study-card-info__year { display: block; margin-bottom: 20px; color: #666; }
+    .study-card-info__open { display: inline-block; font-size: 12px; font-weight: 600; transition: transform 160ms var(--ui-ease); }
+    .study-card-info:is(:hover,:focus-visible) .study-card-info__open { transform: translate(3px,-1px); }
+    .study-nav-group.is-page-active > .study-nav-trigger { background: #111; color: #fff; }
+    .study-page { position: fixed; z-index: 40; inset: 102px 0 84px; overflow: auto; overscroll-behavior: contain; background: #fff; padding: 30px max(24px, 12vw) 26px max(240px, 20vw); }
+    .study-page:focus { outline: none; }
+    body[data-study-page] .study-stage { visibility: hidden; pointer-events: none; }
+    body[data-study-page] .study-projects { visibility: hidden; }
+    .study-page-title { font-size: clamp(32px, 3.1vw, 52px); font-weight: 300; line-height: 1.08; letter-spacing: -.045em; margin: 0 0 28px; }
+    .study-page-copy { max-width: 420px; font-size: 16px; line-height: 1.5; }
+    .study-page-note { color: #6b6b6b; font-size: 12px; line-height: 1.45; }
+    .study-page-index { position: fixed; top: 46%; left: 16px; display: grid; gap: 6px; width: 180px; }
+    .study-page-index button { position: relative; width: max-content; max-width: 100%; text-align: left; font-size: 12px; text-transform: uppercase; transition: transform 160ms var(--ui-ease); }
+    .study-page-index button:is(:hover,:focus-visible) { transform: translateX(4px); }
+    .study-page-index [aria-selected=true] { color: #039b3e; }
+    .study-page-index [aria-selected=true]::before { content: "◇"; position: absolute; left: -11px; }
+    .study-about-testament { display: grid; grid-template-columns: .7fr 1fr 1fr; gap: 32px; align-items: start; }
+    .study-about-testament > h2 { align-self: center; }
+    .study-about-text { margin: 0; font-size: 14px; line-height: 1.45; }
+    .study-about-text p { margin: 0 0 20px; }
+    .study-portrait-pending { display: grid; place-items: center; width: 100%; aspect-ratio: 482/562; color: #777; background: #f4f4f4; font-size: 12px; }
+    .study-credentials { display: grid; gap: 28px; padding-top: 15vh; }
+    .study-credential { display: grid; grid-template-columns: 1.35fr 1fr .7fr; gap: 24px; align-items: baseline; }
+    .study-credential h2 { margin: 0; font-size: clamp(26px, 3vw, 44px); font-weight: 300; letter-spacing: -.045em; }
+    .study-credential p { margin: 0; font-size: 15px; }
+    .study-tastes { padding-top: 13vh; font-size: clamp(24px, 3vw, 42px); font-weight: 300; letter-spacing: -.035em; line-height: 1.2; }
+    .study-tastes p { margin: 0 0 10px; }
+    .study-contact { max-width: 620px; margin: 4vh auto 0; }
+    .study-contact fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 20px; }
+    .study-contact legend { font-size: 32px; font-weight: 300; margin: 0 0 24px; }
+    .study-field { display: grid; gap: 7px; font-size: 12px; }
+    .study-field input, .study-field select, .study-field textarea { width: 100%; min-width: 0; font: 300 18px/1.35 "Albert Sans", Arial, sans-serif; border: 0; border-bottom: 1px solid #bbb; padding: 8px 0; color: #111; background: transparent; border-radius: 0; }
+    .study-field textarea { resize: vertical; min-height: 90px; max-height: 220px; }
+    .study-form-actions { display: flex; gap: 24px; justify-content: flex-end; margin-top: 28px; }
+    .study-text-button { font-size: 12px; text-transform: uppercase; transition: transform 160ms var(--ui-ease); }
+    .study-text-button:is(:hover,:focus-visible) { transform: translateX(3px); }
+    .study-form-progress { margin: 0 0 24px; font-size: 12px; color: #666; }
+    .study-contact-summary { font-size: 16px; line-height: 1.55; white-space: pre-wrap; }
+    .study-archive-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px 20px; }
+    .study-archive-piece { margin: 0; min-width: 0; }
+    .study-archive-piece button { display: block; width: 100%; transition: transform 180ms var(--ui-ease); }
+    .study-archive-piece button:is(:hover,:focus-visible) { transform: translateY(-4px); }
+    .study-archive-piece img { display: block; max-width: 100%; width: 100%; height: auto; }
+    .study-archive-piece figcaption { margin-top: 10px; font-size: 12px; }
+    .study-archive-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 30px; }
+    .study-archive-heading h2 { margin: 0; }
+    .study-case-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: 64px; margin-bottom: 100px; }
+    .study-case-hero__cover { width: 100%; max-width: 300px; height: auto; display: block; justify-self: center; }
+    .study-case-flow { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: start; gap: 80px 48px; }
+    .study-case-section { min-width: 0; }
+    .study-case-section h3 { font-size: 18px; font-weight: 600; margin: 20px 0 8px; }
+    .study-case-section p { font-size: 14px; line-height: 1.45; margin: 0; }
+    .study-case-images { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: center; gap: 10px; }
+    .study-case-images:has(> :only-child) { grid-template-columns: minmax(0,1fr); }
+    .study-case-images img { display: block; max-width: 100%; width: 100%; height: auto; max-height: 430px; object-fit: contain; }
+    .study-case-images video { display: block; width: 100%; height: auto; pointer-events: none; }
+    .study-colors { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; width: 100%; grid-column: 1/-1; }.study-colors > div > span:first-child { display: block; height: 72px; margin-bottom: 6px; }.study-colors > div > span:last-child { font-size: 11px; }
+    .study-case-images button { transition: transform 180ms var(--ui-ease); }.study-case-images button:is(:hover,:focus-visible) { transform: translateY(-3px); }
+    .study-page-close { position: fixed; z-index: 70; right: 24px; top: 46px; font-size: 12px; }
+    .study-chrome-enter { animation: study-chrome-enter 240ms var(--ui-ease) both; }
+    @keyframes study-chrome-enter { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+    .study-lightbox { position: fixed; inset: 0; z-index: 100; border: 0; padding: 40px; width: 100%; height: 100%; max-width: none; max-height: none; background: #fffffff5; }
+    .study-lightbox::backdrop { background: #ffffffed; }
+    .study-lightbox img { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); object-fit: contain; }.study-lightbox > .study-loader__rose { position: absolute; left: calc(50% - 16px); top: calc(50% - 16px); }
+    .study-lightbox button { position: absolute; top: 20px; right: 24px; font-size: 14px; }
+    @media (max-width: 1100px) { .study-page { padding-left: 210px; padding-right: 32px; }.study-about-testament { grid-template-columns: 1fr 1fr; }.study-about-testament > h2 { grid-column: 1/-1; }.study-credential { grid-template-columns: 1fr; gap: 8px; }.study-case-hero { gap: 32px; } }
+    @media (max-width: 760px) { .study-page { inset: 140px 0 70px; padding: 30px 20px; }.study-page-index { position: static; display: flex; width: auto; gap: 22px; margin-bottom: 36px; }.study-about-testament { grid-template-columns: 1fr; }.study-portrait-pending { max-height: 320px; }.study-archive-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }.study-case-hero { grid-template-columns: 1fr; }.study-case-flow { gap: 42px 20px; }.study-card-info { width: 170px; }.study-page-close { top: 110px; }.study-page-title { font-size: 32px; } }
+    @media (prefers-reduced-motion: reduce) { .study-submenu > li, .study-notice, .study-chrome-enter { animation: none !important; }.study-card-info, .study-card-info__open { transition: none !important; } }
+      /* Client cases keep their header outside the clipped reading area. */
+    body[data-study-page="project"] { background: #fff; }
+    body[data-study-page="project"] .study-navigation { display: none; }
+    body[data-study-page="project"] .study-heading { max-width: calc(100vw - 150px); padding: 5px 7px; margin-left: -7px; color: #111; background: transparent; }
+    body[data-study-page="project"] .study-mark { color: inherit; }
+    body[data-study-page="project"] .study-page-close { padding: 5px 7px; margin-right: -7px; color: #111; background: transparent; }
+    body[data-study-page="project"].study-case-on-cover .study-heading { color: var(--case-cover-ink); }
+    body[data-study-page="project"].study-close-on-cover .study-page-close { color: var(--case-cover-ink); }
+    body[data-study-page="project"] .study-page { inset: 88px 0 0; padding: 0; scroll-behavior: auto; scroll-padding-top: 24px; }
+    .study-case-hero { display: block; margin: 0; }
+    .study-case-hero__visual { display: flex; align-items: center; justify-content: center; width: 100%; height: clamp(340px, 60svh, 700px); padding: 12px 24px; background: var(--case-surface); }
+    .study-case-hero__cover { display: block; flex: 0 1 auto; width: auto; height: 100%; max-width: 90%; aspect-ratio: 4/5; object-fit: contain; }
+    .study-case-hero__intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 150px); padding: 34px max(32px, 10vw) 64px; }
+    .study-case-hero__intro .study-page-title { font-size: clamp(28px, 3.2vw, 48px); margin-bottom: 12px; }
+    .study-case-hero__intro .study-page-copy { max-width: 540px; margin: 0; }
+    .study-case-start { display: inline-block; margin-top: 24px; }
+    .study-case-start:is(:hover,:focus-visible) { transform: translateY(3px); }
+    .study-case-flow { display: block; max-width: 1200px; padding: 0 clamp(32px, 5vw, 80px); margin: 0 auto; }
+    .study-case-section { display: grid; grid-template-columns: minmax(0,.75fr) minmax(0,1.25fr); gap: clamp(32px, 5vw, 72px); align-items: start; padding: 36px 0 64px; }
+    .study-case-section__copy { min-width: 0; max-width: 360px; }
+    .study-case-section__number { display: block; margin-bottom: 18px; font-size: 12px; color: #777; }
+    .study-case-section h3 { font-size: clamp(26px, 2.5vw, 38px); font-weight: 300; line-height: 1.1; letter-spacing: -.035em; margin: 0 0 20px; }
+    .study-case-section p { font-size: 15px; line-height: 1.5; }
+    .study-case-images { min-width: 0; gap: 16px; }
+    .study-case-images button { min-width: 0; }
+    .study-case-images img { max-height: min(42svh, 460px); }
+    .study-case-images:has(> :only-child) img { max-height: min(55svh, 580px); }
+    .study-case-images video { grid-column: 1/-1; max-height: 65svh; object-fit: contain; }
+    .study-colors { gap: 24px 18px; }
+    .study-colors > div > span:first-child { height: clamp(90px, 12svh, 160px); }
+    .study-case-end { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 24px max(32px, 10vw) 80px; color: #666; }
+    .study-case-end p { margin: 0; }
+    .study-case-end button { color: #111; }
+    @media (max-width: 1100px) {
+      .study-case-flow { padding-right: 80px; padding-left: 80px; }
+      .study-case-section { gap: 36px; grid-template-columns: minmax(0,.7fr) minmax(0,1.3fr); }
+      .study-case-hero__intro { padding-right: 80px; padding-left: 80px; gap: 36px; }
+    }
+    @media (max-width: 760px) {
+      body[data-study-page="project"] .study-page-close { top: 24px; }
+      body[data-study-page="project"] .study-page { inset: 76px 0 0; scroll-padding-top: 20px; }
+      .study-case-hero__visual { height: 55svh; min-height: 300px; padding-top: 12px; }
+      .study-case-hero__intro { grid-template-columns: 1fr; padding: 28px 24px 48px; gap: 20px; }
+      .study-case-flow { padding: 0 24px; }
+      .study-case-section { grid-template-columns: 1fr; min-height: auto; gap: 28px; padding-top: 28px; padding-bottom: 48px; }
+      .study-case-section__copy { max-width: 100%; }
+      .study-case-end { padding: 24px 24px 60px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-study-page="project"] .study-page { scroll-behavior: auto; }
+    }
+
+      .study-cursor { --cursor-fill: #111; --cursor-ink: #fff; position: fixed; z-index: 200; top: 0; left: 0; width: 0; height: 0; pointer-events: none; user-select: none; color: var(--cursor-ink); }
+    .study-cursor[hidden] { display: none; }
+    .study-cursor__point { display: block; width: 8px; height: 8px; border: 1px solid #111; outline: 1px solid #fff; outline-offset: 0; border-radius: 50%; background: var(--cursor-fill); transform: translate(-50%,-50%) rotate(-45deg) scale(var(--cursor-scale,1)); transition: width 190ms var(--ui-ease), height 190ms var(--ui-ease), border-radius 140ms, transform 260ms var(--ui-ease), background-color 150ms; }
+    .study-cursor[data-mode="action"] .study-cursor__point { width: 19px; height: 19px; border-radius: 1px; transform: translate(-50%,-50%) rotate(135deg) scale(var(--cursor-scale,1)); }
+    .study-cursor[data-mode="drag"] .study-cursor__point { width: 15px; height: 15px; border-radius: 50%; transform: translate(-50%,-50%) rotate(45deg) scale(var(--cursor-scale,1)); }
+    .study-cursor.is-pressed { --cursor-scale: .76; }
+    .study-cursor__label { position: absolute; display: block; width: max-content; max-width: calc(100vw - 40px); padding: 2px 5px; border: 1px solid #111; outline: 1px solid #fff; background: var(--cursor-fill); color: var(--cursor-ink); font: 600 11px/1.3 "Albert Sans", Arial, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; visibility: hidden; transition: opacity 140ms var(--ui-ease), visibility 140ms; }
+    .study-cursor.has-label .study-cursor__label { opacity: 1; visibility: visible; }
+    @media (hover: hover) and (pointer: fine) {
+      html.has-study-cursor, html.has-study-cursor * { cursor: none !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .study-cursor__point, .study-cursor__label { transition: none; }
+    }
+
+      .study-case-navigation { position: fixed; z-index: 75; inset: 0; pointer-events: none; color: #111; }
+    .study-case-navigation button { position: absolute; top: 50%; display: grid; place-items: center; width: 44px; height: 44px; font-size: 27px; line-height: 1; transform: translateY(-50%); pointer-events: auto; }
+    .study-case-navigation button:first-child { left: 20px; }
+    .study-case-navigation button:last-child { right: 20px; }
+    .study-case-navigation button > span { display: inline-block; transition: transform 180ms var(--ui-ease); }
+    .study-case-navigation button:first-child:not(:disabled):is(:hover,:focus-visible) > span { transform: translateX(-4px); }
+    .study-case-navigation button:last-child:not(:disabled):is(:hover,:focus-visible) > span { transform: translateX(4px); }
+    .study-case-navigation button:disabled { cursor: default; opacity: .45; }
+    .study-case-navigation.on-case-cover { color: var(--case-cover-ink); }
+    .study-case-end__actions { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 18px 32px; }
+    .study-case-end__next { max-width: 340px; text-align: right; }
+    .study-transition-wash { position: fixed; z-index: 35; inset: 0; pointer-events: none; }
+    .study-project-lift { position: fixed; z-index: 90; top: 0; left: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; transform-origin: 0 0; pointer-events: none; }
+    .study-project-lift img { display: block; width: auto; height: 100%; max-width: 100%; object-fit: contain; }
+    .study-transition-close { position: fixed; z-index: 96; right: 24px; top: 46px; padding: 5px 7px; margin-right: -7px; font-size: 12px; color: #111; background: transparent; }
+    body[data-study-page="project"].study-close-on-cover .study-transition-close { color: var(--case-cover-ink); }
+    body[data-project-transition="lift"] .study-heading,
+    body[data-project-transition="color"] .study-heading,
+    body[data-project-transition] .study-navigation,
+    body[data-project-transition] .study-projects { visibility: hidden; }
+    body[data-project-transition] .study-page { overflow: hidden; pointer-events: none; }
+    body[data-project-transition] .study-page-close { visibility: hidden; }
+    @media (max-width: 760px) {
+      body[data-study-page="project"] .study-heading { max-width: calc(100vw - 150px); }
+      .study-case-navigation button:first-child { left: 4px; }
+      .study-case-navigation button:last-child { right: 4px; }
+      .study-transition-close { top: 24px; }
+      .study-case-end { padding-bottom: 96px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .study-case-navigation button > span { transition: none; }
+    }
+
+      /* A narrow reading lane leaves permanent space for the floating controls. */
+    body[data-study-page="project"] { --case-column-width: min(880px, calc(100vw - 320px)); }
+    body[data-study-page="project"] .study-page { inset: 0; overscroll-behavior: none; scroll-padding-top: 24px; scrollbar-width: none; }
+    body[data-study-page="project"] .study-page::-webkit-scrollbar { display: none; }
+    body[data-study-page="project"] .study-heading { max-width: min(230px, calc((100vw - var(--case-column-width))/2 - 44px)); align-items: flex-start; padding: 5px 0; margin: 0; background: transparent; }
+    body[data-study-page="project"] .study-heading > span { white-space: normal; line-height: 1.35; }
+    body[data-study-page="project"] .study-page-close { background: transparent; }
+    .study-case-hero__intro { width: var(--case-column-width); max-width: var(--case-column-width); padding: 32px 0 48px; margin: 0 auto; gap: 40px; }
+    .study-case-hero__intro .study-page-title { font-size: clamp(28px, 2.8vw, 42px); }
+    .study-case-flow { width: var(--case-column-width); max-width: var(--case-column-width); padding: 0; }
+    .study-case-section { gap: clamp(28px, 3vw, 48px); padding: 28px 0 52px; }
+    .study-case-section h3 { font-size: clamp(24px, 2.2vw, 32px); }
+    .study-case-images button:is(:hover,:focus-visible) { transform: translateY(-2px); }
+    .study-case-start:is(:hover,:focus-visible) { transform: translateY(2px); }
+    .study-case-end { width: var(--case-column-width); margin: 0 auto; padding: 24px 0 72px; }
+    .study-case-navigation button:first-child:not(:disabled):is(:hover,:focus-visible) > span { transform: translateX(-2px); }
+    .study-case-navigation button:last-child:not(:disabled):is(:hover,:focus-visible) > span { transform: translateX(2px); }
+    @media (max-width: 760px) {
+      body[data-study-page="project"] { --case-column-width: calc(100vw - 112px); }
+      body[data-study-page="project"] .study-heading { max-width: calc(100vw - 150px); }
+      .study-case-hero__intro { gap: 22px; }
+      .study-case-section { gap: 24px; padding: 24px 0 44px; }
+      .study-case-end { padding-bottom: 72px; }
+    }
+
+
+    .study-loader__message { display: grid; justify-items: center; gap: 18px; max-width: 330px; padding: 24px; font-size: 14px; text-align: center; }
+    .study-loader__message p { margin: 0; }
+    .study-loader__message button { min-height: 40px; padding: 4px 12px; font-size: 12px; text-transform: uppercase; }
+    .study-notice.is-loading { display: flex; align-items: center; gap: 12px; z-index: 115; bottom: 24px; color: #111; }
+    .study-notice.is-loading .study-loader__rose { flex: 0 0 20px; width: 20px; height: 20px; }
+    .study-notice.is-loading button { padding: 8px 0 8px 8px; }
+    .study-case-images button, .study-archive-piece button { position: relative; }
+    .study-case-images img[data-media-state="loading"],
+    .study-case-images img[data-media-state="error"],
+    .study-archive-piece img[data-media-state="loading"],
+    .study-archive-piece img[data-media-state="error"] { visibility: hidden; }
+    .study-media-status { position: absolute; inset: 0; display: grid; place-items: center; padding: 18px; pointer-events: none; color: #666; font-size: 12px; text-align: center; }
+    .study-media-status .study-loader__rose { width: 22px; height: 22px; }
+    .study-lightbox-error { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 18px; padding: 72px 24px; color: #111; font-size: 14px; }
+    .study-lightbox-error p { margin: 0; }
+    .study-lightbox-error button { position: static; min-height: 40px; padding: 8px; font-size: 12px; }
+    body[data-project-transition="close"] .study-case-navigation { visibility: hidden; }
+
+  </style>
+</head>
+<body class="study-loading">
+  <h1 class="study-heading">
+    <svg class="study-mark" viewBox="0 0 50 50" aria-hidden="true"><path d="M14.5933 0L0 15.5254L10.9479 27.5192H23.3061C23.3061 27.5192 15.9221 34.4746 10.9479 34.4746H0V50H11.3485C18.7221 50 24.7084 34.4977 24.6996 34.4746C24.6996 34.5903 35.4067 50 35.4067 50L50 34.4746L39.0521 22.4808H26.6939C26.6939 22.4808 34.0779 15.5254 39.0521 15.5254H50V0H38.6515C31.2779 0 25.2916 15.5023 25.3004 15.5254C25.3004 15.4097 14.5933 0 14.5933 0Z" fill="currentColor"/></svg>
+    <span>Santiago Barbieri</span>
+  </h1>
+  <nav class="study-navigation" aria-label="Navegación principal de la prueba">
+    <div class="study-nav-group study-nav-group--about"><button class="study-nav-trigger" type="button" data-view="about" aria-label="Sobre mí">Sobre mí<svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></div>
+    <div class="study-nav-group study-nav-group--contact"><button class="study-nav-trigger" type="button" data-view="contact" aria-label="Contacto">Contacto<svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></div>
+    <details class="study-nav-group study-nav-group--shop">
+      <summary class="study-nav-trigger">Tienda<svg class="study-chevron" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="m1 3 3.5 3L8 3"/></svg></summary>
+      <ul class="study-submenu">
+        <li><button type="button" data-pending="Tienda · Freebies" aria-label="Freebies — en preparación"><span>Freebies</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+        <li><button type="button" data-pending="Tienda · Mockups" aria-label="Mockups — en preparación"><span>Mockups</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+        <li><button type="button" data-pending="Tienda · Gumroad" aria-label="Gumroad — en preparación"><span>Gumroad</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+      </ul>
+    </details>
+    <details class="study-nav-group study-nav-group--social">
+      <summary class="study-nav-trigger">Redes<svg class="study-chevron" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="m1 3 3.5 3L8 3"/></svg></summary>
+      <ul class="study-submenu">
+        <li><button type="button" data-pending="Redes · Instagram" aria-label="Instagram — en preparación"><span>Instagram</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+        <li><button type="button" data-pending="Redes · LinkedIn" aria-label="LinkedIn — en preparación"><span>LinkedIn</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+        <li><button type="button" data-pending="Redes · Behance" aria-label="Behance — en preparación"><span>Behance</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+      </ul>
+    </details>
+    <details class="study-nav-group study-nav-group--archive">
+      <summary class="study-nav-trigger">Archivo<svg class="study-chevron" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="m1 3 3.5 3L8 3"/></svg></summary>
+      <ul class="study-submenu">
+        <li><button type="button" data-view="posters" aria-label="Archivo de afiches"><span>Posters</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+        <li><button type="button" data-view="photos" aria-label="Archivo de fotografías"><span>Fotografía</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
+      </ul>
+    </details>
+  </nav>
+  <nav class="study-projects" aria-label="Índice de proyectos">
+    <ul>
+      <li><button type="button" data-project="0" aria-current="true"><span>Apolo Studios</span></button></li>
+      <li><button type="button" data-project="1"><span>Orfeo</span></button></li>
+      <li><button type="button" data-project="2"><span>OLAS</span></button></li>
+      <li><button type="button" data-project="3"><span>Club de Economía</span></button></li>
+      <li><button type="button" data-project="4"><span>El Armado</span></button></li>
+    </ul>
+  </nav>
+  <main class="study-stage" tabindex="0" aria-label="Carrusel de proyectos. Usá la rueda, arrastrá o presioná las flechas para recorrerlo." aria-describedby="study-help">
+    <div class="study-scene">
+      <div class="study-camera"></div>
+    </div>
+  </main>
+  <p class="visually-hidden" id="study-help">Scroll o arrastre · Flechas para recorrer. El movimiento automático es continuo.</p>
+  <output class="visually-hidden" data-current>Plano 01 — Apolo Studios</output>
+  <p class="study-notice" role="status" aria-live="polite" data-notice></p>
+
+  <div class="study-loader" role="status" aria-label="Cargando proyectos"><span class="study-loader__rose" aria-hidden="true"></span></div>
+  <a class="study-card-info" href="#" aria-hidden="true" tabindex="-1"><h2 data-info-title></h2><p data-info-description></p><span class="study-card-info__year" data-info-year></span><span class="study-card-info__open">ABRIR ↗︎</span></a>
+  <section class="study-page" hidden tabindex="-1" aria-label="Contenido de la sección"><button class="study-page-close" type="button">Cerrar ×</button><div data-page-content></div></section>
+  <nav class="study-case-navigation" hidden aria-label="Cambiar proyecto">
+    <button type="button" data-case-previous aria-label="Proyecto anterior"><span aria-hidden="true">←</span></button>
+    <button type="button" data-case-next aria-label="Proyecto siguiente"><span aria-hidden="true">→</span></button>
+  </nav>
+  <p class="visually-hidden" data-case-status role="status" aria-live="polite"></p>
+  <dialog class="study-lightbox" aria-label="Imagen ampliada"><button type="button" data-lightbox-close>Cerrar ×</button><img alt=""></dialog>
+  <noscript><style>.study-loader { display: none; }.study-noscript { z-index: 120; }</style><p class="study-noscript">Activá JavaScript para probar el movimiento.</p></noscript>
+  <script>
+    (() => {
+      const stage = document.querySelector('.study-stage');
+      const scene = document.querySelector('.study-scene');
+      const camera = document.querySelector('.study-camera');
+      const current = document.querySelector('[data-current]');
+      const preference = matchMedia('(prefers-reduced-motion: reduce)');
+      const catalogue = [{"slug": "apolo-studios", "title": "Apolo Studios", "type": "Identidad y dirección creativa", "description": "Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.", "cover": "assets/images/archive-covers/apolo-studios-800.webp", "alt": "Firma de Apolo Studios en blanco sobre azul", "year": "2024–2026", "page": "./apolo-studios.html", "intro": "Cofundé Apolo Studios en Buenos Aires. Como director creativo, trabajé en la identidad, las gráficas de prendas y las campañas de la marca.", "blocks": [{"title": "Everywhere", "description": "Remeras con firma pequeña en el frente y gráficas en la espalda. La selección reúne las prendas y las imágenes de la campaña.", "images": [{"src": "./assets/images/apolo-studios-story/everywhere-cafe-480.webp", "alt": "Everywhere · En el café", "w": 480, "h": 360}, {"src": "./assets/images/apolo-studios-story/everywhere-back-480.webp", "alt": "Everywhere · Gráfica en la espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/everywhere-street-480.webp", "alt": "Everywhere · Dos gráficas en la calle", "w": 480, "h": 853}], "video": null}, {"title": "Circles", "description": "Remeras con gráfica de espalda en blanco y azul y firma contenida en el frente. La selección muestra las piezas y su presentación en campaña.", "images": [{"src": "./assets/images/apolo-studios-story/circles-front-back-480.webp", "alt": "Circles · Frente y espalda", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-back-480.webp", "alt": "Circles · La gráfica puesta", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-stairs-480.webp", "alt": "Circles · En las escaleras", "w": 480, "h": 269}], "video": null}, {"title": "Sahara", "description": "Buzos con las firmas Seekers y A. Studios. La selección reúne producto e imágenes de campaña en la calle y el subte.", "images": [{"src": "./assets/images/apolo-studios-story/sahara-two-signatures-480.webp", "alt": "Sahara · Dos firmas de espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-street-480.webp", "alt": "Sahara · Las prendas en la calle", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-front-480.webp", "alt": "Sahara · Firma A. Studios", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-subway-480.webp", "alt": "Sahara · Dentro del subte", "w": 480, "h": 853}], "video": null}, {"title": "Menorca", "description": "Gorras con el nombre bordado y distintas combinaciones de color. Retratos, detalles y producto muestran las piezas de esta colección.", "images": [{"src": "./assets/images/apolo-studios-story/menorca-brown-480.webp", "alt": "Menorca · Gorra marrón", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-blue-480.webp", "alt": "Menorca · Gorra azul", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-grey-480.webp", "alt": "Menorca · Gorra gris", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-cafe-480.webp", "alt": "Menorca · En el café", "w": 480, "h": 640}], "video": null}, {"title": "Menorca · Video de campaña", "description": "Video de campaña del cuarto drop de Apolo Studios.", "images": [], "video": {"src": "./assets/images/apolo-studios-web/menorca.mp4", "poster": "./assets/images/apolo-studios-web/menorca-video-poster.webp"}}, {"title": "Firmas de Apolo", "description": "Variantes de marca desarrolladas para distintas prendas y colecciones. Cada firma forma parte del universo de Apolo.", "images": [{"src": "./assets/images/apolo-studios-web/variants-600.webp", "alt": "Variantes de logotipo desarrolladas para Apolo Studios", "w": 1600, "h": 1439}], "video": null}, {"title": "Colores de las piezas", "description": "Azul, crudo, marrón y negro presentes en las firmas y las prendas.", "images": [], "video": null, "colors": [{"name": "Azul", "hex": "#09247C"}, {"name": "Crudo", "hex": "#C4C2A5"}, {"name": "Marrón", "hex": "#423934"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#0a247d"}, {"slug": "orfeo", "title": "Orfeo", "type": "Dirección creativa", "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.", "cover": "assets/images/archive-covers/orfeo-800.webp", "alt": "Logotipo de ORFEO sobre carbón", "year": "2026", "page": "./orfeo.html", "intro": "Dirección creativa, producción y edición audiovisual y desarrollo web para el primer drop de ORFEO, junto a su equipo. La campaña presenta tres sweaters en escenas cotidianas de Buenos Aires.", "blocks": [{"title": "Campaña · En la Esquina", "description": "Selección de imágenes de la campaña: prendas, arquitectura y recorridos cotidianos de Buenos Aires.", "images": [{"src": "./assets/images/orfeo/IMG_4868-1600.webp", "alt": "Tres modelos con los sweaters de la colección de ORFEO", "w": 1600, "h": 1067}, {"src": "./assets/images/orfeo/IMG_4144-800.webp", "alt": "Modelo con sweater marrón junto a la entrada de un edificio", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4685-800.webp", "alt": "Modelo con sweater azul junto a un árbol", "w": 800, "h": 1200}], "video": null}, {"title": "Viamonte", "description": "Sweater marrón de tejido trenzado. Vistas de la prenda, textura y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/viamonte-frente-800.webp", "alt": "Viamonte · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4710-800.webp", "alt": "Detalle de un sweater marrón tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4109-800.webp", "alt": "Modelo con sweater marrón en una escalinata porteña", "w": 800, "h": 1200}], "video": null}, {"title": "Talcahuano", "description": "Sweater negro de superficie lisa. La selección reúne vistas de la prenda y escenas de transporte.", "images": [{"src": "./assets/images/orfeo-story/talcahuano-frente-800.webp", "alt": "Talcahuano · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4775-800.webp", "alt": "Detalle de camisa y sweater negro en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4246-800.webp", "alt": "Modelo con sweater negro durante un viaje en transporte público", "w": 800, "h": 1200}], "video": null}, {"title": "Lavalle", "description": "Sweater azul de tejido trenzado. Vistas de frente, espalda y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/lavalle-frente-800.webp", "alt": "Lavalle · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4800-800.webp", "alt": "Vista posterior de un sweater azul tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4484-800.webp", "alt": "Modelo con sweater azul en un recorrido urbano", "w": 800, "h": 1200}], "video": null}, {"title": "Logotipo y monograma", "description": "Recursos de la identidad de ORFEO que acompañan la campaña: logotipo, monograma y aplicaciones circulares.", "images": [{"src": "./assets/images/orfeo/logo%20%281%29.png", "alt": "Logotipo de ORFEO sobre fondo claro", "w": 4134, "h": 4134}, {"src": "./assets/images/orfeo/favicon.png", "alt": "Monograma ORF sobre fondo claro", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png", "alt": "Marca ORFEO en una aplicación circular negra", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png", "alt": "Marca ORFEO en una aplicación circular verde", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png", "alt": "Marca ORFEO en una aplicación circular marrón", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png", "alt": "Marca ORFEO en una aplicación circular azul", "w": 1080, "h": 1080}], "video": null}, {"title": "Lacres", "description": "Aplicaciones de la marca en relieve, con variantes de color.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp", "alt": "Sello en relieve de ORFEO en bordó", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp", "alt": "Sello en relieve de ORFEO en verde", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp", "alt": "Sello en relieve de ORFEO en azul", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp", "alt": "Sello en relieve de ORFEO en marrón", "w": 800, "h": 800}], "video": null}, {"title": "Sello oval", "description": "Sello de ORFEO con el lema «Back to Basics».", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp", "alt": "Sello oval de ORFEO con el lema Back to Basics", "w": 1600, "h": 1600}], "video": null}, {"title": "Estampilla ilustrada", "description": "Pieza de la identidad de ORFEO con ilustración, marco y textura.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp", "alt": "Estampilla gráfica de ORFEO en rojo y amarillo", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo claro", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo oscuro", "w": 800, "h": 800}], "video": null}, {"title": "Colores de las piezas", "description": "Marino, marrón y carbón presentes en las prendas; oliva y marfil en las aplicaciones gráficas.", "images": [], "video": null, "colors": [{"name": "Marino", "hex": "#0C1D34"}, {"name": "Marrón", "hex": "#583A13"}, {"name": "Carbón", "hex": "#18191A"}, {"name": "Oliva", "hex": "#394A1C"}, {"name": "Marfil", "hex": "#FEFFED"}]}], "w": 800, "h": 1000, "surface": "#1a1a1a"}, {"slug": "olas-ditella", "title": "OLAS Di Tella", "type": "Identidad y campaña", "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.", "cover": "assets/images/archive-covers/olas-ditella-800.webp", "alt": "Logotipo de OLAS sobre verde", "year": "2026", "page": "./olas-ditella.html", "intro": "Identidad visual para OLAS en la Universidad Torcuato Di Tella. La marca integra una ola en la O y se aplica en afiches, stickers y recursos gráficos.", "blocks": [{"title": "Afiches de campaña", "description": "Cuatro piezas de precampaña bajo «Tu voz transforma», con una estructura compartida y distintos collages.", "images": [{"src": "./assets/images/olas-ditella-story/afiche-1-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-2-800.webp", "alt": "Afiche de OLAS con el mensaje No te quedes callado", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-3-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz importa", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-4-800.webp", "alt": "Afiche de OLAS con un megáfono y la palabra Cambio", "w": 800, "h": 1132}], "video": null}, {"title": "Stickers", "description": "Aplicaciones circulares de la ola y la flecha para la campaña.", "images": [{"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png", "alt": "Sticker circular de OLAS con ola y flecha sobre negro", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png", "alt": "Sticker circular de OLAS con ola y flecha sobre verde", "w": 1080, "h": 1080}], "video": null}, {"title": "Recursos gráficos", "description": "La ola y sus fragmentos funcionan como símbolos independientes dentro del sistema visual.", "images": [{"src": "./assets/images/olas-ditella/Vectores%202.svg", "alt": "OLAS — recurso vectorial 2", "w": 7939, "h": 6965}, {"src": "./assets/images/olas-ditella/New%20Project%20%283%29.svg", "alt": "OLAS — recurso vectorial adicional", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/Vectores%201.svg", "alt": "OLAS — recurso vectorial 1", "w": 518, "h": 642}, {"src": "./assets/images/olas-ditella/Vectores%203.svg", "alt": "OLAS — recurso vectorial 3", "w": 642, "h": 501}, {"src": "./assets/images/olas-ditella/Vectores%204.svg", "alt": "OLAS — recurso vectorial 4", "w": 563, "h": 435}], "video": null}, {"title": "Colores de la identidad", "description": "Verdes, azules, menta y blanco presentes en las piezas de campaña.", "images": [], "video": null, "colors": [{"name": "Verde", "hex": "#4C997F"}, {"name": "Menta", "hex": "#9FDDBD"}, {"name": "Azul profundo", "hex": "#175055"}, {"name": "Blanco", "hex": "#FBFDFD"}]}], "w": 800, "h": 1000, "surface": "#4c997f"}, {"slug": "club-de-economia-utdt", "title": "Club de Economía — UTDT", "type": "Identidad visual", "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.", "cover": "assets/images/archive-covers/club-de-economia-utdt-800.webp", "alt": "Logotipo del Club de Economía sobre celeste", "year": "2026", "page": "./club-de-economia.html", "intro": "Marca y sistema gráfico para el relanzamiento del Club de Economía. La entrega reúne versiones de marca, plantillas para charlas y una trama de diagonales.", "blocks": [{"title": "Símbolo y versiones", "description": "Isotipo celeste y versión a una tinta. El sistema usa Albert Sans en Semi Bold para destacar y Medium para la información.", "images": [{"src": "./assets/images/club-de-economia-utdt/Isotipo.png", "alt": "Isotipo principal del Club de Economía con diagonales celestes sobre círculo gris claro", "w": 1080, "h": 1080}, {"src": "./assets/images/club-de-economia-utdt/Isotipo%202.png", "alt": "El mismo isotipo resuelto en negro sobre círculo gris claro", "w": 1080, "h": 1080}], "video": null}, {"title": "Plantillas de publicaciones", "description": "Versiones clara y oscura para anunciar charlas, con espacio para invitado, imagen, fecha, horario y aula.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp", "alt": "Plantilla clara para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp", "alt": "Plantilla oscura para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}], "video": null}, {"title": "Plantillas de historias", "description": "Adaptaciones verticales para anunciar charlas, con los mismos datos y jerarquías que las publicaciones.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp", "alt": "Plantilla clara de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp", "alt": "Plantilla oscura de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}], "video": null}, {"title": "Cabecera de redes", "description": "Trama de diagonales para la cabecera de Twitter, en celeste sobre gris claro.", "images": [{"src": "./assets/images/club-de-economia-utdt/Twitter%20header-800.webp", "alt": "Header del Club de Economía con una trama de diagonales celestes sobre gris claro", "w": 800, "h": 267}], "video": null}, {"title": "Estudio de movimiento", "description": "Estudio animado de gráficos, porcentajes y tipografía que termina en la marca. Los valores son ejemplos, no estadísticas de la organización.", "images": [], "video": {"src": "./assets/videos/club-de-economia/motion-study.mp4", "poster": "./assets/images/club-de-economia-utdt/motion-poster-720.webp"}}, {"title": "Colores de la identidad", "description": "Celeste, gris claro y negro presentes en las piezas finales.", "images": [], "video": null, "colors": [{"name": "Celeste", "hex": "#42AEBD"}, {"name": "Gris claro", "hex": "#D9D9D9"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#41aebc"}, {"slug": "el-armado", "title": "El Armado", "type": "Identidad visual", "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.", "cover": "assets/images/archive-covers/el-armado-800.webp", "alt": "Logotipo de El Armado en hueso sobre vino", "year": "2026", "page": "./el-armado.html", "intro": "Identidad visual para El Armado en La Dama de Bollini. Marca, ilustración, afiche e historia de Instagram para un encuentro de música, karaoke y tragos.", "blocks": [{"title": "Afiche final", "description": "Pieza de la segunda edición: marca, ilustración y datos del encuentro sobre fondo vino.", "images": [{"src": "./assets/images/el-armado-web/afiche-1000.webp", "alt": "Afiche final de El Armado, segunda edición", "w": 1000, "h": 1415}], "video": null}, {"title": "Historia de Instagram", "description": "Adaptación vertical del afiche con la misma marca, ilustración y datos de la edición.", "images": [{"src": "./assets/images/el-armado-story/historia-800.webp", "alt": "Adaptación vertical · Historia de Instagram", "w": 800, "h": 1422}], "video": null}, {"title": "Ilustración", "description": "Dos manos sostienen un micrófono malva y una botella verde. Ilustración realizada con calco digital en Figma Draw.", "images": [{"src": "./assets/images/el-armado-web/ilustracion-color-760.webp", "alt": "Manos sosteniendo un micrófono malva y una botella verde", "w": 760, "h": 754}], "video": null}, {"title": "Paleta cromática", "description": "Vino como base, hueso para marca y manos, malva para el micrófono y verde para la botella.", "images": [], "video": null, "colors": [{"name": "Vino", "hex": "#360F17"}, {"name": "Hueso", "hex": "#D2DDCC"}, {"name": "Malva", "hex": "#9E6B7A"}, {"name": "Verde", "hex": "#9AE4A3"}]}], "w": 800, "h": 1000, "surface": "#3b0c15"}];
+      const archiveItems = [{"id": "poster-100-horses", "kind": "poster", "name": "100 Horses", "alt": "100 Horses, afiche personal en formato A4", "src": "assets/images/personal-posters/100-horses-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/100-horses-400.webp", "w": 400, "h": 566}}, {"id": "poster-carrie", "kind": "poster", "name": "Carrie", "alt": "Carrie, afiche personal en formato A4", "src": "assets/images/personal-posters/carrie-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/carrie-400.webp", "w": 400, "h": 566}}, {"id": "poster-pulp-fiction", "kind": "poster", "name": "Pulp Fiction", "alt": "Pulp Fiction, afiche personal en formato A4", "src": "assets/images/personal-posters/pulp-fiction-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/pulp-fiction-400.webp", "w": 400, "h": 566}}, {"id": "poster-faust", "kind": "poster", "name": "Faust", "alt": "Faust, afiche personal en formato A4", "src": "assets/images/personal-posters/faust-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/faust-400.webp", "w": 400, "h": 566}}, {"id": "poster-blood-meridian", "kind": "poster", "name": "Blood Meridian", "alt": "Blood Meridian, afiche personal en formato A4", "src": "assets/images/personal-posters/blood-meridian-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/blood-meridian-400.webp", "w": 400, "h": 566}}, {"id": "poster-nosferatu", "kind": "poster", "name": "Nosferatu", "alt": "Nosferatu, afiche personal en formato A4", "src": "assets/images/personal-posters/nosferatu-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nosferatu-400.webp", "w": 400, "h": 566}}, {"id": "poster-1984", "kind": "poster", "name": "1984", "alt": "1984, afiche personal en formato A4", "src": "assets/images/personal-posters/1984-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/1984-400.webp", "w": 400, "h": 566}}, {"id": "poster-animal-farm", "kind": "poster", "name": "Animal Farm", "alt": "Animal Farm, afiche personal en formato A4", "src": "assets/images/personal-posters/animal-farm-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/animal-farm-400.webp", "w": 400, "h": 566}}, {"id": "poster-animal-farm-variante-02", "kind": "poster", "name": "Animal Farm — Variante 02", "alt": "Animal Farm — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/animal-farm-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/animal-farm-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-bugonia", "kind": "poster", "name": "Bugonia", "alt": "Bugonia, afiche personal en formato A4", "src": "assets/images/personal-posters/bugonia-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/bugonia-400.webp", "w": 400, "h": 566}}, {"id": "poster-seventeen-minutes", "kind": "poster", "name": "Seventeen Minutes", "alt": "Seventeen Minutes, afiche personal en formato A4", "src": "assets/images/personal-posters/seventeen-minutes-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/seventeen-minutes-400.webp", "w": 400, "h": 566}}, {"id": "poster-paris-texas", "kind": "poster", "name": "Paris, Texas", "alt": "Paris, Texas, afiche personal en formato A4", "src": "assets/images/personal-posters/paris-texas-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/paris-texas-400.webp", "w": 400, "h": 566}}, {"id": "poster-nothing-ever-happened-here", "kind": "poster", "name": "Nothing Ever Happened Here", "alt": "Nothing Ever Happened Here, afiche personal en formato A4", "src": "assets/images/personal-posters/nothing-ever-happened-here-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nothing-ever-happened-here-400.webp", "w": 400, "h": 566}}, {"id": "poster-he-who-ruled-all", "kind": "poster", "name": "He Who Ruled All", "alt": "He Who Ruled All, afiche personal en formato A4", "src": "assets/images/personal-posters/he-who-ruled-all-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/he-who-ruled-all-400.webp", "w": 400, "h": 566}}, {"id": "poster-she-was-everyone", "kind": "poster", "name": "She Was Everyone", "alt": "She Was Everyone, afiche personal en formato A4", "src": "assets/images/personal-posters/she-was-everyone-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/she-was-everyone-400.webp", "w": 400, "h": 566}}, {"id": "poster-no-mans-son", "kind": "poster", "name": "No Man’s Son", "alt": "No Man’s Son, afiche personal en formato A4", "src": "assets/images/personal-posters/no-mans-son-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/no-mans-son-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-very-last-of-the-crusaders", "kind": "poster", "name": "The Very Last of the Crusaders", "alt": "The Very Last of the Crusaders, afiche personal en formato A4", "src": "assets/images/personal-posters/the-very-last-of-the-crusaders-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-very-last-of-the-crusaders-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-cadena", "kind": "poster", "name": "Endo Explore — Cadena", "alt": "Endo Explore — Cadena, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-cadena-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-cadena-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-ornamento", "kind": "poster", "name": "Endo Explore — Ornamento", "alt": "Endo Explore — Ornamento, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-ornamento-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-ornamento-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-vegetal", "kind": "poster", "name": "Endo Explore — Vegetal", "alt": "Endo Explore — Vegetal, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-vegetal-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-vegetal-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-mosaico", "kind": "poster", "name": "Endo Explore — Mosaico", "alt": "Endo Explore — Mosaico, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-mosaico-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-mosaico-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-naranja", "kind": "poster", "name": "Endo Explore — Naranja", "alt": "Endo Explore — Naranja, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-naranja-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-naranja-400.webp", "w": 400, "h": 566}}, {"id": "poster-meeting-with-the-sphinx", "kind": "poster", "name": "Meeting with the Sphinx", "alt": "Meeting with the Sphinx, afiche personal en formato A4", "src": "assets/images/personal-posters/meeting-with-the-sphinx-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/meeting-with-the-sphinx-400.webp", "w": 400, "h": 566}}, {"id": "poster-nobody-figura-01", "kind": "poster", "name": "Nobody — Figura 01", "alt": "Nobody — Figura 01, afiche personal en formato A4", "src": "assets/images/personal-posters/nobody-figura-01-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nobody-figura-01-400.webp", "w": 400, "h": 566}}, {"id": "poster-follow-the-light", "kind": "poster", "name": "Follow the Light", "alt": "Follow the Light, afiche personal en formato A4", "src": "assets/images/personal-posters/follow-the-light-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/follow-the-light-400.webp", "w": 400, "h": 566}}, {"id": "poster-eyes-wide-shut", "kind": "poster", "name": "Eyes Wide Shut", "alt": "Eyes Wide Shut, afiche personal en formato A4", "src": "assets/images/personal-posters/eyes-wide-shut-1190.webp", "w": 1190, "h": 1684, "thumbnail": {"src": "assets/images/personal-posters/eyes-wide-shut-400.webp", "w": 400, "h": 566}}, {"id": "poster-otro-dia-en-el-planeta-tierra", "kind": "poster", "name": "Otro día en el planeta Tierra", "alt": "Otro día en el planeta Tierra, afiche personal en formato A4", "src": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-400.webp", "w": 400, "h": 565}}, {"id": "poster-the-old-king-from-the-north", "kind": "poster", "name": "The Old King from the North", "alt": "The Old King from the North, afiche personal en formato A4", "src": "assets/images/personal-posters/the-old-king-from-the-north-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-old-king-from-the-north-400.webp", "w": 400, "h": 566}}, {"id": "poster-sgt-peppers-lonely-hearts-club-band", "kind": "poster", "name": "Sgt. Pepper’s Lonely Hearts Club Band", "alt": "Sgt. Pepper’s Lonely Hearts Club Band, afiche personal en formato A4", "src": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-beatles", "kind": "poster", "name": "The Beatles", "alt": "The Beatles, afiche personal en formato A4", "src": "assets/images/personal-posters/the-beatles-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/the-beatles-400.webp", "w": 400, "h": 565}}, {"id": "poster-copenhague", "kind": "poster", "name": "Copenhague", "alt": "Copenhague, afiche personal en formato A4", "src": "assets/images/personal-posters/copenhague-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/copenhague-400.webp", "w": 400, "h": 566}}, {"id": "poster-slowthai", "kind": "poster", "name": "Slowthai", "alt": "Slowthai, afiche personal en formato A4", "src": "assets/images/personal-posters/slowthai-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/slowthai-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-end-of-the-beginning", "kind": "poster", "name": "The End of the Beginning", "alt": "The End of the Beginning, afiche personal en formato A4", "src": "assets/images/personal-posters/the-end-of-the-beginning-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-end-of-the-beginning-400.webp", "w": 400, "h": 566}}, {"id": "poster-where-is-my-mind", "kind": "poster", "name": "Where Is My Mind?", "alt": "Where Is My Mind?, afiche personal en formato A4", "src": "assets/images/personal-posters/where-is-my-mind-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/where-is-my-mind-400.webp", "w": 400, "h": 566}}, {"id": "poster-stop-making-sense", "kind": "poster", "name": "Stop Making Sense", "alt": "Stop Making Sense, afiche personal en formato A4", "src": "assets/images/personal-posters/stop-making-sense-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/stop-making-sense-400.webp", "w": 400, "h": 566}}, {"id": "poster-reflejos-azules", "kind": "poster", "name": "Sin título — 01", "alt": "Sin título — 01, afiche personal en formato A4", "src": "assets/images/personal-posters/reflejos-azules-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/reflejos-azules-400.webp", "w": 400, "h": 566}}, {"id": "poster-this-is-the-end", "kind": "poster", "name": "This Is the End", "alt": "This Is the End, afiche personal en formato A4", "src": "assets/images/personal-posters/this-is-the-end-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/this-is-the-end-400.webp", "w": 400, "h": 566}}, {"id": "poster-fly", "kind": "poster", "name": "Fly", "alt": "Fly, afiche personal en formato A4", "src": "assets/images/personal-posters/fly-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/fly-400.webp", "w": 400, "h": 566}}, {"id": "poster-ziggy-stardust", "kind": "poster", "name": "Ziggy Stardust", "alt": "Ziggy Stardust, afiche personal en formato A4", "src": "assets/images/personal-posters/ziggy-stardust-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/ziggy-stardust-400.webp", "w": 400, "h": 566}}, {"id": "poster-wild-horses", "kind": "poster", "name": "Wild Horses", "alt": "Wild Horses, afiche personal en formato A4", "src": "assets/images/personal-posters/wild-horses-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/wild-horses-400.webp", "w": 400, "h": 566}}, {"id": "poster-unexpected", "kind": "poster", "name": "Unexpected", "alt": "Unexpected, afiche personal en formato A4", "src": "assets/images/personal-posters/unexpected-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/unexpected-400.webp", "w": 400, "h": 566}}, {"id": "poster-talking-heads", "kind": "poster", "name": "Talking Heads", "alt": "Talking Heads, afiche personal en formato A4", "src": "assets/images/personal-posters/talking-heads-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/talking-heads-400.webp", "w": 400, "h": 566}}, {"id": "poster-dylan-amarillo", "kind": "poster", "name": "Dylan — Amarillo", "alt": "Dylan — Amarillo, afiche personal en formato A4", "src": "assets/images/personal-posters/dylan-amarillo-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dylan-amarillo-400.webp", "w": 400, "h": 566}}, {"id": "poster-dylan", "kind": "poster", "name": "Dylan", "alt": "Dylan, afiche personal en formato A4", "src": "assets/images/personal-posters/dylan-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dylan-400.webp", "w": 400, "h": 566}}, {"id": "poster-celestial-bodies", "kind": "poster", "name": "Celestial Bodies", "alt": "Celestial Bodies, afiche personal en formato A4", "src": "assets/images/personal-posters/celestial-bodies-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/celestial-bodies-400.webp", "w": 400, "h": 566}}, {"id": "poster-wild-west", "kind": "poster", "name": "Wild West", "alt": "Wild West, afiche personal en formato A4", "src": "assets/images/personal-posters/wild-west-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/wild-west-400.webp", "w": 400, "h": 566}}, {"id": "poster-movement", "kind": "poster", "name": "Movement", "alt": "Movement, afiche personal en formato A4", "src": "assets/images/personal-posters/movement-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/movement-400.webp", "w": 400, "h": 566}}, {"id": "poster-retrato-azul", "kind": "poster", "name": "Sin título — 02", "alt": "Sin título — 02, afiche personal en formato A4", "src": "assets/images/personal-posters/retrato-azul-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/retrato-azul-400.webp", "w": 400, "h": 566}}, {"id": "poster-caballos-rosa", "kind": "poster", "name": "Caballos — Rosa", "alt": "Caballos — Rosa, afiche personal en formato A4", "src": "assets/images/personal-posters/caballos-rosa-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/caballos-rosa-400.webp", "w": 400, "h": 566}}, {"id": "poster-dreamers", "kind": "poster", "name": "Dreamers", "alt": "Dreamers, afiche personal en formato A4", "src": "assets/images/personal-posters/dreamers-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dreamers-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-candelabro", "kind": "poster", "name": "Endo Explore — Candelabro", "alt": "Endo Explore — Candelabro, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-candelabro-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-candelabro-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-seventh-seal", "kind": "poster", "name": "The Seventh Seal", "alt": "The Seventh Seal, afiche personal en formato A4", "src": "assets/images/personal-posters/the-seventh-seal-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-seventh-seal-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-seventh-seal-variante-02", "kind": "poster", "name": "The Seventh Seal — Variante 02", "alt": "The Seventh Seal — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/the-seventh-seal-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-seventh-seal-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-eyes-wide-shut-variante-02", "kind": "poster", "name": "Eyes Wide Shut — Variante 02", "alt": "Eyes Wide Shut — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/eyes-wide-shut-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/eyes-wide-shut-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-stand-out", "kind": "poster", "name": "Stand Out", "alt": "Stand Out, afiche personal en formato A4", "src": "assets/images/personal-posters/stand-out-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/stand-out-400.webp", "w": 400, "h": 566}}, {"id": "poster-distorted-realities", "kind": "poster", "name": "Distorted Realities", "alt": "Distorted Realities, afiche personal en formato A4", "src": "assets/images/personal-posters/distorted-realities-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/distorted-realities-400.webp", "w": 400, "h": 566}}, {"id": "poster-basement", "kind": "poster", "name": "Basement", "alt": "Basement, afiche personal en formato A4", "src": "assets/images/personal-posters/basement-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/basement-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-shining", "kind": "poster", "name": "The Shining", "alt": "The Shining, afiche personal en formato A4", "src": "assets/images/personal-posters/the-shining-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-shining-400.webp", "w": 400, "h": 566}}, {"id": "poster-faust-variante-02", "kind": "poster", "name": "Faust — Variante 02", "alt": "Faust — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/faust-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/faust-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-composicion-azul-y-verde", "kind": "poster", "name": "Sin título — 03", "alt": "Sin título — 03, afiche personal en formato A4", "src": "assets/images/personal-posters/composicion-azul-y-verde-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/composicion-azul-y-verde-400.webp", "w": 400, "h": 566}}, {"id": "poster-retrato-celeste", "kind": "poster", "name": "Sin título — 04", "alt": "Sin título — 04, afiche personal en formato A4", "src": "assets/images/personal-posters/retrato-celeste-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/retrato-celeste-400.webp", "w": 400, "h": 566}}, {"id": "poster-la-chimera", "kind": "poster", "name": "La Chimera", "alt": "La Chimera, afiche personal en formato A4", "src": "assets/images/personal-posters/la-chimera-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/la-chimera-400.webp", "w": 400, "h": 566}}, {"id": "poster-movimiento-caballo", "kind": "poster", "name": "Sin título — 05", "alt": "Sin título — 05, afiche personal en formato A4", "src": "assets/images/personal-posters/movimiento-caballo-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/movimiento-caballo-400.webp", "w": 400, "h": 566}}, {"id": "poster-light-sources-luz-violeta", "kind": "poster", "name": "Light Sources — Luz violeta", "alt": "Light Sources — Luz violeta, afiche personal en formato A4", "src": "assets/images/personal-posters/light-sources-luz-violeta-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/light-sources-luz-violeta-400.webp", "w": 400, "h": 566}}, {"id": "poster-under-the-light-house", "kind": "poster", "name": "Under the Light House", "alt": "Under the Light House, afiche personal en formato A4", "src": "assets/images/personal-posters/under-the-light-house-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/under-the-light-house-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-monk", "kind": "poster", "name": "The Monk", "alt": "The Monk, afiche personal en formato A4", "src": "assets/images/personal-posters/the-monk-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-monk-400.webp", "w": 400, "h": 566}}, {"id": "poster-sayonara", "kind": "poster", "name": "Sayonara", "alt": "Sayonara, afiche personal en formato A4", "src": "assets/images/personal-posters/sayonara-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/sayonara-400.webp", "w": 400, "h": 565}}, {"id": "stephen-king-01", "kind": "book", "name": "’Salem’s Lot", "alt": "Portada de 'SALEM'S LOT en la serie Stephen King", "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-01-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-01", "kind": "photo", "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar", "src": "assets/images/zapallar/IMG_4660-1600.webp", "w": 1600, "h": 898, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-01-400.webp", "w": 400, "h": 225}}, {"id": "stephen-king-02", "kind": "book", "name": "’Salem’s Lot — Variante 02", "alt": "Stephen King — variante 2", "src": "assets/images/stephen-king/Variante%202-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-02-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-02", "kind": "photo", "alt": "Árboles y jardines en una calle de Zapallar", "src": "assets/images/zapallar/IMG_4726-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-02-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-03", "kind": "book", "name": "Carrie", "alt": "Portada de CARRIE en la serie Stephen King", "src": "assets/images/stephen-king/CARRIE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-03-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-03", "kind": "photo", "alt": "Botellas y objetos en los estantes de un comercio", "src": "assets/images/zapallar/IMG_4665-800.webp", "w": 800, "h": 1067, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-03-400.webp", "w": 400, "h": 534}}, {"id": "stephen-king-04", "kind": "book", "name": "Cujo", "alt": "Portada de CUJO en la serie Stephen King", "src": "assets/images/stephen-king/CUJO-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-04-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-04", "kind": "photo", "alt": "Bandera de Chile junto a automóviles y árboles", "src": "assets/images/zapallar/IMG_4673-800.webp", "w": 800, "h": 1067, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-04-400.webp", "w": 400, "h": 534}}, {"id": "stephen-king-05", "kind": "book", "name": "IT", "alt": "Portada de IT en la serie Stephen King", "src": "assets/images/stephen-king/IT-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-05-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-05", "kind": "photo", "alt": "Atardecer sobre el mar con nubes oscuras y siluetas de la costa", "src": "assets/images/zapallar/DSC01575-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-05-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-06", "kind": "book", "name": "Misery", "alt": "Portada de MISERY en la serie Stephen King", "src": "assets/images/stephen-king/MISERY-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-06-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-06", "kind": "photo", "alt": "Reflejo del sol sobre el mar al atardecer", "src": "assets/images/zapallar/IMG_4748-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-06-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-07", "kind": "book", "name": "Pet Sematary", "alt": "Portada de PET SEMATARY en la serie Stephen King", "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-07-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-08", "kind": "book", "name": "The Dark Tower", "alt": "Portada de THE DARK TOWER en la serie Stephen King", "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-08-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-09", "kind": "book", "name": "The Dead Zone", "alt": "Portada de THE DEAD ZONE en la serie Stephen King", "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-09-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-10", "kind": "book", "name": "The Green Mile", "alt": "Portada de THE GREEN MILE en la serie Stephen King", "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-10-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-11", "kind": "book", "name": "The Shining", "alt": "Portada de THE SHINING en la serie Stephen King", "src": "assets/images/stephen-king/THE%20SHINING-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-11-400.webp", "w": 400, "h": 566}}];
+      const config = Object.freeze({ perspective: 6000, pitch: -11, yaw: -31, gap: 300, size: 680 });
+      const projects = [...document.querySelectorAll('[data-project]')];
+      const names = projects.map(button => button.textContent);
+      const notice = document.querySelector('[data-notice]');
+      const view = {};
+      const info = document.querySelector('.study-card-info');
+      const page = document.querySelector('.study-page');
+      const caseNavigation = document.querySelector('.study-case-navigation');
+      const casePrevious = document.querySelector('[data-case-previous]'), caseNext = document.querySelector('[data-case-next]');
+      const caseStatus = document.querySelector('[data-case-status]');
+      const pageContent = document.querySelector('[data-page-content]');
+      const heading = document.querySelector('.study-heading > span');
+      const normalHeading = heading.textContent;
+      const menuInitial = new Map([...document.querySelectorAll('.study-nav-trigger')].map(n => [n, n.innerHTML]));
+      const lightbox = document.querySelector('.study-lightbox');
+      const loadedCovers = new Map();
+      // Widen the support; the original 4:5 cover stays centered at its native ratio.
+      const coverWidth = config.size * .80, coverHeight = config.size * .60;
+      let enteredAt = Infinity, infoSequence = null, pageName = '', lastFocus = null, openingToken = 0, pageVideoObserver = null;
+      let clearCaseJourney = null, activeProjectTransition = null;
+
+      const navigation = document.querySelector('.study-navigation');
+      const index = document.querySelector('.study-projects');
+      let bounds = { near: -16, far: 32 }, selectedProject = -1;
+      const modulo = (value, count) => ((value % count) + count) % count;
+      const started = performance.now();
+      const driftSpeed = .12;
+      const pointer = { x: 0, y: 0, inside: false, serial: 0 };
+      const hoverStates = new Map();
+      const planes = [];
+      function createPlane() {
+        const element = document.createElement('div');
+        element.className = 'study-plane';
+        const face = document.createElement('div');
+        face.className = 'study-plane__face';
+        const image = document.createElement('img'); image.className = 'study-plane__image'; image.alt = ''; image.draggable = false; image.decoding = 'async'; face.append(image);
+        element.append(face); camera.append(element);
+        return { element, face, image, sequence: null };
+      }
+      let scale = 1, position = 0, offset = 0, target = 0, raf = 0, previous = 0;
+      let driftRebase = 0, dragging = null, reducedAt = -Infinity;
+      let hovered = null, lastHoverSerial = -1;
+      let audio = null, master = null, noise = null, soundCount = 0, voices = 0;
+      let hoverSoundAt = -Infinity, noticeTimer;
+
+      // Audio is generated locally and unlocked by the first real click or key.
+      async function unlockSound() {
+        const Audio = window.AudioContext || window.webkitAudioContext;
+        if (!Audio) return;
+        try {
+          if (!audio) {
+            audio = new Audio(); master = audio.createGain();
+            master.gain.value = .55; master.connect(audio.destination);
+            noise = audio.createBuffer(1, Math.ceil(audio.sampleRate * .14), audio.sampleRate);
+            const samples = noise.getChannelData(0);
+            let seed = 7193;
+            for (let index = 0; index < samples.length; index++) {
+              seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+              samples[index] = (seed / 4294967296 * 2 - 1) * .65;
+            }
+          }
+          if (audio.state === 'suspended') await audio.resume();
+          stage.dataset.soundReady = String(audio.state === 'running');
+          return audio.state === 'running';
+        } catch { /* Another gesture can retry an interrupted browser audio unlock. */ }
+      }
+      // A short filtered paper flick, with no pitched oscillator or musical scale.
+      function hoverSound() {
+        if (!audio || audio.state !== 'running' || document.hidden || voices >= 4) return;
+        const now = performance.now();
+        if (now - hoverSoundAt < 125) return;
+        hoverSoundAt = now;
+        const source = audio.createBufferSource(), filter = audio.createBiquadFilter();
+        const softness = audio.createBiquadFilter(), gain = audio.createGain();
+        const pan = audio.createStereoPanner?.();
+        const start = audio.currentTime;
+        const duration = .046;
+        source.buffer = noise;
+        filter.type = 'bandpass';
+        filter.frequency.value = 1650;
+        filter.Q.value = .65;
+        softness.type = 'lowpass'; softness.frequency.value = 3400; softness.Q.value = .55;
+        const peak = .115;
+        gain.gain.setValueAtTime(0, start);
+        gain.gain.linearRampToValueAtTime(peak, start + .003);
+        gain.gain.exponentialRampToValueAtTime(peak * .25, start + .014);
+        gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
+        source.connect(filter); filter.connect(softness); softness.connect(gain);
+        if (pan) {
+          pan.pan.value = (pointer.x / innerWidth * 2 - 1) * .45;
+          gain.connect(pan); pan.connect(master);
+        } else gain.connect(master);
+        voices += 1;
+        source.onended = () => { source.disconnect(); filter.disconnect(); softness.disconnect(); gain.disconnect(); pan?.disconnect(); voices -= 1; };
+        source.start(start, .02); source.stop(start + duration + .003);
+        stage.dataset.soundCount = String(++soundCount);
+      }
+      document.addEventListener('pointerdown', event => { if (event.isTrusted) unlockSound(); }, { capture: true });
+      document.addEventListener('keydown', event => { if (event.isTrusted) unlockSound(); }, { capture: true });
+      function drift(time = performance.now()) { return (time - started) / 1000 * driftSpeed - driftRebase; }
+      // Move half a projected card width to screen-right, keeping its depth and orientation.
+      function hoverVector(amount = 1) {
+        const yaw = config.yaw * Math.PI / 180;
+        const distance = coverWidth * Math.cos(yaw) * .5 * scale * amount;
+        return { x: Math.cos(yaw) * distance, y: 0, z: Math.sin(yaw) * distance };
+      }
+      // Test both the resting slot and its displaced face so following the card is stable.
+      function quad(sequence, padding = 0, amount = 0, atPosition = position, width = coverWidth) {
+        const xAngle = config.pitch * Math.PI / 180, yAngle = config.yaw * Math.PI / 180;
+        const sx = Math.sin(xAngle), cx = Math.cos(xAngle), sy = Math.sin(yAngle), cy = Math.cos(yAngle);
+        const z = (atPosition - sequence) * config.gap * scale;
+        const perspective = config.perspective * scale;
+        if (z * cx * cy > perspective * .76) return null;
+        const w = width * scale / 2 + padding, h = coverHeight * scale / 2 + padding;
+        const shift = hoverVector(amount);
+        return [[-w, -h], [w, -h], [w, h], [-w, h]].map(([rawX, rawY]) => {
+          const x = rawX + shift.x, y = rawY + shift.y, depth = z + shift.z;
+          const worldX = cy * x + sy * depth;
+          const worldY = sx * sy * x + cx * y - sx * cy * depth;
+          const worldZ = -cx * sy * x + sx * y + cx * cy * depth;
+          const factor = perspective / (perspective - worldZ);
+          return [view.originX + worldX * factor, view.originY + worldY * factor];
+        });
+      }
+      function contains(points, x, y) {
+        if (!points) return false;
+        let sign = 0;
+        for (let i = 0; i < 4; i++) {
+          const a = points[i], b = points[(i + 1) % 4];
+          const cross = (b[0] - a[0]) * (y - a[1]) - (b[1] - a[1]) * (x - a[0]);
+          if (Math.abs(cross) < .1) continue;
+          const next = Math.sign(cross);
+          if (sign && next !== sign) return false;
+          sign = next;
+        }
+        return true;
+      }
+      function updateHover(base) {
+        let next = null;
+        if (infoSequence !== null && (info.matches(':hover') || info.contains(document.activeElement))) next = infoSequence;
+        else if (pointer.inside && !dragging && !pageName) {
+          for (let sequence = base + bounds.near; sequence <= base + bounds.far; sequence++) {
+            if (contains(quad(sequence, 0, hoverStates.get(sequence)?.value || 0), pointer.x, pointer.y)) { next = sequence; break; }
+          }
+          if (hovered !== null && (next === null || next >= hovered)) {
+            const inSlot = contains(quad(hovered, 12), pointer.x, pointer.y);
+            const inFace = contains(quad(hovered, 12, hoverStates.get(hovered)?.value || 0), pointer.x, pointer.y);
+            const inDestination = contains(quad(hovered, 12, 1), pointer.x, pointer.y);
+            const r = info.getBoundingClientRect(), q = quad(hovered, 0, hoverStates.get(hovered)?.value || 0);
+            const bridge = infoSequence === hovered && q && pointer.x >= Math.min(q[1][0], q[2][0]) - 10 && pointer.x <= r.right && pointer.y >= Math.min(r.top, q[1][1]) && pointer.y <= Math.max(r.bottom, q[2][1]);
+            if (inSlot || inFace || inDestination || bridge) next = hovered;
+          }
+        }
+        if (next !== hovered) {
+          if (next !== null && pointer.serial !== lastHoverSerial) hoverSound();
+          hovered = next;
+        }
+        lastHoverSerial = pointer.serial;
+        stage.dataset.hoverSequence = hovered === null ? '' : String(hovered);
+      }
+      function draw(dt = 1 / 60) {
+        const base = Math.round(position), wanted = new Set();
+        const projection = Math.cos(config.pitch * Math.PI / 180) * Math.cos(config.yaw * Math.PI / 180);
+        updateHover(base);
+        for (let sequence = base + bounds.near; sequence <= base + bounds.far; sequence++) {
+          // A ring of nodes recycles only the offscreen end, not every visible plane.
+          const record = planes[modulo(sequence, planes.length)];
+          const z = (position - sequence) * config.gap * scale;
+          wanted.add(sequence);
+          if (record.sequence !== sequence) {
+            record.sequence = sequence;
+            record.element.dataset.sequence = String(sequence);
+            record.image.src = catalogue[modulo(sequence, catalogue.length)].cover;
+            record.element.style.setProperty('--cover-background', catalogue[modulo(sequence, catalogue.length)].surface);
+          }
+          const state = hoverStates.get(sequence) || { value: 0 };
+          const goal = hovered === sequence ? 1 : 0;
+          state.value = preference.matches ? goal : state.value + (goal - state.value) * (1 - Math.exp(-dt / (goal ? .095 : .15)));
+          if (Math.abs(state.value - goal) < .0005) state.value = goal;
+          hoverStates.set(sequence, state);
+          const shift = hoverVector(state.value);
+          record.element.hidden = z * projection > config.perspective * scale * .76;
+          record.element.style.transform = `translateZ(${z.toFixed(3)}px)`;
+          record.face.style.transform = `translate3d(${shift.x.toFixed(3)}px, ${shift.y.toFixed(3)}px, ${shift.z.toFixed(3)}px)`;
+          record.element.dataset.hovered = String(goal === 1);
+          const arrival = preference.matches ? 1 : Math.max(0, Math.min(1, (performance.now() - enteredAt - modulo(sequence, catalogue.length) * 38) / 260));
+          record.face.style.opacity = String(arrival);
+        }
+        for (const sequence of hoverStates.keys()) if (!wanted.has(sequence)) hoverStates.delete(sequence);
+        const active = modulo(base, names.length);
+        if (active !== selectedProject) {
+          selectedProject = active;
+          projects.forEach((button, index) => {
+            if (index === active) button.setAttribute('aria-current', 'true');
+            else button.removeAttribute('aria-current');
+          });
+          current.value = `Plano ${String(active + 1).padStart(2, '0')} — ${names[active]}`;
+        }
+        stage.dataset.position = position.toFixed(5);
+        stage.dataset.drift = drift().toFixed(5);
+        positionInfo();
+        updateStudyCursor();
+      }
+      function measure() {
+        // Place the index in the clear upper-left; never crop the full-screen camera.
+        if (innerWidth <= 1000) index.style.top = `${Math.max(112, navigation.getBoundingClientRect().bottom + 24)}px`;
+        else index.style.removeProperty('top');
+        const rect = stage.getBoundingClientRect();
+        Object.assign(view, { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom, originX: rect.left + rect.width / 2, originY: rect.top + rect.height / 2 });
+        scale = Math.min(innerWidth / 1512, innerHeight / 982);
+        scene.style.setProperty('--perspective', `${config.perspective * scale}px`);
+        scene.style.setProperty('--card-width', `${coverWidth * scale}px`);
+        scene.style.setProperty('--card-height', `${coverHeight * scale}px`);
+        camera.style.setProperty('--pitch', `${config.pitch}deg`);
+        camera.style.setProperty('--yaw', `${config.yaw}deg`);
+        // Measure overscan once per geometry change, including the full hover displacement.
+        const base = Math.round(position);
+        let near = -4, far = 4;
+        for (let index = -160; index <= 160; index++) {
+          const visible = [-.5, .5].some(fraction => [0, 1].some(amount => {
+            const points = quad(base + index, 16, amount, base + fraction);
+            if (!points) return false;
+            const xs = points.map(point => point[0]), ys = points.map(point => point[1]);
+            return Math.max(...xs) >= view.left && Math.min(...xs) <= view.right && Math.max(...ys) >= view.top && Math.min(...ys) <= view.bottom;
+          }));
+          if (visible) { near = Math.min(near, index); far = Math.max(far, index); }
+        }
+        bounds = { near: near - 3, far: far + 3 };
+        const count = bounds.far - bounds.near + 1;
+        while (planes.length < count) planes.push(createPlane());
+        while (planes.length > count) planes.pop().element.remove();
+        stage.dataset.buffer = `${bounds.near}:${bounds.far}`;
+        draw();
+      }
+      const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
+      function positionInfo() {
+        const sequence = hovered;
+        const visible = sequence !== null && !pageName && !document.body.classList.contains('study-loading') && !dragging;
+        info.classList.toggle('is-visible', visible);
+        info.setAttribute('aria-hidden', String(!visible)); info.tabIndex = visible ? 0 : -1;
+        if (!visible) { if (!info.matches(':hover')) infoSequence = null; return; }
+        const item = catalogue[modulo(sequence, catalogue.length)];
+        if (infoSequence !== sequence) {
+          infoSequence = sequence;
+          info.querySelector('[data-info-title]').textContent = item.title;
+          info.querySelector('[data-info-description]').textContent = item.description;
+          info.querySelector('[data-info-year]').textContent = item.year;
+          info.href = item.page; info.setAttribute('aria-label', `Abrir ${item.title}`);
+        }
+        const q = quad(sequence, 0, hoverStates.get(sequence)?.value || 0);
+        if (!q) return;
+        const record = planes[modulo(sequence, planes.length)];
+        if (info.parentElement !== record.element) record.element.append(info);
+        const shift = hoverVector(hoverStates.get(sequence)?.value || 0);
+        info.style.left = `${coverWidth * scale + 18}px`;
+        info.style.top = '12px';
+        info.style.transform = `translate3d(${shift.x.toFixed(3)}px, ${shift.y.toFixed(3)}px, ${shift.z.toFixed(3)}px)`;
+
+      }
+      info.addEventListener('click', event => { event.preventDefault(); if (infoSequence !== null) openProject(infoSequence); });
+      info.addEventListener('pointerenter', () => { pointer.inside = false; });
+      stage.addEventListener('keydown', event => { if (event.key === 'Enter' && !pageName && !event.target.closest('.study-card-info')) { event.preventDefault(); openProject(Math.round(position)); } });
+
+      const coverRequests = new Map(), mediaStates = new WeakMap();
+      let panelAnimation = null, panelVersion = 0;
+      let pendingCover = null, startupPreparing = false, lightboxRequest = 0, lightboxFocus = null, lightboxAnimation = null, lightboxTimer = 0;
+      const mediaObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { mediaObserver.unobserve(entry.target); mediaStates.get(entry.target)?.begin(); }
+      }), { rootMargin: '200px 0px' });
+
+      function decodedImage(src, timeout = 10000) {
+        return new Promise((resolve, reject) => {
+          const image = new Image(); let settled = false;
+          const timer = setTimeout(() => done(new Error('Image loading timed out')), timeout);
+          function done(error) {
+            if (settled) return; settled = true; clearTimeout(timer); image.onload = image.onerror = null;
+            if (error) reject(error); else resolve(image);
+          }
+          image.onload = () => image.decode().then(() => done()).catch(() => done(image.naturalWidth ? null : new Error('Image could not be decoded')));
+          image.onerror = () => done(new Error('Image unavailable'));
+          image.src = src;
+        });
+      }
+      function ensureCover(item) {
+        const loaded = loadedCovers.get(item.slug);
+        if (loaded?.naturalWidth) return Promise.resolve(loaded);
+        if (coverRequests.has(item.slug)) return coverRequests.get(item.slug);
+        const request = decodedImage(item.cover, 8000).then(image => { loadedCovers.set(item.slug, image); return image; }).finally(() => coverRequests.delete(item.slug));
+        coverRequests.set(item.slug, request); return request;
+      }
+      function cancelCoverWait() {
+        if (!pendingCover) return;
+        pendingCover.cancelled = true; clearTimeout(pendingCover.timer); pendingCover = null;
+        notice.replaceChildren(); notice.classList.remove('is-loading');
+        casePrevious.disabled = caseNext.disabled = false; page.removeAttribute('aria-busy'); stage.removeAttribute('aria-busy');
+      }
+      async function waitForCover(item, retry) {
+        if (loadedCovers.get(item.slug)?.naturalWidth) return true;
+        cancelCoverWait(); clearTimeout(noticeTimer);
+        const state = { cancelled: false, timer: 0 }; pendingCover = state;
+        (pageName ? page : stage).setAttribute('aria-busy', 'true'); casePrevious.disabled = caseNext.disabled = true;
+        state.timer = setTimeout(() => {
+          if (pendingCover !== state) return;
+          notice.classList.add('is-loading');
+          const rose = el('span','study-loader__rose'); rose.setAttribute('aria-hidden','true');
+          const cancel = el('button','','Cancelar'); cancel.type = 'button'; cancel.addEventListener('click', cancelCoverWait);
+          notice.replaceChildren(rose, el('span','','Cargando proyecto'), cancel);
+        }, 160);
+        try {
+          await ensureCover(item);
+          if (pendingCover !== state || state.cancelled) return false;
+          cancelCoverWait(); return true;
+        } catch {
+          if (pendingCover !== state || state.cancelled) return false;
+          cancelCoverWait(); notice.classList.add('is-loading');
+          const button = el('button','','Reintentar'); button.type = 'button'; button.addEventListener('click', () => { notice.replaceChildren(); notice.classList.remove('is-loading'); retry(); });
+          notice.replaceChildren(el('span','','No se pudo cargar la portada.'), button); return false;
+        }
+      }
+      function releasePageMedia(container) {
+        container.querySelectorAll('img').forEach(image => {
+          const state = mediaStates.get(image);
+          if (state) { state.version += 1; clearTimeout(state.spinner); clearTimeout(state.timeout); state.status?.remove(); image.onload = image.onerror = null; }
+          mediaObserver.unobserve(image);
+        });
+      }
+      function attachMediaState(image, src) {
+        const host = image.parentElement;
+        if (!image.isConnected || !host?.matches('.study-case-images button,.study-archive-piece button')) return;
+        const originalLabel = host.getAttribute('aria-label');
+        const state = { version: 0, spinner: 0, timeout: 0, status: null, begin: null };
+        mediaStates.set(image, state);
+        const clear = () => { clearTimeout(state.spinner); clearTimeout(state.timeout); state.spinner = state.timeout = 0; state.status?.remove(); state.status = null; mediaObserver.unobserve(image); };
+        const fail = () => {
+          clear(); if (!image.isConnected) return;
+          image.dataset.mediaState = 'error'; host.classList.add('is-media-error'); host.setAttribute('aria-label','Reintentar imagen'); host.removeAttribute('aria-busy');
+          state.status = el('span','study-media-status','No se pudo cargar. Reintentar'); host.append(state.status); updateStudyCursor(true);
+        };
+        const start = retry => {
+          clear(); const version = ++state.version;
+          image.dataset.mediaState = 'loading'; host.classList.remove('is-media-error'); host.setAttribute('aria-label',originalLabel); host.setAttribute('aria-busy','true');
+          state.begin = () => {
+            if (version !== state.version || image.dataset.mediaState !== 'loading' || state.timeout) return;
+            state.spinner = setTimeout(() => {
+              if (!image.isConnected || image.dataset.mediaState !== 'loading') return;
+              state.status = el('span','study-media-status'); const rose = el('span','study-loader__rose'); rose.setAttribute('aria-hidden','true'); state.status.append(rose); host.append(state.status);
+            }, 180);
+            state.timeout = setTimeout(fail, 12000);
+          };
+          image.onload = async () => {
+            try { await image.decode(); } catch { if (version !== state.version) return; if (!image.naturalWidth) { fail(); return; } }
+            if (version !== state.version || !image.isConnected) return;
+            clear(); image.dataset.mediaState = 'ready'; host.removeAttribute('aria-busy');
+            if (!preference.matches) image.animate([{ opacity: 0 },{ opacity: 1 }],{ duration: 140, easing: 'ease-out' }); updateStudyCursor(true);
+          };
+          image.onerror = fail;
+          if (retry) { image.removeAttribute('src'); image.src = src; }
+          if (image.complete) { if (image.naturalWidth) image.onload(); else fail(); }
+          else mediaObserver.observe(image);
+        };
+        host.addEventListener('click', event => {
+          if (image.dataset.mediaState !== 'error') return;
+          event.preventDefault(); event.stopImmediatePropagation(); start(true);
+        }, { capture: true });
+        start(false);
+      }
+
+      function syncCaseVideos() {
+        const reader = page.getBoundingClientRect();
+        page.querySelectorAll('video').forEach(video => {
+          const rect = video.getBoundingClientRect();
+          const visible = !document.hidden && pageName && !lightbox.open && !activeProjectTransition && rect.bottom > reader.top && rect.top < reader.bottom;
+          if (visible) video.play().catch(() => {}); else video.pause();
+        });
+      }
+      function fitLightbox() {
+        const image = lightbox.querySelector('img'); if (!image.naturalWidth) return;
+        const ratio = Math.min(1 / (devicePixelRatio || 1), (innerWidth - 80) / image.naturalWidth, (innerHeight - 100) / image.naturalHeight);
+        image.style.width = `${image.naturalWidth * ratio}px`; image.style.height = `${image.naturalHeight * ratio}px`;
+      }
+      async function openLightbox(src, alt) {
+        const fresh = !lightbox.open; if (fresh) lightboxFocus = document.activeElement;
+        const request = ++lightboxRequest; lightboxAnimation?.cancel(); lightboxAnimation = null; clearTimeout(lightboxTimer);
+        lightbox.removeAttribute('data-closing'); lightbox.querySelectorAll('.study-loader__rose,.study-lightbox-error').forEach(node => node.remove());
+        const image = lightbox.querySelector('img'); image.style.visibility = 'hidden'; image.removeAttribute('src'); image.alt = alt || '';
+        if (fresh) lightbox.showModal(); syncCaseVideos();
+        if (fresh && !preference.matches) lightboxAnimation = lightbox.animate([{ opacity: 0 },{ opacity: 1 }],{ duration: 120, easing: 'ease-out' });
+        lightbox.setAttribute('aria-busy','true');
+        lightboxTimer = setTimeout(() => {
+          if (request !== lightboxRequest || !lightbox.open) return;
+          const rose = el('span','study-loader__rose'); rose.setAttribute('aria-label','Cargando imagen'); lightbox.append(rose);
+        }, 160);
+        try {
+          const decoded = await decodedImage(src);
+          if (request !== lightboxRequest || !lightbox.open) return;
+          image.src = decoded.src; await image.decode();
+          if (request !== lightboxRequest || !lightbox.open) return;
+          fitLightbox(); image.style.visibility = 'visible';
+          if (!preference.matches) image.animate([{ opacity: 0 },{ opacity: 1 }],{ duration: 140, easing: 'ease-out' });
+        } catch {
+          if (request !== lightboxRequest || !lightbox.open) return;
+          const error = el('div','study-lightbox-error'); error.setAttribute('role','status');
+          const retry = el('button','study-text-button','Reintentar'); retry.type = 'button'; retry.addEventListener('click', () => openLightbox(src, alt));
+          error.append(el('p','','No se pudo cargar esta imagen.'), retry); lightbox.append(error);
+        } finally {
+          if (request === lightboxRequest) { clearTimeout(lightboxTimer); lightbox.querySelectorAll('.study-loader__rose').forEach(node => node.remove()); lightbox.removeAttribute('aria-busy'); }
+        }
+      }
+      async function closeLightbox() {
+        if (!lightbox.open || lightbox.hasAttribute('data-closing')) return;
+        const request = ++lightboxRequest; clearTimeout(lightboxTimer); lightbox.setAttribute('data-closing',''); lightboxAnimation?.cancel();
+        if (!preference.matches) {
+          lightboxAnimation = lightbox.animate([{ opacity: 1 },{ opacity: 0 }],{ duration: 90, easing: 'ease-out', fill: 'both' });
+          await lightboxAnimation.finished.catch(() => {});
+        }
+        if (request === lightboxRequest && lightbox.open) lightbox.close();
+      }
+      lightbox.addEventListener('cancel', event => { event.preventDefault(); closeLightbox(); });
+      lightbox.addEventListener('close', () => {
+        lightboxRequest += 1; clearTimeout(lightboxTimer); lightboxAnimation?.cancel(); lightboxAnimation = null;
+        lightbox.removeAttribute('data-closing'); lightbox.removeAttribute('aria-busy'); lightbox.querySelectorAll('.study-loader__rose,.study-lightbox-error').forEach(node => node.remove());
+        const image = lightbox.querySelector('img'); image.style.visibility = 'hidden'; image.removeAttribute('src');
+        if (lightboxFocus?.isConnected && !lightboxFocus.closest('[hidden],[inert]')) lightboxFocus.focus({ preventScroll: true });
+        syncCaseVideos();
+      });
+
+      async function prepare() {
+        if (startupPreparing) return; startupPreparing = true;
+        const loader = document.querySelector('.study-loader'); if (!loader) { startupPreparing = false; return; }
+        loader.replaceChildren(el('span','study-loader__rose')); loader.setAttribute('aria-busy','true'); stage.setAttribute('aria-busy','true');
+        stage.inert = navigation.inert = index.inert = true;
+        const begin = performance.now();
+        const results = await Promise.allSettled(catalogue.map(ensureCover));
+        if (results.some(result => result.status === 'rejected')) {
+          const message = el('div','study-loader__message'); const retry = el('button','study-text-button','Reintentar'); retry.type = 'button'; retry.addEventListener('click', prepare);
+          message.append(el('p','','No se pudieron cargar todas las portadas.'), retry); loader.replaceChildren(message); loader.removeAttribute('aria-busy'); startupPreparing = false; retry.focus({ preventScroll: true }); return;
+        }
+        await Promise.race([document.fonts.ready,new Promise(resolve => setTimeout(resolve,1500))]);
+        await new Promise(resolve => setTimeout(resolve, Math.max(0, 650 - (performance.now()-begin))));
+        // A retried cover also repairs any recycled planes that saw the failed request.
+        await Promise.all(planes.map(async record => {
+          if (record.image.naturalWidth) return;
+          record.image.src = loadedCovers.get(catalogue[modulo(record.sequence, catalogue.length)].slug).src;
+          await record.image.decode().catch(() => {});
+        }));
+        enteredAt = performance.now(); measure(); stage.setAttribute('aria-busy','false'); document.body.classList.remove('study-loading');
+        if (!preference.matches) await loader.animate([{ opacity: 1 },{ opacity: 0 }],{ duration: 160, easing: 'ease-out', fill: 'both' }).finished.catch(() => {});
+        const restoreFocus = loader.contains(document.activeElement);
+        loader.remove(); startupPreparing = false; stage.inert = navigation.inert = index.inert = false;
+        if (restoreFocus) stage.focus({ preventScroll: true });
+        document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
+      }
+
+      function cancelPanelAnimation() {
+        panelVersion += 1; panelAnimation?.cancel(); panelAnimation = null; page.inert = false;
+      }
+      function revealPanel(kind) {
+        const version = panelVersion;
+        requestAnimationFrame(() => {
+          if (pageName !== kind || version !== panelVersion || preference.matches) return;
+          const animation = page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'ease-out' }); panelAnimation = animation;
+          animation.finished.then(() => { if (panelAnimation === animation) panelAnimation = null; }).catch(() => {});
+        });
+      }
+      async function closePage() {
+        cancelCoverWait();
+        if (activeProjectTransition || !pageName || preference.matches || panelAnimation) { closePageImmediately(); return; }
+        if (pageName !== 'project') {
+          const version = ++panelVersion; page.inert = true;
+          const animation = page.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, easing: 'ease-out', fill: 'both' }); panelAnimation = animation;
+          await animation.finished.catch(() => {});
+          if (version === panelVersion) closePageImmediately(); return;
+        }
+        const id = Number(page.dataset.projectId), item = catalogue[id];
+        if (!item) { closePageImmediately(); return; }
+        const image = page.querySelector('.study-case-hero__cover'), rect = image?.getBoundingClientRect();
+        const sequence = Math.round((position - id) / catalogue.length) * catalogue.length + id;
+        offset = target = sequence - drift(); position = sequence;
+        hoverStates.clear(); hovered = null; pointer.inside = false; draw();
+        const state = projectTransition(item, 'close'); state.wash.style.opacity = '0';
+        stage.style.visibility = 'visible';
+        const q = quad(sequence, 0, 0, sequence + driftSpeed * .32);
+        const returning = rect && rect.top >= 0 && rect.bottom <= innerHeight && rect.width > 0 && q;
+        try {
+          const motions = [state.play(page, [{ opacity: 1 }, { opacity: 0 }], { duration: returning ? 200 : 140, delay: 40, easing: 'ease-out' })];
+          pageContent.querySelectorAll('.study-case-hero__intro,.study-case-flow,.study-case-end').forEach(node => motions.push(state.play(node, [{ opacity: 1 }, { opacity: 0 }], { duration: 70, easing: 'ease-out' })));
+          if (returning) {
+            const clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
+            clone.style.width = `${coverWidth}px`; clone.style.height = `${coverHeight}px`; clone.style.background = item.surface;
+            clone.append(imageNode({ src: item.cover, alt: '', w: 800, h: 1000 }, false)); document.body.append(clone); state.nodes.add(clone);
+            const from = { top: rect.top, left: rect.left + rect.width / 2 - rect.height * coverWidth / coverHeight / 2, width: rect.height * coverWidth / coverHeight, height: rect.height };
+            const sourceMatrix = matrixForQuad(rectangleQuad(from), coverWidth, coverHeight), destination = matrixForQuad(q, coverWidth, coverHeight);
+            clone.style.transform = sourceMatrix; state.cover = image; image.style.visibility = 'hidden';
+            const record = planes[modulo(sequence, planes.length)];
+            if (record?.sequence === sequence) { state.face = record.face; record.face.style.visibility = 'hidden'; }
+            motions.push(state.play(clone, [{ transform: sourceMatrix }, { transform: destination }], { duration: 320, easing: 'cubic-bezier(.2,.75,.2,1)' }));
+          }
+          await Promise.all(motions);
+        } finally {
+          if (activeProjectTransition === state) { finishProjectTransition(state); closePageImmediately(true); }
+        }
+      }
+
+      function imageNode(item, lazy = true) {
+        const n = el('img'); n.src = item.src; n.alt = item.alt || ''; n.decoding = 'async'; n.loading = lazy ? 'lazy' : 'eager';
+        if (item.w) n.width = item.w; if (item.h) n.height = item.h; n.draggable = false;
+        queueMicrotask(() => attachMediaState(n, item.src));
+        return n;
+      }
+      function headingState(label, color = '') {
+        heading.textContent = label; heading.style.backgroundColor = color; heading.removeAttribute('title');
+      }
+      function activeMenu(kind) {
+        document.querySelectorAll('.study-nav-group').forEach(group => {
+          const trigger = group.querySelector('.study-nav-trigger');
+          const matches = kind === 'about' ? group.classList.contains('study-nav-group--about') : kind === 'contact' ? group.classList.contains('study-nav-group--contact') : ['posters','photos'].includes(kind) && group.classList.contains('study-nav-group--archive');
+          group.classList.toggle('is-page-active', matches);
+          trigger.innerHTML = matches ? 'CERRAR <span aria-hidden="true">×</span>' : menuInitial.get(trigger);
+          if (group.tagName === 'DETAILS') group.open = false;
+        });
+      }
+      function beginPage(kind, title, color = '') {
+        cancelPanelAnimation();
+        cancelCoverWait(); clearTimeout(noticeTimer); notice.replaceChildren(); notice.classList.remove('is-loading'); if (lightbox.open) lightbox.close();
+        releasePageMedia(pageContent);
+        if (kind !== 'project' && activeProjectTransition) finishProjectTransition(activeProjectTransition);
+        caseNavigation.hidden = kind !== 'project';
+        clearCaseJourney?.(); clearCaseJourney = null; navigation.inert = kind === 'project';
+        pageVideoObserver?.disconnect(); pageVideoObserver = null;
+        page.querySelectorAll('video').forEach(v => v.pause());
+        openingToken += 1; if (pageName !== 'project' || kind !== 'project') lastFocus = document.activeElement; pageName = kind;
+        document.querySelectorAll('.study-transition-image').forEach(n => n.remove());
+        document.body.dataset.studyPage = kind;
+        stage.inert = true; pointer.inside = false; hovered = null;
+        info.classList.remove('is-visible'); info.setAttribute('aria-hidden','true'); info.tabIndex = -1;
+        page.hidden = false; page.scrollTop = 0; page.setAttribute('aria-label', title); pageContent.replaceChildren();
+        activeMenu(kind); headingState(title, color); page.focus({ preventScroll: true });
+        if (kind !== 'project') revealPanel(kind);
+      }
+      function closePageImmediately(keepPosition = false) {
+        cancelPanelAnimation();
+        cancelCoverWait(); clearTimeout(noticeTimer); notice.replaceChildren(); notice.classList.remove('is-loading'); if (lightbox.open) lightbox.close(); releasePageMedia(pageContent);
+        if (activeProjectTransition) finishProjectTransition(activeProjectTransition);
+        caseNavigation.hidden = true; caseStatus.textContent = '';
+        if (!pageName) { stage.inert = false; navigation.inert = false; index.inert = false; stage.focus({ preventScroll: true }); return; }
+        clearCaseJourney?.(); clearCaseJourney = null; navigation.inert = false;
+        document.body.style.removeProperty('--case-cover-ink'); document.body.style.removeProperty('--case-cover-surface');
+        openingToken += 1;
+        const projectId = page.dataset.projectId;
+        pageVideoObserver?.disconnect(); pageVideoObserver = null;
+        page.querySelectorAll('video').forEach(v => v.pause());
+        document.querySelectorAll('.study-transition-image').forEach(n => n.remove());
+        stage.style.removeProperty('visibility');
+        pageName = ''; page.hidden = true; pageContent.replaceChildren(); delete document.body.dataset.studyPage; delete page.dataset.projectId;
+        stage.inert = false; index.inert = false; activeMenu(''); headingState(normalHeading);
+        if (projectId !== undefined && !keepPosition) {
+          const id = Number(projectId), sequence = Math.round((position - id) / catalogue.length) * catalogue.length + id;
+          offset = target = sequence - drift(); position = sequence;
+        }
+        hovered = null; infoSequence = null; pointer.inside = false; draw();
+        const focus = lastFocus?.isConnected && lastFocus !== page && lastFocus !== document.body && !lastFocus.closest('.study-card-info,[hidden],[inert]') ? lastFocus : stage;
+        focus.focus({ preventScroll: true });
+      }
+      document.querySelector('.study-page-close').addEventListener('click', closePage);
+      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open) return; if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
+      document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+        const kind = button.dataset.view;
+        if (pageName === kind || kind === 'about' && pageName.startsWith('about')) { closePage(); return; }
+        if (kind === 'about') openAbout();
+        else if (kind === 'contact') openContact();
+        else openArchive(kind);
+      }));
+      document.querySelector('.study-nav-group--archive > summary').addEventListener('click', event => {
+        if (['posters','photos'].includes(pageName)) { event.preventDefault(); closePage(); }
+      });
+      function openAbout(tab = 'testament') {
+        beginPage('about', '¿QUIÉN ES SANTIAGO BARBIERI?', '#03b047');
+        const tabs = el('nav','study-page-index'); tabs.setAttribute('aria-label','Secciones de Sobre mí'); tabs.setAttribute('role','tablist');
+        const area = el('div'); area.setAttribute('role','tabpanel'); area.id = 'study-about-panel';
+        [['testament','Testamento'],['credentials','Credenciales'],['tastes','Gustos']].forEach(([key,label]) => {
+          const button = el('button','',label); button.type = 'button'; button.setAttribute('role','tab'); button.setAttribute('aria-controls',area.id); button.setAttribute('aria-selected',String(key===tab));
+          button.addEventListener('click', () => renderAbout(key, area, tabs)); tabs.append(button); button.dataset.aboutTab = key;
+        });
+        tabs.addEventListener('keydown', event => {
+          const buttons = [...tabs.querySelectorAll('button')], i = buttons.indexOf(document.activeElement);
+          if (['ArrowDown','ArrowRight','ArrowUp','ArrowLeft'].includes(event.key) && i >= 0) {
+            event.preventDefault(); const n = modulo(i + (['ArrowDown','ArrowRight'].includes(event.key) ? 1 : -1), buttons.length); buttons[n].click(); buttons[n].focus();
+          }
+        });
+        pageContent.append(tabs,area); renderAbout(tab,area,tabs);
+      }
+      function renderAbout(tab, area, tabs) {
+        tabs.querySelectorAll('button').forEach(b => { const active = b.dataset.aboutTab === tab; b.setAttribute('aria-selected',String(active)); b.tabIndex = active ? 0 : -1; });
+        area.replaceChildren(); area.className = 'study-chrome-enter'; area.setAttribute('aria-label', {testament:'Testamento',credentials:'Credenciales',tastes:'Gustos'}[tab]);
+        if (tab === 'testament') {
+          const layout = el('div','study-about-testament'); layout.append(el('h2','study-page-title','Hola, soy Santiago y este es mi portfolio.'));
+          const portrait = el('div','study-portrait-pending','Retrato pendiente'); portrait.setAttribute('role','img'); portrait.setAttribute('aria-label','Espacio reservado para el retrato de Santiago'); layout.append(portrait);
+          const text = el('div','study-about-text');
+          [
+            'Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa cómo una idea cambia al pasar a una prenda, una campaña o una pantalla.',
+            'Soy cofundador y director creativo de Apolo Studios. Este portfolio reúne ese trabajo junto con identidades y campañas para marcas y organizaciones, además de mis exploraciones personales.'
+          ].forEach(p => text.append(el('p','',p)));
+          text.append(el('p','study-page-note','Testamento en edición. El texto definitivo y el retrato todavía están en preparación.')); layout.append(text); area.append(layout);
+        } else if (tab === 'credentials') {
+          const list = el('div','study-credentials');
+          [['Desarrollo web','Desarrollo web','Coderhouse'],['CAE','Inglés · Nivel C1','Cambridge University']].forEach(([title,detail,issuer]) => { const row=el('article','study-credential');row.append(el('h2','',title),el('p','',detail),el('p','',issuer));list.append(row); }); area.append(list);
+        } else {
+          const list=el('div','study-tastes');list.append(el('p','','Base: Buenos Aires, Argentina'),el('p','','Trabajo: diseño gráfico, dirección creativa, web y fotografía'),el('p','','Intereses: música, diseño, cine y cámaras'));area.append(list);
+        }
+      }
+      function openContact() {
+        beginPage('contact','¡TRABAJEMOS JUNTOS!','#ef3333');
+        const form=el('form','study-contact');form.noValidate=true;
+        form.innerHTML='<p class="study-form-progress" aria-live="polite" data-form-progress></p><div data-form-step></div><div class="study-form-actions"><button class="study-text-button" type="button" data-form-back>Anterior</button><button class="study-text-button" type="submit" data-form-next>Continuar ↗︎</button></div>';
+        const data={kind:'Un proyecto',brand:'',idea:'',deadline:'',budget:'',name:'',email:''};let step=0;
+        const area=form.querySelector('[data-form-step]'),back=form.querySelector('[data-form-back]'),next=form.querySelector('[data-form-next]');
+        const fields=[['kind','¿Qué tenés en mente?','select',false],['brand','Marca o empresa','text',false],['idea','La idea y lo que querés lograr','textarea',true],['deadline','Plazo o fecha ideal','text',false],['budget','Presupuesto estimado','text',false],['name','Tu nombre','text',true],['email','Correo electrónico','email',true]];
+        function save(){area.querySelectorAll('[name]').forEach(input=>{data[input.name]=input.value;});}
+        function summary(){return `Consulta: ${data.kind}\nMarca: ${data.brand||'A definir'}\nIdea: ${data.idea}\nPlazo: ${data.deadline||'A definir'}\nPresupuesto: ${data.budget||'A definir'}\nNombre: ${data.name}\nEmail: ${data.email}`;}
+        function paint(){
+          area.replaceChildren();form.querySelector('[data-form-progress]').textContent=`${step+1} / 4`;back.hidden=step===0;next.hidden=step===3;
+          if(step===3){area.append(el('h2','study-page-title','Tu consulta, lista para revisar.'));const text=el('textarea','study-contact-summary');text.value=summary();text.readOnly=true;text.setAttribute('aria-label','Resumen de tu consulta');text.style.width='100%';text.style.minHeight='220px';area.append(text,el('p','study-page-note','El envío está en preparación. Por ahora podés copiar el resumen; esta prueba no envía ni guarda tus datos.'));const copy=el('button','study-text-button','Copiar resumen');copy.type='button';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(summary());copy.textContent='Resumen copiado';}catch{text.focus();text.select();copy.textContent='Seleccionado para copiar';}});area.append(copy);return;}
+          const legend=el('h2','study-page-title',['Contame qué tenés en mente.','Un poco más de contexto.','¿Cómo te contacto?'][step]);area.append(legend);
+          const selected=step===0?['kind','brand','idea']:step===1?['deadline','budget']:['name','email'];
+          fields.filter(([key])=>selected.includes(key)).forEach(([key,label,type,required])=>{const wrapper=el('label','study-field',label+(required?' · obligatorio':' · opcional'));const input=el(type==='textarea'?'textarea':type==='select'?'select':'input');input.name=key;input.id=`study-contact-${key}`;wrapper.htmlFor=input.id;if(type==='select'){['Un proyecto','Una consulta'].forEach(v=>{const o=el('option','',v);o.value=v;input.append(o);});}else if(type!=='textarea')input.type=type;input.value=data[key];input.required=required;if(key==='name')input.autocomplete='name';if(key==='email')input.autocomplete='email';if(key==='brand')input.autocomplete='organization';wrapper.append(input);area.append(wrapper);});
+        }
+        back.addEventListener('click',()=>{save();step=Math.max(0,step-1);paint();});form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;save();step=Math.min(3,step+1);paint();});paint();pageContent.append(form);
+      }
+      function openArchive(kind) {
+        beginPage(kind,kind==='posters'?'ARCHIVO · POSTERS':'ARCHIVO · FOTOGRAFÍA','#ff6b2c');
+        const items=archiveItems.filter(item=>item.kind===(kind==='posters'?'poster':'photo'));
+        const head=el('header','study-archive-heading');head.append(el('h2','study-page-title',kind==='posters'?'Afiches':'Fotografías'),el('span','study-page-note',`${items.length} piezas`));
+        const grid=el('div','study-archive-grid');grid.style.gridTemplateColumns=`repeat(${kind==='photos'?3:2},minmax(0,1fr))`;
+        if(kind==='posters'){
+          const density=el('nav','study-page-index');density.setAttribute('aria-label','Cantidad de columnas');[2,4,6].forEach(count=>{const b=el('button','',`${count} columnas`);b.type='button';b.setAttribute('aria-pressed',String(count===2));b.addEventListener('click',()=>{grid.style.gridTemplateColumns=`repeat(${count},minmax(0,1fr))`;density.querySelectorAll('button').forEach(n=>n.setAttribute('aria-pressed',String(n===b)));});density.append(b);});pageContent.append(density);
+        }
+        items.forEach((item,i)=>{const figure=el('figure','study-archive-piece'),button=el('button');button.type='button';button.setAttribute('aria-label',`Ampliar ${item.name||item.alt||'fotografía'}`);button.setAttribute('aria-haspopup','dialog');const image=imageNode({src:item.thumbnail?.src||item.src,alt:item.alt||item.name,w:item.thumbnail?.w||item.w,h:item.thumbnail?.h||item.h});button.append(image);button.addEventListener('click',()=>openLightbox(item.src,item.alt||item.name));figure.append(button,el('figcaption','',`${String(i+1).padStart(2,'0')}${item.name?' · '+item.name:''}`));grid.append(figure);});pageContent.append(head,grid);
+      }
+      document.querySelector('[data-lightbox-close]').addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+
+      function matrixForQuad(q,w=800,h=1000) {
+        const source=[[0,0],[w,0],[w,h],[0,h]], rows=[];
+        source.forEach(([x,y],i)=>{const [u,v]=q[i];rows.push([x,y,1,0,0,0,-u*x,-u*y,u],[0,0,0,x,y,1,-v*x,-v*y,v]);});
+        for(let i=0;i<8;i++){let pivot=i;for(let r=i+1;r<8;r++)if(Math.abs(rows[r][i])>Math.abs(rows[pivot][i]))pivot=r;[rows[i],rows[pivot]]=[rows[pivot],rows[i]];const d=rows[i][i];if(Math.abs(d)<1e-9)return null;for(let c=i;c<=8;c++)rows[i][c]/=d;for(let r=0;r<8;r++)if(r!==i){const f=rows[r][i];for(let c=i;c<=8;c++)rows[r][c]-=f*rows[i][c];}}
+        const [a,b,c,d,e,f,g,hp]=rows.map(r=>r[8]);return `matrix3d(${a},${d},0,${g},${b},${e},0,${hp},0,0,1,0,${c},${f},0,1)`;
+      }
+      function setupCaseJourney(visual) {
+        const controller = new AbortController(), effects = new Set();
+        let tick = 0;
+        const update = () => {
+          tick = 0;
+          const visualRect = visual.getBoundingClientRect();
+          const titleRect = document.querySelector('.study-heading').getBoundingClientRect();
+          const closeRect = document.querySelector('.study-page-close').getBoundingClientRect();
+          document.body.classList.toggle('study-case-on-cover', visualRect.top <= titleRect.top + titleRect.height/2 && visualRect.bottom >= titleRect.top + titleRect.height/2);
+          document.body.classList.toggle('study-close-on-cover', visualRect.top <= closeRect.top + closeRect.height/2 && visualRect.bottom >= closeRect.top + closeRect.height/2);
+          caseNavigation.classList.toggle('on-case-cover', visualRect.top <= innerHeight / 2 && visualRect.bottom >= innerHeight / 2);
+        };
+        const schedule = () => { if (!tick) tick = requestAnimationFrame(update); };
+        page.addEventListener('scroll', schedule, { passive: true, signal: controller.signal });
+        window.addEventListener('resize', schedule, { passive: true, signal: controller.signal });
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            observer.unobserve(entry.target);
+            if (preference.matches) return;
+            const animation = entry.target.animate([{ opacity: .85 }, { opacity: 1 }], { duration: 220, easing: 'cubic-bezier(.2,.75,.2,1)' });
+            effects.add(animation); animation.finished.then(() => effects.delete(animation)).catch(() => {});
+          });
+        }, { root: page, rootMargin: '80px 0px', threshold: .06 });
+        page.querySelectorAll('.study-case-section .study-case-images').forEach(art => observer.observe(art));
+        const start = page.querySelector('[data-case-start]');
+        start.addEventListener('click', () => page.querySelector('.study-case-section')?.scrollIntoView({ block: 'start', behavior: preference.matches ? 'instant' : 'smooth' }), { signal: controller.signal });
+        update();
+        return () => {
+          controller.abort(); observer.disconnect(); cancelAnimationFrame(tick);
+          effects.forEach(animation => animation.cancel()); document.body.classList.remove('study-case-on-cover', 'study-close-on-cover'); caseNavigation.classList.remove('on-case-cover');
+        };
+      }
+
+      function renderProject(id) {
+        const item = catalogue[id];
+        beginPage('project', `${item.title} | ${item.type}`);
+        heading.textContent = item.title; heading.title = `${item.title} | ${item.type}`;
+        page.dataset.projectId = String(id);
+        page.style.setProperty('--case-surface', item.surface);
+        const rgb = item.surface.slice(1).match(/../g).map(v => parseInt(v, 16) / 255);
+        const luminance = rgb.map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4);
+        const brightness = luminance[0] * .2126 + luminance[1] * .7152 + luminance[2] * .0722;
+        document.body.style.setProperty('--case-cover-ink', brightness > .18 ? '#111' : '#fff');
+        document.body.style.setProperty('--case-cover-surface', item.surface);
+
+        const hero = el('header', 'study-case-hero');
+        hero.dataset.chapter = 'Apertura';
+        const visual = el('div', 'study-case-hero__visual');
+        const cover = imageNode({ src: item.cover, alt: item.alt, w: 800, h: 1000 }, false);
+        cover.className = 'study-case-hero__cover'; visual.append(cover);
+        const intro = el('div', 'study-case-hero__intro');
+        const title = el('div');
+        title.append(el('h2', 'study-page-title', item.title), el('p', 'study-page-note', `${item.type} · ${item.year}`));
+        const copy = el('div');
+        const start = el('button', 'study-text-button study-case-start', 'Recorrer proyecto ↓');
+        start.type = 'button'; start.dataset.caseStart = '';
+        copy.append(el('p', 'study-page-copy', item.intro), start);
+        intro.append(title, copy); hero.append(visual, intro); pageContent.append(hero);
+
+        const flow = el('div', 'study-case-flow');
+        item.blocks.forEach((block, index) => {
+          const section = el('section', 'study-case-section');
+          section.dataset.chapter = block.title;
+          const text = el('div', 'study-case-section__copy');
+          text.append(el('span', 'study-case-section__number', String(index + 1).padStart(2, '0')), el('h3', '', block.title), el('p', '', block.description));
+          const art = el('div', 'study-case-images');
+          block.images.forEach(im => {
+            const button = el('button'); button.type = 'button';
+            button.setAttribute('aria-label', `Ampliar ${im.alt || block.title}`); button.setAttribute('aria-haspopup', 'dialog');
+            button.append(imageNode(im)); button.addEventListener('click', () => openLightbox(im.src, im.alt)); art.append(button);
+          });
+          if (block.video?.src) {
+            const video = el('video'); video.src = block.video.src; video.poster = block.video.poster;
+            video.muted = video.defaultMuted = video.loop = video.autoplay = video.playsInline = true;
+            video.preload = 'none'; video.disablePictureInPicture = true; video.setAttribute('disableRemotePlayback', ''); art.append(video);
+          }
+          if (block.colors) {
+            const palette = el('div', 'study-colors');
+            block.colors.forEach(color => {
+              const chip = el('div'), swatch = el('span'); swatch.style.background = color.hex;
+              chip.append(swatch, el('span', '', `${color.name} ${color.hex}`)); palette.append(chip);
+            }); art.append(palette);
+          }
+          section.append(text, art); flow.append(section);
+        });
+        pageContent.append(flow);
+        const end = el('div', 'study-case-end');
+        end.append(el('p', '', 'Fin del proyecto'));
+        const actions = el('div', 'study-case-end__actions');
+        const back = el('button', 'study-text-button', 'Volver a proyectos ↗︎'); back.type = 'button'; back.addEventListener('click', closePage);
+        const next = el('button', 'study-text-button study-case-end__next', `Siguiente: ${catalogue[modulo(id + 1, catalogue.length)].title} →`); next.type = 'button'; next.dataset.caseStep = '1'; next.addEventListener('click', () => switchProject(1));
+        actions.append(back, next); end.append(actions); pageContent.append(end);
+        clearCaseJourney = setupCaseJourney(visual);
+        const videos = [...flow.querySelectorAll('video')];
+        if (videos.length) {
+          pageVideoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+            if (entry.isIntersecting && !document.hidden && !lightbox.open && !activeProjectTransition) entry.target.play().catch(() => {}); else entry.target.pause();
+          }), { root: page, threshold: .1 }); videos.forEach(video => pageVideoObserver.observe(video));
+        }
+        updateCaseNavigation(id);
+        return { item, hero, visual, intro, cover };
+      }
+
+      function updateCaseNavigation(id) {
+        const previous = catalogue[modulo(id - 1, catalogue.length)], next = catalogue[modulo(id + 1, catalogue.length)];
+        casePrevious.setAttribute('aria-label', `Proyecto anterior: ${previous.title}`);
+        caseNext.setAttribute('aria-label', `Proyecto siguiente: ${next.title}`);
+        caseNavigation.setAttribute('aria-label', `Cambiar proyecto. Actual: ${catalogue[id].title}`);
+        caseStatus.textContent = `${catalogue[id].title}. Proyecto ${id + 1} de ${catalogue.length}.`;
+      }
+      function projectTransition(item, phase) {
+        const wash = el('div', 'study-transition-wash'); wash.style.background = item.surface; wash.setAttribute('aria-hidden', 'true');
+        const close = el('button', 'study-transition-close', 'Cerrar ×'); close.type = 'button'; close.setAttribute('aria-label', 'Volver a proyectos'); close.addEventListener('click', closePage);
+        document.body.append(wash, close);
+        const state = {
+          nodes: new Set([wash, close]), animations: new Set(), wash, phase, cover: null, face: null, cancelled: false,
+          async play(node, frames, options) {
+            if (activeProjectTransition !== state || state.cancelled) return false;
+            if (!preference.matches) {
+              const animation = node.animate(frames, { fill: 'both', ...options }); state.animations.add(animation);
+              try { await animation.finished; } catch { state.animations.delete(animation); return false; }
+              state.animations.delete(animation);
+              if (activeProjectTransition !== state || state.cancelled) { animation.cancel(); return false; }
+              Object.entries(frames.at(-1)).forEach(([key, value]) => { if (!['offset','easing','composite'].includes(key)) node.style[key] = value; });
+              animation.cancel();
+            } else {
+              Object.entries(frames.at(-1)).forEach(([key, value]) => { if (!['offset','easing','composite'].includes(key)) node.style[key] = value; });
+            }
+            return true;
+          },
+          finishAnimations() { state.animations.forEach(animation => animation.finish()); }
+        };
+        activeProjectTransition = state; syncCaseVideos();
+        document.body.dataset.projectTransition = phase;
+        stage.inert = true; navigation.inert = true; index.inert = true; page.inert = true;
+        pointer.inside = false; hovered = null; info.classList.remove('is-visible');
+        caseNavigation.setAttribute('aria-busy', 'true'); casePrevious.disabled = caseNext.disabled = true;
+        return state;
+      }
+      function finishProjectTransition(state) {
+        if (state !== activeProjectTransition) return;
+        state.cancelled = true; state.animations.forEach(animation => animation.cancel());
+        state.nodes.forEach(node => node.remove());
+        state.face?.style.removeProperty('visibility'); state.cover?.style.removeProperty('visibility');
+        page.style.removeProperty('opacity'); page.style.removeProperty('translate'); stage.style.removeProperty('visibility'); page.inert = false;
+        delete document.body.dataset.projectTransition; activeProjectTransition = null;
+        stage.inert = Boolean(pageName); navigation.inert = pageName === 'project'; index.inert = Boolean(pageName);
+        caseNavigation.removeAttribute('aria-busy'); casePrevious.disabled = caseNext.disabled = false;
+        if (pageName === 'project') { page.focus({ preventScroll: true }); if (state.phase !== 'close') syncCaseVideos(); }
+        updateStudyCursor(true);
+      }
+      const rectangleQuad = rect => [[rect.left,rect.top],[rect.left+rect.width,rect.top],[rect.left+rect.width,rect.top+rect.height],[rect.left,rect.top+rect.height]];
+      async function openProject(sequence) {
+        if (pageName || activeProjectTransition || pendingCover) return;
+        const id = modulo(sequence, catalogue.length), item = catalogue[id];
+        if (!await waitForCover(item, () => openProject(sequence)) || pageName || activeProjectTransition) return;
+        if (preference.matches) { renderProject(id); return; }
+        const q = quad(sequence, 0, hoverStates.get(sequence)?.value || 0);
+        const state = projectTransition(item, 'lift');
+        const clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
+        clone.style.width = `${coverWidth}px`; clone.style.height = `${coverHeight}px`; clone.style.background = item.surface;
+        clone.append(imageNode({ src: item.cover, alt: '', w: 800, h: 1000 }, false)); document.body.append(clone); state.nodes.add(clone);
+        const width = Math.min(innerWidth * .44, innerHeight * .54 * coverWidth / coverHeight, 640);
+        const height = width * coverHeight / coverWidth;
+        const front = { left: (innerWidth-width)/2, top: Math.max(64, innerHeight*.38-height/2), width, height };
+        const frontMatrix = matrixForQuad(rectangleQuad(front), coverWidth, coverHeight);
+        const sourceMatrix = q ? matrixForQuad(q, coverWidth, coverHeight) : frontMatrix;
+        state.wash.style.clipPath = `inset(${front.top}px ${innerWidth-front.left-front.width}px ${innerHeight-front.top-front.height}px ${front.left}px)`;
+        state.wash.style.visibility = 'hidden'; clone.style.transform = sourceMatrix;
+        const record = planes[modulo(sequence, planes.length)];
+        if (record?.sequence === sequence) { state.face = record.face; record.face.style.visibility = 'hidden'; }
+        try {
+          if (!await state.play(clone, [{ transform: sourceMatrix }, { transform: frontMatrix }], { duration: 260, easing: 'cubic-bezier(.2,.75,.2,1)' })) return;
+          document.body.dataset.projectTransition = 'color'; state.wash.style.visibility = '';
+          if (!await state.play(state.wash, [{ clipPath: state.wash.style.clipPath }, { clipPath: 'inset(0px 0px 0px 0px)' }], { duration: 240, easing: 'cubic-bezier(.4,0,.2,1)' })) return;
+          const rendered = renderProject(id); state.cover = rendered.cover;
+          page.inert = true; page.style.opacity = '0'; rendered.cover.style.visibility = 'hidden';
+          document.body.dataset.projectTransition = 'settle';
+          const r = rendered.cover.getBoundingClientRect();
+          const landing = { width: r.height * coverWidth / coverHeight, height: r.height, top: r.top, left: r.left+r.width/2-r.height*coverWidth/coverHeight/2 };
+          const to = matrixForQuad(rectangleQuad(landing), coverWidth, coverHeight);
+          await Promise.all([
+            state.play(clone, [{ transform: frontMatrix }, { transform: to }], { duration: 280, easing: 'cubic-bezier(.2,.75,.2,1)' }),
+            state.play(page, [{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' }),
+            state.play(state.wash, [{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-out' })
+          ]);
+        } finally { finishProjectTransition(state); }
+      }
+      async function switchProject(direction) {
+        if (pageName !== 'project' || activeProjectTransition || lightbox.open || pendingCover) return;
+        const id = modulo(Number(page.dataset.projectId) + direction, catalogue.length), item = catalogue[id];
+        if (!await waitForCover(item, () => switchProject(direction)) || pageName !== 'project' || activeProjectTransition) return;
+        if (preference.matches) { renderProject(id); return; }
+        const state = projectTransition(item, 'switch'); state.wash.style.opacity = '0';
+        const distance = 24 * Math.sign(direction);
+        try {
+          const outgoing = await Promise.all([
+            state.play(page, [{ opacity: 1, translate: '0px 0px' }, { opacity: 0, translate: `${-distance}px 0px` }], { duration: 140, easing: 'ease-in' }),
+            state.play(state.wash, [{ opacity: 0 }, { opacity: 1 }], { duration: 140, easing: 'ease-in' })
+          ]);
+          if (!outgoing.every(Boolean)) return;
+          renderProject(id); page.inert = true; page.style.opacity = '0'; page.style.translate = `${distance}px 0px`;
+          await Promise.all([
+            state.play(page, [{ opacity: 0, translate: `${distance}px 0px` }, { opacity: 1, translate: '0px 0px' }], { duration: 220, easing: 'cubic-bezier(.2,.75,.2,1)' }),
+            state.play(state.wash, [{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-out' })
+          ]);
+        } finally { finishProjectTransition(state); }
+      }
+      casePrevious.addEventListener('click', () => switchProject(-1));
+      caseNext.addEventListener('click', () => switchProject(1));
+      document.addEventListener('keydown', event => {
+        if (pageName !== 'project' || lightbox.open || event.ctrlKey || event.altKey || event.metaKey || event.repeat || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); switchProject(event.key === 'ArrowRight' ? 1 : -1); }
+      });
+
+      function setupStudyCursor() {
+        const fine = matchMedia('(hover: hover) and (pointer: fine)');
+        const cursor = el('div', 'study-cursor'); cursor.hidden = true; cursor.setAttribute('aria-hidden', 'true');
+        const point = el('span', 'study-cursor__point'), label = el('span', 'study-cursor__label');
+        cursor.append(point, label); document.body.append(cursor);
+        let x = 0, y = 0, mouse = false, inside = false, dirty = true, frameId = 0, lastKey = '', previousSequence = null;
+        let labelWidth = 0, labelHeight = 0, labelAnimation = null;
+        const interactive = 'a[href],button,summary';
+        const editable = 'input,textarea,select,[contenteditable]:not([contenteditable="false"])';
+        function hide() {
+          cursor.hidden = true; document.documentElement.classList.remove('has-study-cursor');
+          cursor.classList.remove('is-pressed');
+        }
+        function schedule() { dirty = true; if (!frameId) frameId = requestAnimationFrame(paint); }
+        function context(target) {
+          const neutral = { mode: '', text: '', color: '#111' };
+          if (!target) return neutral;
+          const control = target.closest(interactive);
+          if (control?.matches(':disabled,[aria-disabled="true"]') || control?.closest('[inert]')) return neutral;
+          const group = target.closest('.study-nav-group');
+          const groupColor = group ? getComputedStyle(group).getPropertyValue('--nav-color').trim() : '';
+          const project = pageName === 'project' ? catalogue[Number(page.dataset.projectId)] : null;
+          const color = groupColor || project?.surface || '#111';
+          if (lightbox.open) {
+            if (control?.matches('[data-lightbox-close]') || target === lightbox) return { mode: 'action', text: 'Cerrar imagen', color: project?.surface || '#ff6b2c' };
+            return neutral;
+          }
+          if (control?.matches('.is-media-error')) return { mode: 'action', text: 'Reintentar imagen', color };
+          if (control?.matches('[data-pending]')) return { mode: 'action', text: 'En preparación', color };
+          if (control?.closest('.study-card-info')) {
+            const item = catalogue[modulo(infoSequence ?? 0, catalogue.length)];
+            return { mode: 'action', text: 'Abrir proyecto', color: item.surface };
+          }
+          if (control?.matches('[data-project]')) {
+            const item = catalogue[Number(control.dataset.project)];
+            return { mode: 'action', text: `Ver ${item.title}`, color: item.surface };
+          }
+          if (control?.matches('[data-case-previous],[data-case-next],[data-case-step]')) return { mode: 'action', text: control.getAttribute('aria-label') || control.textContent.trim(), color };
+          if (control?.matches('.study-page-close,.study-transition-close,.study-case-end button')) return { mode: 'action', text: 'Volver a proyectos', color };
+          if (control?.matches('.study-case-guide__arrow')) return { mode: 'action', text: control.getAttribute('aria-label'), color };
+          if (control?.matches('[data-case-start]')) return { mode: 'action', text: 'Recorrer proyecto', color };
+          if (control?.matches('.study-case-images button,.study-archive-piece button')) return { mode: 'action', text: 'Ampliar imagen', color: project?.surface || '#ff6b2c' };
+          if (control?.matches('summary')) return { mode: 'action', text: `${control.parentElement.open ? 'Cerrar' : 'Abrir'} ${control.textContent.trim().toLocaleLowerCase('es')}`, color };
+          if (control?.matches('[data-view]')) return { mode: 'action', text: control.closest('.is-page-active') ? 'Volver a proyectos' : control.getAttribute('aria-label') || control.textContent.trim(), color };
+          if (control?.matches('[data-about-tab]')) return { mode: 'action', text: control.textContent.trim(), color: '#03b047' };
+          if (control) return { mode: 'action', text: control.textContent.trim().replace(/[↑↓↗︎×]/g, '').trim() || control.getAttribute('aria-label') || 'Abrir', color };
+          if (!pageName && stage.contains(target)) {
+            if (dragging) return { mode: 'drag', text: 'Deslizando', color: '#111' };
+            if (hovered !== null) return { mode: 'action', text: 'Abrir proyecto', color: catalogue[modulo(hovered, catalogue.length)].surface };
+            return { mode: 'drag', text: 'Deslizar', color: '#111' };
+          }
+          return neutral;
+        }
+        function paint() {
+          frameId = 0;
+          if (!inside || !mouse || !fine.matches || document.hidden || document.body.classList.contains('study-loading')) { hide(); return; }
+          const target = document.elementFromPoint(x, y);
+          if (target?.closest(editable)) { hide(); return; }
+          const host = lightbox.open ? lightbox : document.body;
+          if (cursor.parentElement !== host) host.append(cursor);
+          cursor.hidden = false; document.documentElement.classList.add('has-study-cursor');
+          if (dirty) {
+            dirty = false;
+            const state = context(target), key = `${state.mode}|${state.text}|${state.color}`;
+            if (key !== lastKey) {
+              lastKey = key; cursor.dataset.mode = state.mode; label.textContent = state.text;
+              cursor.classList.toggle('has-label', Boolean(state.text));
+              cursor.style.setProperty('--cursor-fill', state.color);
+              const values = state.color.replace('#','').match(/../g).map(v => parseInt(v,16) / 255).map(v => v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4);
+              const luminance = values[0]*.2126 + values[1]*.7152 + values[2]*.0722;
+              cursor.style.setProperty('--cursor-ink', luminance > .18 ? '#111' : '#fff');
+              labelWidth = label.offsetWidth; labelHeight = label.offsetHeight;
+              labelAnimation?.cancel();
+              if (state.text && !preference.matches) labelAnimation = label.animate([{ translate: '0 3px' },{ translate: '0 0' }], { duration: 160, easing: 'cubic-bezier(.2,.75,.2,1)' });
+            }
+          }
+          // Follow the actual hit point: no lag between the cursor and the moving card.
+          cursor.style.transform = `translate3d(${x}px,${y}px,0)`;
+          const left = x + 22 + labelWidth > innerWidth - 10 ? -labelWidth - 22 : 22;
+          label.style.left = `${Math.max(10 - x, left)}px`;
+          label.style.top = `${Math.max(10-y, Math.min(-labelHeight/2, innerHeight-y-labelHeight-10))}px`;
+        }
+        document.addEventListener('pointermove', event => {
+          mouse = event.pointerType === 'mouse'; inside = true; x = event.clientX; y = event.clientY; schedule();
+        }, { passive: true, capture: true });
+        document.addEventListener('pointerdown', event => {
+          if (event.pointerType !== 'mouse') { mouse = false; hide(); return; }
+          cursor.classList.add('is-pressed'); schedule();
+        }, { passive: true, capture: true });
+        document.addEventListener('pointerup', () => { cursor.classList.remove('is-pressed'); schedule(); }, { passive: true, capture: true });
+        document.addEventListener('pointercancel', () => { cursor.classList.remove('is-pressed'); schedule(); }, { passive: true, capture: true });
+        document.addEventListener('click', schedule, { passive: true, capture: true });
+        document.addEventListener('scroll', schedule, { passive: true, capture: true });
+        document.addEventListener('pointerleave', () => { inside = false; hide(); });
+        window.addEventListener('blur', () => { inside = false; hide(); });
+        window.addEventListener('resize', () => { lastKey = ''; schedule(); }, { passive: true });
+        document.addEventListener('visibilitychange', () => { if (document.hidden) hide(); else schedule(); });
+        document.addEventListener('keydown', () => { inside = false; hide(); }, { capture: true });
+        fine.addEventListener('change', () => { if (!fine.matches) hide(); else schedule(); });
+        preference.addEventListener('change', () => { if (preference.matches) labelAnimation?.cancel(); schedule(); });
+        lightbox.addEventListener('close', () => { document.body.append(cursor); lastKey = ''; schedule(); });
+        return (force = false) => {
+          if (force || previousSequence !== hovered) { previousSequence = hovered; schedule(); }
+        };
+      }
+
+      function stopPainting() { cancelAnimationFrame(raf); raf = previous = 0; }
+      function frame(time) {
+        raf = 0;
+        if (document.hidden) { previous = 0; return; }
+        const dt = Math.min(.032, previous ? (time - previous) / 1000 : 1 / 60);
+        previous = time;
+        if (preference.matches || dragging) offset = target;
+        else {
+          offset += (target - offset) * (1 - Math.exp(-dt / .10));
+          if (Math.abs(target - offset) < .0001) offset = target;
+        }
+        position = drift(time) + offset;
+        if (Math.abs(position) > 1000) {
+          const cycles = Math.trunc(position / 10) * 10;
+          driftRebase += cycles; position -= cycles;
+          if (hovered !== null) hovered -= cycles;
+          const rebased = [...hoverStates].map(([sequence, state]) => [sequence - cycles, state]);
+          hoverStates.clear(); rebased.forEach(([sequence, state]) => hoverStates.set(sequence, state));
+        }
+        draw(dt);
+        wake();
+      }
+      function wake() { if (!raf && !document.hidden) raf = requestAnimationFrame(frame); }
+      function move(value) {
+        target = value;
+        if (preference.matches || dragging) { offset = target; position = drift() + offset; draw(); }
+      }
+      stage.addEventListener('wheel', event => {
+        if (event.ctrlKey) return;
+        event.preventDefault();
+        const raw = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+        const delta = raw * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+        if (preference.matches) {
+          if (Math.abs(delta) > 4 && performance.now() - reducedAt > 180) { reducedAt = performance.now(); move(target - Math.sign(delta)); }
+        } else { const next = target - Math.max(-280, Math.min(280, delta)) / 520; move(Math.max(offset - 1.6, Math.min(offset + 1.6, next))); }
+      }, { passive: false });
+      stage.addEventListener('pointerdown', event => {
+        if (event.button !== 0 || event.target.closest('.study-card-info')) return;
+        target = offset;
+        let hit = null;
+        const base = Math.round(position);
+        for (let sequence = base + bounds.near; sequence <= base + bounds.far; sequence++) {
+          if (contains(quad(sequence,0,hoverStates.get(sequence)?.value || 0),event.clientX,event.clientY)) { hit = sequence; break; }
+        }
+        dragging = { id: event.pointerId, x: event.clientX, y: event.clientY, target, moved: false, sequence: hit };
+        stage.setPointerCapture(event.pointerId); stage.classList.add('is-dragging');
+      });
+      function projectedDrag(dx, dy) {
+        const pitch = config.pitch * Math.PI / 180, yaw = config.yaw * Math.PI / 180;
+        const vx = Math.sin(yaw) * config.gap * scale;
+        const vy = -Math.sin(pitch) * Math.cos(yaw) * config.gap * scale;
+        return (dx * vx + dy * vy) / (vx * vx + vy * vy);
+      }
+      stage.addEventListener('pointermove', event => {
+        if (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > .5) pointer.serial += 1;
+        pointer.x = event.clientX; pointer.y = event.clientY; pointer.inside = true;
+        if (!dragging || event.pointerId !== dragging.id) return;
+        if (Math.hypot(event.clientX - dragging.x, event.clientY - dragging.y) > 6) dragging.moved = true;
+        move(dragging.target + projectedDrag(event.clientX - dragging.x, event.clientY - dragging.y));
+      });
+      stage.addEventListener('pointerleave', () => { pointer.inside = false; });
+      function release(event) {
+        if (!dragging || event.pointerId !== dragging.id) return;
+        const clicked = !dragging.moved && event.type !== 'pointercancel';
+        const chosen = dragging.sequence;
+        dragging = null; stage.classList.remove('is-dragging');
+        if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
+        move(target);
+        if (clicked && chosen !== null && !pageName && !document.body.classList.contains('study-loading')) openProject(chosen);
+      }
+      stage.addEventListener('pointerup', release);
+      stage.addEventListener('pointercancel', release);
+      stage.addEventListener('keydown', event => {
+        if (event.ctrlKey || event.altKey || event.metaKey) return;
+        const direction = ['ArrowRight', 'ArrowUp', 'PageUp'].includes(event.key) ? 1 : ['ArrowLeft', 'ArrowDown', 'PageDown'].includes(event.key) ? -1 : 0;
+        if (direction) { event.preventDefault(); move(target + direction); }
+        else if (event.code === 'Space') event.preventDefault();
+      });
+      projects.forEach((button, index) => button.addEventListener('click', () => {
+        if (pageName || activeProjectTransition || pendingCover) closePageImmediately();
+        pointer.inside = false;
+        const sequence = Math.round((position - index) / names.length) * names.length + index;
+        move(sequence - drift());
+      }));
+      // All menus can stay open together, as in the reference. Destinations stay pending.
+      document.querySelectorAll('.study-nav-group').forEach(group => {
+        group.addEventListener('pointerenter', () => { pointer.inside = false; });
+        if (group.tagName === 'DETAILS') group.addEventListener('toggle', measure);
+        group.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && group.open) { group.open = false; group.querySelector('summary').focus(); }
+        });
+      });
+      document.querySelectorAll('[data-pending]').forEach(button => button.addEventListener('click', () => {
+        clearTimeout(noticeTimer);
+        notice.textContent = `${button.dataset.pending} · En preparación`;
+        noticeTimer = setTimeout(() => { notice.textContent = ''; }, 3000);
+      }));
+      document.addEventListener('visibilitychange', () => {
+        syncCaseVideos();
+        if (document.hidden) { stopPainting(); dragging = null; pointer.inside = false; stage.classList.remove('is-dragging'); }
+        else { previous = 0; position = drift() + offset; draw(); wake(); }
+      });
+      window.addEventListener('pagehide', stopPainting);
+      window.addEventListener('pageshow', wake);
+      window.addEventListener('resize', () => { measure(); if (lightbox.open) fitLightbox(); activeProjectTransition?.finishAnimations(); }, { passive: true });
+      preference.addEventListener('change', () => { offset = target; if (preference.matches) activeProjectTransition?.finishAnimations(); });
+      const updateStudyCursor = setupStudyCursor();
+      measure(); wake();
+      prepare();
+    })();
+
+  </script>
+</body>
+</html>

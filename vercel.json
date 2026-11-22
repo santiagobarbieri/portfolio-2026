@@ -1,11 +1,181 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "",
+  "buildCommand": "node build.mjs",
   "installCommand": "",
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "cleanUrls": false,
   "redirects": [
+    {
+      "source": "/apolo-studios.html",
+      "destination": "/index.html?project=apolo-studios",
+      "permanent": false
+    },
+    {
+      "source": "/apolo-studios",
+      "destination": "/index.html?project=apolo-studios",
+      "permanent": false
+    },
+    {
+      "source": "/orfeo.html",
+      "destination": "/index.html?project=orfeo",
+      "permanent": false
+    },
+    {
+      "source": "/orfeo",
+      "destination": "/index.html?project=orfeo",
+      "permanent": false
+    },
+    {
+      "source": "/olas-ditella.html",
+      "destination": "/index.html?project=olas-ditella",
+      "permanent": false
+    },
+    {
+      "source": "/olas-ditella",
+      "destination": "/index.html?project=olas-ditella",
+      "permanent": false
+    },
+    {
+      "source": "/club-de-economia.html",
+      "destination": "/index.html?project=club-de-economia-utdt",
+      "permanent": false
+    },
+    {
+      "source": "/club-de-economia",
+      "destination": "/index.html?project=club-de-economia-utdt",
+      "permanent": false
+    },
+    {
+      "source": "/el-armado.html",
+      "destination": "/index.html?project=el-armado",
+      "permanent": false
+    },
+    {
+      "source": "/el-armado",
+      "destination": "/index.html?project=el-armado",
+      "permanent": false
+    },
+    {
+      "source": "/project.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "apolo-studios"
+        }
+      ],
+      "destination": "/index.html?project=apolo-studios",
+      "permanent": false
+    },
+    {
+      "source": "/project.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "orfeo"
+        }
+      ],
+      "destination": "/index.html?project=orfeo",
+      "permanent": false
+    },
+    {
+      "source": "/project.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "olas-ditella"
+        }
+      ],
+      "destination": "/index.html?project=olas-ditella",
+      "permanent": false
+    },
+    {
+      "source": "/project.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "club-de-economia-utdt"
+        }
+      ],
+      "destination": "/index.html?project=club-de-economia-utdt",
+      "permanent": false
+    },
+    {
+      "source": "/project.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "el-armado"
+        }
+      ],
+      "destination": "/index.html?project=el-armado",
+      "permanent": false
+    },
+    {
+      "source": "/about.html",
+      "destination": "/index.html?view=about",
+      "permanent": false
+    },
+    {
+      "source": "/about",
+      "destination": "/index.html?view=about",
+      "permanent": false
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/index.html?view=contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "destination": "/index.html?view=contact",
+      "permanent": false
+    },
+    {
+      "source": "/posters.html",
+      "destination": "/index.html?view=posters",
+      "permanent": false
+    },
+    {
+      "source": "/posters",
+      "destination": "/index.html?view=posters",
+      "permanent": false
+    },
+    {
+      "source": "/self-made.html",
+      "destination": "/index.html?view=posters",
+      "permanent": false
+    },
+    {
+      "source": "/self-made",
+      "destination": "/index.html?view=posters",
+      "permanent": false
+    },
+    {
+      "source": "/carousel-study.html",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/carousel-study",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/nav.html",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/nav",
+      "destination": "/index.html",
+      "permanent": false
+    },
     {
       "source": "/sandbox.html",
       "destination": "/index.html",
@@ -17,13 +187,33 @@
       "permanent": false
     },
     {
-      "source": "/posters.html",
-      "destination": "/self-made.html",
+      "source": "/books.html",
+      "destination": "/index.html",
       "permanent": false
     },
     {
-      "source": "/posters",
-      "destination": "/self-made.html",
+      "source": "/books",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/shop.html",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/shop",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/project.html",
+      "destination": "/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/project",
+      "destination": "/index.html",
       "permanent": false
     }
   ]

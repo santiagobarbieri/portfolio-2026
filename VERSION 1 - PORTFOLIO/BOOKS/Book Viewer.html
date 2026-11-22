@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stephen King Cover Design Archive & 3D Viewer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Cinzel:wght@600;800&display=swap">
+<style>
+:root {
+  --bg: #09090b;
+  --ink: #f4f4f5;
+  --mute: #a1a1aa;
+  --line: rgba(255, 255, 255, 0.1);
+  --panel: rgba(18, 18, 22, 0.75);
+  --accent: #e11d48;
+  --accent-glow: rgba(225, 29, 72, 0.35);
+  --glow-c1: rgba(138, 20, 20, 0.4);
+  --glow-c2: rgba(27, 6, 6, 0.8);
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+html, body { height: 100%; width: 100%; overflow: hidden; font-family: "Albert Sans", -apple-system, sans-serif; background: var(--bg); color: var(--ink); }
+
+/* --- Atmospheric Ambient Layer --- */
+.ambient-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: background 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: 
+    radial-gradient(circle at 50% 45%, var(--glow-c1) 0%, transparent 60%),
+    radial-gradient(circle at 50% 80%, var(--glow-c2) 0%, var(--bg) 80%);
+}
+
+.fog-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(5,5,7,0.85) 100%),
+              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Header & Navigation UI */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 36px;
+  background: linear-gradient(to bottom, rgba(9,9,11,0.9), transparent);
+  pointer-events: none;
+}
+
+header * { pointer-events: auto; }
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.brand h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: 0 0 12px rgba(255,255,255,0.2);
+}
+.brand span {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+
+.hint-pill {
+  font-size: 11px;
+  color: var(--mute);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  border-radius: 99px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.4s ease;
+}
+.hint-pill span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* --- 3D Stage & Canvas --- */
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  perspective: 2000px;
+  touch-action: none;
+  cursor: grab;
+}
+.stage:active { cursor: grabbing; }
+
+.track {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transition: opacity 0.6s ease;
+}
+
+/* Ambient Dynamic Dynamic Shadow */
+.sh {
+  position: absolute;
+  left: calc(var(--w) * -0.7);
+  top: calc(var(--h)/2 - 10px);
+  width: calc(var(--w) * 1.4);
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 75%);
+  transform: rotateX(90deg) translateZ(-20px);
+  filter: blur(6px);
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* 3D Book Geometry */
+.book {
+  position: absolute;
+  left: calc(var(--w)/-2);
+  top: calc(var(--h)/-2);
+  width: var(--w);
+  height: var(--h);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.face {
+  position: absolute;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, var(--sh, 0));
+  pointer-events: none;
+  z-index: 3;
+  transition: background 0.1s linear;
+}
+
+.front {
+  inset: 0;
+  transform: translateZ(calc(var(--d)/2));
+  border-radius: 2px 5px 5px 2px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.front::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(255,255,255,0.08) 40%, transparent);
+  z-index: 2;
+}
+
+.back {
+  inset: 0;
+  transform: rotateY(180deg) translateZ(calc(var(--d)/2));
+  border-radius: 5px 2px 2px 5px;
+}
+
+.spine {
+  width: var(--d);
+  height: var(--h);
+  left: calc(var(--d)/-2);
+  top: 0;
+  transform: rotateY(-90deg);
+}
+
+.pages {
+  width: var(--d);
+  height: var(--h);
+  left: calc(var(--w) - var(--d)/2);
+  top: 0;
+  transform: rotateY(90deg);
+  background: repeating-linear-gradient(90deg, #e8dfcf 0 2px, #cbbfa8 2px 3px);
+  box-shadow: inset 2px 0 5px rgba(0,0,0,0.2);
+}
+.top, .bottom {
+  width: var(--w);
+  height: var(--d);
+  left: 0;
+  background: repeating-linear-gradient(0deg, #e8dfcf 0 2px, #cbbfa8 2px 3px);
+}
+.top { top: calc(var(--d)/-2); transform: rotateX(90deg); }
+.bottom { top: calc(var(--h) - var(--d)/2); transform: rotateX(-90deg); }
+
+/* SVG Cover Render Styling */
+.svg-cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Fallback procedural content */
+.ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10% 8%;
+  color: var(--ink-b);
+  background: linear-gradient(160deg, var(--c1), var(--c2));
+}
+.has-img .ph { display: none; }
+
+/* Carousel Buttons */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(18, 18, 22, 0.6);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 20px;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+.nav-arrow:hover {
+  background: var(--ink);
+  color: var(--bg);
+  scale: 1.08;
+}
+.nav-arrow.l { left: 32px; }
+.nav-arrow.r { right: 32px; }
+.nav-arrow:disabled { opacity: 0.15; pointer-events: none; }
+
+/* --- Detail Inspection Card (Focus Mode Panel) --- */
+.detail-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 460px;
+  max-width: 90vw;
+  height: 100%;
+  z-index: 30;
+  background: var(--panel);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-left: 1px solid var(--line);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+}
+.detail-panel.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.close-btn {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.close-btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.detail-header .author {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.detail-header h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.detail-header .tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--mute);
+  margin-top: 4px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--mute);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.dev-process {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(244, 244, 245, 0.85);
+}
+
+/* Palette Swatches */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.swatch-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+.swatch {
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+.swatch-card:hover .swatch { transform: translateY(-2px); }
+.swatch-info {
+  display: flex;
+  flex-direction: column;
+}
+.swatch-role { font-size: 10px; color: var(--mute); text-transform: uppercase; }
+.swatch-hex { font-size: 11px; font-weight: 600; font-family: monospace; color: var(--ink); }
+
+/* Cover Variants Selector */
+.variants-list {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.variant-btn {
+  flex: 0 0 84px;
+  height: 120px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background: #1a1a1e;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.25 ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.variant-btn.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+.variant-btn svg, .variant-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.variant-btn .v-label {
+  position: absolute;
+  bottom: 0;
+  inset-x: 0;
+  background: rgba(0,0,0,0.75);
+  font-size: 9px;
+  text-align: center;
+  padding: 3px 0;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header { padding: 18px 20px; }
+  .detail-panel { width: 100vw; max-width: 100vw; padding: 28px 20px; }
+  .nav-arrow.l { left: 12px; }
+  .nav-arrow.r { right: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Dynamic Ambient Gradient -->
+<div class="ambient-bg" id="ambient"></div>
+<div class="fog-overlay"></div>
+
+<!-- Top Branding Bar -->
+<header>
+  <div class="brand">
+    <h1>Stephen King</h1>
+    <span>Archive Cover Gallery & Visual Studies</span>
+  </div>
+  <div class="hint-pill" id="hintPill">
+    <span></span> Toca cualquier libro para inspeccionar variante
+  </div>
+</header>
+
+<!-- 3D Stage Container -->
+<div class="stage" id="stage">
+  <div class="track" id="track"></div>
+  <button class="nav-arrow l" id="prev" aria-label="Anterior">←</button>
+  <button class="nav-arrow r" id="next" aria-label="Siguiente">→</button>
+</div>
+
+<!-- Detailed Book Focus Card -->
+<div class="detail-panel" id="detailPanel">
+  <button class="close-btn" id="closeDetail">
+    <span>←</span> Volver a la Colección
+  </button>
+
+  <div class="detail-header">
+    <span class="author" id="cardAuthor">STEPHEN KING</span>
+    <h2 id="cardTitle">SALEM'S LOT</h2>
+    <div class="tagline" id="cardTagline">"Unveil the mystery of 'Salem's Lot"</div>
+  </div>
+
+  <div>
+    <div class="section-title">Proceso de Desarrollo</div>
+    <div class="dev-process" id="cardProcess">
+      Esta variante explora el terror psicológico visceral combinando una paleta duotono de alto contraste. La tipografía serif condensada refuerza el tono clásico del horror gótico de los 70.
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">Paleta de Colores</div>
+    <div class="palette-grid" id="cardPalette">
+      <!-- Generated Swatches -->
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">Variantes de Portada</div>
+    <div class="variants-list" id="cardVariants">
+      <!-- Generated Variant Thumbnails -->
+    </div>
+  </div>
+</div>
+
+<script>
+// --- Data Specification for Books and Variants using Attached Images ---
+const books = [
+  {
+    id: 'salem',
+    name: "'SALEM'S LOT",
+    au: 'STEPHEN KING',
+    tagline: 'UNVEIL THE MYSTERY OF \'SALEM\'S LOT',
+    c1: '#8a1414', c2: '#0d0303', ink: '#f8fafc', accent: '#ea580c',
+    w: 300, h: 460, d: 48,
+    process: "Ilustración macabra con alto grado de textura analógica y duotono carmesí/negro. La variante principal se enfoca en la presencia espectral amenazante del vampiro con tipografía gótica llamativa.",
+    variants: [
+      { name: 'Principal', img: "assets/'SALEM'S LOT.png", c1: '#8a1414', c2: '#0d0303', accent: '#ea580c' }
+    ]
+  },
+  {
+    id: 'shining',
+    name: 'THE SHINING',
+    au: 'STEPHEN KING',
+    tagline: 'ALL WORK AND NO PLAY...',
+    c1: '#0891b2', c2: '#04111d', ink: '#ecfeff', accent: '#facc15',
+    w: 300, h: 465, d: 52,
+    process: "Composición gélida en tonos cian y negro profundo. Sobresale el hacha en primer plano y la silueta invernal del Hotel Overlook iluminada por una luz espectral cinemática.",
+    variants: [
+      { name: 'Principal', img: 'assets/THE SHINING.png', c1: '#0891b2', c2: '#04111d', accent: '#facc15' }
+    ]
+  },
+  {
+    id: 'misery',
+    name: 'MISERY',
+    au: 'STEPHEN KING',
+    tagline: 'SHE LOVED EVERY WORD BUT HIS',
+    c1: '#ea580c', c2: '#180424', ink: '#faf5ff', accent: '#a855f7',
+    w: 285, h: 440, d: 42,
+    process: "Estilo retro-pop macabro con silueta naranja quemada sobre fondo negro y tipografía magenta violeta. Muestra la icónica máquina de escribir Royal centrada.",
+    variants: [
+      { name: 'Principal', img: 'assets/MISERY.png', c1: '#ea580c', c2: '#180424', accent: '#a855f7' }
+    ]
+  },
+  {
+    id: 'it',
+    name: 'IT',
+    au: 'STEPHEN KING',
+    tagline: 'WE ALL FLOAT DOWN HERE',
+    c1: '#991b1b', c2: '#120305', ink: '#fff1f2', accent: '#fef08a',
+    w: 310, h: 470, d: 64,
+    process: "Fotografía sombría en rojo borgoña abisal. Destaca la mano del guante blanco sosteniendo el hilo del globo rojo e impresiones doradas sepia en el título.",
+    variants: [
+      { name: 'Principal', img: 'assets/IT.png', c1: '#991b1b', c2: '#120305', accent: '#fef08a' }
+    ]
+  },
+  {
+    id: 'darktower',
+    name: 'THE DARK TOWER',
+    au: 'STEPHEN KING',
+    tagline: 'ALL WORLDS LEAD TO ONE',
+    c1: '#9333ea', c2: '#0d1117', ink: '#fafafa', accent: '#06b6d4',
+    w: 305, h: 475, d: 58,
+    process: "Paleta psicodélica de púrpuras, magentas y un campo de flores turquesa en la base de la misteriosa Torre Oscura levantándose hacia el cielo atardecido.",
+    variants: [
+      { name: 'Principal', img: 'assets/THE DARK TOWER.png', c1: '#9333ea', c2: '#0d1117', accent: '#06b6d4' }
+    ]
+  },
+  {
+    id: 'greenmile',
+    name: 'THE GREEN MILE',
+    au: 'STEPHEN KING',
+    tagline: 'A SIX BOOK SERIES BY STEPHEN KING',
+    c1: '#166534', c2: '#03140c', ink: '#f0fdf4', accent: '#facc15',
+    w: 280, h: 430, d: 38,
+    process: "Diseño conceptual en verde bosque y negro. Un hilo dorado serpenteante envuelve al emblemático ratón Mr. Jingles en la parte inferior.",
+    variants: [
+      { name: 'Principal', img: 'assets/THE GREEN MILE.png', c1: '#166534', c2: '#03140c', accent: '#facc15' }
+    ]
+  },
+  {
+    id: 'deadzone',
+    name: 'THE DEAD ZONE',
+    au: 'STEPHEN KING',
+    tagline: 'KNOWING IS A CURSE',
+    c1: '#be123c', c2: '#1a040b', ink: '#fff7ed', accent: '#fed7aa',
+    w: 290, h: 445, d: 40,
+    process: "Estética vintage en tonos rosa magenta saturado, naranja y crema retro. Utiliza la silueta borrosa de una rueda de la fortuna para transmitir la visión distorsionada del destino.",
+    variants: [
+      { name: 'Principal', img: 'assets/THE DEAD ZONE.png', c1: '#be123c', c2: '#1a040b', accent: '#fed7aa' }
+    ]
+  }
+].map(b => {
+  const activeVar = b.variants[0];
+  return {
+    ...b,
+    activeVariantIdx: 0,
+    img: { front: activeVar.img, spine: '', back: '' },
+    ry: -28, rx: -6, vy: 0, vx: 0, snap: null
+  };
+});
+
+// --- State Management ---
+const n = books.length;
+let cur = 0, pos = 0;
+let drag = false, auto = true;
+let lx = 0, ly = 0, sx0 = 0, sy0 = 0, downI = null;
+let isFocusMode = false;
+
+// DOM Elements
+const stage = document.getElementById('stage');
+const track = document.getElementById('track');
+const ambient = document.getElementById('ambient');
+const detailPanel = document.getElementById('detailPanel');
+const hintPill = document.getElementById('hintPill');
+
+// --- Render 3D Scene Slots ---
+track.innerHTML = books.map((b, i) => `
+  <div class="slot" data-i="${i}">
+    <div class="sh"></div>
+    <div class="book">
+      <div class="face front" data-n="0,0,1"></div>
+      <div class="face back" data-n="0,0,-1"><div class="ph"><i style="width:80%"></i><i style="width:90%"></i><i style="width:60%"></i></div></div>
+      <div class="face spine" data-n="-1,0,0"><div class="ph"><b>${b.name}</b><small>${b.au}</small></div></div>
+      <div class="face pages" data-n="1,0,0"></div>
+      <div class="face top" data-n="0,-1,0"></div>
+      <div class="face bottom" data-n="0,1,0"></div>
+    </div>
+  </div>
+`).join('');
+
+books.forEach((b, i) => {
+  b.slot = track.children[i];
+  b.el = b.slot.querySelector('.book');
+  b.faces = [...b.el.querySelectorAll('.face')];
+});
+
+function applyBookStyles(i) {
+  const b = books[i];
+  const s = b.slot.style;
+  s.setProperty('--w', b.w + 'px');
+  s.setProperty('--h', b.h + 'px');
+  s.setProperty('--d', b.d + 'px');
+  s.setProperty('--c1', b.c1);
+  s.setProperty('--c2', b.c2);
+  s.setProperty('--ink-b', b.ink);
+  
+  const frontFace = b.el.querySelector('.front');
+  frontFace.style.backgroundImage = `url("${encodeURI(b.img.front)}")`;
+}
+
+function updateAmbientColor() {
+  const b = books[cur];
+  ambient.style.setProperty('--glow-c1', b.c1 + '66');
+  ambient.style.setProperty('--glow-c2', b.c2);
+}
+
+function updateUI() {
+  document.getElementById('prev').disabled = (cur === 0 || isFocusMode);
+  document.getElementById('next').disabled = (cur === n - 1 || isFocusMode);
+  updateAmbientColor();
+}
+
+function go(i) {
+  if (isFocusMode) return;
+  i = Math.max(0, Math.min(n - 1, i));
+  if (i === cur) return;
+  cur = i;
+  books[cur].vy = 8;
+  books[cur].snap = null;
+  updateUI();
+}
+
+books.forEach((_, i) => applyBookStyles(i));
+updateUI();
+
+// --- Focus / Individual Inspection Mode ---
+function openFocusMode() {
+  if (isFocusMode) return;
+  isFocusMode = true;
+  auto = false;
+
+  const b = books[cur];
+  b.snap = { a: 0, x: 0 }; // Face front squarely initially
+
+  // Populate Panel Card Content
+  document.getElementById('cardAuthor').textContent = b.au;
+  document.getElementById('cardTitle').textContent = b.name;
+  document.getElementById('cardTagline').textContent = `"${b.tagline}"`;
+  document.getElementById('cardProcess').textContent = b.process;
+
+  // Swatches
+  const paletteContainer = document.getElementById('cardPalette');
+  const swatches = [
+    { role: 'Dominante', hex: b.c1 },
+    { role: 'Fondo', hex: b.c2 },
+    { role: 'Acento', hex: b.accent },
+    { role: 'Texto', hex: b.ink }
+  ];
+  paletteContainer.innerHTML = swatches.map(s => `
+    <div class="swatch-card">
+      <div class="swatch" style="background: ${s.hex}"></div>
+      <div class="swatch-info">
+        <span class="swatch-role">${s.role}</span>
+        <span class="swatch-hex">${s.hex}</span>
+      </div>
+    </div>
+  `).join('');
+
+  // Variants list
+  const variantsContainer = document.getElementById('cardVariants');
+  variantsContainer.innerHTML = b.variants.map((v, idx) => `
+    <button class="variant-btn ${idx === b.activeVariantIdx ? 'active' : ''}" onclick="switchVariant(${idx})">
+      <img src="${encodeURI(v.img)}" alt="${v.name}">
+      <span class="v-label">${v.name}</span>
+    </button>
+  `).join('');
+
+  detailPanel.classList.add('active');
+  hintPill.style.opacity = '0';
+  updateUI();
+}
+
+function closeFocusMode() {
+  if (!isFocusMode) return;
+  isFocusMode = false;
+  auto = true;
+  books[cur].snap = { a: -28, x: -6 };
+  detailPanel.classList.remove('active');
+  hintPill.style.opacity = '1';
+  updateUI();
+}
+
+window.switchVariant = function(variantIdx) {
+  const b = books[cur];
+  b.activeVariantIdx = variantIdx;
+  const v = b.variants[variantIdx];
+  b.c1 = v.c1;
+  b.c2 = v.c2;
+  b.accent = v.accent;
+  b.img.front = v.img;
+  
+  applyBookStyles(cur);
+  updateAmbientColor();
+
+  // Highlight active variant button
+  const btns = document.querySelectorAll('.variant-btn');
+  btns.forEach((btn, idx) => btn.classList.toggle('active', idx === variantIdx));
+};
+
+// Controls
+document.getElementById('prev').onclick = () => go(cur - 1);
+document.getElementById('next').onclick = () => go(cur + 1);
+document.getElementById('closeDetail').onclick = () => closeFocusMode();
+
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeFocusMode();
+  if (!isFocusMode) {
+    if (e.key === 'ArrowLeft') go(cur - 1);
+    if (e.key === 'ArrowRight') go(cur + 1);
+  }
+});
+
+// Pointer & Drag Interactions
+stage.addEventListener('pointerdown', e => {
+  if (e.target.closest('.nav-arrow') || e.target.closest('.detail-panel')) return;
+  drag = true;
+  books[cur].snap = null;
+  lx = sx0 = e.clientX;
+  ly = sy0 = e.clientY;
+  const s = e.target.closest('.slot');
+  downI = s ? +s.dataset.i : null;
+  stage.setPointerCapture(e.pointerId);
+});
+
+stage.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const b = books[cur];
+  b.vy = (e.clientX - lx) * 0.45;
+  b.vx = -(e.clientY - ly) * 0.3;
+  lx = e.clientX;
+  ly = e.clientY;
+  b.ry += b.vy;
+  b.rx = Math.max(-50, Math.min(50, b.rx + b.vx));
+});
+
+stage.addEventListener('pointerup', e => {
+  drag = false;
+  const dist = Math.hypot(e.clientX - sx0, e.clientY - sy0);
+  if (dist < 6 && downI !== null) {
+    if (downI !== cur) {
+      go(downI);
+    } else {
+      // Tapping the active central book toggles focus mode
+      if (!isFocusMode) openFocusMode();
+    }
+  }
+});
+
+// Shading Logic
+const Lv = (() => {
+  const v = [-0.45, -0.6, 0.65], m = Math.hypot(...v);
+  return v.map(k => k / m);
+})();
+const wrap = a => ((a + 540) % 360) - 180;
+
+function applyShading(b, dim) {
+  const r = Math.PI / 180;
+  const cy = Math.cos(b.ry * r), sy = Math.sin(b.ry * r);
+  const cx = Math.cos(b.rx * r), sx = Math.sin(b.rx * r);
+  
+  b.faces.forEach(f => {
+    const [x, y, z] = f.dataset.n.split(',').map(Number);
+    const x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+    const y2 = y * cx - z1 * sx, z2 = y * sx + z1 * cx;
+    const dot = x1 * Lv[0] + y2 * Lv[1] + z2 * Lv[2];
+    f.style.setProperty('--sh', Math.min(0.85, Math.max(0, Math.min(0.6, 0.42 - dot * 0.5)) + dim).toFixed(3));
+  });
+}
+
+// Main 3D Render Loop
+(function loop() {
+  pos += (cur - pos) * 0.08;
+  const sc = Math.min(1, stage.clientHeight / 640, stage.clientWidth / 760);
+
+  books.forEach((b, i) => {
+    const off = i - pos;
+    const a = Math.abs(off);
+    const active = (i === cur);
+
+    if (isFocusMode) {
+      // FOCUS MODE: Move selected book to center-left, push all others away
+      if (active) {
+        b.slot.style.opacity = '1';
+        b.slot.style.zIndex = 100;
+        
+        // Horizontal offset based on screen width
+        const focusX = window.innerWidth > 768 ? -window.innerWidth * 0.18 : 0;
+        b.slot.style.transform = `translate3d(${focusX}px, 0px, 180px) scale(${sc * 1.15})`;
+
+        if (b.snap) {
+          b.ry += (b.snap.a - b.ry) * 0.1;
+          b.rx += (b.snap.x - b.rx) * 0.1;
+        } else if (!drag) {
+          b.vy *= 0.92;
+          b.vx *= 0.92;
+          b.ry += b.vy;
+          b.rx = Math.max(-40, Math.min(40, b.rx + b.vx));
+        }
+      } else {
+        // Hide inactive slots smoothly
+        b.slot.style.opacity = '0';
+        b.slot.style.transform = `translate3d(${Math.sign(off) * 800}px, 0px, -400px) scale(0.4)`;
+      }
+    } else {
+      // CAROUSEL MODE
+      b.slot.style.opacity = '1';
+      if (active) {
+        if (b.snap) {
+          b.ry += (b.snap.a - b.ry) * 0.12;
+          b.rx += (b.snap.x - b.rx) * 0.12;
+          if (Math.abs(b.snap.a - b.ry) < 0.1 && Math.abs(b.snap.x - b.rx) < 0.1) b.snap = null;
+        } else if (!drag) {
+          b.vy *= 0.94;
+          b.vx *= 0.9;
+          b.ry += b.vy + (auto ? 0.15 : 0);
+          b.rx = Math.max(-50, Math.min(50, b.rx + b.vx));
+        }
+      } else {
+        const t = -Math.sign(off) * Math.min(a, 2) * 34;
+        b.ry = t + wrap(b.ry - t);
+        b.ry += (t - b.ry) * 0.1;
+        b.rx += (-6 - b.rx) * 0.1;
+        b.vy = 0;
+        b.vx = 0;
+      }
+
+      const s = sc * (1 - Math.min(a, 3) * 0.17);
+      const x = Math.sign(off) * (a < 1 ? a * 310 : 310 + (a - 1) * 190) * Math.max(0.55, sc);
+      const y = (220 * sc) - (b.h / 2) * s;
+      const z = -a * 160;
+
+      b.slot.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${s})`;
+      b.slot.style.zIndex = 100 - Math.round(a * 10);
+    }
+
+    b.el.style.transform = `rotateX(${b.rx}deg) rotateY(${b.ry}deg)`;
+    applyShading(b, Math.min(0.5, a * 0.26));
+  });
+
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Publicación vigente · 22 de noviembre de 2026
+
+La prueba `carousel-study.html` se convierte en el `index.html` público por indicación de Santiago. El carrusel, los cinco casos y las vistas personales funcionan dentro de esa página. Los enlaces antiguos se conservan mediante redirecciones a `?project=<slug>` o `?view=<sección>`. El resto de los HTML, módulos y recursos sin uso actual pasa a `VERSION 1 - PORTFOLIO/`, con inventario de rutas y SHA-256. No usar esa carpeta como fuente pública ni borrar sus originales. AUDIT sigue siendo una colección local ignorada por Git dentro de la versión archivada.
+
+`node build.mjs` genera únicamente `dist/index.html`, `dist/assets/` y `dist/css/`. Vercel sirve `dist/`; la versión anterior nunca se incluye en el deploy. Se conserva el aviso móvil hasta 900px. La descripción de arquitecturas anteriores que aparece más abajo es historial, no el árbol vigente. Al actualizar contenido, editar el catálogo incorporado en `index.html` y conservar imágenes completas, cargas bajo demanda, cursor contextual y reproducción silenciosa de videos. Contacto no simula envíos; los perfiles y tienda pendientes no tienen URLs inventadas.
+
 ## Proyectos — carrusel central en perspectiva · 21 de noviembre de 2026
 
 El home reemplaza el feed vertical por una hilera horizontal con leve ascenso diagonal, basada en la grabación de referencia. Planos paralelos con perspectiva CSS, inclinación moderada (16° en Y, 3° en Z), escala y superposición; no un aro ni coverflow de caras enfrentadas. El escenario ocupa el centro y el panel izquierdo queda más compacto con presentación y lista de saltos. Colores, líneas finas, comandos a la derecha y el pequeño símbolo se conservan.
