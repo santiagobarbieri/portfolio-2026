@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Logo corredor · 22 de noviembre de 2026
+
+El símbolo de Santiago conserva 17px y el enlace de regreso a Proyectos. El hover y foco visible lo transforman en el corredor de logo-runner.js, usando los diez fotogramas SVG aportados por Santiago, sin alterar sus trazados. El logo y corredor siguen el color de la sección abierta (Sobre mí, Contacto, Archivo) o la identidad del proyecto; Proyectos vuelve a negro. En la apertura de un proyecto, el contorno mantiene contraste con el fondo de ese mismo color. No aplicar este efecto a las marcas de los clientes.
+
+assets/scripts/logo-runner.js y css/logo-runner.css aíslan el componente, sin dependencias. La salida completa la zancada antes de recuperar el símbolo. Pausar y restaurar ante cargas, navegación, visor, pestaña oculta y aviso móvil. Movimiento reducido muestra una pose estática. Mantener el SVG original de respaldo si falla el script y evitar la antigua rotación del logo al pasar por todo el nombre.
+
 ## Cierre de proyectos · 22 de noviembre de 2026
 
 El cierre retira contenido sin desplazar la lectura, recupera el color del caso y revela el carrusel solamente tras intercambiar las vistas detrás de un velo completamente opaco. Si el logo está visible, baja 24px y se desvanece; si quedó fuera de pantalla, no traerlo ni volver arriba. Mantener el mismo recurso gráfico, incluidos logos transparentes. El regreso conserva la tarjeta del proyecto, libera capas, foco y controles al terminar, y admite Escape, redimensionado y movimiento reducido. No extender esta animación a Sobre mí o Contacto.

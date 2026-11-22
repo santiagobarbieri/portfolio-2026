@@ -9,6 +9,8 @@ La versión actual vive en `index.html`: carrusel continuo de proyectos en persp
 - Vercel publica la rama `main`. Ejecuta `node build.mjs` y sirve únicamente `dist/`.
 - No hay dependencias npm, servidor propio ni instalación. El build copia solamente `index.html`, `assets/` y `css/`.
 
+El símbolo del encabezado se transforma en un corredor al pasar el puntero o recibir foco de teclado. Conserva su tamaño de 17px y toma el color de la sección o proyecto abierto; sobre la portada usa un contorno de contraste. Al salir completa la zancada y vuelve al logo. No mantiene animaciones en segundo plano, durante transiciones, detrás del visor o del aviso móvil; con movimiento reducido muestra una pose estática.
+
 ## Estado del contenido
 
 Cinco proyectos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT y El Armado. El Archivo reúne los afiches y fotografías personales existentes. Sobre mí conserva el retrato pendiente y textos en edición; Contacto prepara un resumen sin enviarlo ni guardar datos. Tienda y URLs aún no definidas siguen indicadas como pendientes. Móvil muestra un aviso de desarrollo hasta 900 px.
@@ -20,6 +22,7 @@ Las portadas están preparadas antes de revelar el inicio. Las imágenes interio
 - `index.html`: interfaz, catálogo y lógica de la versión actual.
 - `assets/`: únicamente recursos referenciados por esta versión, más su licencia tipográfica.
 - `css/desktop-gate.css`: aviso temporal de móvil en desarrollo.
+- `assets/scripts/logo-runner.js` y `css/logo-runner.css`: efecto del logo con los diez fotogramas SVG aportados.
 - `build.mjs`: empaquetado estático para Vercel.
 - `vercel.json`: build y compatibilidad con direcciones anteriores.
 - `AGENTS.md` y `MAKE-PROJECT.md`: criterios e historial de decisiones.

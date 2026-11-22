@@ -1,0 +1,21 @@
+/* Animation geometry supplied by Santiago; scoped to the header logo. */
+.lr{display:inline-block;position:relative;line-height:0;flex:0 0 auto;color:var(--logo-section-color,currentColor);-webkit-tap-highlight-color:transparent}
+.lr svg{display:block;width:var(--logo-size,28px);height:var(--logo-size,28px);overflow:visible;pointer-events:none;color:inherit}
+.lr .b{fill:var(--runner-fill,currentColor);stroke:var(--runner-fill,currentColor);stroke-width:.03;fill-rule:evenodd}
+.lr .k{fill:var(--runner-ink,currentColor)}
+.lr .mark{fill:currentColor;opacity:1;transition:opacity .12s ease-out .05s}
+.lr .logo{transform-box:fill-box;transform-origin:0 0;transition:transform .26s cubic-bezier(.2,.9,.3,1)}
+.lr .runner{transform-box:fill-box;transform-origin:50% 90%;opacity:0;transform:scale(.88);
+  transition:opacity .1s ease-in .06s,transform .3s cubic-bezier(.2,.9,.3,1)}
+.lr .f{visibility:hidden}
+.lr .f.on{visibility:visible}
+.lr[data-state=on] .mark{opacity:0;transition-delay:.07s}
+.lr[data-state=on] .logo{transform:scaleY(0.9755474452554745)}
+.lr[data-state=on] .runner{opacity:1;transform:none;transition:opacity .09s ease-out,transform .38s cubic-bezier(.34,1.56,.64,1)}
+
+.study-home.lr { --logo-size: 17px; color: var(--logo-section-color,currentColor); }
+body[data-study-page="project"].study-case-on-cover .study-home.lr { --runner-ink: var(--case-cover-ink); }
+body[data-study-page="project"].study-case-on-cover .lr .mark { stroke: var(--case-cover-ink); stroke-width: 1.6; stroke-linejoin: round; }
+@media (prefers-reduced-motion: reduce) {
+  .lr .mark, .lr .logo, .lr .runner { transition: none !important; }
+}
