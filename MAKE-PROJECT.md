@@ -1,5 +1,13 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Auditoría, navegación y entrada por capas · 22 de noviembre de 2026
+
+Santiago movió VERSION 1 - PORTFOLIO fuera del repositorio: no recrearla ni depender de ella en runtime. Su traslado se registra en Git; el respaldo externo permanece intacto. El sitio actual se publica desde index.html y sus assets activos mediante build.mjs.
+
+La apertura muestra primero el color, después la pieza ascendente y por último textos y demás contenido. Usar openingArt cuando exista un original transparente adecuado; las portadas del carrusel siguen completas. El Armado usa Logo.png hueso y OLAS su Logo.svg; los otros casos conservan sus portadas hasta tener variantes con contraste. No borrar fondos por código ni extraer gráficos de capturas.
+
+La navegación utiliza historial real, conserva lectura y permite volver con Atrás/Adelante. Las pestañas de Sobre mí se identifican por tab en la URL y tienen roles, asociación de panel y teclado. Escape en un desplegable no cierra la sección. Retrato, texto biográfico definitivo, tienda/perfiles y envío de contacto siguen pendientes: no inventarlos.
+
 ## Publicación vigente · 22 de noviembre de 2026
 
 La prueba `carousel-study.html` se convierte en el `index.html` público por indicación de Santiago. El carrusel, los cinco casos y las vistas personales funcionan dentro de esa página. Los enlaces antiguos se conservan mediante redirecciones a `?project=<slug>` o `?view=<sección>`. El resto de los HTML, módulos y recursos sin uso actual pasa a `VERSION 1 - PORTFOLIO/`, con inventario de rutas y SHA-256. No usar esa carpeta como fuente pública ni borrar sus originales. AUDIT sigue siendo una colección local ignorada por Git dentro de la versión archivada.

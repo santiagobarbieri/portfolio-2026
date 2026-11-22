@@ -23,7 +23,7 @@ Las portadas están preparadas antes de revelar el inicio. Las imágenes interio
 - `build.mjs`: empaquetado estático para Vercel.
 - `vercel.json`: build y compatibilidad con direcciones anteriores.
 - `AGENTS.md` y `MAKE-PROJECT.md`: criterios e historial de decisiones.
-- `VERSION 1 - PORTFOLIO/`: web anterior, módulos retirados, fuentes y recursos sin uso actual. El inventario conserva rutas y SHA-256; no se eliminan originales. La antigua colección `AUDIT/` continúa excluida de Git, dentro de esta carpeta.
+- `VERSION 1 - PORTFOLIO`: Santiago trasladó este respaldo fuera de la carpeta del proyecto. La web actual no lo utiliza; la revisión local AUDIT permanece allí. El respaldo anterior también se conserva en el historial de Git, en el commit `2893a3e`.
 
 ## Vista local
 
@@ -35,3 +35,25 @@ python3 -m http.server 4173 --directory dist
 ```
 
 No se requiere compilar CSS ni instalar paquetes. Las direcciones anteriores de los proyectos, Sobre mí, Contacto y Archivo se redirigen a la versión actual en Vercel. Los casos también se pueden abrir con `index.html?project=el-armado`; la vista personal usa `?view=posters` o `?view=photos`.
+
+## Auditoría y navegación — 22 de noviembre de 2026
+
+Se verificó el sitio con el respaldo histórico fuera del repositorio: no hay dependencias activas faltantes. La auditoría de navegador cubre los cinco proyectos, Archivo, Contacto, las tres vistas de Sobre mí, carga inicial, errores y reintentos, visor, reproducción de videos, foco, teclado y URL directa. Se revisaron composiciones de escritorio de 920, 1024, 1280, 1512 y 1920 px; las pantallas hasta 900 px conservan el aviso móvil. Las 239 rutas de imágenes del catálogo se decodifican correctamente.
+
+Se corrigieron Atrás/Adelante, restauración de lectura y pestañas de Sobre mí, títulos del documento y etiquetas accesibles de la navegación. Escape cierra primero el desplegable enfocado. Sobre mí tiene texto más legible, credenciales separadas y datos organizados sin inventar biografía o retrato.
+
+Las aperturas pintan primero el color de la portada, después suben la pieza y, al asentarse, revelan texto y contenido. Esta secuencia también funciona al cambiar de proyecto y por enlace directo. El Armado y OLAS usan logos transparentes originales sobre fondos independientes; los otros tres casos conservan sus portadas completas hasta contar con variantes transparentes que contrasten con sus fondos.
+
+| Área | Resultado de la revisión | Contenido pendiente |
+| --- | --- | --- |
+| Apolo Studios | Cuatro drops y video existentes cargan; conserva las campañas confirmadas. | Logo transparente que contraste sobre azul. |
+| Orfeo | Fotos, marcas y ampliaciones se decodifican sin rutas históricas. | Logotipo completo sin fondo para la apertura. |
+| OLAS | Afiches, stickers, vectores y logo transparente cargan. | Revisión editorial de textos y selección, cuando se retome el caso. |
+| Club de Economía | Símbolos, plantillas y video cargan; portada única en el inicio. | Variante completa del logo sin fondo con contraste sobre celeste. |
+| El Armado | Afiches, historia, ilustración y logo hueso cargan. | Revisión editorial de textos, cuando se retome el caso. |
+| Sobre mí | Tres pestañas con teclado, URL y composición de escritorio. | Retrato original y biografía definitiva. |
+| Contacto | Valida el formulario y prepara un resumen honesto. | Conectar el envío real. |
+| Tienda y Redes | Los destinos ausentes indican que están en preparación. | URLs definitivas de tienda y perfiles. |
+| Móvil | Aviso de desarrollo, sin reproducir el recorrido oculto. | Diseño y desarrollo específicos, aún pausados. |
+
+No se extrajeron logos de capturas ni se quitaron fondos automáticamente. No se modifican originales del respaldo externo. Los grupos fotográficos de tres piezas conservan su selección actual; su edición visual se puede revisar por proyecto.
