@@ -1,5 +1,5 @@
 /** Idle motion belongs only to the home stream; manual navigation always wins. */
-export function initLaunchPanel({ main, advance }) {
+export function initLaunchPanel({ main, advance, getPosition = () => scrollY, getCurrent }) {
   const body = document.body;
   if (!body.classList.contains('archive-page--launch')) return;
   const panel = document.querySelector('#portfolio-command-panel');
@@ -24,7 +24,7 @@ export function initLaunchPanel({ main, advance }) {
     return departed || paused || reduce.matches || !desktop.matches || document.hidden ||
       Boolean(document.querySelector('.site-loader:not([hidden]), dialog[open]')) ||
       menus.some(menu => menu.open) || utilities.contains(document.activeElement) ||
-      main.contains(document.activeElement) || Boolean(main.querySelector('.archive-card__link:hover'));
+      main.contains(document.activeElement) || Boolean(main.querySelector('.archive-card__link:hover, .project-carousel__information:hover, .project-carousel__controls:hover'));
   }
   function setText(element, text) { if (element.textContent !== text) element.textContent = text; }
   function label(running = false) {
@@ -47,7 +47,7 @@ export function initLaunchPanel({ main, advance }) {
     if (previous) remainder += Math.min(time - previous, 40) * .022;
     previous = time;
     const distance = Math.floor(remainder);
-    if (distance) { remainder -= distance; advance(scrollY + distance); }
+    if (distance) { remainder -= distance; advance(getPosition() + distance); }
     frame = requestAnimationFrame(tick);
   }
   function start() {
@@ -139,8 +139,8 @@ export function initLaunchPanel({ main, advance }) {
   function updateCurrent() {
     currentFrame = 0;
     if (!desktop.matches || document.hidden || departed) return;
-    let best = null, score = 0;
-    main.querySelectorAll('.archive-card').forEach(card => {
+    let best = getCurrent?.() || null, score = 0;
+    if (!getCurrent) main.querySelectorAll('.archive-card').forEach(card => {
       const rect = card.querySelector('.archive-card__media').getBoundingClientRect();
       const visible = Math.max(0, Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top));
       if (visible > score) { best = card; score = visible; }
@@ -157,6 +157,7 @@ export function initLaunchPanel({ main, advance }) {
   }
   function observeCurrent() { if (!currentFrame && !document.hidden && !departed) currentFrame = requestAnimationFrame(updateCurrent); }
   document.addEventListener('portfolio:jump', () => { activity(); observeCurrent(); });
+  document.addEventListener('portfolio:carouselchange', observeCurrent);
   window.addEventListener('scroll', observeCurrent, { passive: true });
   window.addEventListener('resize', observeCurrent, { passive: true });
   window.addEventListener('pagehide', () => { cancelAnimationFrame(currentFrame); currentFrame = 0; });

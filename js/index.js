@@ -78,6 +78,11 @@ export async function initArchive() {
     // Full HTML cards remain the source if the registry is unavailable.
   }
   await document.fonts.ready;
+  if (document.body.hasAttribute('data-project-carousel')) {
+    const { initHomeCarousel } = await import('./project-carousel.js');
+    await initHomeCarousel({ stream, templates, projects, main: document.getElementById('main-content') });
+    return;
+  }
   const preview = initArchivePreview(stream, projects);
 
   const previousState = storedState();

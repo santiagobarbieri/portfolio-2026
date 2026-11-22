@@ -1,5 +1,13 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Proyectos — carrusel central en perspectiva · 21 de noviembre de 2026
+
+El home reemplaza el feed vertical por una hilera horizontal con leve ascenso diagonal, basada en la grabación de referencia. Planos paralelos con perspectiva CSS, inclinación moderada (16° en Y, 3° en Z), escala y superposición; no un aro ni coverflow de caras enfrentadas. El escenario ocupa el centro y el panel izquierdo queda más compacto con presentación y lista de saltos. Colores, líneas finas, comandos a la derecha y el pequeño símbolo se conservan.
+
+`project-carousel.js` y `project-carousel.css` aíslan la presentación del inicio; no modificar por esta prueba los interiores de clientes ni el Archivo personal. Rueda, arrastre con umbral y pequeño impulso, teclado, Anterior/Siguiente y lista izquierda recorren el mismo catálogo infinito. Los siete planos del buffer se reciclan fuera de vista; no copiar todo el catálogo indefinidamente. Click real abre la ficha en la pestaña actual; un arrastre nunca abre un enlace. Nombre, disciplina y descripción del seleccionado permanecen legibles fuera de la perspectiva.
+
+Conservar portadas completas y previews decodificados, sin deformar ni recolorear originales; Club mantiene solo su portada. Rose cubre la preparación de imágenes y disposición. Pausa de sesión, automatismo tras cinco segundos, suspensión en comandos/hover/foco/pestaña oculta y movimiento reducido se conservan mediante adaptadores del panel. El gesto manual prevalece; al abrir comandos se detiene también la inercia automática residual. El estado del carrusel es independiente de posiciones verticales antiguas. Sin JS permanecen las cinco tarjetas y enlaces de salto HTML. Móvil continúa en desarrollo hasta 900px.
+
 ## Dirección vigente — entregas, color y recorrido único · 21 de noviembre de 2026
 
 El inicio usa negro continuo en presentación, feed y comandos, separado por líneas grises finas. Acentos #03B047, #D3532E y #01A2F2; texto pequeño de color solo sobre negro con contraste suficiente. El gris claro #D9D9D9 reemplaza al crema del portfolio, sin modificar colores ni fondos originales de las piezas.
