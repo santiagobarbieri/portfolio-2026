@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Cierre de proyectos · 22 de noviembre de 2026
+
+El cierre retira contenido sin desplazar la lectura, recupera el color del caso y revela el carrusel solamente tras intercambiar las vistas detrás de un velo completamente opaco. Si el logo está visible, baja 24px y se desvanece; si quedó fuera de pantalla, no traerlo ni volver arriba. Mantener el mismo recurso gráfico, incluidos logos transparentes. El regreso conserva la tarjeta del proyecto, libera capas, foco y controles al terminar, y admite Escape, redimensionado y movimiento reducido. No extender esta animación a Sobre mí o Contacto.
+
+La apertura de OLAS limita su logo a 420px para equilibrar su jerarquía con los otros casos; mantener las proporciones del SVG y las portadas originales del inicio.
+
 ## Auditoría, navegación y entrada por capas · 22 de noviembre de 2026
 
 Santiago movió VERSION 1 - PORTFOLIO fuera del repositorio: no recrearla ni depender de ella en runtime. Su traslado se registra en Git; el respaldo externo permanece intacto. El sitio actual se publica desde index.html y sus assets activos mediante build.mjs.

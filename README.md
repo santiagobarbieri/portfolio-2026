@@ -44,6 +44,8 @@ Se corrigieron Atrás/Adelante, restauración de lectura y pestañas de Sobre m�
 
 Las aperturas pintan primero el color de la portada, después suben la pieza y, al asentarse, revelan texto y contenido. Esta secuencia también funciona al cambiar de proyecto y por enlace directo. El Armado y OLAS usan logos transparentes originales sobre fondos independientes; los otros tres casos conservan sus portadas completas hasta contar con variantes transparentes que contrasten con sus fondos.
 
+Los cierres retiran el contenido en su posición de lectura y recuperan el color del proyecto antes de revelar el carrusel. El logo visible se desvanece con un desplazamiento de 24px; durante la lectura no se vuelve a la apertura. Se verificaron los cinco casos, Escape durante la transición, cambios de tamaño, foco y movimiento reducido. El logo de OLAS tiene un ancho máximo de 420px en su apertura.
+
 | Área | Resultado de la revisión | Contenido pendiente |
 | --- | --- | --- |
 | Apolo Studios | Cuatro drops y video existentes cargan; conserva las campañas confirmadas. | Logo transparente que contraste sobre azul. |
