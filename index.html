@@ -61,8 +61,6 @@
    Saltar al contenido principal
   </a>
   <header class="site-header">
-   <div aria-hidden="true" class="launch-surface">
-   </div>
    <a aria-label="Santiago Barbieri — Proyectos" class="identity__logo" data-cursor-action="Volver a proyectos" href="./index.html">
     <span aria-hidden="true" class="identity__glyph">
     </span>
@@ -98,18 +96,39 @@
       </a>
      </p>
     </section>
+    <nav aria-labelledby="launch-projects-title" class="launch-projects">
+     <h2 class="launch-section-label" id="launch-projects-title">
+      Proyectos
+     </h2>
+     <ul class="launch-project-list">
+      <li>
+       <a data-cursor-action="Ir al proyecto" data-launch-jump="apolo-studios" href="#project-apolo-studios">
+        Apolo Studios
+       </a>
+      </li>
+      <li>
+       <a data-cursor-action="Ir al proyecto" data-launch-jump="club-de-economia-utdt" href="#project-club-de-economia-utdt">
+        Club de Economía — UTDT
+       </a>
+      </li>
+      <li>
+       <a data-cursor-action="Ir al proyecto" data-launch-jump="olas-ditella" href="#project-olas-ditella">
+        OLAS Di Tella
+       </a>
+      </li>
+      <li>
+       <a data-cursor-action="Ir al proyecto" data-launch-jump="el-armado" href="#project-el-armado">
+        El Armado
+       </a>
+      </li>
+      <li>
+       <a data-cursor-action="Ir al proyecto" data-launch-jump="orfeo" href="#project-orfeo">
+        Orfeo
+       </a>
+      </li>
+     </ul>
+    </nav>
     <div class="launch-destinations">
-     <nav aria-label="Navegación principal" class="site-navigation">
-      <span aria-current="page" class="tab navigation-shortcut archive-label">
-       Proyectos
-      </span>
-      <span aria-live="polite" class="archive-header-status" data-archive-mobile-status="" role="status">
-       5 proyectos
-      </span>
-      <p class="archive-intro">
-       Identidades, campañas y colaboraciones.
-      </p>
-     </nav>
      <nav aria-label="Trabajo personal" class="archive-personal">
       <a class="tab" data-cursor-action="Abrir archivo" href="./self-made.html">
        Archivo
@@ -119,191 +138,174 @@
       </p>
      </nav>
     </div>
-    <details class="archive-index" data-archive-index="" open="">
-     <summary aria-label="Índice de navegación" class="archive-index__toggle" data-cursor-action="Índice">
-      <span aria-hidden="true" class="archive-index__icon">
-       <span>
+    <nav aria-label="Secciones en preparación" class="archive-pages">
+     <p class="launch-section-label">
+      En preparación
+     </p>
+     <ul class="launch-pending-list">
+      <li>
+       <span aria-disabled="true">
+        Librería
        </span>
-       <span>
+      </li>
+      <li>
+       <span aria-disabled="true">
+        Sobre mí
        </span>
-       <span>
+      </li>
+      <li>
+       <span aria-disabled="true">
+        Contacto
        </span>
-      </span>
+      </li>
+      <li>
+       <span aria-disabled="true">
+        Tienda
+       </span>
+      </li>
+     </ul>
+    </nav>
+    <nav aria-labelledby="social-links-title" class="archive-directory">
+     <p class="archive-directory__title" id="social-links-title">
+      Redes
+     </p>
+     <!-- TODO: add the real profile URLs. -->
+     <ul aria-label="Redes sociales pendientes de vincular" class="directory-list">
+      <li>
+       <span aria-disabled="true" title="Enlace pendiente">
+        Instagram
+       </span>
+      </li>
+      <li>
+       <span aria-disabled="true" title="Enlace pendiente">
+        Behance
+       </span>
+      </li>
+      <li>
+       <span aria-disabled="true" title="Enlace pendiente">
+        LinkedIn
+       </span>
+      </li>
+     </ul>
+    </nav>
+   </aside>
+   <aside aria-label="Comandos del recorrido" class="launch-utilities" data-launch-utilities="" data-lenis-prevent="">
+    <details class="archive-filter-panel launch-utility" data-archive-filter-panel="" data-launch-menu="">
+     <summary aria-label="Ordenar proyectos" class="launch-utility__trigger" data-cursor-action="Filtros y orden" title="Filtros y orden">
+      <svg aria-hidden="true" class="archive-filter-toggle__icon" fill="none" focusable="false" height="20" stroke="currentColor" stroke-width="1.4" viewbox="0 0 24 24" width="20">
+       <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12">
+       </path>
+       <circle cx="10" cy="6" r="2">
+       </circle>
+       <circle cx="16" cy="12" r="2">
+       </circle>
+       <circle cx="7" cy="18" r="2">
+       </circle>
+      </svg>
       <span class="visually-hidden">
-       Índice
+       Filtros y orden
       </span>
      </summary>
-     <aside aria-label="Filtros y navegación de proyectos" class="archive-controls" data-lenis-prevent="">
-      <div class="archive-index__intro">
-       <h2>
-        Índice
-       </h2>
-       <p>
-        Diseño gráfico, desarrollo web y fotografía.
-       </p>
-      </div>
-      <details class="archive-filter-panel launch-order" data-archive-filter-panel="" open="">
-       <summary aria-label="Ordenar proyectos" class="archive-filter-toggle">
-        <svg aria-hidden="true" class="archive-filter-toggle__icon" fill="none" focusable="false" height="20" stroke="currentColor" stroke-width="1.4" viewbox="0 0 24 24" width="20">
-         <path d="M3 6h5m4 0h9M3 12h11m4 0h3M3 18h2m4 0h12">
-         </path>
-         <circle cx="10" cy="6" r="2">
-         </circle>
-         <circle cx="16" cy="12" r="2">
-         </circle>
-         <circle cx="7" cy="18" r="2">
-         </circle>
-        </svg>
-        <span>
-         Filtros y orden
+     <div aria-label="Filtrar y organizar proyectos" class="archive-filters launch-utility__panel" data-lenis-prevent="" id="launch-filters" role="search">
+      <h2 class="launch-utility__heading">
+       Filtros y orden
+      </h2>
+      <details class="archive-filter-menu" data-filter-menu="category" hidden="">
+       <summary class="tab">
+        <span data-filter-label="">
+         Todos los proyectos
         </span>
        </summary>
-       <div aria-label="Filtrar y organizar proyectos" class="archive-filters" data-lenis-prevent="" role="search">
-        <details class="archive-filter-menu" data-filter-menu="category" hidden="">
-         <summary class="tab">
-          <span data-filter-label="">
-           Todos los proyectos
-          </span>
-         </summary>
-         <fieldset class="archive-filter-options">
-          <legend class="visually-hidden">
-           Filtrar proyectos
-          </legend>
-          <label class="archive-filter-option">
-           <input checked="" class="visually-hidden" name="archive-category" type="radio" value="all"/>
-           <span>
-            Todos los proyectos
-           </span>
-          </label>
-          <label class="archive-filter-option">
-           <input class="visually-hidden" name="archive-category" type="radio" value="identity"/>
-           <span>
-            Identidad visual
-           </span>
-          </label>
-         </fieldset>
-        </details>
-        <details class="archive-filter-menu" data-filter-menu="order">
-         <summary aria-label="Ordenar proyectos" class="tab">
-          <span data-filter-label="">
-           Más recientes primero
-          </span>
-         </summary>
-         <fieldset class="archive-filter-options">
-          <legend class="visually-hidden">
-           Ordenar proyectos
-          </legend>
-          <label class="archive-filter-option">
-           <input checked="" class="visually-hidden" name="archive-order" type="radio" value="newest"/>
-           <span>
-            Más recientes primero
-           </span>
-          </label>
-          <label class="archive-filter-option">
-           <input class="visually-hidden" name="archive-order" type="radio" value="oldest"/>
-           <span>
-            Más antiguos primero
-           </span>
-          </label>
-          <label class="archive-filter-option">
-           <input class="visually-hidden" name="archive-order" type="radio" value="az"/>
-           <span>
-            A — Z
-           </span>
-          </label>
-         </fieldset>
-        </details>
-        <p aria-live="polite" class="archive-results" data-archive-status="" role="status">
-         5 proyectos
-        </p>
-       </div>
+       <fieldset class="archive-filter-options">
+        <legend class="visually-hidden">
+         Filtrar proyectos
+        </legend>
+        <label class="archive-filter-option">
+         <input checked="" class="visually-hidden" name="archive-category" type="radio" value="all"/>
+         <span>
+          Todos los proyectos
+         </span>
+        </label>
+        <label class="archive-filter-option">
+         <input class="visually-hidden" name="archive-category" type="radio" value="identity"/>
+         <span>
+          Identidad visual
+         </span>
+        </label>
+       </fieldset>
       </details>
-      <nav aria-label="Secciones en preparación" class="archive-pages">
-       <p class="launch-section-label">
-        En preparación
-       </p>
-       <ul class="launch-pending-list">
-        <li>
-         <span aria-disabled="true">
-          Librería
+      <details class="archive-filter-menu" data-filter-menu="order" open="">
+       <summary aria-label="Ordenar proyectos" class="tab">
+        <span data-filter-label="">
+         Más recientes primero
+        </span>
+       </summary>
+       <fieldset class="archive-filter-options">
+        <legend class="visually-hidden">
+         Ordenar proyectos
+        </legend>
+        <label class="archive-filter-option">
+         <input checked="" class="visually-hidden" name="archive-order" type="radio" value="newest"/>
+         <span>
+          Más recientes primero
          </span>
-        </li>
-        <li>
-         <span aria-disabled="true">
-          Sobre mí
+        </label>
+        <label class="archive-filter-option">
+         <input class="visually-hidden" name="archive-order" type="radio" value="oldest"/>
+         <span>
+          Más antiguos primero
          </span>
-        </li>
-        <li>
-         <span aria-disabled="true">
-          Contacto
+        </label>
+        <label class="archive-filter-option">
+         <input class="visually-hidden" name="archive-order" type="radio" value="az"/>
+         <span>
+          A — Z
          </span>
-        </li>
-        <li>
-         <span aria-disabled="true">
-          Tienda
-         </span>
-        </li>
-       </ul>
-      </nav>
-      <nav aria-labelledby="social-links-title" class="archive-directory">
-       <p class="archive-directory__title" id="social-links-title">
-        Redes
-       </p>
-       <!-- TODO: add the real profile URLs. -->
-       <ul aria-label="Redes sociales pendientes de vincular" class="directory-list">
-        <li>
-         <span aria-disabled="true" title="Enlace pendiente">
-          Instagram
-         </span>
-        </li>
-        <li>
-         <span aria-disabled="true" title="Enlace pendiente">
-          Behance
-         </span>
-        </li>
-        <li>
-         <span aria-disabled="true" title="Enlace pendiente">
-          LinkedIn
-         </span>
-        </li>
-       </ul>
-      </nav>
-     </aside>
+        </label>
+       </fieldset>
+      </details>
+     </div>
     </details>
+    <details class="launch-utility" data-launch-menu="">
+     <summary aria-label="Opciones del recorrido" class="launch-utility__trigger" data-cursor-action="Opciones del recorrido" title="Opciones del recorrido">
+      <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-width="1.4" viewbox="0 0 24 24" width="20">
+       <path d="M8 5v14M16 5v14">
+       </path>
+      </svg>
+     </summary>
+     <div class="launch-utility__panel" data-launch-playback="">
+      <h2 class="launch-utility__heading">
+       Recorrido
+      </h2>
+      <button class="launch-playback__button" data-cursor-action="Pausar recorrido" data-launch-play="" hidden="" type="button">
+       <svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="18">
+        <path d="M9 5v14M15 5v14">
+        </path>
+       </svg>
+       <span data-launch-play-label="">
+        Pausar recorrido
+       </span>
+      </button>
+      <p class="launch-playback__status" data-launch-status="">
+       Podés recorrer los proyectos con el scroll.
+      </p>
+      <p class="launch-current">
+       En recorrido
+       <a data-cursor-action="Abrir proyecto" data-launch-current="" href="./apolo-studios.html">
+        Apolo Studios
+       </a>
+      </p>
+     </div>
+    </details>
+    <p aria-live="polite" class="launch-utility__count" data-archive-status="" role="status">
+     5 proyectos
+    </p>
    </aside>
-   <div class="launch-playback" data-launch-playback="" hidden="">
-    <p class="launch-current">
-     En recorrido
-     <a data-cursor-action="Abrir proyecto" data-launch-current="" href="./apolo-studios.html">
-      Apolo Studios
-     </a>
-    </p>
-    <button aria-pressed="false" class="launch-playback__button" data-cursor-action="Pausar recorrido" data-launch-play="" type="button">
-     Pausar recorrido
-    </button>
-    <p class="launch-playback__status" data-launch-status="">
-     Automático tras 5 segundos sin interacción.
-    </p>
-   </div>
-   <button aria-controls="portfolio-command-panel" aria-expanded="true" aria-label="Plegar panel" class="launch-toggle" data-cursor-action="Plegar panel" data-launch-toggle="" hidden="" type="button">
-    <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-width="1.3" viewbox="0 0 24 24" width="20">
-     <rect height="16" rx="1" width="18" x="3" y="4">
-     </rect>
-     <path d="M9 4v16m7-11-3 3 3 3">
-     </path>
-    </svg>
-    <span class="launch-toggle__label">
-     Reducir panel
-    </span>
-   </button>
-   <span aria-hidden="true" class="launch-rail-label">
-    Santiago Barbieri
-   </span>
   </header>
   <main aria-label="Proyectos seleccionados" class="archive-main" id="main-content" tabindex="-1">
    <div class="archive-stream" data-archive-stream="">
     <div class="archive-row" data-sequence="0">
-     <article class="archive-card" data-category="identidad" data-family="identity" data-order="-4" data-slug="apolo-studios">
+     <article class="archive-card" data-category="identidad" data-family="identity" data-order="-4" data-slug="apolo-studios" id="project-apolo-studios">
       <a aria-label="Abrir Apolo Studios" class="archive-card__link" href="./apolo-studios.html">
        <div class="archive-card__media">
         <img alt="Firma de Apolo Studios en blanco sobre azul" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/apolo-studios-800.webp" width="800"/>
@@ -326,7 +328,7 @@
      </article>
     </div>
     <div class="archive-row" data-sequence="1">
-     <article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="-3" data-slug="club-de-economia-utdt">
+     <article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="-3" data-slug="club-de-economia-utdt" id="project-club-de-economia-utdt">
       <a aria-label="Abrir Club de Economía — UTDT" class="archive-card__link" href="./club-de-economia.html">
        <div class="archive-card__media">
         <img alt="Logotipo del Club de Economía sobre celeste" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/club-de-economia-utdt-800.webp" width="800"/>
@@ -349,7 +351,7 @@
      </article>
     </div>
     <div class="archive-row" data-sequence="2">
-     <article class="archive-card" data-category="identidad" data-family="identity" data-order="-1" data-slug="olas-ditella">
+     <article class="archive-card" data-category="identidad" data-family="identity" data-order="-1" data-slug="olas-ditella" id="project-olas-ditella">
       <a aria-label="Abrir OLAS Di Tella" class="archive-card__link" href="./olas-ditella.html">
        <div class="archive-card__media">
         <img alt="Logotipo de OLAS sobre verde" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/olas-ditella-800.webp" width="800"/>
@@ -372,7 +374,7 @@
      </article>
     </div>
     <div class="archive-row" data-sequence="3">
-     <article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="0" data-slug="el-armado">
+     <article class="archive-card archive-card--right" data-category="identidad" data-family="identity" data-order="0" data-slug="el-armado" id="project-el-armado">
       <a aria-label="Abrir El Armado" class="archive-card__link" href="./el-armado.html">
        <div class="archive-card__media">
         <img alt="Logotipo de El Armado en hueso sobre vino" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/el-armado-800.webp" width="800"/>
@@ -395,7 +397,7 @@
      </article>
     </div>
     <div class="archive-row" data-sequence="4">
-     <article class="archive-card" data-category="identidad" data-family="identity" data-order="2" data-slug="orfeo">
+     <article class="archive-card" data-category="identidad" data-family="identity" data-order="2" data-slug="orfeo" id="project-orfeo">
       <a aria-label="Abrir Orfeo" class="archive-card__link" href="./orfeo.html">
        <div class="archive-card__media">
         <img alt="Logotipo de ORFEO sobre carbón" class="archive-card__image" data-cover-motion="" decoding="async" height="1000" loading="lazy" src="./assets/images/archive-covers/orfeo-800.webp" width="800"/>

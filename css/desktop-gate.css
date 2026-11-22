@@ -5,7 +5,7 @@
   body > :not(.mobile-status):not(script):not(style) { visibility: hidden !important; pointer-events: none !important; }
   html body > .mobile-status {
     --bg: #0a0a0a;
-    --fg: #f1ece0;
+    --fg: #d9d9d9;
     --mute: #b3aea5;
     position: fixed;
     z-index: 2147483646;

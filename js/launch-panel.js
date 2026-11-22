@@ -1,10 +1,11 @@
 /** Idle motion belongs only to the home stream; manual navigation always wins. */
-export function initLaunchPanel({ main, layout, advance }) {
+export function initLaunchPanel({ main, advance }) {
   const body = document.body;
   if (!body.classList.contains('archive-page--launch')) return;
   const panel = document.querySelector('#portfolio-command-panel');
-  const toggle = document.querySelector('[data-launch-toggle]');
-  const playback = document.querySelector('[data-launch-playback]');
+  const utilities = document.querySelector('[data-launch-utilities]');
+  const menus = [...utilities.querySelectorAll('[data-launch-menu]')];
+  const playLabel = document.querySelector('[data-launch-play-label]');
   const play = document.querySelector('[data-launch-play]');
   const status = document.querySelector('[data-launch-status]');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -16,20 +17,23 @@ export function initLaunchPanel({ main, layout, advance }) {
   let remainder = 0;
   let lastActivity = performance.now();
   let departed = false;
-  let folding = false;
   let currentFrame = 0;
   try { paused = sessionStorage.getItem('portfolio-idle-paused') === 'true'; } catch {}
 
   function blocked() {
-    return departed || folding || paused || reduce.matches || !desktop.matches || document.hidden ||
+    return departed || paused || reduce.matches || !desktop.matches || document.hidden ||
       Boolean(document.querySelector('.site-loader:not([hidden]), dialog[open]')) ||
+      menus.some(menu => menu.open) || utilities.contains(document.activeElement) ||
       main.contains(document.activeElement) || Boolean(main.querySelector('.archive-card__link:hover'));
   }
   function setText(element, text) { if (element.textContent !== text) element.textContent = text; }
   function label(running = false) {
     play.disabled = reduce.matches;
-    play.setAttribute('aria-pressed', String(paused));
-    setText(play, reduce.matches ? 'Recorrido manual' : paused ? 'Activar recorrido' : 'Pausar recorrido');
+    play.dataset.paused = String(paused);
+    const action = reduce.matches ? 'Recorrido manual' : paused ? 'Activar recorrido' : 'Pausar recorrido';
+    setText(playLabel, action);
+    play.setAttribute('aria-label', action);
+    play.querySelector('path').setAttribute('d', paused ? 'M8 5l11 7-11 7Z' : 'M9 5v14M15 5v14');
     play.dataset.cursorAction = paused ? 'Activar recorrido' : 'Pausar recorrido';
     setText(status, reduce.matches ? 'Movimiento reducido activado.' : paused ? 'Recorrido automático en pausa.' : running ? 'Los proyectos siguen. Interactuá para detenerlos.' : 'Recorré los proyectos o dejalos pasar.');
   }
@@ -60,38 +64,31 @@ export function initLaunchPanel({ main, layout, advance }) {
     }
   }
   function activity() { lastActivity = performance.now(); schedule(); }
-  body.classList.add("launch-ready");
-  toggle.hidden = false;
-  playback.hidden = false;
-  toggle.addEventListener('click', async () => {
-    if (folding) return;
-    activity();
-    const folded = !body.classList.contains('launch-folded');
-    const update = () => layout(() => {
-      body.classList.toggle('launch-folded', folded);
-      panel.inert = folded;
-      toggle.setAttribute('aria-expanded', String(!folded));
-      const text = folded ? 'Expandir panel' : 'Reducir panel';
-      toggle.setAttribute('aria-label', text);
-      toggle.dataset.cursorAction = text;
-      toggle.querySelector('.launch-toggle__label').textContent = text;
-    });
-    folding = true;
-    toggle.disabled = true;
-    try {
-      if (document.startViewTransition && !reduce.matches && !document.hidden) {
-        document.documentElement.classList.add('launch-changing');
-        const transition = document.startViewTransition(update);
-        await transition.finished.catch(() => {});
-      } else update();
-      sessionStorage.setItem('portfolio-launch-folded', String(folded));
-    } catch { /* A denied session store does not prevent changing the panel. */ }
-    finally {
-      document.documentElement.classList.remove('launch-changing');
-      folding = false;
-      toggle.disabled = false;
+  body.classList.add('launch-ready');
+  play.hidden = false;
+  try { sessionStorage.removeItem('portfolio-launch-folded'); } catch {}
+  menus.forEach(menu => {
+    menu.addEventListener('toggle', () => {
+      if (menu.open) menus.forEach(other => { if (other !== menu) other.open = false; });
       activity();
-    }
+    });
+  });
+  function closeMenus(focus = false) {
+    if (!menus.some(menu => menu.open)) return;
+    menus.forEach(menu => {
+      if (!menu.open) return;
+      menu.open = false;
+      if (focus) menu.querySelector('summary').focus({ preventScroll: true });
+    });
+    activity();
+  }
+  utilities.addEventListener('focusin', activity);
+  utilities.addEventListener('focusout', activity);
+  document.addEventListener('pointerdown', event => {
+    if (!utilities.contains(event.target)) closeMenus();
+  }, { passive: true });
+  utilities.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { event.preventDefault(); closeMenus(true); }
   });
   play.addEventListener('click', () => {
     paused = !paused;
@@ -122,15 +119,6 @@ export function initLaunchPanel({ main, layout, advance }) {
     activity();
   });
   desktop.addEventListener('change', activity);
-  try {
-    if (sessionStorage.getItem('portfolio-launch-folded') === 'true') {
-      layout(() => { body.classList.add('launch-folded'); panel.inert = true; });
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Expandir panel');
-      toggle.dataset.cursorAction = 'Expandir panel';
-      toggle.querySelector('.launch-toggle__label').textContent = 'Expandir panel';
-    }
-  } catch {}
 
   function reveal() {
     if (reduce.matches || !desktop.matches) return;
@@ -158,12 +146,17 @@ export function initLaunchPanel({ main, layout, advance }) {
       if (visible > score) { best = card; score = visible; }
     });
     if (best) {
+      document.querySelectorAll('[data-launch-jump]').forEach(item => {
+        if (item.dataset.launchJump === best.dataset.slug) item.setAttribute('aria-current', 'location');
+        else item.removeAttribute('aria-current');
+      });
       const link = best.querySelector('.archive-card__link');
       const title = best.querySelector('.archive-card__title').textContent;
       if (current.textContent !== title) { current.textContent = title; current.href = link.href; }
     }
   }
   function observeCurrent() { if (!currentFrame && !document.hidden && !departed) currentFrame = requestAnimationFrame(updateCurrent); }
+  document.addEventListener('portfolio:jump', () => { activity(); observeCurrent(); });
   window.addEventListener('scroll', observeCurrent, { passive: true });
   window.addEventListener('resize', observeCurrent, { passive: true });
   window.addEventListener('pagehide', () => { cancelAnimationFrame(currentFrame); currentFrame = 0; });

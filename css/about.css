@@ -1,5 +1,5 @@
 .about-main { width: var(--content-width); margin: var(--content-top) 0 160px var(--content-left); }
-.about-intro { padding: clamp(24px, 3vw, 40px); background: #f1ece0; color: #0a0a0a; --bg: #f1ece0; --fg: #0a0a0a; }
+.about-intro { padding: clamp(24px, 3vw, 40px); background: var(--portfolio-paper); color: #0a0a0a; --bg: var(--portfolio-paper); --fg: #0a0a0a; }
 .about-intro__status { font-size: var(--text-meta); margin-bottom: 32px; }
 .about-intro h1 { font-size: var(--text-title); margin-bottom: 16px; }
 .about-intro__note { margin-top: 40px; color: #68655e; }
@@ -20,7 +20,7 @@
 .about-chapter .accordion { margin-top: 32px; }
 .about-chapter .directory-list { font-size: var(--text-meta); }
 .about-contact { display: block; margin-top: 32px; min-height: 44px; padding-top: 12px; }
-.about-testament { max-width: 100%; padding: 32px; background: #f1ece0; color: #0a0a0a; --bg: #f1ece0; --fg: #0a0a0a; --mute: #68655e; }
+.about-testament { max-width: 100%; padding: 32px; background: var(--portfolio-paper); color: #0a0a0a; --bg: var(--portfolio-paper); --fg: #0a0a0a; --mute: #68655e; }
 .about-testament__reader { padding-top: 24px; }
 .about-entry__body { max-height: 340px; margin-top: 20px; padding-right: 12px; overflow-y: auto; overscroll-behavior: contain; font-size: 10px; line-height: 1.5; text-align: justify; scrollbar-width: none; }
 .about-entry__body p + p { margin-top: 16px; }

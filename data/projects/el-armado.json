@@ -230,6 +230,55 @@
   "story": [
     {
       "key": "intro",
+      "title": "Segunda edición · Buenos Aires, 2026",
+      "description": "Identidad visual para El Armado en La Dama de Bollini. Marca, ilustración, afiche e historia de Instagram para un encuentro de música, karaoke y tragos.",
+      "images": [
+        "assets/images/el-armado-web/marca-863.webp"
+      ]
+    },
+    {
+      "key": "entrega-final",
+      "title": "Afiche final",
+      "description": "Pieza de la segunda edición: marca, ilustración y datos del encuentro sobre fondo vino.",
+      "images": [
+        "assets/images/el-armado-web/afiche-1000.webp"
+      ]
+    },
+    {
+      "key": "historia",
+      "title": "Historia de Instagram",
+      "description": "Adaptación vertical del afiche con la misma marca, ilustración y datos de la edición.",
+      "images": [
+        "assets/images/el-armado-story/historia-800.webp"
+      ]
+    },
+    {
+      "key": "ilustraciones",
+      "title": "Ilustración",
+      "description": "Dos manos sostienen un micrófono malva y una botella verde. Ilustración realizada con calco digital en Figma Draw.",
+      "images": [
+        "assets/images/el-armado-web/ilustracion-color-760.webp"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "Paleta cromática",
+      "description": "Vino como base, hueso para marca y manos, malva para el micrófono y verde para la botella.",
+      "images": []
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "Marca, ilustración y dos formatos de comunicación para la segunda edición de El Armado.",
+      "images": []
+    }
+  ],
+  "intro": [
+    "Identidad visual para El Armado en La Dama de Bollini. Marca, ilustración, afiche e historia de Instagram para un encuentro de música, karaoke y tragos."
+  ],
+  "storyHistory": [
+    {
+      "key": "intro",
       "title": "Un encuentro, una imagen compartida",
       "description": "Para la segunda edición de El Armado, desarrollé una identidad que reúne música, karaoke y tragos en una sola escena: dos manos, un micrófono y una botella. La propuesta se realizó para La Dama de Bollini, Buenos Aires.",
       "images": [
@@ -286,7 +335,5 @@
       "images": []
     }
   ],
-  "intro": [
-    "Para la segunda edición de El Armado, desarrollé una identidad que reúne música, karaoke y tragos en una sola escena: dos manos, un micrófono y una botella. La propuesta se realizó para La Dama de Bollini, Buenos Aires."
-  ]
+  "storyDirection": "Entregas primero; proceso y catálogo anteriores conservados como historial."
 }

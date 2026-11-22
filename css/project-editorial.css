@@ -1,5 +1,5 @@
 /* Editorial cases share the reading rhythm; original artwork retains its colours. */
-:root:has(.editorial-page) { color-scheme: light; --bg: var(--portfolio-paper); --fg: #111; --accent: var(--editorial-brand); --mute: #514a46; --line: #111; --editorial-brand: #360f17; --project-symbol: var(--editorial-brand); }
+:root:has(.editorial-page) { color-scheme: light; --bg: var(--portfolio-paper); --fg: #111; --accent: var(--editorial-brand); --mute: #4c4c4c; --line: #111; --editorial-brand: #360f17; --project-symbol: var(--editorial-brand); }
 :root:has(.editorial-page--club-de-economia) { --editorial-brand: #42aebd; }
 :root:has(.editorial-page--olas-ditella) { --editorial-brand: #175055; }
 :root:has(.editorial-page--orfeo) { --editorial-brand: #394a1c; }
@@ -120,7 +120,7 @@
 .editorial-restart h2 { margin: 0; font-size: 18px; line-height: 1.3; }
 .editorial-restart__project { font-size: 12px; }
 .editorial-restart__next { color: var(--mute); font-size: 12px; }
-.editorial-page :is(.image-zoom,.image-gallery) :focus-visible { outline-color: #f1ece0; }
+.editorial-page :is(.image-zoom,.image-gallery) :focus-visible { outline-color: var(--portfolio-paper); }
 .project-editorial--loop { display: block; padding-bottom: 0; overflow-anchor: none; --editorial-column: calc((100% - var(--portfolio-gap, 70px)) / 2); }
 .editorial-loop-stream { position: relative; overflow-anchor: none; }
 .project-editorial.editorial-loop-measure { position: absolute; top: 0; left: -10000px; width: var(--editorial-measure-width); margin: 0; padding: 0; visibility: hidden; pointer-events: none; }

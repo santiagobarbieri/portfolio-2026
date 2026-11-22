@@ -32,7 +32,7 @@
     ]
   ],
   "intro": [
-    "Para el primer drop de ORFEO, En la Esquina, participé en la dirección creativa, la producción y edición audiovisual y el desarrollo web, junto a su equipo. La campaña vincula tres sweaters con escenas y recorridos cotidianos de Buenos Aires."
+    "Dirección creativa, producción y edición audiovisual y desarrollo web para el primer drop de ORFEO, junto a su equipo. La campaña presenta tres sweaters en escenas cotidianas de Buenos Aires."
   ],
   "sections": [
     {
@@ -598,6 +598,113 @@
   "story": [
     {
       "key": "intro",
+      "title": "En la Esquina",
+      "description": "Dirección creativa, producción y edición audiovisual y desarrollo web para el primer drop de ORFEO, junto a su equipo. La campaña presenta tres sweaters en escenas cotidianas de Buenos Aires.",
+      "images": [
+        "assets/images/orfeo/wordmark-1200.webp"
+      ]
+    },
+    {
+      "key": "campana",
+      "title": "Campaña · En la Esquina",
+      "description": "Selección de imágenes de la campaña: prendas, arquitectura y recorridos cotidianos de Buenos Aires.",
+      "images": [
+        "assets/images/orfeo/IMG_4868-1600.webp",
+        "assets/images/orfeo/IMG_4144-800.webp",
+        "assets/images/orfeo/IMG_4685-800.webp"
+      ]
+    },
+    {
+      "key": "viamonte",
+      "title": "Viamonte",
+      "description": "Sweater marrón de tejido trenzado. Vistas de la prenda, textura y uso en la ciudad.",
+      "images": [
+        "assets/images/orfeo-story/viamonte-frente-800.webp",
+        "assets/images/orfeo/IMG_4710-800.webp",
+        "assets/images/orfeo/IMG_4109-800.webp"
+      ]
+    },
+    {
+      "key": "talcahuano",
+      "title": "Talcahuano",
+      "description": "Sweater negro de superficie lisa. La selección reúne vistas de la prenda y escenas de transporte.",
+      "images": [
+        "assets/images/orfeo-story/talcahuano-frente-800.webp",
+        "assets/images/orfeo/IMG_4775-800.webp",
+        "assets/images/orfeo/IMG_4246-800.webp"
+      ]
+    },
+    {
+      "key": "lavalle",
+      "title": "Lavalle",
+      "description": "Sweater azul de tejido trenzado. Vistas de frente, espalda y uso en la ciudad.",
+      "images": [
+        "assets/images/orfeo-story/lavalle-frente-800.webp",
+        "assets/images/orfeo/IMG_4800-800.webp",
+        "assets/images/orfeo/IMG_4484-800.webp"
+      ]
+    },
+    {
+      "key": "marca",
+      "title": "Logotipo y monograma",
+      "description": "Recursos de la identidad de ORFEO que acompañan la campaña: logotipo, monograma y aplicaciones circulares.",
+      "images": [
+        "assets/images/orfeo/logo%20%281%29.png",
+        "assets/images/orfeo/favicon.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png"
+      ]
+    },
+    {
+      "key": "lacres",
+      "title": "Lacres",
+      "description": "Aplicaciones de la marca en relieve, con variantes de color.",
+      "images": [
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp"
+      ]
+    },
+    {
+      "key": "sellos",
+      "title": "Sello oval",
+      "description": "Sello de ORFEO con el lema «Back to Basics».",
+      "images": [
+        "assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp"
+      ]
+    },
+    {
+      "key": "estampilla",
+      "title": "Estampilla ilustrada",
+      "description": "Pieza de la identidad de ORFEO con ilustración, marco y textura.",
+      "images": [
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp",
+        "assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "Colores de las piezas",
+      "description": "Marino, marrón y carbón presentes en las prendas; oliva y marfil en las aplicaciones gráficas.",
+      "images": [],
+      "notes": [
+        "Valores muestreados de las aplicaciones gráficas; no son especificaciones oficiales de marca."
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "Una campaña para el primer lanzamiento de ORFEO, con tres prendas y un mismo contexto urbano.",
+      "images": []
+    }
+  ],
+  "storyHistory": [
+    {
+      "key": "intro",
       "title": "Tres prendas, una historia porteña",
       "description": "Para el primer drop de ORFEO, En la Esquina, participé en la dirección creativa, la producción y edición audiovisual y el desarrollo web, junto a su equipo. La campaña vincula tres sweaters con escenas y recorridos cotidianos de Buenos Aires.",
       "images": [
@@ -698,5 +805,6 @@
       "description": "El proyecto reúne dirección creativa, contenido audiovisual y web para el primer lanzamiento; la ciudad es el hilo que conecta las piezas.",
       "images": []
     }
-  ]
+  ],
+  "storyDirection": "Entregas primero; proceso y catálogo anteriores conservados como historial."
 }

@@ -17,13 +17,16 @@
 :root {
   color-scheme: dark;
   --bg: #0a0a0a;
-  --portfolio-paper: #f1ece0;
+  --portfolio-paper: #d9d9d9;
+  --color-green: #03b047;
+  --color-orange: #d3532e;
+  --color-blue: #01a2f2;
   --accent: #ffffff;
   --hover-surface: color-mix(in srgb, var(--fg) 4%, transparent);
-  --fg: #f1ece0;
+  --fg: #e9e9e9;
   /* AA contrast for small text; these stay slightly stronger than the mockups. */
-  --mute: #b7b3ab;
-  --line: #45443f;
+  --mute: #b7b7b7;
+  --line: #3f3f3f;
   --font: "Albert Sans", system-ui, sans-serif;
   --frame-margin: 16px;
   --frame-top: 40px;
@@ -59,8 +62,8 @@
   color-scheme: light;
   --bg: var(--portfolio-paper);
   --fg: #0a0a0a;
-  --mute: #514d47;
-  --line: #807d76;
+  --mute: #4c4c4c;
+  --line: #9b9b9b;
 }
 
 /* Keep native wheel, touch and keyboard scrolling without visible scrollbars. */

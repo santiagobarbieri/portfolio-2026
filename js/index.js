@@ -81,7 +81,9 @@ export async function initArchive() {
   const preview = initArchivePreview(stream, projects);
 
   const previousState = storedState();
-  const catalogue = templates.map((card) => card.dataset.slug).join("|");
+  const launch = document.body.classList.contains("archive-page--launch");
+  const catalogue = templates.map((card) => card.dataset.slug).join("|") + (launch ? "|single-column" : "");
+  const jumpLinks = [...document.querySelectorAll("[data-launch-jump]")];
   const state = previousState.version === 4 && previousState.catalogue === catalogue ? previousState : {};
   const menus = [...document.querySelectorAll("[data-filter-menu]")];
   const familyCount = new Set(templates.map((card) => card.dataset.family)).size;
@@ -156,10 +158,11 @@ export async function initArchive() {
       card = cardPool.get(template.dataset.slug)?.pop() || template.cloneNode(true);
       row.replaceChildren(card);
     }
-    card.classList.toggle("archive-card--right", modulo(sequence, 2) === 1);
+    card.classList.toggle("archive-card--right", !launch && modulo(sequence, 2) === 1);
+    if (launch) card.removeAttribute("id");
     if (document.body.classList.contains('archive-page--launch')) {
-      const available = document.body.classList.contains('launch-folded') ? '100vw - 104px' : '50vw';
-      card.querySelector('.archive-card__image')?.setAttribute('sizes', `calc((${available} - 48px - clamp(20px, 2vw, 40px)) / 2)`);
+      const width = Math.ceil(main.getBoundingClientRect().width);
+      card.querySelector('.archive-card__image')?.setAttribute('sizes', `${width}px`);
     }
     rowObserver.observe(row);
     return row;
@@ -194,6 +197,10 @@ export async function initArchive() {
       const primary = representatives.get(row.firstElementChild.dataset.slug)?.row === row;
       if (primary && row.hasAttribute("aria-hidden")) row.removeAttribute("aria-hidden");
       else if (!primary && !row.hasAttribute("aria-hidden")) row.setAttribute("aria-hidden", "true");
+      if (launch) {
+        if (primary) row.firstElementChild.id = `project-${row.firstElementChild.dataset.slug}`;
+        else row.firstElementChild.removeAttribute("id");
+      }
       row.inert = false;
       row.querySelectorAll("a, button, summary, [tabindex]").forEach((control) => {
         if (control.tabIndex !== (primary ? 0 : -1)) control.tabIndex = primary ? 0 : -1;
@@ -230,6 +237,12 @@ export async function initArchive() {
         checked.checked = true;
         menu.querySelector("[data-filter-label]").textContent = checked.nextElementSibling.textContent;
       }
+    });
+    const jumpList = document.querySelector(".launch-project-list");
+    jumpLinks.forEach(link => { link.parentElement.hidden = !selected.some(card => card.dataset.slug === link.dataset.launchJump); });
+    selected.forEach((card, index) => {
+      const link = jumpLinks.find(item => item.dataset.launchJump === card.dataset.slug);
+      if (link && jumpList.children[index] !== link.parentElement) jumpList.insertBefore(link.parentElement, jumpList.children[index] || null);
     });
     const projectCount = selected.length;
     const count = `${projectCount} ${projectCount === 1 ? "proyecto" : "proyectos"}`;
@@ -385,8 +398,8 @@ export async function initArchive() {
 
   function fitFilterControls() {
     if (indexPanel) indexPanel.open = !compactControls.matches;
-    if (filterPanel) filterPanel.open = true;
-    menus.forEach((menu) => { menu.open = false; });
+    if (filterPanel) filterPanel.open = !document.body.classList.contains("archive-page--launch");
+    menus.forEach((menu) => { menu.open = document.body.classList.contains("archive-page--launch") && menu.dataset.filterMenu === "order"; });
     syncIndex();
   }
 
@@ -394,6 +407,9 @@ export async function initArchive() {
     if (compactControls.matches && indexPanel) {
       closeIndex();
     } else if (compactControls.matches && filterPanel) {
+      filterPanel.open = false;
+      filterTrigger?.focus({ preventScroll: true });
+    } else if (document.body.classList.contains("archive-page--launch")) {
       filterPanel.open = false;
       filterTrigger?.focus({ preventScroll: true });
     } else {
@@ -417,6 +433,19 @@ export async function initArchive() {
       closeFilters();
     }
   });
+
+  jumpLinks.forEach(link => link.addEventListener('click', event => {
+    event.preventDefault();
+    const index = selected.findIndex(card => card.dataset.slug === link.dataset.launchJump);
+    if (index < 0) return;
+    const current = anchor().sequence;
+    const sequence = index + Math.round((current - index) / selected.length) * selected.length;
+    pristine = false;
+    focusSlug = link.dataset.launchJump;
+    render({ sequence, offset: -64 });
+    save();
+    document.dispatchEvent(new CustomEvent('portfolio:jump'));
+  }));
 
   stream.addEventListener("focusin", syncAccessibility);
   history.scrollRestoration = "manual";
@@ -475,12 +504,6 @@ export async function initArchive() {
   await waitForImages(stream);
   initLaunchPanel({
     main,
-    layout: (mutate) => {
-      const position = anchor();
-      preview.stop();
-      mutate();
-      render(position);
-    },
     advance: (y) => { motion.scrollTo(y, { immediate: true }); recycle(); },
   });
 }

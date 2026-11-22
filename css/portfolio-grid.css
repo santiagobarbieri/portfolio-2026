@@ -71,3 +71,13 @@
 
   .editorial-home .identity__glyph { transform-origin: right top; }
 }
+
+/* Fine rules define the fixed commands, moving work and small signature. */
+@media (min-width: 901px) {
+  .editorial-shell::before, .editorial-shell::after {
+    content: ""; position: fixed; top: 0; bottom: 0; width: 1px;
+    background: #a8a8a8; pointer-events: none;
+  }
+  .editorial-shell::before { left: calc(var(--portfolio-center-left) - var(--portfolio-gap) / 2); }
+  .editorial-shell::after { left: calc(var(--portfolio-center-left) + var(--portfolio-center-width) + var(--portfolio-gap) / 2); }
+}

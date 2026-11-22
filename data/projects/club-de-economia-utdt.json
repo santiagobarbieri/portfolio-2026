@@ -36,7 +36,7 @@
     ]
   ],
   "intro": [
-    "Para el relanzamiento del Club de Economía, diseñé una marca y un sistema de piezas para comunicar sus charlas. La búsqueda fue darle una identidad propia dentro de la UTDT, simple de usar y de continuar."
+    "Marca y sistema gráfico para el relanzamiento del Club de Economía. La entrega reúne versiones de marca, plantillas para charlas y una trama de diagonales."
   ],
   "palette": {
     "title": "Paleta de la identidad",
@@ -338,6 +338,84 @@
   "story": [
     {
       "key": "intro",
+      "title": "Identidad visual · Universidad Torcuato Di Tella",
+      "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía. La entrega reúne versiones de marca, plantillas para charlas y una trama de diagonales.",
+      "images": [
+        "assets/images/club-de-economia-utdt/brand-final.svg"
+      ]
+    },
+    {
+      "key": "marca",
+      "title": "Símbolo y versiones",
+      "description": "Isotipo celeste y versión a una tinta. El sistema usa Albert Sans en Semi Bold para destacar y Medium para la información.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Isotipo.png",
+        "assets/images/club-de-economia-utdt/Isotipo%202.png"
+      ]
+    },
+    {
+      "key": "publicaciones",
+      "title": "Plantillas de publicaciones",
+      "description": "Versiones clara y oscura para anunciar charlas, con espacio para invitado, imagen, fecha, horario y aula.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp",
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp"
+      ],
+      "notes": [
+        "Las piezas mostradas son plantillas con campos de ejemplo."
+      ]
+    },
+    {
+      "key": "historias",
+      "title": "Plantillas de historias",
+      "description": "Adaptaciones verticales para anunciar charlas, con los mismos datos y jerarquías que las publicaciones.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp",
+        "assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp"
+      ],
+      "notes": [
+        "Plantillas con campos de ejemplo."
+      ]
+    },
+    {
+      "key": "trama",
+      "title": "Cabecera de redes",
+      "description": "Trama de diagonales para la cabecera de Twitter, en celeste sobre gris claro.",
+      "images": [
+        "assets/images/club-de-economia-utdt/Twitter%20header-800.webp"
+      ]
+    },
+    {
+      "key": "movimiento",
+      "title": "Estudio de movimiento",
+      "description": "Estudio animado de gráficos, porcentajes y tipografía que termina en la marca. Los valores son ejemplos, no estadísticas de la organización.",
+      "images": [],
+      "notes": [
+        "Animación gráfica con valores de ejemplo."
+      ],
+      "videos": [
+        "assets/videos/club-de-economia/motion-study.mp4"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "Colores de la identidad",
+      "description": "Celeste, gris claro y negro presentes en las piezas finales.",
+      "images": [],
+      "notes": [
+        "Valores de referencia muestreados de las piezas."
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "Marca y piezas reutilizables para las comunicaciones del Club de Economía.",
+      "images": []
+    }
+  ],
+  "storyHistory": [
+    {
+      "key": "intro",
       "title": "Una identidad para volver a presentarse",
       "description": "Para el relanzamiento del Club de Economía, diseñé una marca y un sistema de piezas para comunicar sus charlas. La búsqueda fue darle una identidad propia dentro de la UTDT, simple de usar y de continuar.",
       "images": [
@@ -423,5 +501,6 @@
       "description": "De una referencia institucional a una marca propia y un conjunto de piezas reutilizables. El siguiente anuncio cambia de contenido y conserva el sistema.",
       "images": []
     }
-  ]
+  ],
+  "storyDirection": "Entregas primero; proceso y catálogo anteriores conservados como historial."
 }

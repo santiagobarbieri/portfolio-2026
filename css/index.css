@@ -118,7 +118,7 @@
   .archive-index[open] .archive-index__icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .archive-index[open] .archive-index__icon span:nth-child(2) { opacity: 0; }
   .archive-index[open] .archive-index__icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-  .archive-controls { --bg: #f1ece0; --fg: #0a0a0a; --accent: #0a0a0a; --mute: #68645c; --line: #9b978e; position: fixed; inset: var(--archive-header-height) 0 0; width: 100%; max-height: calc(100dvh - var(--archive-header-height)); gap: 24px; padding: 24px max(24px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); color: var(--fg); background: var(--bg); }
+  .archive-controls { --bg: #d9d9d9; --fg: #0a0a0a; --accent: #0a0a0a; --mute: #68645c; --line: #9b978e; position: fixed; inset: var(--archive-header-height) 0 0; width: 100%; max-height: calc(100dvh - var(--archive-header-height)); gap: 24px; padding: 24px max(24px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); color: var(--fg); background: var(--bg); }
   .archive-controls > * { width: min(100%, 480px); margin-inline: auto; }
   .archive-index__intro { display: block; flex: 0 0 auto; }
   .archive-index__intro h2 { margin-bottom: 10px; font-size: 18px; }

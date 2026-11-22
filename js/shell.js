@@ -79,7 +79,7 @@ async function updateFavicon() {
       svg.setAttribute("viewBox", "-1 -1 52 52");
       svg.querySelectorAll("path").forEach((path) => {
         path.setAttribute("fill", colour);
-        path.setAttribute("stroke", scheme.matches ? "#f1ece0" : "#18191a");
+        path.setAttribute("stroke", scheme.matches ? "#d9d9d9" : "#18191a");
         path.setAttribute("stroke-width", identityColour && contrast < 3 ? ".9" : "0");
         path.setAttribute("stroke-linejoin", "round");
         path.setAttribute("paint-order", "stroke fill");

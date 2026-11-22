@@ -1,5 +1,15 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Dirección vigente — entregas, color y recorrido único · 21 de noviembre de 2026
+
+El inicio usa negro continuo en presentación, feed y comandos, separado por líneas grises finas. Acentos #03B047, #D3532E y #01A2F2; texto pequeño de color solo sobre negro con contraste suficiente. El gris claro #D9D9D9 reemplaza al crema del portfolio, sin modificar colores ni fondos originales de las piezas.
+
+El panel de presentación izquierdo permanece fijo y ya no tiene opción de plegado ni estado de toggle. Su lista Proyectos permite saltar dentro del loop y señala el caso visible; enlaces HTML conservan navegación sin JavaScript. El feed ocupa el ancho completo de su zona en una sola columna de portadas, una debajo de otra, con captions en flujo y separación real para la física. La nueva firma del catálogo invalida geometrías de la antigua doble columna. Los interiores de clientes y Archivo personal conservan sus composiciones propias.
+
+Filtros y opciones de recorrido se ubican en el lateral derecho del feed, mediante iconos y desplegables nativos. Un solo panel abierto, cierre exterior/Escape, foco visible y pausa del avance automático mientras se usan. Se conserva avance a 22px/s tras cinco segundos de inactividad, pausa manual, suspensión en pestaña oculta, movimiento reducido y loader Rose. No automatizar el scroll de las fichas. El aviso móvil hasta 900px continúa vigente.
+
+Las cinco fichas muestran primero las entregas: El Armado (afiche e historia), OLAS (afiches y stickers), Club (marca y plantillas), Orfeo (campaña y prendas) y Apolo (cuatro colecciones y video). Títulos literales y explicaciones breves. Pruebas descartadas y referencias de proceso quedan fuera del recorrido principal; originales y datos anteriores se preservan. No atribuir resultados, autorías ni eventos no confirmados. Club mantiene las aclaraciones de plantillas y valores de ejemplo. Videos automáticos, mudos, en loop y sin controles; sin descargas de clientes.
+
 ## Navegación simplificada · 21 de noviembre de 2026
 
 Herramientas está retirada de la navegación. Redes muestra Instagram, Behance y LinkedIn como una lista siempre visible, sin desplegable ni chevron. No inventar URLs mientras los perfiles sigan pendientes. Conservar el resto del índice y el loop.

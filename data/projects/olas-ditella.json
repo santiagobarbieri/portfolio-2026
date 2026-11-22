@@ -32,7 +32,7 @@
     ]
   ],
   "intro": [
-    "Desarrollé la identidad de OLAS para su campaña estudiantil en la Universidad Torcuato Di Tella. La búsqueda fue pasar de un nombre a un lenguaje reconocible: una ola que señala hacia adelante y mensajes que invitan a participar."
+    "Identidad visual para OLAS en la Universidad Torcuato Di Tella. La marca integra una ola en la O y se aplica en afiches, stickers y recursos gráficos."
   ],
   "sections": [
     {
@@ -347,6 +347,63 @@
   "story": [
     {
       "key": "intro",
+      "title": "Campaña estudiantil · UTDT, 2026",
+      "description": "Identidad visual para OLAS en la Universidad Torcuato Di Tella. La marca integra una ola en la O y se aplica en afiches, stickers y recursos gráficos.",
+      "images": [
+        "assets/images/olas-ditella/Logo.svg"
+      ]
+    },
+    {
+      "key": "afiches",
+      "title": "Afiches de campaña",
+      "description": "Cuatro piezas de precampaña bajo «Tu voz transforma», con una estructura compartida y distintos collages.",
+      "images": [
+        "assets/images/olas-ditella-story/afiche-1-800.webp",
+        "assets/images/olas-ditella-story/afiche-2-800.webp",
+        "assets/images/olas-ditella-story/afiche-3-800.webp",
+        "assets/images/olas-ditella-story/afiche-4-800.webp"
+      ]
+    },
+    {
+      "key": "stickers",
+      "title": "Stickers",
+      "description": "Aplicaciones circulares de la ola y la flecha para la campaña.",
+      "images": [
+        "assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png",
+        "assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png"
+      ]
+    },
+    {
+      "key": "iconografia",
+      "title": "Recursos gráficos",
+      "description": "La ola y sus fragmentos funcionan como símbolos independientes dentro del sistema visual.",
+      "images": [
+        "assets/images/olas-ditella/Vectores%202.svg",
+        "assets/images/olas-ditella/New%20Project%20%283%29.svg",
+        "assets/images/olas-ditella/Vectores%201.svg",
+        "assets/images/olas-ditella/Vectores%203.svg",
+        "assets/images/olas-ditella/Vectores%204.svg"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "Colores de la identidad",
+      "description": "Verdes, azules, menta y blanco presentes en las piezas de campaña.",
+      "images": [],
+      "notes": [
+        "Colores presentes en las piezas de identidad."
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "Una identidad compartida entre la marca, los afiches y los stickers de OLAS.",
+      "images": []
+    }
+  ],
+  "storyHistory": [
+    {
+      "key": "intro",
       "title": "Dar forma a una voz estudiantil",
       "description": "Desarrollé la identidad de OLAS para su campaña estudiantil en la Universidad Torcuato Di Tella. La búsqueda fue pasar de un nombre a un lenguaje reconocible: una ola que señala hacia adelante y mensajes que invitan a participar.",
       "images": [
@@ -409,5 +466,6 @@
       "description": "De la letra al símbolo y del símbolo a la campaña: una misma dirección para piezas de formatos distintos.",
       "images": []
     }
-  ]
+  ],
+  "storyDirection": "Entregas primero; proceso y catálogo anteriores conservados como historial."
 }

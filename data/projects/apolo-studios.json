@@ -66,7 +66,7 @@
     ]
   ],
   "intro": [
-    "Cofundé Apolo Studios en Buenos Aires en 2024. Desde la identidad hasta las gráficas de las prendas y las campañas, trabajé alrededor de una idea: llevar lo abstracto a una realidad palpable."
+    "Cofundé Apolo Studios en Buenos Aires. Como director creativo, trabajé en la identidad, las gráficas de prendas y las campañas de la marca."
   ],
   "sections": [
     {
@@ -659,5 +659,189 @@
         "source": "artwork"
       }
     ]
-  }
+  },
+  "storyHistory": [
+    {
+      "key": "intro",
+      "title": "De una idea a una prenda",
+      "description": "Cofundé Apolo Studios en Buenos Aires en 2024. Desde la identidad hasta las gráficas de las prendas y las campañas, trabajé alrededor de una idea: llevar lo abstracto a una realidad palpable.",
+      "images": [
+        "assets/images/apolo-studios-web/mark-800.webp"
+      ],
+      "notes": [
+        "Seeking everywhere."
+      ]
+    },
+    {
+      "key": "marca",
+      "title": "01 – Una marca que fue cambiando",
+      "description": "Fui desarrollando distintas firmas para acompañar las prendas y las colecciones. Lo vintage, lo clásico y la curiosidad ayudaron a definir qué propuestas tenían lugar dentro del universo de Apolo.",
+      "images": [
+        "assets/images/apolo-studios-web/variants-600.webp"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "02 – Colores que se repiten",
+      "description": "El azul se repite en distintas firmas. Crudo, marrón y negro aparecen en las gráficas y en las prendas; sus proporciones cambian con cada colección.",
+      "images": [],
+      "notes": [
+        "Valores de referencia muestreados de las piezas y de la prenda marrón."
+      ]
+    },
+    {
+      "key": "proceso",
+      "title": "03 – Del archivo a la prenda",
+      "description": "El trabajo no terminaba en la gráfica. También había que resolver cómo se veía en la prenda y preparar las piezas para mostrarlas en una sesión.",
+      "images": [
+        "assets/images/apolo-studios-story/process-print-480.webp",
+        "assets/images/apolo-studios-story/process-session-480.webp"
+      ]
+    },
+    {
+      "key": "everywhere",
+      "title": "04 – Everywhere: las primeras prendas",
+      "description": "El primer drop llevó Apolo a las remeras y a una escena cotidiana. La firma pequeña del frente y las gráficas de espalda trabajan a dos escalas: reconocer la marca de cerca y darle presencia a distancia.",
+      "images": [
+        "assets/images/apolo-studios-story/everywhere-cafe-480.webp",
+        "assets/images/apolo-studios-story/everywhere-back-480.webp",
+        "assets/images/apolo-studios-story/everywhere-street-480.webp"
+      ]
+    },
+    {
+      "key": "circles",
+      "title": "05 – Circles: la espalda toma protagonismo",
+      "description": "En Circles, la gráfica ocupa la espalda y la firma del frente queda más contenida. Las figuras blancas y la tipografía azul construyen la imagen principal de la remera.",
+      "images": [
+        "assets/images/apolo-studios-story/circles-front-back-480.webp",
+        "assets/images/apolo-studios-story/circles-back-480.webp",
+        "assets/images/apolo-studios-story/circles-stairs-480.webp"
+      ]
+    },
+    {
+      "key": "sahara",
+      "title": "06 – Sahara: dos formas de firmar",
+      "description": "En Sahara, Seekers y A. Studios aparecen en dos buzos distintos. La campaña los reúne en la calle y en el subte: las firmas salen de la gráfica y se muestran sobre las prendas.",
+      "images": [
+        "assets/images/apolo-studios-story/sahara-two-signatures-480.webp",
+        "assets/images/apolo-studios-story/sahara-street-480.webp",
+        "assets/images/apolo-studios-story/sahara-front-480.webp",
+        "assets/images/apolo-studios-story/sahara-subway-480.webp"
+      ]
+    },
+    {
+      "key": "menorca",
+      "title": "07 – Menorca: concentrar la identidad",
+      "description": "En Menorca, la gorra concentra el diseño. El nombre bordado y las variaciones de color definen la pieza. Retratos, producto y detalles muestran cómo cambia su lectura de cerca y en uso.",
+      "images": [
+        "assets/images/apolo-studios-story/menorca-brown-480.webp",
+        "assets/images/apolo-studios-story/menorca-blue-480.webp",
+        "assets/images/apolo-studios-story/menorca-grey-480.webp",
+        "assets/images/apolo-studios-story/menorca-cafe-480.webp"
+      ]
+    },
+    {
+      "key": "video",
+      "title": "08 – Menorca, en movimiento",
+      "description": "Video de campaña · Cuarto drop.",
+      "images": [],
+      "videos": [
+        "assets/images/apolo-studios-web/menorca.mp4"
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "De las primeras remeras a las campañas, Apolo fue tomando forma en el cruce entre identidad, producto y dirección creativa.",
+      "images": []
+    }
+  ],
+  "story": [
+    {
+      "key": "intro",
+      "title": "Apolo Studios · 2024–2026",
+      "description": "Cofundé Apolo Studios en Buenos Aires. Como director creativo, trabajé en la identidad, las gráficas de prendas y las campañas de la marca.",
+      "images": [
+        "assets/images/apolo-studios-web/mark-800.webp"
+      ],
+      "notes": [
+        "Seeking everywhere."
+      ]
+    },
+    {
+      "key": "everywhere",
+      "title": "Everywhere",
+      "description": "Remeras con firma pequeña en el frente y gráficas en la espalda. La selección reúne las prendas y las imágenes de la campaña.",
+      "images": [
+        "assets/images/apolo-studios-story/everywhere-cafe-480.webp",
+        "assets/images/apolo-studios-story/everywhere-back-480.webp",
+        "assets/images/apolo-studios-story/everywhere-street-480.webp"
+      ]
+    },
+    {
+      "key": "circles",
+      "title": "Circles",
+      "description": "Remeras con gráfica de espalda en blanco y azul y firma contenida en el frente. La selección muestra las piezas y su presentación en campaña.",
+      "images": [
+        "assets/images/apolo-studios-story/circles-front-back-480.webp",
+        "assets/images/apolo-studios-story/circles-back-480.webp",
+        "assets/images/apolo-studios-story/circles-stairs-480.webp"
+      ]
+    },
+    {
+      "key": "sahara",
+      "title": "Sahara",
+      "description": "Buzos con las firmas Seekers y A. Studios. La selección reúne producto e imágenes de campaña en la calle y el subte.",
+      "images": [
+        "assets/images/apolo-studios-story/sahara-two-signatures-480.webp",
+        "assets/images/apolo-studios-story/sahara-street-480.webp",
+        "assets/images/apolo-studios-story/sahara-front-480.webp",
+        "assets/images/apolo-studios-story/sahara-subway-480.webp"
+      ]
+    },
+    {
+      "key": "menorca",
+      "title": "Menorca",
+      "description": "Gorras con el nombre bordado y distintas combinaciones de color. Retratos, detalles y producto muestran las piezas de esta colección.",
+      "images": [
+        "assets/images/apolo-studios-story/menorca-brown-480.webp",
+        "assets/images/apolo-studios-story/menorca-blue-480.webp",
+        "assets/images/apolo-studios-story/menorca-grey-480.webp",
+        "assets/images/apolo-studios-story/menorca-cafe-480.webp"
+      ]
+    },
+    {
+      "key": "video",
+      "title": "Menorca · Video de campaña",
+      "description": "Video de campaña del cuarto drop de Apolo Studios.",
+      "images": [],
+      "videos": [
+        "assets/images/apolo-studios-web/menorca.mp4"
+      ]
+    },
+    {
+      "key": "marca",
+      "title": "Firmas de Apolo",
+      "description": "Variantes de marca desarrolladas para distintas prendas y colecciones. Cada firma forma parte del universo de Apolo.",
+      "images": [
+        "assets/images/apolo-studios-web/variants-600.webp"
+      ]
+    },
+    {
+      "key": "paleta",
+      "title": "Colores de las piezas",
+      "description": "Azul, crudo, marrón y negro presentes en las firmas y las prendas.",
+      "images": [],
+      "notes": [
+        "Valores de referencia muestreados de las piezas y de la prenda marrón."
+      ]
+    },
+    {
+      "key": "restart",
+      "title": "Fin del recorrido",
+      "description": "Cuatro colecciones, sus prendas y campañas, y las firmas de Apolo Studios.",
+      "images": []
+    }
+  ],
+  "storyDirection": "Entregas primero; proceso y catálogo anteriores conservados como historial."
 }
