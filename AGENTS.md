@@ -1,5 +1,16 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Móvil activo, Sobre mí restaurado y Archivo cerrado · 23 de noviembre de 2026
+
+Santiago autorizó desarrollar la versión móvil. Esta indicación reemplaza todos los avisos de móvil pausado o en desarrollo que aparecen en el historial. Hasta 900px, el inicio usa un carrusel horizontal de siete nodos reciclados, tarjetas completas con leve perspectiva, deslizamiento táctil, flechas y botón explícito para abrir el proyecto seleccionado. El avance lento continúa salvo movimiento reducido o pestaña oculta. Arrastrar no abre proyectos ni reproduce sonidos de hover. La cámara aprobada de escritorio conserva sus parámetros y previews.
+
+`css/mobile.css` sustituye el aviso `css/desktop-gate.css`, que se retira del runtime y del árbol activo. El menú móvil de tres barras contiene navegación e índice: diálogo con foco contenido, cierre visible, Escape y fondo inerte. Al elegir un proyecto abre su ficha en la misma página. La lectura de los cinco casos es vertical, con márgenes de 20px, dos imágenes por fila cuando corresponde, piezas únicas de ancho completo, visor ajustado al viewport y flechas de cambio fuera del área de lectura. Videos mudos, en loop y sin controles también en móvil; pausar bajo menú, visor y pestaña oculta. No volver a bloquear pantallas pequeñas.
+
+Sobre mí recupera la presentación previa al último rediseño: título, retrato pendiente y texto confirmado, más Credenciales separadas. Gustos se elimina de la interfaz y los enlaces antiguos `tab=tastes` vuelven a Testamento. Conservar historial, teclado, asociación de pestañas y los dos certificados; no inventar retrato ni contenido biográfico.
+
+Archivo queda temporalmente deshabilitado con candado y etiqueta accesible Próximamente. `?view=archive`, `?view=posters` y `?view=photos`, incluidas las redirecciones antiguas, vuelven a Proyectos sin abrir la grilla. Conservar el catálogo personal y sus assets para reactivarlos después. Este bloqueo es de navegación, no un mecanismo de protección de archivos. Contacto sigue sin destino real de envío; mantener su estado honesto pendiente.
+
+
 ## Previews, Archivo y contenido personal · 22 de noviembre de 2026
 
 Santiago autorizó las seis mejoras propuestas: previews en las tarjetas, índice con disciplina/año, firma sonora por proyecto, Archivo mixto, Sobre mí personal y envío de Contacto. Mantener la cámara, aperturas/cierres, corredor y aviso móvil existentes.

@@ -9,7 +9,7 @@ La versión actual vive en `index.html`: carrusel continuo de proyectos en persp
 - Vercel publica la rama `main`. Ejecuta `node build.mjs` y sirve únicamente `dist/`.
 - No hay dependencias npm, servidor propio ni instalación. El build copia solamente `index.html`, `assets/` y `css/`.
 
-El símbolo del encabezado se transforma en un corredor al pasar el puntero o recibir foco de teclado. Conserva su tamaño de 17px y toma el color de la sección o proyecto abierto; sobre la portada usa un contorno de contraste. Al salir completa la zancada y vuelve al logo. No mantiene animaciones en segundo plano, durante transiciones, detrás del visor o del aviso móvil; con movimiento reducido muestra una pose estática.
+El símbolo del encabezado se transforma en un corredor al pasar el puntero o recibir foco de teclado. Conserva su tamaño de 17px y toma el color de la sección o proyecto abierto; sobre la portada usa un contorno de contraste. Al salir completa la zancada y vuelve al logo. No mantiene animaciones en segundo plano, durante transiciones, detrás del visor o del menú móvil; con movimiento reducido muestra una pose estática.
 
 ## Estado del contenido
 
@@ -21,9 +21,9 @@ Las portadas están preparadas antes de revelar el inicio. Las imágenes interio
 
 - `index.html`: interfaz, catálogo y lógica de la versión actual.
 - `assets/`: únicamente recursos referenciados por esta versión, más su licencia tipográfica.
-- `css/desktop-gate.css`: aviso temporal de móvil en desarrollo.
+- `css/mobile.css`: carrusel táctil, menú accesible, lectura y visor adaptados hasta 900px.
 - `assets/scripts/logo-runner.js` y `css/logo-runner.css`: efecto del logo con los diez fotogramas SVG aportados.
-- `css/editorial-update.css`: índice ampliado, previews, Archivo, Sobre mí y formulario guiado.
+- `css/editorial-update.css`: índice ampliado, previews, estilos del Archivo conservado y formulario guiado.
 - `build.mjs`: empaquetado estático para Vercel.
 - `vercel.json`: build y compatibilidad con direcciones anteriores.
 - `AGENTS.md` y `MAKE-PROJECT.md`: criterios e historial de decisiones.
@@ -38,13 +38,15 @@ node build.mjs
 python3 -m http.server 4173 --directory dist
 ```
 
-No se requiere compilar CSS ni instalar paquetes. Las direcciones anteriores de los proyectos, Sobre mí, Contacto y Archivo se redirigen a la versión actual en Vercel. Los casos también se pueden abrir con `index.html?project=el-armado`; la vista personal usa `?view=posters` o `?view=photos`.
+No se requiere compilar CSS ni instalar paquetes. Las direcciones anteriores de los proyectos, Sobre mí, Contacto y Archivo se redirigen a la versión actual en Vercel. Los casos también se pueden abrir con `index.html?project=el-armado`; Archivo está temporalmente bloqueado: sus enlaces antiguos vuelven a Proyectos.
 
-## Auditoría y navegación — 22 de noviembre de 2026
+## Móvil y navegación — 23 de noviembre de 2026
 
-Se verificó el sitio con el respaldo histórico fuera del repositorio: no hay dependencias activas faltantes. La auditoría de navegador cubre los cinco proyectos, Archivo, Contacto, las tres vistas de Sobre mí, carga inicial, errores y reintentos, visor, reproducción de videos, foco, teclado y URL directa. Se revisaron composiciones de escritorio de 920, 1024, 1280, 1512 y 1920 px; las pantallas hasta 900 px conservan el aviso móvil. Las 239 rutas de imágenes del catálogo se decodifican correctamente.
+La versión móvil ya está activa. El inicio conserva el carrusel infinito con una perspectiva leve, tarjetas grandes, deslizamiento horizontal, flechas y botón de apertura. El índice y los enlaces viven en un menú de tres barras con foco contenido, Escape y cierre táctil. En los proyectos, la lectura es vertical y las flechas quedan fuera del contenido. El visor respeta la resolución nativa; los videos también se reproducen automáticamente en móvil, mudos y sin controles.
 
-Se corrigieron Atrás/Adelante, restauración de lectura y pestañas de Sobre mí, títulos del documento y etiquetas accesibles de la navegación. Escape cierra primero el desplegable enfocado. Sobre mí tiene texto más legible, credenciales separadas y datos organizados sin inventar biografía o retrato.
+Sobre mí vuelve al diseño previo al último cambio, con Testamento y Credenciales. Se retira Gustos y sus enlaces antiguos vuelven a Testamento. El retrato sigue pendiente. Archivo muestra un candado y queda cerrado, también por sus rutas anteriores; se conservan datos y piezas para reactivarlo.
+
+La auditoría de navegador verifica nueve tamaños móviles/tablet, orientación horizontal, gestos táctiles, los cinco proyectos, visor, videos, apertura y cierre, carga directa, historial y navegación con teclado. Se comprueba que no haya desborde horizontal y que el escritorio conserve su cámara. Las pruebas táctiles se ejecutan mediante emulación de Chrome; falta una revisión en dispositivos iOS y Android físicos.
 
 Las aperturas pintan primero el color de la portada, después suben la pieza y, al asentarse, revelan texto y contenido. Esta secuencia también funciona al cambiar de proyecto y por enlace directo. El Armado y OLAS usan logos transparentes originales sobre fondos independientes; los otros tres casos conservan sus portadas completas hasta contar con variantes transparentes que contrasten con sus fondos.
 
@@ -57,10 +59,10 @@ Los cierres retiran el contenido en su posición de lectura y recuperan el color
 | OLAS | Afiches, stickers, vectores y logo transparente cargan. | Revisión editorial de textos y selección, cuando se retome el caso. |
 | Club de Economía | Símbolos, plantillas y video cargan; portada única en el inicio. | Variante completa del logo sin fondo con contraste sobre celeste. |
 | El Armado | Afiches, historia, ilustración y logo hueso cargan. | Revisión editorial de textos, cuando se retome el caso. |
-| Sobre mí | Presentación personal, credenciales y tres selecciones reales del Archivo; conserva teclado y URL. | Retrato original y selección personal de músicos, películas y libros. |
+| Sobre mí | Presentación anterior restaurada; Testamento y Credenciales con teclado e historial. | Retrato original y texto definitivo. |
 | Contacto | Validación, revisión, envío asíncrono, error, reintento y confirmación probados con un endpoint local. | Correo de destino y endpoint del proveedor real. |
 | Tienda y Redes | Los destinos ausentes indican que están en preparación. | URLs definitivas de tienda y perfiles. |
-| Móvil | Aviso de desarrollo, sin reproducir el recorrido oculto. | Diseño y desarrollo específicos, aún pausados. |
+| Móvil | Carrusel táctil, menú y cinco proyectos adaptados; videos y visor activos. | Revisión en teléfonos físicos. |
 
 No se extrajeron logos de capturas ni se quitaron fondos automáticamente. No se modifican originales del respaldo externo. Los grupos fotográficos de tres piezas conservan su selección actual; su edición visual se puede revisar por proyecto.
 

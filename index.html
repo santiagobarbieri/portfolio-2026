@@ -7,7 +7,6 @@
   <meta name="description" content="Portfolio de Santiago Barbieri: identidad visual, dirección creativa, diseño gráfico, fotografía y desarrollo web en Buenos Aires.">
   <title>Portfolio — Santiago Barbieri</title>
   <link rel="icon" type="image/svg+xml" href="./assets/Favicon.svg">
-  <link rel="stylesheet" href="./css/desktop-gate.css">
   <link rel="stylesheet" href="./css/logo-runner.css">
   <script src="./assets/scripts/logo-runner.js" defer></script>
   <style>
@@ -144,8 +143,6 @@
     .study-credential { display: grid; grid-template-columns: 1.35fr 1fr .7fr; gap: 24px; align-items: baseline; }
     .study-credential h2 { margin: 0; font-size: clamp(26px, 3vw, 44px); font-weight: 300; letter-spacing: -.045em; }
     .study-credential p { margin: 0; font-size: 15px; }
-    .study-tastes { padding-top: 13vh; font-size: clamp(24px, 3vw, 42px); font-weight: 300; letter-spacing: -.035em; line-height: 1.2; }
-    .study-tastes p { margin: 0 0 10px; }
     .study-contact { max-width: 620px; margin: 4vh auto 0; }
     .study-contact fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 20px; }
     .study-contact legend { font-size: 32px; font-weight: 300; margin: 0 0 24px; }
@@ -348,10 +345,6 @@
     .study-credentials { padding-top: clamp(40px,10vh,100px); gap: 36px; }
     .study-credential { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr) minmax(0,.85fr); gap: 24px; }
     .study-credential h2 { font-size: clamp(26px,2.7vw,40px); }
-    .study-tastes { display: grid; grid-template-columns: 1fr; gap: 26px; margin: 0; padding-top: clamp(40px,10vh,100px); }
-    .study-tastes > div { min-width: 0; }
-    .study-tastes dt { margin-bottom: 7px; font-size: 12px; line-height: 1.4; font-weight: 400; letter-spacing: 0; color: #666; text-transform: uppercase; }
-    .study-tastes dd { margin: 0; font-size: clamp(25px,2.6vw,38px); line-height: 1.2; }
     @media (min-width: 1001px) and (max-width: 1200px) {
       body:not([data-study-page="project"]) .study-navigation { left: auto; right: 24px; transform: none; }
     }
@@ -370,20 +363,16 @@
     .study-home { display: inline-flex; padding: 5px; margin: -5px; color: inherit; text-decoration: none; }
   </style>
   <link rel="stylesheet" href="./css/editorial-update.css">
+  <link rel="stylesheet" href="./css/mobile.css">
 </head>
 <body class="study-loading">
-  <section class="mobile-status" aria-labelledby="mobile-status-title" tabindex="-1">
-    <span class="mobile-status__logo" aria-hidden="true"></span>
-    <div class="mobile-status__content">
-      <p class="mobile-status__name">Santiago Barbieri</p>
-      <h2 class="mobile-status__title" id="mobile-status-title">La versión móvil está en desarrollo.</h2>
-      <p class="mobile-status__description">Por ahora, podés recorrer el portfolio desde una computadora. Estoy preparando una experiencia pensada para pantallas más pequeñas.</p>
-    </div>
-  </section>
   <h1 class="study-heading">
     <a class="study-home" data-logo-runner href="./index.html" aria-label="Volver a proyectos"><svg class="study-mark" viewBox="0 0 50 50" aria-hidden="true"><path d="M14.5933 0L0 15.5254L10.9479 27.5192H23.3061C23.3061 27.5192 15.9221 34.4746 10.9479 34.4746H0V50H11.3485C18.7221 50 24.7084 34.4977 24.6996 34.4746C24.6996 34.5903 35.4067 50 35.4067 50L50 34.4746L39.0521 22.4808H26.6939C26.6939 22.4808 34.0779 15.5254 39.0521 15.5254H50V0H38.6515C31.2779 0 25.2916 15.5023 25.3004 15.5254C25.3004 15.4097 14.5933 0 14.5933 0Z" fill="currentColor"/></svg></a>
     <span>Santiago Barbieri</span>
   </h1>
+  <button class="study-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="study-menu-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <div class="study-menu-panel" id="study-menu-panel">
+  <button class="study-menu-close" type="button" aria-label="Cerrar menú"><span aria-hidden="true">×</span></button>
   <nav class="study-navigation" aria-label="Navegación principal">
     <div class="study-nav-group study-nav-group--about"><button class="study-nav-trigger" type="button" data-view="about" aria-label="Sobre mí">Sobre mí<svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></div>
     <div class="study-nav-group study-nav-group--contact"><button class="study-nav-trigger" type="button" data-view="contact" aria-label="Contacto">Contacto<svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></div>
@@ -403,16 +392,10 @@
         <li><button type="button" data-pending="Redes · Behance" aria-label="Behance — en preparación"><span>Behance</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
       </ul>
     </details>
-    <details class="study-nav-group study-nav-group--archive">
-      <summary class="study-nav-trigger">Archivo<svg class="study-chevron" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="m1 3 3.5 3L8 3"/></svg></summary>
-      <ul class="study-submenu">
-        <li><button type="button" data-view="archive" aria-label="Explorar todo el archivo"><span>Todo el archivo</span></button></li>
-        <li><button type="button" data-view="posters" aria-label="Archivo de afiches"><span>Afiches</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
-        <li><button type="button" data-view="photos" aria-label="Archivo de fotografías"><span>Fotografía</span><svg viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7M7 2 1.5 7.5"/></svg></button></li>
-      </ul>
-    </details>
+    <div class="study-nav-group study-nav-group--archive"><button class="study-nav-trigger study-nav-trigger--locked" type="button" disabled aria-label="Archivo — próximamente" title="Archivo · Próximamente">Archivo<svg viewBox="0 0 12 14" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6V4a3 3 0 0 1 6 0v2"/><rect x="1" y="6" width="10" height="7" rx="1"/></svg></button></div>
   </nav>
   <nav class="study-projects" aria-label="Índice de proyectos">
+    <p class="study-mobile-projects-title">Proyectos</p>
     <ul>
       <li><button type="button" data-project="0" aria-current="true"><span>Apolo Studios</span></button></li>
       <li><button type="button" data-project="1"><span>Orfeo</span></button></li>
@@ -421,11 +404,17 @@
       <li><button type="button" data-project="4"><span>El Armado</span></button></li>
     </ul>
   </nav>
+  </div>
   <main class="study-stage" tabindex="0" aria-label="Carrusel de proyectos. Usá la rueda, arrastrá o presioná las flechas para recorrerlo." aria-describedby="study-help">
     <div class="study-scene">
       <div class="study-camera"></div>
     </div>
   </main>
+  <section class="study-mobile-caption" aria-label="Proyecto seleccionado">
+    <div class="study-mobile-caption__top"><span data-mobile-count>01 / 05</span><button type="button" data-mobile-step="-1" aria-label="Ver tarjeta anterior">←</button><button type="button" data-mobile-step="1" aria-label="Ver tarjeta siguiente">→</button></div>
+    <h2 data-mobile-title>Apolo Studios</h2><p data-mobile-meta>Identidad y dirección creativa · 2024–2026</p>
+    <button type="button" data-mobile-open>Abrir proyecto <span aria-hidden="true">↗︎</span></button>
+  </section>
   <p class="visually-hidden" id="study-help">Scroll o arrastre · Flechas para recorrer. El movimiento automático es continuo.</p>
   <output class="visually-hidden" data-current>Plano 01 — Apolo Studios</output>
   <p class="study-notice" role="status" aria-live="polite" data-notice></p>
@@ -448,9 +437,11 @@
       const current = document.querySelector('[data-current]');
       const preference = matchMedia('(prefers-reduced-motion: reduce)');
       const smallScreen = matchMedia('(max-width: 900px)');
+      const archiveLocked = true;
       const catalogue = [{"slug": "apolo-studios", "title": "Apolo Studios", "type": "Identidad y dirección creativa", "description": "Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.", "cover": "assets/images/archive-covers/apolo-studios-800.webp", "alt": "Firma de Apolo Studios en blanco sobre azul", "year": "2024–2026", "page": "?project=apolo-studios", "intro": "Cofundé Apolo Studios en Buenos Aires. Como director creativo, trabajé en la identidad, las gráficas de prendas y las campañas de la marca.", "blocks": [{"title": "Everywhere", "description": "Remeras con firma pequeña en el frente y gráficas en la espalda. La selección reúne las prendas y las imágenes de la campaña.", "images": [{"src": "./assets/images/apolo-studios-story/everywhere-cafe-480.webp", "alt": "Everywhere · En el café", "w": 480, "h": 360}, {"src": "./assets/images/apolo-studios-story/everywhere-back-480.webp", "alt": "Everywhere · Gráfica en la espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/everywhere-street-480.webp", "alt": "Everywhere · Dos gráficas en la calle", "w": 480, "h": 853}], "video": null}, {"title": "Circles", "description": "Remeras con gráfica de espalda en blanco y azul y firma contenida en el frente. La selección muestra las piezas y su presentación en campaña.", "images": [{"src": "./assets/images/apolo-studios-story/circles-front-back-480.webp", "alt": "Circles · Frente y espalda", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-back-480.webp", "alt": "Circles · La gráfica puesta", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-stairs-480.webp", "alt": "Circles · En las escaleras", "w": 480, "h": 269}], "video": null}, {"title": "Sahara", "description": "Buzos con las firmas Seekers y A. Studios. La selección reúne producto e imágenes de campaña en la calle y el subte.", "images": [{"src": "./assets/images/apolo-studios-story/sahara-two-signatures-480.webp", "alt": "Sahara · Dos firmas de espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-street-480.webp", "alt": "Sahara · Las prendas en la calle", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-front-480.webp", "alt": "Sahara · Firma A. Studios", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-subway-480.webp", "alt": "Sahara · Dentro del subte", "w": 480, "h": 853}], "video": null}, {"title": "Menorca", "description": "Gorras con el nombre bordado y distintas combinaciones de color. Retratos, detalles y producto muestran las piezas de esta colección.", "images": [{"src": "./assets/images/apolo-studios-story/menorca-brown-480.webp", "alt": "Menorca · Gorra marrón", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-blue-480.webp", "alt": "Menorca · Gorra azul", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-grey-480.webp", "alt": "Menorca · Gorra gris", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-cafe-480.webp", "alt": "Menorca · En el café", "w": 480, "h": 640}], "video": null}, {"title": "Menorca · Video de campaña", "description": "Video de campaña del cuarto drop de Apolo Studios.", "images": [], "video": {"src": "./assets/images/apolo-studios-web/menorca.mp4", "poster": "./assets/images/apolo-studios-web/menorca-video-poster.webp"}}, {"title": "Firmas de Apolo", "description": "Variantes de marca desarrolladas para distintas prendas y colecciones. Cada firma forma parte del universo de Apolo.", "images": [{"src": "./assets/images/apolo-studios-web/variants-600.webp", "alt": "Variantes de logotipo desarrolladas para Apolo Studios", "w": 1600, "h": 1439}], "video": null}, {"title": "Colores de las piezas", "description": "Azul, crudo, marrón y negro presentes en las firmas y las prendas.", "images": [], "video": null, "colors": [{"name": "Azul", "hex": "#09247C"}, {"name": "Crudo", "hex": "#C4C2A5"}, {"name": "Marrón", "hex": "#423934"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#0a247d"}, {"slug": "orfeo", "title": "Orfeo", "type": "Dirección creativa", "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.", "cover": "assets/images/archive-covers/orfeo-800.webp", "alt": "Logotipo de ORFEO sobre carbón", "year": "2026", "page": "?project=orfeo", "intro": "Dirección creativa, producción y edición audiovisual y desarrollo web para el primer drop de ORFEO, junto a su equipo. La campaña presenta tres sweaters en escenas cotidianas de Buenos Aires.", "blocks": [{"title": "Campaña · En la Esquina", "description": "Selección de imágenes de la campaña: prendas, arquitectura y recorridos cotidianos de Buenos Aires.", "images": [{"src": "./assets/images/orfeo/IMG_4868-1600.webp", "alt": "Tres modelos con los sweaters de la colección de ORFEO", "w": 1600, "h": 1067}, {"src": "./assets/images/orfeo/IMG_4144-800.webp", "alt": "Modelo con sweater marrón junto a la entrada de un edificio", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4685-800.webp", "alt": "Modelo con sweater azul junto a un árbol", "w": 800, "h": 1200}], "video": null}, {"title": "Viamonte", "description": "Sweater marrón de tejido trenzado. Vistas de la prenda, textura y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/viamonte-frente-800.webp", "alt": "Viamonte · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4710-800.webp", "alt": "Detalle de un sweater marrón tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4109-800.webp", "alt": "Modelo con sweater marrón en una escalinata porteña", "w": 800, "h": 1200}], "video": null}, {"title": "Talcahuano", "description": "Sweater negro de superficie lisa. La selección reúne vistas de la prenda y escenas de transporte.", "images": [{"src": "./assets/images/orfeo-story/talcahuano-frente-800.webp", "alt": "Talcahuano · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4775-800.webp", "alt": "Detalle de camisa y sweater negro en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4246-800.webp", "alt": "Modelo con sweater negro durante un viaje en transporte público", "w": 800, "h": 1200}], "video": null}, {"title": "Lavalle", "description": "Sweater azul de tejido trenzado. Vistas de frente, espalda y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/lavalle-frente-800.webp", "alt": "Lavalle · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4800-800.webp", "alt": "Vista posterior de un sweater azul tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4484-800.webp", "alt": "Modelo con sweater azul en un recorrido urbano", "w": 800, "h": 1200}], "video": null}, {"title": "Logotipo y monograma", "description": "Recursos de la identidad de ORFEO que acompañan la campaña: logotipo, monograma y aplicaciones circulares.", "images": [{"src": "./assets/images/orfeo/logo%20%281%29.png", "alt": "Logotipo de ORFEO sobre fondo claro", "w": 4134, "h": 4134}, {"src": "./assets/images/orfeo/favicon.png", "alt": "Monograma ORF sobre fondo claro", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png", "alt": "Marca ORFEO en una aplicación circular negra", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png", "alt": "Marca ORFEO en una aplicación circular verde", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png", "alt": "Marca ORFEO en una aplicación circular marrón", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png", "alt": "Marca ORFEO en una aplicación circular azul", "w": 1080, "h": 1080}], "video": null}, {"title": "Lacres", "description": "Aplicaciones de la marca en relieve, con variantes de color.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp", "alt": "Sello en relieve de ORFEO en bordó", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp", "alt": "Sello en relieve de ORFEO en verde", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp", "alt": "Sello en relieve de ORFEO en azul", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp", "alt": "Sello en relieve de ORFEO en marrón", "w": 800, "h": 800}], "video": null}, {"title": "Sello oval", "description": "Sello de ORFEO con el lema «Back to Basics».", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp", "alt": "Sello oval de ORFEO con el lema Back to Basics", "w": 1600, "h": 1600}], "video": null}, {"title": "Estampilla ilustrada", "description": "Pieza de la identidad de ORFEO con ilustración, marco y textura.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp", "alt": "Estampilla gráfica de ORFEO en rojo y amarillo", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo claro", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo oscuro", "w": 800, "h": 800}], "video": null}, {"title": "Colores de las piezas", "description": "Marino, marrón y carbón presentes en las prendas; oliva y marfil en las aplicaciones gráficas.", "images": [], "video": null, "colors": [{"name": "Marino", "hex": "#0C1D34"}, {"name": "Marrón", "hex": "#583A13"}, {"name": "Carbón", "hex": "#18191A"}, {"name": "Oliva", "hex": "#394A1C"}, {"name": "Marfil", "hex": "#FEFFED"}]}], "w": 800, "h": 1000, "surface": "#1a1a1a"}, {"slug": "olas-ditella", "title": "OLAS Di Tella", "type": "Identidad y campaña", "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.", "cover": "assets/images/archive-covers/olas-ditella-800.webp", "alt": "Logotipo de OLAS sobre verde", "year": "2026", "page": "?project=olas-ditella", "intro": "Identidad visual para OLAS en la Universidad Torcuato Di Tella. La marca integra una ola en la O y se aplica en afiches, stickers y recursos gráficos.", "blocks": [{"title": "Afiches de campaña", "description": "Cuatro piezas de precampaña bajo «Tu voz transforma», con una estructura compartida y distintos collages.", "images": [{"src": "./assets/images/olas-ditella-story/afiche-1-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-2-800.webp", "alt": "Afiche de OLAS con el mensaje No te quedes callado", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-3-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz importa", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-4-800.webp", "alt": "Afiche de OLAS con un megáfono y la palabra Cambio", "w": 800, "h": 1132}], "video": null}, {"title": "Stickers", "description": "Aplicaciones circulares de la ola y la flecha para la campaña.", "images": [{"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png", "alt": "Sticker circular de OLAS con ola y flecha sobre negro", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png", "alt": "Sticker circular de OLAS con ola y flecha sobre verde", "w": 1080, "h": 1080}], "video": null}, {"title": "Recursos gráficos", "description": "La ola y sus fragmentos funcionan como símbolos independientes dentro del sistema visual.", "images": [{"src": "./assets/images/olas-ditella/Vectores%202.svg", "alt": "OLAS — recurso vectorial 2", "w": 7939, "h": 6965}, {"src": "./assets/images/olas-ditella/New%20Project%20%283%29.svg", "alt": "OLAS — recurso vectorial adicional", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/Vectores%201.svg", "alt": "OLAS — recurso vectorial 1", "w": 518, "h": 642}, {"src": "./assets/images/olas-ditella/Vectores%203.svg", "alt": "OLAS — recurso vectorial 3", "w": 642, "h": 501}, {"src": "./assets/images/olas-ditella/Vectores%204.svg", "alt": "OLAS — recurso vectorial 4", "w": 563, "h": 435}], "video": null}, {"title": "Colores de la identidad", "description": "Verdes, azules, menta y blanco presentes en las piezas de campaña.", "images": [], "video": null, "colors": [{"name": "Verde", "hex": "#4C997F"}, {"name": "Menta", "hex": "#9FDDBD"}, {"name": "Azul profundo", "hex": "#175055"}, {"name": "Blanco", "hex": "#FBFDFD"}]}], "w": 800, "h": 1000, "surface": "#4c997f", "openingArt": {"src": "assets/images/olas-ditella/Logo.svg", "w": 1286, "h": 405, "alt": "Logotipo de OLAS Di Tella", "displayWidth": 420}}, {"slug": "club-de-economia-utdt", "title": "Club de Economía — UTDT", "type": "Identidad visual", "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.", "cover": "assets/images/archive-covers/club-de-economia-utdt-800.webp", "alt": "Logotipo del Club de Economía sobre celeste", "year": "2026", "page": "?project=club-de-economia-utdt", "intro": "Marca y sistema gráfico para el relanzamiento del Club de Economía. La entrega reúne versiones de marca, plantillas para charlas y una trama de diagonales.", "blocks": [{"title": "Símbolo y versiones", "description": "Isotipo celeste y versión a una tinta. El sistema usa Albert Sans en Semi Bold para destacar y Medium para la información.", "images": [{"src": "./assets/images/club-de-economia-utdt/Isotipo.png", "alt": "Isotipo principal del Club de Economía con diagonales celestes sobre círculo gris claro", "w": 1080, "h": 1080}, {"src": "./assets/images/club-de-economia-utdt/Isotipo%202.png", "alt": "El mismo isotipo resuelto en negro sobre círculo gris claro", "w": 1080, "h": 1080}], "video": null}, {"title": "Plantillas de publicaciones", "description": "Versiones clara y oscura para anunciar charlas, con espacio para invitado, imagen, fecha, horario y aula.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp", "alt": "Plantilla clara para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp", "alt": "Plantilla oscura para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}], "video": null}, {"title": "Plantillas de historias", "description": "Adaptaciones verticales para anunciar charlas, con los mismos datos y jerarquías que las publicaciones.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp", "alt": "Plantilla clara de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp", "alt": "Plantilla oscura de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}], "video": null}, {"title": "Cabecera de redes", "description": "Trama de diagonales para la cabecera de Twitter, en celeste sobre gris claro.", "images": [{"src": "./assets/images/club-de-economia-utdt/Twitter%20header-800.webp", "alt": "Header del Club de Economía con una trama de diagonales celestes sobre gris claro", "w": 800, "h": 267}], "video": null}, {"title": "Estudio de movimiento", "description": "Estudio animado de gráficos, porcentajes y tipografía que termina en la marca. Los valores son ejemplos, no estadísticas de la organización.", "images": [], "video": {"src": "./assets/videos/club-de-economia/motion-study.mp4", "poster": "./assets/images/club-de-economia-utdt/motion-poster-720.webp"}}, {"title": "Colores de la identidad", "description": "Celeste, gris claro y negro presentes en las piezas finales.", "images": [], "video": null, "colors": [{"name": "Celeste", "hex": "#42AEBD"}, {"name": "Gris claro", "hex": "#D9D9D9"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#41aebc"}, {"slug": "el-armado", "title": "El Armado", "type": "Identidad visual", "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.", "cover": "assets/images/archive-covers/el-armado-800.webp", "alt": "Logotipo de El Armado en hueso sobre vino", "year": "2026", "page": "?project=el-armado", "intro": "Identidad visual para El Armado en La Dama de Bollini. Marca, ilustración, afiche e historia de Instagram para un encuentro de música, karaoke y tragos.", "blocks": [{"title": "Afiche final", "description": "Pieza de la segunda edición: marca, ilustración y datos del encuentro sobre fondo vino.", "images": [{"src": "./assets/images/el-armado-web/afiche-1000.webp", "alt": "Afiche final de El Armado, segunda edición", "w": 1000, "h": 1415}], "video": null}, {"title": "Historia de Instagram", "description": "Adaptación vertical del afiche con la misma marca, ilustración y datos de la edición.", "images": [{"src": "./assets/images/el-armado-story/historia-800.webp", "alt": "Adaptación vertical · Historia de Instagram", "w": 800, "h": 1422}], "video": null}, {"title": "Ilustración", "description": "Dos manos sostienen un micrófono malva y una botella verde. Ilustración realizada con calco digital en Figma Draw.", "images": [{"src": "./assets/images/el-armado-web/ilustracion-color-760.webp", "alt": "Manos sosteniendo un micrófono malva y una botella verde", "w": 760, "h": 754}], "video": null}, {"title": "Paleta cromática", "description": "Vino como base, hueso para marca y manos, malva para el micrófono y verde para la botella.", "images": [], "video": null, "colors": [{"name": "Vino", "hex": "#360F17"}, {"name": "Hueso", "hex": "#D2DDCC"}, {"name": "Malva", "hex": "#9E6B7A"}, {"name": "Verde", "hex": "#9AE4A3"}]}], "w": 800, "h": 1000, "surface": "#3b0c15", "openingArt": {"src": "assets/images/el-armado/Logo.png", "w": 863, "h": 343, "alt": "Logotipo de El Armado en color hueso"}}];
       const archiveItems = [{"id": "poster-100-horses", "kind": "poster", "name": "100 Horses", "alt": "100 Horses, afiche personal en formato A4", "src": "assets/images/personal-posters/100-horses-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/100-horses-400.webp", "w": 400, "h": 566}}, {"id": "poster-carrie", "kind": "poster", "name": "Carrie", "alt": "Carrie, afiche personal en formato A4", "src": "assets/images/personal-posters/carrie-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/carrie-400.webp", "w": 400, "h": 566}}, {"id": "poster-pulp-fiction", "kind": "poster", "name": "Pulp Fiction", "alt": "Pulp Fiction, afiche personal en formato A4", "src": "assets/images/personal-posters/pulp-fiction-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/pulp-fiction-400.webp", "w": 400, "h": 566}}, {"id": "poster-faust", "kind": "poster", "name": "Faust", "alt": "Faust, afiche personal en formato A4", "src": "assets/images/personal-posters/faust-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/faust-400.webp", "w": 400, "h": 566}}, {"id": "poster-blood-meridian", "kind": "poster", "name": "Blood Meridian", "alt": "Blood Meridian, afiche personal en formato A4", "src": "assets/images/personal-posters/blood-meridian-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/blood-meridian-400.webp", "w": 400, "h": 566}}, {"id": "poster-nosferatu", "kind": "poster", "name": "Nosferatu", "alt": "Nosferatu, afiche personal en formato A4", "src": "assets/images/personal-posters/nosferatu-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nosferatu-400.webp", "w": 400, "h": 566}}, {"id": "poster-1984", "kind": "poster", "name": "1984", "alt": "1984, afiche personal en formato A4", "src": "assets/images/personal-posters/1984-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/1984-400.webp", "w": 400, "h": 566}}, {"id": "poster-animal-farm", "kind": "poster", "name": "Animal Farm", "alt": "Animal Farm, afiche personal en formato A4", "src": "assets/images/personal-posters/animal-farm-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/animal-farm-400.webp", "w": 400, "h": 566}}, {"id": "poster-animal-farm-variante-02", "kind": "poster", "name": "Animal Farm — Variante 02", "alt": "Animal Farm — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/animal-farm-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/animal-farm-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-bugonia", "kind": "poster", "name": "Bugonia", "alt": "Bugonia, afiche personal en formato A4", "src": "assets/images/personal-posters/bugonia-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/bugonia-400.webp", "w": 400, "h": 566}}, {"id": "poster-seventeen-minutes", "kind": "poster", "name": "Seventeen Minutes", "alt": "Seventeen Minutes, afiche personal en formato A4", "src": "assets/images/personal-posters/seventeen-minutes-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/seventeen-minutes-400.webp", "w": 400, "h": 566}}, {"id": "poster-paris-texas", "kind": "poster", "name": "Paris, Texas", "alt": "Paris, Texas, afiche personal en formato A4", "src": "assets/images/personal-posters/paris-texas-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/paris-texas-400.webp", "w": 400, "h": 566}}, {"id": "poster-nothing-ever-happened-here", "kind": "poster", "name": "Nothing Ever Happened Here", "alt": "Nothing Ever Happened Here, afiche personal en formato A4", "src": "assets/images/personal-posters/nothing-ever-happened-here-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nothing-ever-happened-here-400.webp", "w": 400, "h": 566}}, {"id": "poster-he-who-ruled-all", "kind": "poster", "name": "He Who Ruled All", "alt": "He Who Ruled All, afiche personal en formato A4", "src": "assets/images/personal-posters/he-who-ruled-all-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/he-who-ruled-all-400.webp", "w": 400, "h": 566}}, {"id": "poster-she-was-everyone", "kind": "poster", "name": "She Was Everyone", "alt": "She Was Everyone, afiche personal en formato A4", "src": "assets/images/personal-posters/she-was-everyone-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/she-was-everyone-400.webp", "w": 400, "h": 566}}, {"id": "poster-no-mans-son", "kind": "poster", "name": "No Man’s Son", "alt": "No Man’s Son, afiche personal en formato A4", "src": "assets/images/personal-posters/no-mans-son-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/no-mans-son-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-very-last-of-the-crusaders", "kind": "poster", "name": "The Very Last of the Crusaders", "alt": "The Very Last of the Crusaders, afiche personal en formato A4", "src": "assets/images/personal-posters/the-very-last-of-the-crusaders-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-very-last-of-the-crusaders-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-cadena", "kind": "poster", "name": "Endo Explore — Cadena", "alt": "Endo Explore — Cadena, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-cadena-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-cadena-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-ornamento", "kind": "poster", "name": "Endo Explore — Ornamento", "alt": "Endo Explore — Ornamento, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-ornamento-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-ornamento-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-vegetal", "kind": "poster", "name": "Endo Explore — Vegetal", "alt": "Endo Explore — Vegetal, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-vegetal-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-vegetal-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-mosaico", "kind": "poster", "name": "Endo Explore — Mosaico", "alt": "Endo Explore — Mosaico, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-mosaico-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-mosaico-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-naranja", "kind": "poster", "name": "Endo Explore — Naranja", "alt": "Endo Explore — Naranja, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-naranja-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-naranja-400.webp", "w": 400, "h": 566}}, {"id": "poster-meeting-with-the-sphinx", "kind": "poster", "name": "Meeting with the Sphinx", "alt": "Meeting with the Sphinx, afiche personal en formato A4", "src": "assets/images/personal-posters/meeting-with-the-sphinx-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/meeting-with-the-sphinx-400.webp", "w": 400, "h": 566}}, {"id": "poster-nobody-figura-01", "kind": "poster", "name": "Nobody — Figura 01", "alt": "Nobody — Figura 01, afiche personal en formato A4", "src": "assets/images/personal-posters/nobody-figura-01-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nobody-figura-01-400.webp", "w": 400, "h": 566}}, {"id": "poster-follow-the-light", "kind": "poster", "name": "Follow the Light", "alt": "Follow the Light, afiche personal en formato A4", "src": "assets/images/personal-posters/follow-the-light-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/follow-the-light-400.webp", "w": 400, "h": 566}}, {"id": "poster-eyes-wide-shut", "kind": "poster", "name": "Eyes Wide Shut", "alt": "Eyes Wide Shut, afiche personal en formato A4", "src": "assets/images/personal-posters/eyes-wide-shut-1190.webp", "w": 1190, "h": 1684, "thumbnail": {"src": "assets/images/personal-posters/eyes-wide-shut-400.webp", "w": 400, "h": 566}}, {"id": "poster-otro-dia-en-el-planeta-tierra", "kind": "poster", "name": "Otro día en el planeta Tierra", "alt": "Otro día en el planeta Tierra, afiche personal en formato A4", "src": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-400.webp", "w": 400, "h": 565}}, {"id": "poster-the-old-king-from-the-north", "kind": "poster", "name": "The Old King from the North", "alt": "The Old King from the North, afiche personal en formato A4", "src": "assets/images/personal-posters/the-old-king-from-the-north-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-old-king-from-the-north-400.webp", "w": 400, "h": 566}}, {"id": "poster-sgt-peppers-lonely-hearts-club-band", "kind": "poster", "name": "Sgt. Pepper’s Lonely Hearts Club Band", "alt": "Sgt. Pepper’s Lonely Hearts Club Band, afiche personal en formato A4", "src": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-beatles", "kind": "poster", "name": "The Beatles", "alt": "The Beatles, afiche personal en formato A4", "src": "assets/images/personal-posters/the-beatles-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/the-beatles-400.webp", "w": 400, "h": 565}}, {"id": "poster-copenhague", "kind": "poster", "name": "Copenhague", "alt": "Copenhague, afiche personal en formato A4", "src": "assets/images/personal-posters/copenhague-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/copenhague-400.webp", "w": 400, "h": 566}}, {"id": "poster-slowthai", "kind": "poster", "name": "Slowthai", "alt": "Slowthai, afiche personal en formato A4", "src": "assets/images/personal-posters/slowthai-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/slowthai-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-end-of-the-beginning", "kind": "poster", "name": "The End of the Beginning", "alt": "The End of the Beginning, afiche personal en formato A4", "src": "assets/images/personal-posters/the-end-of-the-beginning-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-end-of-the-beginning-400.webp", "w": 400, "h": 566}}, {"id": "poster-where-is-my-mind", "kind": "poster", "name": "Where Is My Mind?", "alt": "Where Is My Mind?, afiche personal en formato A4", "src": "assets/images/personal-posters/where-is-my-mind-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/where-is-my-mind-400.webp", "w": 400, "h": 566}}, {"id": "poster-stop-making-sense", "kind": "poster", "name": "Stop Making Sense", "alt": "Stop Making Sense, afiche personal en formato A4", "src": "assets/images/personal-posters/stop-making-sense-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/stop-making-sense-400.webp", "w": 400, "h": 566}}, {"id": "poster-reflejos-azules", "kind": "poster", "name": "Sin título — 01", "alt": "Sin título — 01, afiche personal en formato A4", "src": "assets/images/personal-posters/reflejos-azules-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/reflejos-azules-400.webp", "w": 400, "h": 566}}, {"id": "poster-this-is-the-end", "kind": "poster", "name": "This Is the End", "alt": "This Is the End, afiche personal en formato A4", "src": "assets/images/personal-posters/this-is-the-end-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/this-is-the-end-400.webp", "w": 400, "h": 566}}, {"id": "poster-fly", "kind": "poster", "name": "Fly", "alt": "Fly, afiche personal en formato A4", "src": "assets/images/personal-posters/fly-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/fly-400.webp", "w": 400, "h": 566}}, {"id": "poster-ziggy-stardust", "kind": "poster", "name": "Ziggy Stardust", "alt": "Ziggy Stardust, afiche personal en formato A4", "src": "assets/images/personal-posters/ziggy-stardust-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/ziggy-stardust-400.webp", "w": 400, "h": 566}}, {"id": "poster-wild-horses", "kind": "poster", "name": "Wild Horses", "alt": "Wild Horses, afiche personal en formato A4", "src": "assets/images/personal-posters/wild-horses-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/wild-horses-400.webp", "w": 400, "h": 566}}, {"id": "poster-unexpected", "kind": "poster", "name": "Unexpected", "alt": "Unexpected, afiche personal en formato A4", "src": "assets/images/personal-posters/unexpected-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/unexpected-400.webp", "w": 400, "h": 566}}, {"id": "poster-talking-heads", "kind": "poster", "name": "Talking Heads", "alt": "Talking Heads, afiche personal en formato A4", "src": "assets/images/personal-posters/talking-heads-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/talking-heads-400.webp", "w": 400, "h": 566}}, {"id": "poster-dylan-amarillo", "kind": "poster", "name": "Dylan — Amarillo", "alt": "Dylan — Amarillo, afiche personal en formato A4", "src": "assets/images/personal-posters/dylan-amarillo-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dylan-amarillo-400.webp", "w": 400, "h": 566}}, {"id": "poster-dylan", "kind": "poster", "name": "Dylan", "alt": "Dylan, afiche personal en formato A4", "src": "assets/images/personal-posters/dylan-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dylan-400.webp", "w": 400, "h": 566}}, {"id": "poster-celestial-bodies", "kind": "poster", "name": "Celestial Bodies", "alt": "Celestial Bodies, afiche personal en formato A4", "src": "assets/images/personal-posters/celestial-bodies-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/celestial-bodies-400.webp", "w": 400, "h": 566}}, {"id": "poster-wild-west", "kind": "poster", "name": "Wild West", "alt": "Wild West, afiche personal en formato A4", "src": "assets/images/personal-posters/wild-west-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/wild-west-400.webp", "w": 400, "h": 566}}, {"id": "poster-movement", "kind": "poster", "name": "Movement", "alt": "Movement, afiche personal en formato A4", "src": "assets/images/personal-posters/movement-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/movement-400.webp", "w": 400, "h": 566}}, {"id": "poster-retrato-azul", "kind": "poster", "name": "Sin título — 02", "alt": "Sin título — 02, afiche personal en formato A4", "src": "assets/images/personal-posters/retrato-azul-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/retrato-azul-400.webp", "w": 400, "h": 566}}, {"id": "poster-caballos-rosa", "kind": "poster", "name": "Caballos — Rosa", "alt": "Caballos — Rosa, afiche personal en formato A4", "src": "assets/images/personal-posters/caballos-rosa-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/caballos-rosa-400.webp", "w": 400, "h": 566}}, {"id": "poster-dreamers", "kind": "poster", "name": "Dreamers", "alt": "Dreamers, afiche personal en formato A4", "src": "assets/images/personal-posters/dreamers-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dreamers-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-candelabro", "kind": "poster", "name": "Endo Explore — Candelabro", "alt": "Endo Explore — Candelabro, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-candelabro-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-candelabro-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-seventh-seal", "kind": "poster", "name": "The Seventh Seal", "alt": "The Seventh Seal, afiche personal en formato A4", "src": "assets/images/personal-posters/the-seventh-seal-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-seventh-seal-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-seventh-seal-variante-02", "kind": "poster", "name": "The Seventh Seal — Variante 02", "alt": "The Seventh Seal — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/the-seventh-seal-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-seventh-seal-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-eyes-wide-shut-variante-02", "kind": "poster", "name": "Eyes Wide Shut — Variante 02", "alt": "Eyes Wide Shut — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/eyes-wide-shut-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/eyes-wide-shut-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-stand-out", "kind": "poster", "name": "Stand Out", "alt": "Stand Out, afiche personal en formato A4", "src": "assets/images/personal-posters/stand-out-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/stand-out-400.webp", "w": 400, "h": 566}}, {"id": "poster-distorted-realities", "kind": "poster", "name": "Distorted Realities", "alt": "Distorted Realities, afiche personal en formato A4", "src": "assets/images/personal-posters/distorted-realities-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/distorted-realities-400.webp", "w": 400, "h": 566}}, {"id": "poster-basement", "kind": "poster", "name": "Basement", "alt": "Basement, afiche personal en formato A4", "src": "assets/images/personal-posters/basement-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/basement-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-shining", "kind": "poster", "name": "The Shining", "alt": "The Shining, afiche personal en formato A4", "src": "assets/images/personal-posters/the-shining-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-shining-400.webp", "w": 400, "h": 566}}, {"id": "poster-faust-variante-02", "kind": "poster", "name": "Faust — Variante 02", "alt": "Faust — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/faust-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/faust-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-composicion-azul-y-verde", "kind": "poster", "name": "Sin título — 03", "alt": "Sin título — 03, afiche personal en formato A4", "src": "assets/images/personal-posters/composicion-azul-y-verde-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/composicion-azul-y-verde-400.webp", "w": 400, "h": 566}}, {"id": "poster-retrato-celeste", "kind": "poster", "name": "Sin título — 04", "alt": "Sin título — 04, afiche personal en formato A4", "src": "assets/images/personal-posters/retrato-celeste-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/retrato-celeste-400.webp", "w": 400, "h": 566}}, {"id": "poster-la-chimera", "kind": "poster", "name": "La Chimera", "alt": "La Chimera, afiche personal en formato A4", "src": "assets/images/personal-posters/la-chimera-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/la-chimera-400.webp", "w": 400, "h": 566}}, {"id": "poster-movimiento-caballo", "kind": "poster", "name": "Sin título — 05", "alt": "Sin título — 05, afiche personal en formato A4", "src": "assets/images/personal-posters/movimiento-caballo-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/movimiento-caballo-400.webp", "w": 400, "h": 566}}, {"id": "poster-light-sources-luz-violeta", "kind": "poster", "name": "Light Sources — Luz violeta", "alt": "Light Sources — Luz violeta, afiche personal en formato A4", "src": "assets/images/personal-posters/light-sources-luz-violeta-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/light-sources-luz-violeta-400.webp", "w": 400, "h": 566}}, {"id": "poster-under-the-light-house", "kind": "poster", "name": "Under the Light House", "alt": "Under the Light House, afiche personal en formato A4", "src": "assets/images/personal-posters/under-the-light-house-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/under-the-light-house-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-monk", "kind": "poster", "name": "The Monk", "alt": "The Monk, afiche personal en formato A4", "src": "assets/images/personal-posters/the-monk-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-monk-400.webp", "w": 400, "h": 566}}, {"id": "poster-sayonara", "kind": "poster", "name": "Sayonara", "alt": "Sayonara, afiche personal en formato A4", "src": "assets/images/personal-posters/sayonara-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/sayonara-400.webp", "w": 400, "h": 565}}, {"id": "stephen-king-01", "kind": "book", "name": "’Salem’s Lot", "alt": "Portada de 'SALEM'S LOT en la serie Stephen King", "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-01-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-01", "kind": "photo", "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar", "src": "assets/images/zapallar/IMG_4660-1600.webp", "w": 1600, "h": 898, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-01-400.webp", "w": 400, "h": 225}}, {"id": "stephen-king-02", "kind": "book", "name": "’Salem’s Lot — Variante 02", "alt": "Stephen King — variante 2", "src": "assets/images/stephen-king/Variante%202-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-02-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-02", "kind": "photo", "alt": "Árboles y jardines en una calle de Zapallar", "src": "assets/images/zapallar/IMG_4726-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-02-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-03", "kind": "book", "name": "Carrie", "alt": "Portada de CARRIE en la serie Stephen King", "src": "assets/images/stephen-king/CARRIE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-03-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-03", "kind": "photo", "alt": "Botellas y objetos en los estantes de un comercio", "src": "assets/images/zapallar/IMG_4665-800.webp", "w": 800, "h": 1067, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-03-400.webp", "w": 400, "h": 534}}, {"id": "stephen-king-04", "kind": "book", "name": "Cujo", "alt": "Portada de CUJO en la serie Stephen King", "src": "assets/images/stephen-king/CUJO-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-04-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-04", "kind": "photo", "alt": "Bandera de Chile junto a automóviles y árboles", "src": "assets/images/zapallar/IMG_4673-800.webp", "w": 800, "h": 1067, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-04-400.webp", "w": 400, "h": 534}}, {"id": "stephen-king-05", "kind": "book", "name": "IT", "alt": "Portada de IT en la serie Stephen King", "src": "assets/images/stephen-king/IT-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-05-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-05", "kind": "photo", "alt": "Atardecer sobre el mar con nubes oscuras y siluetas de la costa", "src": "assets/images/zapallar/DSC01575-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-05-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-06", "kind": "book", "name": "Misery", "alt": "Portada de MISERY en la serie Stephen King", "src": "assets/images/stephen-king/MISERY-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-06-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-06", "kind": "photo", "alt": "Reflejo del sol sobre el mar al atardecer", "src": "assets/images/zapallar/IMG_4748-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-06-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-07", "kind": "book", "name": "Pet Sematary", "alt": "Portada de PET SEMATARY en la serie Stephen King", "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-07-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-08", "kind": "book", "name": "The Dark Tower", "alt": "Portada de THE DARK TOWER en la serie Stephen King", "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-08-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-09", "kind": "book", "name": "The Dead Zone", "alt": "Portada de THE DEAD ZONE en la serie Stephen King", "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-09-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-10", "kind": "book", "name": "The Green Mile", "alt": "Portada de THE GREEN MILE en la serie Stephen King", "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-10-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-11", "kind": "book", "name": "The Shining", "alt": "Portada de THE SHINING en la serie Stephen King", "src": "assets/images/stephen-king/THE%20SHINING-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-11-400.webp", "w": 400, "h": 566}}];
       const config = Object.freeze({ perspective: 6000, pitch: -11, yaw: -31, gap: 300, size: 680 });
+      let cameraConfig = config;
       const projects = [...document.querySelectorAll('[data-project]')];
       const names = projects.map(button => button.textContent);
       projects.forEach((button,id) => {
@@ -473,7 +464,7 @@
       const menuLabels = new Map([...document.querySelectorAll('.study-nav-trigger')].map(n => [n, n.getAttribute('aria-label')]));
       const lightbox = document.querySelector('.study-lightbox');
       const loadedCovers = new Map(), loadedOpeningArt = new Map();
-      let addressReady = false, handlingHistory = false, activeAboutTab = 'testament';
+      let addressReady = false, handlingHistory = false, activeAboutTab = 'testament', mobileMenuOpen = false;
       // Widen the support; the original 4:5 cover stays centered at its native ratio.
       const coverWidth = config.size * .80, coverHeight = config.size * .60;
       let enteredAt = Infinity, infoSequence = null, pageName = '', lastFocus = null, openingToken = 0, pageVideoObserver = null;
@@ -481,10 +472,57 @@
 
       const navigation = document.querySelector('.study-navigation');
       const index = document.querySelector('.study-projects');
+      const menuPanel = document.querySelector('.study-menu-panel'), menuToggle = document.querySelector('.study-menu-toggle');
+      const menuClose = document.querySelector('.study-menu-close'), mobileCaption = document.querySelector('.study-mobile-caption');
+      let mobileSequence = 0;
+      function syncMobileShell() {
+        const modal = mobileMenuOpen && smallScreen.matches;
+        menuPanel.inert = smallScreen.matches && !modal;
+        menuToggle.inert = modal || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
+        document.querySelector('.study-heading').inert = modal;
+        mobileCaption.inert = modal || Boolean(pageName) || Boolean(activeProjectTransition);
+        stage.inert = modal || Boolean(pageName) || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
+        page.inert = modal || Boolean(activeProjectTransition);
+        navigation.inert = !modal && (pageName === 'project' || Boolean(activeProjectTransition));
+        index.inert = !modal && (Boolean(pageName) || Boolean(activeProjectTransition));
+        caseNavigation.inert = modal || Boolean(activeProjectTransition);
+        menuToggle.setAttribute('aria-expanded', String(modal));
+        menuToggle.setAttribute('aria-label', modal ? 'Cerrar menú' : 'Abrir menú');
+      }
+      function setMobileMenu(open, restoreFocus = true) {
+        const wasOpen = mobileMenuOpen;
+        mobileMenuOpen = open && smallScreen.matches;
+        if (mobileMenuOpen) {
+          document.body.dataset.mobileMenu = 'open';
+          menuPanel.setAttribute('role','dialog'); menuPanel.setAttribute('aria-modal','true'); menuPanel.setAttribute('aria-label','Navegación principal');
+          stopPreview(); pointer.inside = false; hovered = null;
+          document.querySelector('[data-logo-runner]').dispatchEvent(new Event('logo-runner:reset'));
+        } else {
+          delete document.body.dataset.mobileMenu;
+          menuPanel.removeAttribute('role'); menuPanel.removeAttribute('aria-modal'); menuPanel.removeAttribute('aria-label');
+        }
+        syncMobileShell(); syncCaseVideos();
+        if (mobileMenuOpen) menuClose.focus({preventScroll:true});
+        else if (wasOpen && restoreFocus) menuToggle.focus({preventScroll:true});
+      }
+      menuToggle.addEventListener('click', () => setMobileMenu(!mobileMenuOpen));
+      menuClose.addEventListener('click', () => setMobileMenu(false));
+      document.addEventListener('keydown', event => {
+        if (!mobileMenuOpen) return;
+        if (event.key === 'Escape') { event.preventDefault(); event.stopImmediatePropagation(); setMobileMenu(false); }
+        else if (event.key === 'Tab') {
+          const controls = [...menuPanel.querySelectorAll('button:not(:disabled),summary,a[href]')].filter(n => n.getClientRects().length && !n.closest('[inert]'));
+          const first = controls[0], last = controls.at(-1);
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+        }
+      }, true);
+      document.querySelectorAll('[data-mobile-step]').forEach(button => button.addEventListener('click', () => move(Math.round(position) + Number(button.dataset.mobileStep) - drift())));
+      document.querySelector('[data-mobile-open]').addEventListener('click', () => openProject(mobileSequence));
       let bounds = { near: -16, far: 32 }, selectedProject = -1;
       const modulo = (value, count) => ((value % count) + count) % count;
-      const started = performance.now();
       const driftSpeed = .12;
+      let driftBase = 0, driftEpoch = performance.now(), drifting = !preference.matches && !document.hidden;
       const pointer = { x: 0, y: 0, inside: false, serial: 0 };
       const hoverStates = new Map();
       const planes = [];
@@ -611,24 +649,28 @@
         source.start(start, .02); source.stop(start + duration + .003);
         stage.dataset.soundCount = String(++soundCount); stage.dataset.soundProfile = profile.name;
       }
-      document.addEventListener('pointerdown', event => { if (event.isTrusted) unlockSound(); }, { capture: true });
-      document.addEventListener('keydown', event => { if (event.isTrusted) unlockSound(); }, { capture: true });
-      function drift(time = performance.now()) { return (time - started) / 1000 * driftSpeed - driftRebase; }
+      document.addEventListener('pointerdown', event => { if (event.isTrusted && event.pointerType !== 'touch' && !smallScreen.matches) unlockSound(); }, { capture: true });
+      document.addEventListener('keydown', event => { if (event.isTrusted && !smallScreen.matches) unlockSound(); }, { capture: true });
+      function drift(time = performance.now()) { return driftBase + (drifting ? (time-driftEpoch)/1000*driftSpeed : 0) - driftRebase; }
+      function syncDrift() {
+        const now = performance.now(); driftBase = drift(now) + driftRebase; driftEpoch = now;
+        drifting = !preference.matches && !document.hidden;
+      }
       // Move half a projected card width to screen-right, keeping its depth and orientation.
       function hoverVector(amount = 1) {
-        const yaw = config.yaw * Math.PI / 180;
+        const yaw = cameraConfig.yaw * Math.PI / 180;
         const distance = coverWidth * Math.cos(yaw) * .5 * scale * amount;
         return { x: Math.cos(yaw) * distance, y: 0, z: Math.sin(yaw) * distance };
       }
       // Test both the resting slot and its displaced face so following the card is stable.
       function quad(sequence, padding = 0, amount = 0, atPosition = position, width = coverWidth) {
-        const xAngle = config.pitch * Math.PI / 180, yAngle = config.yaw * Math.PI / 180;
+        const xAngle = cameraConfig.pitch * Math.PI / 180, yAngle = cameraConfig.yaw * Math.PI / 180;
         const sx = Math.sin(xAngle), cx = Math.cos(xAngle), sy = Math.sin(yAngle), cy = Math.cos(yAngle);
-        const z = (atPosition - sequence) * config.gap * scale;
-        const perspective = config.perspective * scale;
+        const z = smallScreen.matches ? 0 : (atPosition - sequence) * cameraConfig.gap * scale;
+        const perspective = cameraConfig.perspective * scale;
         if (z * cx * cy > perspective * .76) return null;
         const w = width * scale / 2 + padding, h = coverHeight * scale / 2 + padding;
-        const shift = hoverVector(amount);
+        const shift = smallScreen.matches ? {x:(sequence-atPosition)*cameraConfig.gap*scale,y:0,z:0} : hoverVector(amount);
         return [[-w, -h], [w, -h], [w, h], [-w, h]].map(([rawX, rawY]) => {
           const x = rawX + shift.x, y = rawY + shift.y, depth = z + shift.z;
           const worldX = cy * x + sy * depth;
@@ -652,6 +694,7 @@
         return true;
       }
       function updateHover(base) {
+        if (smallScreen.matches || mobileMenuOpen) { hovered = null; stage.dataset.hoverSequence = ''; return; }
         let next = null;
         if (infoSequence !== null && (info.matches(':hover') || info.contains(document.activeElement))) next = infoSequence;
         else if (pointer.inside && !dragging && !pageName) {
@@ -676,12 +719,12 @@
       }
       function draw(dt = 1 / 60) {
         const base = Math.round(position), wanted = new Set();
-        const projection = Math.cos(config.pitch * Math.PI / 180) * Math.cos(config.yaw * Math.PI / 180);
+        const projection = Math.cos(cameraConfig.pitch * Math.PI / 180) * Math.cos(cameraConfig.yaw * Math.PI / 180);
         updateHover(base);
         for (let sequence = base + bounds.near; sequence <= base + bounds.far; sequence++) {
           // A ring of nodes recycles only the offscreen end, not every visible plane.
           const record = planes[modulo(sequence, planes.length)];
-          const z = (position - sequence) * config.gap * scale;
+          const z = smallScreen.matches ? 0 : (position - sequence) * cameraConfig.gap * scale;
           wanted.add(sequence);
           if (record.sequence !== sequence) {
             record.face.classList.remove('has-preview'); record.element.removeAttribute('data-preview');
@@ -696,8 +739,8 @@
           if (Math.abs(state.value - goal) < .0005) state.value = goal;
           hoverStates.set(sequence, state);
           const shift = hoverVector(state.value);
-          record.element.hidden = z * projection > config.perspective * scale * .76;
-          record.element.style.transform = `translateZ(${z.toFixed(3)}px)`;
+          record.element.hidden = smallScreen.matches ? Math.abs(sequence-position) > 3.5 : z * projection > cameraConfig.perspective * scale * .76;
+          record.element.style.transform = smallScreen.matches ? `translate3d(${((sequence-position)*cameraConfig.gap*scale).toFixed(3)}px,0,0)` : `translateZ(${z.toFixed(3)}px)`;
           record.face.style.transform = `translate3d(${shift.x.toFixed(3)}px, ${shift.y.toFixed(3)}px, ${shift.z.toFixed(3)}px)`;
           record.element.dataset.hovered = String(goal === 1);
           const arrival = preference.matches ? 1 : Math.max(0, Math.min(1, (performance.now() - enteredAt - modulo(sequence, catalogue.length) * 38) / 260));
@@ -705,8 +748,14 @@
         }
         for (const sequence of hoverStates.keys()) if (!wanted.has(sequence)) hoverStates.delete(sequence);
         const active = modulo(base, names.length);
+        mobileSequence = base;
         if (active !== selectedProject) {
           selectedProject = active;
+          const item = catalogue[active];
+          mobileCaption.querySelector('[data-mobile-count]').textContent = `${String(active+1).padStart(2,'0')} / ${String(catalogue.length).padStart(2,'0')}`;
+          mobileCaption.querySelector('[data-mobile-title]').textContent = item.title;
+          mobileCaption.querySelector('[data-mobile-meta]').textContent = `${item.type} · ${item.year}`;
+          mobileCaption.querySelector('[data-mobile-open]').setAttribute('aria-label',`Abrir ${item.title}`);
           projects.forEach((button, index) => {
             if (index === active) button.setAttribute('aria-current', 'true');
             else button.removeAttribute('aria-current');
@@ -721,20 +770,21 @@
       }
       function measure() {
         // Place the index in the clear upper-left; never crop the full-screen camera.
-        if (innerWidth <= 1000) index.style.top = `${Math.max(112, navigation.getBoundingClientRect().bottom + 24)}px`;
+        if (!smallScreen.matches && innerWidth <= 1000) index.style.top = `${Math.max(112, navigation.getBoundingClientRect().bottom + 24)}px`;
         else index.style.removeProperty('top');
         const rect = stage.getBoundingClientRect();
         Object.assign(view, { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom, originX: rect.left + rect.width / 2, originY: rect.top + rect.height / 2 });
-        scale = Math.min(innerWidth / 1512, innerHeight / 982);
-        scene.style.setProperty('--perspective', `${config.perspective * scale}px`);
+        cameraConfig = smallScreen.matches ? {perspective:2600,pitch:-3,yaw:-9,gap:coverWidth+32} : config;
+        scale = smallScreen.matches ? Math.min((rect.width-56)/coverWidth,rect.height*.84/coverHeight) : Math.min(innerWidth / 1512, innerHeight / 982);
+        scene.style.setProperty('--perspective', `${cameraConfig.perspective * scale}px`);
         scene.style.setProperty('--card-width', `${coverWidth * scale}px`);
         scene.style.setProperty('--card-height', `${coverHeight * scale}px`);
-        camera.style.setProperty('--pitch', `${config.pitch}deg`);
-        camera.style.setProperty('--yaw', `${config.yaw}deg`);
+        camera.style.setProperty('--pitch', `${cameraConfig.pitch}deg`);
+        camera.style.setProperty('--yaw', `${cameraConfig.yaw}deg`);
         // Measure overscan once per geometry change, including the full hover displacement.
         const base = Math.round(position);
         let near = -4, far = 4;
-        for (let index = -160; index <= 160; index++) {
+        for (let index = -160; !smallScreen.matches && index <= 160; index++) {
           const visible = [-.5, .5].some(fraction => [0, 1].some(amount => {
             const points = quad(base + index, 16, amount, base + fraction);
             if (!points) return false;
@@ -743,7 +793,7 @@
           }));
           if (visible) { near = Math.min(near, index); far = Math.max(far, index); }
         }
-        bounds = { near: near - 3, far: far + 3 };
+        bounds = smallScreen.matches ? {near:-3,far:3} : { near: near - 3, far: far + 3 };
         const count = bounds.far - bounds.near + 1;
         while (planes.length < count) planes.push(createPlane());
         while (planes.length > count) planes.pop().element.remove();
@@ -887,7 +937,7 @@
         const reader = page.getBoundingClientRect();
         page.querySelectorAll('video').forEach(video => {
           const rect = video.getBoundingClientRect();
-          const visible = !smallScreen.matches && !document.hidden && pageName && !lightbox.open && !activeProjectTransition && rect.bottom > reader.top && rect.top < reader.bottom;
+          const visible = !mobileMenuOpen && !document.hidden && pageName && !lightbox.open && !activeProjectTransition && rect.bottom > reader.top && rect.top < reader.bottom;
           if (visible) video.play().catch(() => {}); else video.pause();
         });
       }
@@ -896,7 +946,7 @@
       }
       function fitLightbox() {
         const image = lightbox.querySelector('img'); if (!image.naturalWidth) return;
-        const ratio = Math.min(1 / (devicePixelRatio || 1), (innerWidth - 80) / image.naturalWidth, (innerHeight - 100) / image.naturalHeight);
+        const ratio = Math.min(1 / (devicePixelRatio || 1), (innerWidth - (smallScreen.matches ? 32 : 80)) / image.naturalWidth, (innerHeight - (smallScreen.matches ? 104 : 100)) / image.naturalHeight);
         image.style.width = `${image.naturalWidth * ratio}px`; image.style.height = `${image.naturalHeight * ratio}px`;
       }
       async function openLightbox(src, alt) {
@@ -946,7 +996,6 @@
       });
 
       async function prepare() {
-        if (smallScreen.matches) return;
         if (startupPreparing) return; startupPreparing = true;
         const loader = document.querySelector('.study-loader'); if (!loader) { startupPreparing = false; return; }
         loader.replaceChildren(el('span','study-loader__rose')); loader.setAttribute('aria-busy','true'); stage.setAttribute('aria-busy','true');
@@ -967,7 +1016,6 @@
           record.image.src = loadedCovers.get(catalogue[modulo(record.sequence, catalogue.length)].slug).src;
           await record.image.decode().catch(() => {});
         }));
-        if (smallScreen.matches) { startupPreparing = false; return; }
         enteredAt = performance.now(); measure(); stage.setAttribute('aria-busy','false'); document.body.classList.remove('study-loading');
         let initialTransition = null;
         if (initialItem) {
@@ -981,6 +1029,8 @@
         loader.remove(); startupPreparing = false;
         if (initialTransition) { try { await revealProject(route.project,initialTransition,true); } finally { finishProjectTransition(initialTransition); } }
         stage.inert = index.inert = Boolean(pageName); navigation.inert = pageName === 'project'; addressReady = true; rememberPageAddress();
+        if (route.lockedArchive) syncPageAddress('','',true);
+        syncMobileShell();
         if (restoreFocus) (pageName ? page : stage).focus({ preventScroll: true });
         document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
       }
@@ -1057,9 +1107,11 @@
       function readPageAddress() {
         const query = new URL(location.href).searchParams;
         const project = catalogue.findIndex(item => item.slug === query.get('project'));
-        const view = ['about','contact','archive','posters','photos'].includes(query.get('view')) ? query.get('view') : '';
-        const tab = ['testament','credentials','tastes'].includes(query.get('tab')) ? query.get('tab') : 'testament';
-        return { project, view, tab };
+        const requestedView = ['about','contact','archive','posters','photos'].includes(query.get('view')) ? query.get('view') : '';
+        const lockedArchive = archiveLocked && ['archive','posters','photos'].includes(requestedView);
+        const view = lockedArchive ? '' : requestedView;
+        const tab = ['testament','credentials'].includes(query.get('tab')) ? query.get('tab') : 'testament';
+        return { project, view, tab, lockedArchive };
       }
       function rememberPageAddress() {
         if (!addressReady || handlingHistory || location.protocol === 'file:') return;
@@ -1093,6 +1145,9 @@
             position = saved.position; offset = target = position - drift(); pointer.inside = false; hovered = null; draw();
           }
         } finally { handlingHistory = false; }
+        if (route.lockedArchive) syncPageAddress('','',true);
+        if (route.view === 'about') syncPageAddress('about','',true);
+        syncMobileShell();
       }
       window.addEventListener('popstate', event => restorePageAddress(event.state));
 
@@ -1114,6 +1169,7 @@
         });
       }
       function beginPage(kind, title, color = '') {
+        setMobileMenu(false,false);
         rememberPageAddress();
         stopPreview(); clearPageExtras?.(); clearPageExtras = null;
         cancelPanelAnimation();
@@ -1130,7 +1186,7 @@
         stage.inert = true; pointer.inside = false; hovered = null;
         info.classList.remove('is-visible'); info.setAttribute('aria-hidden','true'); info.tabIndex = -1;
         page.hidden = false; page.scrollTop = 0; page.setAttribute('aria-label', title); pageContent.replaceChildren();
-        activeMenu(kind); headingState(title, color); page.focus({ preventScroll: true });
+        activeMenu(kind); headingState(title, color); syncMobileShell(); page.focus({ preventScroll: true });
         if (kind !== 'project') {
           delete page.dataset.projectId; document.body.classList.remove('study-case-on-cover','study-close-on-cover');
           document.title = `${{about:'Sobre mí',contact:'Contacto',archive:'Archivo',posters:'Archivo de afiches',photos:'Archivo de fotografías'}[kind]} — Santiago Barbieri`;
@@ -1138,6 +1194,7 @@
         }
       }
       function closePageImmediately(keepPosition = false, transition = null) {
+        setMobileMenu(false,false);
         const holdingTransition = transition && activeProjectTransition === transition;
         rememberPageAddress();
         stopPreview(); clearPageExtras?.(); clearPageExtras = null;
@@ -1145,7 +1202,7 @@
         cancelCoverWait(); clearTimeout(noticeTimer); notice.replaceChildren(); notice.classList.remove('is-loading'); if (lightbox.open) lightbox.close(); releasePageMedia(pageContent);
         if (activeProjectTransition && !holdingTransition) finishProjectTransition(activeProjectTransition);
         caseNavigation.hidden = true; caseStatus.textContent = '';
-        if (!pageName) { stage.inert = false; navigation.inert = false; index.inert = false; syncPageAddress(); stage.focus({ preventScroll: true }); return; }
+        if (!pageName) { stage.inert = false; navigation.inert = false; index.inert = false; syncPageAddress(); syncMobileShell(); stage.focus({ preventScroll: true }); return; }
         clearCaseJourney?.(); clearCaseJourney = null; navigation.inert = false;
         document.body.style.removeProperty('--case-cover-ink'); document.body.style.removeProperty('--case-cover-surface');
         openingToken += 1;
@@ -1162,6 +1219,7 @@
         }
         hovered = null; infoSequence = null; pointer.inside = false; draw();
         const focus = lastFocus?.isConnected && lastFocus !== page && lastFocus !== document.body && !lastFocus.closest('.study-card-info,[hidden],[inert]') ? lastFocus : stage;
+        syncMobileShell();
         if (holdingTransition) transition.returnFocus = focus;
         else focus.focus({ preventScroll: true });
       }
@@ -1172,7 +1230,7 @@
         else stage.focus({ preventScroll: true });
       });
       document.querySelector('.study-page-close').addEventListener('click', closePage);
-      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open) return; if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
+      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open || mobileMenuOpen) return; if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
       document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
         const kind = button.dataset.view;
         if (pageName === kind || kind === 'about' && pageName.startsWith('about')) { closePage(); return; }
@@ -1180,15 +1238,15 @@
         else if (kind === 'contact') openContact();
         else openArchive(kind);
       }));
-      document.querySelector('.study-nav-group--archive > summary').addEventListener('click', event => {
+      document.querySelector('.study-nav-group--archive > summary')?.addEventListener('click', event => {
         if (['archive','posters','photos'].includes(pageName)) { event.preventDefault(); closePage(); }
       });
       function openAbout(tab = 'testament') {
-        activeAboutTab = ['testament','credentials','tastes'].includes(tab) ? tab : 'testament'; tab = activeAboutTab;
+        activeAboutTab = ['testament','credentials'].includes(tab) ? tab : 'testament'; tab = activeAboutTab;
         beginPage('about', '¿QUIÉN ES SANTIAGO BARBIERI?', '#03b047');
-        const tabs = el('nav','study-page-index'); tabs.setAttribute('aria-label','Secciones de Sobre mí'); tabs.setAttribute('role','tablist'); tabs.setAttribute('aria-orientation','vertical');
+        const tabs = el('nav','study-page-index'); tabs.setAttribute('aria-label','Secciones de Sobre mí'); tabs.setAttribute('role','tablist'); tabs.setAttribute('aria-orientation',smallScreen.matches?'horizontal':'vertical');
         const area = el('div'); area.setAttribute('role','tabpanel'); area.id = 'study-about-panel';
-        [['testament','Testamento'],['credentials','Credenciales'],['tastes','Gustos']].forEach(([key,label]) => {
+        [['testament','Testamento'],['credentials','Credenciales']].forEach(([key,label]) => {
           const button = el('button','',label); button.type = 'button'; button.setAttribute('role','tab'); button.setAttribute('aria-controls',area.id); button.setAttribute('aria-selected',String(key===tab));
           button.addEventListener('click', () => renderAbout(key, area, tabs)); tabs.append(button); button.dataset.aboutTab = key; button.id = `study-about-tab-${key}`;
         });
@@ -1202,37 +1260,25 @@
       }
       function renderAbout(tab, area, tabs) {
         if (activeAboutTab === tab && area.childElementCount) return;
+        const initial = !area.childElementCount;
         activeAboutTab = tab; page.scrollTop = 0;
-        area.setAttribute('aria-labelledby', `study-about-tab-${tab}`); area.tabIndex = 0; syncPageAddress('about','',true);
+        area.setAttribute('aria-labelledby', `study-about-tab-${tab}`); area.tabIndex = 0; syncPageAddress('about','',initial);
         tabs.querySelectorAll('button').forEach(b => { const active = b.dataset.aboutTab === tab; b.setAttribute('aria-selected',String(active)); b.tabIndex = active ? 0 : -1; });
-        area.replaceChildren(); area.className = 'study-about-panel'; area.setAttribute('aria-label', {testament:'Testamento',credentials:'Credenciales',tastes:'Gustos'}[tab]);
+        area.replaceChildren(); area.className = 'study-about-panel'; area.setAttribute('aria-label', {testament:'Testamento',credentials:'Credenciales'}[tab]);
         if (tab === 'testament') {
-          const intro = el('article','study-about-intro');
-          intro.append(el('p','study-about-kicker','Santiago Barbieri · Buenos Aires'),el('h2','','Una idea, varias formas.'));
-          const body = el('div','study-about-intro__body');
-          body.append(el('p','','Soy Santiago. Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa lo que le pasa a una idea cuando cambia de formato: de una marca a una prenda, de una imagen a una campaña.'),el('p','','Soy cofundador y director creativo de Apolo Studios. Acá reúno ese trabajo, los proyectos para marcas y organizaciones y un archivo de exploraciones personales.'));
-          intro.append(body);
-          const practice = el('div','study-about-practice'); ['Identidad','Dirección creativa','Web','Fotografía'].forEach(text => practice.append(el('span','',text))); intro.append(practice);
-          const contact = el('button','study-text-button study-about-contact','Conversemos'); contact.type = 'button'; contact.addEventListener('click',openContact); intro.append(contact); area.append(intro);
+          const layout = el('div','study-about-testament'); layout.append(el('h2','study-page-title','Hola, soy Santiago.'));
+          const portrait = el('div','study-portrait-pending','Retrato pendiente'); portrait.setAttribute('role','img'); portrait.setAttribute('aria-label','Espacio reservado para el retrato de Santiago'); layout.append(portrait);
+          const text = el('div','study-about-text');
+          [
+            'Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa cómo una idea cambia al pasar a una prenda, una campaña o una pantalla.',
+            'Soy cofundador y director creativo de Apolo Studios. Este portfolio reúne ese trabajo junto con identidades y campañas para marcas y organizaciones, además de mis exploraciones personales.'
+          ].forEach(p => text.append(el('p','',p)));
+          text.append(el('p','study-page-note','Testamento en edición. El texto definitivo y el retrato todavía están en preparación.')); layout.append(text); area.append(layout);
         } else if (tab === 'credentials') {
           const list = el('div','study-credentials');
           [['Desarrollo web','Desarrollo web','Coderhouse'],['CAE','Inglés · Nivel C1','Cambridge University']].forEach(([title,detail,issuer]) => { const row=el('article','study-credential');row.append(el('h2','',title),el('p','',detail),el('p','',issuer));list.append(row); }); area.append(list);
-        } else {
-          area.append(el('p','study-about-kicker','Música, cine, libros y ciudad'),el('h2','study-page-title','También aparecen en mis gráficas.'));
-          const selection = el('div','study-about-interests');
-          [['poster-100-horses','Música','100 Horses · Geese'],['poster-paris-texas','Cine','Paris, Texas'],['stephen-king-01','Libros','Stephen King']].forEach(([id,title,description]) => {
-            let item = archiveItems.find(x => x.id === id);
-            if (!item && title === 'Libros') item = archiveItems.find(x => x.kind === 'book');
-            if (!item) return;
-            const article = el('article','study-about-interest'), button = el('button'); button.type = 'button'; button.setAttribute('aria-label',`Ver ${title.toLocaleLowerCase('es')} en el archivo`);
-            button.append(imageNode({src:item.thumbnail?.src||item.src,alt:item.alt||item.name,w:item.thumbnail?.w||item.w,h:item.thumbnail?.h||item.h}));
-            button.addEventListener('click',() => { archivePreferences.query = item.name; openArchive('archive'); });
-            article.append(button,el('h3','',title),el('p','',description)); selection.append(article);
-          });
-          area.append(selection,el('p','study-about-location','Buenos Aires, Argentina. Diseño, fotografía y recorridos cotidianos.'));
         }
       }
-
       const contactSettings = Object.freeze({ endpoint: '', email: '' });
       function openContact() {
         beginPage('contact','¡TRABAJEMOS JUNTOS!','#ef3333');
@@ -1307,6 +1353,7 @@
 
       let archivePreferences = { density: 4, query: '' };
       function openArchive(kind = 'archive') {
+        if (archiveLocked) return;
         const initial = kind === 'photos' ? 'photo' : kind === 'posters' ? 'poster' : 'all';
         beginPage(kind, 'ARCHIVO', '#ff6b2c');
         let filter = initial, density = kind === 'posters' ? 2 : archivePreferences.density;
@@ -1402,9 +1449,10 @@
           const visualRect = visual.getBoundingClientRect();
           const titleRect = document.querySelector('.study-heading').getBoundingClientRect();
           const closeRect = document.querySelector('.study-page-close').getBoundingClientRect();
-          document.body.classList.toggle('study-case-on-cover', visualRect.top <= titleRect.top + titleRect.height/2 && visualRect.bottom >= titleRect.top + titleRect.height/2);
-          document.body.classList.toggle('study-close-on-cover', visualRect.top <= closeRect.top + closeRect.height/2 && visualRect.bottom >= closeRect.top + closeRect.height/2);
-          caseNavigation.classList.toggle('on-case-cover', visualRect.top <= innerHeight / 2 && visualRect.bottom >= innerHeight / 2);
+          document.body.classList.toggle('study-case-on-cover', smallScreen.matches ? visualRect.bottom > page.getBoundingClientRect().top + 4 : visualRect.top <= titleRect.top + titleRect.height/2 && visualRect.bottom >= titleRect.top + titleRect.height/2);
+          document.body.classList.toggle('study-close-on-cover', smallScreen.matches ? visualRect.bottom > page.getBoundingClientRect().top + 4 : visualRect.top <= closeRect.top + closeRect.height/2 && visualRect.bottom >= closeRect.top + closeRect.height/2);
+          const arrow = casePrevious.getBoundingClientRect(), arrowY = arrow.top + arrow.height/2;
+          caseNavigation.classList.toggle('on-case-cover', visualRect.top <= arrowY && visualRect.bottom >= arrowY);
         };
         const schedule = () => { if (!tick) tick = requestAnimationFrame(update); };
         page.addEventListener('scroll', schedule, { passive: true, signal: controller.signal });
@@ -1494,7 +1542,7 @@
         const videos = [...flow.querySelectorAll('video')];
         if (videos.length) {
           pageVideoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-            if (entry.isIntersecting && !smallScreen.matches && !document.hidden && !lightbox.open && !activeProjectTransition) entry.target.play().catch(() => {}); else entry.target.pause();
+            if (entry.isIntersecting && !mobileMenuOpen && !document.hidden && !lightbox.open && !activeProjectTransition) entry.target.play().catch(() => {}); else entry.target.pause();
           }), { root: page, threshold: .1 }); videos.forEach(video => pageVideoObserver.observe(video));
         }
         updateCaseNavigation(id);
@@ -1509,6 +1557,7 @@
         caseStatus.textContent = `${catalogue[id].title}. Proyecto ${id + 1} de ${catalogue.length}.`;
       }
       function projectTransition(item, phase) {
+        setMobileMenu(false,false);
         const wash = el('div', 'study-transition-wash'); wash.style.background = item.surface; wash.setAttribute('aria-hidden', 'true');
         const close = el('button', 'study-transition-close', 'Cerrar ×'); close.type = 'button'; close.setAttribute('aria-label', 'Volver a proyectos'); close.addEventListener('click', closePage);
         close.style.color = phase === 'close' && !document.body.classList.contains('study-close-on-cover') ? '#111' : ['#41aebc','#4c997f'].includes(item.surface) ? '#111' : '#fff';
@@ -1537,6 +1586,7 @@
         stage.inert = true; navigation.inert = true; index.inert = true; page.inert = true;
         pointer.inside = false; hovered = null; info.classList.remove('is-visible');
         caseNavigation.setAttribute('aria-busy', 'true'); casePrevious.disabled = caseNext.disabled = true;
+        syncMobileShell();
         return state;
       }
       function finishProjectTransition(state) {
@@ -1548,6 +1598,7 @@
         delete document.body.dataset.projectTransition; activeProjectTransition = null;
         stage.inert = Boolean(pageName); navigation.inert = pageName === 'project'; index.inert = Boolean(pageName);
         caseNavigation.removeAttribute('aria-busy'); casePrevious.disabled = caseNext.disabled = false;
+        syncMobileShell();
         if (pageName === 'project') { page.focus({ preventScroll: true }); if (state.phase !== 'close') syncCaseVideos(); }
         if (!pageName && state.returnFocus?.isConnected) state.returnFocus.focus({ preventScroll: true });
         updateStudyCursor(true);
@@ -1593,7 +1644,7 @@
       casePrevious.addEventListener('click', () => switchProject(-1));
       caseNext.addEventListener('click', () => switchProject(1));
       document.addEventListener('keydown', event => {
-        if (pageName !== 'project' || lightbox.open || event.ctrlKey || event.altKey || event.metaKey || event.repeat || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
+        if (mobileMenuOpen || pageName !== 'project' || lightbox.open || event.ctrlKey || event.altKey || event.metaKey || event.repeat || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); switchProject(event.key === 'ArrowRight' ? 1 : -1); }
       });
 
@@ -1707,7 +1758,6 @@
 
       function stopPainting() { cancelAnimationFrame(raf); raf = previous = 0; }
       function frame(time) {
-        if (smallScreen.matches) { stopPainting(); return; }
         raf = 0;
         if (document.hidden) { previous = 0; return; }
         const dt = Math.min(.032, previous ? (time - previous) / 1000 : 1 / 60);
@@ -1743,7 +1793,7 @@
         } else { const next = target - Math.max(-280, Math.min(280, delta)) / 520; move(Math.max(offset - 1.6, Math.min(offset + 1.6, next))); }
       }, { passive: false });
       stage.addEventListener('pointerdown', event => {
-        if (event.button !== 0 || event.target.closest('.study-card-info')) return;
+        if (event.button !== 0 || dragging || event.isPrimary === false || event.target.closest('.study-card-info')) return;
         target = offset;
         let hit = null;
         const base = Math.round(position);
@@ -1754,16 +1804,17 @@
         stage.setPointerCapture(event.pointerId); stage.classList.add('is-dragging');
       });
       function projectedDrag(dx, dy) {
-        const pitch = config.pitch * Math.PI / 180, yaw = config.yaw * Math.PI / 180;
-        const vx = Math.sin(yaw) * config.gap * scale;
-        const vy = -Math.sin(pitch) * Math.cos(yaw) * config.gap * scale;
+        if (smallScreen.matches) return -dx / (cameraConfig.gap*scale*Math.cos(cameraConfig.yaw*Math.PI/180));
+        const pitch = cameraConfig.pitch * Math.PI / 180, yaw = cameraConfig.yaw * Math.PI / 180;
+        const vx = Math.sin(yaw) * cameraConfig.gap * scale;
+        const vy = -Math.sin(pitch) * Math.cos(yaw) * cameraConfig.gap * scale;
         return (dx * vx + dy * vy) / (vx * vx + vy * vy);
       }
       stage.addEventListener('pointermove', event => {
-        if (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > .5) pointer.serial += 1;
-        pointer.x = event.clientX; pointer.y = event.clientY; pointer.inside = true;
+        if (event.pointerType !== 'touch' && Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > .5) pointer.serial += 1;
+        pointer.x = event.clientX; pointer.y = event.clientY; pointer.inside = event.pointerType !== 'touch';
         if (!dragging || event.pointerId !== dragging.id) return;
-        if (Math.hypot(event.clientX - dragging.x, event.clientY - dragging.y) > 6) dragging.moved = true;
+        if (Math.hypot(event.clientX - dragging.x, event.clientY - dragging.y) > (event.pointerType === 'touch' ? 10 : 6)) dragging.moved = true;
         move(dragging.target + projectedDrag(event.clientX - dragging.x, event.clientY - dragging.y));
       });
       stage.addEventListener('pointerleave', () => { pointer.inside = false; });
@@ -1773,7 +1824,8 @@
         const chosen = dragging.sequence;
         dragging = null; stage.classList.remove('is-dragging');
         if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
-        move(target);
+        if (smallScreen.matches && !clicked && event.type !== 'pointercancel') move(Math.round(drift()+target)-drift());
+        else move(target);
         if (clicked && chosen !== null && !pageName && !document.body.classList.contains('study-loading')) openProject(chosen);
       }
       stage.addEventListener('pointerup', release);
@@ -1785,6 +1837,11 @@
         else if (event.code === 'Space') event.preventDefault();
       });
       projects.forEach((button, index) => button.addEventListener('click', () => {
+        if (smallScreen.matches) {
+          setMobileMenu(false,false);
+          if (pageName || activeProjectTransition || pendingCover) closePageImmediately(true);
+          const sequence = Math.round((position-index)/names.length)*names.length+index; move(sequence-drift()); openProject(sequence); return;
+        }
         if (pageName || activeProjectTransition || pendingCover) closePageImmediately();
         pointer.inside = false;
         const sequence = Math.round((position - index) / names.length) * names.length + index;
@@ -1799,30 +1856,29 @@
         });
       });
       document.querySelectorAll('[data-pending]').forEach(button => button.addEventListener('click', () => {
+        setMobileMenu(false);
         clearTimeout(noticeTimer);
         notice.textContent = `${button.dataset.pending} · En preparación`;
         noticeTimer = setTimeout(() => { notice.textContent = ''; }, 3000);
       }));
       document.addEventListener('visibilitychange', () => {
-        syncCaseVideos();
+        syncDrift(); syncCaseVideos();
         if (document.hidden) { stopPreview(); stopPainting(); dragging = null; pointer.inside = false; stage.classList.remove('is-dragging'); }
         else { previous = 0; position = drift() + offset; draw(); wake(); }
       });
       window.addEventListener('pagehide', () => { stopPreview(); stopPainting(); });
       window.addEventListener('pageshow', wake);
       window.addEventListener('resize', () => { measure(); if (lightbox.open) fitLightbox(); activeProjectTransition?.finishAnimations(); }, { passive: true });
-      preference.addEventListener('change', () => { offset = target; if (preference.matches) activeProjectTransition?.finishAnimations(); });
+      preference.addEventListener('change', () => { syncDrift(); offset = target; if (preference.matches) activeProjectTransition?.finishAnimations(); });
       const updateStudyCursor = setupStudyCursor();
       smallScreen.addEventListener('change', () => {
-        if (smallScreen.matches) {
-          stopPreview(); stopPainting(); if (lightbox.open) lightbox.close(); syncCaseVideos();
-          document.querySelector('.mobile-status').focus({ preventScroll: true });
-        } else {
-          measure(); wake(); if (document.body.classList.contains('study-loading')) prepare(); else syncCaseVideos();
-        }
+        setMobileMenu(false,false); stopPreview(); pointer.inside = false; hovered = null; hoverStates.clear();
+        if (dragging && stage.hasPointerCapture(dragging.id)) stage.releasePointerCapture(dragging.id);
+        dragging = null; stage.classList.remove('is-dragging');
+        const tabs = page.querySelector('[role="tablist"]'); if (tabs) tabs.setAttribute('aria-orientation',smallScreen.matches?'horizontal':'vertical');
+        measure(); wake(); syncCaseVideos();
       });
-      if (smallScreen.matches) document.querySelector('.mobile-status').focus({ preventScroll: true });
-      else { measure(); wake(); prepare(); }
+      syncMobileShell(); measure(); wake(); prepare();
     })();
 
   </script>
