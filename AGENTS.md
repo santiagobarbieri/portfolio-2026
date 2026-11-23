@@ -1,5 +1,19 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Loader con logo corredor · 23 de noviembre de 2026
+
+Por pedido de Santiago, todas las cargas usan la animación original de su logo corriendo en lugar de Spin Rose. `data-logo-loader` activa un modo automático del mismo módulo `assets/scripts/logo-runner.js`, con los diez fotogramas SVG originales, sin modificar sus trazados. `loadingMark()` monta los indicadores de portada, imágenes, visor y formulario; la carga inicial también lo usa antes de revelar el carrusel. Conservar esperas reales, estados ARIA, cancelación, reintentos y la preparación de portadas antes de mostrar el inicio.
+
+Los indicadores comparten un scheduler y se detienen al quedar fuera de vista, desconectarse o esconder la pestaña. Movimiento reducido mantiene una pose fija. El tamaño se controla con `--logo-size`: 32px inicial/visor, 20px aviso, 22px imagen y 16px formulario. Heredar color del contexto y no agregar un fondo cuadrado al indicador. El logo del encabezado conserva su comportamiento de hover y no se convierte en un loader permanente. Este criterio reemplaza las referencias históricas al loader Rose.
+
+## Índice delineado y referencias responsive · 23 de noviembre de 2026
+
+La nueva referencia conserva el carrusel en perspectiva y aumenta la escala de la interfaz de escritorio: firma blanca sobre negro, tiras con borde negro fino y tabla estable Proyectos a media altura. `css/shell.css` define la escala, anchos y separación de los controles; `css/mobile.css` adapta el mismo sistema. No expandir metadatos dentro de las filas. El pequeño símbolo permanece en 17px y se conserva el corredor del logo original.
+
+En teléfono, la firma y el botón de menú comparten una franja negra; Sobre mí usa verde y Contacto rojo. El menú es un índice negro con filas de ancho completo, subfilas blancas y sección Proyectos plegable, sin paneles en dos columnas. La ubicación al pie pertenece al índice, nunca a las fichas de clientes. Reservar espacio al pie y mantener foco contenido, Escape, inercia nula al tocar controles y seguridad de gestos.
+
+El selector inferior es una fila delineada: flecha, nombre del proyecto y flecha. Al seleccionar una tarjeta por toque aparecen descripción/año y la indicación Abrir, sin desplazar la cámara. Sobre mí usa el mismo selector para Testamento y Credenciales; su título va arriba y el texto/retrato se organizan en dos columnas. Conservar texto confirmado, sin inventar retrato ni gustos. El usuario confirmó expresamente mantener Archivo con candado pese al desplegable visible en las referencias. Conservar cámara, portadas, previews, transiciones y videos existentes.
+
 ## Hover táctil de Proyectos · 23 de noviembre de 2026
 
 Santiago aprobó conservar el hover en móvil mediante selección por toque. El primer toque sobre una tarjeta la desplaza a la derecha con la misma animación del escritorio y activa su preview. El segundo toque sobre esa misma instancia, o ABRIR, entra al proyecto. Tocar otra cambia la selección; arrastrar, cancelar o usar varios dedos nunca abre. El avance automático continúa y una selección completamente fuera del viewport se desactiva.

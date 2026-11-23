@@ -141,8 +141,124 @@
 
   }
 
+  // Loading indicators reuse the supplied frames, independently of hover logos.
+  // Detached hosts are cached weakly; only connected indicators enter the scheduler.
+  const loaderCache = new WeakMap();
+  const liveLoaders = new Map();
+  let loaderFrame = 0;
+  const loaderIntersection = typeof IntersectionObserver === "function" ? new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const state = liveLoaders.get(entry.target);
+      if (state) state.intersects = entry.isIntersecting;
+    });
+    syncLoaders();
+  }) : null;
+
+  function loaderVisible(host, state) {
+    if (!host.isConnected || document.hidden || host.closest("[hidden],[inert]")) return false;
+    if (loaderIntersection && !state.intersects) return false;
+    if (!host.getClientRects().length || getComputedStyle(host).visibility !== "visible") return false;
+    if (!loaderIntersection) {
+      const rect = host.getBoundingClientRect();
+      if (rect.bottom <= 0 || rect.top >= innerHeight || rect.right <= 0 || rect.left >= innerWidth) return false;
+    }
+    return true;
+  }
+
+  function showLoader(state, next) {
+    if (state.current === next) return;
+    state.frames[state.current].classList.remove("on");
+    state.frames[next].classList.add("on");
+    state.current = next;
+  }
+
+  function removeLoader(host) {
+    loaderIntersection?.unobserve(host);
+    const state = liveLoaders.get(host);
+    if (state) state.active = false;
+    liveLoaders.delete(host);
+  }
+
+  function paintLoaders(time) {
+    loaderFrame = 0;
+    let running = false;
+    liveLoaders.forEach((state, host) => {
+      if (!host.isConnected) { removeLoader(host); return; }
+      if (!state.active || document.hidden || reduce.matches) return;
+      running = true;
+      if (!state.last) state.last = time;
+      const elapsed = time - state.last;
+      if (elapsed < state.interval) return;
+      state.last = time - elapsed % state.interval;
+      // Visibility is rechecked at frame cadence, never on each render frame.
+      if (!loaderVisible(host, state)) { state.active = false; return; }
+      showLoader(state, (state.current + 1) % state.frames.length);
+    });
+    if (running && !document.hidden && !reduce.matches) loaderFrame = requestAnimationFrame(paintLoaders);
+  }
+
+  function syncLoaders() {
+    let running = false;
+    liveLoaders.forEach((state, host) => {
+      if (!host.isConnected) { removeLoader(host); return; }
+      const active = loaderVisible(host, state);
+      if (active !== state.active) state.last = 0;
+      state.active = active;
+      host.dataset.state = "on";
+      if (reduce.matches) showLoader(state, 1);
+      running ||= active;
+    });
+    if (!running || document.hidden || reduce.matches) {
+      cancelAnimationFrame(loaderFrame); loaderFrame = 0;
+    } else if (!loaderFrame) loaderFrame = requestAnimationFrame(paintLoaders);
+  }
+
+  function mountLoader(host) {
+    if (!(host instanceof Element)) return host;
+    host.setAttribute("data-logo-loader", "");
+    let state = loaderCache.get(host);
+    if (!state) {
+      const frames = build(host);
+      state = { frames, current: 0, active: false, intersects: !loaderIntersection, last: 0,
+        interval: 1000 / Math.min(24, Math.max(4, Number(host.dataset.fps) || 12)) };
+      loaderCache.set(host, state);
+      host.dataset.lrLoaderReady = "1";
+      host.dataset.state = "on";
+      if (reduce.matches) showLoader(state, 1);
+    }
+    if (host.isConnected && !liveLoaders.has(host)) {
+      liveLoaders.set(host, state);
+      loaderIntersection?.observe(host);
+      syncLoaders();
+    }
+    return host;
+  }
+
+  function discoverLoaders(node) {
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+    if (node.matches("[data-logo-loader]")) mountLoader(node);
+    // Frame insertion must not rescan the internals of an already mounted indicator.
+    if (node.closest("[data-logo-loader]")) return;
+    node.querySelectorAll("[data-logo-loader]").forEach(mountLoader);
+  }
+
+  window.PortfolioLogoRunner = Object.freeze({ mountLoader });
   function boot() {
-    document.querySelectorAll("[data-logo-runner]").forEach(init);
+    document.querySelectorAll("[data-logo-runner]:not([data-logo-loader])").forEach(init);
+    document.querySelectorAll("[data-logo-loader]").forEach(mountLoader);
+    const loaderNodes = new MutationObserver(records => {
+      records.forEach(record => record.addedNodes.forEach(discoverLoaders));
+      syncLoaders();
+    });
+    loaderNodes.observe(document.body, { childList: true, subtree: true });
+    const loaderVisibility = new MutationObserver(syncLoaders);
+    loaderVisibility.observe(document.body, { attributes: true, attributeFilter: ["class", "data-project-transition", "data-study-page", "data-mobile-menu"] });
+    document.querySelectorAll("dialog").forEach(dialog => loaderVisibility.observe(dialog, { attributes: true, attributeFilter: ["open"] }));
+    document.addEventListener("visibilitychange", syncLoaders);
+    window.addEventListener("resize", syncLoaders, { passive: true });
+    window.addEventListener("pagehide", () => { cancelAnimationFrame(loaderFrame); loaderFrame = 0; liveLoaders.forEach(state => { state.last = 0; }); });
+    window.addEventListener("pageshow", syncLoaders);
+    reduce.addEventListener("change", () => { liveLoaders.forEach(state => { state.last = 0; }); syncLoaders(); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();

@@ -1,0 +1,248 @@
+/* Fixed interface from Santiago's index references. The camera is unchanged. */
+:root {
+  --shell-font: clamp(13px, calc(8px + .416667vw), 18px);
+  --shell-row-height: calc(var(--shell-font) + 8px);
+  --shell-index-width: clamp(196px, 15.4vw, 272px);
+  --shell-top: clamp(32px, 3.05vw, 54px);
+  --shell-edge: clamp(16px, 1.25vw, 28px);
+}
+
+body:not([data-study-page="project"]) .study-heading {
+  top: var(--shell-top);
+  left: var(--shell-edge);
+  width: max-content;
+  min-width: var(--shell-index-width);
+  max-width: calc(50vw - 340px);
+  min-height: var(--shell-row-height);
+  gap: 7px;
+  padding: 2px 5px;
+  color: #fff;
+  background: #111;
+  font-size: var(--shell-font);
+  line-height: 1.15;
+}
+
+body:not([data-study-page="project"]) .study-heading .study-home {
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+.study-navigation {
+  top: var(--shell-top);
+  gap: 8px;
+}
+
+.study-nav-group {
+  width: calc(var(--shell-font) * 8.7);
+}
+
+.study-nav-trigger {
+  height: var(--shell-row-height);
+  min-height: var(--shell-row-height);
+  padding: 1px 7px;
+  border: 1px solid #111;
+  font-size: var(--shell-font);
+  line-height: 1.15;
+}
+
+.study-nav-trigger svg,
+.study-submenu button svg {
+  width: 11px;
+  height: 11px;
+}
+
+.study-submenu button {
+  min-height: var(--shell-row-height);
+  padding: 2px 5px;
+  border-color: #111;
+  font-size: var(--shell-font);
+  line-height: 1.2;
+}
+
+.study-projects {
+  top: 46%;
+  left: var(--shell-edge);
+  right: auto;
+  width: var(--shell-index-width);
+  transform: translateY(-50%);
+}
+
+.study-projects ul {
+  display: grid;
+  gap: 0;
+}
+
+.study-projects button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: var(--shell-row-height);
+  padding: 2px 5px;
+  border: 1px solid #111;
+  border-top: 0;
+  color: #111;
+  background: #fff;
+  font-size: var(--shell-font);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.study-projects button::before {
+  content: none;
+}
+
+.study-projects button::after {
+  content: "";
+  display: block;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transition: transform var(--ui-time) var(--ui-ease);
+}
+
+.study-projects button > span:first-child {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.study-projects button:is(:hover, :focus-visible) > span:first-child {
+  transform: translateX(2px) scale(1.015);
+}
+
+.study-projects button:is(:hover, :focus-visible)::after {
+  transform: translate(1px, -1px);
+}
+
+.study-projects button:active > span:first-child {
+  transform: translateX(1px);
+}
+
+.study-projects button[aria-current="true"] {
+  font-weight: 600;
+}
+
+.study-projects .study-projects-toggle {
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  font-weight: 400;
+}
+
+.study-projects-toggle::after {
+  transform: rotate(135deg) scale(.8);
+}
+
+.study-projects-toggle[aria-expanded="false"]::after {
+  transform: rotate(45deg) scale(.8);
+}
+
+.study-projects .study-projects-toggle:is(:hover, :focus-visible)::after {
+  transform: translateY(1px) rotate(135deg) scale(.8);
+}
+
+.study-projects .study-projects-toggle[aria-expanded="false"]:is(:hover, :focus-visible)::after {
+  transform: translateY(1px) rotate(45deg) scale(.8);
+}
+
+.study-projects-toggle[aria-expanded="false"] + ul {
+  display: none;
+}
+
+.study-project-meta,
+.study-projects button:is(:hover, :focus-visible) .study-project-meta {
+  display: none;
+}
+
+.study-mobile-projects-title {
+  display: none;
+}
+
+.study-colophon {
+  position: fixed;
+  z-index: 55;
+  right: var(--shell-edge);
+  bottom: clamp(24px, 5.5vh, 54px);
+  margin: 0;
+  color: #111;
+  font-size: clamp(11px, calc(7px + .3125vw), 15px);
+  line-height: 1.3;
+  text-align: right;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+body[data-study-page="project"] .study-colophon,
+body[data-project-transition] .study-colophon {
+  visibility: hidden;
+}
+
+/* Compact desktop windows keep the color strips on their own second line. */
+@media (min-width: 601px) and (max-width: 1200px) {
+  body:not([data-study-page="project"]) .study-heading {
+    max-width: calc(100vw - 48px);
+  }
+
+  body:not([data-study-page="project"]) .study-navigation {
+    top: calc(var(--shell-top) + var(--shell-row-height) + 18px);
+    left: 50%;
+    right: auto;
+    width: min(calc(100% - 32px), 680px);
+    max-width: none;
+    flex-wrap: nowrap;
+    gap: 6px;
+    transform: translateX(-50%);
+  }
+
+  .study-nav-group {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+
+  .study-projects {
+    top: 46%;
+    right: auto;
+    width: var(--shell-index-width);
+    transform: translateY(-50%);
+  }
+
+  .study-projects ul {
+    display: grid;
+    gap: 0;
+  }
+
+  .study-projects button {
+    width: 100%;
+    min-height: var(--shell-row-height);
+    line-height: 1.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-projects button::after {
+    transition: none;
+  }
+}
+
+.study-projects-toggle > svg { display: none; }
+.study-corner-mark { position: fixed; z-index: 60; top: var(--shell-top); right: var(--shell-edge); display: grid; place-items: center; width: 24px; height: 24px; background: #fff; color: #111; }
+.study-corner-mark .study-mark { transition: transform 180ms var(--ui-ease); }
+.study-corner-mark:is(:hover,:focus-visible) .study-mark { transform: rotate(45deg) scale(1.08); }
+body[data-study-page="project"] .study-corner-mark, body[data-project-transition] .study-corner-mark { visibility: hidden; }
+@media (min-width: 1001px) {
+  .study-card-info { width: clamp(220px,16vw,300px); padding: 14px 16px; }
+  .study-card-info h2 { font-size: clamp(18px,1.35vw,25px); }
+  .study-card-info p, .study-card-info__year, .study-card-info__open { font-size: var(--shell-font); }
+  .study-page-index[role="tablist"] button { font-size: var(--shell-font); min-height: calc(var(--shell-row-height) + 8px); }
+  .study-case-section p, .study-page-copy { font-size: clamp(16px,1.05vw,20px); }
+  body[data-study-page="project"] .study-heading, body[data-study-page="project"] .study-page-close { font-size: var(--shell-font); }
+}
+
+.study-heading .study-home .study-mark { color: inherit; }

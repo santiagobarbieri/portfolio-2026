@@ -11,9 +11,11 @@ La versión actual vive en `index.html`: carrusel continuo de proyectos en persp
 
 El símbolo del encabezado se transforma en un corredor al pasar el puntero o recibir foco de teclado. Conserva su tamaño de 17px y toma el color de la sección o proyecto abierto; sobre la portada usa un contorno de contraste. Al salir completa la zancada y vuelve al logo. No mantiene animaciones en segundo plano, durante transiciones, detrás del visor o del menú móvil; con movimiento reducido muestra una pose estática.
 
+Las cargas usan el logo corriendo con los mismos diez fotogramas originales del hover. El inicio espera las portadas antes de revelarse; imágenes, visor y formulario reutilizan indicadores pequeños. Comparten un ciclo de animación, se pausan fuera de vista o con la pestaña oculta y respetan movimiento reducido. El loader Rose y su máscara dejan de utilizarse.
+
 ## Estado del contenido
 
-Cinco proyectos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT y El Armado. El Archivo reúne 84 afiches, tapas y fotografías personales, intercalados y filtrables. Sobre mí usa una presentación breve con datos confirmados y selecciones tomadas del trabajo personal; el retrato original y los favoritos indicados por Santiago siguen pendientes. Contacto valida y permite revisar la consulta; su transporte de envío está implementado pero falta configurar el destino real. Tienda y URLs aún no definidas siguen indicadas como pendientes. Móvil muestra un aviso de desarrollo hasta 900 px.
+Cinco proyectos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT y El Armado. El Archivo conserva 84 afiches, tapas y fotografías personales y permanece bloqueado con candado. Sobre mí presenta Testamento y Credenciales con datos confirmados; el retrato original y el texto definitivo siguen pendientes. Contacto valida y permite revisar la consulta; su transporte de envío está implementado pero falta configurar el destino real. Tienda y URLs aún no definidas siguen indicadas como pendientes. La versión móvil está activa y conserva la perspectiva del escritorio.
 
 Las portadas están preparadas antes de revelar el inicio. Las imágenes interiores se cargan bajo demanda, conservan sus dimensiones y ofrecen reintento si fallan. El visor amplía cada pieza sin descargas de clientes. Los videos se reproducen mudos, en loop y sin controles; se pausan fuera de vista, detrás del visor o con la pestaña oculta.
 
@@ -21,7 +23,8 @@ Las portadas están preparadas antes de revelar el inicio. Las imágenes interio
 
 - `index.html`: interfaz, catálogo y lógica de la versión actual.
 - `assets/`: únicamente recursos referenciados por esta versión, más su licencia tipográfica.
-- `css/mobile.css`: carrusel táctil, menú accesible, lectura y visor adaptados hasta 900px.
+- `css/shell.css`: escala de escritorio, firma y navegación delineadas e índice de proyectos.
+- `css/mobile.css`: carrusel táctil, menú negro de filas completas, selectores inferiores, lectura y visor.
 - `assets/scripts/logo-runner.js` y `css/logo-runner.css`: efecto del logo con los diez fotogramas SVG aportados.
 - `css/editorial-update.css`: índice ampliado, previews, estilos del Archivo conservado y formulario guiado.
 - `build.mjs`: empaquetado estático para Vercel.
@@ -39,6 +42,12 @@ python3 -m http.server 4173 --directory dist
 ```
 
 No se requiere compilar CSS ni instalar paquetes. Las direcciones anteriores de los proyectos, Sobre mí, Contacto y Archivo se redirigen a la versión actual en Vercel. Los casos también se pueden abrir con `index.html?project=el-armado`; Archivo está temporalmente bloqueado: sus enlaces antiguos vuelven a Proyectos.
+
+## Interfaz según referencias de índice y teléfono
+
+La firma blanca sobre negro, el índice Proyectos y las tiras de navegación comparten bordes finos. En escritorio, la escala crece de 14px a 16px entre 1440 y 1920px y también aumenta el ancho de sus controles. En teléfono, el menú reúne filas completas sobre negro y los desplegables empujan el contenido. El selector inferior permite recorrer tarjetas y abrir la elegida; la selección táctil muestra su descripción sin mover el escenario.
+
+Sobre mí dispone título superior, texto y retrato pendiente en dos columnas, con selector Testamento/Credenciales al pie. Archivo continúa con candado por confirmación del usuario. Los cinco casos, las portadas y la cámara conservan su funcionamiento. Se revisan tamaños de 320 a 2560px con Chrome; la comprobación en dispositivos físicos sigue pendiente.
 
 ## Vista previa táctil de Proyectos
 
@@ -74,7 +83,7 @@ No se extrajeron logos de capturas ni se quitaron fondos automáticamente. No se
 
 ## Nuevas interacciones — 22 de noviembre de 2026
 
-Las tarjetas conservan cámara y geometría. Después de 650ms de hover muestran dos o tres piezas decodificadas, alternadas cada 1700ms con la portada, sin fondos auxiliares ni recortes. Club conserva únicamente su portada. Las piezas se solicitan al interactuar, no en la carga inicial; se descartan respuestas obsoletas y se cancela el preview al navegar. Movimiento reducido conserva una sola imagen de preview. El índice muestra disciplina y año al hover o foco, además de señalar el caso actual.
+Las tarjetas conservan cámara y geometría. Después de 650ms de hover muestran dos o tres piezas decodificadas, alternadas cada 1700ms con la portada, sin fondos auxiliares ni recortes. Club conserva únicamente su portada. Las piezas se solicitan al interactuar, no en la carga inicial; se descartan respuestas obsoletas y se cancela el preview al navegar. Movimiento reducido conserva una sola imagen de preview. El índice delineado señala el caso actual; disciplina y año permanecen en las etiquetas accesibles y en la ficha de preview.
 
 Cinco perfiles breves de ruido filtrado distinguen tela, papel y una señal digital. Se generan localmente y solo suenan ante un hover real tras desbloquear el audio con un gesto; scroll y avance automático continúan silenciosos.
 

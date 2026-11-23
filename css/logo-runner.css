@@ -19,3 +19,34 @@ body[data-study-page="project"].study-case-on-cover .lr .mark { stroke: var(--ca
 @media (prefers-reduced-motion: reduce) {
   .lr .mark, .lr .logo, .lr .runner { transition: none !important; }
 }
+
+/* Loading uses the same runner, with no logo-to-hover transition or spinner. */
+.study-logo-loader {
+  --logo-size: 32px;
+  display: inline-block;
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  color: inherit;
+  line-height: 0;
+  pointer-events: none;
+  vertical-align: middle;
+}
+.study-logo-loader:not(.lr)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  -webkit-mask: url("../assets/Favicon.svg") center / contain no-repeat;
+  mask: url("../assets/Favicon.svg") center / contain no-repeat;
+}
+.study-logo-loader.lr { color: inherit; }
+.study-logo-loader.lr .mark { display: none; }
+.study-logo-loader.lr .runner,
+.study-logo-loader.lr[data-state="on"] .runner {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.study-logo-loader.lr .study-mark { color: inherit; }
