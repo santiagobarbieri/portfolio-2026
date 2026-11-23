@@ -413,9 +413,10 @@
   <section class="study-mobile-caption" aria-label="Proyecto seleccionado">
     <div class="study-mobile-caption__top"><span data-mobile-count>01 / 05</span><button type="button" data-mobile-step="-1" aria-label="Ver tarjeta anterior">←</button><button type="button" data-mobile-step="1" aria-label="Ver tarjeta siguiente">→</button></div>
     <h2 data-mobile-title>Apolo Studios</h2><p data-mobile-meta>Identidad y dirección creativa · 2024–2026</p>
+    <p class="study-mobile-description" data-mobile-description></p>
     <button type="button" data-mobile-open>Abrir <span aria-hidden="true">↗︎</span></button>
   </section>
-  <p class="visually-hidden" id="study-help">Scroll o arrastre · Flechas para recorrer. El movimiento automático es continuo.</p>
+  <p class="visually-hidden" id="study-help">Scroll o arrastre · Flechas para recorrer. En pantalla táctil, tocá una tarjeta para previsualizar y volvé a tocar para abrir. El movimiento automático es continuo.</p>
   <output class="visually-hidden" data-current>Plano 01 — Apolo Studios</output>
   <p class="study-notice" role="status" aria-live="polite" data-notice></p>
 
@@ -495,6 +496,7 @@
         const wasOpen = mobileMenuOpen;
         mobileMenuOpen = open && smallScreen.matches;
         if (mobileMenuOpen) {
+          setTouchSelection(null);
           document.body.dataset.mobileMenu = 'open';
           menuPanel.setAttribute('role','dialog'); menuPanel.setAttribute('aria-modal','true'); menuPanel.setAttribute('aria-label','Navegación principal');
           stopPreview(); pointer.inside = false; hovered = null;
@@ -519,8 +521,21 @@
           else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
         }
       }, true);
-      document.querySelectorAll('[data-mobile-step]').forEach(button => button.addEventListener('click', () => move(Math.round(position) + Number(button.dataset.mobileStep) - drift())));
-      document.querySelector('[data-mobile-open]').addEventListener('click', () => openProject(mobileSequence));
+      document.querySelectorAll('[data-mobile-step]').forEach(button => button.addEventListener('click', () => { setTouchSelection(null); move(Math.round(position) + Number(button.dataset.mobileStep) - drift()); }));
+      const mobileOpen = document.querySelector('[data-mobile-open]');
+      let mobileOpenIntent = null;
+      mobileOpen.addEventListener('pointerdown', event => {
+        mobileOpenIntent = { sequence: mobileSequence, id: event.pointerId, x: event.clientX, y: event.clientY, cancelled: event.isPrimary === false };
+      });
+      mobileOpen.addEventListener('pointermove', event => {
+        if (mobileOpenIntent?.id === event.pointerId && Math.hypot(event.clientX-mobileOpenIntent.x,event.clientY-mobileOpenIntent.y)>10) mobileOpenIntent.cancelled = true;
+      });
+      mobileOpen.addEventListener('pointercancel', () => { mobileOpenIntent = null; });
+      mobileOpen.addEventListener('click', event => {
+        const intent = mobileOpenIntent; mobileOpenIntent = null;
+        if (event.detail && (!intent || intent.cancelled || intent.sequence !== mobileSequence)) return;
+        openProject(event.detail ? intent.sequence : mobileSequence);
+      });
       let bounds = { near: -16, far: 32 }, selectedProject = -1;
       const modulo = (value, count) => ((value % count) + count) % count;
       const driftSpeed = .12;
@@ -540,7 +555,30 @@
       }
       let scale = 1, position = 0, offset = 0, target = 0, raf = 0, previous = 0;
       let driftRebase = 0, dragging = null, reducedAt = -Infinity;
-      let hovered = null, lastHoverSerial = -1;
+      let hovered = null, lastHoverSerial = -1, touchSelection = null;
+      function setTouchSelection(sequence) {
+        if (sequence === touchSelection) return;
+        stopPreview(); touchSelection = sequence;
+        if (sequence === null) { delete stage.dataset.touchSelection; delete document.body.dataset.touchSelection; }
+        else { stage.dataset.touchSelection = String(sequence); document.body.dataset.touchSelection = ''; }
+        pointer.inside = false;
+      }
+      function touchSelectionVisible(base) {
+        if (touchSelection === null || touchSelection < base+bounds.near || touchSelection > base+bounds.far) return false;
+        const points = quad(touchSelection,0,hoverStates.get(touchSelection)?.value || 0);
+        if (!points) return false;
+        const xs=points.map(point=>point[0]), ys=points.map(point=>point[1]);
+        return Math.max(...xs)>view.left+2 && Math.min(...xs)<view.right-2 && Math.max(...ys)>view.top+2 && Math.min(...ys)<view.bottom-2;
+      }
+      function measureTouchCaption() {
+        const description = mobileCaption.querySelector('[data-mobile-description]');
+        if (!smallScreen.matches) { description.style.removeProperty('min-height'); document.body.style.removeProperty('--mobile-gallery-bottom'); return; }
+        const copy = description.textContent; description.style.minHeight = '0';
+        let height=0;
+        catalogue.forEach(item=>{ description.textContent=item.description; height=Math.max(height,description.getBoundingClientRect().height); });
+        description.textContent=copy; description.style.minHeight=`${Math.ceil(height)}px`;
+        document.body.style.setProperty('--mobile-gallery-bottom',`${Math.ceil(mobileCaption.getBoundingClientRect().height+28)}px`);
+      }
       let audio = null, master = null, noise = null, soundCount = 0, voices = 0;
       let hoverSoundAt = -Infinity, noticeTimer;
 
@@ -569,7 +607,7 @@
       }
       function updatePreview() {
         const sequence = hovered;
-        if (sequence === null || pageName || activeProjectTransition || dragging || !hoverInput.matches || document.hidden || document.body.classList.contains('study-loading')) { stopPreview(); return; }
+        if (sequence === null || pageName || activeProjectTransition || (dragging && (!dragging.touch || dragging.moved)) || (!hoverInput.matches && touchSelection !== sequence) || document.hidden || document.body.classList.contains('study-loading')) { stopPreview(); return; }
         const sources = previewSources[modulo(sequence,catalogue.length)];
         if (!sources.length) { if (previewState) stopPreview(); return; }
         const record = planes[modulo(sequence,planes.length)];
@@ -696,6 +734,10 @@
         return true;
       }
       function updateHover(base) {
+        if (touchSelection !== null) {
+          if (pageName || activeProjectTransition || mobileMenuOpen || document.hidden || !touchSelectionVisible(base)) setTouchSelection(null);
+          else { hovered = touchSelection; stage.dataset.hoverSequence=String(hovered); return; }
+        }
         if (!hoverInput.matches || mobileMenuOpen) { hovered = null; stage.dataset.hoverSequence = ''; return; }
         let next = null;
         if (infoSequence !== null && (info.matches(':hover') || info.contains(document.activeElement))) next = infoSequence;
@@ -749,13 +791,14 @@
           record.face.style.opacity = String(arrival);
         }
         for (const sequence of hoverStates.keys()) if (!wanted.has(sequence)) hoverStates.delete(sequence);
-        const active = modulo(base, names.length);
-        mobileSequence = base;
+        const active = modulo(touchSelection ?? base, names.length);
+        mobileSequence = touchSelection ?? base;
         if (active !== selectedProject) {
           selectedProject = active;
           const item = catalogue[active];
           mobileCaption.querySelector('[data-mobile-count]').textContent = `${String(active+1).padStart(2,'0')} / ${String(catalogue.length).padStart(2,'0')}`;
           mobileCaption.querySelector('[data-mobile-title]').textContent = item.title;
+          mobileCaption.querySelector('[data-mobile-description]').textContent = item.description;
           const mobileYear = document.createElement('span'); mobileYear.textContent = item.year;
           mobileCaption.querySelector('[data-mobile-meta]').replaceChildren(document.createTextNode(`${item.type} · `),mobileYear);
           mobileCaption.querySelector('[data-mobile-open]').setAttribute('aria-label',`Abrir ${item.title}`);
@@ -772,6 +815,7 @@
         updateStudyCursor();
       }
       function measure() {
+        measureTouchCaption();
         // Place the index in the clear upper-left; never crop the full-screen camera.
         if (!smallScreen.matches && innerWidth <= 1000) index.style.top = `${Math.max(112, navigation.getBoundingClientRect().bottom + 24)}px`;
         else index.style.removeProperty('top');
@@ -806,7 +850,7 @@
       const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
       function positionInfo() {
         const sequence = hovered;
-        const visible = sequence !== null && !pageName && !document.body.classList.contains('study-loading') && !dragging;
+        const visible = sequence !== null && !pageName && !document.body.classList.contains('study-loading') && !dragging && !(smallScreen.matches && touchSelection !== null);
         info.classList.toggle('is-visible', visible);
         info.setAttribute('aria-hidden', String(!visible)); info.tabIndex = visible ? 0 : -1;
         if (!visible) { if (!info.matches(':hover')) infoSequence = null; return; }
@@ -1172,6 +1216,7 @@
         });
       }
       function beginPage(kind, title, color = '') {
+        setTouchSelection(null);
         setMobileMenu(false,false);
         rememberPageAddress();
         stopPreview(); clearPageExtras?.(); clearPageExtras = null;
@@ -1197,6 +1242,7 @@
         }
       }
       function closePageImmediately(keepPosition = false, transition = null) {
+        setTouchSelection(null);
         setMobileMenu(false,false);
         const holdingTransition = transition && activeProjectTransition === transition;
         rememberPageAddress();
@@ -1233,7 +1279,7 @@
         else stage.focus({ preventScroll: true });
       });
       document.querySelector('.study-page-close').addEventListener('click', closePage);
-      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open || mobileMenuOpen) return; if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
+      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open || mobileMenuOpen) return; if (touchSelection !== null) { setTouchSelection(null); return; } if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
       document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
         const kind = button.dataset.view;
         if (pageName === kind || kind === 'about' && pageName.startsWith('about')) { closePage(); return; }
@@ -1560,6 +1606,7 @@
         caseStatus.textContent = `${catalogue[id].title}. Proyecto ${id + 1} de ${catalogue.length}.`;
       }
       function projectTransition(item, phase) {
+        setTouchSelection(null);
         setMobileMenu(false,false);
         const wash = el('div', 'study-transition-wash'); wash.style.background = item.surface; wash.setAttribute('aria-hidden', 'true');
         const close = el('button', 'study-transition-close', 'Cerrar ×'); close.type = 'button'; close.setAttribute('aria-label', 'Volver a proyectos'); close.addEventListener('click', closePage);
@@ -1775,6 +1822,8 @@
           const cycles = Math.trunc(position / 10) * 10;
           driftRebase += cycles; position -= cycles;
           if (hovered !== null) hovered -= cycles;
+          if (touchSelection !== null) setTouchSelection(touchSelection-cycles);
+          if (dragging && dragging.sequence !== null) dragging.sequence -= cycles;
           const rebased = [...hoverStates].map(([sequence, state]) => [sequence - cycles, state]);
           hoverStates.clear(); rebased.forEach(([sequence, state]) => hoverStates.set(sequence, state));
         }
@@ -1788,6 +1837,7 @@
       }
       stage.addEventListener('wheel', event => {
         if (event.ctrlKey) return;
+        setTouchSelection(null);
         event.preventDefault();
         const raw = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
         const delta = raw * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
@@ -1796,14 +1846,18 @@
         } else { const next = target - Math.max(-280, Math.min(280, delta)) / 520; move(Math.max(offset - 1.6, Math.min(offset + 1.6, next))); }
       }, { passive: false });
       stage.addEventListener('pointerdown', event => {
-        if (event.button !== 0 || dragging || event.isPrimary === false || event.target.closest('.study-card-info')) return;
+        if (event.isPrimary === false) { if (dragging) dragging.moved = true; setTouchSelection(null); return; }
+        if (event.button !== 0 || dragging || event.target.closest('.study-card-info')) return;
+        const touch = event.pointerType === 'touch' || event.pointerType === 'pen' && !hoverInput.matches;
+        if (!touch) setTouchSelection(null);
         target = offset;
-        let hit = null;
+        const touchedFace = touch ? event.target.closest('.study-plane__face') : null;
+        let hit = touchedFace ? Number(touchedFace.parentElement.dataset.sequence) : null;
         const base = Math.round(position);
-        for (let sequence = base + bounds.near; sequence <= base + bounds.far; sequence++) {
+        for (let sequence = base + bounds.near; hit === null && sequence <= base + bounds.far; sequence++) {
           if (contains(quad(sequence,0,hoverStates.get(sequence)?.value || 0),event.clientX,event.clientY)) { hit = sequence; break; }
         }
-        dragging = { id: event.pointerId, x: event.clientX, y: event.clientY, target, moved: false, sequence: hit };
+        dragging = { id: event.pointerId, x: event.clientX, y: event.clientY, target, moved: false, sequence: hit, touch, selected: hit !== null && touchSelection === hit };
         stage.setPointerCapture(event.pointerId); stage.classList.add('is-dragging');
       });
       function projectedDrag(dx, dy) {
@@ -1814,29 +1868,37 @@
         return (dx * vx + dy * vy) / (vx * vx + vy * vy);
       }
       stage.addEventListener('pointermove', event => {
+        if (event.pointerType === 'mouse' && touchSelection !== null) setTouchSelection(null);
         if (event.pointerType !== 'touch' && Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > .5) pointer.serial += 1;
         pointer.x = event.clientX; pointer.y = event.clientY; pointer.inside = event.pointerType !== 'touch';
         if (!dragging || event.pointerId !== dragging.id) return;
-        if (Math.hypot(event.clientX - dragging.x, event.clientY - dragging.y) > (event.pointerType === 'touch' ? 10 : 6)) dragging.moved = true;
+        if (Math.hypot(event.clientX - dragging.x, event.clientY - dragging.y) > (dragging.touch ? 10 : 6)) { dragging.moved = true; setTouchSelection(null); }
         move(dragging.target + projectedDrag(event.clientX - dragging.x, event.clientY - dragging.y));
       });
       stage.addEventListener('pointerleave', () => { pointer.inside = false; });
       function release(event) {
         if (!dragging || event.pointerId !== dragging.id) return;
-        const clicked = !dragging.moved && event.type !== 'pointercancel';
-        const chosen = dragging.sequence;
+        const clicked = !dragging.moved && event.type === 'pointerup';
+        const { sequence: chosen, touch, selected } = dragging;
         dragging = null; stage.classList.remove('is-dragging');
         if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
         if (smallScreen.matches && !clicked && event.type !== 'pointercancel') move(Math.round(drift()+target)-drift());
         else move(target);
-        if (clicked && chosen !== null && !pageName && !document.body.classList.contains('study-loading')) openProject(chosen);
+        if (!clicked) setTouchSelection(null);
+        else if (!pageName && !activeProjectTransition && !document.body.classList.contains('study-loading')) {
+          if (!touch) { if (chosen !== null) openProject(chosen); }
+          else if (chosen === null) setTouchSelection(null);
+          else if (selected && touchSelection === chosen) openProject(chosen);
+          else setTouchSelection(chosen);
+        }
       }
       stage.addEventListener('pointerup', release);
       stage.addEventListener('pointercancel', release);
+      stage.addEventListener('lostpointercapture', release);
       stage.addEventListener('keydown', event => {
         if (event.ctrlKey || event.altKey || event.metaKey) return;
         const direction = ['ArrowRight', 'ArrowUp', 'PageUp'].includes(event.key) ? 1 : ['ArrowLeft', 'ArrowDown', 'PageDown'].includes(event.key) ? -1 : 0;
-        if (direction) { event.preventDefault(); move(target + direction); }
+        if (direction) { event.preventDefault(); setTouchSelection(null); move(target + direction); }
         else if (event.code === 'Space') event.preventDefault();
       });
       projects.forEach((button, index) => button.addEventListener('click', () => {
@@ -1866,16 +1928,16 @@
       }));
       document.addEventListener('visibilitychange', () => {
         syncDrift(); syncCaseVideos();
-        if (document.hidden) { stopPreview(); stopPainting(); dragging = null; pointer.inside = false; stage.classList.remove('is-dragging'); }
+        if (document.hidden) { setTouchSelection(null); stopPreview(); stopPainting(); dragging = null; pointer.inside = false; stage.classList.remove('is-dragging'); }
         else { previous = 0; position = drift() + offset; draw(); wake(); }
       });
-      window.addEventListener('pagehide', () => { stopPreview(); stopPainting(); });
+      window.addEventListener('pagehide', () => { setTouchSelection(null); stopPreview(); stopPainting(); });
       window.addEventListener('pageshow', wake);
-      window.addEventListener('resize', () => { measure(); if (lightbox.open) fitLightbox(); activeProjectTransition?.finishAnimations(); }, { passive: true });
+      window.addEventListener('resize', () => { setTouchSelection(null); measure(); if (lightbox.open) fitLightbox(); activeProjectTransition?.finishAnimations(); }, { passive: true });
       preference.addEventListener('change', () => { syncDrift(); offset = target; if (preference.matches) activeProjectTransition?.finishAnimations(); });
       const updateStudyCursor = setupStudyCursor();
       smallScreen.addEventListener('change', () => {
-        setMobileMenu(false,false); stopPreview(); pointer.inside = false; hovered = null; hoverStates.clear();
+        setMobileMenu(false,false); setTouchSelection(null); stopPreview(); pointer.inside = false; hovered = null; hoverStates.clear();
         if (dragging && stage.hasPointerCapture(dragging.id)) stage.releasePointerCapture(dragging.id);
         dragging = null; stage.classList.remove('is-dragging');
         const tabs = page.querySelector('[role="tablist"]'); if (tabs) tabs.setAttribute('aria-orientation',smallScreen.matches?'horizontal':'vertical');

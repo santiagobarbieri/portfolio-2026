@@ -1,10 +1,19 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Hover táctil de Proyectos · 23 de noviembre de 2026
+
+Santiago aprobó conservar el hover en móvil mediante selección por toque. El primer toque sobre una tarjeta la desplaza a la derecha con la misma animación del escritorio y activa su preview. El segundo toque sobre esa misma instancia, o ABRIR, entra al proyecto. Tocar otra cambia la selección; arrastrar, cancelar o usar varios dedos nunca abre. El avance automático continúa y una selección completamente fuera del viewport se desactiva.
+
+Guardar la instancia sequence, no solo el índice del proyecto, y conservarla durante el gesto y reajustes del loop. ABRIR fija el destino al comenzar la pulsación y cancela si cambia mientras se sostiene. Limpiar selección y previews al navegar, abrir menú, ocultar pestaña, redimensionar o cancelar captura. Mantener las guardas de versión, estado y record.sequence ante imágenes decodificadas tarde. Touch no genera sonido, incluso con mouse conectado; Club conserva únicamente su portada.
+
+En la vista compacta, la ficha existente al pie muestra título, descripción completa, disciplina, año y ABRIR de la tarjeta seleccionada. Su espacio se reserva durante la medición para que el primer toque no mueva toda la cámara ni recorte la ficha. En escritorio permanece la ficha con perspectiva y el hover de mouse. No alterar cámara, separación, portadas, About restaurado, Archivo bloqueado, aperturas ni cierres.
+
+
 ## Móvil activo, Sobre mí restaurado y Archivo cerrado · 23 de noviembre de 2026
 
 La adaptación responsive debe conservar la lógica, estética y decisiones del escritorio. El corte compacto se activa a 600px, o hasta 900px con puntero táctil sin hover. Una ventana de computadora de 720/870px conserva navegación compacta de colores, dos columnas editoriales y controles flotantes; no se convierte en teléfono solo por su ancho.
 
-El carrusel mantiene siempre los planos paralelos y el movimiento en profundidad: perspectiva 6000, pitch -11°, yaw -31° y separación 300. En móvil se ajustan escala y sensibilidad del gesto, no se reemplaza por tarjetas que se trasladan horizontalmente. El buffer sigue acotado y se mide para la misma proyección. El avance lento continúa salvo movimiento reducido o pestaña oculta. Sonidos y previews dependen de un puntero fino con hover, no del ancho. Arrastrar nunca abre un proyecto.
+El carrusel mantiene siempre los planos paralelos y el movimiento en profundidad: perspectiva 6000, pitch -11°, yaw -31° y separación 300. En móvil se ajustan escala y sensibilidad del gesto, no se reemplaza por tarjetas que se trasladan horizontalmente. El buffer sigue acotado y se mide para la misma proyección. El avance lento continúa salvo movimiento reducido o pestaña oculta. Los sonidos dependen de un puntero fino con hover; los previews se activan por hover de mouse o selección táctil explícita, no por ancho. Arrastrar nunca abre un proyecto.
 
 `css/mobile.css` adapta controles y lectura sin sustituir la identidad por paneles grandes. Conserva el logo de 17px, tipografía compacta, tiras de navegación de color y áreas táctiles cómodas. Los teléfonos usan menú de tres barras, con foco contenido, Escape y fondo inerte. El stage deja espacio libre para encabezado y metadatos en horizontal y vertical. Los proyectos conservan lector de viewport completo, fondo blanco, portada del color propio, encabezado transparente y flechas laterales al medio. Nunca reservar una franja de pie coloreada. La lectura mantiene dos columnas cuando entran y solo se apila en teléfono; márgenes laterales independientes para evitar que las flechas tapen contenido. Visor, historial, cargas y videos mudos automáticos se conservan.
 

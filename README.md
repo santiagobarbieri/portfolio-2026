@@ -40,6 +40,12 @@ python3 -m http.server 4173 --directory dist
 
 No se requiere compilar CSS ni instalar paquetes. Las direcciones anteriores de los proyectos, Sobre mí, Contacto y Archivo se redirigen a la versión actual en Vercel. Los casos también se pueden abrir con `index.html?project=el-armado`; Archivo está temporalmente bloqueado: sus enlaces antiguos vuelven a Proyectos.
 
+## Vista previa táctil de Proyectos
+
+El primer toque sobre una tarjeta activa el mismo desplazamiento del hover y alterna imágenes reales del proyecto. La ficha compacta muestra título, descripción, año y ABRIR. El segundo toque sobre la tarjeta o ABRIR entra al caso. Tocar otra cambia la selección; los arrastres y gestos cancelados nunca abren. El loop continúa y limpia la selección al salir de pantalla. Club mantiene solo su portada y touch permanece silencioso.
+
+La selección no se guarda entre vistas. Las respuestas de imágenes tardías se invalidan al cambiar de tarjeta o salir. ABRIR no puede cambiar de destino durante una pulsación sostenida. Se verificaron gestos táctiles, cambio de tarjeta, Club, espacio de ficha en teléfono/tablet/horizontal y regresión del hover de escritorio.
+
 ## Móvil y navegación — 23 de noviembre de 2026
 
 La versión móvil conserva el mismo carrusel infinito en profundidad del escritorio: planos paralelos, cámara y separación aprobadas, con escala y arrastre adaptados al espacio disponible. El índice y los enlaces viven en un menú de tres barras con foco contenido, Escape y cierre táctil. Las ventanas angostas de computadora mantienen sus controles y columnas editoriales. El diseño compacto se activa a 600px o hasta 900px con puntero táctil sin hover. Los proyectos conservan flechas laterales al medio y encabezado transparente, con espacio lateral para no cubrir la lectura; no hay franja inferior de color. El visor respeta la resolución nativa; los videos también se reproducen automáticamente en móvil, mudos y sin controles.

@@ -16,7 +16,7 @@
   .study-home { display: inline-flex !important; align-items: center; justify-content: center; width: 44px; min-width: 44px; height: 44px; padding: 13px; margin: 0 -13px 0 -13px; }
   .study-menu-toggle { position: fixed; z-index: 82; top: calc(10px + env(safe-area-inset-top,0px)); right: max(12px,env(safe-area-inset-right,0px)); display: grid; place-items: center; width: 44px; height: 44px; color: #111; }
   .study-menu-toggle svg { width: 20px; height: 20px; }
-  .study-stage { inset: calc(64px + env(safe-area-inset-top,0px)) 0 calc(116px + env(safe-area-inset-bottom,0px)); touch-action: pan-y pinch-zoom; }
+  .study-stage { inset: calc(64px + env(safe-area-inset-top,0px)) 0 calc(var(--mobile-gallery-bottom,166px) + env(safe-area-inset-bottom,0px)); touch-action: pan-y pinch-zoom; }
   .study-mobile-caption { position: fixed; z-index: 55; display: block; left: max(20px,env(safe-area-inset-left,0px)); right: max(20px,env(safe-area-inset-right,0px)); bottom: calc(16px + env(safe-area-inset-bottom,0px)); }
   .study-mobile-caption__top { display: flex; align-items: center; gap: 12px; min-height: 40px; }
   .study-mobile-caption__top > span { margin-right: auto; color: #666; font-size: 12px; }
@@ -154,4 +154,15 @@
 @media (hover: none), (pointer: coarse) {
   .study-cursor { display: none !important; }
   html.has-study-cursor, html.has-study-cursor * { cursor: auto !important; }
+}
+
+/* The selected piece uses the existing compact caption, with room reserved before touch. */
+.study-mobile-description { visibility: hidden; }
+@media (max-width: 600px), (max-width: 900px) and (hover: none) and (pointer: coarse) {
+  .study-mobile-caption .study-mobile-description { grid-column: 1/-1; margin-top: 5px; max-width: none; font-size: 12px; line-height: 1.4; color: #444; }
+  body[data-touch-selection] .study-mobile-description { visibility: visible; }
+}
+/* Native touch hits follow the displaced face instead of its original slot. */
+@media (any-pointer: coarse) {
+  .study-plane__face { pointer-events: auto; -webkit-touch-callout: none; }
 }
