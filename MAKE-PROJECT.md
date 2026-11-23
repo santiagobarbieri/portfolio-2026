@@ -1,5 +1,13 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Recorrido finito y apertura de logos · 23 de noviembre de 2026
+
+Por indicación de Santiago, las fichas recuperan la composición editorial anterior: tarjetas completas alternadas entre dos columnas centrales en computadora, imagen o grilla arriba y texto debajo; una columna en móvil. Medir la altura completa de cada tarjeta, reservar separación entre piezas y mantener los controles fuera de la lectura. El recorrido tiene un final real: sin recycler, clones de contenido ni regreso automático al inicio. El home conserva su carrusel continuo en perspectiva y sus gestos.
+
+`css/project-reader.css` aísla este lector; `setupFiniteReader` dispone tarjetas y controla una rueda suave, acotada al inicio/final y con un desfase mínimo. Touch, teclado y movimiento reducido conservan desplazamiento nativo. Limpiar listeners, observadores y animaciones al navegar. Las referencias de VERSION 1 se consultan fuera del repositorio; no son una dependencia pública.
+
+La apertura acerca primero la pieza, luego llena el fondo con el color del proyecto y finalmente revela el lector blanco. Este orden reemplaza la apertura histórica color→logo. OLAS y El Armado usan los originales transparentes en proporción nativa; su encaje inicial corresponde al logo dentro de la portada, sin estirar el rectángulo de object-fit. La tinta del lector y del cierre se conserva mediante máscara; usar URLs resueltas contra el documento. Decodificar las instancias de imagen antes de mostrarlas y comprobar cancelación antes de crear capas. Escape, historial y resize no deben dejar clones ni controles bloqueados.
+
 ## Auditoría, navegación y entrada por capas · 22 de noviembre de 2026
 
 Santiago movió VERSION 1 - PORTFOLIO fuera del repositorio: no recrearla ni depender de ella en runtime. Su traslado se registra en Git; el respaldo externo permanece intacto. El sitio actual se publica desde index.html y sus assets activos mediante build.mjs.

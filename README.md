@@ -13,6 +13,12 @@ El símbolo del encabezado se transforma en un corredor al pasar el puntero o re
 
 Las cargas usan el logo corriendo con los mismos diez fotogramas originales del hover. El inicio espera las portadas antes de revelarse; imágenes, visor y formulario reutilizan indicadores pequeños. Comparten un ciclo de animación, se pausan fuera de vista o con la pestaña oculta y respetan movimiento reducido. El loader Rose y su máscara dejan de utilizarse.
 
+## Lectura de proyectos
+
+Las fichas usan dos columnas centrales alternadas en computadora y una en móvil, con imagen/grilla y texto debajo. El scroll es finito y tiene un cierre; el carrusel del inicio mantiene su loop. La rueda tiene suavizado acotado, mientras touch, teclado y movimiento reducido conservan scroll nativo. `css/project-reader.css` contiene la distribución del lector.
+
+La apertura acerca el logo, adopta el color del proyecto y revela la ficha blanca. OLAS y El Armado conservan sus proporciones y el cierre mantiene la tinta visible. No se reutilizan archivos del respaldo VERSION 1 en el sitio publicado.
+
 ## Estado del contenido
 
 Cinco proyectos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT y El Armado. El Archivo conserva 84 afiches, tapas y fotografías personales y permanece bloqueado con candado. Sobre mí presenta Testamento y Credenciales con datos confirmados; el retrato original y el texto definitivo siguen pendientes. Contacto valida y permite revisar la consulta; su transporte de envío está implementado pero falta configurar el destino real. Tienda y URLs aún no definidas siguen indicadas como pendientes. La versión móvil está activa y conserva la perspectiva del escritorio.

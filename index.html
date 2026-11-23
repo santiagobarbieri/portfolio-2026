@@ -364,6 +364,7 @@
   <link rel="stylesheet" href="./css/editorial-update.css">
   <link rel="stylesheet" href="./css/shell.css">
   <link rel="stylesheet" href="./css/mobile.css">
+  <link rel="stylesheet" href="./css/project-reader.css">
 </head>
 <body class="study-loading">
   <h1 class="study-heading">
@@ -1070,7 +1071,6 @@
         loader.replaceChildren(loadingMark()); loader.setAttribute('aria-busy','true'); stage.setAttribute('aria-busy','true');
         stage.inert = navigation.inert = index.inert = true;
         const route = readPageAddress(), initialItem = catalogue[route.project];
-        if (initialItem) { loader.style.background = initialItem.surface; loader.style.color = route.project === 3 || route.project === 2 ? '#111' : '#fff'; }
         const begin = performance.now();
         const results = await Promise.allSettled(catalogue.map(ensureCover));
         if (results.some(result => result.status === 'rejected')) {
@@ -1089,14 +1089,14 @@
         let initialTransition = null;
         if (initialItem) {
           if (preference.matches) renderProject(route.project);
-          else { initialTransition = projectTransition(initialItem,'color'); initialTransition.wash.style.zIndex = '85'; initialTransition.wash.style.opacity = '1'; }
+          else { initialTransition = projectTransition(initialItem,'lift'); initialTransition.wash.style.zIndex='85'; initialTransition.wash.style.opacity='0'; stage.style.visibility='hidden'; }
         } else if (route.view === 'about') openAbout(route.tab);
         else if (route.view === 'contact') openContact();
         else if (route.view) openArchive(route.view);
         if (!preference.matches) await loader.animate([{ opacity: 1 },{ opacity: 0 }],{ duration: 160, easing: 'ease-out', fill: 'both' }).finished.catch(() => {});
         const restoreFocus = loader.contains(document.activeElement);
         loader.remove(); startupPreparing = false;
-        if (initialTransition) { try { await revealProject(route.project,initialTransition,true); } finally { finishProjectTransition(initialTransition); } }
+        if (initialTransition) { try { await revealProject(route.project,initialTransition); } finally { finishProjectTransition(initialTransition); } }
         stage.inert = index.inert = Boolean(pageName); navigation.inert = pageName === 'project'; addressReady = true; rememberPageAddress();
         if (route.lockedArchive) syncPageAddress('','',true);
         syncMobileShell();
@@ -1126,7 +1126,7 @@
         }
         const id = Number(page.dataset.projectId), item = catalogue[id];
         if (!item) { closePageImmediately(); return; }
-        const image = page.querySelector('.study-case-hero__cover'), rect = image?.getBoundingClientRect();
+        const image = page.querySelector('.study-case-hero__cover'), rect = paintedImageRect(image);
         const sequence = Math.round((position - id) / catalogue.length) * catalogue.length + id;
         const state = projectTransition(item, 'close');
         state.wash.style.zIndex = '85'; state.wash.style.opacity = '0';
@@ -1136,10 +1136,20 @@
         if (rect && rect.width > 0 && rect.top >= 0 && rect.bottom <= innerHeight) {
           clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
           clone.style.width = `${media.w}px`; clone.style.height = `${media.h}px`;
-          clone.append(imageNode({ ...media, alt: '' }, false));
+          const cloneImage = imageNode({ ...media, alt: '' }, false);
+          clone.append(cloneImage);
+          const wordmark = image.closest('.is-wordmark');
+          if (wordmark) {
+            clone.classList.add('is-reader-wordmark');
+            clone.style.setProperty('--reader-wordmark', wordmark.style.getPropertyValue('--reader-wordmark'));
+            clone.style.setProperty('--reader-mark-ink', wordmark.style.getPropertyValue('--reader-mark-ink'));
+          }
           sourceMatrix = matrixForQuad(rectangleQuad(rect), media.w, media.h);
-          clone.style.transform = sourceMatrix; document.body.append(clone); state.nodes.add(clone);
-          state.cover = image; image.style.visibility = 'hidden';
+          clone.style.transform = sourceMatrix; clone.style.visibility = 'hidden'; document.body.append(clone); state.nodes.add(clone);
+          await cloneImage.decode().catch(() => {});
+          if (activeProjectTransition !== state || state.cancelled) return;
+          clone.style.removeProperty('visibility');
+          state.cover = wordmark || image; state.cover.style.visibility = 'hidden';
         }
         try {
           const content = [...pageContent.querySelectorAll('.study-case-hero__intro,.study-case-flow,.study-case-end')];
@@ -1520,22 +1530,11 @@
         for(let i=0;i<8;i++){let pivot=i;for(let r=i+1;r<8;r++)if(Math.abs(rows[r][i])>Math.abs(rows[pivot][i]))pivot=r;[rows[i],rows[pivot]]=[rows[pivot],rows[i]];const d=rows[i][i];if(Math.abs(d)<1e-9)return null;for(let c=i;c<=8;c++)rows[i][c]/=d;for(let r=0;r<8;r++)if(r!==i){const f=rows[r][i];for(let c=i;c<=8;c++)rows[r][c]-=f*rows[i][c];}}
         const [a,b,c,d,e,f,g,hp]=rows.map(r=>r[8]);return `matrix3d(${a},${d},0,${g},${b},${e},0,${hp},0,0,1,0,${c},${f},0,1)`;
       }
-      function setupCaseJourney(visual) {
+      function setupCaseJourney() {
         const controller = new AbortController(), effects = new Set();
-        let tick = 0;
-        const update = () => {
-          tick = 0;
-          const visualRect = visual.getBoundingClientRect();
-          const titleRect = document.querySelector('.study-heading').getBoundingClientRect();
-          const closeRect = document.querySelector('.study-page-close').getBoundingClientRect();
-          document.body.classList.toggle('study-case-on-cover', visualRect.top <= titleRect.top + titleRect.height/2 && visualRect.bottom >= titleRect.top + titleRect.height/2);
-          document.body.classList.toggle('study-close-on-cover', visualRect.top <= closeRect.top + closeRect.height/2 && visualRect.bottom >= closeRect.top + closeRect.height/2);
-          const arrow = casePrevious.getBoundingClientRect(), arrowY = arrow.top + arrow.height/2;
-          caseNavigation.classList.toggle('on-case-cover', visualRect.top <= arrowY && visualRect.bottom >= arrowY);
-        };
-        const schedule = () => { if (!tick) tick = requestAnimationFrame(update); };
-        page.addEventListener('scroll', schedule, { passive: true, signal: controller.signal });
-        window.addEventListener('resize', schedule, { passive: true, signal: controller.signal });
+        // Reader controls live outside the media columns, on the white canvas.
+        document.body.classList.remove('study-case-on-cover', 'study-close-on-cover');
+        caseNavigation.classList.remove('on-case-cover');
         const observer = new IntersectionObserver(entries => {
           entries.forEach(entry => {
             if (!entry.isIntersecting) return;
@@ -1548,11 +1547,98 @@
         page.querySelectorAll('.study-case-section .study-case-images').forEach(art => observer.observe(art));
         const start = page.querySelector('[data-case-start]');
         start.addEventListener('click', () => page.querySelector('.study-case-section')?.scrollIntoView({ block: 'start', behavior: preference.matches ? 'instant' : 'smooth' }), { signal: controller.signal });
-        update();
         return () => {
-          controller.abort(); observer.disconnect(); cancelAnimationFrame(tick);
+          controller.abort(); observer.disconnect();
           effects.forEach(animation => animation.cancel()); document.body.classList.remove('study-case-on-cover', 'study-close-on-cover'); caseNavigation.classList.remove('on-case-cover');
         };
+      }
+
+      function setupFiniteReader(flow) {
+        const cards = [...flow.children], controller = new AbortController();
+        const { signal } = controller;
+        let layoutFrame = 0, motionFrame = 0, disposed = false, previousTime = 0;
+        let wheelTarget = page.scrollTop, expectedScroll = page.scrollTop, wheeling = false;
+        let previousScroll = page.scrollTop, driftValue = 0;
+        const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
+        cards.forEach(card => card.classList.add('study-reader-card'));
+        function layout() {
+          layoutFrame = 0; if (disposed || !flow.isConnected) return;
+          if (smallScreen.matches) {
+            flow.style.removeProperty('height'); flow.style.removeProperty('--reader-column');
+            cards.forEach(card => { card.style.removeProperty('top'); card.style.removeProperty('left'); card.style.removeProperty('--reader-drift'); });
+            return;
+          }
+          const gap = parseFloat(getComputedStyle(flow).columnGap) || 64;
+          const width = (flow.clientWidth - gap) / 2;
+          flow.style.setProperty('--reader-column', `${width}px`);
+          const bottom = [0,0]; let previousTop = 0, previousVisual = 0;
+          cards.forEach((card,index) => {
+            const side = index % 2;
+            const visual = card.querySelector('.study-case-hero__visual,.study-case-images');
+            const visualHeight = visual?.getBoundingClientRect().height || card.offsetHeight;
+            const proposed = index ? previousTop + previousVisual + (index === 1 ? 120 : 40) : 0;
+            const top = Math.max(proposed, bottom[side] + (bottom[side] ? 96 : 0));
+            card.style.left = `${side * (width + gap)}px`; card.style.top = `${top}px`;
+            card.dataset.readerColumn = String(side);
+            bottom[side] = top + card.offsetHeight;
+            previousTop = top; previousVisual = visualHeight;
+          });
+          flow.style.height = `${Math.ceil(Math.max(...bottom))}px`;
+        }
+        function scheduleLayout() { if (!layoutFrame && !disposed) layoutFrame = requestAnimationFrame(layout); }
+        function stopWheel() { wheeling = false; wheelTarget = expectedScroll = page.scrollTop; }
+        function paint(time) {
+          motionFrame = 0;
+          if (disposed || document.hidden || pageName !== 'project') return;
+          const dt = Math.min(.032, previousTime ? (time-previousTime)/1000 : 1/60); previousTime = time;
+          if (wheeling) {
+            const maximum = Math.max(0,page.scrollHeight-page.clientHeight);
+            wheelTarget = clamp(wheelTarget,0,maximum);
+            const next = page.scrollTop + (wheelTarget-page.scrollTop) * (1-Math.exp(-dt/.075));
+            expectedScroll = Math.abs(wheelTarget-next)<.5 ? wheelTarget : next;
+            page.scrollTop = expectedScroll;
+            if (Math.abs(wheelTarget-page.scrollTop)<.8) { page.scrollTop=wheelTarget; expectedScroll=wheelTarget; wheeling=false; }
+          }
+          const delta = page.scrollTop-previousScroll; previousScroll=page.scrollTop;
+          const desired = smallScreen.matches || preference.matches || activeProjectTransition || lightbox.open || mobileMenuOpen ? 0 : clamp(-delta*.22,-7,7);
+          driftValue += (desired-driftValue)*(1-Math.exp(-dt/.10));
+          if (Math.abs(driftValue)<.04) driftValue=0;
+          cards.forEach((card,index)=>card.style.setProperty('--reader-drift',`${(driftValue*[.82,1,.9,1.08][index%4]).toFixed(2)}px`));
+          if (wheeling || Math.abs(delta)>.1 || driftValue) motionFrame=requestAnimationFrame(paint);
+          else previousTime=0;
+        }
+        function wake() { if (!motionFrame && !disposed && !document.hidden) motionFrame=requestAnimationFrame(paint); }
+        page.addEventListener('wheel',event=>{
+          if (smallScreen.matches || preference.matches || event.ctrlKey || event.metaKey || lightbox.open || mobileMenuOpen || activeProjectTransition || page.inert) return;
+          if (Math.abs(event.deltaX)>Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          const unit=event.deltaMode===1?16:event.deltaMode===2?page.clientHeight:1;
+          if (!wheeling) wheelTarget=page.scrollTop;
+          wheelTarget=clamp(wheelTarget+event.deltaY*unit*.95,0,Math.max(0,page.scrollHeight-page.clientHeight));
+          wheeling=true;wake();
+        },{passive:false,signal});
+        page.addEventListener('scroll',()=>{
+          if (wheeling && Math.abs(page.scrollTop-expectedScroll)>2) stopWheel();
+          wake();
+        },{passive:true,signal});
+        page.addEventListener('pointerdown',stopWheel,{passive:true,signal});
+        page.addEventListener('keydown',()=>{stopWheel();},{signal});
+        window.addEventListener('resize',()=>{stopWheel();scheduleLayout();wake();},{passive:true,signal});
+        document.addEventListener('visibilitychange',()=>{
+          stopWheel(); previousTime=0; previousScroll=page.scrollTop;
+          if (document.hidden) { cancelAnimationFrame(motionFrame);motionFrame=0;driftValue=0;cards.forEach(card=>card.style.removeProperty('--reader-drift')); }
+        },{signal});
+        const resize=new ResizeObserver(scheduleLayout);cards.forEach(card=>resize.observe(card));
+        flow.querySelectorAll('img,video').forEach(media=>media.addEventListener(media.tagName==='VIDEO'?'loadedmetadata':'load',scheduleLayout,{signal}));
+        document.fonts.ready.then(scheduleLayout);layout();
+        return ()=>{disposed=true;controller.abort();resize.disconnect();cancelAnimationFrame(layoutFrame);cancelAnimationFrame(motionFrame);cards.forEach(card=>card.style.removeProperty('--reader-drift'));};
+      }
+      function paintedImageRect(image) {
+        if (!image) return null;
+        const box=image.getBoundingClientRect(), width=image.naturalWidth||image.width, height=image.naturalHeight||image.height;
+        if (!width || !height || getComputedStyle(image).objectFit!=='contain') return box;
+        const fit=Math.min(box.width/width,box.height/height), w=width*fit, h=height*fit;
+        return {left:box.left+(box.width-w)/2,top:box.top+(box.height-h)/2,width:w,height:h,bottom:box.top+(box.height+h)/2};
       }
 
       function renderProject(id) {
@@ -1573,7 +1659,11 @@
         const visual = el('div', 'study-case-hero__visual');
         const media = openingMedia(item), cover = imageNode(media, false);
         cover.className = 'study-case-hero__cover' + (media.isLogo ? ' is-logo' : '');
-        if (media.isLogo) cover.style.maxWidth = `${Math.min(media.displayWidth || Infinity, media.w / (devicePixelRatio || 1))}px`;
+        if (media.isLogo) {
+          visual.classList.add('is-wordmark');visual.style.setProperty('--reader-wordmark',`url("${new URL(media.src,document.baseURI).href}")`);
+          visual.style.setProperty('--reader-mark-ink',item.slug==='el-armado'?item.surface:'#111');
+          visual.style.setProperty('--reader-mark-width',media.displayWidth?`${media.displayWidth}px`:'100%');
+        }
         visual.append(cover);
         const intro = el('div', 'study-case-hero__intro');
         const title = el('div');
@@ -1582,9 +1672,9 @@
         const start = el('button', 'study-text-button study-case-start', 'Recorrer proyecto ↓');
         start.type = 'button'; start.dataset.caseStart = '';
         copy.append(el('p', 'study-page-copy', item.intro), start);
-        intro.append(title, copy); hero.append(visual, intro); pageContent.append(hero);
+        intro.append(title, copy); hero.append(visual, intro);
 
-        const flow = el('div', 'study-case-flow');
+        const flow = el('div', 'study-case-flow'); flow.append(hero);
         item.blocks.forEach((block, index) => {
           const section = el('section', 'study-case-section');
           section.dataset.chapter = block.title;
@@ -1599,7 +1689,7 @@
           if (block.video?.src) {
             const video = el('video'); video.src = block.video.src; video.poster = block.video.poster;
             video.muted = video.defaultMuted = video.loop = video.autoplay = video.playsInline = true;
-            video.preload = 'none'; video.disablePictureInPicture = true; video.setAttribute('disableRemotePlayback', ''); art.append(video);
+            video.width=block.video.w||(item.slug==='club-de-economia-utdt'?720:576);video.height=block.video.h||(item.slug==='club-de-economia-utdt'?1280:324);video.preload = 'none'; video.disablePictureInPicture = true; video.setAttribute('disableRemotePlayback', ''); art.append(video);
           }
           if (block.colors) {
             const palette = el('div', 'study-colors');
@@ -1608,7 +1698,7 @@
               chip.append(swatch, el('span', '', `${color.name} ${color.hex}`)); palette.append(chip);
             }); art.append(palette);
           }
-          section.append(text, art); flow.append(section);
+          section.append(art, text); flow.append(section);
         });
         pageContent.append(flow);
         const end = el('div', 'study-case-end');
@@ -1617,7 +1707,8 @@
         const back = el('button', 'study-text-button', 'Volver a proyectos ↗︎'); back.type = 'button'; back.addEventListener('click', closePage);
         const next = el('button', 'study-text-button study-case-end__next', `Siguiente: ${catalogue[modulo(id + 1, catalogue.length)].title} →`); next.type = 'button'; next.dataset.caseStep = '1'; next.addEventListener('click', () => switchProject(1));
         actions.append(back, next); end.append(actions); pageContent.append(end);
-        clearCaseJourney = setupCaseJourney(visual);
+        const clearReader=setupFiniteReader(flow), clearJourney=setupCaseJourney();
+        clearCaseJourney=()=>{clearReader();clearJourney();};
         const videos = [...flow.querySelectorAll('video')];
         if (videos.length) {
           pageVideoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -1640,7 +1731,7 @@
         setMobileMenu(false,false);
         const wash = el('div', 'study-transition-wash'); wash.style.background = item.surface; wash.setAttribute('aria-hidden', 'true');
         const close = el('button', 'study-transition-close', 'Cerrar ×'); close.type = 'button'; close.setAttribute('aria-label', 'Volver a proyectos'); close.addEventListener('click', closePage);
-        close.style.color = phase === 'close' && !document.body.classList.contains('study-close-on-cover') ? '#111' : ['#41aebc','#4c997f'].includes(item.surface) ? '#111' : '#fff';
+        close.style.color = phase === 'lift' ? '#111' : phase === 'close' && !document.body.classList.contains('study-close-on-cover') ? '#111' : ['#41aebc','#4c997f'].includes(item.surface) ? '#111' : '#fff';
         document.body.append(wash, close);
         const state = {
           nodes: new Set([wash, close]), animations: new Set(), wash, close, phase, cover: null, face: null, cancelled: false,
@@ -1684,33 +1775,69 @@
         updateStudyCursor(true);
       }
       const rectangleQuad = rect => [[rect.left,rect.top],[rect.left+rect.width,rect.top],[rect.left+rect.width,rect.top+rect.height],[rect.left,rect.top+rect.height]];
-      async function revealProject(id, state, surfaceReady = false) {
-        const item = catalogue[id]; state.wash.style.zIndex = '85';
-        if (!surfaceReady && !await state.play(state.wash, [{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'ease-out' })) return;
-        if (activeProjectTransition !== state) return;
-        const rendered = renderProject(id); state.cover = rendered.cover;
-        page.inert = true; page.style.opacity = '1'; rendered.cover.style.visibility = 'hidden';
-        const content = [...pageContent.querySelectorAll('.study-case-hero__intro,.study-case-flow,.study-case-end')];
-        content.forEach(node => { node.style.opacity = '0'; });
-        const media = openingMedia(item), rect = rendered.cover.getBoundingClientRect();
+      async function revealProject(id, state) {
+        if (activeProjectTransition !== state || state.cancelled) return;
+        const item = catalogue[id], media = openingMedia(item);
+        state.wash.style.zIndex = '85'; state.wash.style.opacity = '0';
         const clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
-        clone.style.width = `${media.w}px`; clone.style.height = `${media.h}px`;
-        clone.append(imageNode({ ...media, alt: '' }, false)); document.body.append(clone); state.nodes.add(clone);
-        const from = matrixForQuad(rectangleQuad({ left: rect.left, top: rect.top + 32, width: rect.width, height: rect.height }), media.w, media.h);
-        const to = matrixForQuad(rectangleQuad(rect), media.w, media.h);
-        clone.style.transform = from; clone.style.opacity = '0'; document.body.dataset.projectTransition = 'art';
-        if (!await state.play(clone, [{ transform: from, opacity: 0 }, { transform: to, opacity: 1 }], { duration: 260, easing: 'cubic-bezier(.2,.75,.2,1)' })) return;
-        document.body.dataset.projectTransition = 'settle';
-        if (!await state.play(state.wash, [{ opacity: 1 }, { opacity: 0 }], { duration: 140, easing: 'ease-out' })) return;
+        const width = media.isLogo ? media.w : coverWidth, height = media.isLogo ? media.h : coverHeight;
+        clone.style.width = `${width}px`; clone.style.height = `${height}px`; clone.style.opacity = '0';
+        clone.style.background = item.surface;
+        const image = imageNode(media.isLogo ? { ...media, alt: '' } : { src: item.cover, alt: '', w: 800, h: 1000 }, false);
+        clone.append(image); document.body.append(clone); state.nodes.add(clone);
+        let source = state.sourceQuad, backing = null;
+        if (media.isLogo && source) {
+          // Match the transparent logo to its position within the original cover.
+          const sourceMatrix = matrixForQuad(source, coverWidth, coverHeight);
+          backing = el('div', 'study-project-lift'); backing.style.width = `${coverWidth}px`; backing.style.height = `${coverHeight}px`;
+          backing.style.background = item.surface; backing.style.transform = sourceMatrix; backing.style.opacity = '0';
+          const backingImage = imageNode({ src: item.cover, alt: '', w: 800, h: 1000 }, false);
+          backing.append(backingImage); document.body.insertBefore(backing, clone); state.nodes.add(backing);
+          await backingImage.decode().catch(() => {});
+          const transform = new DOMMatrix(sourceMatrix), logoWidth = coverHeight * .8 * .835, logoHeight = logoWidth * media.h / media.w;
+          const rect = { left: (coverWidth-logoWidth)/2, top: (coverHeight-logoHeight)/2, width: logoWidth, height: logoHeight };
+          source = rectangleQuad(rect).map(([x,y]) => { const point = transform.transformPoint(new DOMPoint(x,y)); return [point.x/point.w,point.y/point.w]; });
+        }
+        await image.decode().catch(() => {});
+        if (activeProjectTransition !== state || state.cancelled) return;
+        const targetWidth = Math.min(media.isLogo ? (media.displayWidth || 660) : 760, innerWidth*.78, innerHeight*.60/(height/width));
+        const targetHeight = targetWidth * height / width;
+        const center = { left: (innerWidth-targetWidth)/2, top: (innerHeight-targetHeight)/2, width: targetWidth, height: targetHeight };
+        const to = matrixForQuad(rectangleQuad(center), width, height);
+        const start = source || rectangleQuad({ left: center.left+targetWidth*.06, top: center.top+targetHeight*.06+24, width: targetWidth*.88, height: targetHeight*.88 });
+        const from = matrixForQuad(start, width, height);
+        clone.style.transform = from; clone.style.opacity = source ? '1' : '0';
+        if (backing) backing.style.opacity = '1';
+        if (state.face) state.face.style.visibility = 'hidden';
+        document.body.dataset.projectTransition = 'lift';
+        if (backing) state.play(backing, [{ opacity: 1 }, { opacity: 0 }], { duration: 180, easing: 'ease-out' });
+        if (!await state.play(clone, [{ transform: from, opacity: source ? 1 : 0 }, { transform: to, opacity: 1 }], { duration: 320, easing: 'cubic-bezier(.2,.75,.2,1)' })) return;
+        document.body.dataset.projectTransition = 'color';
+        state.close.style.color = ['#41aebc','#4c997f'].includes(item.surface) ? '#111' : '#fff';
+        if (!await state.play(state.wash, [{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' })) return;
+        if (activeProjectTransition !== state) return;
+        const rendered = renderProject(id); page.inert = true; page.style.opacity = '1';
+        const content = [...pageContent.children]; content.forEach(node => node.style.opacity = '0');
+        await rendered.cover.decode().catch(() => {});
+        if (activeProjectTransition !== state || state.cancelled) return;
         document.body.dataset.projectTransition = 'content';
-        await Promise.all(content.map(node => state.play(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'ease-out' })));
+        await Promise.all([
+          state.play(clone, [{ transform: to, opacity: 1 }, { transform: to, opacity: 0 }], { duration: 160, easing: 'ease-out' }),
+          state.play(state.wash, [{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-out' }),
+          state.play(state.close, [{ color: state.close.style.color }, { color: '#111' }], { duration: 220, easing: 'ease-out' }),
+          ...content.map(node => state.play(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 180, delay: 80, easing: 'ease-out' }))
+        ]);
       }
+
       async function openProject(sequence) {
         if (pageName || activeProjectTransition || pendingCover) return;
         const id = modulo(sequence, catalogue.length), item = catalogue[id];
         if (!await waitForCover(item, () => openProject(sequence)) || pageName || activeProjectTransition) return;
         if (preference.matches) { renderProject(id); return; }
-        const state = projectTransition(item, 'color'); state.wash.style.opacity = '0';
+        const sourceQuad=quad(sequence,0,hoverStates.get(sequence)?.value || 0);
+        const source=planes[modulo(sequence,planes.length)];
+        const state = projectTransition(item, 'lift'); state.wash.style.opacity = '0'; state.sourceQuad=sourceQuad;
+        if(sourceQuad && source.sequence===sequence && !source.element.hidden)state.face=source.face;
         try { await revealProject(id, state); } finally { finishProjectTransition(state); }
       }
       async function switchProject(direction) {
@@ -1718,7 +1845,7 @@
         const id = modulo(Number(page.dataset.projectId) + direction, catalogue.length), item = catalogue[id];
         if (!await waitForCover(item, () => switchProject(direction)) || pageName !== 'project' || activeProjectTransition) return;
         if (preference.matches) { renderProject(id); return; }
-        const state = projectTransition(item, 'color'); state.wash.style.opacity = '0';
+        const state = projectTransition(item, 'lift'); state.wash.style.opacity = '0';
         try { await revealProject(id, state); } finally { finishProjectTransition(state); }
       }
       casePrevious.addEventListener('click', () => switchProject(-1));

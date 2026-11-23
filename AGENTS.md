@@ -1,5 +1,13 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Recorrido finito y apertura de logos · 23 de noviembre de 2026
+
+Por indicación de Santiago, las fichas recuperan la composición editorial anterior: tarjetas completas alternadas entre dos columnas centrales en computadora, imagen o grilla arriba y texto debajo; una columna en móvil. Medir la altura completa de cada tarjeta, reservar separación entre piezas y mantener los controles fuera de la lectura. El recorrido tiene un final real: sin recycler, clones de contenido ni regreso automático al inicio. El home conserva su carrusel continuo en perspectiva y sus gestos.
+
+`css/project-reader.css` aísla este lector; `setupFiniteReader` dispone tarjetas y controla una rueda suave, acotada al inicio/final y con un desfase mínimo. Touch, teclado y movimiento reducido conservan desplazamiento nativo. Limpiar listeners, observadores y animaciones al navegar. Las referencias de VERSION 1 se consultan fuera del repositorio; no son una dependencia pública.
+
+La apertura acerca primero la pieza, luego llena el fondo con el color del proyecto y finalmente revela el lector blanco. Este orden reemplaza la apertura histórica color→logo. OLAS y El Armado usan los originales transparentes en proporción nativa; su encaje inicial corresponde al logo dentro de la portada, sin estirar el rectángulo de object-fit. La tinta del lector y del cierre se conserva mediante máscara; usar URLs resueltas contra el documento. Decodificar las instancias de imagen antes de mostrarlas y comprobar cancelación antes de crear capas. Escape, historial y resize no deben dejar clones ni controles bloqueados.
+
 ## Loader con logo corredor · 23 de noviembre de 2026
 
 Por pedido de Santiago, todas las cargas usan la animación original de su logo corriendo en lugar de Spin Rose. `data-logo-loader` activa un modo automático del mismo módulo `assets/scripts/logo-runner.js`, con los diez fotogramas SVG originales, sin modificar sus trazados. `loadingMark()` monta los indicadores de portada, imágenes, visor y formulario; la carga inicial también lo usa antes de revelar el carrusel. Conservar esperas reales, estados ARIA, cancelación, reintentos y la preparación de portadas antes de mostrar el inicio.
