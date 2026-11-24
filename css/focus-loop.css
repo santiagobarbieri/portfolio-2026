@@ -1,0 +1,52 @@
+:root { --bg:#fff; --ink:#111; --mute:#666; }
+/* Explicit navigation shares the same step queue as scroll. */
+.nav-controls{position:fixed;z-index:110;bottom:max(20px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:var(--bg);padding:3px;white-space:nowrap}
+.nav-controls button{display:grid;place-items:center;width:42px;height:36px;padding:0;transition:background-color 140ms,color 140ms;touch-action:manipulation}
+.nav-controls button:hover{background:var(--ink);color:var(--bg)}.nav-controls button:active{opacity:.7}
+.nav-controls svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:700px){.nav-controls{bottom:max(14px,env(safe-area-inset-bottom));gap:8px}.nav-controls button{width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){.nav-controls button{transition:none}}
+
+/* One circular navigation indicator; its center becomes a close action in focus. */
+.nav-progress{position:relative;width:44px;height:44px;display:grid;place-items:center;flex:none;--ring-a:var(--ink);--ring-b:color-mix(in srgb,var(--ink) 16%,var(--bg))}
+.nav-progress>svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transform:rotate(-90deg);fill:none;stroke-width:1.8}
+.nav-progress .ring-track{stroke:var(--ring-b)}
+.nav-progress .ring-value{stroke:var(--ring-a);stroke-linecap:butt;stroke-dasharray:100;stroke-dashoffset:100;transition:none}
+.nav-controls #closeFocus{position:absolute;inset:5px;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--ink);opacity:1;transition:opacity 180ms,background-color 140ms,color 140ms}
+.nav-controls #closeFocus:disabled{opacity:0;pointer-events:none;cursor:default}
+.nav-controls #closeFocus:hover:not(:disabled){background:var(--ink);color:var(--bg)}
+#closeFocus .close-icon{width:16px;height:16px}
+@media(prefers-reduced-motion:reduce){.nav-controls #closeFocus{transition:none}}
+/* Keep the image clean; project metadata is still available in focus. */
+.study-plane__face small{display:none}
+/* The original plane stays hit-testable while its visual face slides sideways.
+   This avoids enter/leave oscillation along the exposed edge of the stack. */
+.study-plane{pointer-events:auto;cursor:pointer}
+.study-plane .study-plane__face{pointer-events:auto;will-change:transform}
+.study-plane .study-plane__face svg{pointer-events:none}
+.project-hover{position:absolute;right:0;top:100%;margin-top:9px;padding:3px 7px;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.15;white-space:nowrap;text-align:right;pointer-events:none;opacity:0;will-change:transform,opacity}
+
+
+.study-scene { perspective:none!important; transform:none!important; }
+.study-camera { left:50%!important;top:50%!important;transform:none!important;transform-style:flat!important; }
+.study-plane {position:absolute;left:0;top:0;transform-origin:center;pointer-events:auto;will-change:transform;backface-visibility:hidden;}
+.study-plane__face {position:absolute;inset:0;overflow:hidden;border:1px solid #1112;}
+.study-plane__image {width:100%;height:100%;object-fit:cover;}
+.study-mobile-caption,.study-card-info {display:none!important;}
+.focus-meta {position:fixed;z-index:55;display:grid;grid-template-columns:60px minmax(0,1fr) auto;gap:12px;align-items:start;opacity:0;padding:10px 0;background:#fff;color:#111;border-top:1px solid #111;}
+.focus-meta h2 {font-size:20px;line-height:1.15;margin:0 0 5px;font-weight:600;}
+.focus-meta p {font-size:14px;line-height:1.35;margin:0;max-width:48ch;}
+.focus-kind {font-size:12px;text-align:right;color:#555;}
+.focus-logo {font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums;}
+#focusOpen {grid-column:2;text-align:left;justify-self:start;font-size:13px;border:0;background:transparent;padding:3px 0;pointer-events:auto;}
+#focusOpen:hover {transform:translateX(3px);}
+.nav-controls {--bg:#fff;--ink:#111;z-index:65;}
+.nav-progress #closeFocus[data-focus="false"] .close-icon {display:none;}
+.nav-progress #closeFocus[data-focus="false"]:after {content:'+';font-size:20px;}
+.focus-meta[aria-hidden="true"] {pointer-events:none;}
+.focus-meta[aria-hidden="true"] #focusOpen {pointer-events:none;visibility:hidden;}
+body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-project-transition] .nav-controls,body[data-project-transition] .focus-meta,body[data-section-loading] .nav-controls,body[data-section-loading] .focus-meta,body[data-mobile-menu="open"] .nav-controls,body[data-mobile-menu="open"] .focus-meta {visibility:hidden!important;pointer-events:none!important;}
+@media(max-width:700px){.focus-meta{grid-template-columns:50px 1fr;gap:6px}.focus-meta h2{font-size:17px}.focus-meta p{font-size:13px}.focus-kind{grid-column:2;text-align:left}}
+
+.study-plane__face,.focus-meta,.nav-controls button { border:0!important; outline-offset:3px; }

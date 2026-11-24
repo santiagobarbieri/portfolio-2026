@@ -9,6 +9,6 @@ await readFile(join(root, 'index.html'));
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 for (const entry of ['index.html', 'assets', 'css']) {
-  await cp(join(root, entry), join(output, entry), { recursive: true, filter: source => source !== join(root, 'assets/images/wildfolk') });
+  await cp(join(root, entry), join(output, entry), { recursive: true, filter: source => ![join(root, 'assets/images/wildfolk'), join(root, 'assets/Project Cover')].includes(source) });
 }
 console.log('Portfolio listo en dist/');

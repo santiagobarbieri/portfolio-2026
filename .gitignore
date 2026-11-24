@@ -20,3 +20,6 @@ node_modules/
 
 # Uploaded Wildfolk source PNGs stay local; publish optimized derivatives.
 /assets/images/wildfolk/
+
+# Original project covers; optimized derivatives are public.
+/assets/Project Cover/

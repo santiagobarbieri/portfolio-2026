@@ -1,5 +1,11 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Loop V21 con foco · 24 de noviembre de 2026
+
+El inicio adopta el modelo «Loop de tarjetas - Scroll focus V21.html»: una pila diagonal continua, foco frontal, navegación por pasos y rueda con detección de gestos, indicador circular por vuelta y contador de seis proyectos. El índice centra y enfoca el elegido; el centro del indicador permite entrar o salir de foco. Las flechas recorren las tarjetas y Escape cierra el foco. Portada y Abrir proyecto entran a la misma ficha, en la pestaña actual. `assets/scripts/focus-loop.js` conserva la geometría y máquina de estados del modelo; `css/focus-loop.css` adapta sus controles a la identidad existente. Suspender el motor detrás de secciones, cargas, menú, visor y pestaña oculta; respetar movimiento reducido.
+
+Las seis portadas nuevas vienen de la carpeta subida en dist/assets/Project Cover. Los PNG originales se preservan ahora en assets/Project Cover, ignorados por Git y excluidos del build; sus derivados públicos viven en assets/images/project-covers. No guardar originales únicamente dentro de dist, porque se regenera. No deformar ni recortar las portadas: conservar su relación 2015:1350. La apertura actual muestra primero el color y luego el logo original, antes del recorrido finito. Esta secuencia reemplaza la aparición simultánea anterior, manteniendo el loader corredor de unos cinco segundos, lector y navegación vigentes.
+
 ## Wildfolk, aperturas y navegación · 24 de noviembre de 2026
 
 Esta actualización reemplaza las secuencias de apertura y las reglas de menú anteriores cuando entren en conflicto. El home reúne seis casos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT, El Armado y Wildfolk. El carrusel del inicio conserva la cámara aprobada, avance continuo, previews, selección táctil y sonido solo por hover real. Club sigue mostrando únicamente su portada.
