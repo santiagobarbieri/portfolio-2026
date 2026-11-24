@@ -420,3 +420,9 @@ body[data-study-page="project"] .study-case-image-label { display: block; margin
 
 /* The project ends in breathing room, without a footer or extra commands. */
 body[data-study-page="project"] .study-case-end { min-height:200px; }
+
+.study-project-lift img.is-monochrome {filter:brightness(0);}
+body[data-study-page="project"] .study-case-images,
+body[data-study-page="project"] .study-case-images > button,
+body[data-study-page="project"] .study-case-images img,
+body[data-study-page="project"] .study-case-images video {border:0;box-shadow:none;background:transparent;}

@@ -58,3 +58,8 @@ body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-
 .ui-arrow--down {transform:rotate(135deg);}
 .study-case-start .ui-arrow,#focusOpen .ui-arrow {margin-left:8px;}
 .study-case-navigation .ui-arrow {width:20px;height:20px;}
+
+/* Inline visibility on a recycled card cannot escape this hidden scene. */
+body[data-study-page] .study-stage,
+body[data-project-transition] .study-stage,
+body[data-section-loading] .study-stage { display:none!important; }

@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Capas opacas y loader legible · 24 de noviembre de 2026
+
+El loader corredor se ve unos 1,35 segundos (700 ms de preparación mínima y barrido de 650 ms); espera más solo si faltan recursos. Recorre el ancho de la pantalla con el borde del color. Movimiento reducido conserva 1,3 segundos sin barrido. En proyectos aparece primero el fondo, luego el PNG transparente nativo; logo y fondo salen mediante la misma opacidad del contenedor, sin rectángulo propio ni fallback a portada. OLAS usa verde profundo; Club gris y logo monocromo para el contraste. Las secciones, transiciones y loaders excluyen por completo al escenario del loop con display:none para que las tarjetas recicladas no escapen por visibility. Contacto colorea toda la firma en rojo igual que Sobre mí en verde. No añadir bordes ni fondos a medios del lector. Las portadas derivadas conservan RGBA: Club, Orfeo y El Armado tienen una franja transparente inferior que nunca debe convertirse a RGB negro; las caras del carrusel tampoco pintan un fondo detrás de esa franja.
+
 ## Foco previo a la apertura y cierre vacío · 24 de noviembre de 2026
 
 Clic o toque en una tarjeta de la pila entra primero en modo foco; solo una segunda activación de la tarjeta enfocada y asentada, o Abrir proyecto desde su ficha, abre el caso. Enter sigue la misma regla. Sin foco, rueda continua; con foco, una tarjeta por gesto y reconocimiento de inercia para evitar saltos múltiples. También aceptar rueda sobre la ficha de foco, sin interceptar formularios, desplegables ni el lector. Escape cierra el foco. Los iconos direccionales comparten la esquina sin asta del nav, orientada según la acción. Se retiran Fin del proyecto y los comandos finales, conservando un espacio blanco de cierre; las flechas laterales siguen disponibles.

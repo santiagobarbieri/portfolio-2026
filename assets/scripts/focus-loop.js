@@ -31,7 +31,7 @@ function measure(){
  for(const r of planes)Object.assign(r.el.style,{width:CW+'px',height:CH+'px',marginLeft:-CW/2+'px',marginTop:-CH/2+'px'});
 
 }
-function fill(r,seq){const p=P[mod(seq,N)];r.seq=r.sequence=seq;r.hover=0;r.el.dataset.s=r.el.dataset.sequence=seq;r.label.textContent=p.t;r.face.style.background=p.bg;r.image.src=p.cover;r.image.alt=p.alt;r.face.classList.remove('has-preview')}
+function fill(r,seq){const p=P[mod(seq,N)];r.seq=r.sequence=seq;r.hover=0;r.el.dataset.s=r.el.dataset.sequence=seq;r.label.textContent=p.t;r.face.style.background='transparent';r.image.src=p.cover;r.image.alt=p.alt;r.face.classList.remove('has-preview')}
 // Single physical card per sequence; shared transforms in every phase.
 function pose(d,f=0){
  const w=mix(geo.deckW,geo.focusW,f), s=w/CW;

@@ -242,3 +242,9 @@ body[data-study-page="about"] .study-home.lr { --runner-fill: #fff; --runner-ink
 /* A single animation owns each dropdown; rows remain visible during closing. */
 .study-nav-group[open] .study-submenu > li { animation: none; }
 .study-nav-group[data-menu-state="closing"] > .study-nav-trigger .study-chevron { transform: rotate(0); }
+
+/* Contact uses the same complete signature strip as About. */
+body[data-study-page="contact"] .study-heading {border:1px solid #111;background:#ef3333;color:#fff;}
+body[data-study-page="contact"] .study-heading > span {background:transparent;}
+body[data-study-page="contact"] .study-heading .study-home {color:#fff;}
+body[data-study-page="contact"] .study-home.lr {--runner-fill:#fff;--runner-ink:#ef3333;}

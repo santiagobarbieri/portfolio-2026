@@ -71,3 +71,7 @@
 }
 
 body[data-section-loading] .study-cursor { visibility: hidden; }
+
+.study-section-loader__content { transform:translateX(calc(-50vw + 48px)); }
+.study-section-loader[data-phase="error"] .study-section-loader__content { transform:none; }
+@media(prefers-reduced-motion:reduce){ .study-section-loader__content {transform:none;} }
