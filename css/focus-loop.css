@@ -1,9 +1,9 @@
 :root { --bg:#fff; --ink:#111; --mute:#666; }
 /* Explicit navigation shares the same step queue as scroll. */
 .nav-controls{position:fixed;z-index:110;bottom:max(20px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:var(--bg);padding:3px;white-space:nowrap}
-.nav-controls button{display:grid;place-items:center;width:42px;height:36px;padding:0;transition:background-color 140ms,color 140ms;touch-action:manipulation}
-.nav-controls button:hover{background:var(--ink);color:var(--bg)}.nav-controls button:active{opacity:.7}
-.nav-controls svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.nav-controls button{display:grid;place-items:center;width:42px;height:36px;padding:0;transition:opacity 140ms;touch-action:manipulation}
+.nav-controls button:active{opacity:.7}
+.nav-controls svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter}
 
 @media(max-width:700px){.nav-controls{bottom:max(14px,env(safe-area-inset-bottom));gap:8px}.nav-controls button{width:44px;height:44px}}
 @media(prefers-reduced-motion:reduce){.nav-controls button{transition:none}}
@@ -13,9 +13,9 @@
 .nav-progress>svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transform:rotate(-90deg);fill:none;stroke-width:1.8}
 .nav-progress .ring-track{stroke:var(--ring-b)}
 .nav-progress .ring-value{stroke:var(--ring-a);stroke-linecap:butt;stroke-dasharray:100;stroke-dashoffset:100;transition:none}
-.nav-controls #closeFocus{position:absolute;inset:5px;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--ink);opacity:1;transition:opacity 180ms,background-color 140ms,color 140ms}
+.nav-controls #closeFocus{position:absolute;inset:5px;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--ink);opacity:1;transition:opacity 180ms}
 .nav-controls #closeFocus:disabled{opacity:0;pointer-events:none;cursor:default}
-.nav-controls #closeFocus:hover:not(:disabled){background:var(--ink);color:var(--bg)}
+
 #closeFocus .close-icon{width:16px;height:16px}
 @media(prefers-reduced-motion:reduce){.nav-controls #closeFocus{transition:none}}
 /* Keep the image clean; project metadata is still available in focus. */
@@ -63,3 +63,39 @@ body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-
 body[data-study-page] .study-stage,
 body[data-project-transition] .study-stage,
 body[data-section-loading] .study-stage { display:none!important; }
+
+/* One-pixel strokes remain thin when a nine-unit icon is enlarged. */
+.ui-arrow path,
+.nav-controls button svg path,
+.study-nav-trigger:not(.study-nav-trigger--locked) svg path {
+  vector-effect:non-scaling-stroke;
+  stroke-width:1;
+}
+.nav-controls button > svg,
+.study-case-navigation button > svg,
+.study-about-selector button > svg,
+.nav-controls #closeFocus::after {
+  transition:translate 180ms var(--ui-ease);
+}
+@media(hover:hover) and (pointer:fine){
+  .nav-controls > button:first-child:not(:disabled):hover > svg,
+  .study-case-navigation button:first-child:not(:disabled):hover > svg,
+  .study-about-selector button:first-child:not(:disabled):hover > svg {translate:-3px 0;}
+  .nav-controls > button:last-child:not(:disabled):hover > svg,
+  .study-case-navigation button:last-child:not(:disabled):hover > svg,
+  .study-about-selector button:last-child:not(:disabled):hover > svg {translate:3px 0;}
+  .nav-controls #closeFocus:not(:disabled):hover > svg,
+  .nav-controls #closeFocus:not(:disabled):hover::after {translate:0 -2px;}
+}
+.nav-controls > button:first-child:focus-visible > svg,
+.study-case-navigation button:first-child:focus-visible > svg,
+.study-about-selector button:first-child:focus-visible > svg {translate:-3px 0;}
+.nav-controls > button:last-child:focus-visible > svg,
+.study-case-navigation button:last-child:focus-visible > svg,
+.study-about-selector button:last-child:focus-visible > svg {translate:3px 0;}
+.nav-controls #closeFocus:focus-visible > svg,
+.nav-controls #closeFocus:focus-visible::after {translate:0 -2px;}
+@media(prefers-reduced-motion:reduce){
+  .nav-controls button > svg,.study-case-navigation button > svg,
+  .study-about-selector button > svg,.nav-controls #closeFocus::after {transition:none;translate:none!important;}
+}
