@@ -128,31 +128,19 @@ body:not([data-study-page="project"]) .study-heading .study-home {
   font-weight: 600;
 }
 
-.study-projects .study-projects-toggle {
+/* The project index is a persistent list, not a disclosure control. */
+.study-projects-title {
+  display: block;
+  margin: 0;
+  padding: 2px 5px;
   border: 1px solid #111;
-  background: #111;
   color: #fff;
+  background: #111;
+  min-height: var(--shell-row-height);
+  font-size: var(--shell-font);
   font-weight: 400;
-}
-
-.study-projects-toggle::after {
-  transform: rotate(135deg) scale(.8);
-}
-
-.study-projects-toggle[aria-expanded="false"]::after {
-  transform: rotate(45deg) scale(.8);
-}
-
-.study-projects .study-projects-toggle:is(:hover, :focus-visible)::after {
-  transform: translateY(1px) rotate(135deg) scale(.8);
-}
-
-.study-projects .study-projects-toggle[aria-expanded="false"]:is(:hover, :focus-visible)::after {
-  transform: translateY(1px) rotate(45deg) scale(.8);
-}
-
-.study-projects-toggle[aria-expanded="false"] + ul {
-  display: none;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .study-project-meta,
@@ -231,11 +219,6 @@ body[data-project-transition] .study-colophon {
   }
 }
 
-.study-projects-toggle > svg { display: none; }
-.study-corner-mark { position: fixed; z-index: 60; top: var(--shell-top); right: var(--shell-edge); display: grid; place-items: center; width: 24px; height: 24px; background: #fff; color: #111; }
-.study-corner-mark .study-mark { transition: transform 180ms var(--ui-ease); }
-.study-corner-mark:is(:hover,:focus-visible) .study-mark { transform: rotate(45deg) scale(1.08); }
-body[data-study-page="project"] .study-corner-mark, body[data-project-transition] .study-corner-mark { visibility: hidden; }
 @media (min-width: 1001px) {
   .study-card-info { width: clamp(220px,16vw,300px); padding: 14px 16px; }
   .study-card-info h2 { font-size: clamp(18px,1.35vw,25px); }
@@ -246,3 +229,16 @@ body[data-study-page="project"] .study-corner-mark, body[data-project-transition
 }
 
 .study-heading .study-home .study-mark { color: inherit; }
+
+/* About owns one green signature strip, including the running logo. */
+body[data-study-page="about"] .study-heading {
+  border: 1px solid #111;
+  background: #03b047;
+  color: #fff;
+}
+body[data-study-page="about"] .study-heading > span { background: transparent; }
+body[data-study-page="about"] .study-heading .study-home { color: #fff; }
+body[data-study-page="about"] .study-home.lr { --runner-fill: #fff; --runner-ink: #03b047; }
+/* A single animation owns each dropdown; rows remain visible during closing. */
+.study-nav-group[open] .study-submenu > li { animation: none; }
+.study-nav-group[data-menu-state="closing"] > .study-nav-trigger .study-chevron { transform: rotate(0); }

@@ -17,3 +17,6 @@ node_modules/
 
 # Historical version was moved outside the working repository.
 /VERSION 1 - PORTFOLIO/
+
+# Uploaded Wildfolk source PNGs stay local; publish optimized derivatives.
+/assets/images/wildfolk/

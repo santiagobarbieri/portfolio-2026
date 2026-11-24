@@ -234,13 +234,13 @@
       body[data-study-page="project"] .study-page { scroll-behavior: auto; }
     }
 
-      .study-cursor { --cursor-fill: #111; --cursor-ink: #fff; position: fixed; z-index: 200; top: 0; left: 0; width: 0; height: 0; pointer-events: none; user-select: none; color: var(--cursor-ink); }
+      .study-cursor { --cursor-fill: #fff; --cursor-ink: #111; position: fixed; z-index: 200; top: 0; left: 0; width: 0; height: 0; pointer-events: none; user-select: none; color: var(--cursor-ink); }
     .study-cursor[hidden] { display: none; }
-    .study-cursor__point { display: block; width: 8px; height: 8px; border: 1px solid #111; outline: 1px solid #fff; outline-offset: 0; border-radius: 50%; background: var(--cursor-fill); transform: translate(-50%,-50%) rotate(-45deg) scale(var(--cursor-scale,1)); transition: width 190ms var(--ui-ease), height 190ms var(--ui-ease), border-radius 140ms, transform 260ms var(--ui-ease), background-color 150ms; }
+    .study-cursor__point { display: block; width: 8px; height: 8px; border: 1px solid #111; outline: none; border-radius: 50%; background: var(--cursor-fill); transform: translate(-50%,-50%) rotate(-45deg) scale(var(--cursor-scale,1)); transition: width 190ms var(--ui-ease), height 190ms var(--ui-ease), border-radius 140ms, transform 260ms var(--ui-ease), background-color 150ms; }
     .study-cursor[data-mode="action"] .study-cursor__point { width: 19px; height: 19px; border-radius: 1px; transform: translate(-50%,-50%) rotate(135deg) scale(var(--cursor-scale,1)); }
     .study-cursor[data-mode="drag"] .study-cursor__point { width: 15px; height: 15px; border-radius: 50%; transform: translate(-50%,-50%) rotate(45deg) scale(var(--cursor-scale,1)); }
     .study-cursor.is-pressed { --cursor-scale: .76; }
-    .study-cursor__label { position: absolute; display: block; width: max-content; max-width: calc(100vw - 40px); padding: 2px 5px; border: 1px solid #111; outline: 1px solid #fff; background: var(--cursor-fill); color: var(--cursor-ink); font: 600 11px/1.3 "Albert Sans", Arial, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; visibility: hidden; transition: opacity 140ms var(--ui-ease), visibility 140ms; }
+    .study-cursor__label { position: absolute; display: block; width: max-content; max-width: calc(100vw - 40px); padding: 2px 4px; border: 1px solid #111; outline: none; background: var(--cursor-fill); color: var(--cursor-ink); font: 600 11px/1.3 "Albert Sans", Arial, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; visibility: hidden; transition: opacity 140ms var(--ui-ease), visibility 140ms; }
     .study-cursor.has-label .study-cursor__label { opacity: 1; visibility: visible; }
     @media (hover: hover) and (pointer: fine) {
       html.has-study-cursor, html.has-study-cursor * { cursor: none !important; }
@@ -365,13 +365,13 @@
   <link rel="stylesheet" href="./css/shell.css">
   <link rel="stylesheet" href="./css/mobile.css">
   <link rel="stylesheet" href="./css/project-reader.css">
+  <link rel="stylesheet" href="./css/section-load.css">
 </head>
 <body class="study-loading">
   <h1 class="study-heading">
     <a class="study-home" data-logo-runner href="./index.html" aria-label="Volver a proyectos"><svg class="study-mark" viewBox="0 0 50 50" aria-hidden="true"><path d="M14.5933 0L0 15.5254L10.9479 27.5192H23.3061C23.3061 27.5192 15.9221 34.4746 10.9479 34.4746H0V50H11.3485C18.7221 50 24.7084 34.4977 24.6996 34.4746C24.6996 34.5903 35.4067 50 35.4067 50L50 34.4746L39.0521 22.4808H26.6939C26.6939 22.4808 34.0779 15.5254 39.0521 15.5254H50V0H38.6515C31.2779 0 25.2916 15.5023 25.3004 15.5254C25.3004 15.4097 14.5933 0 14.5933 0Z" fill="currentColor"/></svg></a>
     <span>Santiago Barbieri</span>
   </h1>
-  <button class="study-corner-mark" type="button" aria-label="Volver a proyectos"><svg class="study-mark" viewBox="0 0 50 50" aria-hidden="true"><path d="M14.5933 0L0 15.5254L10.9479 27.5192H23.3061C23.3061 27.5192 15.9221 34.4746 10.9479 34.4746H0V50H11.3485C18.7221 50 24.7084 34.4977 24.6996 34.4746C24.6996 34.5903 35.4067 50 35.4067 50L50 34.4746L39.0521 22.4808H26.6939C26.6939 22.4808 34.0779 15.5254 39.0521 15.5254H50V0H38.6515C31.2779 0 25.2916 15.5023 25.3004 15.5254C25.3004 15.4097 14.5933 0 14.5933 0Z" fill="currentColor"/></svg></button>
   <button class="study-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="study-menu-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   <div class="study-menu-panel" id="study-menu-panel">
   <p class="study-menu-brand"><svg class="study-mark" viewBox="0 0 50 50" aria-hidden="true"><path d="M14.5933 0L0 15.5254L10.9479 27.5192H23.3061C23.3061 27.5192 15.9221 34.4746 10.9479 34.4746H0V50H11.3485C18.7221 50 24.7084 34.4977 24.6996 34.4746C24.6996 34.5903 35.4067 50 35.4067 50L50 34.4746L39.0521 22.4808H26.6939C26.6939 22.4808 34.0779 15.5254 39.0521 15.5254H50V0H38.6515C31.2779 0 25.2916 15.5023 25.3004 15.5254C25.3004 15.4097 14.5933 0 14.5933 0Z" fill="currentColor"/></svg><span>Santiago Barbieri</span></p>
@@ -398,13 +398,14 @@
     <div class="study-nav-group study-nav-group--archive"><button class="study-nav-trigger study-nav-trigger--locked" type="button" disabled aria-label="Archivo — próximamente" title="Archivo · Próximamente">Archivo<svg viewBox="0 0 12 14" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6V4a3 3 0 0 1 6 0v2"/><rect x="1" y="6" width="10" height="7" rx="1"/></svg></button></div>
   </nav>
   <nav class="study-projects" aria-label="Índice de proyectos">
-    <button class="study-projects-toggle" type="button" aria-expanded="true" aria-controls="study-project-list">Proyectos<svg class="study-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="m2 4 4 4 4-4"/></svg></button>
+    <p class="study-projects-title">Proyectos</p>
     <ul id="study-project-list">
       <li><button type="button" data-project="0" aria-current="true"><span>Apolo Studios</span></button></li>
       <li><button type="button" data-project="1"><span>Orfeo</span></button></li>
       <li><button type="button" data-project="2"><span>OLAS</span></button></li>
       <li><button type="button" data-project="3"><span>Club de Economía</span></button></li>
       <li><button type="button" data-project="4"><span>El Armado</span></button></li>
+      <li><button type="button" data-project="5"><span>Wildfolk</span></button></li>
     </ul>
   </nav>
   <p class="study-menu-colophon">Buenos Aires, Argentina | Portfolio 2026</p>
@@ -417,7 +418,7 @@
   </main>
   <section class="study-mobile-caption" aria-label="Proyecto seleccionado">
     <div class="study-mobile-preview">
-      <span class="visually-hidden" data-mobile-count>01 / 05</span>
+      <span class="visually-hidden" data-mobile-count>01 / 06</span>
       <p data-mobile-meta>Identidad y dirección creativa · 2024–2026</p>
       <p class="study-mobile-description" data-mobile-description></p>
     </div>
@@ -452,7 +453,7 @@
       const smallScreen = matchMedia('(max-width: 600px), (max-width: 900px) and (hover: none) and (pointer: coarse)');
       const hoverInput = matchMedia('(hover: hover) and (pointer: fine)');
       const archiveLocked = true;
-      const catalogue = [{"slug": "apolo-studios", "title": "Apolo Studios", "type": "Identidad y dirección creativa", "description": "Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.", "cover": "assets/images/archive-covers/apolo-studios-800.webp", "alt": "Firma de Apolo Studios en blanco sobre azul", "year": "2024–2026", "page": "?project=apolo-studios", "intro": "Cofundé Apolo Studios en Buenos Aires. Como director creativo, trabajé en la identidad, las gráficas de prendas y las campañas de la marca.", "blocks": [{"title": "Everywhere", "description": "Remeras con firma pequeña en el frente y gráficas en la espalda. La selección reúne las prendas y las imágenes de la campaña.", "images": [{"src": "./assets/images/apolo-studios-story/everywhere-cafe-480.webp", "alt": "Everywhere · En el café", "w": 480, "h": 360}, {"src": "./assets/images/apolo-studios-story/everywhere-back-480.webp", "alt": "Everywhere · Gráfica en la espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/everywhere-street-480.webp", "alt": "Everywhere · Dos gráficas en la calle", "w": 480, "h": 853}], "video": null}, {"title": "Circles", "description": "Remeras con gráfica de espalda en blanco y azul y firma contenida en el frente. La selección muestra las piezas y su presentación en campaña.", "images": [{"src": "./assets/images/apolo-studios-story/circles-front-back-480.webp", "alt": "Circles · Frente y espalda", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-back-480.webp", "alt": "Circles · La gráfica puesta", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-stairs-480.webp", "alt": "Circles · En las escaleras", "w": 480, "h": 269}], "video": null}, {"title": "Sahara", "description": "Buzos con las firmas Seekers y A. Studios. La selección reúne producto e imágenes de campaña en la calle y el subte.", "images": [{"src": "./assets/images/apolo-studios-story/sahara-two-signatures-480.webp", "alt": "Sahara · Dos firmas de espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-street-480.webp", "alt": "Sahara · Las prendas en la calle", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-front-480.webp", "alt": "Sahara · Firma A. Studios", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-subway-480.webp", "alt": "Sahara · Dentro del subte", "w": 480, "h": 853}], "video": null}, {"title": "Menorca", "description": "Gorras con el nombre bordado y distintas combinaciones de color. Retratos, detalles y producto muestran las piezas de esta colección.", "images": [{"src": "./assets/images/apolo-studios-story/menorca-brown-480.webp", "alt": "Menorca · Gorra marrón", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-blue-480.webp", "alt": "Menorca · Gorra azul", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-grey-480.webp", "alt": "Menorca · Gorra gris", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-cafe-480.webp", "alt": "Menorca · En el café", "w": 480, "h": 640}], "video": null}, {"title": "Menorca · Video de campaña", "description": "Video de campaña del cuarto drop de Apolo Studios.", "images": [], "video": {"src": "./assets/images/apolo-studios-web/menorca.mp4", "poster": "./assets/images/apolo-studios-web/menorca-video-poster.webp"}}, {"title": "Firmas de Apolo", "description": "Variantes de marca desarrolladas para distintas prendas y colecciones. Cada firma forma parte del universo de Apolo.", "images": [{"src": "./assets/images/apolo-studios-web/variants-600.webp", "alt": "Variantes de logotipo desarrolladas para Apolo Studios", "w": 1600, "h": 1439}], "video": null}, {"title": "Colores de las piezas", "description": "Azul, crudo, marrón y negro presentes en las firmas y las prendas.", "images": [], "video": null, "colors": [{"name": "Azul", "hex": "#09247C"}, {"name": "Crudo", "hex": "#C4C2A5"}, {"name": "Marrón", "hex": "#423934"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#0a247d"}, {"slug": "orfeo", "title": "Orfeo", "type": "Dirección creativa", "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.", "cover": "assets/images/archive-covers/orfeo-800.webp", "alt": "Logotipo de ORFEO sobre carbón", "year": "2026", "page": "?project=orfeo", "intro": "Dirección creativa, producción y edición audiovisual y desarrollo web para el primer drop de ORFEO, junto a su equipo. La campaña presenta tres sweaters en escenas cotidianas de Buenos Aires.", "blocks": [{"title": "Campaña · En la Esquina", "description": "Selección de imágenes de la campaña: prendas, arquitectura y recorridos cotidianos de Buenos Aires.", "images": [{"src": "./assets/images/orfeo/IMG_4868-1600.webp", "alt": "Tres modelos con los sweaters de la colección de ORFEO", "w": 1600, "h": 1067}, {"src": "./assets/images/orfeo/IMG_4144-800.webp", "alt": "Modelo con sweater marrón junto a la entrada de un edificio", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4685-800.webp", "alt": "Modelo con sweater azul junto a un árbol", "w": 800, "h": 1200}], "video": null}, {"title": "Viamonte", "description": "Sweater marrón de tejido trenzado. Vistas de la prenda, textura y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/viamonte-frente-800.webp", "alt": "Viamonte · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4710-800.webp", "alt": "Detalle de un sweater marrón tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4109-800.webp", "alt": "Modelo con sweater marrón en una escalinata porteña", "w": 800, "h": 1200}], "video": null}, {"title": "Talcahuano", "description": "Sweater negro de superficie lisa. La selección reúne vistas de la prenda y escenas de transporte.", "images": [{"src": "./assets/images/orfeo-story/talcahuano-frente-800.webp", "alt": "Talcahuano · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4775-800.webp", "alt": "Detalle de camisa y sweater negro en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4246-800.webp", "alt": "Modelo con sweater negro durante un viaje en transporte público", "w": 800, "h": 1200}], "video": null}, {"title": "Lavalle", "description": "Sweater azul de tejido trenzado. Vistas de frente, espalda y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/lavalle-frente-800.webp", "alt": "Lavalle · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4800-800.webp", "alt": "Vista posterior de un sweater azul tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4484-800.webp", "alt": "Modelo con sweater azul en un recorrido urbano", "w": 800, "h": 1200}], "video": null}, {"title": "Logotipo y monograma", "description": "Recursos de la identidad de ORFEO que acompañan la campaña: logotipo, monograma y aplicaciones circulares.", "images": [{"src": "./assets/images/orfeo/logo%20%281%29.png", "alt": "Logotipo de ORFEO sobre fondo claro", "w": 4134, "h": 4134}, {"src": "./assets/images/orfeo/favicon.png", "alt": "Monograma ORF sobre fondo claro", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png", "alt": "Marca ORFEO en una aplicación circular negra", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png", "alt": "Marca ORFEO en una aplicación circular verde", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png", "alt": "Marca ORFEO en una aplicación circular marrón", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png", "alt": "Marca ORFEO en una aplicación circular azul", "w": 1080, "h": 1080}], "video": null}, {"title": "Lacres", "description": "Aplicaciones de la marca en relieve, con variantes de color.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp", "alt": "Sello en relieve de ORFEO en bordó", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp", "alt": "Sello en relieve de ORFEO en verde", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp", "alt": "Sello en relieve de ORFEO en azul", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp", "alt": "Sello en relieve de ORFEO en marrón", "w": 800, "h": 800}], "video": null}, {"title": "Sello oval", "description": "Sello de ORFEO con el lema «Back to Basics».", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp", "alt": "Sello oval de ORFEO con el lema Back to Basics", "w": 1600, "h": 1600}], "video": null}, {"title": "Estampilla ilustrada", "description": "Pieza de la identidad de ORFEO con ilustración, marco y textura.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp", "alt": "Estampilla gráfica de ORFEO en rojo y amarillo", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo claro", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo oscuro", "w": 800, "h": 800}], "video": null}, {"title": "Colores de las piezas", "description": "Marino, marrón y carbón presentes en las prendas; oliva y marfil en las aplicaciones gráficas.", "images": [], "video": null, "colors": [{"name": "Marino", "hex": "#0C1D34"}, {"name": "Marrón", "hex": "#583A13"}, {"name": "Carbón", "hex": "#18191A"}, {"name": "Oliva", "hex": "#394A1C"}, {"name": "Marfil", "hex": "#FEFFED"}]}], "w": 800, "h": 1000, "surface": "#1a1a1a"}, {"slug": "olas-ditella", "title": "OLAS Di Tella", "type": "Identidad y campaña", "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.", "cover": "assets/images/archive-covers/olas-ditella-800.webp", "alt": "Logotipo de OLAS sobre verde", "year": "2026", "page": "?project=olas-ditella", "intro": "Identidad visual para OLAS en la Universidad Torcuato Di Tella. La marca integra una ola en la O y se aplica en afiches, stickers y recursos gráficos.", "blocks": [{"title": "Afiches de campaña", "description": "Cuatro piezas de precampaña bajo «Tu voz transforma», con una estructura compartida y distintos collages.", "images": [{"src": "./assets/images/olas-ditella-story/afiche-1-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-2-800.webp", "alt": "Afiche de OLAS con el mensaje No te quedes callado", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-3-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz importa", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-4-800.webp", "alt": "Afiche de OLAS con un megáfono y la palabra Cambio", "w": 800, "h": 1132}], "video": null}, {"title": "Stickers", "description": "Aplicaciones circulares de la ola y la flecha para la campaña.", "images": [{"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png", "alt": "Sticker circular de OLAS con ola y flecha sobre negro", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png", "alt": "Sticker circular de OLAS con ola y flecha sobre verde", "w": 1080, "h": 1080}], "video": null}, {"title": "Recursos gráficos", "description": "La ola y sus fragmentos funcionan como símbolos independientes dentro del sistema visual.", "images": [{"src": "./assets/images/olas-ditella/Vectores%202.svg", "alt": "OLAS — recurso vectorial 2", "w": 7939, "h": 6965}, {"src": "./assets/images/olas-ditella/New%20Project%20%283%29.svg", "alt": "OLAS — recurso vectorial adicional", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/Vectores%201.svg", "alt": "OLAS — recurso vectorial 1", "w": 518, "h": 642}, {"src": "./assets/images/olas-ditella/Vectores%203.svg", "alt": "OLAS — recurso vectorial 3", "w": 642, "h": 501}, {"src": "./assets/images/olas-ditella/Vectores%204.svg", "alt": "OLAS — recurso vectorial 4", "w": 563, "h": 435}], "video": null}, {"title": "Colores de la identidad", "description": "Verdes, azules, menta y blanco presentes en las piezas de campaña.", "images": [], "video": null, "colors": [{"name": "Verde", "hex": "#4C997F"}, {"name": "Menta", "hex": "#9FDDBD"}, {"name": "Azul profundo", "hex": "#175055"}, {"name": "Blanco", "hex": "#FBFDFD"}]}], "w": 800, "h": 1000, "surface": "#4c997f", "openingArt": {"src": "assets/images/olas-ditella/Logo.svg", "w": 1286, "h": 405, "alt": "Logotipo de OLAS Di Tella", "displayWidth": 420}}, {"slug": "club-de-economia-utdt", "title": "Club de Economía — UTDT", "type": "Identidad visual", "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.", "cover": "assets/images/archive-covers/club-de-economia-utdt-800.webp", "alt": "Logotipo del Club de Economía sobre celeste", "year": "2026", "page": "?project=club-de-economia-utdt", "intro": "Marca y sistema gráfico para el relanzamiento del Club de Economía. La entrega reúne versiones de marca, plantillas para charlas y una trama de diagonales.", "blocks": [{"title": "Símbolo y versiones", "description": "Isotipo celeste y versión a una tinta. El sistema usa Albert Sans en Semi Bold para destacar y Medium para la información.", "images": [{"src": "./assets/images/club-de-economia-utdt/Isotipo.png", "alt": "Isotipo principal del Club de Economía con diagonales celestes sobre círculo gris claro", "w": 1080, "h": 1080}, {"src": "./assets/images/club-de-economia-utdt/Isotipo%202.png", "alt": "El mismo isotipo resuelto en negro sobre círculo gris claro", "w": 1080, "h": 1080}], "video": null}, {"title": "Plantillas de publicaciones", "description": "Versiones clara y oscura para anunciar charlas, con espacio para invitado, imagen, fecha, horario y aula.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp", "alt": "Plantilla clara para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp", "alt": "Plantilla oscura para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}], "video": null}, {"title": "Plantillas de historias", "description": "Adaptaciones verticales para anunciar charlas, con los mismos datos y jerarquías que las publicaciones.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp", "alt": "Plantilla clara de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp", "alt": "Plantilla oscura de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}], "video": null}, {"title": "Cabecera de redes", "description": "Trama de diagonales para la cabecera de Twitter, en celeste sobre gris claro.", "images": [{"src": "./assets/images/club-de-economia-utdt/Twitter%20header-800.webp", "alt": "Header del Club de Economía con una trama de diagonales celestes sobre gris claro", "w": 800, "h": 267}], "video": null}, {"title": "Estudio de movimiento", "description": "Estudio animado de gráficos, porcentajes y tipografía que termina en la marca. Los valores son ejemplos, no estadísticas de la organización.", "images": [], "video": {"src": "./assets/videos/club-de-economia/motion-study.mp4", "poster": "./assets/images/club-de-economia-utdt/motion-poster-720.webp"}}, {"title": "Colores de la identidad", "description": "Celeste, gris claro y negro presentes en las piezas finales.", "images": [], "video": null, "colors": [{"name": "Celeste", "hex": "#42AEBD"}, {"name": "Gris claro", "hex": "#D9D9D9"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#41aebc"}, {"slug": "el-armado", "title": "El Armado", "type": "Identidad visual", "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.", "cover": "assets/images/archive-covers/el-armado-800.webp", "alt": "Logotipo de El Armado en hueso sobre vino", "year": "2026", "page": "?project=el-armado", "intro": "Identidad visual para El Armado en La Dama de Bollini. Marca, ilustración, afiche e historia de Instagram para un encuentro de música, karaoke y tragos.", "blocks": [{"title": "Afiche final", "description": "Pieza de la segunda edición: marca, ilustración y datos del encuentro sobre fondo vino.", "images": [{"src": "./assets/images/el-armado-web/afiche-1000.webp", "alt": "Afiche final de El Armado, segunda edición", "w": 1000, "h": 1415}], "video": null}, {"title": "Historia de Instagram", "description": "Adaptación vertical del afiche con la misma marca, ilustración y datos de la edición.", "images": [{"src": "./assets/images/el-armado-story/historia-800.webp", "alt": "Adaptación vertical · Historia de Instagram", "w": 800, "h": 1422}], "video": null}, {"title": "Ilustración", "description": "Dos manos sostienen un micrófono malva y una botella verde. Ilustración realizada con calco digital en Figma Draw.", "images": [{"src": "./assets/images/el-armado-web/ilustracion-color-760.webp", "alt": "Manos sosteniendo un micrófono malva y una botella verde", "w": 760, "h": 754}], "video": null}, {"title": "Paleta cromática", "description": "Vino como base, hueso para marca y manos, malva para el micrófono y verde para la botella.", "images": [], "video": null, "colors": [{"name": "Vino", "hex": "#360F17"}, {"name": "Hueso", "hex": "#D2DDCC"}, {"name": "Malva", "hex": "#9E6B7A"}, {"name": "Verde", "hex": "#9AE4A3"}]}], "w": 800, "h": 1000, "surface": "#3b0c15", "openingArt": {"src": "assets/images/el-armado/Logo.png", "w": 863, "h": 343, "alt": "Logotipo de El Armado en color hueso"}}];
+      const catalogue = [{"slug": "apolo-studios", "title": "Apolo Studios", "type": "Identidad y dirección creativa", "description": "Identidad, gráficas de prendas y dirección creativa para Apolo Studios, Buenos Aires.", "cover": "assets/images/archive-covers/apolo-studios-800.webp", "alt": "Firma de Apolo Studios en blanco sobre azul", "year": "2024–2026", "page": "?project=apolo-studios", "intro": "Cofundé Apolo Studios en Buenos Aires. Como director creativo, trabajé en la identidad, las gráficas de prendas y las campañas de la marca.", "blocks": [{"title": "Everywhere", "description": "Remeras con firma pequeña en el frente y gráficas en la espalda. La selección reúne las prendas y las imágenes de la campaña.", "images": [{"src": "./assets/images/apolo-studios-story/everywhere-cafe-480.webp", "alt": "Everywhere · En el café", "w": 480, "h": 360}, {"src": "./assets/images/apolo-studios-story/everywhere-back-480.webp", "alt": "Everywhere · Gráfica en la espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/everywhere-street-480.webp", "alt": "Everywhere · Dos gráficas en la calle", "w": 480, "h": 853}], "video": null}, {"title": "Circles", "description": "Remeras con gráfica de espalda en blanco y azul y firma contenida en el frente. La selección muestra las piezas y su presentación en campaña.", "images": [{"src": "./assets/images/apolo-studios-story/circles-front-back-480.webp", "alt": "Circles · Frente y espalda", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-back-480.webp", "alt": "Circles · La gráfica puesta", "w": 480, "h": 722}, {"src": "./assets/images/apolo-studios-story/circles-stairs-480.webp", "alt": "Circles · En las escaleras", "w": 480, "h": 269}], "video": null}, {"title": "Sahara", "description": "Buzos con las firmas Seekers y A. Studios. La selección reúne producto e imágenes de campaña en la calle y el subte.", "images": [{"src": "./assets/images/apolo-studios-story/sahara-two-signatures-480.webp", "alt": "Sahara · Dos firmas de espalda", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-street-480.webp", "alt": "Sahara · Las prendas en la calle", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-front-480.webp", "alt": "Sahara · Firma A. Studios", "w": 480, "h": 853}, {"src": "./assets/images/apolo-studios-story/sahara-subway-480.webp", "alt": "Sahara · Dentro del subte", "w": 480, "h": 853}], "video": null}, {"title": "Menorca", "description": "Gorras con el nombre bordado y distintas combinaciones de color. Retratos, detalles y producto muestran las piezas de esta colección.", "images": [{"src": "./assets/images/apolo-studios-story/menorca-brown-480.webp", "alt": "Menorca · Gorra marrón", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-blue-480.webp", "alt": "Menorca · Gorra azul", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-grey-480.webp", "alt": "Menorca · Gorra gris", "w": 480, "h": 480}, {"src": "./assets/images/apolo-studios-story/menorca-cafe-480.webp", "alt": "Menorca · En el café", "w": 480, "h": 640}], "video": null}, {"title": "Menorca · Video de campaña", "description": "Video de campaña del cuarto drop de Apolo Studios.", "images": [], "video": {"src": "./assets/images/apolo-studios-web/menorca.mp4", "poster": "./assets/images/apolo-studios-web/menorca-video-poster.webp"}}, {"title": "Firmas de Apolo", "description": "Variantes de marca desarrolladas para distintas prendas y colecciones. Cada firma forma parte del universo de Apolo.", "images": [{"src": "./assets/images/apolo-studios-web/variants-600.webp", "alt": "Variantes de logotipo desarrolladas para Apolo Studios", "w": 1600, "h": 1439}], "video": null}, {"title": "Colores de las piezas", "description": "Azul, crudo, marrón y negro presentes en las firmas y las prendas.", "images": [], "video": null, "colors": [{"name": "Azul", "hex": "#09247C"}, {"name": "Crudo", "hex": "#C4C2A5"}, {"name": "Marrón", "hex": "#423934"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#0a247d", "openingArt": {"src": "./assets/images/project-marks/apolo-studios.webp", "w": 1042, "h": 496, "alt": "Logotipo de Apolo Studios sin fondo", "displayWidth": 480}}, {"slug": "orfeo", "title": "Orfeo", "type": "Dirección creativa", "description": "Dirección creativa, audiovisual y web para la colección En la Esquina de ORFEO.", "cover": "assets/images/archive-covers/orfeo-800.webp", "alt": "Logotipo de ORFEO sobre carbón", "year": "2026", "page": "?project=orfeo", "intro": "Dirección creativa, producción y edición audiovisual y desarrollo web para el primer drop de ORFEO, junto a su equipo. La campaña presenta tres sweaters en escenas cotidianas de Buenos Aires.", "blocks": [{"title": "Campaña · En la Esquina", "description": "Selección de imágenes de la campaña: prendas, arquitectura y recorridos cotidianos de Buenos Aires.", "images": [{"src": "./assets/images/orfeo/IMG_4868-1600.webp", "alt": "Tres modelos con los sweaters de la colección de ORFEO", "w": 1600, "h": 1067}, {"src": "./assets/images/orfeo/IMG_4144-800.webp", "alt": "Modelo con sweater marrón junto a la entrada de un edificio", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4685-800.webp", "alt": "Modelo con sweater azul junto a un árbol", "w": 800, "h": 1200}], "video": null}, {"title": "Viamonte", "description": "Sweater marrón de tejido trenzado. Vistas de la prenda, textura y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/viamonte-frente-800.webp", "alt": "Viamonte · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4710-800.webp", "alt": "Detalle de un sweater marrón tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4109-800.webp", "alt": "Modelo con sweater marrón en una escalinata porteña", "w": 800, "h": 1200}], "video": null}, {"title": "Talcahuano", "description": "Sweater negro de superficie lisa. La selección reúne vistas de la prenda y escenas de transporte.", "images": [{"src": "./assets/images/orfeo-story/talcahuano-frente-800.webp", "alt": "Talcahuano · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4775-800.webp", "alt": "Detalle de camisa y sweater negro en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4246-800.webp", "alt": "Modelo con sweater negro durante un viaje en transporte público", "w": 800, "h": 1200}], "video": null}, {"title": "Lavalle", "description": "Sweater azul de tejido trenzado. Vistas de frente, espalda y uso en la ciudad.", "images": [{"src": "./assets/images/orfeo-story/lavalle-frente-800.webp", "alt": "Lavalle · Frente", "w": 800, "h": 1200}, {"src": "./assets/images/orfeo/IMG_4800-800.webp", "alt": "Vista posterior de un sweater azul tejido en la colección de ORFEO", "w": 800, "h": 533}, {"src": "./assets/images/orfeo/IMG_4484-800.webp", "alt": "Modelo con sweater azul en un recorrido urbano", "w": 800, "h": 1200}], "video": null}, {"title": "Logotipo y monograma", "description": "Recursos de la identidad de ORFEO que acompañan la campaña: logotipo, monograma y aplicaciones circulares.", "images": [{"src": "./assets/images/orfeo/logo%20%281%29.png", "alt": "Logotipo de ORFEO sobre fondo claro", "w": 4134, "h": 4134}, {"src": "./assets/images/orfeo/favicon.png", "alt": "Monograma ORF sobre fondo claro", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001441.754.png", "alt": "Marca ORFEO en una aplicación circular negra", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001500.936.png", "alt": "Marca ORFEO en una aplicación circular verde", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001520.081.png", "alt": "Marca ORFEO en una aplicación circular marrón", "w": 1080, "h": 1080}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T001542.984.png", "alt": "Marca ORFEO en una aplicación circular azul", "w": 1080, "h": 1080}], "video": null}, {"title": "Lacres", "description": "Aplicaciones de la marca en relieve, con variantes de color.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002752.937-800.webp", "alt": "Sello en relieve de ORFEO en bordó", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002807.082-800.webp", "alt": "Sello en relieve de ORFEO en verde", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002835.717-800.webp", "alt": "Sello en relieve de ORFEO en azul", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T002850.326-800.webp", "alt": "Sello en relieve de ORFEO en marrón", "w": 800, "h": 800}], "video": null}, {"title": "Sello oval", "description": "Sello de ORFEO con el lema «Back to Basics».", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-14T233653.972-1600.webp", "alt": "Sello oval de ORFEO con el lema Back to Basics", "w": 1600, "h": 1600}], "video": null}, {"title": "Estampilla ilustrada", "description": "Pieza de la identidad de ORFEO con ilustración, marco y textura.", "images": [{"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000714.714-800.webp", "alt": "Estampilla gráfica de ORFEO en rojo y amarillo", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000735.657-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo claro", "w": 800, "h": 800}, {"src": "./assets/images/orfeo/New%20Project%20-%202026-05-15T000851.918-800.webp", "alt": "Estampilla gráfica de ORFEO sobre fondo oscuro", "w": 800, "h": 800}], "video": null}, {"title": "Colores de las piezas", "description": "Marino, marrón y carbón presentes en las prendas; oliva y marfil en las aplicaciones gráficas.", "images": [], "video": null, "colors": [{"name": "Marino", "hex": "#0C1D34"}, {"name": "Marrón", "hex": "#583A13"}, {"name": "Carbón", "hex": "#18191A"}, {"name": "Oliva", "hex": "#394A1C"}, {"name": "Marfil", "hex": "#FEFFED"}]}], "w": 800, "h": 1000, "surface": "#1a1a1a", "openingArt": {"src": "./assets/images/project-marks/orfeo.webp", "w": 2968, "h": 1117, "alt": "Logotipo de Orfeo sin fondo", "displayWidth": 480}}, {"slug": "olas-ditella", "title": "OLAS Di Tella", "type": "Identidad y campaña", "description": "Identidad y afiches para la campaña «Tu voz transforma» de OLAS Di Tella.", "cover": "assets/images/archive-covers/olas-ditella-800.webp", "alt": "Logotipo de OLAS sobre verde", "year": "2026", "page": "?project=olas-ditella", "intro": "Identidad visual para OLAS en la Universidad Torcuato Di Tella. La marca integra una ola en la O y se aplica en afiches, stickers y recursos gráficos.", "blocks": [{"title": "Afiches de campaña", "description": "Cuatro piezas de precampaña bajo «Tu voz transforma», con una estructura compartida y distintos collages.", "images": [{"src": "./assets/images/olas-ditella-story/afiche-1-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz transforma y un collage sobre verde", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-2-800.webp", "alt": "Afiche de OLAS con el mensaje No te quedes callado", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-3-800.webp", "alt": "Afiche de OLAS con el mensaje Tu voz importa", "w": 800, "h": 1132}, {"src": "./assets/images/olas-ditella-story/afiche-4-800.webp", "alt": "Afiche de OLAS con un megáfono y la palabra Cambio", "w": 800, "h": 1132}], "video": null}, {"title": "Stickers", "description": "Aplicaciones circulares de la ola y la flecha para la campaña.", "images": [{"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%201.png", "alt": "Sticker circular de OLAS con ola y flecha sobre negro", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/%5B2%5D%20STICKERS%202.png", "alt": "Sticker circular de OLAS con ola y flecha sobre verde", "w": 1080, "h": 1080}], "video": null}, {"title": "Recursos gráficos", "description": "La ola y sus fragmentos funcionan como símbolos independientes dentro del sistema visual.", "images": [{"src": "./assets/images/olas-ditella/Vectores%202.svg", "alt": "OLAS — recurso vectorial 2", "w": 7939, "h": 6965}, {"src": "./assets/images/olas-ditella/New%20Project%20%283%29.svg", "alt": "OLAS — recurso vectorial adicional", "w": 1080, "h": 1080}, {"src": "./assets/images/olas-ditella/Vectores%201.svg", "alt": "OLAS — recurso vectorial 1", "w": 518, "h": 642}, {"src": "./assets/images/olas-ditella/Vectores%203.svg", "alt": "OLAS — recurso vectorial 3", "w": 642, "h": 501}, {"src": "./assets/images/olas-ditella/Vectores%204.svg", "alt": "OLAS — recurso vectorial 4", "w": 563, "h": 435}], "video": null}, {"title": "Colores de la identidad", "description": "Verdes, azules, menta y blanco presentes en las piezas de campaña.", "images": [], "video": null, "colors": [{"name": "Verde", "hex": "#4C997F"}, {"name": "Menta", "hex": "#9FDDBD"}, {"name": "Azul profundo", "hex": "#175055"}, {"name": "Blanco", "hex": "#FBFDFD"}]}], "w": 800, "h": 1000, "surface": "#4c997f", "openingArt": {"src": "assets/images/olas-ditella/Logo.svg", "w": 1286, "h": 405, "alt": "Logotipo de OLAS Di Tella", "displayWidth": 420}}, {"slug": "club-de-economia-utdt", "title": "Club de Economía — UTDT", "type": "Identidad visual", "description": "Marca y sistema gráfico para el relanzamiento del Club de Economía de la UTDT.", "cover": "assets/images/archive-covers/club-de-economia-utdt-800.webp", "alt": "Logotipo del Club de Economía sobre celeste", "year": "2026", "page": "?project=club-de-economia-utdt", "intro": "Marca y sistema gráfico para el relanzamiento del Club de Economía. La entrega reúne versiones de marca, plantillas para charlas y una trama de diagonales.", "blocks": [{"title": "Símbolo y versiones", "description": "Isotipo celeste y versión a una tinta. El sistema usa Albert Sans en Semi Bold para destacar y Medium para la información.", "images": [{"src": "./assets/images/club-de-economia-utdt/Isotipo.png", "alt": "Isotipo principal del Club de Economía con diagonales celestes sobre círculo gris claro", "w": 1080, "h": 1080}, {"src": "./assets/images/club-de-economia-utdt/Isotipo%202.png", "alt": "El mismo isotipo resuelto en negro sobre círculo gris claro", "w": 1080, "h": 1080}], "video": null}, {"title": "Plantillas de publicaciones", "description": "Versiones clara y oscura para anunciar charlas, con espacio para invitado, imagen, fecha, horario y aula.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post-800.webp", "alt": "Plantilla clara para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20post%20variante-800.webp", "alt": "Plantilla oscura para anunciar charlas, con campos de nombre, fecha y aula", "w": 800, "h": 1000}], "video": null}, {"title": "Plantillas de historias", "description": "Adaptaciones verticales para anunciar charlas, con los mismos datos y jerarquías que las publicaciones.", "images": [{"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig-800.webp", "alt": "Plantilla clara de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}, {"src": "./assets/images/club-de-economia-utdt/Anuncio%20de%20Charla%20-%20Ig%20variante-800.webp", "alt": "Plantilla oscura de historia con campos de ejemplo para nombre, fecha, inscripción y aula", "w": 800, "h": 1422}], "video": null}, {"title": "Cabecera de redes", "description": "Trama de diagonales para la cabecera de Twitter, en celeste sobre gris claro.", "images": [{"src": "./assets/images/club-de-economia-utdt/Twitter%20header-800.webp", "alt": "Header del Club de Economía con una trama de diagonales celestes sobre gris claro", "w": 800, "h": 267}], "video": null}, {"title": "Estudio de movimiento", "description": "Estudio animado de gráficos, porcentajes y tipografía que termina en la marca. Los valores son ejemplos, no estadísticas de la organización.", "images": [], "video": {"src": "./assets/videos/club-de-economia/motion-study.mp4", "poster": "./assets/images/club-de-economia-utdt/motion-poster-720.webp"}}, {"title": "Colores de la identidad", "description": "Celeste, gris claro y negro presentes en las piezas finales.", "images": [], "video": null, "colors": [{"name": "Celeste", "hex": "#42AEBD"}, {"name": "Gris claro", "hex": "#D9D9D9"}, {"name": "Negro", "hex": "#000000"}]}], "w": 800, "h": 1000, "surface": "#41aebc", "openingArt": {"src": "./assets/images/project-marks/club-de-economia-utdt.svg", "w": 5420, "h": 1080, "alt": "Logotipo de Club de Economía — UTDT sin fondo", "displayWidth": 460}}, {"slug": "el-armado", "title": "El Armado", "type": "Identidad visual", "description": "Identidad ilustrada para la segunda edición de El Armado, en La Dama de Bollini.", "cover": "assets/images/archive-covers/el-armado-800.webp", "alt": "Logotipo de El Armado en hueso sobre vino", "year": "2026", "page": "?project=el-armado", "intro": "Identidad visual para El Armado en La Dama de Bollini. Marca, ilustración, afiche e historia de Instagram para un encuentro de música, karaoke y tragos.", "blocks": [{"title": "Afiche final", "description": "Pieza de la segunda edición: marca, ilustración y datos del encuentro sobre fondo vino.", "images": [{"src": "./assets/images/el-armado-web/afiche-1000.webp", "alt": "Afiche final de El Armado, segunda edición", "w": 1000, "h": 1415}], "video": null}, {"title": "Historia de Instagram", "description": "Adaptación vertical del afiche con la misma marca, ilustración y datos de la edición.", "images": [{"src": "./assets/images/el-armado-story/historia-800.webp", "alt": "Adaptación vertical · Historia de Instagram", "w": 800, "h": 1422}], "video": null}, {"title": "Ilustración", "description": "Dos manos sostienen un micrófono malva y una botella verde. Ilustración realizada con calco digital en Figma Draw.", "images": [{"src": "./assets/images/el-armado-web/ilustracion-color-760.webp", "alt": "Manos sosteniendo un micrófono malva y una botella verde", "w": 760, "h": 754}], "video": null}, {"title": "Paleta cromática", "description": "Vino como base, hueso para marca y manos, malva para el micrófono y verde para la botella.", "images": [], "video": null, "colors": [{"name": "Vino", "hex": "#360F17"}, {"name": "Hueso", "hex": "#D2DDCC"}, {"name": "Malva", "hex": "#9E6B7A"}, {"name": "Verde", "hex": "#9AE4A3"}]}], "w": 800, "h": 1000, "surface": "#3b0c15", "openingArt": {"src": "assets/images/el-armado/Logo.png", "w": 863, "h": 343, "alt": "Logotipo de El Armado en color hueso"}}, {"slug": "wildfolk", "title": "Wildfolk", "type": "Identidad y packaging", "description": "Proyecto personal de identidad y packaging para una marca ficticia de cerveza artesanal.", "cover": "./assets/images/wildfolk-web/cover-800.webp", "alt": "Logotipo crema de Wildfolk con Spikehorn sobre rojo ladrillo", "year": "2026", "page": "?project=wildfolk", "intro": "Wildfolk es un proyecto personal de identidad, ilustración y packaging para una marca ficticia de cerveza artesanal de inspiración irlandesa. Una familia de criaturas organiza las variedades, las latas y su comunicación.", "surface": "#AE3D20", "openingArt": {"src": "./assets/images/wildfolk-web/logo.webp", "w": 2802, "h": 1080, "alt": "Logotipo de Wildfolk con Spikehorn", "displayWidth": 480}, "previews": [{"src": "./assets/images/wildfolk-web/can-irish-carrion-720.webp", "alt": "Mockup de lata Irish Carrion", "w": 449, "h": 720, "label": "Irish Carrion", "fullSrc": "./assets/images/wildfolk-web/can-irish-carrion-full.webp"}, {"src": "./assets/images/wildfolk-web/poster-golden-hollow-720.webp", "alt": "Afiche de Golden Hollow · Golden ale con la lata y un paisaje de bosque", "w": 509, "h": 720, "label": "Golden Hollow · Golden ale", "fullSrc": "./assets/images/wildfolk-web/poster-golden-hollow-full.webp"}, {"src": "./assets/images/wildfolk-web/mascot-spikehorn.webp", "alt": "Silueta de Spikehorn", "w": 720, "h": 720, "label": "Spikehorn"}], "blocks": [{"title": "Cuatro criaturas, cuatro cervezas", "description": "Golden Hollow, Spikehorn IPA, Irish Carrion y Mumbler Stout comparten una estructura de etiqueta. La criatura, el nombre y el color distinguen cada variedad. Mockups de una línea de cerveza ficticia.", "images": [{"src": "./assets/images/wildfolk-web/can-golden-hollow-720.webp", "alt": "Mockup de lata Golden Hollow · Golden ale", "w": 418, "h": 720, "label": "Golden Hollow · Golden ale", "fullSrc": "./assets/images/wildfolk-web/can-golden-hollow-full.webp"}, {"src": "./assets/images/wildfolk-web/can-spikehorn-ipa-720.webp", "alt": "Mockup de lata Spikehorn IPA", "w": 418, "h": 720, "label": "Spikehorn IPA", "fullSrc": "./assets/images/wildfolk-web/can-spikehorn-ipa-full.webp"}, {"src": "./assets/images/wildfolk-web/can-irish-carrion-720.webp", "alt": "Mockup de lata Irish Carrion", "w": 449, "h": 720, "label": "Irish Carrion", "fullSrc": "./assets/images/wildfolk-web/can-irish-carrion-full.webp"}, {"src": "./assets/images/wildfolk-web/can-mumbler-stout-720.webp", "alt": "Mockup de lata Mumbler Stout", "w": 418, "h": 720, "label": "Mumbler Stout", "fullSrc": "./assets/images/wildfolk-web/can-mumbler-stout-full.webp"}]}, {"title": "Not All Legends Are Sober", "description": "La serie de afiches lleva las cuatro variedades a la gráfica. Lata, paisaje en alto contraste y lettering construyen una atmósfera entre leyenda, bosque y humor oscuro.", "images": [{"src": "./assets/images/wildfolk-web/poster-golden-hollow-720.webp", "alt": "Afiche de Golden Hollow · Golden ale con la lata y un paisaje de bosque", "w": 509, "h": 720, "label": "Golden Hollow · Golden ale", "fullSrc": "./assets/images/wildfolk-web/poster-golden-hollow-full.webp"}, {"src": "./assets/images/wildfolk-web/poster-spikehorn-ipa-720.webp", "alt": "Afiche de Spikehorn IPA con la lata y un paisaje de bosque", "w": 509, "h": 720, "label": "Spikehorn IPA", "fullSrc": "./assets/images/wildfolk-web/poster-spikehorn-ipa-full.webp"}, {"src": "./assets/images/wildfolk-web/poster-irish-carrion-720.webp", "alt": "Afiche de Irish Carrion con la lata y un paisaje de bosque", "w": 509, "h": 720, "label": "Irish Carrion", "fullSrc": "./assets/images/wildfolk-web/poster-irish-carrion-full.webp"}, {"src": "./assets/images/wildfolk-web/poster-mumbler-stout-720.webp", "alt": "Afiche de Mumbler Stout con la lata y un paisaje de bosque", "w": 509, "h": 720, "label": "Mumbler Stout", "fullSrc": "./assets/images/wildfolk-web/poster-mumbler-stout-full.webp"}]}, {"title": "Firma e isotipo", "description": "Spikehorn acompaña un lettering de formas quebradas y peso marcado. El isotipo concentra esa identidad en una W; la firma completa también se adapta a la comunicación digital.", "images": [{"src": "./assets/images/wildfolk-web/social-mark-720.webp", "alt": "Firma completa de Wildfolk sobre rojo ladrillo", "w": 720, "h": 720, "label": "Firma de Wildfolk", "fullSrc": "./assets/images/wildfolk-web/social-mark-full.webp"}, {"src": "./assets/images/wildfolk-web/monogram.webp", "alt": "Isotipo de Wildfolk: una W con Spikehorn", "w": 1263, "h": 1080, "label": "Isotipo", "monochrome": true}]}, {"title": "Un bestiario propio", "description": "Spikehorn, Hollow, Carrion, Mumbler, Cackle Crow y Old Knot comparten una lógica de silueta sólida. La familia surgió de seleccionar seis criaturas entre más de cien variantes exploradas con herramientas de IA, a partir de una ilustración antigua.", "images": [{"src": "./assets/images/wildfolk-web/mascot-spikehorn.webp", "alt": "Silueta de Spikehorn", "w": 720, "h": 720, "label": "Spikehorn"}, {"src": "./assets/images/wildfolk-web/mascot-hollow.webp", "alt": "Silueta de Hollow", "w": 720, "h": 720, "label": "Hollow"}, {"src": "./assets/images/wildfolk-web/mascot-carrion.webp", "alt": "Silueta de Carrion", "w": 720, "h": 720, "label": "Carrion"}, {"src": "./assets/images/wildfolk-web/mascot-mumbler.webp", "alt": "Silueta de Mumbler", "w": 720, "h": 720, "label": "Mumbler"}, {"src": "./assets/images/wildfolk-web/mascot-cackle-crow.webp", "alt": "Silueta de Cackle Crow", "w": 720, "h": 720, "label": "Cackle Crow"}, {"src": "./assets/images/wildfolk-web/mascot-old-knot.webp", "alt": "Silueta de Old Knot", "w": 720, "h": 720, "label": "Old Knot"}]}, {"title": "Color por personaje", "description": "Cada criatura tiene un color. El crema vincula los personajes con el lettering y sostiene la continuidad entre las latas y los afiches.", "images": [], "colors": [{"name": "Mumbler", "hex": "#241713"}, {"name": "Hollow", "hex": "#F8CA54"}, {"name": "Cackle Crow", "hex": "#C98424"}, {"name": "Carrion", "hex": "#AE3D20"}, {"name": "Old Knot", "hex": "#672F1A"}, {"name": "Spikehorn", "hex": "#D8B61B"}, {"name": "Crema de marca", "hex": "#E4D4B0"}]}, {"title": "El producto en otra escena", "description": "Dos mockups completan el universo de Wildfolk: Golden Hollow en mano e Irish Carrion aplastada. Una presentación cotidiana y otra más cruda, unidas por la misma identidad.", "images": [{"src": "./assets/images/wildfolk-web/hand-mockup-720.webp", "alt": "Mockup de Golden Hollow sostenida en una mano", "w": 480, "h": 720, "label": "Golden Hollow · Mockup", "fullSrc": "./assets/images/wildfolk-web/hand-mockup-full.webp"}, {"src": "./assets/images/wildfolk-web/crushed-can-720.webp", "alt": "Imagen de una lata aplastada de Irish Carrion", "w": 576, "h": 720, "label": "Irish Carrion · Lata aplastada", "fullSrc": "./assets/images/wildfolk-web/crushed-can-full.webp"}]}]}];
       const archiveItems = [{"id": "poster-100-horses", "kind": "poster", "name": "100 Horses", "alt": "100 Horses, afiche personal en formato A4", "src": "assets/images/personal-posters/100-horses-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/100-horses-400.webp", "w": 400, "h": 566}}, {"id": "poster-carrie", "kind": "poster", "name": "Carrie", "alt": "Carrie, afiche personal en formato A4", "src": "assets/images/personal-posters/carrie-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/carrie-400.webp", "w": 400, "h": 566}}, {"id": "poster-pulp-fiction", "kind": "poster", "name": "Pulp Fiction", "alt": "Pulp Fiction, afiche personal en formato A4", "src": "assets/images/personal-posters/pulp-fiction-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/pulp-fiction-400.webp", "w": 400, "h": 566}}, {"id": "poster-faust", "kind": "poster", "name": "Faust", "alt": "Faust, afiche personal en formato A4", "src": "assets/images/personal-posters/faust-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/faust-400.webp", "w": 400, "h": 566}}, {"id": "poster-blood-meridian", "kind": "poster", "name": "Blood Meridian", "alt": "Blood Meridian, afiche personal en formato A4", "src": "assets/images/personal-posters/blood-meridian-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/blood-meridian-400.webp", "w": 400, "h": 566}}, {"id": "poster-nosferatu", "kind": "poster", "name": "Nosferatu", "alt": "Nosferatu, afiche personal en formato A4", "src": "assets/images/personal-posters/nosferatu-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nosferatu-400.webp", "w": 400, "h": 566}}, {"id": "poster-1984", "kind": "poster", "name": "1984", "alt": "1984, afiche personal en formato A4", "src": "assets/images/personal-posters/1984-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/1984-400.webp", "w": 400, "h": 566}}, {"id": "poster-animal-farm", "kind": "poster", "name": "Animal Farm", "alt": "Animal Farm, afiche personal en formato A4", "src": "assets/images/personal-posters/animal-farm-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/animal-farm-400.webp", "w": 400, "h": 566}}, {"id": "poster-animal-farm-variante-02", "kind": "poster", "name": "Animal Farm — Variante 02", "alt": "Animal Farm — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/animal-farm-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/animal-farm-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-bugonia", "kind": "poster", "name": "Bugonia", "alt": "Bugonia, afiche personal en formato A4", "src": "assets/images/personal-posters/bugonia-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/bugonia-400.webp", "w": 400, "h": 566}}, {"id": "poster-seventeen-minutes", "kind": "poster", "name": "Seventeen Minutes", "alt": "Seventeen Minutes, afiche personal en formato A4", "src": "assets/images/personal-posters/seventeen-minutes-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/seventeen-minutes-400.webp", "w": 400, "h": 566}}, {"id": "poster-paris-texas", "kind": "poster", "name": "Paris, Texas", "alt": "Paris, Texas, afiche personal en formato A4", "src": "assets/images/personal-posters/paris-texas-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/paris-texas-400.webp", "w": 400, "h": 566}}, {"id": "poster-nothing-ever-happened-here", "kind": "poster", "name": "Nothing Ever Happened Here", "alt": "Nothing Ever Happened Here, afiche personal en formato A4", "src": "assets/images/personal-posters/nothing-ever-happened-here-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nothing-ever-happened-here-400.webp", "w": 400, "h": 566}}, {"id": "poster-he-who-ruled-all", "kind": "poster", "name": "He Who Ruled All", "alt": "He Who Ruled All, afiche personal en formato A4", "src": "assets/images/personal-posters/he-who-ruled-all-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/he-who-ruled-all-400.webp", "w": 400, "h": 566}}, {"id": "poster-she-was-everyone", "kind": "poster", "name": "She Was Everyone", "alt": "She Was Everyone, afiche personal en formato A4", "src": "assets/images/personal-posters/she-was-everyone-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/she-was-everyone-400.webp", "w": 400, "h": 566}}, {"id": "poster-no-mans-son", "kind": "poster", "name": "No Man’s Son", "alt": "No Man’s Son, afiche personal en formato A4", "src": "assets/images/personal-posters/no-mans-son-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/no-mans-son-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-very-last-of-the-crusaders", "kind": "poster", "name": "The Very Last of the Crusaders", "alt": "The Very Last of the Crusaders, afiche personal en formato A4", "src": "assets/images/personal-posters/the-very-last-of-the-crusaders-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-very-last-of-the-crusaders-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-cadena", "kind": "poster", "name": "Endo Explore — Cadena", "alt": "Endo Explore — Cadena, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-cadena-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-cadena-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-ornamento", "kind": "poster", "name": "Endo Explore — Ornamento", "alt": "Endo Explore — Ornamento, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-ornamento-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-ornamento-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-vegetal", "kind": "poster", "name": "Endo Explore — Vegetal", "alt": "Endo Explore — Vegetal, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-vegetal-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-vegetal-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-mosaico", "kind": "poster", "name": "Endo Explore — Mosaico", "alt": "Endo Explore — Mosaico, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-mosaico-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-mosaico-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-naranja", "kind": "poster", "name": "Endo Explore — Naranja", "alt": "Endo Explore — Naranja, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-naranja-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-naranja-400.webp", "w": 400, "h": 566}}, {"id": "poster-meeting-with-the-sphinx", "kind": "poster", "name": "Meeting with the Sphinx", "alt": "Meeting with the Sphinx, afiche personal en formato A4", "src": "assets/images/personal-posters/meeting-with-the-sphinx-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/meeting-with-the-sphinx-400.webp", "w": 400, "h": 566}}, {"id": "poster-nobody-figura-01", "kind": "poster", "name": "Nobody — Figura 01", "alt": "Nobody — Figura 01, afiche personal en formato A4", "src": "assets/images/personal-posters/nobody-figura-01-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/nobody-figura-01-400.webp", "w": 400, "h": 566}}, {"id": "poster-follow-the-light", "kind": "poster", "name": "Follow the Light", "alt": "Follow the Light, afiche personal en formato A4", "src": "assets/images/personal-posters/follow-the-light-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/follow-the-light-400.webp", "w": 400, "h": 566}}, {"id": "poster-eyes-wide-shut", "kind": "poster", "name": "Eyes Wide Shut", "alt": "Eyes Wide Shut, afiche personal en formato A4", "src": "assets/images/personal-posters/eyes-wide-shut-1190.webp", "w": 1190, "h": 1684, "thumbnail": {"src": "assets/images/personal-posters/eyes-wide-shut-400.webp", "w": 400, "h": 566}}, {"id": "poster-otro-dia-en-el-planeta-tierra", "kind": "poster", "name": "Otro día en el planeta Tierra", "alt": "Otro día en el planeta Tierra, afiche personal en formato A4", "src": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/otro-dia-en-el-planeta-tierra-400.webp", "w": 400, "h": 565}}, {"id": "poster-the-old-king-from-the-north", "kind": "poster", "name": "The Old King from the North", "alt": "The Old King from the North, afiche personal en formato A4", "src": "assets/images/personal-posters/the-old-king-from-the-north-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-old-king-from-the-north-400.webp", "w": 400, "h": 566}}, {"id": "poster-sgt-peppers-lonely-hearts-club-band", "kind": "poster", "name": "Sgt. Pepper’s Lonely Hearts Club Band", "alt": "Sgt. Pepper’s Lonely Hearts Club Band, afiche personal en formato A4", "src": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/sgt-peppers-lonely-hearts-club-band-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-beatles", "kind": "poster", "name": "The Beatles", "alt": "The Beatles, afiche personal en formato A4", "src": "assets/images/personal-posters/the-beatles-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/the-beatles-400.webp", "w": 400, "h": 565}}, {"id": "poster-copenhague", "kind": "poster", "name": "Copenhague", "alt": "Copenhague, afiche personal en formato A4", "src": "assets/images/personal-posters/copenhague-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/copenhague-400.webp", "w": 400, "h": 566}}, {"id": "poster-slowthai", "kind": "poster", "name": "Slowthai", "alt": "Slowthai, afiche personal en formato A4", "src": "assets/images/personal-posters/slowthai-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/slowthai-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-end-of-the-beginning", "kind": "poster", "name": "The End of the Beginning", "alt": "The End of the Beginning, afiche personal en formato A4", "src": "assets/images/personal-posters/the-end-of-the-beginning-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-end-of-the-beginning-400.webp", "w": 400, "h": 566}}, {"id": "poster-where-is-my-mind", "kind": "poster", "name": "Where Is My Mind?", "alt": "Where Is My Mind?, afiche personal en formato A4", "src": "assets/images/personal-posters/where-is-my-mind-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/where-is-my-mind-400.webp", "w": 400, "h": 566}}, {"id": "poster-stop-making-sense", "kind": "poster", "name": "Stop Making Sense", "alt": "Stop Making Sense, afiche personal en formato A4", "src": "assets/images/personal-posters/stop-making-sense-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/stop-making-sense-400.webp", "w": 400, "h": 566}}, {"id": "poster-reflejos-azules", "kind": "poster", "name": "Sin título — 01", "alt": "Sin título — 01, afiche personal en formato A4", "src": "assets/images/personal-posters/reflejos-azules-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/reflejos-azules-400.webp", "w": 400, "h": 566}}, {"id": "poster-this-is-the-end", "kind": "poster", "name": "This Is the End", "alt": "This Is the End, afiche personal en formato A4", "src": "assets/images/personal-posters/this-is-the-end-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/this-is-the-end-400.webp", "w": 400, "h": 566}}, {"id": "poster-fly", "kind": "poster", "name": "Fly", "alt": "Fly, afiche personal en formato A4", "src": "assets/images/personal-posters/fly-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/fly-400.webp", "w": 400, "h": 566}}, {"id": "poster-ziggy-stardust", "kind": "poster", "name": "Ziggy Stardust", "alt": "Ziggy Stardust, afiche personal en formato A4", "src": "assets/images/personal-posters/ziggy-stardust-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/ziggy-stardust-400.webp", "w": 400, "h": 566}}, {"id": "poster-wild-horses", "kind": "poster", "name": "Wild Horses", "alt": "Wild Horses, afiche personal en formato A4", "src": "assets/images/personal-posters/wild-horses-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/wild-horses-400.webp", "w": 400, "h": 566}}, {"id": "poster-unexpected", "kind": "poster", "name": "Unexpected", "alt": "Unexpected, afiche personal en formato A4", "src": "assets/images/personal-posters/unexpected-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/unexpected-400.webp", "w": 400, "h": 566}}, {"id": "poster-talking-heads", "kind": "poster", "name": "Talking Heads", "alt": "Talking Heads, afiche personal en formato A4", "src": "assets/images/personal-posters/talking-heads-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/talking-heads-400.webp", "w": 400, "h": 566}}, {"id": "poster-dylan-amarillo", "kind": "poster", "name": "Dylan — Amarillo", "alt": "Dylan — Amarillo, afiche personal en formato A4", "src": "assets/images/personal-posters/dylan-amarillo-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dylan-amarillo-400.webp", "w": 400, "h": 566}}, {"id": "poster-dylan", "kind": "poster", "name": "Dylan", "alt": "Dylan, afiche personal en formato A4", "src": "assets/images/personal-posters/dylan-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dylan-400.webp", "w": 400, "h": 566}}, {"id": "poster-celestial-bodies", "kind": "poster", "name": "Celestial Bodies", "alt": "Celestial Bodies, afiche personal en formato A4", "src": "assets/images/personal-posters/celestial-bodies-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/celestial-bodies-400.webp", "w": 400, "h": 566}}, {"id": "poster-wild-west", "kind": "poster", "name": "Wild West", "alt": "Wild West, afiche personal en formato A4", "src": "assets/images/personal-posters/wild-west-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/wild-west-400.webp", "w": 400, "h": 566}}, {"id": "poster-movement", "kind": "poster", "name": "Movement", "alt": "Movement, afiche personal en formato A4", "src": "assets/images/personal-posters/movement-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/movement-400.webp", "w": 400, "h": 566}}, {"id": "poster-retrato-azul", "kind": "poster", "name": "Sin título — 02", "alt": "Sin título — 02, afiche personal en formato A4", "src": "assets/images/personal-posters/retrato-azul-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/retrato-azul-400.webp", "w": 400, "h": 566}}, {"id": "poster-caballos-rosa", "kind": "poster", "name": "Caballos — Rosa", "alt": "Caballos — Rosa, afiche personal en formato A4", "src": "assets/images/personal-posters/caballos-rosa-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/caballos-rosa-400.webp", "w": 400, "h": 566}}, {"id": "poster-dreamers", "kind": "poster", "name": "Dreamers", "alt": "Dreamers, afiche personal en formato A4", "src": "assets/images/personal-posters/dreamers-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/dreamers-400.webp", "w": 400, "h": 566}}, {"id": "poster-endo-explore-candelabro", "kind": "poster", "name": "Endo Explore — Candelabro", "alt": "Endo Explore — Candelabro, afiche personal en formato A4", "src": "assets/images/personal-posters/endo-explore-candelabro-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/endo-explore-candelabro-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-seventh-seal", "kind": "poster", "name": "The Seventh Seal", "alt": "The Seventh Seal, afiche personal en formato A4", "src": "assets/images/personal-posters/the-seventh-seal-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-seventh-seal-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-seventh-seal-variante-02", "kind": "poster", "name": "The Seventh Seal — Variante 02", "alt": "The Seventh Seal — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/the-seventh-seal-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-seventh-seal-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-eyes-wide-shut-variante-02", "kind": "poster", "name": "Eyes Wide Shut — Variante 02", "alt": "Eyes Wide Shut — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/eyes-wide-shut-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/eyes-wide-shut-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-stand-out", "kind": "poster", "name": "Stand Out", "alt": "Stand Out, afiche personal en formato A4", "src": "assets/images/personal-posters/stand-out-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/stand-out-400.webp", "w": 400, "h": 566}}, {"id": "poster-distorted-realities", "kind": "poster", "name": "Distorted Realities", "alt": "Distorted Realities, afiche personal en formato A4", "src": "assets/images/personal-posters/distorted-realities-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/distorted-realities-400.webp", "w": 400, "h": 566}}, {"id": "poster-basement", "kind": "poster", "name": "Basement", "alt": "Basement, afiche personal en formato A4", "src": "assets/images/personal-posters/basement-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/basement-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-shining", "kind": "poster", "name": "The Shining", "alt": "The Shining, afiche personal en formato A4", "src": "assets/images/personal-posters/the-shining-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-shining-400.webp", "w": 400, "h": 566}}, {"id": "poster-faust-variante-02", "kind": "poster", "name": "Faust — Variante 02", "alt": "Faust — Variante 02, afiche personal en formato A4", "src": "assets/images/personal-posters/faust-variante-02-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/faust-variante-02-400.webp", "w": 400, "h": 566}}, {"id": "poster-composicion-azul-y-verde", "kind": "poster", "name": "Sin título — 03", "alt": "Sin título — 03, afiche personal en formato A4", "src": "assets/images/personal-posters/composicion-azul-y-verde-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/composicion-azul-y-verde-400.webp", "w": 400, "h": 566}}, {"id": "poster-retrato-celeste", "kind": "poster", "name": "Sin título — 04", "alt": "Sin título — 04, afiche personal en formato A4", "src": "assets/images/personal-posters/retrato-celeste-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/retrato-celeste-400.webp", "w": 400, "h": 566}}, {"id": "poster-la-chimera", "kind": "poster", "name": "La Chimera", "alt": "La Chimera, afiche personal en formato A4", "src": "assets/images/personal-posters/la-chimera-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/la-chimera-400.webp", "w": 400, "h": 566}}, {"id": "poster-movimiento-caballo", "kind": "poster", "name": "Sin título — 05", "alt": "Sin título — 05, afiche personal en formato A4", "src": "assets/images/personal-posters/movimiento-caballo-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/movimiento-caballo-400.webp", "w": 400, "h": 566}}, {"id": "poster-light-sources-luz-violeta", "kind": "poster", "name": "Light Sources — Luz violeta", "alt": "Light Sources — Luz violeta, afiche personal en formato A4", "src": "assets/images/personal-posters/light-sources-luz-violeta-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/light-sources-luz-violeta-400.webp", "w": 400, "h": 566}}, {"id": "poster-under-the-light-house", "kind": "poster", "name": "Under the Light House", "alt": "Under the Light House, afiche personal en formato A4", "src": "assets/images/personal-posters/under-the-light-house-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/under-the-light-house-400.webp", "w": 400, "h": 566}}, {"id": "poster-the-monk", "kind": "poster", "name": "The Monk", "alt": "The Monk, afiche personal en formato A4", "src": "assets/images/personal-posters/the-monk-2480.webp", "w": 2480, "h": 3508, "thumbnail": {"src": "assets/images/personal-posters/the-monk-400.webp", "w": 400, "h": 566}}, {"id": "poster-sayonara", "kind": "poster", "name": "Sayonara", "alt": "Sayonara, afiche personal en formato A4", "src": "assets/images/personal-posters/sayonara-2953.webp", "w": 2953, "h": 4169, "thumbnail": {"src": "assets/images/personal-posters/sayonara-400.webp", "w": 400, "h": 565}}, {"id": "stephen-king-01", "kind": "book", "name": "’Salem’s Lot", "alt": "Portada de 'SALEM'S LOT en la serie Stephen King", "src": "assets/images/stephen-king/%27SALEM%27S%20LOT-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-01-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-01", "kind": "photo", "alt": "Paseo costero, rocas y vegetación de Zapallar frente al mar", "src": "assets/images/zapallar/IMG_4660-1600.webp", "w": 1600, "h": 898, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-01-400.webp", "w": 400, "h": 225}}, {"id": "stephen-king-02", "kind": "book", "name": "’Salem’s Lot — Variante 02", "alt": "Stephen King — variante 2", "src": "assets/images/stephen-king/Variante%202-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-02-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-02", "kind": "photo", "alt": "Árboles y jardines en una calle de Zapallar", "src": "assets/images/zapallar/IMG_4726-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-02-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-03", "kind": "book", "name": "Carrie", "alt": "Portada de CARRIE en la serie Stephen King", "src": "assets/images/stephen-king/CARRIE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-03-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-03", "kind": "photo", "alt": "Botellas y objetos en los estantes de un comercio", "src": "assets/images/zapallar/IMG_4665-800.webp", "w": 800, "h": 1067, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-03-400.webp", "w": 400, "h": 534}}, {"id": "stephen-king-04", "kind": "book", "name": "Cujo", "alt": "Portada de CUJO en la serie Stephen King", "src": "assets/images/stephen-king/CUJO-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-04-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-04", "kind": "photo", "alt": "Bandera de Chile junto a automóviles y árboles", "src": "assets/images/zapallar/IMG_4673-800.webp", "w": 800, "h": 1067, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-04-400.webp", "w": 400, "h": 534}}, {"id": "stephen-king-05", "kind": "book", "name": "IT", "alt": "Portada de IT en la serie Stephen King", "src": "assets/images/stephen-king/IT-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-05-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-05", "kind": "photo", "alt": "Atardecer sobre el mar con nubes oscuras y siluetas de la costa", "src": "assets/images/zapallar/DSC01575-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-05-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-06", "kind": "book", "name": "Misery", "alt": "Portada de MISERY en la serie Stephen King", "src": "assets/images/stephen-king/MISERY-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-06-400.webp", "w": 400, "h": 566}}, {"id": "fotos-en-zapallar-06", "kind": "photo", "alt": "Reflejo del sol sobre el mar al atardecer", "src": "assets/images/zapallar/IMG_4748-800.webp", "w": 800, "h": 532, "thumbnail": {"src": "assets/images/personal-previews/fotos-en-zapallar-06-400.webp", "w": 400, "h": 266}}, {"id": "stephen-king-07", "kind": "book", "name": "Pet Sematary", "alt": "Portada de PET SEMATARY en la serie Stephen King", "src": "assets/images/stephen-king/PET%20SEMATARY-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-07-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-08", "kind": "book", "name": "The Dark Tower", "alt": "Portada de THE DARK TOWER en la serie Stephen King", "src": "assets/images/stephen-king/THE%20DARK%20TOWER-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-08-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-09", "kind": "book", "name": "The Dead Zone", "alt": "Portada de THE DEAD ZONE en la serie Stephen King", "src": "assets/images/stephen-king/THE%20DEAD%20ZONE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-09-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-10", "kind": "book", "name": "The Green Mile", "alt": "Portada de THE GREEN MILE en la serie Stephen King", "src": "assets/images/stephen-king/THE%20GREEN%20MILE-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-10-400.webp", "w": 400, "h": 566}}, {"id": "stephen-king-11", "kind": "book", "name": "The Shining", "alt": "Portada de THE SHINING en la serie Stephen King", "src": "assets/images/stephen-king/THE%20SHINING-800.webp", "w": 800, "h": 1132, "thumbnail": {"src": "assets/images/personal-previews/stephen-king-11-400.webp", "w": 400, "h": 566}}];
       const config = Object.freeze({ perspective: 6000, pitch: -11, yaw: -31, gap: 300, size: 680 });
       let cameraConfig = config;
@@ -488,29 +489,23 @@
       const index = document.querySelector('.study-projects');
       const menuPanel = document.querySelector('.study-menu-panel'), menuToggle = document.querySelector('.study-menu-toggle');
       const menuClose = document.querySelector('.study-menu-close'), mobileCaption = document.querySelector('.study-mobile-caption');
-      const projectListToggle = document.querySelector('.study-projects-toggle');
-      projectListToggle.addEventListener('click', () => {
-        const open = projectListToggle.getAttribute('aria-expanded') !== 'true';
-        projectListToggle.setAttribute('aria-expanded', String(open));
-        document.getElementById('study-project-list').hidden = !open;
-      });
-      document.querySelector('.study-corner-mark').addEventListener('click', () => document.querySelector('.study-home').click());
       let mobileSequence = 0;
       function syncMobileShell() {
-        const modal = mobileMenuOpen && smallScreen.matches;
-        menuPanel.inert = smallScreen.matches && !modal;
-        menuToggle.inert = modal || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
-        document.querySelector('.study-heading').inert = modal;
-        mobileCaption.inert = modal || Boolean(pageName) || Boolean(activeProjectTransition);
-        stage.inert = modal || Boolean(pageName) || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
-        page.inert = modal || Boolean(activeProjectTransition);
-        navigation.inert = !modal && (pageName === 'project' || Boolean(activeProjectTransition));
-        index.inert = !modal && (Boolean(pageName) || Boolean(activeProjectTransition));
-        caseNavigation.inert = modal || Boolean(activeProjectTransition);
+        const modal = mobileMenuOpen && smallScreen.matches, loading = Boolean(activeSectionLoad);
+        menuPanel.inert = loading || smallScreen.matches && !modal;
+        menuToggle.inert = loading || modal || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
+        document.querySelector('.study-heading').inert = loading || modal;
+        mobileCaption.inert = loading || modal || Boolean(pageName) || Boolean(activeProjectTransition);
+        stage.inert = loading || modal || Boolean(pageName) || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
+        page.inert = loading || modal || Boolean(activeProjectTransition);
+        navigation.inert = loading || !modal && (pageName === 'project' || Boolean(activeProjectTransition));
+        index.inert = loading || !modal && (Boolean(pageName) || Boolean(activeProjectTransition));
+        caseNavigation.inert = loading || modal || Boolean(activeProjectTransition);
         menuToggle.setAttribute('aria-expanded', String(modal));
         menuToggle.setAttribute('aria-label', modal ? 'Cerrar menú' : 'Abrir menú');
       }
       function setMobileMenu(open, restoreFocus = true) {
+        if (open && activeSectionLoad) return;
         const wasOpen = mobileMenuOpen;
         mobileMenuOpen = open && smallScreen.matches;
         if (mobileMenuOpen) {
@@ -531,7 +526,12 @@
       menuClose.addEventListener('click', () => setMobileMenu(false));
       document.addEventListener('keydown', event => {
         if (!mobileMenuOpen) return;
-        if (event.key === 'Escape') { event.preventDefault(); event.stopImmediatePropagation(); setMobileMenu(false); }
+        if (event.key === 'Escape') {
+          event.preventDefault(); event.stopImmediatePropagation();
+          const dropdown = menuPanel.querySelector('details.study-nav-group[open]');
+          if (dropdown) { navMenuRequest += 1; desiredNavMenu = null; setNavMenu(dropdown, false); dropdown.querySelector('summary').focus({ preventScroll: true }); }
+          else setMobileMenu(false);
+        }
         else if (event.key === 'Tab') {
           const controls = [...menuPanel.querySelectorAll('button:not(:disabled),summary,a[href]')].filter(n => n.getClientRects().length && !n.closest('[inert]'));
           const first = controls[0], last = controls.at(-1);
@@ -602,6 +602,7 @@
 
       const previewSources = catalogue.map(item => {
         if (item.slug === 'club-de-economia-utdt') return [];
+        if (item.previews) return item.previews;
         const blocks = item.blocks.filter(block => block.images?.length);
         const chosen = item.slug === 'apolo-studios' ? blocks.slice(0,3) : blocks.slice(0,2);
         return chosen.map(block => block.images[0]).filter(Boolean);
@@ -683,9 +684,10 @@
           { name:'tela-orfeo', duration:.058, frequency:600, cutoff:1450, peak:.07, attack:.006 },
           { name:'papel-olas', duration:.045, frequency:1800, cutoff:3800, peak:.09, attack:.003 },
           { name:'digital-club', duration:.027, frequency:3100, cutoff:6200, peak:.055, attack:.0015 },
-          { name:'papel-armado', duration:.052, frequency:1250, cutoff:3200, peak:.085, attack:.004 }
+          { name:'papel-armado', duration:.052, frequency:1250, cutoff:3200, peak:.085, attack:.004 },
+          { name:'papel-wildfolk', duration:.045, frequency:1150, cutoff:2850, peak:.07, attack:.004 }
         ];
-        const profile = profiles[modulo(sequence,catalogue.length)];
+        const profile = profiles[modulo(sequence,catalogue.length)] || profiles[0];
         const duration = profile.duration;
         source.buffer = noise;
         filter.type = 'bandpass';
@@ -923,7 +925,7 @@
         const loaded = loadedCovers.get(item.slug);
         if (loaded?.naturalWidth) return Promise.resolve(loaded);
         if (coverRequests.has(item.slug)) return coverRequests.get(item.slug);
-        const request = Promise.all([decodedImage(item.cover, 8000), item.openingArt ? decodedImage(item.openingArt.src, 8000).catch(() => null) : null]).then(([image, art]) => { loadedCovers.set(item.slug, image); if (art) loadedOpeningArt.set(item.slug, art); return image; }).finally(() => coverRequests.delete(item.slug));
+        const request = Promise.all([decodedImage(item.cover, 8000), item.openingArt ? decodedImage(item.openingArt.src, 8000) : null]).then(([image, art]) => { loadedCovers.set(item.slug, image); if (art) loadedOpeningArt.set(item.slug, art); return image; }).finally(() => coverRequests.delete(item.slug));
         coverRequests.set(item.slug, request); return request;
       }
       function cancelCoverWait() {
@@ -1007,7 +1009,7 @@
         const reader = page.getBoundingClientRect();
         page.querySelectorAll('video').forEach(video => {
           const rect = video.getBoundingClientRect();
-          const visible = !mobileMenuOpen && !document.hidden && pageName && !lightbox.open && !activeProjectTransition && rect.bottom > reader.top && rect.top < reader.bottom;
+          const visible = !mobileMenuOpen && !document.hidden && pageName && !lightbox.open && !activeProjectTransition && !activeSectionLoad && rect.bottom > reader.top && rect.top < reader.bottom;
           if (visible) video.play().catch(() => {}); else video.pause();
         });
       }
@@ -1019,11 +1021,11 @@
         const ratio = Math.min(1 / (devicePixelRatio || 1), (innerWidth - (smallScreen.matches ? 32 : 80)) / image.naturalWidth, (innerHeight - (smallScreen.matches ? 104 : 100)) / image.naturalHeight);
         image.style.width = `${image.naturalWidth * ratio}px`; image.style.height = `${image.naturalHeight * ratio}px`;
       }
-      async function openLightbox(src, alt) {
+      async function openLightbox(src, alt, monochrome = false) {
         const fresh = !lightbox.open; if (fresh) lightboxFocus = document.activeElement;
         const request = ++lightboxRequest; lightboxAnimation?.cancel(); lightboxAnimation = null; clearTimeout(lightboxTimer);
         lightbox.removeAttribute('data-closing'); lightbox.querySelectorAll('.study-logo-loader,.study-lightbox-error').forEach(node => node.remove());
-        const image = lightbox.querySelector('img'); image.style.visibility = 'hidden'; image.removeAttribute('src'); image.alt = alt || '';
+        const image = lightbox.querySelector('img'); image.classList.toggle('is-monochrome', monochrome); image.style.visibility = 'hidden'; image.removeAttribute('src'); image.alt = alt || '';
         if (fresh) lightbox.showModal(); syncCaseVideos();
         if (fresh && !preference.matches) lightboxAnimation = lightbox.animate([{ opacity: 0 },{ opacity: 1 }],{ duration: 120, easing: 'ease-out' });
         lightbox.setAttribute('aria-busy','true');
@@ -1041,7 +1043,7 @@
         } catch {
           if (request !== lightboxRequest || !lightbox.open) return;
           const error = el('div','study-lightbox-error'); error.setAttribute('role','status');
-          const retry = el('button','study-text-button','Reintentar'); retry.type = 'button'; retry.addEventListener('click', () => openLightbox(src, alt));
+          const retry = el('button','study-text-button','Reintentar'); retry.type = 'button'; retry.addEventListener('click', () => openLightbox(src, alt, monochrome));
           error.append(el('p','','No se pudo cargar esta imagen.'), retry); lightbox.append(error);
         } finally {
           if (request === lightboxRequest) { clearTimeout(lightboxTimer); lightbox.querySelectorAll('.study-logo-loader').forEach(node => node.remove()); lightbox.removeAttribute('aria-busy'); }
@@ -1060,48 +1062,228 @@
       lightbox.addEventListener('close', () => {
         lightboxRequest += 1; clearTimeout(lightboxTimer); lightboxAnimation?.cancel(); lightboxAnimation = null;
         lightbox.removeAttribute('data-closing'); lightbox.removeAttribute('aria-busy'); lightbox.querySelectorAll('.study-logo-loader,.study-lightbox-error').forEach(node => node.remove());
-        const image = lightbox.querySelector('img'); image.style.visibility = 'hidden'; image.removeAttribute('src');
+        const image = lightbox.querySelector('img'); image.classList.remove('is-monochrome'); image.style.visibility = 'hidden'; image.removeAttribute('src');
         if (lightboxFocus?.isConnected && !lightboxFocus.closest('[hidden],[inert]')) lightboxFocus.focus({ preventScroll: true });
         syncCaseVideos();
       });
 
-      async function prepare() {
-        if (startupPreparing) return; startupPreparing = true;
-        const loader = document.querySelector('.study-loader'); if (!loader) { startupPreparing = false; return; }
-        loader.replaceChildren(loadingMark()); loader.setAttribute('aria-busy','true'); stage.setAttribute('aria-busy','true');
-        stage.inert = navigation.inert = index.inert = true;
-        const route = readPageAddress(), initialItem = catalogue[route.project];
-        const begin = performance.now();
-        const results = await Promise.allSettled(catalogue.map(ensureCover));
-        if (results.some(result => result.status === 'rejected')) {
-          const message = el('div','study-loader__message'); const retry = el('button','study-text-button','Reintentar'); retry.type = 'button'; retry.addEventListener('click', prepare);
-          message.append(el('p','','No se pudieron cargar todas las portadas.'), retry); loader.replaceChildren(message); loader.removeAttribute('aria-busy'); startupPreparing = false; retry.focus({ preventScroll: true }); return;
+      // Shared full-screen gate. Insert inside the main IIFE, after loadingMark().
+      let activeSectionLoad = null;
+      let sectionLoadSequence = 0;
+
+      function sectionLoadInk(surface) {
+        const match = /^#([0-9a-f]{6})$/i.exec(surface);
+        if (!match) return '#111';
+        const rgb = match[1].match(/../g).map(value => parseInt(value, 16) / 255);
+        const linear = rgb.map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
+        const lightness = linear[0] * .2126 + linear[1] * .7152 + linear[2] * .0722;
+        return lightness > .179 ? '#111' : '#fff';
+      }
+
+      function beginSectionLoad(options = {}) {
+        cancelSectionLoad(activeSectionLoad, 'superseded');
+        const { key = 'home', label = 'Proyectos', surface = '#fff', ink = sectionLoadInk(surface), minimum = 5000 } = options;
+        const controller = new AbortController();
+        const node = el('div', 'study-section-loader');
+        node.style.setProperty('--section-load-surface', surface);
+        node.style.setProperty('--section-load-ink', ink);
+        node.dataset.sectionLoad = key;
+        node.dataset.phase = 'loading';
+        node.setAttribute('role', 'status');
+        node.setAttribute('aria-live', 'polite');
+        node.setAttribute('aria-label', `Cargando ${label}`);
+        node.setAttribute('aria-busy', 'true');
+        const content = el('div', 'study-section-loader__content');
+        const status = el('span', 'visually-hidden', `Cargando ${label}`);
+        content.append(loadingMark(), status); node.append(content);
+        let resolveMinimum, resolveCancelled;
+        const state = {
+          id: ++sectionLoadSequence, key, label, node, content, status, controller,
+          signal: controller.signal, phase: 'loading', started: performance.now(),
+          cancelled: false, animations: new Set(), timer: 0, options,
+          minimum: new Promise(resolve => { resolveMinimum = resolve; }),
+          aborted: new Promise(resolve => { resolveCancelled = resolve; }),
+          resolveMinimum, resolveCancelled,
+          current() { return activeSectionLoad === state && !state.cancelled && state.node.isConnected; },
+          cancel(reason = 'navigation') { cancelSectionLoad(state, reason); }
+        };
+        // Promise executors run synchronously, so these resolvers already exist.
+        state.resolveMinimum = resolveMinimum; state.resolveCancelled = resolveCancelled;
+        state.timer = setTimeout(() => { state.timer = 0; state.resolveMinimum(true); }, Math.max(0, Number(minimum) || 0));
+        activeSectionLoad = state;
+        document.querySelector('[data-logo-runner]')?.dispatchEvent(new Event('logo-runner:reset'));
+        document.body.append(node);
+        return state;
+      }
+
+      function cancelSectionLoad(state = activeSectionLoad, reason = 'navigation') {
+        if (!state || state.cancelled) return;
+        state.cancelled = true; state.phase = 'cancelled'; state.reason = reason;
+        clearTimeout(state.timer); state.timer = 0;
+        state.resolveMinimum(false); state.resolveCancelled(false);
+        state.controller.abort(reason);
+        state.animations.forEach(animation => animation.cancel()); state.animations.clear();
+        state.node.remove();
+        if (activeSectionLoad === state) activeSectionLoad = null;
+      }
+
+      async function playSectionLoad(state, node, frames, options) {
+        if (!state.current()) return false;
+        if (!preference.matches) {
+          const animation = node.animate(frames, { fill: 'both', ...options });
+          state.animations.add(animation);
+          const settleMotion = () => { if (preference.matches) animation.finish(); };
+          preference.addEventListener('change', settleMotion);
+          try { await animation.finished; } catch { return false; }
+          finally { preference.removeEventListener('change', settleMotion); state.animations.delete(animation); }
+          if (!state.current()) { animation.cancel(); return false; }
+          Object.entries(frames.at(-1)).forEach(([key, value]) => { if (!['offset', 'easing', 'composite'].includes(key)) node.style[key] = value; });
+          animation.cancel();
         }
-        await Promise.race([document.fonts.ready,new Promise(resolve => setTimeout(resolve,1500))]);
-        await new Promise(resolve => setTimeout(resolve, Math.max(0, 650 - (performance.now()-begin))));
-        // A retried cover also repairs any recycled planes that saw the failed request.
-        await Promise.all(planes.map(async record => {
-          if (record.image.naturalWidth) return;
-          record.image.src = loadedCovers.get(catalogue[modulo(record.sequence, catalogue.length)].slug).src;
-          await record.image.decode().catch(() => {});
-        }));
-        enteredAt = performance.now(); measure(); stage.setAttribute('aria-busy','false'); document.body.classList.remove('study-loading');
-        let initialTransition = null;
-        if (initialItem) {
-          if (preference.matches) renderProject(route.project);
-          else { initialTransition = projectTransition(initialItem,'lift'); initialTransition.wash.style.zIndex='85'; initialTransition.wash.style.opacity='0'; stage.style.visibility='hidden'; }
-        } else if (route.view === 'about') openAbout(route.tab);
-        else if (route.view === 'contact') openContact();
-        else if (route.view) openArchive(route.view);
-        if (!preference.matches) await loader.animate([{ opacity: 1 },{ opacity: 0 }],{ duration: 160, easing: 'ease-out', fill: 'both' }).finished.catch(() => {});
-        const restoreFocus = loader.contains(document.activeElement);
-        loader.remove(); startupPreparing = false;
-        if (initialTransition) { try { await revealProject(route.project,initialTransition); } finally { finishProjectTransition(initialTransition); } }
-        stage.inert = index.inert = Boolean(pageName); navigation.inert = pageName === 'project'; addressReady = true; rememberPageAddress();
-        if (route.lockedArchive) syncPageAddress('','',true);
+        return state.current();
+      }
+
+      function failSectionLoad(state, error, retry) {
+        if (!state.current()) return;
+        clearTimeout(state.timer); state.timer = 0;
+        state.resolveMinimum(false);
+        state.phase = 'error'; state.error = error;
+        state.node.dataset.phase = 'error'; state.node.removeAttribute('aria-busy');
+        state.node.setAttribute('aria-label', `No se pudo cargar ${state.label}`);
+        const message = el('p', 'study-section-loader__message', 'Esta sección no pudo cargarse. Podés reintentar o volver.');
+        const actions = el('div', 'study-section-loader__actions');
+        if (typeof retry === 'function') {
+          const again = el('button', '', 'Reintentar'); again.type = 'button';
+          again.addEventListener('click', () => { if (state.current()) retry(state.error); }, { signal: state.signal });
+          actions.append(again);
+        }
+        const back = el('button', '', 'Volver'); back.type = 'button';
+        back.addEventListener('click', () => {
+          if (!state.current()) return;
+          cancelSectionLoad(state, 'return'); state.options.onCancel?.('return');
+        }, { signal: state.signal });
+        actions.append(back); state.content.replaceChildren(message, actions);
+        actions.querySelector('button')?.focus({ preventScroll: true });
+      }
+
+      async function finishSectionLoad(state, options = {}) {
+        if (!state?.current() || state.phase !== 'loading') return false;
+        const { ready = Promise.resolve(true), prepare, retry, exit = 'sweep' } = options;
+        const work = Promise.resolve().then(async () => {
+          const result = await (typeof ready === 'function' ? ready(state.signal) : ready);
+          if (!state.current()) return false;
+          if (result === false) throw new Error('Section content is not ready.');
+          // Render and decode while the surface is still completely opaque.
+          if (typeof prepare === 'function') await prepare(state.signal);
+          return state.current();
+        });
+        try {
+          const complete = await Promise.race([
+            Promise.all([state.minimum, work]).then(values => values.every(Boolean)),
+            state.aborted
+          ]);
+          if (!complete || !state.current()) return false;
+          // Flush layout beneath the opaque layer before exposing the new UI.
+          const laidOut = await Promise.race([
+            new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)))),
+            state.aborted
+          ]);
+          if (!laidOut || !state.current()) return false;
+          state.phase = 'leaving'; state.node.dataset.phase = 'leaving'; state.node.setAttribute('aria-busy', 'false');
+          const wipe = exit === 'zoom'
+            ? [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.035)' }]
+            : [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 0 0 100%)' }];
+          const results = await Promise.all([
+            playSectionLoad(state, state.content, [{ opacity: 1, transform: 'translateX(0) scale(1)' }, { opacity: 0, transform: 'translateX(55vw) scale(1.12)' }], { duration: 520, easing: 'cubic-bezier(.65,0,.25,1)' }),
+            playSectionLoad(state, state.node, wipe, { duration: exit === 'zoom' ? 300 : 520, easing: 'cubic-bezier(.65,0,.25,1)' })
+          ]);
+          if (!results.every(Boolean) || !state.current()) return false;
+          state.phase = 'complete'; state.node.remove();
+          state.controller.abort('complete');
+          if (activeSectionLoad === state) activeSectionLoad = null;
+          return true;
+        } catch (error) {
+          if (state.current()) failSectionLoad(state, error, retry);
+          return false;
+        }
+      }
+
+      function syncSectionLoading() {
+        document.body.toggleAttribute('data-section-loading', Boolean(activeSectionLoad));
         syncMobileShell();
-        if (restoreFocus) (pageName ? page : stage).focus({ preventScroll: true });
-        document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
+      }
+      function prepareProjectEntry(id, load) {
+        const state = projectTransition(catalogue[id], 'load');
+        state.wash.style.zIndex = '85'; state.wash.style.opacity = '1'; state.load = load;
+        state.entryGate = new Promise(resolve => { state.entryRelease = resolve; });
+        state.artReady = new Promise(resolve => { state.artResolve = resolve; });
+        const reveal = revealProject(id, state);
+        return { state, ready: state.artReady, reveal, release: value => state.entryRelease(value) };
+      }
+      async function loadProject(id) {
+        const item = catalogue[id];
+        const load = beginSectionLoad({ key: item.slug, label: item.title, surface: item.surface, onCancel: closePageImmediately });
+        syncSectionLoading(); load.node.tabIndex = -1; load.node.focus({ preventScroll: true });
+        let entry = null;
+        try {
+          const opened = await finishSectionLoad(load, {
+            ready: ensureCover(item),
+            prepare: async () => { entry = prepareProjectEntry(id, load); await entry.ready; },
+            retry: () => { if (entry) finishProjectTransition(entry.state); loadProject(id); }
+          });
+          if (!opened) { entry?.release(false); return; }
+          entry.release(true); await entry.reveal;
+        } finally {
+          if (entry) { entry.release(false); finishProjectTransition(entry.state); }
+          syncSectionLoading();
+        }
+      }
+      async function loadPanel(kind, render) {
+        const surface = kind === 'about' ? '#03b047' : '#ef3333';
+        const load = beginSectionLoad({ key: kind, label: kind === 'about' ? 'Sobre mí' : 'Contacto', surface, onCancel: closePageImmediately });
+        setMobileMenu(false, false); syncSectionLoading(); load.node.tabIndex = -1; load.node.focus({ preventScroll: true });
+        try {
+          const opened = await finishSectionLoad(load, { prepare: () => { render(); syncSectionLoading(); }, retry: () => loadPanel(kind, render) });
+          if (opened) page.focus({ preventScroll: true });
+        } finally { syncSectionLoading(); }
+      }
+      async function prepare() {
+        if (startupPreparing) return;
+        startupPreparing = true;
+        const route = readPageAddress(), item = catalogue[route.project];
+        const surface = item?.surface || (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff');
+        const load = beginSectionLoad({ key: item?.slug || route.view || 'home', label: item?.title || (route.view === 'about' ? 'Sobre mí' : route.view === 'contact' ? 'Contacto' : 'Proyectos'), surface,
+          onCancel: () => { startupPreparing = false; document.body.classList.remove('study-loading'); enteredAt = performance.now(); closePageImmediately(); addressReady = true; measure(); syncSectionLoading(); }
+        });
+        document.querySelector('.study-loader')?.remove();
+        stage.setAttribute('aria-busy', 'true'); syncSectionLoading();
+        let entry = null;
+        try {
+          const opened = await finishSectionLoad(load, {
+            ready: async () => { await Promise.all(catalogue.map(ensureCover)); await Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve,1500))]); },
+            prepare: async () => {
+              await Promise.all(planes.map(async record => {
+                record.image.src = loadedCovers.get(catalogue[modulo(record.sequence, catalogue.length)].slug).src;
+                await record.image.decode().catch(() => {});
+              }));
+              enteredAt = performance.now(); measure(); document.body.classList.remove('study-loading');
+              if (item) { entry = prepareProjectEntry(route.project, load); await entry.ready; }
+              else if (route.view === 'about') openAbout(route.tab, true);
+              else if (route.view === 'contact') openContact(true);
+              syncSectionLoading();
+            }, retry: prepare
+          });
+          if (!opened) { entry?.release(false); return; }
+          if (entry) { entry.release(true); await entry.reveal; }
+          addressReady = true; rememberPageAddress();
+          if (route.lockedArchive) syncPageAddress('','',true);
+          (pageName ? page : stage).focus({ preventScroll: true });
+          document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
+        } finally {
+          startupPreparing = false; stage.removeAttribute('aria-busy');
+          if (entry) { entry.release(false); finishProjectTransition(entry.state); }
+          syncSectionLoading();
+        }
       }
 
       function cancelPanelAnimation() {
@@ -1117,6 +1299,7 @@
       }
       async function closePage() {
         cancelCoverWait();
+        if (activeSectionLoad) { cancelSectionLoad(activeSectionLoad, 'close'); closePageImmediately(); return; }
         if (activeProjectTransition || !pageName || preference.matches || panelAnimation) { closePageImmediately(); return; }
         if (pageName !== 'project') {
           const version = ++panelVersion; page.inert = true;
@@ -1214,6 +1397,9 @@
         const route = readPageAddress(); handlingHistory = true;
         try {
           closePageImmediately();
+          const historyItem = catalogue[route.project];
+          const load = beginSectionLoad({ key: historyItem?.slug || route.view || 'home', label: historyItem?.title || route.view || 'Proyectos', surface: historyItem?.surface || (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff'), onCancel: closePageImmediately });
+          finishSectionLoad(load).then(opened => { syncSectionLoading(); if (opened) (pageName ? page : stage).focus({preventScroll:true}); });
           if (route.project >= 0) renderProject(route.project);
           else if (route.view === 'about') openAbout(route.tab);
           else if (route.view === 'contact') openContact();
@@ -1226,17 +1412,19 @@
         } finally { handlingHistory = false; }
         if (route.lockedArchive) syncPageAddress('','',true);
         if (route.view === 'about') syncPageAddress('about','',true);
-        syncMobileShell();
+        syncSectionLoading();
       }
       window.addEventListener('popstate', event => restorePageAddress(event.state));
 
       function headingState(label, color = '') {
         heading.textContent = label; heading.style.backgroundColor = color; heading.removeAttribute('title');
+        if (document.body.dataset.studyPage === 'about') heading.style.removeProperty('background-color');
         const logo = document.querySelector('[data-logo-runner]');
         logo.dispatchEvent(new Event('logo-runner:reset'));
         logo.style.setProperty('--logo-section-color', color || '#111');
       }
       function activeMenu(kind) {
+        navMenuRequest += 1; desiredNavMenu = null;
         document.querySelectorAll('.study-nav-group').forEach(group => {
           const trigger = group.querySelector('.study-nav-trigger');
           const matches = kind === 'about' ? group.classList.contains('study-nav-group--about') : kind === 'contact' ? group.classList.contains('study-nav-group--contact') : ['archive','posters','photos'].includes(kind) && group.classList.contains('study-nav-group--archive');
@@ -1244,7 +1432,7 @@
           if (matches) { trigger.setAttribute('aria-current','page'); trigger.setAttribute('aria-label','Volver a proyectos'); }
           else { trigger.removeAttribute('aria-current'); const originalLabel = menuLabels.get(trigger); if (originalLabel) trigger.setAttribute('aria-label',originalLabel); else trigger.removeAttribute('aria-label'); }
           trigger.innerHTML = matches ? 'CERRAR <span aria-hidden="true">×</span>' : menuInitial.get(trigger);
-          if (group.tagName === 'DETAILS') group.open = false;
+          if (group.tagName === 'DETAILS') setNavMenu(group, false, false);
         });
       }
       function beginPage(kind, title, color = '') {
@@ -1274,6 +1462,8 @@
         }
       }
       function closePageImmediately(keepPosition = false, transition = null) {
+        cancelSectionLoad(activeSectionLoad, 'navigation'); document.body.removeAttribute('data-section-loading');
+        if (startupPreparing) { startupPreparing = false; enteredAt = performance.now(); document.body.classList.remove('study-loading'); addressReady = true; measure(); }
         setTouchSelection(null);
         setMobileMenu(false,false);
         const holdingTransition = transition && activeProjectTransition === transition;
@@ -1311,7 +1501,7 @@
         else stage.focus({ preventScroll: true });
       });
       document.querySelector('.study-page-close').addEventListener('click', closePage);
-      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open || mobileMenuOpen) return; if (touchSelection !== null) { setTouchSelection(null); return; } if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
+      document.addEventListener('keydown', event => { if (event.key !== 'Escape' || lightbox.open || mobileMenuOpen) return; if (activeSectionLoad) { cancelSectionLoad(activeSectionLoad, 'escape'); closePageImmediately(); document.body.classList.remove('study-loading'); startupPreparing = false; addressReady = true; return; } if (touchSelection !== null) { setTouchSelection(null); return; } if (pendingCover) { cancelCoverWait(); return; } if (pageName || activeProjectTransition) closePage(); });
       document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
         const kind = button.dataset.view;
         if (pageName === kind || kind === 'about' && pageName.startsWith('about')) { closePage(); return; }
@@ -1322,7 +1512,8 @@
       document.querySelector('.study-nav-group--archive > summary')?.addEventListener('click', event => {
         if (['archive','posters','photos'].includes(pageName)) { event.preventDefault(); closePage(); }
       });
-      function openAbout(tab = 'testament') {
+      function openAbout(tab = 'testament', prepared = false) {
+        if (!prepared && !handlingHistory) { loadPanel('about', () => openAbout(tab, true)); return; }
         activeAboutTab = ['testament','credentials'].includes(tab) ? tab : 'testament'; tab = activeAboutTab;
         beginPage('about', '¿QUIÉN ES SANTIAGO BARBIERI?', '#03b047');
         const tabs = el('nav','study-page-index'); tabs.setAttribute('aria-label','Secciones de Sobre mí'); tabs.setAttribute('role','tablist'); tabs.setAttribute('aria-orientation',smallScreen.matches?'horizontal':'vertical');
@@ -1345,6 +1536,59 @@
           selector.append(button); if(index===0) selector.append(el('span','study-about-selector__label','Testamento'));
         });
         pageContent.append(tabs,area,selector); renderAbout(tab,area,tabs);
+        clearPageExtras = setupAboutScroll(area, tabs);
+      }
+      function setupAboutScroll(area, tabs) {
+        const controller = new AbortController(), keys = ['testament', 'credentials'];
+        const { signal } = controller;
+        let distance = 0, direction = 0, lastWheel = 0, blockedUntil = 0, touch = null, animation = null;
+        const scrollers = target => {
+          const list = [];
+          for (let node = target instanceof Element ? target : null; node; node = node.parentElement) {
+            if (node.scrollHeight > node.clientHeight + 2 && /(auto|scroll)/.test(getComputedStyle(node).overflowY)) list.push(node);
+            if (node === page) break;
+          }
+          return list;
+        };
+        const canScroll = (node, step) => step > 0 ? node.scrollTop + node.clientHeight < node.scrollHeight - 2 : node.scrollTop > 2;
+        const change = step => {
+          const next = keys[keys.indexOf(activeAboutTab) + step];
+          if (!next || pageName !== 'about' || mobileMenuOpen || activeProjectTransition) return false;
+          animation?.cancel(); renderAbout(next, area, tabs); blockedUntil = performance.now() + 450;
+          if (!preference.matches) animation = area.animate([{ opacity: .4, translate: `0 ${step * 6}px` }, { opacity: 1, translate: '0 0' }], { duration: 180, easing: 'ease-out' });
+          return true;
+        };
+        tabs.addEventListener('click', () => { distance = 0; blockedUntil = performance.now() + 250; }, { signal });
+        pageContent.querySelector('.study-about-selector')?.addEventListener('click', () => { distance = 0; blockedUntil = performance.now() + 250; }, { signal });
+        page.addEventListener('wheel', event => {
+          if (pageName !== 'about' || mobileMenuOpen || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
+          if (Math.abs(event.deltaX) > Math.abs(event.deltaY) || !event.deltaY) return;
+          const step = Math.sign(event.deltaY);
+          if (scrollers(event.target).some(node => canScroll(node, step))) { distance = 0; return; }
+          const now = performance.now(), unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? page.clientHeight : 1;
+          if (now - lastWheel > 180 || step !== direction) distance = 0;
+          lastWheel = now; direction = step;
+          if (now < blockedUntil) { event.preventDefault(); return; }
+          if (!keys[keys.indexOf(activeAboutTab) + step]) return;
+          event.preventDefault(); distance += Math.abs(event.deltaY * unit);
+          if (distance >= 65) { distance = 0; change(step); }
+        }, { passive: false, signal });
+        page.addEventListener('touchstart', event => {
+          if (event.touches.length !== 1 || event.target.closest('button,a,summary,input,textarea,select,[contenteditable="true"]')) { touch = null; return; }
+          const point = event.touches[0];
+          touch = { x: point.clientX, y: point.clientY, tab: activeAboutTab, scroll: scrollers(event.target).map(node => ({ node, top: node.scrollTop })) };
+        }, { passive: true, signal });
+        page.addEventListener('touchend', event => {
+          const start = touch; touch = null;
+          if (!start || event.touches.length || start.tab !== activeAboutTab || performance.now() < blockedUntil || !getSelection()?.isCollapsed) return;
+          const point = event.changedTouches[0], delta = start.y - point.clientY;
+          if (Math.abs(delta) < 70 || Math.abs(point.clientX - start.x) > Math.abs(delta) * .65) return;
+          const step = Math.sign(delta);
+          if (start.scroll.some(({ node, top }) => Math.abs(node.scrollTop - top) > 2 || canScroll(node, step))) return;
+          change(step);
+        }, { passive: true, signal });
+        page.addEventListener('touchcancel', () => { touch = null; }, { passive: true, signal });
+        return () => { controller.abort(); animation?.cancel(); };
       }
       function renderAbout(tab, area, tabs) {
         if (activeAboutTab === tab && area.childElementCount) return;
@@ -1369,7 +1613,8 @@
         }
       }
       const contactSettings = Object.freeze({ endpoint: '', email: '' });
-      function openContact() {
+      function openContact(prepared = false) {
+        if (!prepared && !handlingHistory) { loadPanel('contact', () => openContact(true)); return; }
         beginPage('contact','¡TRABAJEMOS JUNTOS!','#ef3333');
         const form = el('form','study-contact'); form.noValidate = true;
         form.innerHTML = '<p class="study-form-progress" aria-live="polite" data-form-progress></p><div data-form-step></div><div class="study-form-actions"><button class="study-text-button" type="button" data-form-back>Anterior</button><button class="study-text-button" type="submit" data-form-next>Continuar</button></div>';
@@ -1661,7 +1906,7 @@
         cover.className = 'study-case-hero__cover' + (media.isLogo ? ' is-logo' : '');
         if (media.isLogo) {
           visual.classList.add('is-wordmark');visual.style.setProperty('--reader-wordmark',`url("${new URL(media.src,document.baseURI).href}")`);
-          visual.style.setProperty('--reader-mark-ink',item.slug==='el-armado'?item.surface:'#111');
+          visual.style.setProperty('--reader-mark-ink','#111');
           visual.style.setProperty('--reader-mark-width',media.displayWidth?`${media.displayWidth}px`:'100%');
         }
         visual.append(cover);
@@ -1684,7 +1929,9 @@
           block.images.forEach(im => {
             const button = el('button'); button.type = 'button';
             button.setAttribute('aria-label', `Ampliar ${im.alt || block.title}`); button.setAttribute('aria-haspopup', 'dialog');
-            button.append(imageNode(im)); button.addEventListener('click', () => openLightbox(im.src, im.alt)); art.append(button);
+            const image = imageNode(im); if (im.monochrome) image.classList.add('is-monochrome');
+            button.append(image); if (im.label) button.append(el('span','study-case-image-label',im.label));
+            button.addEventListener('click', () => openLightbox(im.fullSrc || im.src, im.alt, Boolean(im.monochrome))); art.append(button);
           });
           if (block.video?.src) {
             const video = el('video'); video.src = block.video.src; video.poster = block.video.poster;
@@ -1712,7 +1959,7 @@
         const videos = [...flow.querySelectorAll('video')];
         if (videos.length) {
           pageVideoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-            if (entry.isIntersecting && !mobileMenuOpen && !document.hidden && !lightbox.open && !activeProjectTransition) entry.target.play().catch(() => {}); else entry.target.pause();
+            if (entry.isIntersecting && !mobileMenuOpen && !document.hidden && !lightbox.open && !activeProjectTransition && !activeSectionLoad) entry.target.play().catch(() => {}); else entry.target.pause();
           }), { root: page, threshold: .1 }); videos.forEach(video => pageVideoObserver.observe(video));
         }
         updateCaseNavigation(id);
@@ -1731,7 +1978,7 @@
         setMobileMenu(false,false);
         const wash = el('div', 'study-transition-wash'); wash.style.background = item.surface; wash.setAttribute('aria-hidden', 'true');
         const close = el('button', 'study-transition-close', 'Cerrar ×'); close.type = 'button'; close.setAttribute('aria-label', 'Volver a proyectos'); close.addEventListener('click', closePage);
-        close.style.color = phase === 'lift' ? '#111' : phase === 'close' && !document.body.classList.contains('study-close-on-cover') ? '#111' : ['#41aebc','#4c997f'].includes(item.surface) ? '#111' : '#fff';
+        close.style.color = phase === 'lift' ? '#111' : phase === 'close' && !document.body.classList.contains('study-close-on-cover') ? '#111' : sectionLoadInk(item.surface);
         document.body.append(wash, close);
         const state = {
           nodes: new Set([wash, close]), animations: new Set(), wash, close, phase, cover: null, face: null, cancelled: false,
@@ -1762,6 +2009,8 @@
       }
       function finishProjectTransition(state) {
         if (state !== activeProjectTransition) return;
+        state.entryRelease?.(false); state.artResolve?.(false);
+        if (state.load?.current()) cancelSectionLoad(state.load, 'transition');
         state.cancelled = true; state.animations.forEach(animation => animation.cancel());
         state.nodes.forEach(node => node.remove());
         state.face?.style.removeProperty('visibility'); state.cover?.style.removeProperty('visibility');
@@ -1778,7 +2027,7 @@
       async function revealProject(id, state) {
         if (activeProjectTransition !== state || state.cancelled) return;
         const item = catalogue[id], media = openingMedia(item);
-        state.wash.style.zIndex = '85'; state.wash.style.opacity = '0';
+        state.wash.style.zIndex = '85'; state.wash.style.opacity = '1';
         const clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
         const width = media.isLogo ? media.w : coverWidth, height = media.isLogo ? media.h : coverHeight;
         clone.style.width = `${width}px`; clone.style.height = `${height}px`; clone.style.opacity = '0';
@@ -1800,21 +2049,41 @@
         }
         await image.decode().catch(() => {});
         if (activeProjectTransition !== state || state.cancelled) return;
-        const targetWidth = Math.min(media.isLogo ? (media.displayWidth || 660) : 760, innerWidth*.78, innerHeight*.60/(height/width));
-        const targetHeight = targetWidth * height / width;
-        const center = { left: (innerWidth-targetWidth)/2, top: (innerHeight-targetHeight)/2, width: targetWidth, height: targetHeight };
-        const to = matrixForQuad(rectangleQuad(center), width, height);
-        const start = source || rectangleQuad({ left: center.left+targetWidth*.06, top: center.top+targetHeight*.06+24, width: targetWidth*.88, height: targetHeight*.88 });
-        const from = matrixForQuad(start, width, height);
-        clone.style.transform = from; clone.style.opacity = source ? '1' : '0';
+        let from, to;
+        let measuredWidth = innerWidth, measuredHeight = innerHeight;
+        const placeClone = () => {
+          if (innerWidth !== measuredWidth || innerHeight !== measuredHeight) {
+            // A projected home quad belongs to its original viewport. Fall back
+            // to a centered entry when that viewport changes during the gate.
+            source = null;
+            if (backing) backing.style.opacity = '0';
+            measuredWidth = innerWidth; measuredHeight = innerHeight;
+          }
+          const targetWidth = Math.min(media.isLogo ? (media.displayWidth || 660) : 760, innerWidth*.78, innerHeight*.60/(height/width));
+          const targetHeight = targetWidth * height / width;
+          const center = { left: (innerWidth-targetWidth)/2, top: (innerHeight-targetHeight)/2, width: targetWidth, height: targetHeight };
+          to = matrixForQuad(rectangleQuad(center), width, height);
+          const start = source || rectangleQuad({ left: center.left+targetWidth*.06, top: center.top+targetHeight*.06+24, width: targetWidth*.88, height: targetHeight*.88 });
+          from = matrixForQuad(start, width, height);
+          clone.style.transform = from;
+        };
+        placeClone(); clone.style.opacity = '1';
         if (backing) backing.style.opacity = '1';
         if (state.face) state.face.style.visibility = 'hidden';
-        document.body.dataset.projectTransition = 'lift';
-        if (backing) state.play(backing, [{ opacity: 1 }, { opacity: 0 }], { duration: 180, easing: 'ease-out' });
-        if (!await state.play(clone, [{ transform: from, opacity: source ? 1 : 0 }, { transform: to, opacity: 1 }], { duration: 320, easing: 'cubic-bezier(.2,.75,.2,1)' })) return;
-        document.body.dataset.projectTransition = 'color';
-        state.close.style.color = ['#41aebc','#4c997f'].includes(item.surface) ? '#111' : '#fff';
-        if (!await state.play(state.wash, [{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' })) return;
+        // Keep the art aligned while the five-second gate and its wipe run.
+        window.addEventListener('resize', placeClone, { passive: true });
+        state.artResolve?.(true);
+        try {
+          if (state.entryGate && !await state.entryGate) return;
+        } finally {
+          window.removeEventListener('resize', placeClone);
+        }
+        if (activeProjectTransition !== state || state.cancelled) return;
+        placeClone();
+        // Color and logo are already visible together when the runner wipes away.
+        document.body.dataset.projectTransition = 'opening';
+        state.close.style.color = sectionLoadInk(item.surface);
+        if (!await state.play(clone, [{ transform: from, opacity: 1 }, { transform: to, opacity: 1 }], { duration: 320, easing: 'cubic-bezier(.2,.75,.2,1)' })) return;
         if (activeProjectTransition !== state) return;
         const rendered = renderProject(id); page.inert = true; page.style.opacity = '1';
         const content = [...pageContent.children]; content.forEach(node => node.style.opacity = '0');
@@ -1830,23 +2099,12 @@
       }
 
       async function openProject(sequence) {
-        if (pageName || activeProjectTransition || pendingCover) return;
-        const id = modulo(sequence, catalogue.length), item = catalogue[id];
-        if (!await waitForCover(item, () => openProject(sequence)) || pageName || activeProjectTransition) return;
-        if (preference.matches) { renderProject(id); return; }
-        const sourceQuad=quad(sequence,0,hoverStates.get(sequence)?.value || 0);
-        const source=planes[modulo(sequence,planes.length)];
-        const state = projectTransition(item, 'lift'); state.wash.style.opacity = '0'; state.sourceQuad=sourceQuad;
-        if(sourceQuad && source.sequence===sequence && !source.element.hidden)state.face=source.face;
-        try { await revealProject(id, state); } finally { finishProjectTransition(state); }
+        if (pageName || activeProjectTransition || activeSectionLoad || pendingCover) return;
+        await loadProject(modulo(sequence, catalogue.length));
       }
       async function switchProject(direction) {
-        if (pageName !== 'project' || activeProjectTransition || lightbox.open || pendingCover) return;
-        const id = modulo(Number(page.dataset.projectId) + direction, catalogue.length), item = catalogue[id];
-        if (!await waitForCover(item, () => switchProject(direction)) || pageName !== 'project' || activeProjectTransition) return;
-        if (preference.matches) { renderProject(id); return; }
-        const state = projectTransition(item, 'lift'); state.wash.style.opacity = '0';
-        try { await revealProject(id, state); } finally { finishProjectTransition(state); }
+        if (pageName !== 'project' || activeProjectTransition || activeSectionLoad || lightbox.open || pendingCover) return;
+        await loadProject(modulo(Number(page.dataset.projectId) + direction, catalogue.length));
       }
       casePrevious.addEventListener('click', () => switchProject(-1));
       caseNext.addEventListener('click', () => switchProject(1));
@@ -1920,14 +2178,12 @@
           cursor.hidden = false; document.documentElement.classList.add('has-study-cursor');
           if (dirty) {
             dirty = false;
-            const state = context(target), key = `${state.mode}|${state.text}|${state.color}`;
+            const state = context(target), key = `${state.mode}|${state.text}`;
             if (key !== lastKey) {
               lastKey = key; cursor.dataset.mode = state.mode; label.textContent = state.text;
               cursor.classList.toggle('has-label', Boolean(state.text));
-              cursor.style.setProperty('--cursor-fill', state.color);
-              const values = state.color.replace('#','').match(/../g).map(v => parseInt(v,16) / 255).map(v => v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4);
-              const luminance = values[0]*.2126 + values[1]*.7152 + values[2]*.0722;
-              cursor.style.setProperty('--cursor-ink', luminance > .18 ? '#111' : '#fff');
+              cursor.style.setProperty('--cursor-fill', '#fff');
+              cursor.style.setProperty('--cursor-ink', '#111');
               labelWidth = label.offsetWidth; labelHeight = label.offsetHeight;
               labelAnimation?.cancel();
               if (state.text && !preference.matches) labelAnimation = label.animate([{ translate: '0 3px' },{ translate: '0 0' }], { duration: 160, easing: 'cubic-bezier(.2,.75,.2,1)' });
@@ -1976,7 +2232,7 @@
         }
         position = drift(time) + offset;
         if (Math.abs(position) > 1000) {
-          const cycles = Math.trunc(position / 10) * 10;
+          const cycles = Math.trunc(position / catalogue.length) * catalogue.length;
           driftRebase += cycles; position -= cycles;
           if (hovered !== null) hovered -= cycles;
           if (touchSelection !== null) setTouchSelection(touchSelection-cycles);
@@ -2069,16 +2325,70 @@
         const sequence = Math.round((position - index) / names.length) * names.length + index;
         move(sequence - drift());
       }));
-      // All menus can stay open together, as in the reference. Destinations stay pending.
+      // Keep one dropdown open; closing stays visible until its animation finishes.
+      const navMenuStates = new WeakMap();
+      let navMenuRequest = 0, desiredNavMenu = null;
+      function setNavMenu(group, open, animated = true) {
+        const menu = group.querySelector('.study-submenu'), trigger = group.querySelector('summary');
+        if (!menu || !trigger) return Promise.resolve();
+        const previous = navMenuStates.get(group);
+        const height = group.open ? menu.getBoundingClientRect().height : 0;
+        const opacity = group.open ? Number(getComputedStyle(menu).opacity) : 0;
+        previous?.animation?.cancel();
+        const state = { open, animation: null }; navMenuStates.set(group, state);
+        trigger.setAttribute('aria-expanded', String(open));
+        if (!open && menu.contains(document.activeElement)) trigger.focus({ preventScroll: true });
+        const complete = () => {
+          if (navMenuStates.get(group) !== state) return;
+          group.open = open; delete group.dataset.menuState;
+          menu.style.removeProperty('overflow'); state.animation = null; measure();
+        };
+        if (!animated || preference.matches || document.hidden || !group.open && !open) {
+          complete(); return Promise.resolve();
+        }
+        group.open = true; group.dataset.menuState = open ? 'opening' : 'closing';
+        menu.style.overflow = 'hidden';
+        const animation = menu.animate([
+          { height: `${height}px`, opacity },
+          { height: `${open ? menu.scrollHeight : 0}px`, opacity: open ? 1 : 0 }
+        ], { duration: open ? 190 : 140, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'both' });
+        state.animation = animation;
+        return animation.finished.then(() => { complete(); animation.cancel(); }).catch(() => {});
+      }
+      function closeNavMenus(animated = true) {
+        navMenuRequest += 1; desiredNavMenu = null;
+        return Promise.all([...document.querySelectorAll('details.study-nav-group')].map(group => setNavMenu(group, false, animated)));
+      }
       document.querySelectorAll('.study-nav-group').forEach(group => {
         group.addEventListener('pointerenter', () => { pointer.inside = false; });
-        if (group.tagName === 'DETAILS') group.addEventListener('toggle', measure);
+        if (group.tagName !== 'DETAILS') return;
+        const trigger = group.querySelector('summary'); trigger.setAttribute('aria-expanded', String(group.open));
+        trigger.addEventListener('click', async event => {
+          event.preventDefault();
+          const open = desiredNavMenu !== group, request = ++navMenuRequest;
+          desiredNavMenu = open ? group : null;
+          if (open) {
+            await Promise.all([...document.querySelectorAll('details.study-nav-group')].filter(other => other !== group).map(other => setNavMenu(other, false)));
+            if (request !== navMenuRequest) return;
+          }
+          setNavMenu(group, open);
+        });
+        group.addEventListener('toggle', measure);
         group.addEventListener('keydown', event => {
-          if (event.key === 'Escape' && group.open) { event.preventDefault(); event.stopPropagation(); group.open = false; group.querySelector('summary').focus(); }
+          if (event.key === 'Escape' && group.open) {
+            event.preventDefault(); event.stopPropagation(); navMenuRequest += 1; desiredNavMenu = null;
+            setNavMenu(group, false); trigger.focus({ preventScroll: true });
+          }
         });
       });
+      document.addEventListener('pointerdown', event => {
+        if (!event.target.closest('.study-navigation')) closeNavMenus();
+      }, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) closeNavMenus(false);
+      });
       document.querySelectorAll('[data-pending]').forEach(button => button.addEventListener('click', () => {
-        setMobileMenu(false);
+        closeNavMenus(); setMobileMenu(false);
         clearTimeout(noticeTimer);
         notice.textContent = `${button.dataset.pending} · En preparación`;
         noticeTimer = setTimeout(() => { notice.textContent = ''; }, 3000);

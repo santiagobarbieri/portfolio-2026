@@ -12,7 +12,7 @@
   body { -webkit-text-size-adjust: 100%; }
   button, a, summary { -webkit-tap-highlight-color: transparent; }
   :focus-visible { outline-color: currentColor; outline-offset: -4px; }
-  .study-corner-mark, .study-colophon { display: none; }
+  .study-colophon { display: none; }
   .study-heading, body:not([data-study-page="project"]) .study-heading, body[data-study-page="project"] .study-heading {
     top: calc(28px + env(safe-area-inset-top,0px)); left: 0; right: 0; width: 100%; max-width: none;
     min-height: 38px; align-items: center; padding: 0 58px 0 max(14px,env(safe-area-inset-left,0px)); margin: 0;
@@ -47,10 +47,7 @@
   .study-submenu button svg { width: 14px; height: 14px; }
   .study-submenu li:last-child button { border-bottom: 1px solid #000; }
   body[data-mobile-menu="open"] .study-projects { display: block; position: static; width: 100%; max-width: none; margin: 0; flex-shrink: 0; transform: none; visibility: visible !important; }
-  .study-projects .study-projects-toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 40px; margin: 0; padding: 5px 12px; border: 1px solid #000; background: #000; color: #fff; font-size: 20px; font-weight: 400; line-height: 1.25; text-transform: uppercase; }
-  .study-projects .study-projects-toggle::after { content: none; }
-  .study-projects-toggle svg { display: block; width: 14px; height: 14px; transition: transform 180ms var(--ui-ease); }
-  .study-projects-toggle[aria-expanded="false"] svg { transform: rotate(-90deg); }
+  .study-projects-title { min-height: 40px; padding: 5px 12px; border: 1px solid #000; background: #000; color: #fff; font-size: 20px; line-height: 1.25; }
   .study-projects ul { display: block; }
   .study-projects button[data-project] { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 40px; padding: 5px 12px; border: 1px solid #000; border-bottom: 0; color: #111; background: #fff; font-size: 19px; line-height: 1.25; font-weight: 400; }
   .study-projects li:last-child button { border-bottom: 1px solid #000; }
@@ -181,6 +178,7 @@
 @media (any-pointer: coarse) {
   .study-plane__face { pointer-events: auto; -webkit-touch-callout: none; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .study-projects-toggle svg { transition: none; }
+
+@media (max-width: 600px), (max-width: 900px) and (hover: none) and (pointer: coarse) {
+  .study-nav-group[data-menu-state="closing"] > .study-nav-trigger .study-chevron { transform: rotate(-90deg); }
 }

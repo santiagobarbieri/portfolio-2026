@@ -1,0 +1,73 @@
+/* An opaque section-colored gate; the reader is prepared behind it. */
+.study-section-loader {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--section-load-surface, #fff);
+  color: var(--section-load-ink, #111);
+  opacity: 1;
+  clip-path: inset(0);
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.study-section-loader__content {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  width: min(100% - 48px, 380px);
+  text-align: center;
+}
+
+.study-section-loader .study-logo-loader {
+  --logo-size: 48px;
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  flex: 0 0 48px;
+  background: transparent;
+  color: inherit;
+}
+
+.study-section-loader__message {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.study-section-loader__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.study-section-loader__actions button {
+  min-height: 44px;
+  padding: 4px 8px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 14px;
+}
+
+.study-section-loader__actions button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .study-section-loader__actions button:hover { transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-section-loader__actions button { transition: none; }
+}
+
+body[data-section-loading] .study-cursor { visibility: hidden; }

@@ -7,6 +7,16 @@
   "cleanUrls": false,
   "redirects": [
     {
+      "source": "/wildfolk",
+      "destination": "/index.html?project=wildfolk",
+      "permanent": false
+    },
+    {
+      "source": "/wildfolk.html",
+      "destination": "/index.html?project=wildfolk",
+      "permanent": false
+    },
+    {
       "source": "/apolo-studios.html",
       "destination": "/index.html?project=apolo-studios",
       "permanent": false

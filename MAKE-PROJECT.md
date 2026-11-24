@@ -1,5 +1,19 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Wildfolk, aperturas y navegación · 24 de noviembre de 2026
+
+Esta actualización reemplaza las secuencias de apertura y las reglas de menú anteriores cuando entren en conflicto. El home reúne seis casos: Apolo Studios, Orfeo, OLAS Di Tella, Club de Economía — UTDT, El Armado y Wildfolk. El carrusel del inicio conserva la cámara aprobada, avance continuo, previews, selección táctil y sonido solo por hover real. Club sigue mostrando únicamente su portada.
+
+Wildfolk se presenta como proyecto personal de 2026 para una marca ficticia de cerveza artesanal: cuatro latas, cuatro afiches, firma/isotipo, seis personajes, paleta y dos mockups. No atribuirle un cliente real, fabricación ni resultados comerciales. Explicar brevemente la exploración asistida por IA y la selección de personajes. Las cuatro versiones de afiche de Escritorio tienen 2480 × 3508 px y reemplazan sus exportaciones pequeñas. `assets/images/wildfolk-web/` contiene derivados optimizados y variantes de ampliación; los originales de `assets/images/wildfolk/` permanecen locales, ignorados por Git y excluidos del build. No borrar ni sobrescribir esos originales.
+
+La entrada a cada sección principal o proyecto usa una capa opaca de su color durante un mínimo de cinco segundos y hasta que sus recursos críticos estén decodificados. El logo corredor original cruza la pantalla con un barrido al revelar la vista; `css/section-load.css` contiene esta capa. Preparar la página detrás del loader, nunca mostrar el contenido por defecto antes. El color del proyecto y su logo se presentan juntos, después se acerca la pieza y se revela el lector blanco. Recalcular geometría si cambia el viewport durante la espera. Movimiento reducido conserva la espera y omite el barrido/zoom. Cancelar timers, animaciones y preparación obsoleta al salir; error real mantiene reintento y regreso accesibles.
+
+Todos los lectores usan el logo original transparente en negro, sin fondo. `assets/images/project-marks/` reúne las variantes de Apolo, Orfeo y Club; OLAS y El Armado conservan sus originales y Wildfolk su firma transparente. Mantener proporción nativa y encaje, sin deformar ni extraer marcas de capturas. Las portadas completas del home siguen independientes. Las fichas mantienen dos columnas centrales en computadora, una en móvil y recorrido finito, sin loop interior ni descargas de assets de clientes.
+
+Solo hay un símbolo de Santiago, junto a su nombre. Sobre mí colorea de verde el bloque completo de firma, incluido el logo, con el mismo borde negro fino de las demás tiras. Cursor e indicación de acción vuelven a blanco y negro. Los menús desplegables son exclusivos y animan apertura y cierre; Proyectos permanece siempre desplegado, también en móvil. La rueda o el gesto vertical cambia entre Testamento y Credenciales al llegar al límite de su contenido; si un panel desborda, primero permite leerlo. Estos cambios internos no reinician la espera de cinco segundos. Conservar foco, teclado, historial y gestos nativos.
+
+Archivo continúa con candado. Retrato definitivo, texto final de Sobre mí, destinos de Tienda/Redes y transporte real de Contacto siguen pendientes. No inventarlos.
+
 ## Recorrido finito y apertura de logos · 23 de noviembre de 2026
 
 Por indicación de Santiago, las fichas recuperan la composición editorial anterior: tarjetas completas alternadas entre dos columnas centrales en computadora, imagen o grilla arriba y texto debajo; una columna en móvil. Medir la altura completa de cada tarjeta, reservar separación entre piezas y mantener los controles fuera de la lectura. El recorrido tiene un final real: sin recycler, clones de contenido ni regreso automático al inicio. El home conserva su carrusel continuo en perspectiva y sus gestos.
