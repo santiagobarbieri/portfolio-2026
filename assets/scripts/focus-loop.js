@@ -207,11 +207,15 @@ function closeFocus(){
  pending.length=0;target=pos;mode='closing';
  // Preserve gesture recognition so residual momentum cannot reopen focus.
 }
+function isFocused(seq){return mode==='active'&&Math.round(pos)===seq&&engagement>.99&&Math.abs(target-pos)<.003&&!pending.length}
+function activate(seq){if(isFocused(seq))bridge.open(seq);else goTo(seq)}
 function updateControls(){
  const canClose=mode==='active'||mode==='seeking';
+ $('focusOpen').disabled=!isFocused(Math.round(pos));
+ stage.dataset.focusMode=mode;stage.dataset.focusTarget=target;stage.dataset.focusEngagement=engagement;
  $('closeFocus').disabled=false;$('closeFocus').setAttribute('aria-label',canClose?'Cerrar foco':'Enfocar proyecto');$('closeFocus').dataset.focus=String(canClose);$('focusCounter').textContent=String(mod(Math.round(pos),N)+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');
 }
-$('closeFocus').addEventListener('click',()=>mode==='active'||mode==='seeking'?closeFocus():goTo(Math.round(pos)));$('focusOpen').addEventListener('click',()=>bridge.open(Number($('focusOpen').dataset.sequence))); 
+$('closeFocus').addEventListener('click',()=>mode==='active'||mode==='seeking'?closeFocus():goTo(Math.round(pos)));$('focusOpen').addEventListener('click',()=>{const seq=Number($('focusOpen').dataset.sequence);if(isFocused(seq))bridge.open(seq)});
 function frame(t){
  if(bridge.blocked()){last=t;return;}
  const dt=Math.min(.033,last?(t-last)/1000:1/60);last=t;
@@ -244,9 +248,9 @@ function frame(t){
  }
  draw(dt);updateControls();bridge.paint(pos,hovered,planes);
 }
-stage.addEventListener('wheel',e=>{
+window.addEventListener('wheel',e=>{
  if(bridge.blocked())return;
- if(e.ctrlKey)return;e.preventDefault();
+ if(e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,.study-submenu'))return;e.preventDefault();
  const raw=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX;
  const d=raw*(e.deltaMode===1?16:e.deltaMode===2?innerHeight:1);
  wheelInput(d);
@@ -277,13 +281,13 @@ function release(e){
  if(mode==='active')lastInput=performance.now();
  if(e.type==='pointerup'&&!fired&&Math.hypot(e.clientX-d.x,e.clientY-d.y)<10&&d.seq!==null){
   // Use the exact visible instance, not a rounded scroll coordinate.
-  bridge.open(d.seq);
+  activate(d.seq);
  }else if(e.type!=='pointerup'||fired)setHover(null);
 }
 for(const k of ['pointerup','pointercancel','lostpointercapture'])stage.addEventListener(k,release);
 $('prev').addEventListener('click',()=>step(-1,performance.now(),true));
 $('next').addEventListener('click',()=>step(1,performance.now(),true));
 window.addEventListener('keydown',e=>{if(bridge.blocked()||e.target.closest('input,textarea,select,summary'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='Escape'){e.preventDefault();closeFocus();return}const dir=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)?1:['ArrowUp','ArrowLeft','PageUp'].includes(e.key)?-1:0;if(!dir)return;if(e.key===' '&&e.target.closest('button'))return;e.preventDefault();if(!e.repeat)step(dir,performance.now(),true)});
-measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,move(value){pos=target=value;pending.length=0;draw()},get position(){return pos}};
+measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,activate,isFocused,move(value){pos=target=value;pending.length=0;draw()},get position(){return pos}};
 
 };

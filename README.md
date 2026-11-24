@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portfolio
 
+## Foco previo a la apertura y cierre vacío · 24 de noviembre de 2026
+
+Clic o toque en una tarjeta de la pila entra primero en modo foco; solo una segunda activación de la tarjeta enfocada y asentada, o Abrir proyecto desde su ficha, abre el caso. Enter sigue la misma regla. Sin foco, rueda continua; con foco, una tarjeta por gesto y reconocimiento de inercia para evitar saltos múltiples. También aceptar rueda sobre la ficha de foco, sin interceptar formularios, desplegables ni el lector. Escape cierra el foco. Los iconos direccionales comparten la esquina sin asta del nav, orientada según la acción. Se retiran Fin del proyecto y los comandos finales, conservando un espacio blanco de cierre; las flechas laterales siguen disponibles.
+
 ## Cargas sin espera artificial · 24 de noviembre de 2026
 
 Santiago pidió reducir la demora del loader: se elimina el mínimo fijo de cinco segundos. La capa se cierra al decodificar los recursos necesarios, con un barrido breve de 240 ms. El inicio espera únicamente portadas; una entrada directa espera solo los recursos de esa sección o proyecto. Los logos transparentes se preparan al abrir su caso. Conservar errores, reintentos, cancelación y preparación detrás de la capa opaca, sin mostrar contenido por defecto. Este criterio reemplaza las esperas mínimas anteriores. Los seis logos de apertura usan PNG transparentes, en proporción nativa y con encaje contain sin recortes. Orfeo abre sobre gris claro para que su marca negra sea visible; las portadas del inicio no cambian.
