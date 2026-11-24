@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Cargas sin espera artificial · 24 de noviembre de 2026
+
+Santiago pidió reducir la demora del loader: se elimina el mínimo fijo de cinco segundos. La capa se cierra al decodificar los recursos necesarios, con un barrido breve de 240 ms. El inicio espera únicamente portadas; una entrada directa espera solo los recursos de esa sección o proyecto. Los logos transparentes se preparan al abrir su caso. Conservar errores, reintentos, cancelación y preparación detrás de la capa opaca, sin mostrar contenido por defecto. Este criterio reemplaza las esperas mínimas anteriores. Los seis logos de apertura usan PNG transparentes, en proporción nativa y con encaje contain sin recortes. Orfeo abre sobre gris claro para que su marca negra sea visible; las portadas del inicio no cambian.
+
 ## Loop V21 con foco · 24 de noviembre de 2026
 
 El inicio adopta el modelo «Loop de tarjetas - Scroll focus V21.html»: una pila diagonal continua, foco frontal, navegación por pasos y rueda con detección de gestos, indicador circular por vuelta y contador de seis proyectos. El índice centra y enfoca el elegido; el centro del indicador permite entrar o salir de foco. Las flechas recorren las tarjetas y Escape cierra el foco. Portada y Abrir proyecto entran a la misma ficha, en la pestaña actual. `assets/scripts/focus-loop.js` conserva la geometría y máquina de estados del modelo; `css/focus-loop.css` adapta sus controles a la identidad existente. Suspender el motor detrás de secciones, cargas, menú, visor y pestaña oculta; respetar movimiento reducido.
