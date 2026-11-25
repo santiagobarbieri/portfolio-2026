@@ -182,3 +182,8 @@
 @media (max-width: 600px), (max-width: 900px) and (hover: none) and (pointer: coarse) {
   .study-nav-group[data-menu-state="closing"] > .study-nav-trigger .study-chevron { transform: rotate(-90deg); }
 }
+
+/* Focus may fade the desktop index, but the opened menu always owns its rows. */
+@media (max-width: 600px), (max-width: 900px) and (hover: none) and (pointer: coarse) {
+  body[data-mobile-menu="open"] .study-projects { opacity: 1 !important; pointer-events: auto !important; }
+}

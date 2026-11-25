@@ -23,13 +23,37 @@ function cardAt(x,y){const el=document.elementFromPoint(x,y)?.closest('.study-pl
 const planes=bridge.planes;
 for(let i=0;i<COUNT;i++){const r=bridge.createPlane();r.el=r.element;r.seq=null;r.hover=0;r.label=document.createElement('span');r.label.className='project-hover';r.label.setAttribute('aria-hidden','true');r.el.append(r.label);planes.push(r)}
 idx.querySelectorAll('[data-project]').forEach((b,i)=>b.addEventListener('click',()=>{bridge.seek();goTo(Math.round((pos-i)/N)*N+i)}));
+// Reserve the tallest real caption before placing the focused image. This
+// prevents long disciplines and short viewports from pushing text into controls.
+function captionHeight(width){
+ const sample=meta.cloneNode(true);sample.removeAttribute('id');
+ sample.querySelectorAll('[id]').forEach(node=>node.removeAttribute('id'));
+ sample.inert=true;sample.setAttribute('aria-hidden','true');
+ sample.dataset.compact=String(width<580);
+ Object.assign(sample.style,{width:width+'px',left:'-10000px',top:'0',opacity:'0',visibility:'hidden',transform:'none'});
+ document.body.append(sample);let height=0;
+ for(const p of P){sample.querySelector('h2').textContent=p.t;sample.querySelector('p').textContent=p.d;sample.querySelector('.focus-kind').textContent=p.k+' / '+p.y;height=Math.max(height,sample.offsetHeight)}
+ sample.remove();return height;
+}
 function measure(){
- const w=innerWidth,h=innerHeight,m=w<=700;
- const focusW=Math.min(w*(m?.86:.51),Math.max(72,h-(m?235:190))*CW/CH);
+ const w=innerWidth,h=innerHeight;
+ const m=matchMedia('(max-width:600px), (max-width:900px) and (hover:none) and (pointer:coarse)').matches;
+ const landscape=h<520&&w>h*1.4;
+ const heading=document.querySelector('.study-heading').getBoundingClientRect();
+ const nav=document.querySelector('.study-navigation').getBoundingClientRect();
+ const top=Math.max(heading.bottom,nav.bottom)+20;
+ const bottom=document.querySelector('.nav-controls').getBoundingClientRect().top-16;
+ const available=Math.max(80,bottom-top),metaW=landscape?Math.min(380,w*.43):w*(m?.86:.51);
+ const metaH=captionHeight(metaW);
+ const focusW=Math.max(64,Math.min(landscape?w*.42:metaW,Math.max(64,available-(landscape?0:metaH+12))*CW/CH));
+ const imageH=focusW*CH/CW;
+ const groupW=focusW+24+metaW;
+ const focusX=landscape?-(groupW-focusW)/2:0;
+ const focusY=landscape?(top+bottom)/2-h/2:top+Math.max(0,(available-imageH-metaH-12)/2)+imageH/2-h/2;
  const deckW=Math.min(w*(m?.57:.32),h*(m?.40:.44)*CW/CH,focusW*.79);
- geo={w,h,m,focusW,deckW,focusY:Math.min(h*.46,h-focusW*CH/CW/2-(m?132:100))-h/2,gap:Math.max(15,w*.024),stack:Math.max(40,deckW*.42),persp:Math.max(1800,w*3.9)};
+ geo={w,h,m,landscape,metaW,metaH,focusW,deckW,focusX,focusY,gap:Math.max(15,w*.024),stack:Math.max(40,deckW*.42),persp:Math.max(1800,w*3.9)};
+ meta.dataset.compact=String(metaW<580);
  for(const r of planes)Object.assign(r.el.style,{width:CW+'px',height:CH+'px',marginLeft:-CW/2+'px',marginTop:-CH/2+'px'});
-
 }
 function fill(r,seq){const p=P[mod(seq,N)];r.seq=r.sequence=seq;r.hover=0;r.el.dataset.s=r.el.dataset.sequence=seq;r.label.textContent=p.t;r.face.style.background='transparent';r.image.src=p.cover;r.image.alt=p.alt;r.face.classList.remove('has-preview')}
 // Single physical card per sequence; shared transforms in every phase.
@@ -59,6 +83,7 @@ function focusedLayout(position){
   if(seq<floor)p.x=-dl-(floor-1-seq+u)*geo.stack;
   else if(seq>floor+1)p.x=dr+(seq-floor-1-u)*geo.stack;
   p.y=-p.x*(geo.m?.20:.27)+geo.focusY*p.f;
+  p.x+=geo.focusX;
  }
  return {floor,center,map};
 }
@@ -117,10 +142,16 @@ function draw(dt=0){
  // While seeking, only an already visible outgoing fiche may fade out.
  const reveal=mode==='seeking' && metaSeq!==center ? 0 : smooth((f-.83)/.17);
  if(reveal>0&&metaSeq!==center){const p=P[mod(center,N)];metaSeq=center;$('focusTitle').textContent=p.t;$('focusDesc').textContent=p.d;$('focusKind').textContent=p.k+' / '+p.y;$('focusOpen').dataset.sequence=center}
- const mw=geo.focusW;
- Object.assign(meta.style,{left:(geo.w-mw)/2+g.x+'px',width:mw+'px',top:(geo.h/2+g.y+g.b+12)+'px',opacity:reveal,transform:`translateY(${10*(1-reveal)}px)`,visibility:reveal>0?'visible':'hidden'});
+ const mw=geo.metaW;
+ const metaLeft=geo.landscape?geo.w/2+g.x+geo.focusW/2+24:(geo.w-mw)/2+g.x;
+ const metaTop=geo.landscape?geo.h/2+g.y-geo.metaH/2:geo.h/2+g.y+g.b+12;
+ Object.assign(meta.style,{left:metaLeft+'px',width:mw+'px',top:metaTop+'px',opacity:reveal,transform:`translateY(${10*(1-reveal)}px)`,visibility:reveal>0?'visible':'hidden'});
  meta.setAttribute('aria-hidden',String(reveal<.99));
  idx.style.opacity=1-smooth((f-.1)/.6);idx.style.pointerEvents=f>.45?'none':'';
+ // A faded desktop index must also leave the keyboard route; opening the
+ // mobile menu restores its controls through syncMobileShell.
+ if(f>.45&&idx.contains(document.activeElement))stage.focus({preventScroll:true});
+ idx.inert=f>.45;
  const ringSeq=mode==='seeking'?target:center;updateProjectRing(ringSeq,dt);const a=mod(ringSeq,N);if(a!==active){active=a;idx.querySelectorAll('button').forEach((b,i)=>i===a?b.setAttribute('aria-current','true'):b.removeAttribute('aria-current'));$('projectProgress').setAttribute('aria-valuemax',N);$('projectProgress').setAttribute('aria-valuenow',a+1);$('projectProgress').setAttribute('aria-valuetext',`${P[a].t}, ${a+1} de ${N}`)}
 }
 // Monotone first-order filter: no spring, no overshoot and no input lock.

@@ -39,13 +39,13 @@
 .focus-meta p {font-size:14px;line-height:1.35;margin:0;max-width:48ch;}
 .focus-kind {font-size:12px;text-align:right;color:#555;}
 .focus-logo {font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums;}
-#focusOpen {grid-column:2;text-align:left;justify-self:start;font-size:13px;border:0;background:transparent;padding:3px 0;pointer-events:auto;}
-#focusOpen:hover {transform:translateX(3px);}
+.focus-open {grid-column:2;text-align:left;justify-self:start;font-size:13px;border:0;background:transparent;padding:3px 0;pointer-events:auto;}
+.focus-open:hover {transform:translateX(3px);}
 .nav-controls {--bg:#fff;--ink:#111;z-index:65;}
 .nav-progress #closeFocus[data-focus="false"] .close-icon {display:none;}
 .nav-progress #closeFocus[data-focus="false"]:after {content:'+';font-size:20px;}
 .focus-meta[aria-hidden="true"] {pointer-events:none;}
-.focus-meta[aria-hidden="true"] #focusOpen {pointer-events:none;visibility:hidden;}
+.focus-meta[aria-hidden="true"] .focus-open {pointer-events:none;visibility:hidden;}
 body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-project-transition] .nav-controls,body[data-project-transition] .focus-meta,body[data-section-loading] .nav-controls,body[data-section-loading] .focus-meta,body[data-mobile-menu="open"] .nav-controls,body[data-mobile-menu="open"] .focus-meta {visibility:hidden!important;pointer-events:none!important;}
 @media(max-width:700px){.focus-meta{grid-template-columns:50px 1fr;gap:6px}.focus-meta h2{font-size:17px}.focus-meta p{font-size:13px}.focus-kind{grid-column:2;text-align:left}}
 
@@ -56,7 +56,7 @@ body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-
 .ui-arrow--left {transform:rotate(225deg);}
 .ui-arrow--right {transform:rotate(45deg);}
 .ui-arrow--down {transform:rotate(135deg);}
-.study-case-start .ui-arrow,#focusOpen .ui-arrow {margin-left:8px;}
+.study-case-start .ui-arrow,.focus-open .ui-arrow {margin-left:8px;}
 .study-case-navigation .ui-arrow {width:20px;height:20px;}
 
 /* Inline visibility on a recycled card cannot escape this hidden scene. */
@@ -99,3 +99,13 @@ body[data-section-loading] .study-stage { display:none!important; }
   .nav-controls button > svg,.study-case-navigation button > svg,
   .study-about-selector button > svg,.nav-controls #closeFocus::after {transition:none;translate:none!important;}
 }
+
+/* Entrance animation must release opacity back to the focus controller. */
+.study-projects.study-chrome-enter { animation-fill-mode: backwards; }
+
+/* The adapter measures in viewport coordinates; do not retain the old caption inset. */
+.study-stage { inset: 0; }
+.focus-meta[data-compact="true"] { grid-template-columns: 50px minmax(0,1fr); gap: 6px; }
+.focus-meta[data-compact="true"] .focus-kind { grid-column: 2; text-align: left; }
+.focus-meta[data-compact="true"] h2 { font-size: 17px; }
+.focus-meta[data-compact="true"] p { font-size: 13px; }

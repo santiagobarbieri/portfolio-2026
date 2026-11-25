@@ -248,3 +248,20 @@ body[data-study-page="contact"] .study-heading {border:1px solid #111;background
 body[data-study-page="contact"] .study-heading > span {background:transparent;}
 body[data-study-page="contact"] .study-heading .study-home {color:#fff;}
 body[data-study-page="contact"] .study-home.lr {--runner-fill:#fff;--runner-ink:#ef3333;}
+
+/* Long signature labels stay inside their strip rather than crossing the nav. */
+.study-heading > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.study-about-testament > * { min-width: 0; max-width: 100%; }
+.study-portrait-pending { box-sizing: border-box; min-width: 0; justify-self: stretch; }
+
+@media (min-width: 601px) and (max-width: 1200px) and (hover: hover) and (pointer: fine) {
+  body[data-study-page="about"] .study-page {
+    inset: calc(var(--shell-top) + var(--shell-row-height) + 50px) 0 84px;
+    padding: 24px 24px 30px clamp(150px, 22vw, 210px);
+  }
+  body[data-study-page="about"] .study-page-index { width: clamp(118px, 18vw, 180px); }
+  .study-about-testament { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; }
+  .study-about-testament > h2 { grid-area: 1 / 1; align-self: start; }
+  .study-about-text { grid-area: 2 / 1; }
+  .study-portrait-pending { grid-area: 1 / 2 / span 2; }
+}
