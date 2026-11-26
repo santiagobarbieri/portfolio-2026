@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Entrada lateral escalonada del inicio · 26 de noviembre de 2026
+
+Al terminar el loader del inicio, despejar primero a una pantalla completamente blanca. Las tarjetas entran desde fuera del borde derecho conservando la cámara y diagonal aprobadas; ningún elemento debe aparecer ya colocado en el primer cuadro. Reservar unos 2,5s para las tarjetas, después revelar firma/logo, navegación e índice durante 320ms, y finalmente flechas/contador/control de foco durante 280ms. Habilitar rueda, arrastre, teclado y controles solo al completar esta última aparición; descartar los gestos recibidos durante la entrada, sin acelerarla ni dejar movimientos pendientes. Esta indicación reemplaza la aceleración anterior ante interacción. Pausar la secuencia al ocultar la pestaña y conservar movimiento reducido sin desplazamientos. No repetir la presentación al cerrar un proyecto ni alterar el foco, aperturas o interiores existentes.
+
 ## Corredor unido al color y apertura propia de proyectos · 26 de noviembre de 2026
 
 Las cargas de secciones usan el corredor original por delante del barrido: personaje y bloque comparten exactamente el color de la sección, sin contornos adicionales. La caja del corredor solapa 2px el borde del color para evitar una separación visible. Ambos usan la misma coordenada y avanzan según los recursos decodificados y un mínimo de 2200ms. El blanco del inicio barre una base gris neutra para que el corredor blanco sea visible. Movimiento reducido conserva el mínimo con una marca estática contrastada. Cancelar navegación elimina RAF, esperas y capas obsoletas.

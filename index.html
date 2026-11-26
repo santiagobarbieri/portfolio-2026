@@ -497,7 +497,9 @@
       const menuClose = document.querySelector('.study-menu-close'), mobileCaption = document.querySelector('.study-mobile-caption');
       let mobileSequence = 0;
       function syncMobileShell() {
-        const modal = mobileMenuOpen && smallScreen.matches, loading = Boolean(activeSectionLoad);
+        const modal = mobileMenuOpen && smallScreen.matches, loading = Boolean(activeSectionLoad) || document.body.hasAttribute('data-loop-arriving');
+        document.querySelector('.nav-controls').inert = loading || Boolean(pageName) || Boolean(activeProjectTransition);
+        stage.setAttribute('aria-busy', String(loading));
         menuPanel.inert = loading || smallScreen.matches && !modal;
         menuToggle.inert = loading || modal || Boolean(activeProjectTransition) || document.body.classList.contains('study-loading');
         document.querySelector('.study-heading').inert = loading || modal;
@@ -511,7 +513,7 @@
         menuToggle.setAttribute('aria-label', modal ? 'Cerrar menú' : 'Abrir menú');
       }
       function setMobileMenu(open, restoreFocus = true) {
-        if (open && activeSectionLoad) return;
+        if (open && (activeSectionLoad || document.body.hasAttribute('data-loop-arriving'))) return;
         const wasOpen = mobileMenuOpen;
         mobileMenuOpen = open && smallScreen.matches;
         if (mobileMenuOpen) {
@@ -1370,12 +1372,9 @@
             exit: ['about','contact'].includes(route.view) ? 'curtain' : 'sweep',
             onReveal: () => {
               if (item || route.view) return;
-              document.body.dataset.loopArriving = '';
-              document.body.dataset.sectionRevealing = 'home';
-              focusLoop?.enter(() => {
-                delete document.body.dataset.loopArriving;
-                document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
-              });
+              // Clear the loader onto an empty white stage before any card moves.
+              document.body.dataset.loopArriving = 'preparing';
+              syncMobileShell();
             },
             ready: async (signal, report) => {
               const tasks = !route.view ? catalogue.map(project => () => ensureCover(project, false)) : [];
@@ -1395,6 +1394,24 @@
             }, retry: prepare
           });
           if (!opened) return;
+          if (!route.view) {
+            document.body.dataset.loopArriving = 'cards';
+            syncMobileShell();
+            focusLoop?.enter({
+              onChrome: () => {
+                document.body.dataset.loopArriving = 'chrome';
+                document.querySelectorAll('.study-heading,.study-navigation,.study-projects,.study-colophon,.study-menu-toggle').forEach(node => node.classList.add('study-chrome-enter'));
+              },
+              onControls: () => {
+                document.body.dataset.loopArriving = 'controls';
+                document.querySelector('.nav-controls').classList.add('study-controls-enter');
+              },
+              onReady: () => {
+                delete document.body.dataset.loopArriving;
+                syncMobileShell(); stage.focus({ preventScroll: true });
+              }
+            });
+          }
           addressReady = true; rememberPageAddress();
           if (route.lockedArchive) syncPageAddress('','',true);
           (pageName ? page : stage).focus({ preventScroll: true });
@@ -1604,6 +1621,7 @@
         }
       }
       function closePageImmediately(keepPosition = false, transition = null, retainedLoad = null) {
+        focusLoop?.cancelEntrance(); delete document.body.dataset.loopArriving;
         if (activeSectionLoad !== retainedLoad) cancelSectionLoad(activeSectionLoad, 'navigation');
         if (!retainedLoad) document.body.removeAttribute('data-section-loading');
         if (startupPreparing) { startupPreparing = false; enteredAt = performance.now(); document.body.classList.remove('study-loading'); addressReady = true; measure(); }
@@ -2500,7 +2518,6 @@
         measure(); wake(); syncCaseVideos();
       });
       focusLoop=window.createPortfolioFocusLoop({stage,cam:camera,idx:index,items:catalogue,planes,createPlane,
-        arriving:()=>Boolean(activeSectionLoad?.key === 'home' && activeSectionLoad.phase === 'leaving'),
         blocked:()=>Boolean(pageName||activeProjectTransition||activeSectionLoad||mobileMenuOpen||document.hidden||document.body.classList.contains('study-loading')),
         seek:()=>{setMobileMenu(false,false);if(pageName||activeProjectTransition)closePageImmediately();},
         open:sequence=>openProject(sequence),

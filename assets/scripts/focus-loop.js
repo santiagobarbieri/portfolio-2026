@@ -5,26 +5,29 @@ const mod=(n,m)=>((n%m)+m)%m, clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), mix=
 // Quintic easing: first and second derivatives are zero at both endpoints.
 const smooth=t=>{t=clamp(t);return t*t*t*(10+t*(-15+6*t))};
 const rm=matchMedia('(prefers-reduced-motion: reduce)');
-// One continuous scroll coordinate. Input is accepted even during a transition.
+// One continuous scroll coordinate. The initial presentation is the only input gate.
 const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:90,reverseMin:8,impulseMin:2,renewMin:100,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
 let pos=0,target=0,last=0,drag=null,active=-1,metaSeq=null,geo;
 let mode='idle',engagement=0,lastInput=-Infinity,idleStart=performance.now();
 let wheelGesture=null, pending=[], pointerGesture=null;
 let hovered=null, entrance=null;
-function releaseEntrance(){const done=entrance?.onChrome;entrance=null;done?.()}
-function hurryEntrance(){if(entrance)entrance.speed=3;}
+const ENTRY={cards:2.5,chrome:.32,controls:.28};
+function releaseEntrance(){if(!entrance)return;const done=entrance?.onReady;entrance=null;idleStart=performance.now();target=pos;wheelGesture=null;pending.length=0;done?.()}
+function inputBlocked(){return Boolean(entrance)||bridge.blocked()}
+function cancelEntrance(){if(!entrance)return;entrance=null;wheelGesture=null;pending.length=0;idleStart=performance.now()}
+
 const hoverOK=matchMedia('(hover:hover) and (pointer:fine)');
 function setHover(seq){
  if(hovered===seq)return;
  if(hovered!==null&&seq===null&&mode==='idle')idleStart=performance.now();
  hovered=seq;bridge.hover?.(seq);
 }
-function hoverAllowed(){return mode==='idle'||(mode==='active'&&engagement>.99&&Math.abs(target-pos)<.003&&!pending.length)}
+function hoverAllowed(){return !entrance&&(mode==='idle'||(mode==='active'&&engagement>.99&&Math.abs(target-pos)<.003&&!pending.length))}
 function cardAt(x,y){const el=document.elementFromPoint(x,y)?.closest('.study-plane');return el?Number(el.dataset.s):null}
 
 const planes=bridge.planes;
 for(let i=0;i<COUNT;i++){const r=bridge.createPlane();r.el=r.element;r.seq=null;r.hover=0;r.label=document.createElement('span');r.label.className='project-hover';r.label.setAttribute('aria-hidden','true');r.el.append(r.label);planes.push(r)}
-idx.querySelectorAll('[data-project]').forEach((b,i)=>b.addEventListener('click',()=>{bridge.seek();goTo(Math.round((pos-i)/N)*N+i)}));
+idx.querySelectorAll('[data-project]').forEach((b,i)=>b.addEventListener('click',()=>{if(inputBlocked())return;bridge.seek();goTo(Math.round((pos-i)/N)*N+i)}));
 // Reserve the tallest real caption before placing the focused image. This
 // prevents long disciplines and short viewports from pushing text into controls.
 function captionHeight(width){
@@ -129,9 +132,10 @@ function draw(dt=0){
  for(const [seq,g] of map){
   const r=planes[mod(seq,COUNT)];if(r.seq!==seq)fill(r,seq);
   const delay=clamp((seq-floor+4)*.035,0,.28);
-  const arrival=entrance?smooth((entrance.elapsed-delay)/1.60):1;
-  // Same diagonal and camera as the resting stack, never a separate trajectory.
-  const travel=(1-arrival)*geo.w*.8;
+  const arrival=entrance?smooth((entrance.elapsed-delay)/2.20):1;
+  // Every projected left edge starts beyond the right edge of the viewport.
+  // Keep the approved camera and diagonal while the cards spread into the deck.
+  const travel=(1-arrival)*Math.max(0,geo.w/2+80-g.x-g.l);
   const matrix=new DOMMatrix().translate(g.x+travel,g.y-travel*(geo.m?.20:.27),0).multiply(g.m);
   const hoverGoal=hovered===seq&&hoverAllowed()&&!drag&&g.f<.05?1:0;
   r.hover=rm.matches?hoverGoal:approach(r.hover,hoverGoal,dt,hoverGoal?.085:.115);
@@ -143,7 +147,7 @@ function draw(dt=0){
   r.el.style.transform=matrix.toString();
   r.el.style.zIndex=String(60-(seq-floor));
   // The pool recycles only offscreen; fade far edges rather than snapping at a clip boundary.
-  const edge=1-smooth((Math.abs(seq-pos)-17)/2);r.el.style.opacity=edge*(entrance?smooth(arrival/.35):1);
+  const edge=1-smooth((Math.abs(seq-pos)-17)/2);r.el.style.opacity=edge;
   r.el.style.visibility=edge<.0001?'hidden':'visible';r.element.hidden=false;
  }
  const g=map.get(center), f=g.f;
@@ -159,7 +163,7 @@ function draw(dt=0){
  // A faded desktop index must also leave the keyboard route; opening the
  // mobile menu restores its controls through syncMobileShell.
  if(f>.45&&idx.contains(document.activeElement))stage.focus({preventScroll:true});
- idx.inert=f>.45;
+ idx.inert=Boolean(entrance)||f>.45;
  const ringSeq=mode==='seeking'?target:center;updateProjectRing(ringSeq,dt);const a=mod(ringSeq,N);if(a!==active){active=a;idx.querySelectorAll('button').forEach((b,i)=>i===a?b.setAttribute('aria-current','true'):b.removeAttribute('aria-current'));$('projectProgress').setAttribute('aria-valuemax',N);$('projectProgress').setAttribute('aria-valuenow',a+1);$('projectProgress').setAttribute('aria-valuetext',`${P[a].t}, ${a+1} de ${N}`)}
 }
 // Monotone first-order filter: no spring, no overshoot and no input lock.
@@ -172,7 +176,7 @@ function approach(value,goal,dt,tau,maxSpeed=Infinity){
 // Only a new burst requests a step, independently of animation progress.
 // Browsing and focused navigation have independent input dynamics.
 function browseBy(amount,now=performance.now()){
- hurryEntrance();
+ if(inputBlocked())return;
  if(!amount)return;
  setHover(null);
  if(mode!=='browsing'){pending.length=0;target=pos;mode='browsing'}
@@ -183,7 +187,7 @@ function browseBy(amount,now=performance.now()){
  lastInput=now;
 }
 function step(dir,now=performance.now(),explicit=false){
- hurryEntrance();
+ if(inputBlocked())return;
  if(!dir)return;
  setHover(null);
  if(mode==='seeking'){pending.push(dir);lastInput=now;return}
@@ -233,7 +237,7 @@ function wheelInput(delta,now=performance.now()){
  if(mode==='active')lastInput=now;
 }
 function goTo(next){
- hurryEntrance();
+ if(inputBlocked())return;
  setHover(null);
  // Sidebar navigation is a separate route: close, travel in deck mode,
  // then focus only the exact selected sequence. Never focus passing cards.
@@ -244,30 +248,33 @@ function goTo(next){
  // interpreted as a new gesture simply because a menu item was clicked.
 }
 function closeFocus(){
+ if(inputBlocked())return;
  setHover(null);
  if(mode==='idle'||mode==='closing'||mode==='browsing')return;
  pending.length=0;target=pos;mode='closing';
  // Preserve gesture recognition so residual momentum cannot reopen focus.
 }
 function isFocused(seq){return mode==='active'&&Math.round(pos)===seq&&engagement>.99&&Math.abs(target-pos)<.003&&!pending.length}
-function activate(seq){if(isFocused(seq))bridge.open(seq);else goTo(seq)}
+function activate(seq){if(inputBlocked())return;if(isFocused(seq))bridge.open(seq);else goTo(seq)}
 function updateControls(){
  const canClose=mode==='active'||mode==='seeking';
  $('focusOpen').disabled=!isFocused(Math.round(pos));
  stage.dataset.focusMode=mode;stage.dataset.focusTarget=target;stage.dataset.focusEngagement=engagement;
- $('closeFocus').disabled=false;$('closeFocus').setAttribute('aria-label',canClose?'Cerrar foco':'Enfocar proyecto');$('closeFocus').dataset.focus=String(canClose);$('focusCounter').textContent=String(mod(Math.round(pos),N)+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');
+ $('closeFocus').disabled=Boolean(entrance);$('prev').disabled=$('next').disabled=Boolean(entrance);$('closeFocus').setAttribute('aria-label',canClose?'Cerrar foco':'Enfocar proyecto');$('closeFocus').dataset.focus=String(canClose);$('focusCounter').textContent=String(mod(Math.round(pos),N)+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');
 }
 $('closeFocus').addEventListener('click',()=>mode==='active'||mode==='seeking'?closeFocus():goTo(Math.round(pos)));$('focusOpen').addEventListener('click',()=>{const seq=Number($('focusOpen').dataset.sequence);if(isFocused(seq))bridge.open(seq)});
 function frame(t){
  const blocked=bridge.blocked();
- if(blocked&&!bridge.arriving?.()){if(entrance)releaseEntrance();last=t;return;}
+ if(blocked){last=t;return;}
  const dt=Math.min(.033,last?(t-last)/1000:1/60);last=t;
  if(entrance){
-  entrance.elapsed+=dt*entrance.speed;
-  if(entrance.elapsed>.55&&entrance.onChrome){entrance.onChrome();entrance.onChrome=null}
-  if(entrance.elapsed>1.95)releaseEntrance();
+  entrance.elapsed+=dt;
+  if(rm.matches)entrance.elapsed=ENTRY.cards+ENTRY.chrome+ENTRY.controls;
+  if(entrance.elapsed>=ENTRY.cards&&entrance.onChrome){entrance.onChrome();entrance.onChrome=null}
+  if(entrance.elapsed>=ENTRY.cards+ENTRY.chrome&&entrance.onControls){entrance.onControls();entrance.onControls=null}
+  if(entrance.elapsed>=ENTRY.cards+ENTRY.chrome+ENTRY.controls)releaseEntrance();
+  draw(dt);updateControls();bridge.paint(pos,null,planes);return;
  }
- if(blocked){draw(dt);return;}
  if(mode==='active'){
   pos=rm.matches?target:approach(pos,target,dt,SETTINGS.response,SETTINGS.maxSpeed);
   engagement=rm.matches?1:approach(engagement,1,dt,SETTINGS.engageTime);
@@ -298,6 +305,7 @@ function frame(t){
  draw(dt);updateControls();bridge.paint(pos,hovered,planes);
 }
 window.addEventListener('wheel',e=>{
+ if(entrance){if(!e.ctrlKey&&!e.metaKey)e.preventDefault();return;}
  if(bridge.blocked())return;
  if(e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,.study-submenu'))return;e.preventDefault();
  const raw=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX;
@@ -305,7 +313,7 @@ window.addEventListener('wheel',e=>{
  wheelInput(d);
 },{passive:false});
 stage.addEventListener('pointerdown',e=>{
- if(bridge.blocked()||!e.isPrimary||e.button!==0||drag)return;
+ if(inputBlocked()||!e.isPrimary||e.button!==0||drag)return;
  drag={id:e.pointerId,x:e.clientX,y:e.clientY,seq:cardAt(e.clientX,e.clientY)};
  pointerGesture={fired:false};stage.setPointerCapture(e.pointerId);
 });
@@ -318,7 +326,7 @@ stage.addEventListener('pointermove',e=>{
   else if(pointerGesture.fired)lastInput=performance.now();
   return;
  }
- if(bridge.blocked()||e.pointerType!=='mouse'||!hoverOK.matches||!hoverAllowed()){setHover(null);return}
+ if(inputBlocked()||e.pointerType!=='mouse'||!hoverOK.matches||!hoverAllowed()){setHover(null);return}
  const seq=cardAt(e.clientX,e.clientY);
  setHover(seq!==null&&(mode==='idle'||seq!==Math.round(pos))?seq:null);
 });
@@ -336,9 +344,9 @@ function release(e){
 for(const k of ['pointerup','pointercancel','lostpointercapture'])stage.addEventListener(k,release);
 $('prev').addEventListener('click',()=>step(-1,performance.now(),true));
 $('next').addEventListener('click',()=>step(1,performance.now(),true));
-window.addEventListener('keydown',e=>{if(bridge.blocked()||e.target.closest('input,textarea,select,summary'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='Escape'){e.preventDefault();closeFocus();return}const dir=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)?1:['ArrowUp','ArrowLeft','PageUp'].includes(e.key)?-1:0;if(!dir)return;if(e.key===' '&&e.target.closest('button'))return;e.preventDefault();if(!e.repeat)step(dir,performance.now(),true)});
+window.addEventListener('keydown',e=>{if(entrance){if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','PageDown','PageUp',' ','Enter'].includes(e.key))e.preventDefault();return}if(bridge.blocked()||e.target.closest('input,textarea,select,summary'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='Escape'){e.preventDefault();closeFocus();return}const dir=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)?1:['ArrowUp','ArrowLeft','PageUp'].includes(e.key)?-1:0;if(!dir)return;if(e.key===' '&&e.target.closest('button'))return;e.preventDefault();if(!e.repeat)step(dir,performance.now(),true)});
 measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,activate,isFocused,
- enter(onChrome){if(rm.matches){onChrome?.();return}entrance={elapsed:0,speed:1,onChrome};draw()},
+ enter({onChrome,onControls,onReady}={}){setHover(null);drag=null;pointerGesture=null;pending.length=0;wheelGesture=null;target=pos;entrance={elapsed:0,onChrome,onControls,onReady};if(rm.matches){onChrome?.();onControls?.();releaseEntrance()}draw();updateControls()},cancelEntrance,
  focus(value){releaseEntrance();pos=target=value;pending.length=0;mode='active';engagement=1;lastInput=performance.now();draw();updateControls()},
  bounds(sequence){
   const g=layout().map.get(sequence);if(!g)return null;
