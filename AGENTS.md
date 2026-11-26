@@ -1,5 +1,13 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Transiciones continuas, interiores preservados · 26 de noviembre de 2026
+
+Santiago aprobó trasladar únicamente las transiciones del modelo V29; no cambiar textos, imágenes, orden ni composiciones de los proyectos. La cámara y el modo doble del loop siguen vigentes. La primera entrada de tarjetas acompaña su diagonal con un desfase breve, coordinado con el barrido del corredor; la interfaz entra después y libera su opacidad al terminar. La entrada se acelera ante interacción sin bloquear ni encolar gestos adicionales.
+
+Abrir desde foco expande una superficie del color del proyecto desde los límites medidos de la tarjeta; solo al cubrir por completo se intercambian vistas. Después aparece el PNG transparente original y fondo/logo salen mediante una misma capa, revelando el lector existente sin un cuadro blanco intermedio. El cierre conserva la lectura, no rebobina ni recupera logos fuera de pantalla; vuelve a la tarjeta enfocada mediante el recorrido inverso del color. Mantener cargas reales, corredor, cancelación, resize, historial, foco accesible y movimiento reducido.
+
+Sobre mí y Contacto comparten cortina vertical opaca y cambio directo entre vistas, sin pasar por el carrusel. Animar la opacidad del contenido sin transformar su contenedor: contiene navegación fija que debe seguir anclada al viewport. El loop solo puede verse detrás de una cortina entrante o al regresar explícitamente al inicio, nunca dentro de una sección abierta. No cambiar las credenciales, biografía pendiente, formulario guiado ni destinos bloqueados.
+
 ## Límites y foco responsive · 25 de noviembre de 2026
 
 La animación de entrada del índice libera su opacidad al terminar (`animation-fill-mode: backwards`) para que el modo foco pueda retirarlo sin superponerlo a la portada. El índice oculto queda inert; el menú móvil recupera su lista visible e interactiva. El adaptador mide en coordenadas de viewport completo, sin conservar el inset de la antigua ficha móvil. Medir la altura máxima de las fichas reales al redimensionar, usar dos columnas de metadatos cuando su ancho es menor de 580px y reservar espacio para cabecera y flechas. En horizontal bajo, imagen y ficha van lado a lado, desplazando la pila completa para que los vecinos no tapen la tarjeta enfocada. Conservar estados, segundo clic, rueda por gesto y movimiento reducido.

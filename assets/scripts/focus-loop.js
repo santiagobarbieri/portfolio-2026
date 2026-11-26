@@ -10,7 +10,9 @@ const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,eng
 let pos=0,target=0,last=0,drag=null,active=-1,metaSeq=null,geo;
 let mode='idle',engagement=0,lastInput=-Infinity,idleStart=performance.now();
 let wheelGesture=null, pending=[], pointerGesture=null;
-let hovered=null;
+let hovered=null, entrance=null;
+function releaseEntrance(){const done=entrance?.onChrome;entrance=null;done?.()}
+function hurryEntrance(){if(entrance)entrance.speed=3;}
 const hoverOK=matchMedia('(hover:hover) and (pointer:fine)');
 function setHover(seq){
  if(hovered===seq)return;
@@ -124,7 +126,11 @@ function draw(dt=0){
  const {floor,center,map}=layout();
  for(const [seq,g] of map){
   const r=planes[mod(seq,COUNT)];if(r.seq!==seq)fill(r,seq);
-  const matrix=new DOMMatrix().translate(g.x,g.y,0).multiply(g.m);
+  const delay=clamp((seq-floor+4)*.035,0,.28);
+  const arrival=entrance?smooth((entrance.elapsed-delay)/.85):1;
+  // Same diagonal and camera as the resting stack, never a separate trajectory.
+  const travel=(1-arrival)*geo.w*.8;
+  const matrix=new DOMMatrix().translate(g.x+travel,g.y-travel*(geo.m?.20:.27),0).multiply(g.m);
   const hoverGoal=hovered===seq&&hoverAllowed()&&!drag&&g.f<.05?1:0;
   r.hover=rm.matches?hoverGoal:approach(r.hover,hoverGoal,dt,hoverGoal?.085:.115);
   const localShift=52*r.hover;
@@ -135,7 +141,7 @@ function draw(dt=0){
   r.el.style.transform=matrix.toString();
   r.el.style.zIndex=String(60-(seq-floor));
   // The pool recycles only offscreen; fade far edges rather than snapping at a clip boundary.
-  const edge=1-smooth((Math.abs(seq-pos)-17)/2);r.el.style.opacity=edge;
+  const edge=1-smooth((Math.abs(seq-pos)-17)/2);r.el.style.opacity=edge*(entrance?smooth(arrival/.35):1);
   r.el.style.visibility=edge<.0001?'hidden':'visible';r.element.hidden=false;
  }
  const g=map.get(center), f=g.f;
@@ -164,6 +170,7 @@ function approach(value,goal,dt,tau,maxSpeed=Infinity){
 // Only a new burst requests a step, independently of animation progress.
 // Browsing and focused navigation have independent input dynamics.
 function browseBy(amount,now=performance.now()){
+ hurryEntrance();
  if(!amount)return;
  setHover(null);
  if(mode!=='browsing'){pending.length=0;target=pos;mode='browsing'}
@@ -174,6 +181,7 @@ function browseBy(amount,now=performance.now()){
  lastInput=now;
 }
 function step(dir,now=performance.now(),explicit=false){
+ hurryEntrance();
  if(!dir)return;
  setHover(null);
  if(mode==='seeking'){pending.push(dir);lastInput=now;return}
@@ -223,6 +231,7 @@ function wheelInput(delta,now=performance.now()){
  if(mode==='active')lastInput=now;
 }
 function goTo(next){
+ hurryEntrance();
  setHover(null);
  // Sidebar navigation is a separate route: close, travel in deck mode,
  // then focus only the exact selected sequence. Never focus passing cards.
@@ -248,8 +257,15 @@ function updateControls(){
 }
 $('closeFocus').addEventListener('click',()=>mode==='active'||mode==='seeking'?closeFocus():goTo(Math.round(pos)));$('focusOpen').addEventListener('click',()=>{const seq=Number($('focusOpen').dataset.sequence);if(isFocused(seq))bridge.open(seq)});
 function frame(t){
- if(bridge.blocked()){last=t;return;}
+ const blocked=bridge.blocked();
+ if(blocked&&!bridge.arriving?.()){if(entrance)releaseEntrance();last=t;return;}
  const dt=Math.min(.033,last?(t-last)/1000:1/60);last=t;
+ if(entrance){
+  entrance.elapsed+=dt*entrance.speed;
+  if(entrance.elapsed>.30&&entrance.onChrome){entrance.onChrome();entrance.onChrome=null}
+  if(entrance.elapsed>1.15)releaseEntrance();
+ }
+ if(blocked){draw(dt);return;}
  if(mode==='active'){
   pos=rm.matches?target:approach(pos,target,dt,SETTINGS.response,SETTINGS.maxSpeed);
   engagement=rm.matches?1:approach(engagement,1,dt,SETTINGS.engageTime);
@@ -319,6 +335,18 @@ for(const k of ['pointerup','pointercancel','lostpointercapture'])stage.addEvent
 $('prev').addEventListener('click',()=>step(-1,performance.now(),true));
 $('next').addEventListener('click',()=>step(1,performance.now(),true));
 window.addEventListener('keydown',e=>{if(bridge.blocked()||e.target.closest('input,textarea,select,summary'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='Escape'){e.preventDefault();closeFocus();return}const dir=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)?1:['ArrowUp','ArrowLeft','PageUp'].includes(e.key)?-1:0;if(!dir)return;if(e.key===' '&&e.target.closest('button'))return;e.preventDefault();if(!e.repeat)step(dir,performance.now(),true)});
-measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,activate,isFocused,move(value){pos=target=value;pending.length=0;draw()},get position(){return pos}};
+measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,activate,isFocused,
+ enter(onChrome){if(rm.matches){onChrome?.();return}entrance={elapsed:0,speed:1,onChrome};draw()},
+ focus(value){releaseEntrance();pos=target=value;pending.length=0;mode='active';engagement=1;lastInput=performance.now();draw();updateControls()},
+ bounds(sequence){
+  const g=layout().map.get(sequence);if(!g)return null;
+  const points=[];
+  for(const [x,y] of [[-CW/2,-CH/2],[CW/2,-CH/2],[CW/2,CH/2],[-CW/2,CH/2]]){
+   const v=g.m.transformPoint(new DOMPoint(x,y,0,1));points.push([geo.w/2+g.x+v.x/v.w,geo.h/2+g.y+v.y/v.w]);
+  }
+  const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+  const left=Math.min(...xs),right=Math.max(...xs),top=Math.min(...ys),bottom=Math.max(...ys);
+  return {left,right,top,bottom,width:right-left,height:bottom-top};
+ },move(value){pos=target=value;pending.length=0;draw()},get position(){return pos}};
 
 };

@@ -75,3 +75,24 @@ body[data-section-loading] .study-cursor { visibility: hidden; }
 .study-section-loader__content { transform:translateX(calc(-50vw + 48px)); }
 .study-section-loader[data-phase="error"] .study-section-loader__content { transform:none; }
 @media(prefers-reduced-motion:reduce){ .study-section-loader__content {transform:none;} }
+
+/* Only expose the previous frame while a fully opaque surface approaches it.
+   The recycled loop is otherwise excluded from every section and transition. */
+body[data-section-entering]:not([data-study-page]) .study-stage,
+body[data-section-revealing="home"] .study-stage,
+body[data-project-transition="close-reveal"] .study-stage { display:block!important; }
+body[data-section-entering]:not([data-study-page]) .study-heading,
+body[data-section-entering]:not([data-study-page]) .study-navigation,
+body[data-section-entering]:not([data-study-page]) .study-projects { opacity:0; transition:opacity 160ms ease-out; }
+.study-section-loader[data-entrance="curtain"] .study-section-loader__content,
+.study-section-loader[data-entrance="fade"] .study-section-loader__content { transform:none; }
+.study-section-loader__content { transition:opacity 180ms ease-out; }
+body[data-loop-arriving] .study-heading,
+body[data-loop-arriving] .study-navigation,
+body[data-loop-arriving] .study-projects { visibility:hidden; }
+@media(prefers-reduced-motion:reduce){
+ .study-section-loader__content { transition:none; }
+}
+
+/* Release completed entrance effects so later fades and focus can own opacity. */
+.study-chrome-enter { animation-fill-mode:backwards; }
