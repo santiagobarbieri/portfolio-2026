@@ -365,6 +365,7 @@
   <link rel="stylesheet" href="./css/shell.css">
   <link rel="stylesheet" href="./css/mobile.css">
   <link rel="stylesheet" href="./css/project-reader.css">
+  <link rel="stylesheet" href="./css/wildfolk-case.css">
   <link rel="stylesheet" href="./css/section-load.css">
   <link rel="stylesheet" href="./css/focus-loop.css">
 </head>
@@ -1952,15 +1953,15 @@
         }, { root: page, rootMargin: '80px 0px', threshold: .06 });
         page.querySelectorAll('.study-case-section .study-case-images').forEach(art => observer.observe(art));
         const start = page.querySelector('[data-case-start]');
-        start.addEventListener('click', () => page.querySelector('.study-case-section')?.scrollIntoView({ block: 'start', behavior: preference.matches ? 'instant' : 'smooth' }), { signal: controller.signal });
+        start?.addEventListener('click', () => page.querySelector('.study-case-section')?.scrollIntoView({ block: 'start', behavior: preference.matches ? 'instant' : 'smooth' }), { signal: controller.signal });
         return () => {
           controller.abort(); observer.disconnect();
           effects.forEach(animation => animation.cancel()); document.body.classList.remove('study-case-on-cover', 'study-close-on-cover'); caseNavigation.classList.remove('on-case-cover');
         };
       }
 
-      function setupFiniteReader(flow) {
-        const cards = [...flow.children], controller = new AbortController();
+      function setupFiniteReader(flow, { arrange = true, drift = true } = {}) {
+        const cards = arrange ? [...flow.children] : [], controller = new AbortController();
         const { signal } = controller;
         let layoutFrame = 0, motionFrame = 0, disposed = false, previousTime = 0;
         let wheelTarget = page.scrollTop, expectedScroll = page.scrollTop, wheeling = false;
@@ -1968,7 +1969,7 @@
         const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
         cards.forEach(card => card.classList.add('study-reader-card'));
         function layout() {
-          layoutFrame = 0; if (disposed || !flow.isConnected) return;
+          layoutFrame = 0; if (disposed || !flow.isConnected || !arrange) return;
           if (smallScreen.matches) {
             flow.style.removeProperty('height'); flow.style.removeProperty('--reader-column');
             cards.forEach(card => { card.style.removeProperty('top'); card.style.removeProperty('left'); card.style.removeProperty('--reader-drift'); });
@@ -2006,7 +2007,7 @@
             if (Math.abs(wheelTarget-page.scrollTop)<.8) { page.scrollTop=wheelTarget; expectedScroll=wheelTarget; wheeling=false; }
           }
           const delta = page.scrollTop-previousScroll; previousScroll=page.scrollTop;
-          const desired = smallScreen.matches || preference.matches || activeProjectTransition || lightbox.open || mobileMenuOpen ? 0 : clamp(-delta*.22,-7,7);
+          const desired = !drift || smallScreen.matches || preference.matches || activeProjectTransition || lightbox.open || mobileMenuOpen ? 0 : clamp(-delta*.22,-7,7);
           driftValue += (desired-driftValue)*(1-Math.exp(-dt/.10));
           if (Math.abs(driftValue)<.04) driftValue=0;
           cards.forEach((card,index)=>card.style.setProperty('--reader-drift',`${(driftValue*[.82,1,.9,1.08][index%4]).toFixed(2)}px`));
@@ -2047,6 +2048,73 @@
         return {left:box.left+(box.width-w)/2,top:box.top+(box.height-h)/2,width:w,height:h,bottom:box.top+(box.height+h)/2};
       }
 
+      // Wildfolk alone tests a fixed editorial fiche beside a finite media rail.
+      function renderWildfolkProject(item, id) {
+        document.body.dataset.caseLayout = 'wildfolk';
+        heading.textContent = normalHeading;
+        const flow = el('div', 'study-case-flow wildfolk-layout');
+        const hero = el('header', 'study-case-hero wildfolk-info');
+        const intro = el('div', 'study-case-hero__intro wildfolk-info__details');
+        const description = el('div', 'wildfolk-info__row');
+        description.append(el('p', 'wildfolk-info__label', 'Descripción'), el('p', 'wildfolk-info__description', item.intro));
+        const metadata = el('dl', 'wildfolk-info__metadata');
+        [['Proyecto', 'Personal · Marca ficticia'], ['Entregables', 'Cuatro latas, cuatro afiches y seis personajes.']].forEach(([label, value]) => {
+          metadata.append(el('dt', 'wildfolk-info__label', label), el('dd', '', value));
+        });
+        intro.append(description, metadata);
+        const signature = el('div', 'wildfolk-info__signature');
+        const line = el('div', 'wildfolk-info__edition');
+        line.append(el('span', '', item.year), el('span', '', item.type));
+        const visual = el('div', 'study-case-hero__visual is-wordmark');
+        const media = openingMedia(item), cover = imageNode(media, false);
+        cover.className = 'study-case-hero__cover is-logo';
+        visual.style.setProperty('--reader-wordmark', `url("${new URL(media.src, document.baseURI).href}")`);
+        visual.style.setProperty('--reader-mark-ink', '#111');
+        visual.append(cover);
+        signature.append(line, el('h2', 'visually-hidden', item.title), visual);
+        hero.append(intro, signature);
+
+        const gallery = el('div', 'wildfolk-gallery');
+        const main = item.blocks.at(-1).images[0];
+        const blocks = [{ title: 'Wildfolk en escena', description: 'Spikehorn IPA · Mockup de producto.', images: [main] }, ...item.blocks.map(block => ({ ...block, images: block.images.filter(image => image.src !== main.src) }))];
+        blocks.forEach((block, index) => {
+          const section = el('section', 'study-case-section wildfolk-panel');
+          section.dataset.chapter = block.title;
+          const art = el('div', 'study-case-images wildfolk-panel__art');
+          art.dataset.count = String(block.images.length);
+          block.images.forEach(im => {
+            const button = el('button'); button.type = 'button';
+            button.setAttribute('aria-label', `Ampliar ${im.alt || block.title}`); button.setAttribute('aria-haspopup', 'dialog');
+            const image = imageNode(index === 0 ? { ...im, src: im.fullSrc || im.src } : im, index !== 0);
+            if (im.monochrome) image.classList.add('is-monochrome');
+            if (index === 0) image.fetchPriority = 'high';
+            button.append(image);
+            if (block.images.length > 1 && im.label) button.append(el('span', 'study-case-image-label', im.label));
+            button.addEventListener('click', () => openLightbox(im.fullSrc || im.src, im.alt, Boolean(im.monochrome)));
+            art.append(button);
+          });
+          if (block.colors) {
+            const palette = el('div', 'study-colors');
+            block.colors.forEach(color => {
+              const chip = el('div'), swatch = el('span'); swatch.style.background = color.hex;
+              chip.append(swatch, el('span', '', `${color.name} ${color.hex}`)); palette.append(chip);
+            });
+            art.append(palette);
+          }
+          const caption = el('div', 'study-case-section__copy wildfolk-panel__caption');
+          const number = el('span', 'wildfolk-panel__number', String(index + 1).padStart(2, '0'));
+          caption.append(number, el('h3', '', block.title), el('p', '', block.description));
+          section.append(art, caption); gallery.append(section);
+        });
+        flow.append(hero, gallery); pageContent.append(flow);
+        const ready = decodedImage(main.fullSrc || main.src).catch(() => false);
+        const clearReader = setupFiniteReader(flow, { arrange: false, drift: false });
+        const clearJourney = setupCaseJourney();
+        clearCaseJourney = () => { clearReader(); clearJourney(); delete document.body.dataset.caseLayout; };
+        updateCaseNavigation(id);
+        return { item, hero, visual, intro, cover, ready };
+      }
+
       function renderProject(id) {
         const item = catalogue[id];
         beginPage('project', `${item.title} | ${item.type}`);
@@ -2059,6 +2127,7 @@
         const brightness = luminance[0] * .2126 + luminance[1] * .7152 + luminance[2] * .0722;
         document.body.style.setProperty('--case-cover-ink', brightness > .18 ? '#111' : '#fff');
         document.body.style.setProperty('--case-cover-surface', item.surface);
+        if (item.slug === 'wildfolk') return renderWildfolkProject(item, id);
 
         const hero = el('header', 'study-case-hero');
         hero.dataset.chapter = 'Apertura';
@@ -2222,7 +2291,7 @@
         if (activeProjectTransition !== state) return;
         const rendered = renderProject(id); page.inert = true; page.style.opacity = '1';
         const content = [...pageContent.children]; content.forEach(node => node.style.opacity = '0');
-        await rendered.cover.decode().catch(() => {});
+        await Promise.all([rendered.cover.decode().catch(() => {}), rendered.ready]);
         if (activeProjectTransition !== state || state.cancelled) return;
         document.body.dataset.projectTransition = 'content';
         // One parent opacity owns the color and PNG: no delayed rectangle.

@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Prueba editorial fija de Wildfolk · 26 de noviembre de 2026
+
+Solo Wildfolk adopta la nueva referencia: ficha de proyecto fija en el 58% izquierdo del escritorio y recorrido finito de imágenes en el 42% derecho. Blanco del portfolio, Albert Sans con descripción de 19–28px, etiquetas pequeñas y marca original en negro abajo. Abrir con el mockup en mano; después latas, afiches, firma/isotipo, personajes, paleta y lata aplastada. Mantener todos los assets existentes, sin duplicar el mockup ni agregar una barra de lectura. El texto confirma proyecto personal y marca ficticia; no inventar cliente, herramientas o resultados. Imágenes completas y zoom individual, sin descargas.
+
+El lector tiene un solo scroll, sin loop ni desplazamiento interno en la ficha. En móvil se apilan información e imágenes; en ventanas de poca altura la ficha también se desplaza para mantener toda la información accesible. Conservar apertura tarjeta→color→PNG, cierre y navegación lateral entre casos. Preparar el primer mockup detrás de la apertura. No extender esta prueba al resto de los proyectos hasta que Santiago lo indique.
+
 ## Foco estable al desplegar navegación · 26 de noviembre de 2026
 
 Abrir, cambiar o cerrar un desplegable no altera posición, tamaño ni metadatos de la tarjeta en foco. El encuadre reserva únicamente la fila fija de botones, excluyendo la altura animada de las listas y las transformaciones de hover. El menú móvil tampoco modifica la geometría del carrusel. Mantener las mediciones por resize y el comportamiento de navegación existentes.
