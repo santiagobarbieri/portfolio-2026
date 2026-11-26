@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Corredor unido al color y apertura propia de proyectos · 26 de noviembre de 2026
+
+Las cargas de secciones usan el corredor original por delante del barrido: personaje y bloque comparten exactamente el color de la sección, sin contornos adicionales. La caja del corredor solapa 2px el borde del color para evitar una separación visible. Ambos usan la misma coordenada y avanzan según los recursos decodificados y un mínimo de 2200ms. El blanco del inicio barre una base gris neutra para que el corredor blanco sea visible. Movimiento reducido conserva el mínimo con una marca estática contrastada. Cancelar navegación elimina RAF, esperas y capas obsoletas.
+
+La apertura de proyectos excluye por completo este corredor, también por URL directa, historial y flechas entre casos. Secuencia: portada se acerca desde la tarjeta enfocada, el color cubre la pantalla, aparece el PNG original transparente y logo/fondo salen juntos para revelar el recorrido vigente. Mantener interiores, cámara del loop, puntero, foco, errores/reintentos y cierre sin cambios.
+
 ## Scroll libre controlado y cámara elevada · 26 de noviembre de 2026
 
 Solo fuera del modo foco: bajar sensibilidad de rueda, limitar el adelanto a 0,85 tarjetas y la velocidad a 1,6 tarjetas/s, con respuesta de 220ms sin sobrepasos ni cola larga. Tras el gesto, reservar 900ms antes de recuperar gradualmente el avance automático. La cámara libre eleva su pitch de -11° a -19°, manteniendo yaw -31°. Al entrar a foco se recupera el pitch aprobado de -11° para la pila y 0° para la tarjeta frontal; no cambiar el gesto por proyecto, escala ni encuadre del foco.

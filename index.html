@@ -1102,63 +1102,69 @@
 
       function beginSectionLoad(options = {}) {
         cancelSectionLoad(activeSectionLoad, 'superseded');
-        const { key = 'home', label = 'Proyectos', surface = '#fff', ink = sectionLoadInk(surface), minimum = preference.matches ? 1300 : 700, entrance = 'none', origin = null } = options;
+        const { key = 'home', label = 'Proyectos', surface = '#fff', minimum = 2200 } = options;
         const controller = new AbortController();
         const node = el('div', 'study-section-loader');
         node.style.setProperty('--section-load-surface', surface);
-        node.style.setProperty('--section-load-ink', ink);
-        node.dataset.sectionLoad = key;
-        node.dataset.phase = 'loading'; node.dataset.entrance = entrance;
-        node.setAttribute('role', 'status');
-        node.setAttribute('aria-live', 'polite');
-        node.setAttribute('aria-label', `Cargando ${label}`);
-        node.setAttribute('aria-busy', 'true');
+        node.style.setProperty('--section-load-ink', surface);
+        node.style.setProperty('--section-load-rest-ink', sectionLoadInk(surface));
+        node.style.setProperty('--section-load-base', /^#(?:fff|ffffff)$/i.test(surface) ? '#e1e1e1' : '#fff');
+        node.dataset.sectionLoad = key; node.dataset.phase = 'loading';
+        node.setAttribute('role', 'status'); node.setAttribute('aria-live', 'polite');
+        node.setAttribute('aria-label', `Cargando ${label}`); node.setAttribute('aria-busy', 'true');
+        const wash = el('div', 'study-section-loader__wash'); wash.setAttribute('aria-hidden', 'true');
         const content = el('div', 'study-section-loader__content');
         const status = el('span', 'visually-hidden', `Cargando ${label}`);
-        content.append(loadingMark(), status); node.append(content);
-        let resolveMinimum, resolveCancelled;
+        content.append(loadingMark(), status); node.append(wash, content);
+        let resolveMinimum, resolveCancelled, resolveMotion;
         const state = {
-          id: ++sectionLoadSequence, key, label, node, content, status, controller,
+          id: ++sectionLoadSequence, key, label, node, wash, content, status, controller,
           signal: controller.signal, phase: 'loading', started: performance.now(),
-          cancelled: false, animations: new Set(), timer: 0, options,
+          cancelled: false, animations: new Set(), timer: 0, frame: 0, options,
+          progress: 0, position: 0, workReady: false, duration: Math.max(0, Number(minimum) || 0),
           minimum: new Promise(resolve => { resolveMinimum = resolve; }),
           aborted: new Promise(resolve => { resolveCancelled = resolve; }),
-          resolveMinimum, resolveCancelled,
+          motion: new Promise(resolve => { resolveMotion = resolve; }),
+          report(value) { if (state.current()) state.progress = Math.max(state.progress, Math.min(1, Number(value) || 0)); },
           current() { return activeSectionLoad === state && !state.cancelled && state.node.isConnected; },
           cancel(reason = 'navigation') { cancelSectionLoad(state, reason); }
         };
-        // Promise executors run synchronously, so these resolvers already exist.
-        state.resolveMinimum = resolveMinimum; state.resolveCancelled = resolveCancelled;
-        state.timer = setTimeout(() => { state.timer = 0; state.resolveMinimum(true); }, Math.max(0, Number(minimum) || 0));
+        state.resolveMinimum = resolveMinimum; state.resolveCancelled = resolveCancelled; state.resolveMotion = resolveMotion;
+        state.timer = setTimeout(() => { state.timer = 0; state.resolveMinimum(true); }, state.duration);
         activeSectionLoad = state;
         document.querySelector('[data-logo-runner]')?.dispatchEvent(new Event('logo-runner:reset'));
-        // Start at the focused card or the lower edge, before the first paint.
-        const full = 'polygon(0px 0px,100vw 0px,100vw 100vh,0px 100vh)';
-        const start = origin && origin.width > 0
-          ? `polygon(${origin.left}px ${origin.top}px,${origin.right}px ${origin.top}px,${origin.right}px ${origin.bottom}px,${origin.left}px ${origin.bottom}px)`
-          : entrance === 'curtain' ? 'inset(100% 0 0 0)' : null;
-        if (start && !preference.matches) node.style.clipPath = start;
-        if (entrance === 'fade' && !preference.matches) node.style.opacity = '0';
-        content.style.opacity = entrance === 'none' ? '1' : '0';
         document.body.append(node);
-        if (entrance !== 'none') document.body.dataset.sectionEntering = entrance;
-        state.entered = (async () => {
-          const frames = start ? [{ clipPath: start }, { clipPath: origin ? full : 'inset(0 0 0 0)' }]
-            : [{ opacity: entrance === 'fade' ? 0 : 1 }, { opacity: 1 }];
-          if (!await playSectionLoad(state, node, frames, { duration: entrance === 'fade' ? 200 : entrance === 'none' ? 0 : 560, easing: 'cubic-bezier(.65,0,.25,1)' })) return false;
-          if (!state.current()) return false;
-          delete document.body.dataset.sectionEntering;
-          content.style.opacity = '1';
-          return true;
-        })();
+        let previous = performance.now();
+        const advance = now => {
+          state.frame = 0;
+          if (!state.current() || state.phase !== 'loading') return;
+          const dt = Math.min(50, now - previous); previous = now;
+          const elapsed = now - state.started;
+          const clock = state.duration ? Math.min(1, elapsed / state.duration) : 1;
+          const available = state.workReady ? 1 : Math.min(.94, .08 + state.progress * .86);
+          const goal = Math.min(clock, available);
+          state.position = preference.matches ? goal : state.position + (goal - state.position) * (1 - Math.exp(-dt / 70));
+          if (state.workReady && clock === 1 && (preference.matches || state.duration === 0 || 1 - state.position < .001)) state.position = 1;
+          // One coordinate drives both actors. The runner is a separate layer,
+          // ahead of the fill, so the colored surface never clips its silhouette.
+          state.wash.style.transform = `scaleX(${preference.matches ? 1 : state.position})`;
+          state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(calc(${state.position * 100}vw - 2px), -50%, 0)`;
+          state.node.dataset.progress = state.position.toFixed(4);
+          if (state.position === 1 && state.workReady) { state.resolveMotion(true); return; }
+          state.frame = requestAnimationFrame(advance);
+        };
+        state.wash.style.transform = preference.matches ? 'scaleX(1)' : 'scaleX(0)';
+        state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : 'translate3d(-2px,-50%,0)';
+        state.frame = requestAnimationFrame(advance);
+        state.entered = Promise.resolve(true);
         return state;
       }
 
       function cancelSectionLoad(state = activeSectionLoad, reason = 'navigation') {
         if (!state || state.cancelled) return;
         state.cancelled = true; state.phase = 'cancelled'; state.reason = reason;
-        clearTimeout(state.timer); state.timer = 0;
-        state.resolveMinimum(false); state.resolveCancelled(false);
+        clearTimeout(state.timer); state.timer = 0; cancelAnimationFrame(state.frame); state.frame = 0;
+        state.resolveMinimum(false); state.resolveCancelled(false); state.resolveMotion(false);
         state.controller.abort(reason);
         state.animations.forEach(animation => animation.cancel()); state.animations.clear();
         state.node.remove();
@@ -1189,6 +1195,8 @@
         if (!state.current()) return;
         clearTimeout(state.timer); state.timer = 0;
         state.resolveMinimum(false);
+        cancelAnimationFrame(state.frame); state.frame = 0; state.resolveMotion(false);
+        state.wash.style.transform = 'scaleX(1)'; state.content.style.removeProperty('transform');
         state.phase = 'error'; state.error = error;
         state.node.dataset.phase = 'error'; state.node.removeAttribute('aria-busy');
         state.node.setAttribute('aria-label', `No se pudo cargar ${state.label}`);
@@ -1212,17 +1220,18 @@
         if (!state?.current() || state.phase !== 'loading') return false;
         const { ready = Promise.resolve(true), prepare, retry, onReveal, exit = 'sweep' } = options;
         const work = Promise.resolve().then(async () => {
-          const result = await (typeof ready === 'function' ? ready(state.signal) : ready);
+          const result = await (typeof ready === 'function' ? ready(state.signal, state.report) : ready);
           if (!state.current()) return false;
           if (result === false) throw new Error('Section content is not ready.');
           // Render and decode while the surface is still completely opaque.
           if (!await state.entered || !state.current()) return false;
           if (typeof prepare === 'function') await prepare(state.signal);
+          if (state.current()) { state.progress = 1; state.workReady = true; }
           return state.current();
         });
         try {
           const complete = await Promise.race([
-            Promise.all([state.minimum, work]).then(values => values.every(Boolean)),
+            Promise.all([state.minimum, work, state.motion]).then(values => values.every(Boolean)),
             state.aborted
           ]);
           if (!complete || !state.current()) {
@@ -1240,16 +1249,12 @@
           const vertical = exit === 'curtain' || exit === 'return';
           const wipe = vertical
             ? [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: exit === 'return' ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)' }]
-            : [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 0 0 100%)' }];
-          const runner = vertical
-            ? [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: `translateY(${exit === 'return' ? '40vh' : '-40vh'})` }]
-            : [{ opacity: 1, transform: 'translateX(calc(-50vw + 48px))' }, { opacity: 1, transform: 'translateX(calc(50vw - 48px))' }];
+            : [{ opacity: 1 }, { opacity: 0 }];
           const reveal = ['about', 'contact'].includes(pageName) && exit === 'curtain'
-            ? playSectionLoad(state, pageContent, [{ opacity: 0 }, { opacity: 1 }], { duration: 420, delay: 140, easing: 'cubic-bezier(.2,.75,.2,1)' })
+            ? playSectionLoad(state, pageContent, [{ opacity: 0 }, { opacity: 1 }], { duration: 360, delay: 100, easing: 'cubic-bezier(.2,.75,.2,1)' })
             : Promise.resolve(true);
           const results = await Promise.all([
-            playSectionLoad(state, state.content, runner, { duration: vertical ? 560 : 650, easing: 'cubic-bezier(.65,0,.25,1)' }),
-            playSectionLoad(state, state.node, wipe, { duration: vertical ? 560 : 650, easing: 'cubic-bezier(.65,0,.25,1)' }),
+            playSectionLoad(state, state.node, wipe, { duration: vertical ? 460 : 240, easing: 'cubic-bezier(.65,0,.25,1)' }),
             reveal
           ]);
           if (!results.every(Boolean) || !state.current()) {
@@ -1272,31 +1277,60 @@
         document.body.toggleAttribute('data-section-loading', Boolean(activeSectionLoad));
         syncMobileShell();
       }
-      function prepareProjectEntry(id, load) {
-        const state = projectTransition(catalogue[id], 'load');
-        state.wash.style.zIndex = '85'; state.wash.style.opacity = '1'; state.load = load;
-        state.entryGate = new Promise(resolve => { state.entryRelease = resolve; });
-        state.artReady = new Promise(resolve => { state.artResolve = resolve; });
-        const reveal = revealProject(id, state);
-        return { state, ready: state.artReady, reveal, release: value => state.entryRelease(value) };
-      }
       async function loadProject(id, sequence = null) {
-        const item = catalogue[id];
-        const origin = sequence === null ? null : focusLoop?.bounds(sequence);
-        const load = beginSectionLoad({ key: item.slug, label: item.title, surface: item.surface,
-          entrance: origin ? 'card' : 'fade', origin, onCancel: closePageImmediately });
-        syncSectionLoading(); load.node.tabIndex = -1; load.node.focus({ preventScroll: true });
-        let entry = null;
+        const item = catalogue[id], origin = sequence === null ? null : focusLoop?.bounds(sequence);
+        const state = projectTransition(item, 'lift');
+        state.wash.style.zIndex = '85'; state.wash.style.opacity = origin ? '0' : '1';
+        state.close.style.color = origin ? '#111' : sectionLoadInk(item.surface);
+        state.origin = origin;
+        if (origin) document.body.dataset.projectCardEntry = '';
+        let failed = false;
+        const resources = ensureCover(item); resources.catch(() => {});
         try {
-          const opened = await finishSectionLoad(load, {
-            ready: ensureCover(item),
-            prepare: async () => { entry = prepareProjectEntry(id, load); await entry.ready; },
-            retry: () => { if (entry) finishProjectTransition(entry.state); loadProject(id); }
-          });
-          if (!opened) { entry?.release(false); return; }
-          entry.release(true); await entry.reveal;
+          await ensureCover(item, false);
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          const card = el('div', 'study-project-lift'); card.setAttribute('aria-hidden', 'true');
+          card.style.width = `${item.w}px`; card.style.height = `${item.h}px`;
+          card.style.visibility = 'hidden'; state.nodes.add(card); document.body.append(card);
+          const image = el('img'); image.alt = ''; image.src = loadedCovers.get(item.slug).src; image.draggable = false; card.append(image);
+          await image.decode();
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          const width = Math.min(innerWidth * .90, innerHeight * .82 * item.w / item.h, origin ? origin.width * 1.18 : innerWidth * .65);
+          const height = width * item.h / item.w;
+          const destination = { left: (innerWidth - width) / 2, top: (innerHeight - height) / 2, width, height };
+          const source = origin || { left: destination.left + width * .10, top: destination.top + height * .10 + 20, width: width * .80, height: height * .80 };
+          const from = matrixForQuad(rectangleQuad(source), item.w, item.h), to = matrixForQuad(rectangleQuad(destination), item.w, item.h);
+          card.style.transform = from; card.style.removeProperty('visibility');
+          if (sequence !== null) {
+            state.face = planes.find(record => record.sequence === sequence)?.face;
+            if (state.face) state.face.style.visibility = 'hidden';
+          }
+          if (!await state.play(card, [{ transform: from, opacity: 1 }, { transform: to, opacity: 1 }], { duration: 520, easing: 'cubic-bezier(.2,.75,.2,1)' })) return false;
+          document.body.dataset.projectTransition = 'color';
+          const filled = await Promise.all([
+            state.play(state.wash, [{ opacity: origin ? 0 : 1 }, { opacity: 1 }], { duration: 340, easing: 'ease-in-out' }),
+            state.play(card, [{ opacity: 1 }, { opacity: 0 }], { duration: 340, easing: 'ease-in-out' })
+          ]);
+          if (!filled.every(Boolean) || activeProjectTransition !== state) return false;
+          card.remove(); document.body.dataset.projectTransition = 'opening';
+          await resources;
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          await revealProject(id, state);
+          return activeProjectTransition === state && !state.cancelled;
+        } catch (error) {
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          failed = true; document.body.dataset.projectTransition = 'error';
+          state.wash.style.opacity = '1'; state.wash.style.color = sectionLoadInk(item.surface);
+          const message = el('div', 'study-project-entry-error');
+          message.append(el('p', '', 'No se pudo abrir el proyecto.'));
+          const actions = el('div', 'study-section-loader__actions');
+          const retry = el('button', '', 'Reintentar'); retry.type = 'button';
+          retry.addEventListener('click', () => { finishProjectTransition(state); loadProject(id, sequence); });
+          const back = el('button', '', 'Volver'); back.type = 'button'; back.addEventListener('click', closePage);
+          actions.append(retry, back); message.append(actions); state.wash.append(message); retry.focus({ preventScroll: true });
+          return false;
         } finally {
-          if (entry) { entry.release(false); finishProjectTransition(entry.state); }
+          if (!failed) finishProjectTransition(state);
           syncSectionLoading();
         }
       }
@@ -1314,13 +1348,23 @@
         if (startupPreparing) return;
         startupPreparing = true;
         const route = readPageAddress(), item = catalogue[route.project];
+        if (item) {
+          document.querySelector('.study-loader')?.remove();
+          try {
+            const opening = loadProject(route.project);
+            document.body.classList.remove('study-loading'); enteredAt = performance.now(); measure();
+            const opened = await opening;
+            addressReady = true;
+            if (opened) rememberPageAddress();
+          } finally { startupPreparing = false; stage.removeAttribute('aria-busy'); syncSectionLoading(); }
+          return;
+        }
         const surface = item?.surface || (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff');
         const load = beginSectionLoad({ key: item?.slug || route.view || 'home', label: item?.title || (route.view === 'about' ? 'Sobre mí' : route.view === 'contact' ? 'Contacto' : 'Proyectos'), surface,
           onCancel: () => { startupPreparing = false; document.body.classList.remove('study-loading'); enteredAt = performance.now(); closePageImmediately(); addressReady = true; measure(); syncSectionLoading(); }
         });
         document.querySelector('.study-loader')?.remove();
         stage.setAttribute('aria-busy', 'true'); syncSectionLoading();
-        let entry = null;
         try {
           const opened = await finishSectionLoad(load, {
             exit: ['about','contact'].includes(route.view) ? 'curtain' : 'sweep',
@@ -1333,11 +1377,11 @@
                 document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
               });
             },
-            ready: async () => {
-              await Promise.all([
-                item ? ensureCover(item) : !route.view ? Promise.all(catalogue.map(project => ensureCover(project, false))) : Promise.resolve(),
-                Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve,250))])
-              ]);
+            ready: async (signal, report) => {
+              const tasks = !route.view ? catalogue.map(project => () => ensureCover(project, false)) : [];
+              tasks.push(() => Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve,250))]));
+              let completed = 0;
+              await Promise.all(tasks.map(async task => { await task(); report(++completed / tasks.length); }));
             },
             prepare: async () => {
               if (!item && !route.view) await Promise.all(planes.map(async record => {
@@ -1345,21 +1389,18 @@
                 await record.image.decode().catch(() => {});
               }));
               enteredAt = performance.now(); measure(); document.body.classList.remove('study-loading');
-              if (item) { entry = prepareProjectEntry(route.project, load); await entry.ready; }
-              else if (route.view === 'about') openAbout(route.tab, true);
+              if (route.view === 'about') openAbout(route.tab, true);
               else if (route.view === 'contact') openContact(true);
               syncSectionLoading();
             }, retry: prepare
           });
-          if (!opened) { entry?.release(false); return; }
-          if (entry) { entry.release(true); await entry.reveal; }
+          if (!opened) return;
           addressReady = true; rememberPageAddress();
           if (route.lockedArchive) syncPageAddress('','',true);
           (pageName ? page : stage).focus({ preventScroll: true });
           if (pageName) document.querySelectorAll('.study-heading,.study-navigation,.study-projects').forEach(node => node.classList.add('study-chrome-enter'));
         } finally {
           startupPreparing = false; stage.removeAttribute('aria-busy');
-          if (entry) { entry.release(false); finishProjectTransition(entry.state); }
           syncSectionLoading();
         }
       }
@@ -1487,12 +1528,18 @@
         if (replace || !addressReady || address === location.pathname + location.search) history.replaceState(state, '', address);
         else history.pushState(state, '', address);
       }
-      function restorePageAddress(state) {
+      let historyVersion = 0;
+      async function restorePageAddress(state) {
         if (!addressReady) return;
-        const route = readPageAddress(); handlingHistory = true;
+        const route = readPageAddress(), version = ++historyVersion; handlingHistory = true;
         try {
           closePageImmediately();
           const historyItem = catalogue[route.project];
+          if (historyItem) {
+            const opened = await loadProject(route.project);
+            if (opened && version === historyVersion && Number.isFinite(state?.portfolio?.scrollTop)) page.scrollTop = state.portfolio.scrollTop;
+            return;
+          }
           const load = beginSectionLoad({ key: historyItem?.slug || route.view || 'home', label: historyItem?.title || route.view || 'Proyectos', surface: historyItem?.surface || (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff'), onCancel: closePageImmediately });
           finishSectionLoad(load, { ready: historyItem ? ensureCover(historyItem) : Promise.resolve(true) }).then(opened => { syncSectionLoading(); if (opened) (pageName ? page : stage).focus({preventScroll:true}); });
           if (route.project >= 0) renderProject(route.project);
@@ -1504,7 +1551,7 @@
           else if (!pageName && Number.isFinite(saved?.position)) {
             position = saved.position; focusLoop?.move(position); offset = target = position - drift(); pointer.inside = false; hovered = null; draw();
           }
-        } finally { handlingHistory = false; }
+        } finally { if (version === historyVersion) handlingHistory = false; }
         if (route.lockedArchive) syncPageAddress('','',true);
         if (route.view === 'about') syncPageAddress('about','',true);
         syncSectionLoading();
@@ -2091,6 +2138,7 @@
           finishAnimations() { state.animations.forEach(animation => animation.finish()); }
         };
         activeProjectTransition = state; syncCaseVideos();
+        document.querySelector('[data-logo-runner]')?.dispatchEvent(new Event('logo-runner:reset'));
         stopPreview();
         document.body.dataset.projectTransition = phase;
         stage.inert = true; navigation.inert = true; index.inert = true; page.inert = true;
@@ -2101,13 +2149,11 @@
       }
       function finishProjectTransition(state) {
         if (state !== activeProjectTransition) return;
-        state.entryRelease?.(false); state.artResolve?.(false);
-        if (state.load?.current()) cancelSectionLoad(state.load, 'transition');
         state.cancelled = true; state.animations.forEach(animation => animation.cancel());
         state.nodes.forEach(node => node.remove());
         state.face?.style.removeProperty('visibility'); state.cover?.style.removeProperty('visibility');
         page.style.removeProperty('opacity'); page.style.removeProperty('translate'); stage.style.removeProperty('visibility'); page.inert = false;
-        delete document.body.dataset.projectTransition; activeProjectTransition = null;
+        delete document.body.dataset.projectTransition; delete document.body.dataset.projectCardEntry; activeProjectTransition = null;
         stage.inert = Boolean(pageName); navigation.inert = pageName === 'project'; index.inert = Boolean(pageName);
         caseNavigation.removeAttribute('aria-busy'); casePrevious.disabled = caseNext.disabled = false;
         syncMobileShell();
@@ -2124,7 +2170,7 @@
         const width = media.isLogo ? media.w : coverWidth, height = media.isLogo ? media.h : coverHeight;
         clone.style.width = `${width}px`; clone.style.height = `${height}px`; clone.style.opacity = '0';
         clone.style.background = 'transparent';
-        const image = imageNode(media.isLogo ? { ...media, alt: '' } : { src: item.cover, alt: '', w: 800, h: 1000 }, false);
+        const image = el('img'); image.src = media.src; image.alt = ''; image.draggable = false;
         if (media.monochrome) image.classList.add('is-monochrome');
         clone.append(image); state.wash.append(clone); state.nodes.add(clone);
         const source = null;
@@ -2148,17 +2194,9 @@
         };
         placeClone(); clone.style.opacity = '0';
         if (state.face) state.face.style.visibility = 'hidden';
-        // Keep the transparent PNG aligned during resource preparation and the runner sweep.
-        window.addEventListener('resize', placeClone, { passive: true });
-        state.artResolve?.(true);
-        try {
-          if (state.entryGate && !await state.entryGate) return;
-        } finally {
-          window.removeEventListener('resize', placeClone);
-        }
         if (activeProjectTransition !== state || state.cancelled) return;
         placeClone();
-        // The runner leaves the project color first; the transparent PNG follows.
+        // The card has filled the color surface; only then reveal the PNG.
         document.body.dataset.projectTransition = 'opening';
         if(!await state.play(clone,[{opacity:0},{opacity:1}],{duration:200,easing:'ease-out'}))return;
         state.close.style.color = sectionLoadInk(item.surface);

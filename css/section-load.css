@@ -7,7 +7,7 @@
   place-items: center;
   overflow: clip;
   isolation: isolate;
-  background: var(--section-load-surface, #fff);
+  background: var(--section-load-base, #fff);
   color: var(--section-load-ink, #111);
   opacity: 1;
   clip-path: inset(0);
@@ -15,12 +15,35 @@
   touch-action: none;
 }
 
+.study-section-loader__wash {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: var(--section-load-surface, #fff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
 .study-section-loader__content {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 50%;
   display: grid;
   justify-items: center;
   gap: 18px;
-  width: min(100% - 48px, 380px);
+  width: 48px;
   text-align: center;
+  will-change: transform;
+}
+.study-section-loader[data-phase="error"] .study-section-loader__content {
+  left: 50%;
+  width: min(100% - 48px, 380px);
+  transform: translate(-50%, -50%);
+  color: #111;
+  padding: 20px;
+  background: #fff;
 }
 
 .study-section-loader .study-logo-loader {
@@ -72,21 +95,14 @@
 
 body[data-section-loading] .study-cursor { visibility: hidden; }
 
-.study-section-loader__content { transform:translateX(calc(-50vw + 48px)); }
-.study-section-loader[data-phase="error"] .study-section-loader__content { transform:none; }
-@media(prefers-reduced-motion:reduce){ .study-section-loader__content {transform:none;} }
+@media(prefers-reduced-motion:reduce){
+ .study-section-loader__content { left:50%; color:var(--section-load-rest-ink, #111); }
+}
 
 /* Only expose the previous frame while a fully opaque surface approaches it.
    The recycled loop is otherwise excluded from every section and transition. */
-body[data-section-entering]:not([data-study-page]) .study-stage,
 body[data-section-revealing="home"] .study-stage,
 body[data-project-transition="close-reveal"] .study-stage { display:block!important; }
-body[data-section-entering]:not([data-study-page]) .study-heading,
-body[data-section-entering]:not([data-study-page]) .study-navigation,
-body[data-section-entering]:not([data-study-page]) .study-projects { opacity:0; transition:opacity 160ms ease-out; }
-.study-section-loader[data-entrance="curtain"] .study-section-loader__content,
-.study-section-loader[data-entrance="fade"] .study-section-loader__content { transform:none; }
-.study-section-loader__content { transition:opacity 180ms ease-out; }
 body[data-loop-arriving] .study-heading,
 body[data-loop-arriving] .study-navigation,
 body[data-loop-arriving] .study-projects { visibility:hidden; }
@@ -96,3 +112,13 @@ body[data-loop-arriving] .study-projects { visibility:hidden; }
 
 /* Release completed entrance effects so later fades and focus can own opacity. */
 .study-chrome-enter { animation-fill-mode:backwards; }
+
+/* Only a project opened from its focused card retains the old scene while
+   that card approaches. It disappears once the colored surface is opaque. */
+body[data-project-card-entry]:not([data-study-page])[data-project-transition="lift"] .study-stage,
+body[data-project-card-entry]:not([data-study-page])[data-project-transition="color"] .study-stage { display:block!important; }
+.study-project-entry-error {
+ position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+ max-width:calc(100% - 48px);font-size:16px;text-align:center;
+}
+body[data-project-transition="error"] .study-transition-wash { pointer-events:auto; }
