@@ -6,7 +6,7 @@ const mod=(n,m)=>((n%m)+m)%m, clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), mix=
 const smooth=t=>{t=clamp(t);return t*t*t*(10+t*(-15+6*t))};
 const rm=matchMedia('(prefers-reduced-motion: reduce)');
 // One continuous scroll coordinate. Input is accepted even during a transition.
-const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:90,reverseMin:8,impulseMin:2,renewMin:100,browsePixels:180,browseMaxLead:2.5,browseSpeed:9,browseResponse:.085};
+const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:90,reverseMin:8,impulseMin:2,renewMin:100,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
 let pos=0,target=0,last=0,drag=null,active=-1,metaSeq=null,geo;
 let mode='idle',engagement=0,lastInput=-Infinity,idleStart=performance.now();
 let wheelGesture=null, pending=[], pointerGesture=null;
@@ -62,7 +62,9 @@ function fill(r,seq){const p=P[mod(seq,N)];r.seq=r.sequence=seq;r.hover=0;r.el.d
 function pose(d,f=0){
  const w=mix(geo.deckW,geo.focusW,f), s=w/CW;
  const m=new DOMMatrix();m.m34=-1/geo.persp;
- m.rotateAxisAngleSelf(1,0,0,-11*(1-f));m.rotateAxisAngleSelf(0,1,0,-31*(1-f));m.scaleSelf(s,s,s);
+ // Raise only the browsing camera; every focused pose keeps its approved angle.
+ const pitch=mix(-19,-11,engagement);
+ m.rotateAxisAngleSelf(1,0,0,pitch*(1-f));m.rotateAxisAngleSelf(0,1,0,-31*(1-f));m.scaleSelf(s,s,s);
  let l=Infinity,r=-Infinity,t=Infinity,b=-Infinity;
  for(const x of [-CW/2,CW/2])for(const y of [-CH/2,CH/2]){const v=m.transformPoint(new DOMPoint(x,y,0,1));l=Math.min(l,v.x/v.w);r=Math.max(r,v.x/v.w);t=Math.min(t,v.y/v.w);b=Math.max(b,v.y/v.w)}
  return {m,f,l,r,t,b,x:0,y:0};
@@ -127,7 +129,7 @@ function draw(dt=0){
  for(const [seq,g] of map){
   const r=planes[mod(seq,COUNT)];if(r.seq!==seq)fill(r,seq);
   const delay=clamp((seq-floor+4)*.035,0,.28);
-  const arrival=entrance?smooth((entrance.elapsed-delay)/.85):1;
+  const arrival=entrance?smooth((entrance.elapsed-delay)/1.60):1;
   // Same diagonal and camera as the resting stack, never a separate trajectory.
   const travel=(1-arrival)*geo.w*.8;
   const matrix=new DOMMatrix().translate(g.x+travel,g.y-travel*(geo.m?.20:.27),0).multiply(g.m);
@@ -205,7 +207,7 @@ function wheelInput(delta,now=performance.now()){
  if(!Number.isFinite(delta)||!delta)return;
  if(mode!=='active'&&mode!=='seeking'){
   wheelGesture=null;
-  browseBy(clamp(delta/SETTINGS.browsePixels,-1.5,1.5),now);
+  browseBy(clamp(delta/SETTINGS.browsePixels,-.55,.55),now);
   return;
  }
  const dir=Math.sign(delta),mag=Math.abs(delta),g=wheelGesture;
@@ -262,8 +264,8 @@ function frame(t){
  const dt=Math.min(.033,last?(t-last)/1000:1/60);last=t;
  if(entrance){
   entrance.elapsed+=dt*entrance.speed;
-  if(entrance.elapsed>.30&&entrance.onChrome){entrance.onChrome();entrance.onChrome=null}
-  if(entrance.elapsed>1.15)releaseEntrance();
+  if(entrance.elapsed>.55&&entrance.onChrome){entrance.onChrome();entrance.onChrome=null}
+  if(entrance.elapsed>1.95)releaseEntrance();
  }
  if(blocked){draw(dt);return;}
  if(mode==='active'){
@@ -291,7 +293,7 @@ function frame(t){
   engagement=rm.matches?0:approach(engagement,0,dt,SETTINGS.closeTime);
   if(engagement<.002){engagement=0;mode='idle';idleStart=t;target=pos}
  }else if(!rm.matches&&!drag&&hovered===null){
-  pos+=SETTINGS.autoSpeed*dt*smooth((t-idleStart)/SETTINGS.autoRamp);target=pos;
+  pos+=SETTINGS.autoSpeed*dt*smooth((t-idleStart-SETTINGS.browseRest)/SETTINGS.autoRamp);target=pos;
  }
  draw(dt);updateControls();bridge.paint(pos,hovered,planes);
 }

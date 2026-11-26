@@ -236,11 +236,11 @@
 
       .study-cursor { --cursor-fill: #fff; --cursor-ink: #111; position: fixed; z-index: 200; top: 0; left: 0; width: 0; height: 0; pointer-events: none; user-select: none; color: var(--cursor-ink); }
     .study-cursor[hidden] { display: none; }
-    .study-cursor__point { display: block; width: 8px; height: 8px; border: 1px solid #111; outline: none; border-radius: 50%; background: var(--cursor-fill); transform: translate(-50%,-50%) rotate(-45deg) scale(var(--cursor-scale,1)); transition: width 190ms var(--ui-ease), height 190ms var(--ui-ease), border-radius 140ms, transform 260ms var(--ui-ease), background-color 150ms; }
-    .study-cursor[data-mode="action"] .study-cursor__point { width: 19px; height: 19px; border-radius: 1px; transform: translate(-50%,-50%) rotate(135deg) scale(var(--cursor-scale,1)); }
-    .study-cursor[data-mode="drag"] .study-cursor__point { width: 15px; height: 15px; border-radius: 50%; transform: translate(-50%,-50%) rotate(45deg) scale(var(--cursor-scale,1)); }
+    .study-cursor__point { display: block; width: 6px; height: 6px; border: 1px solid #111; outline: none; border-radius: 50%; background: var(--cursor-fill); transform: translate(-50%,-50%) rotate(-45deg) scale(var(--cursor-scale,1)); transition: width 190ms var(--ui-ease), height 190ms var(--ui-ease), border-radius 140ms, transform 260ms var(--ui-ease), background-color 150ms; }
+    .study-cursor[data-mode="action"] .study-cursor__point { width: 13px; height: 13px; border-radius: 1px; transform: translate(-50%,-50%) rotate(135deg) scale(var(--cursor-scale,1)); }
+    .study-cursor[data-mode="drag"] .study-cursor__point { width: 10px; height: 10px; border-radius: 50%; transform: translate(-50%,-50%) rotate(45deg) scale(var(--cursor-scale,1)); }
     .study-cursor.is-pressed { --cursor-scale: .76; }
-    .study-cursor__label { position: absolute; display: block; width: max-content; max-width: calc(100vw - 40px); padding: 2px 4px; border: 1px solid #111; outline: none; background: var(--cursor-fill); color: var(--cursor-ink); font: 600 11px/1.3 "Albert Sans", Arial, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; visibility: hidden; transition: opacity 140ms var(--ui-ease), visibility 140ms; }
+    .study-cursor__label { position: absolute; display: block; width: max-content; max-width: min(140px, calc(100vw - 24px)); padding: 2px 5px; border: 0; border-radius: 2px; background: #111; color: #fff; font: 500 11px/1.3 "Albert Sans", Arial, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; visibility: hidden; transition: opacity 100ms ease-out, visibility 100ms; }
     .study-cursor.has-label .study-cursor__label { opacity: 1; visibility: visible; }
     @media (hover: hover) and (pointer: fine) {
       html.has-study-cursor, html.has-study-cursor * { cursor: none !important; }
@@ -2199,10 +2199,11 @@
         const point = el('span', 'study-cursor__point'), label = el('span', 'study-cursor__label');
         cursor.append(point, label); document.body.append(cursor);
         let x = 0, y = 0, mouse = false, inside = false, dirty = true, frameId = 0, lastKey = '', previousSequence = null;
-        let labelWidth = 0, labelHeight = 0, labelAnimation = null;
+        let labelWidth = 0, labelHeight = 0, labelTimer = 0, labelReady = false, hintTarget = null;
         const interactive = 'a[href],button,summary';
         const editable = 'input,textarea,select,[contenteditable]:not([contenteditable="false"])';
         function hide() {
+          clearTimeout(labelTimer); labelReady = false; lastKey = ''; hintTarget = null; cursor.classList.remove('has-label');
           cursor.hidden = true; document.documentElement.classList.remove('has-study-cursor');
           cursor.classList.remove('is-pressed');
         }
@@ -2248,34 +2249,77 @@
           }
           return neutral;
         }
+        function compactHint(target, state) {
+          if (!state.text || state.mode === 'drag') return '';
+          const control = target?.closest(interactive);
+          if (control?.matches('[data-pending]')) return '';
+          if (control?.matches('.study-case-images button,.study-archive-piece button')) return 'Ampliar';
+          if (target?.closest('.study-plane')) return state.text === 'Abrir proyecto' ? 'Abrir' : 'Enfocar';
+          // Text controls already explain themselves; do not repeat their labels.
+          const words = control?.textContent.replace(/[↑↓←→↗︎×+]/g, '').trim();
+          if (words) return '';
+          if (control?.matches('[data-case-previous],#prev')) return 'Anterior';
+          if (control?.matches('[data-case-next],#next')) return 'Siguiente';
+          if (control?.matches('#closeFocus')) return control.dataset.focus === 'true' ? 'Salir del foco' : 'Enfocar';
+          if (control?.matches('.study-menu-toggle')) return 'Abrir menú';
+          if (control?.matches('.study-menu-close,[data-lightbox-close]')) return 'Cerrar';
+          return state.text.length <= 22 ? state.text : 'Abrir';
+        }
+        function placeHint(target) {
+          const margin = 12, gap = 18;
+          const fit = (left, top) => ({ left: Math.max(margin, Math.min(left, innerWidth - labelWidth - margin)), top: Math.max(margin, Math.min(top, innerHeight - labelHeight - margin)) });
+          const choices = [fit(x + gap, y + gap), fit(x - labelWidth - gap, y + gap), fit(x + gap, y - labelHeight - gap), fit(x - labelWidth - gap, y - labelHeight - gap)];
+          const obstacles = [...document.querySelectorAll('.study-heading,.study-navigation,.study-projects,.nav-controls,.study-page-close,.study-case-navigation button,.study-about-selector,.study-form-actions,.study-menu-toggle')]
+            .filter(node => !node.closest('[hidden],[inert]') && getComputedStyle(node).visibility !== 'hidden')
+            .map(node => node.getBoundingClientRect()).filter(rect => rect.width && rect.height);
+          const control = target?.closest(interactive), rect = control?.getBoundingClientRect();
+          if (rect && rect.height <= 80) obstacles.push(rect);
+          // Near a toolbar, step outside the whole group rather than covering
+          // its neighboring buttons or losing the hint against the bottom edge.
+          for (const r of obstacles) if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+            choices.push(fit(x + gap, r.top - labelHeight - 10), fit(x + gap, r.bottom + 10), fit(r.right + 10, y + gap), fit(r.left - labelWidth - 10, y + gap));
+          }
+          const overlaps = (p, r) => p.left < r.right + 6 && p.left + labelWidth > r.left - 6 && p.top < r.bottom + 6 && p.top + labelHeight > r.top - 6;
+          for (const candidate of choices) {
+            if (obstacles.some(rect => overlaps(candidate, rect))) continue;
+            // Also avoid small controls outside the fixed navigation, e.g. form buttons.
+            const probes = [[candidate.left, candidate.top], [candidate.left + labelWidth / 2, candidate.top + labelHeight / 2], [candidate.left + labelWidth, candidate.top + labelHeight]];
+            const blocked = probes.some(([px, py]) => {
+              const hit = document.elementFromPoint(px, py)?.closest(interactive);
+              if (!hit) return false;
+              const r = hit.getBoundingClientRect();
+              return r.height <= 80 && overlaps(candidate, r);
+            });
+            if (blocked) continue;
+            label.style.left = `${candidate.left - x}px`; label.style.top = `${candidate.top - y}px`;
+            return true;
+          }
+          return false;
+        }
         function paint() {
           frameId = 0;
           if (!inside || !mouse || !fine.matches || document.hidden || document.body.classList.contains('study-loading')) { hide(); return; }
           const target = document.elementFromPoint(x, y);
           if (target?.closest(editable)) { hide(); return; }
           // The moving logo is the hover cue here; keep the cursor label from covering it.
-          if (target?.closest('[data-logo-runner]')) { cursor.hidden = true; document.documentElement.classList.add('has-study-cursor'); return; }
+          if (target?.closest('[data-logo-runner]')) { hide(); document.documentElement.classList.add('has-study-cursor'); return; }
           const host = lightbox.open ? lightbox : document.body;
           if (cursor.parentElement !== host) host.append(cursor);
           cursor.hidden = false; document.documentElement.classList.add('has-study-cursor');
           if (dirty) {
             dirty = false;
-            const state = context(target), key = `${state.mode}|${state.text}`;
-            if (key !== lastKey) {
-              lastKey = key; cursor.dataset.mode = state.mode; label.textContent = state.text;
-              cursor.classList.toggle('has-label', Boolean(state.text));
-              cursor.style.setProperty('--cursor-fill', '#fff');
-              cursor.style.setProperty('--cursor-ink', '#111');
+            const state = context(target), text = compactHint(target, state), key = `${state.mode}|${text}`;
+            const anchor = target?.closest('.study-plane,button,summary,a[href]') || target;
+            if (key !== lastKey || hintTarget !== anchor) {
+              lastKey = key; hintTarget = anchor; cursor.dataset.mode = state.mode; label.textContent = text;
+              clearTimeout(labelTimer); labelReady = false; cursor.classList.remove('has-label');
               labelWidth = label.offsetWidth; labelHeight = label.offsetHeight;
-              labelAnimation?.cancel();
-              if (state.text && !preference.matches) labelAnimation = label.animate([{ translate: '0 3px' },{ translate: '0 0' }], { duration: 160, easing: 'cubic-bezier(.2,.75,.2,1)' });
+              if (text) labelTimer = setTimeout(() => { labelReady = true; schedule(); }, 220);
             }
           }
           // Follow the actual hit point: no lag between the cursor and the moving card.
           cursor.style.transform = `translate3d(${x}px,${y}px,0)`;
-          const left = x + 22 + labelWidth > innerWidth - 10 ? -labelWidth - 22 : 22;
-          label.style.left = `${Math.max(10 - x, left)}px`;
-          label.style.top = `${Math.max(10-y, Math.min(-labelHeight/2, innerHeight-y-labelHeight-10))}px`;
+          cursor.classList.toggle('has-label', labelReady && Boolean(label.textContent) && !cursor.classList.contains('is-pressed') && placeHint(target));
         }
         document.addEventListener('pointermove', event => {
           mouse = event.pointerType === 'mouse'; inside = true; x = event.clientX; y = event.clientY; schedule();
@@ -2294,7 +2338,7 @@
         document.addEventListener('visibilitychange', () => { if (document.hidden) hide(); else schedule(); });
         document.addEventListener('keydown', () => { inside = false; hide(); }, { capture: true });
         fine.addEventListener('change', () => { if (!fine.matches) hide(); else schedule(); });
-        preference.addEventListener('change', () => { if (preference.matches) labelAnimation?.cancel(); schedule(); });
+        preference.addEventListener('change', schedule);
         lightbox.addEventListener('close', () => { document.body.append(cursor); lastKey = ''; schedule(); });
         return (force = false) => {
           if (force || previousSequence !== hovered) { previousSequence = hovered; schedule(); }

@@ -1,5 +1,13 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Scroll libre controlado y cámara elevada · 26 de noviembre de 2026
+
+Solo fuera del modo foco: bajar sensibilidad de rueda, limitar el adelanto a 0,85 tarjetas y la velocidad a 1,6 tarjetas/s, con respuesta de 220ms sin sobrepasos ni cola larga. Tras el gesto, reservar 900ms antes de recuperar gradualmente el avance automático. La cámara libre eleva su pitch de -11° a -19°, manteniendo yaw -31°. Al entrar a foco se recupera el pitch aprobado de -11° para la pila y 0° para la tarjeta frontal; no cambiar el gesto por proyecto, escala ni encuadre del foco.
+
+## Puntero compacto y entrada pausada · 26 de noviembre de 2026
+
+El círculo neutro mide 6px; rombo interactivo de 13px y círculo de arrastre de 10px. Etiqueta breve en blanco y negro, sin contorno, con demora de 220ms. Mostrarla solo donde aporta información, sin repetir botones con texto. Ubicarla en un cuadrante libre junto al puntero, evitando controles y bordes; si no hay lugar, ocultar solo la etiqueta. El foco de teclado, cursor nativo al editar y touch se conservan. La entrada diagonal de las tarjetas dura cerca de dos segundos, sin aumentar la espera del loader, y se acelera con interacción.
+
 ## Transiciones continuas, interiores preservados · 26 de noviembre de 2026
 
 Santiago aprobó trasladar únicamente las transiciones del modelo V29; no cambiar textos, imágenes, orden ni composiciones de los proyectos. La cámara y el modo doble del loop siguen vigentes. La primera entrada de tarjetas acompaña su diagonal con un desfase breve, coordinado con el barrido del corredor; la interfaz entra después y libera su opacidad al terminar. La entrada se acelera ante interacción sin bloquear ni encolar gestos adicionales.
