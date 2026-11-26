@@ -45,8 +45,12 @@ function measure(){
  const m=matchMedia('(max-width:600px), (max-width:900px) and (hover:none) and (pointer:coarse)').matches;
  const landscape=h<520&&w>h*1.4;
  const heading=document.querySelector('.study-heading').getBoundingClientRect();
- const nav=document.querySelector('.study-navigation').getBoundingClientRect();
- const top=Math.max(heading.bottom,nav.bottom)+20;
+ const nav=document.querySelector('.study-navigation');
+ // Dropdowns overlay the scene; their animated height must never reframe it.
+ // Measure the fixed trigger row without hover transforms or mobile menu content.
+ const navBottom=!m&&nav.getClientRects().length
+  ?nav.getBoundingClientRect().top+Math.max(0,...[...nav.querySelectorAll('.study-nav-trigger')].map(button=>button.offsetHeight)):0;
+ const top=Math.max(heading.bottom,navBottom)+20;
  const bottom=document.querySelector('.nav-controls').getBoundingClientRect().top-16;
  const available=Math.max(80,bottom-top),metaW=landscape?Math.min(380,w*.43):w*(m?.86:.51);
  const metaH=captionHeight(metaW);

@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Foco estable al desplegar navegación · 26 de noviembre de 2026
+
+Abrir, cambiar o cerrar un desplegable no altera posición, tamaño ni metadatos de la tarjeta en foco. El encuadre reserva únicamente la fila fija de botones, excluyendo la altura animada de las listas y las transformaciones de hover. El menú móvil tampoco modifica la geometría del carrusel. Mantener las mediciones por resize y el comportamiento de navegación existentes.
+
 ## Entrada lateral escalonada del inicio · 26 de noviembre de 2026
 
 Al terminar el loader del inicio, despejar primero a una pantalla completamente blanca. Las tarjetas entran desde fuera del borde derecho conservando la cámara y diagonal aprobadas; ningún elemento debe aparecer ya colocado en el primer cuadro. Reservar unos 2,5s para las tarjetas, después revelar firma/logo, navegación e índice durante 320ms, y finalmente flechas/contador/control de foco durante 280ms. Habilitar rueda, arrastre, teclado y controles solo al completar esta última aparición; descartar los gestos recibidos durante la entrada, sin acelerarla ni dejar movimientos pendientes. Esta indicación reemplaza la aceleración anterior ante interacción. Pausar la secuencia al ocultar la pestaña y conservar movimiento reducido sin desplazamientos. No repetir la presentación al cerrar un proyecto ni alterar el foco, aperturas o interiores existentes.
