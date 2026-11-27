@@ -1,5 +1,11 @@
 # Santiago Barbieri — Portfolio
 
+## Actualización visual · 27 de noviembre de 2026
+
+Wildfolk presenta principalmente la línea de packaging con logotipo negro: 22 imágenes, mockups nuevos, etiquetas, marca y color, con textos breves. Dos columnas en escritorio y una en móvil, sin loop interno ni descargas. La primera línea gráfica permanece identificada como exploración previa. Los originales locales no se modifican; los derivados públicos están en `assets/images/wildfolk-web/`.
+
+Las transiciones entre Proyectos, Sobre mí y Contacto conservan la vista saliente hasta que el barrido la cubre, evitando el salto inicial a una pantalla vacía. El inicio no tiene corredor y las tarjetas entran una vez por sesión.
+
 ## Capas opacas y loader legible · 24 de noviembre de 2026
 
 El loader corredor se ve unos 1,35 segundos (700 ms de preparación mínima y barrido de 650 ms); espera más solo si faltan recursos. Recorre el ancho de la pantalla con el borde del color. Movimiento reducido conserva 1,3 segundos sin barrido. En proyectos aparece primero el fondo, luego el PNG transparente nativo; logo y fondo salen mediante la misma opacidad del contenedor, sin rectángulo propio ni fallback a portada. OLAS usa verde profundo; Club gris y logo monocromo para el contraste. Las secciones, transiciones y loaders excluyen por completo al escenario del loop con display:none para que las tarjetas recicladas no escapen por visibility. Contacto colorea toda la firma en rojo igual que Sobre mí en verde. No añadir bordes ni fondos a medios del lector. Las portadas derivadas conservan RGBA: Club, Orfeo y El Armado tienen una franja transparente inferior que nunca debe convertirse a RGB negro; las caras del carrusel tampoco pintan un fondo detrás de esa franja.

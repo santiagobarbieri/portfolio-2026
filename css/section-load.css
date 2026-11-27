@@ -137,3 +137,6 @@ body[data-project-card-entry]:not([data-study-page])[data-project-transition="co
  max-width:calc(100% - 48px);font-size:16px;text-align:center;
 }
 body[data-project-transition="error"] .study-transition-wash { pointer-events:auto; }
+
+/* The departing page stays visible until the running edge actually covers it. */
+.study-section-loader[data-direction="return"] .study-section-loader__wash { transform-origin: right center; }

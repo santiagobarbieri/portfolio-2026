@@ -1,5 +1,15 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Wildfolk visual y barrido integrado · 27 de noviembre de 2026
+
+Santiago pidió rediseñar completamente Wildfolk con predominio de imágenes y confirmó como principal la nueva línea con logo negro de `Escritorio/FOR ZIP - WILDFOLK 2`. Usar mockups sobre hielo, familia de latas, etiquetas planas y extendidas, lettering/isotipo y tres colores aportados: #EFB400, #D66600 y #130F06. La portada y los previews de Wildfolk representan esa línea; la apertura conserva tarjeta→color→PNG, ahora dorado con la marca transparente en negro. Los demás casos no cambian.
+
+El caso deja atrás la ficha fija 58/42: dos columnas de medios del mismo ancho en escritorio y una en móvil, recorrido finito y márgenes libres para los comandos. Texto breve, centrado en decisiones y entregables; 22 imágenes con zoom individual, sin descargas. Seis personajes y cuatro afiches siguen como selección propia; identificar los afiches, posavasos y mockups anteriores como primera exploración gráfica, sin confundirlos con la línea nueva. Conservar la mención de proyecto personal/marca ficticia y la exploración de personajes asistida por IA. No inventar cliente, producción ni resultados.
+
+Los derivados nuevos de `wildfolk-web` mantienen las proporciones y originales intactos: previews hasta 1400px y ampliaciones hasta 2400px. `ice-pair`, `can-diagonal`, `can-trio`, `ice-detail`, `golden-label` e `ipa-wrap` provienen de FOR ZIP; `coaster` y `lettering`, de Escritorio/WILDFOLK. Cargar las dos primeras imágenes antes de revelar el lector; las demás usan carga diferida y la ampliación mayor se solicita al hacer clic.
+
+En las transiciones de Sobre mí/Contacto, la vista saliente permanece visible bajo la capa transparente hasta que el barrido la cubre completamente. Solo entonces se monta la vista nueva bajo el color opaco. El regreso cubre desde la derecha con el corredor espejado; ambos sentidos revelan después el destino mediante una salida horizontal continua. No esconder el carrusel ni sus controles prematuramente durante este tramo, ni permitir que escapen dentro de una sección ya abierta. Historial y cancelación limpian el estado intermedio. El inicio sigue sin corredor y la entrada de tarjetas no se repite al navegar.
+
 ## Corredor rápido y entrada única por sesión · 27 de noviembre de 2026
 
 El inicio principal carga las portadas sobre blanco, sin corredor. La entrada lateral de tarjetas y la aparición escalonada de la interfaz se muestran una sola vez por sesión de pestaña, registrada en sessionStorage; navegar entre secciones, cerrar proyectos y recargar no las repite. Una sesión nueva permite verlas de nuevo. Mantener el bloqueo de interacción hasta completar esa primera entrada y respetar movimiento reducido.

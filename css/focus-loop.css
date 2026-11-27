@@ -46,7 +46,7 @@
 .nav-progress #closeFocus[data-focus="false"]:after {content:'+';font-size:20px;}
 .focus-meta[aria-hidden="true"] {pointer-events:none;}
 .focus-meta[aria-hidden="true"] .focus-open {pointer-events:none;visibility:hidden;}
-body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-project-transition] .nav-controls,body[data-project-transition] .focus-meta,body[data-section-loading] .nav-controls,body[data-section-loading] .focus-meta,body[data-mobile-menu="open"] .nav-controls,body[data-mobile-menu="open"] .focus-meta {visibility:hidden!important;pointer-events:none!important;}
+body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-project-transition] .nav-controls,body[data-project-transition] .focus-meta,body[data-section-loading]:not([data-section-underlay]) .nav-controls,body[data-section-loading]:not([data-section-underlay]) .focus-meta,body[data-mobile-menu="open"] .nav-controls,body[data-mobile-menu="open"] .focus-meta {visibility:hidden!important;pointer-events:none!important;}
 @media(max-width:700px){.focus-meta{grid-template-columns:50px 1fr;gap:6px}.focus-meta h2{font-size:17px}.focus-meta p{font-size:13px}.focus-kind{grid-column:2;text-align:left}}
 
 .study-plane__face,.focus-meta,.nav-controls button { border:0!important; outline-offset:3px; }
@@ -62,7 +62,7 @@ body[data-study-page] .nav-controls,body[data-study-page] .focus-meta,body[data-
 /* Inline visibility on a recycled card cannot escape this hidden scene. */
 body[data-study-page] .study-stage,
 body[data-project-transition] .study-stage,
-body[data-section-loading] .study-stage { display:none!important; }
+body[data-section-loading]:not([data-section-underlay]) .study-stage { display:none!important; }
 
 /* One-pixel strokes remain thin when a nine-unit icon is enlarged. */
 .ui-arrow path,
