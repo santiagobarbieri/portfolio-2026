@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portfolio
 
+## Wildfolk y foco sostenido · 27 de noviembre de 2026
+
+El scroll sostenido en foco continúa por pasos con paradas completas y sin cola de movimientos. Las cajas comparten medida mínima y crecen para mostrar textos largos completos. Wildfolk usa una grilla de cuatro elementos por fila (dos en móvil), pies alineados abajo a la derecha y dos portadas a pantalla completa al final, superpuestas sobre la paleta. Se retiran el navegador de secciones y las acciones Recorrer.
+
 ## Interfaz y foco · 27 de noviembre de 2026
 
 Cajas compartidas en css/interface-boxes.css para navegación, índice, acciones y labels. Foco sin consumir gestos antes del asentamiento y con soporte para deltas finos de trackpad. Wildfolk presenta fotos de borde a borde; las piezas planas y sus originales completos permanecen accesibles mediante ampliación.

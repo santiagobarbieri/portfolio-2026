@@ -197,8 +197,6 @@
     .study-case-hero__intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 150px); padding: 34px max(32px, 10vw) 64px; }
     .study-case-hero__intro .study-page-title { font-size: clamp(28px, 3.2vw, 48px); margin-bottom: 12px; }
     .study-case-hero__intro .study-page-copy { max-width: 540px; margin: 0; }
-    .study-case-start { display: inline-block; margin-top: 24px; }
-    .study-case-start:is(:hover,:focus-visible) { transform: translateY(3px); }
     .study-case-flow { display: block; max-width: 1200px; padding: 0 clamp(32px, 5vw, 80px); margin: 0 auto; }
     .study-case-section { display: grid; grid-template-columns: minmax(0,.75fr) minmax(0,1.25fr); gap: clamp(32px, 5vw, 72px); align-items: start; padding: 36px 0 64px; }
     .study-case-section__copy { min-width: 0; max-width: 360px; }
@@ -298,7 +296,6 @@
     .study-case-section { gap: clamp(28px, 3vw, 48px); padding: 28px 0 52px; }
     .study-case-section h3 { font-size: clamp(24px, 2.2vw, 32px); }
     .study-case-images button:is(:hover,:focus-visible) { transform: translateY(-2px); }
-    .study-case-start:is(:hover,:focus-visible) { transform: translateY(2px); }
     .study-case-end { width: var(--case-column-width); margin: 0 auto; padding: 24px 0 72px; }
     .study-case-navigation button:first-child:not(:disabled):is(:hover,:focus-visible) > span { transform: translateX(-2px); }
     .study-case-navigation button:last-child:not(:disabled):is(:hover,:focus-visible) > span { transform: translateX(2px); }
@@ -997,7 +994,7 @@
       }
       function attachMediaState(image, src) {
         const host = image.parentElement;
-        if (!image.isConnected || !host?.matches('.study-case-images button,.study-archive-piece button')) return;
+        if (!image.isConnected || !host?.matches('.study-case-images button,.study-archive-piece button,.wildfolk-piece__open')) return;
         const originalLabel = host.getAttribute('aria-label');
         const state = { version: 0, spinner: 0, timeout: 0, status: null, begin: null };
         mediaStates.set(image, state);
@@ -1971,8 +1968,6 @@
           });
         }, { root: page, rootMargin: '80px 0px', threshold: .06 });
         page.querySelectorAll('.study-case-section .study-case-images').forEach(art => observer.observe(art));
-        const start = page.querySelector('[data-case-start]');
-        start?.addEventListener('click', () => page.querySelector('.study-case-section')?.scrollIntoView({ block: 'start', behavior: preference.matches ? 'instant' : 'smooth' }), { signal: controller.signal });
         return () => {
           controller.abort(); observer.disconnect();
           effects.forEach(animation => animation.cancel()); document.body.classList.remove('study-case-on-cover', 'study-close-on-cover'); caseNavigation.classList.remove('on-case-cover');
@@ -2078,58 +2073,9 @@
             });
           }
         },{root:page,threshold:.08,rootMargin:'0px 0px -24px'});
-        flow.querySelectorAll('.wildfolk-section--packaging,.wildfolk-section--labels,.wildfolk-section--characters').forEach(section=>observer.observe(section));
+        flow.querySelectorAll('.wildfolk-section--packaging,.wildfolk-section--elements').forEach(section=>observer.observe(section));
         preference.addEventListener('change',()=>{if(preference.matches)effects.forEach(animation=>animation.cancel())},{signal:controller.signal});
         return()=>{controller.abort();observer.disconnect();effects.forEach(animation=>animation.cancel())};
-      }
-
-      function setupWildfolkChapters(flow, chapters) {
-        const controller = new AbortController(), {signal} = controller;
-        const nav = el('nav', 'wildfolk-chapters');
-        nav.setAttribute('aria-label', 'Secciones de Wildfolk');
-        const status = el('span', 'wildfolk-chapters__status');
-        const count = el('span', 'wildfolk-chapters__count');
-        const name = el('span', 'wildfolk-chapters__name'); status.append(count, name);
-        const controls = [-1, 1].map(direction => {
-          const button = el('button', 'wildfolk-chapters__step'); button.type = 'button';
-          button.dataset.chapterStep = String(direction);
-          button.setAttribute('aria-label', direction < 0 ? 'Sección anterior' : 'Sección siguiente');
-          button.innerHTML = `<svg class="ui-arrow ui-arrow--${direction < 0 ? 'up' : 'down'}" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>`;
-          return button;
-        });
-        nav.append(status, ...controls); pageContent.append(nav);
-        let current = -1, frame = 0;
-        function update() {
-          frame = 0;
-          const top = page.getBoundingClientRect().top + Math.min(120, page.clientHeight * .22);
-          let next = 0;
-          chapters.forEach((chapter, index) => { if (chapter.getBoundingClientRect().top <= top) next = index; });
-          if (page.scrollTop >= page.scrollHeight - page.clientHeight - 2) next = chapters.length - 1;
-          if (next === current) return;
-          current = next; count.textContent = `${current + 1}/${chapters.length}`;
-          name.textContent = chapters[current].dataset.chapter;
-          controls[0].disabled = current === 0; controls[1].disabled = current === chapters.length - 1;
-          controls.forEach((button,index) => {
-            const target = chapters[current + (index ? 1 : -1)];
-            button.title = target ? target.dataset.chapter : '';
-          });
-        }
-        function schedule() { if (!frame) frame = requestAnimationFrame(update); }
-        function goTo(index) {
-          const target = chapters[Math.max(0, Math.min(index, chapters.length - 1))];
-          // Stop a pending wheel interpolation before navigating to an exact chapter.
-          page.dispatchEvent(new Event('reader:navigate'));
-          // The first overlapping mockup starts at its group, even while pinned.
-          const anchor = getComputedStyle(target).position === 'sticky' ? target.parentElement : target;
-          const top = page.scrollTop + anchor.getBoundingClientRect().top - page.getBoundingClientRect().top;
-          page.scrollTo({top, behavior: preference.matches ? 'instant' : 'smooth'});
-        }
-        controls.forEach((button,index) => button.addEventListener('click', () => goTo(current + (index ? 1 : -1)), {signal}));
-        flow.querySelector('[data-wildfolk-start]')?.addEventListener('click', () => goTo(1), {signal});
-        page.addEventListener('scroll', schedule, {passive: true, signal});
-        window.addEventListener('resize', schedule, {passive: true, signal});
-        update();
-        return () => { controller.abort(); cancelAnimationFrame(frame); nav.remove(); };
       }
 
       // Wildfolk is a finite sequence of viewport-framed visual deliverables.
@@ -2143,14 +2089,14 @@
           labels.forEach((label, index) => { const tag = el('span', `wildfolk-tag wildfolk-tag--${index + 1}`, label); tag.title = label; group.append(tag); });
           return group;
         };
-        const mediaButton = (im, { eager = false, full = false, caption = true } = {}) => {
+        const mediaButton = (im, { eager = false, full = false, caption = true, element = false } = {}) => {
           const figure = el('figure', 'wildfolk-piece');
           const button = el('button', 'wildfolk-piece__open'); button.type = 'button';
           button.setAttribute('aria-label', `Ampliar ${im.alt || im.label}`); button.setAttribute('aria-haspopup', 'dialog');
           const image = imageNode(im, !eager);
           if (im.fullSrc && im.fullW > im.w) {
             image.srcset = `${im.src} ${im.w}w, ${im.fullSrc} ${im.fullW}w`;
-            image.sizes = full ? '100vw' : '(max-width: 600px) 100vw, 50vw';
+            image.sizes = full ? '100vw' : element ? '(max-width: 600px) 50vw, 25vw' : '(max-width: 600px) 100vw, 50vw';
           }
           if (im.monochrome) image.classList.add('is-monochrome');
           if (eager) image.fetchPriority = 'high';
@@ -2163,11 +2109,8 @@
         };
         const {hero,cover}=projectCoverHeader(item);hero.classList.add('wildfolk-intro');
         const intro=el('div','wildfolk-intro__copy'),visual=hero;
-        const start = el('button', 'wildfolk-intro__start', 'Recorrer'); start.type = 'button'; start.dataset.wildfolkStart = '';
-        start.insertAdjacentHTML('beforeend', '<svg class="ui-arrow ui-arrow--down" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>');
-        intro.append(el('h2','visually-hidden',item.title),tags(['Identidad visual','Packaging',String(item.year)]),start);
+        intro.append(el('h2','visually-hidden',item.title),tags(['Identidad visual','Packaging',String(item.year)]));
         hero.append(intro);flow.append(hero);
-        const media=openingMedia(item);
         const addSection = (key, title, images, options = {}) => {
           const section = el('section', `wildfolk-section${options.className ? ' ' + options.className : ''}`);
           section.dataset.chapter = options.navLabel || title; section.id = `wildfolk-${key}`;
@@ -2175,7 +2118,7 @@
           section.append(titleNode);
           if (options.label) section.append(tags([options.label], 'wildfolk-section__label'));
           const grid = el('div', `wildfolk-media-grid${options.full ? ' wildfolk-media-grid--full' : ''}`);
-          images.forEach(im => grid.append(mediaButton(im, {full:Boolean(options.full)})));
+          images.forEach(im => grid.append(mediaButton(im, {full:Boolean(options.full),element:Boolean(options.element)})));
           section.append(grid); flow.append(section); return { section, grid };
         };
         const colorSection = el('section', 'wildfolk-color-band'); colorSection.dataset.chapter = 'Color';
@@ -2187,39 +2130,35 @@
           const chip = el('div', 'wildfolk-color-band__chip'); chip.style.setProperty('--swatch', color.hex);
           chip.append(el('span', 'wildfolk-color-band__name', color.name), el('span', 'wildfolk-color-band__hex', color.hex));
           colorSection.append(chip);
-        }); flow.append(colorSection);
+        });
         const family=addSection('familia','Packaging principal',[art['can-pile']],{full:true,navLabel:'Familia'});
         const setting=addSection('hielo','Familia de latas',[art['can-wall']],{full:true,navLabel:'Aplicación'});
         const scenes=el('div','wildfolk-scene-pair');family.section.before(scenes);scenes.append(family.section,setting.section);
         addSection('packaging','Mockups de producto',[art['can-diagonal'],art['ice-detail']],{className:'wildfolk-section--packaging',navLabel:'Detalles'});
-        addSection('etiquetas','Etiquetas',[art['golden-label'],art['ipa-wrap'],{...art.lettering,label:'Firma de marca'}],{className:'wildfolk-section--labels'});
-        addSection('personajes', 'Personajes', item.blocks[3].images, {className:'wildfolk-section--characters',label:'Personajes · Exploración asistida por IA'});
-        // Start with the delivered family; explain the visual system after seeing it in use.
-        flow.append(colorSection);
-        const signature = el('section', 'wildfolk-signature'); signature.dataset.chapter = 'Cierre'; signature.setAttribute('aria-label', 'Wildfolk · Logotipo');
-        signature.append(mediaButton({...media,monochrome:true,label:'Wildfolk · Identidad visual'}, {caption:false})); flow.append(signature);
+        const elements=addSection('elementos','Elementos de identidad',[art['golden-label'],art['ipa-wrap'],{...art.lettering,label:'Firma de marca'}, {...item.blocks[2].images[1],monochrome:true}, ...item.blocks[3].images],{className:'wildfolk-section--elements',element:true});
+        elements.section.append(tags(['Personajes · Exploración asistida por IA'],'wildfolk-section__note'));
+        // The color sheet anchors the full-screen project handoff.
+        const signature = el('section', 'wildfolk-signature'); signature.dataset.chapter = 'Cierre'; signature.setAttribute('aria-label', 'Color y continuación del recorrido');
+        signature.append(colorSection);flow.append(signature);
         const end = el('nav','wildfolk-end'); end.setAttribute('aria-label', 'Continuar a otro proyecto');
-        const endHeading=el('div','wildfolk-end__heading');endHeading.append(tags(['Continuar recorrido']),tags([`Wildfolk · ${item.year}`]));end.append(endHeading);
         [-1,1].forEach(direction => {
           const targetItem = catalogue[modulo(id + direction, catalogue.length)];
           const button = el('button', 'wildfolk-end__link'); button.type = 'button';
           button.setAttribute('aria-label', `${direction < 0 ? 'Proyecto anterior' : 'Próximo proyecto'}: ${targetItem.title}`);
           button.dataset.wildfolkStep = String(direction);
-          const label=el('span','wildfolk-end__text',targetItem.title);
+          const caption=el('span','wildfolk-end__caption');
+          const label=tags([`${direction < 0 ? 'Anterior' : 'Siguiente'} · ${targetItem.title}`]);
           const preview=imageNode({src:targetItem.cover,w:targetItem.w,h:targetItem.h,alt:''});preview.className='wildfolk-end__preview';
           const arrow = `<svg class="ui-arrow ui-arrow--${direction < 0 ? 'left' : 'right'}" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>`;
-          if (direction < 0) button.insertAdjacentHTML('beforeend', arrow);
-          button.append(preview,label);
-          if (direction > 0) button.insertAdjacentHTML('beforeend', arrow);
+          caption.append(label);caption.insertAdjacentHTML('beforeend',arrow);
+          button.append(preview,caption);
           button.addEventListener('click', () => switchProject(direction)); end.append(button);
         }); signature.append(end);
         pageContent.append(flow);
         const ready = Promise.all([...hero.querySelectorAll('img')].map(image => image.decode())).then(()=>true).catch(()=>false);
         const clearReader = setupFiniteReader(flow, {arrange:false,drift:false});
         const clearJourney = setupCaseJourney(), clearMotion = setupWildfolkMotion(flow);
-        const chapters = [hero, family.section, setting.section, ...flow.querySelectorAll('.wildfolk-section--packaging,.wildfolk-section--labels,.wildfolk-section--characters'), colorSection, signature];
-        const clearChapters = setupWildfolkChapters(flow, chapters);
-        clearCaseJourney = () => {clearChapters();clearReader();clearJourney();clearMotion();delete document.body.dataset.caseLayout;};
+        clearCaseJourney = () => {clearReader();clearJourney();clearMotion();delete document.body.dataset.caseLayout;};
         updateCaseNavigation(id);
         return {item,hero,visual,intro,cover,ready};
       }
@@ -2244,9 +2183,7 @@
         const title = el('div');
         title.append(el('h2', 'study-page-title', item.title), el('p', 'study-page-note', `${item.type} · ${item.year}`));
         const copy = el('div');
-        const start = el('button', 'study-text-button study-case-start', 'Recorrer proyecto');
-        start.type = 'button'; start.dataset.caseStart = ''; start.insertAdjacentHTML('beforeend', '<svg class="ui-arrow ui-arrow--down" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>');
-        copy.append(el('p', 'study-page-copy', item.intro), start);
+        copy.append(el('p', 'study-page-copy', item.intro));
         intro.append(title, copy); storyIntro.append(intro);
         pageContent.append(hero);
         const flow = el('div', 'study-case-flow'); flow.append(storyIntro);
@@ -2419,11 +2356,10 @@
             const item = catalogue[Number(control.dataset.project)];
             return { mode: 'action', text: `Ver ${item.title}`, color: item.surface };
           }
-          if (control?.matches('[data-case-previous],[data-case-next],[data-case-step]')) return { mode: 'action', text: control.getAttribute('aria-label') || control.textContent.trim(), color };
+          if (control?.matches('[data-case-previous],[data-case-next],[data-case-step],[data-wildfolk-step]')) return { mode: 'action', text: control.getAttribute('aria-label') || control.textContent.trim(), color };
           if (control?.matches('.study-page-close,.study-transition-close,.study-case-end button')) return { mode: 'action', text: 'Volver a proyectos', color };
           if (control?.matches('.study-case-guide__arrow')) return { mode: 'action', text: control.getAttribute('aria-label'), color };
-          if (control?.matches('[data-case-start]')) return { mode: 'action', text: 'Recorrer proyecto', color };
-          if (control?.matches('.study-case-images button,.study-archive-piece button')) return { mode: 'action', text: 'Ampliar imagen', color: project?.surface || '#ff6b2c' };
+          if (control?.matches('.study-case-images button,.study-archive-piece button,.wildfolk-piece__open')) return { mode: 'action', text: 'Ampliar imagen', color: project?.surface || '#ff6b2c' };
           if (control?.matches('summary')) return { mode: 'action', text: `${control.parentElement.open ? 'Cerrar' : 'Abrir'} ${control.textContent.trim().toLocaleLowerCase('es')}`, color };
           if (control?.matches('[data-view]')) return { mode: 'action', text: control.closest('.is-page-active') ? 'Volver a proyectos' : control.getAttribute('aria-label') || control.textContent.trim(), color };
           if (control?.matches('[data-about-tab]')) return { mode: 'action', text: control.textContent.trim(), color: '#03b047' };
@@ -2441,7 +2377,7 @@
           if (!state.text || state.mode === 'drag') return '';
           const control = target?.closest(interactive);
           if (control?.matches('[data-pending]')) return '';
-          if (control?.matches('.study-case-images button,.study-archive-piece button')) return 'Ampliar';
+          if (control?.matches('.study-case-images button,.study-archive-piece button,.wildfolk-piece__open')) return 'Ampliar';
           if (target?.closest('.study-plane')) return state.text === 'Abrir proyecto' ? 'Abrir' : 'Enfocar';
           // Text controls already explain themselves; do not repeat their labels.
           const words = control?.textContent.replace(/[↑↓←→↗︎×+]/g, '').trim();

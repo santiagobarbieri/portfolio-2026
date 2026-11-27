@@ -6,7 +6,7 @@ const mod=(n,m)=>((n%m)+m)%m, clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), mix=
 const smooth=t=>{t=clamp(t);return t*t*t*(10+t*(-15+6*t))};
 const rm=matchMedia('(prefers-reduced-motion: reduce)');
 // One continuous coordinate; focus accepts one settled step per wheel gesture.
-const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:160,settle:90,impulseMin:2,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
+const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:160,settle:90,repeat:700,impulseMin:2,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
 let pos=0,target=0,last=0,drag=null,active=-1,metaSeq=null,geo;
 let mode='idle',engagement=0,lastInput=-Infinity,idleStart=performance.now();
 let wheelGesture=null, pending=[], pointerGesture=null, focusReadyAt=0;
@@ -175,10 +175,8 @@ function approach(value,goal,dt,tau,maxSpeed=Infinity){
  const e=goal-value;if(Math.abs(e)<.0001)return goal;
  return value+Math.sign(e)*Math.min(Math.abs(e),Math.abs(e)*(1-Math.exp(-dt/tau)),maxSpeed*dt);
 }
-// WheelEvent does not expose native trackpad gesture phases. Group the
-// entire burst (including momentum) by its inter-event silence and direction.
-// Only a new burst requests a step, independently of animation progress.
-// Browsing and focused navigation have independent input dynamics.
+// WheelEvent has no native gesture phases. Focus combines quiet gaps,
+// direction and meaningful held input, while browsing remains continuous.
 function browseBy(amount,now=performance.now()){
  if(inputBlocked())return;
  if(!amount)return;
@@ -202,8 +200,8 @@ function step(dir,now=performance.now(),explicit=false){
  if(Math.abs(target-pos)>.003||engagement<.99||(!explicit&&now<focusReadyAt))return false;
  pending.length=0;target=Math.round(pos)+dir;return true;
 }
-// A gesture is used only when its step actually starts. Continued deliberate
-// input can finish the short settling interval, without queuing a later move.
+// Consume momentum, but let sustained deliberate input advance again after
+// a complete stop. Never queue a wheel step or leave a burst locked forever.
 function wheelInput(delta,now=performance.now()){
  if(!Number.isFinite(delta)||!delta)return;
  if(mode!=='active'&&mode!=='seeking'){
@@ -211,9 +209,14 @@ function wheelInput(delta,now=performance.now()){
   browseBy(clamp(delta/SETTINGS.browsePixels,-.55,.55),now);return;
  }
  const dir=Math.sign(delta),mag=Math.abs(delta),g=wheelGesture;
- // Fractional momentum noise must not keep a completed gesture locked forever.
- if(g?.fired&&mag<Math.max(.15,Math.min(.6,g.peak*.01))){lastInput=now;return;}
- if(!g||now-g.at>=SETTINGS.quiet||dir!==g.dir)wheelGesture={at:now,dir,peak:mag,pixels:0,fired:false};
+ const quiet=!g||now-g.at>=SETTINGS.quiet;
+ const reversed=g&&dir!==g.dir;
+ const settled=mode==='active'&&Math.abs(target-pos)<.003&&engagement>=.99&&now>=focusReadyAt;
+ // A dying trackpad tail cannot repeat. A held wheel / a fresh strong swipe
+ // can repeat at a controlled cadence, even if no 160ms silence occurs.
+ const sustained=g?.fired&&settled&&now-g.started>=SETTINGS.repeat&&mag>=Math.max(4,Math.min(40,g.peak*.55));
+ if(quiet||reversed||sustained)wheelGesture={at:now,started:now,dir,peak:mag,pixels:0,fired:false};
+ else if(g.fired&&mag<Math.max(.15,Math.min(.6,g.peak*.01))){lastInput=now;return;}
  wheelGesture.at=now;wheelGesture.peak=Math.max(wheelGesture.peak,mag);
  if(!wheelGesture.fired){
   wheelGesture.pixels+=mag;

@@ -1,5 +1,14 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Foco sostenido, etiquetas completas y grilla de Wildfolk · 27 de noviembre de 2026
+
+El foco admite scroll rápido sostenido: después de detenerse completamente y de 700ms desde el paso anterior, un input de magnitud significativa puede iniciar otro paso. No encolar pasos ni repetir por colas de inercia decrecientes. Mantener gestos finos, dirección inversa y una parada de 90ms entre tarjetas; silencio de 160ms también inicia un gesto nuevo. Fuera de foco no cambia.
+
+Las cajas de interfaz comparten una medida mínima, tipografía y padding. Si el texto es largo, crecen a su ancho natural; solo al alcanzar el ancho disponible envuelven el texto, sin ellipsis ni recortes. En la grilla, el mínimo se limita al ancho de celda. Las etiquetas de imágenes se ubican debajo, a la derecha. Conservar legibilidad y filas táctiles de ancho completo en móvil.
+
+Wildfolk retira el navegador de secciones y Recorrer. Recorrer proyecto también se retira de los otros casos. Las fotografías conservan sus escenas completas, con espacio real para su pie. Etiquetas, firma, isotipo y seis personajes forman una grilla de cuatro columnas con celdas cuadradas y artes completos; móvil usa dos. Conservar la nota de exploración asistida por IA. El cierre superpone dos portadas grandes, anterior y siguiente, sobre la paleta: una pantalla completa, dos columnas en escritorio y dos filas en móvil, con navegación funcional. Sin marca repetida gigante ni miniaturas. Movimiento reducido elimina el sticky y los desplazamientos.
+
+
 ## Foco sin gestos perdidos y cajas compartidas · 27 de noviembre de 2026
 
 El gesto de rueda se consume únicamente si inicia un paso en foco. Si la tarjeta aún se acomoda, aceptar los eventos deliberados siguientes del mismo gesto al completar el asentamiento; no crear una cola ni avanzar sin recibir input nuevo. Acumular deltas pequeños para admitir trackpads precisos. Una ráfaga con inercia avanza solo una tarjeta; ignorar ruido fraccional residual, reconocer un cambio claro de dirección y permitir un gesto nuevo tras 160ms de silencio significativo. Asentamiento de 90ms, manteniendo parada completa entre tarjetas. El modo libre no cambia.
