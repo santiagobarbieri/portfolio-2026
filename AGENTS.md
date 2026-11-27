@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Corredor rápido y entrada única por sesión · 27 de noviembre de 2026
+
+El inicio principal carga las portadas sobre blanco, sin corredor. La entrada lateral de tarjetas y la aparición escalonada de la interfaz se muestran una sola vez por sesión de pestaña, registrada en sessionStorage; navegar entre secciones, cerrar proyectos y recargar no las repite. Una sesión nueva permite verlas de nuevo. Mantener el bloqueo de interacción hasta completar esa primera entrada y respetar movimiento reducido.
+
+Sobre mí y Contacto conservan el barrido de su color con el corredor del mismo color, ahora centrado sobre el borde: mitad dentro y mitad fuera, con contorno blanco fino. El recorrido tiene un mínimo de 850ms más la salida breve, y espera recursos reales si hace falta. Al cerrar esas secciones, también mediante historial, el color retrocede de derecha a izquierda y el personaje se refleja horizontalmente para volver corriendo. Cancelar elimina las capas y animaciones pendientes. Esta indicación reemplaza los mínimos y la ubicación anteriores del corredor. La apertura de proyectos sigue sin corredor; conservar su secuencia tarjeta→color→PNG y todos los interiores.
+
 ## Prueba editorial fija de Wildfolk · 26 de noviembre de 2026
 
 Solo Wildfolk adopta la nueva referencia: ficha de proyecto fija en el 58% izquierdo del escritorio y recorrido finito de imágenes en el 42% derecho. Blanco del portfolio, Albert Sans con descripción de 19–28px, etiquetas pequeñas y marca original en negro abajo. Abrir con el mockup en mano; después latas, afiches, firma/isotipo, personajes, paleta y lata aplastada. Mantener todos los assets existentes, sin duplicar el mockup ni agregar una barra de lectura. El texto confirma proyecto personal y marca ficticia; no inventar cliente, herramientas o resultados. Imágenes completas y zoom individual, sin descargas.

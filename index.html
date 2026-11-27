@@ -434,7 +434,7 @@
   <output class="visually-hidden" data-current>Plano 01 — Apolo Studios</output>
   <p class="study-notice" role="status" aria-live="polite" data-notice></p>
 
-  <div class="study-loader" role="status" aria-label="Cargando proyectos"><span class="study-logo-loader" data-logo-loader aria-hidden="true"></span></div>
+  <div class="study-loader" role="status" aria-label="Cargando proyectos"></div>
   <a class="study-card-info" href="#" aria-hidden="true" tabindex="-1"><h2 data-info-title></h2><p data-info-description></p><span class="study-card-info__year" data-info-year></span><span class="study-card-info__open">ABRIR <svg class="ui-arrow ui-arrow--out" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg></span></a>
   <section class="study-page" hidden tabindex="-1" aria-label="Contenido de la sección"><button class="study-page-close" type="button">Cerrar ×</button><div data-page-content></div></section>
   <nav class="study-case-navigation" hidden aria-label="Cambiar proyecto">
@@ -491,6 +491,12 @@
       const coverWidth = config.size * .80, coverHeight = config.size * .60;
       let enteredAt = Infinity, infoSequence = null, pageName = '', lastFocus = null, openingToken = 0, pageVideoObserver = null;
       let clearCaseJourney = null, clearPageExtras = null, activeProjectTransition = null;
+      let homeEntranceSeen = false;
+      try { homeEntranceSeen = sessionStorage.getItem('portfolio.home-entrance') === 'seen'; } catch {}
+      function rememberHomeEntrance() {
+        homeEntranceSeen = true;
+        try { sessionStorage.setItem('portfolio.home-entrance', 'seen'); } catch {}
+      }
 
       const navigation = document.querySelector('.study-navigation');
       const index = document.querySelector('.study-projects');
@@ -1105,20 +1111,23 @@
 
       function beginSectionLoad(options = {}) {
         cancelSectionLoad(activeSectionLoad, 'superseded');
-        const { key = 'home', label = 'Proyectos', surface = '#fff', minimum = 2200 } = options;
+        const { key = 'home', label = 'Proyectos', surface = '#fff', runner = true, returning = false, minimum = runner ? 850 : 0 } = options;
         const controller = new AbortController();
         const node = el('div', 'study-section-loader');
         node.style.setProperty('--section-load-surface', surface);
         node.style.setProperty('--section-load-ink', surface);
         node.style.setProperty('--section-load-rest-ink', sectionLoadInk(surface));
-        node.style.setProperty('--section-load-base', /^#(?:fff|ffffff)$/i.test(surface) ? '#e1e1e1' : '#fff');
+        node.style.setProperty('--section-load-base', '#fff');
+        node.dataset.direction = returning ? 'return' : 'forward';
+        node.dataset.runner = String(runner);
         node.dataset.sectionLoad = key; node.dataset.phase = 'loading';
         node.setAttribute('role', 'status'); node.setAttribute('aria-live', 'polite');
         node.setAttribute('aria-label', `Cargando ${label}`); node.setAttribute('aria-busy', 'true');
         const wash = el('div', 'study-section-loader__wash'); wash.setAttribute('aria-hidden', 'true');
         const content = el('div', 'study-section-loader__content');
         const status = el('span', 'visually-hidden', `Cargando ${label}`);
-        content.append(loadingMark(), status); node.append(wash, content);
+        if (runner) content.append(loadingMark());
+        content.append(status); node.append(wash, content);
         let resolveMinimum, resolveCancelled, resolveMotion;
         const state = {
           id: ++sectionLoadSequence, key, label, node, wash, content, status, controller,
@@ -1146,18 +1155,19 @@
           const clock = state.duration ? Math.min(1, elapsed / state.duration) : 1;
           const available = state.workReady ? 1 : Math.min(.94, .08 + state.progress * .86);
           const goal = Math.min(clock, available);
-          state.position = preference.matches ? goal : state.position + (goal - state.position) * (1 - Math.exp(-dt / 70));
-          if (state.workReady && clock === 1 && (preference.matches || state.duration === 0 || 1 - state.position < .001)) state.position = 1;
-          // One coordinate drives both actors. The runner is a separate layer,
-          // ahead of the fill, so the colored surface never clips its silhouette.
-          state.wash.style.transform = `scaleX(${preference.matches ? 1 : state.position})`;
-          state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(calc(${state.position * 100}vw - 2px), -50%, 0)`;
+          state.position = preference.matches ? goal : state.position + (goal - state.position) * (1 - Math.exp(-dt / 40));
+          if (state.workReady && clock === 1 && (preference.matches || state.duration === 0 || 1 - state.position < .006)) state.position = 1;
+          // The runner's center owns the edge: half inside the color, half outside.
+          // Returning erases the same surface from right to left.
+          const edge = returning ? 1 - state.position : state.position;
+          state.wash.style.transform = `scaleX(${!runner || preference.matches ? 1 : edge})`;
+          state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(calc(${edge * 100}vw - 24px), -50%, 0)`;
           state.node.dataset.progress = state.position.toFixed(4);
           if (state.position === 1 && state.workReady) { state.resolveMotion(true); return; }
           state.frame = requestAnimationFrame(advance);
         };
-        state.wash.style.transform = preference.matches ? 'scaleX(1)' : 'scaleX(0)';
-        state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : 'translate3d(-2px,-50%,0)';
+        state.wash.style.transform = !runner || returning || preference.matches ? 'scaleX(1)' : 'scaleX(0)';
+        state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(calc(${returning ? 100 : 0}vw - 24px),-50%,0)`;
         state.frame = requestAnimationFrame(advance);
         state.entered = Promise.resolve(true);
         return state;
@@ -1249,15 +1259,19 @@
           if (!laidOut || !state.current()) return false;
           state.phase = 'leaving'; state.node.dataset.phase = 'leaving'; state.node.setAttribute('aria-busy', 'false');
           onReveal?.();
-          const vertical = exit === 'curtain' || exit === 'return';
+          const vertical = !state.options.returning && (exit === 'curtain' || exit === 'return');
           const wipe = vertical
             ? [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: exit === 'return' ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)' }]
             : [{ opacity: 1 }, { opacity: 0 }];
           const reveal = ['about', 'contact'].includes(pageName) && exit === 'curtain'
-            ? playSectionLoad(state, pageContent, [{ opacity: 0 }, { opacity: 1 }], { duration: 360, delay: 100, easing: 'cubic-bezier(.2,.75,.2,1)' })
+            ? playSectionLoad(state, pageContent, [{ opacity: 0 }, { opacity: 1 }], { duration: 220, easing: 'cubic-bezier(.2,.75,.2,1)' })
             : Promise.resolve(true);
           const results = await Promise.all([
-            playSectionLoad(state, state.node, wipe, { duration: vertical ? 460 : 240, easing: 'cubic-bezier(.65,0,.25,1)' }),
+            playSectionLoad(state, state.node, wipe, { duration: vertical ? 220 : 180, easing: 'cubic-bezier(.65,0,.25,1)' }),
+            state.options.runner !== false && !preference.matches ? playSectionLoad(state, state.content, [
+              { transform: state.content.style.transform },
+              { transform: state.options.returning ? 'translate3d(-72px,-50%,0)' : 'translate3d(calc(100vw + 24px),-50%,0)' }
+            ], { duration: 140, easing: 'ease-out' }) : Promise.resolve(true),
             reveal
           ]);
           if (!results.every(Boolean) || !state.current()) {
@@ -1363,7 +1377,7 @@
           return;
         }
         const surface = item?.surface || (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff');
-        const load = beginSectionLoad({ key: item?.slug || route.view || 'home', label: item?.title || (route.view === 'about' ? 'Sobre mí' : route.view === 'contact' ? 'Contacto' : 'Proyectos'), surface,
+        const load = beginSectionLoad({ key: item?.slug || route.view || 'home', label: item?.title || (route.view === 'about' ? 'Sobre mí' : route.view === 'contact' ? 'Contacto' : 'Proyectos'), surface, runner: Boolean(route.view),
           onCancel: () => { startupPreparing = false; document.body.classList.remove('study-loading'); enteredAt = performance.now(); closePageImmediately(); addressReady = true; measure(); syncSectionLoading(); }
         });
         document.querySelector('.study-loader')?.remove();
@@ -1372,7 +1386,7 @@
           const opened = await finishSectionLoad(load, {
             exit: ['about','contact'].includes(route.view) ? 'curtain' : 'sweep',
             onReveal: () => {
-              if (item || route.view) return;
+              if (item || route.view || homeEntranceSeen) return;
               // Clear the loader onto an empty white stage before any card moves.
               document.body.dataset.loopArriving = 'preparing';
               syncMobileShell();
@@ -1395,7 +1409,7 @@
             }, retry: prepare
           });
           if (!opened) return;
-          if (!route.view) {
+          if (!route.view && !homeEntranceSeen) {
             document.body.dataset.loopArriving = 'cards';
             syncMobileShell();
             focusLoop?.enter({
@@ -1408,6 +1422,7 @@
                 document.querySelector('.nav-controls').classList.add('study-controls-enter');
               },
               onReady: () => {
+                rememberHomeEntrance();
                 delete document.body.dataset.loopArriving;
                 syncMobileShell(); stage.focus({ preventScroll: true });
               }
@@ -1440,8 +1455,8 @@
         if (activeProjectTransition || !pageName || preference.matches || panelAnimation) { closePageImmediately(); return; }
         if (pageName !== 'project') {
           const surface = pageName === 'about' ? '#03b047' : '#ef3333';
-          const load = beginSectionLoad({ key: 'home', label: 'Proyectos', surface, minimum: 0, entrance: 'fade', onCancel: closePageImmediately });
-          load.content.style.visibility = 'hidden'; syncSectionLoading();
+          const load = beginSectionLoad({ key: 'home', label: 'Proyectos', surface, returning: true, onCancel: closePageImmediately });
+          syncSectionLoading();
           try {
             await finishSectionLoad(load, {
               prepare: () => {
@@ -1550,6 +1565,8 @@
       async function restorePageAddress(state) {
         if (!addressReady) return;
         const route = readPageAddress(), version = ++historyVersion; handlingHistory = true;
+        const returning = !route.view && route.project < 0 && ['about','contact'].includes(pageName);
+        const returnSurface = pageName === 'about' ? '#03b047' : '#ef3333';
         try {
           closePageImmediately();
           const historyItem = catalogue[route.project];
@@ -1558,7 +1575,7 @@
             if (opened && version === historyVersion && Number.isFinite(state?.portfolio?.scrollTop)) page.scrollTop = state.portfolio.scrollTop;
             return;
           }
-          const load = beginSectionLoad({ key: historyItem?.slug || route.view || 'home', label: historyItem?.title || route.view || 'Proyectos', surface: historyItem?.surface || (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff'), onCancel: closePageImmediately });
+          const load = beginSectionLoad({ key: route.view || 'home', label: route.view || 'Proyectos', surface: returning ? returnSurface : (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : '#ffffff'), runner: returning || Boolean(route.view), returning, onCancel: closePageImmediately });
           finishSectionLoad(load, { ready: historyItem ? ensureCover(historyItem) : Promise.resolve(true) }).then(opened => { syncSectionLoading(); if (opened) (pageName ? page : stage).focus({preventScroll:true}); });
           if (route.project >= 0) renderProject(route.project);
           else if (route.view === 'about') openAbout(route.tab);

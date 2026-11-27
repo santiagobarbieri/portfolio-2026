@@ -57,6 +57,13 @@
   color: inherit;
 }
 
+/* Keep the colored silhouette readable on both sides of its moving edge. */
+.study-section-loader .study-logo-loader svg {
+  filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff)
+    drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
+}
+.study-section-loader[data-direction="return"] .study-logo-loader { transform: scaleX(-1); }
+
 .study-section-loader__message {
   margin: 0;
   font-size: 16px;
