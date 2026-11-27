@@ -1,5 +1,13 @@
 # Santiago Barbieri — Portfolio
 
+## Apolo, Orfeo, El Armado y Pósters V.1 · 27 de noviembre de 2026
+
+Los seis proyectos activos comparten el nuevo recorrido visual de referencia, con sus propias aplicaciones, color y descripción breve. Apolo reúne las cuatro colecciones confirmadas, firmas y video de Menorca; Orfeo separa prendas y recursos de marca; El Armado presenta ilustración, firma y pieza para historias. Se recuperaron exportaciones mayores de las fotografías aprobadas de Apolo y se conservaron intactos sus originales.
+
+**Archivo → Pósters V.1** abre los 67 afiches personales en una grilla escalonada de cuatro o seis columnas (dos en móvil), con búsqueda, scroll elástico por columnas y loop de tres bandas acotadas. La ampliación carga el original; el recorrido usa previews responsivas de 400/800px. Fotografía sigue con candado. Sin dependencias nuevas; inspiración conceptual en [ElasticGridScroll Variation 02](https://github.com/codrops/ElasticGridScroll/blob/main/js/demo2/index.js). Movimiento reducido conserva una grilla finita y estática.
+
+Validación: seis anchos entre 320 y 1920px; apertura/cierre y cambio entre los seis casos; contraste y separación de controles; grilla y ampliación; video automático en silencio; búsqueda, densidad, reciclado del loop, navegación por teclado y limpieza al cambiar a Sobre mí/Contacto. Sin errores de consola ni recursos faltantes en las pruebas.
+
 ## OLAS, Club de Economía y Wildfolk · referencias del 27 de noviembre de 2026
 
 Los tres casos adoptan las composiciones nuevas: portada completa, paleta y aplicación, fondo antes de la grilla y ficha final con tipografía y descripción breve. OLAS y Wildfolk presentan celdas cuadradas de igual alto, con una aplicación de lapiceras a doble ancho en OLAS. Club mantiene la secuencia más corta de su modelo. Anterior/Siguiente cambian al nombre y color del destino, con expansión lateral y acceso por teclado. Los controles aparecen después de la apertura; etiquetas sobre las imágenes y ampliación individual sin descargas.

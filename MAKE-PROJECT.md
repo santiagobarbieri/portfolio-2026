@@ -1,5 +1,15 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Sistema de referencia extendido y Pósters V.1 · 27 de noviembre de 2026
+
+La nueva indicación extiende la composición de referencia a Apolo Studios, Orfeo y El Armado. Los seis casos activos usan `catalogue[].presentation`: portada completa, paleta y aplicación, fondo antes de la grilla, grilla derecha de celdas cuadradas y ficha final breve. Mantener identidad y entregables propios; no inventar resultados ni atribuciones tipográficas. Apolo conserva Everywhere, Circles, Sahara y Menorca, las firmas y el video de Menorca sin controles, en loop y silencio al quedar visible. Orfeo separa Viamonte, Talcahuano y Lavalle de sellos y estampillas, sin recuperar créditos personales retirados. El Armado conserva la ilustración, su variante monocroma, la firma hueso sobre vino y la pieza para historias. Las marcas claras pueden usar su campo de color real para conservar contraste. Los controles sobre acentos oscuros usan tinta clara.
+
+Se recuperaron derivados de mayor tamaño de las fotografías aprobadas de Apolo desde la versión anterior, sin modificar originales. Previews y ampliaciones quedan en `assets/images/reference-cases/`. Las imágenes de prendas mantienen encaje completo y proporción nativa; no ampliar archivos por encima de su fuente.
+
+Pósters V.1 queda habilitado desde Archivo. Fotografía permanece bloqueada. La ruta `?view=posters` presenta los 67 afiches personales existentes, búsqueda y selector de cuatro o seis columnas; móvil usa dos. `assets/scripts/poster-wall.js` y `css/poster-wall.css` implementan una grilla escalonada con scroll nativo, desfase amortiguado por columna y tres bandas acotadas que se reciclan al recorrer el loop. No agregar GSAP ni deformar los artes. Inspiración conceptual: ElasticGridScroll Variation 02 de Codrops; implementación propia en vanilla JavaScript. Movimiento reducido muestra una grilla finita sin desfase ni reciclado. Ampliación individual del original, sin descarga. Cargar miniaturas responsivas de 400/800px; reservar los originales para la ampliación. Desmontar observadores, listeners y animaciones al salir, sin alterar el loop de proyectos ni su control de foco.
+
+Esta sección reemplaza las restricciones anteriores que limitaban el rediseño a tres casos y mantenían Pósters sin implementar.
+
 ## Composiciones de OLAS, Club de Economía y Wildfolk · 27 de noviembre de 2026
 
 Esta dirección reemplaza las distribuciones anteriores únicamente en estos tres casos. Usar `catalogue[].presentation`, `renderReferenceProject` y `css/wildfolk-case.css`: portada de 100svh; paleta vertical a la izquierda y aplicación a la derecha; fondo de la exposición que cubre primero la paleta; después entra la grilla derecha de dos columnas con celdas cuadradas de igual alto y piezas seleccionadas de doble ancho. Al terminar la grilla aparece, si existe, la imagen completa siguiente y luego la ficha final de tipografía, marca y descripción. Club conserva el recorrido breve de su referencia, sin inventarle una grilla. El scroll es finito, sin carrusel interno ni descargas; ampliar cada original por separado.
