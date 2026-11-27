@@ -367,6 +367,7 @@
   <link rel="stylesheet" href="./css/interface-boxes.css">
   <link rel="stylesheet" href="./css/wildfolk-case.css">
   <link rel="stylesheet" href="./css/poster-wall.css">
+  <link rel="stylesheet" href="./css/about-journey.css">
 </head>
 <body class="study-loading">
   <h1 class="study-heading">
@@ -454,6 +455,7 @@
 
 <script src="./assets/scripts/focus-loop.js"></script>
 <script src="./assets/scripts/poster-wall.js"></script>
+<script src="./assets/scripts/about-journey.js"></script>
   <script>
     (() => {
       let focusLoop=null;
@@ -1378,7 +1380,7 @@
           entrance: pageName ? 'fade' : 'curtain', onCancel: closePageImmediately });
         setMobileMenu(false, false); syncSectionLoading(); load.node.tabIndex = -1; load.node.focus({ preventScroll: true });
         try {
-          const opened = await finishSectionLoad(load, { prepare: () => { render(); syncSectionLoading(); }, exit: 'curtain', retry: () => loadPanel(kind, render) });
+          const opened = await finishSectionLoad(load, { prepare: async () => { await render(); syncSectionLoading(); }, exit: 'curtain', retry: () => loadPanel(kind, render) });
           if (opened) page.focus({ preventScroll: true });
         } finally { syncSectionLoading(); }
       }
@@ -1424,7 +1426,7 @@
                 await record.image.decode().catch(() => {});
               }));
               enteredAt = performance.now(); measure(); document.body.classList.remove('study-loading');
-              if (route.view === 'about') openAbout(route.tab, true);
+              if (route.view === 'about') await openAbout(route.tab, true);
               else if (route.view === 'contact') openContact(true);
               else if(route.view==='posters')openArchive('posters',true);
               syncSectionLoading();
@@ -1549,7 +1551,7 @@
         const requestedView = ['about','contact','archive','posters','photos'].includes(query.get('view')) ? query.get('view') : '';
         const lockedArchive = photographyLocked && requestedView === 'photos';
         const view = lockedArchive ? '' : requestedView === 'archive' ? 'posters' : requestedView;
-        const tab = ['testament','credentials'].includes(query.get('tab')) ? query.get('tab') : 'testament';
+        const tab = ['testament','work','interests','credentials'].includes(query.get('tab')) ? query.get('tab') : 'testament';
         return { project, view, tab, lockedArchive };
       }
       function rememberPageAddress() {
@@ -1587,9 +1589,9 @@
           }
           const load = beginSectionLoad({ key: route.view || 'home', label: route.view || 'Proyectos', surface: returning ? returnSurface : (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : route.view==='posters'?'#ff6b2c':'#ffffff'), runner: returning || Boolean(route.view), returning, live: true, onCancel: closePageImmediately });
           syncSectionLoading();
-          const opened = await finishSectionLoad(load, { prepare: () => {
+          const opened = await finishSectionLoad(load, { prepare: async () => {
             closePageImmediately(true, null, load);
-            if (route.view === 'about') openAbout(route.tab);
+            if (route.view === 'about') await openAbout(route.tab);
             else if (route.view === 'contact') openContact();
             else if (route.view) openArchive(route.view);
             else document.body.dataset.sectionRevealing = 'home';
@@ -1707,103 +1709,33 @@
       });
       function openAbout(tab = 'testament', prepared = false) {
         if (!prepared && !handlingHistory) { loadPanel('about', () => openAbout(tab, true)); return; }
-        activeAboutTab = ['testament','credentials'].includes(tab) ? tab : 'testament'; tab = activeAboutTab;
+        activeAboutTab = ['testament','work','interests','credentials'].includes(tab) ? tab : 'testament';
         beginPage('about', '¿QUIÉN ES SANTIAGO BARBIERI?', '#03b047');
-        const tabs = el('nav','study-page-index'); tabs.setAttribute('aria-label','Secciones de Sobre mí'); tabs.setAttribute('role','tablist'); tabs.setAttribute('aria-orientation',smallScreen.matches?'horizontal':'vertical');
-        const area = el('div'); area.setAttribute('role','tabpanel'); area.id = 'study-about-panel';
-        [['testament','Testamento'],['credentials','Credenciales']].forEach(([key,label]) => {
-          const button = el('button','',label); button.type = 'button'; button.setAttribute('role','tab'); button.setAttribute('aria-controls',area.id); button.setAttribute('aria-selected',String(key===tab));
-          button.addEventListener('click', () => renderAbout(key, area, tabs)); tabs.append(button); button.dataset.aboutTab = key; button.id = `study-about-tab-${key}`;
-        });
-        tabs.addEventListener('keydown', event => {
-          const buttons = [...tabs.querySelectorAll('button')], i = buttons.indexOf(document.activeElement);
-          if (['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','Home','End'].includes(event.key) && i >= 0) {
-            event.preventDefault(); const n = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : modulo(i + (['ArrowDown','ArrowRight'].includes(event.key) ? 1 : -1), buttons.length); buttons[n].click(); buttons[n].focus();
-          }
-        });
-        const selector = el('nav','study-about-selector'); selector.setAttribute('aria-label','Recorrer Sobre mí');
-        [-1,1].forEach((direction,index) => {
-          const button=el('button',''); button.type='button'; button.setAttribute('aria-label',direction<0?'Sección anterior':'Sección siguiente'); button.setAttribute('aria-controls',area.id);
-          button.innerHTML=direction<0?'<svg class="ui-arrow ui-arrow--left" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>':'<svg class="ui-arrow ui-arrow--right" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>';
-          button.addEventListener('click',()=>{const keys=['testament','credentials'];renderAbout(keys[modulo(keys.indexOf(activeAboutTab)+direction,keys.length)],area,tabs);});
-          selector.append(button); if(index===0) selector.append(el('span','study-about-selector__label','Testamento'));
-        });
-        pageContent.append(tabs,area,selector); renderAbout(tab,area,tabs);
-        clearPageExtras = setupAboutScroll(area, tabs);
-      }
-      function setupAboutScroll(area, tabs) {
-        const controller = new AbortController(), keys = ['testament', 'credentials'];
-        const { signal } = controller;
-        let distance = 0, direction = 0, lastWheel = 0, blockedUntil = 0, touch = null, animation = null;
-        const scrollers = target => {
-          const list = [];
-          for (let node = target instanceof Element ? target : null; node; node = node.parentElement) {
-            if (node.scrollHeight > node.clientHeight + 2 && /(auto|scroll)/.test(getComputedStyle(node).overflowY)) list.push(node);
-            if (node === page) break;
-          }
-          return list;
+        const journey = el('div','about-journey'); pageContent.append(journey);
+        const image = (src,w,h,alt) => ({src,w,h,alt});
+        const work = [
+          {slug:'apolo-studios',name:'Apolo Studios',detail:'Identidad, prendas y campañas',year:'2024–2026',image:image('./assets/images/reference-cases/apolo-everywhere-cafe.webp',1200,900,'Campaña Everywhere de Apolo Studios, en un café')},
+          {slug:'wildfolk',name:'Wildfolk',detail:'Identidad y packaging',year:'2026',image:image('./assets/images/wildfolk-web/ice-pair-1400.webp',1400,933,'Latas Wildfolk en hielo')},
+          {slug:'olas-ditella',name:'OLAS Di Tella',detail:'Identidad y campaña',year:'2026',image:image('./assets/images/reference-cases/olas-pins.webp',1400,910,'Aplicación de OLAS en pines verdes')},
+          {slug:'el-armado',name:'El Armado',detail:'Identidad visual',year:'2026',image:image('./assets/images/project-covers/el-armado.webp',1200,900,'Afiche de El Armado aplicado en un mockup')}
+        ];
+        const poster = id => {
+          const item = archiveItems.find(item=>item.id===id);
+          return {...item.preview,alt:item.alt};
         };
-        const canScroll = (node, step) => step > 0 ? node.scrollTop + node.clientHeight < node.scrollHeight - 2 : node.scrollTop > 2;
-        const change = step => {
-          const next = keys[keys.indexOf(activeAboutTab) + step];
-          if (!next || pageName !== 'about' || mobileMenuOpen || activeProjectTransition) return false;
-          animation?.cancel(); renderAbout(next, area, tabs); blockedUntil = performance.now() + 450;
-          if (!preference.matches) animation = area.animate([{ opacity: .4, translate: `0 ${step * 6}px` }, { opacity: 1, translate: '0 0' }], { duration: 180, easing: 'ease-out' });
-          return true;
-        };
-        tabs.addEventListener('click', () => { distance = 0; blockedUntil = performance.now() + 250; }, { signal });
-        pageContent.querySelector('.study-about-selector')?.addEventListener('click', () => { distance = 0; blockedUntil = performance.now() + 250; }, { signal });
-        page.addEventListener('wheel', event => {
-          if (pageName !== 'about' || mobileMenuOpen || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
-          if (Math.abs(event.deltaX) > Math.abs(event.deltaY) || !event.deltaY) return;
-          const step = Math.sign(event.deltaY);
-          if (scrollers(event.target).some(node => canScroll(node, step))) { distance = 0; return; }
-          const now = performance.now(), unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? page.clientHeight : 1;
-          if (now - lastWheel > 180 || step !== direction) distance = 0;
-          lastWheel = now; direction = step;
-          if (now < blockedUntil) { event.preventDefault(); return; }
-          if (!keys[keys.indexOf(activeAboutTab) + step]) return;
-          event.preventDefault(); distance += Math.abs(event.deltaY * unit);
-          if (distance >= 65) { distance = 0; change(step); }
-        }, { passive: false, signal });
-        page.addEventListener('touchstart', event => {
-          if (event.touches.length !== 1 || event.target.closest('button,a,summary,input,textarea,select,[contenteditable="true"]')) { touch = null; return; }
-          const point = event.touches[0];
-          touch = { x: point.clientX, y: point.clientY, tab: activeAboutTab, scroll: scrollers(event.target).map(node => ({ node, top: node.scrollTop })) };
-        }, { passive: true, signal });
-        page.addEventListener('touchend', event => {
-          const start = touch; touch = null;
-          if (!start || event.touches.length || start.tab !== activeAboutTab || performance.now() < blockedUntil || !getSelection()?.isCollapsed) return;
-          const point = event.changedTouches[0], delta = start.y - point.clientY;
-          if (Math.abs(delta) < 70 || Math.abs(point.clientX - start.x) > Math.abs(delta) * .65) return;
-          const step = Math.sign(delta);
-          if (start.scroll.some(({ node, top }) => Math.abs(node.scrollTop - top) > 2 || canScroll(node, step))) return;
-          change(step);
-        }, { passive: true, signal });
-        page.addEventListener('touchcancel', () => { touch = null; }, { passive: true, signal });
-        return () => { controller.abort(); animation?.cancel(); };
-      }
-      function renderAbout(tab, area, tabs) {
-        if (activeAboutTab === tab && area.childElementCount) return;
-        const initial = !area.childElementCount;
-        activeAboutTab = tab; page.scrollTop = 0;
-        const mobileLabel=pageContent.querySelector('.study-about-selector__label'); if(mobileLabel) mobileLabel.textContent=tab==='testament'?'Testamento':'Credenciales';
-        area.setAttribute('aria-labelledby', `study-about-tab-${tab}`); area.tabIndex = 0; syncPageAddress('about','',initial);
-        tabs.querySelectorAll('button').forEach(b => { const active = b.dataset.aboutTab === tab; b.setAttribute('aria-selected',String(active)); b.tabIndex = active ? 0 : -1; });
-        area.replaceChildren(); area.className = 'study-about-panel'; area.setAttribute('aria-label', {testament:'Testamento',credentials:'Credenciales'}[tab]);
-        if (tab === 'testament') {
-          const layout = el('div','study-about-testament'); layout.append(el('h2','study-page-title','Hola, soy Santiago y este es mi portfolio.'));
-          const portrait = el('div','study-portrait-pending','Retrato pendiente'); portrait.setAttribute('role','img'); portrait.setAttribute('aria-label','Espacio reservado para el retrato de Santiago'); layout.append(portrait);
-          const text = el('div','study-about-text');
-          [
-            'Trabajo entre la identidad visual, la dirección creativa, el desarrollo web y la fotografía. Me interesa cómo una idea cambia al pasar a una prenda, una campaña o una pantalla.',
-            'Soy cofundador y director creativo de Apolo Studios. Este portfolio reúne ese trabajo junto con identidades y campañas para marcas y organizaciones, además de mis exploraciones personales.'
-          ].forEach(p => text.append(el('p','',p)));
-          text.append(el('p','study-page-note','Testamento en edición. El texto definitivo y el retrato todavía están en preparación.')); layout.append(text); area.append(layout);
-        } else if (tab === 'credentials') {
-          const list = el('div','study-credentials');
-          [['Desarrollo web','Desarrollo web','Coderhouse'],['CAE','Inglés · Nivel C1','Cambridge University']].forEach(([title,detail,issuer]) => { const row=el('article','study-credential');row.append(el('h2','',title),el('p','',detail),el('p','',issuer));list.append(row); }); area.append(list);
-        }
+        const journeyAPI=createAboutJourney({scroller:page,root:journey,makeImage:imageNode,initial:activeAboutTab,work,
+          interests:[
+            {kind:'music',label:'Música · afiche personal',image:poster('poster-talking-heads')},
+            {kind:'cinema',label:'Cine · afiche personal',image:poster('poster-carrie')},
+            {kind:'design',label:'Diseño · tapa rediseñada',image:image('./assets/images/stephen-king/PET%20SEMATARY-800.webp',800,1132,'Rediseño personal de la tapa de Pet Sematary')},
+            {kind:'photography',label:'Fotografía · Zapallar',image:image('./assets/images/zapallar/IMG_4660-1600.webp',1600,898,'Costa de Zapallar, fotografía de Santiago Barbieri')}
+          ],
+          onChapter:key=>{activeAboutTab=key;syncPageAddress('about','',true)},
+          openProject:slug=>{const id=catalogue.findIndex(item=>item.slug===slug);if(id>=0&&!activeProjectTransition&&!activeSectionLoad)loadProject(id)},
+          close:closePage
+        });
+        clearPageExtras=()=>journeyAPI.destroy();
+        return journeyAPI.ready;
       }
       const contactSettings = Object.freeze({ endpoint: '', email: '' });
       function openContact(prepared = false) {
@@ -2334,6 +2266,7 @@
           if (control?.matches('.study-case-images button,.study-archive-piece button,.wildfolk-piece__open,.case-piece__open,.poster-piece__open')) return { mode: 'action', text: 'Ampliar imagen', color: project?.surface || '#ff6b2c' };
           if (control?.matches('summary')) return { mode: 'action', text: `${control.parentElement.open ? 'Cerrar' : 'Abrir'} ${control.textContent.trim().toLocaleLowerCase('es')}`, color };
           if (control?.matches('[data-view]')) return { mode: 'action', text: control.closest('.is-page-active') ? 'Volver a proyectos' : control.getAttribute('aria-label') || control.textContent.trim(), color };
+          if (control?.matches('[data-about-project]')) return {mode:'action',text:'Abrir proyecto',color:'#03b047'};
           if (control?.matches('[data-about-tab]')) return { mode: 'action', text: control.textContent.trim(), color: '#03b047' };
           if (control) return { mode: 'action', text: control.textContent.trim().replace(/[↑↓↗︎×]/g, '').trim() || control.getAttribute('aria-label') || 'Abrir', color };
           if (!pageName && stage.contains(target)) {
@@ -2365,7 +2298,7 @@
           const margin = 12, gap = 18;
           const fit = (left, top) => ({ left: Math.max(margin, Math.min(left, innerWidth - labelWidth - margin)), top: Math.max(margin, Math.min(top, innerHeight - labelHeight - margin)) });
           const choices = [fit(x + gap, y + gap), fit(x - labelWidth - gap, y + gap), fit(x + gap, y - labelHeight - gap), fit(x - labelWidth - gap, y - labelHeight - gap)];
-          const obstacles = [...document.querySelectorAll('.study-heading,.study-navigation,.study-projects,.nav-controls,.study-page-close,.study-case-navigation button,.study-about-selector,.study-form-actions,.study-menu-toggle')]
+          const obstacles = [...document.querySelectorAll('.study-heading,.study-navigation,.study-projects,.nav-controls,.study-page-close,.study-case-navigation button,.study-about-selector,.about-index,.about-controls,.study-form-actions,.study-menu-toggle')]
             .filter(node => !node.closest('[hidden],[inert]') && getComputedStyle(node).visibility !== 'hidden')
             .map(node => node.getBoundingClientRect()).filter(rect => rect.width && rect.height);
           const control = target?.closest(interactive), rect = control?.getBoundingClientRect();
