@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portfolio
 
+## Navegación y apertura · 27 de noviembre de 2026
+
+El foco avanza un proyecto por gesto y descarta la inercia y los movimientos en cola. Los seis casos abren expandiendo la misma portada del carrusel hasta su encabezado, sin pantalla de color ni logo intermedio. Cerrar invierte ese recorrido y vuelve al proyecto enfocado. La lectura sigue siendo finita; el home mantiene el loop libre.
+
 ## Actualización visual · 27 de noviembre de 2026
 
 Wildfolk ocupa el ancho completo con la nueva línea de packaging de logotipo negro: apertura inmersiva, mockups continuos, paleta y etiquetas rectangulares compactas. El cierre queda fijo arriba a la izquierda y la navegación entre proyectos está al final. Las exploraciones previas se identifican por separado; imágenes completas, ampliación individual y variantes responsivas, sin descargas. Los originales locales permanecen intactos.

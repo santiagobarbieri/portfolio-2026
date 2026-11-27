@@ -1,5 +1,13 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Portada continua y foco por gesto · 27 de noviembre de 2026
+
+Santiago retira la apertura de color y PNG independiente en todos los proyectos. La imagen exacta de la tarjeta enfocada se amplía hasta el ancho de pantalla y se convierte en el encabezado real, sin intercambio por otro asset. Conservar proporción: object-fit cover coincide con la tarjeta durante la expansión y llega al alto natural del encabezado. Preparar y decodificar el encabezado debajo de la misma imagen antes de entregar el control al lector; no introducir un flash de color ni un segundo logo. Los textos y entregables siguen después del encabezado. Wildfolk conserva su recorrido de borde a borde; el mockup anterior de apertura pasa al recorrido.
+
+Cerrar devuelve esa misma portada a la tarjeta enfocada. Si el encabezado quedó fuera de pantalla, recuperarlo con una aparición breve sobre la lectura actual, sin rebobinar el scroll del documento. Mantener la imagen opaca hasta intercambiarla por la tarjeta de idéntico encuadre; medir de nuevo el home y decodificar su cara antes de la entrega. Historial, URL directa, navegación entre proyectos, Escape, resize y movimiento reducido conservan limpieza de capas y foco. Sobre mí, Contacto y sus barridos no cambian.
+
+En modo foco, una ráfaga de rueda mueve como máximo un proyecto: consumir toda su inercia, sin detectar aceleraciones dentro del mismo gesto ni encolar movimientos recibidos durante el viaje. Exigir silencio de 220ms entre gestos y una tarjeta asentada; dejar 180ms de reposo al llegar. Un gesto nuevo permite el siguiente avance. Fuera de foco permanece el scroll continuo existente, con la cámara y el automatismo aprobados. Sincronizar el botón Abrir al seleccionar otro proyecto, sin habilitarlo durante el cambio.
+
 ## Wildfolk de borde a borde · 27 de noviembre de 2026
 
 La nueva referencia reemplaza los márgenes laterales y el ancho de lectura solo en Wildfolk: apertura, mockups y bandas visuales ocupan el 100% del viewport, sin franjas superiores, gutters ni loop interno. Conservar proporciones nativas e imágenes completas; usar el mockup nuevo de latas apiladas en la apertura y el de latas mezcladas en un bloque completo. Mantener la línea principal con logotipo negro elegida por Santiago. Las piezas previas siguen identificadas como primera exploración, sin cambiar la portada del home ni los demás proyectos.

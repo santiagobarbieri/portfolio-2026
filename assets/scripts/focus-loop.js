@@ -5,11 +5,11 @@ const mod=(n,m)=>((n%m)+m)%m, clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), mix=
 // Quintic easing: first and second derivatives are zero at both endpoints.
 const smooth=t=>{t=clamp(t);return t*t*t*(10+t*(-15+6*t))};
 const rm=matchMedia('(prefers-reduced-motion: reduce)');
-// One continuous scroll coordinate. The initial presentation is the only input gate.
-const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:90,reverseMin:8,impulseMin:2,renewMin:100,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
+// One continuous coordinate; focus accepts one settled step per wheel gesture.
+const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:220,impulseMin:2,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
 let pos=0,target=0,last=0,drag=null,active=-1,metaSeq=null,geo;
 let mode='idle',engagement=0,lastInput=-Infinity,idleStart=performance.now();
-let wheelGesture=null, pending=[], pointerGesture=null;
+let wheelGesture=null, pending=[], pointerGesture=null, focusReadyAt=0;
 let hovered=null, entrance=null;
 const ENTRY={cards:2.5,chrome:.32,controls:.28};
 function releaseEntrance(){if(!entrance)return;const done=entrance?.onReady;entrance=null;idleStart=performance.now();target=pos;wheelGesture=null;pending.length=0;done?.()}
@@ -170,7 +170,7 @@ function draw(dt=0){
  idx.inert=Boolean(entrance)||f>.45;
  const ringSeq=mode==='seeking'?target:center;updateProjectRing(ringSeq,dt);const a=mod(ringSeq,N);if(a!==active){active=a;idx.querySelectorAll('button').forEach((b,i)=>i===a?b.setAttribute('aria-current','true'):b.removeAttribute('aria-current'));$('projectProgress').setAttribute('aria-valuemax',N);$('projectProgress').setAttribute('aria-valuenow',a+1);$('projectProgress').setAttribute('aria-valuetext',`${P[a].t}, ${a+1} de ${N}`)}
 }
-// Monotone first-order filter: no spring, no overshoot and no input lock.
+// Monotone first-order filter: no spring or overshoot.
 function approach(value,goal,dt,tau,maxSpeed=Infinity){
  const e=goal-value;if(Math.abs(e)<.0001)return goal;
  return value+Math.sign(e)*Math.min(Math.abs(e),Math.abs(e)*(1-Math.exp(-dt/tau)),maxSpeed*dt);
@@ -191,54 +191,34 @@ function browseBy(amount,now=performance.now()){
  lastInput=now;
 }
 function step(dir,now=performance.now(),explicit=false){
- if(inputBlocked())return;
- if(!dir)return;
+ if(inputBlocked()||!dir)return;
  setHover(null);
- if(mode==='seeking'){pending.push(dir);lastInput=now;return}
+ // Never queue gestures while seeking or moving: every card gets a full stop.
+ if(mode==='seeking')return;
  if(mode!=='active'){
-  // Buttons and discrete swipes move one card without activating focus.
   const anchor=mode==='browsing'?Math.round(target):Math.round(pos);
   browseBy(anchor+dir-(mode==='browsing'?target:pos),now);return;
  }
  lastInput=now;
- const moving=Math.abs(target-pos)>.003;
- if(moving&&Math.sign(target-pos)!==dir){
-  pending.length=0;target=Math.round(target)+dir;return;
- }
- if(moving)pending.push(dir);
- else target=Math.round(target)+dir;
+ if(Math.abs(target-pos)>.003||engagement<.99||(!explicit&&now<focusReadyAt))return;
+ pending.length=0;target=Math.round(pos)+dir;
 }
-// Trackpad momentum can bridge two deliberate swipes with no silent gap.
-// Detect a renewed acceleration after the previous impulse has decayed.
-// The gesture detector is independent of the animation and its queue.
+// Consume the entire wheel burst, including its momentum. A new step requires
+// a quiet gap AND a settled card. Events received during travel are discarded.
 function wheelInput(delta,now=performance.now()){
  if(!Number.isFinite(delta)||!delta)return;
  if(mode!=='active'&&mode!=='seeking'){
   wheelGesture=null;
-  browseBy(clamp(delta/SETTINGS.browsePixels,-.55,.55),now);
-  return;
+  browseBy(clamp(delta/SETTINGS.browsePixels,-.55,.55),now);return;
  }
  const dir=Math.sign(delta),mag=Math.abs(delta),g=wheelGesture;
- const gap=g?now-g.at:Infinity;
- const fresh=!g||gap>=SETTINGS.quiet;
- const reversal=g&&!fresh&&dir!==g.dir&&mag>=SETTINGS.reverseMin;
- const renewed=g&&!fresh&&g.fired&&dir===g.dir&&
-  now-g.firedAt>=SETTINGS.renewMin&&g.valley<=g.peak*.55&&
-  mag>=Math.max(SETTINGS.impulseMin*2,g.valley*2.1,g.previous*1.35,g.peak*.20);
- if(fresh||reversal||renewed){
-  wheelGesture={at:now,dir,fired:false,firedAt:now,peak:mag,valley:mag,previous:mag};
+ if(!g||now-g.at>=SETTINGS.quiet)wheelGesture={at:now,fired:false};
+ wheelGesture.at=now;
+ if(!wheelGesture.fired&&mag>=SETTINGS.impulseMin){
+  wheelGesture.fired=true;
+  step(dir,now);
  }
- const current=wheelGesture;
- current.at=now;
- if(dir===current.dir){
-  if(mag>=current.peak){current.peak=mag;current.valley=mag}
-  else current.valley=Math.min(current.valley,mag);
-  current.previous=mag;
-  if(!current.fired&&mag>=SETTINGS.impulseMin){
-   current.fired=true;current.firedAt=now;step(dir,now);
-  }
- }
- if(mode==='active')lastInput=now;
+ lastInput=now;
 }
 function goTo(next){
  if(inputBlocked())return;
@@ -247,7 +227,7 @@ function goTo(next){
  // then focus only the exact selected sequence. Never focus passing cards.
  pending.length=0;target=next;lastInput=performance.now();
  if(mode==='active'&&Math.abs(pos-next)<.003){pos=next;return}
- mode='seeking';
+ mode='seeking';draw();updateControls();
  // Keep the existing wheel detector so residual trackpad momentum is not
  // interpreted as a new gesture simply because a menu item was clicked.
 }
@@ -280,11 +260,13 @@ function frame(t){
   draw(dt);updateControls();bridge.paint(pos,null,planes);return;
  }
  if(mode==='active'){
+  const wasMoving=Math.abs(target-pos)>.003;
   pos=rm.matches?target:approach(pos,target,dt,SETTINGS.response,SETTINGS.maxSpeed);
   engagement=rm.matches?1:approach(engagement,1,dt,SETTINGS.engageTime);
   if(Math.abs(target-pos)<.003){
    pos=target;
-   if(pending.length){target+=pending.shift();lastInput=t}
+   if(wasMoving)focusReadyAt=t+180;
+   pending.length=0;
   }
  }else if(mode==='browsing'){
   engagement=rm.matches?0:approach(engagement,0,dt,SETTINGS.closeTime);
@@ -351,7 +333,7 @@ $('next').addEventListener('click',()=>step(1,performance.now(),true));
 window.addEventListener('keydown',e=>{if(entrance){if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','PageDown','PageUp',' ','Enter'].includes(e.key))e.preventDefault();return}if(bridge.blocked()||e.target.closest('input,textarea,select,summary'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='Escape'){e.preventDefault();closeFocus();return}const dir=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)?1:['ArrowUp','ArrowLeft','PageUp'].includes(e.key)?-1:0;if(!dir)return;if(e.key===' '&&e.target.closest('button'))return;e.preventDefault();if(!e.repeat)step(dir,performance.now(),true)});
 measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,activate,isFocused,
  enter({onChrome,onControls,onReady}={}){setHover(null);drag=null;pointerGesture=null;pending.length=0;wheelGesture=null;target=pos;entrance={elapsed:0,onChrome,onControls,onReady};if(rm.matches){onChrome?.();onControls?.();releaseEntrance()}draw();updateControls()},cancelEntrance,
- focus(value){releaseEntrance();pos=target=value;pending.length=0;mode='active';engagement=1;lastInput=performance.now();draw();updateControls()},
+ focus(value){releaseEntrance();pos=target=value;pending.length=0;wheelGesture=null;focusReadyAt=performance.now()+180;mode='active';engagement=1;lastInput=performance.now();draw();updateControls()},
  bounds(sequence){
   const g=layout().map.get(sequence);if(!g)return null;
   const points=[];

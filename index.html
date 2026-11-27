@@ -1310,54 +1310,56 @@
       async function loadProject(id, sequence = null) {
         const item = catalogue[id], origin = sequence === null ? null : focusLoop?.bounds(sequence);
         const state = projectTransition(item, 'lift');
-        state.wash.style.zIndex = '85'; state.wash.style.opacity = origin ? '0' : '1';
-        state.close.style.color = origin ? '#111' : sectionLoadInk(item.surface);
-        state.origin = origin;
-        if (origin) document.body.dataset.projectCardEntry = '';
+        state.wash.style.background = '#fff'; state.wash.style.zIndex = '85'; state.wash.style.opacity = origin || pageName ? '0' : '1';
+        const initialWash = Number(state.wash.style.opacity);
+        state.close.hidden = true; state.origin = origin;
+        document.body.dataset.projectCardEntry = '';
         let failed = false;
-        const resources = ensureCover(item); resources.catch(() => {});
         try {
           await ensureCover(item, false);
           if (activeProjectTransition !== state || state.cancelled) return false;
-          const card = el('div', 'study-project-lift'); card.setAttribute('aria-hidden', 'true');
-          card.style.width = `${item.w}px`; card.style.height = `${item.h}px`;
-          card.style.visibility = 'hidden'; state.nodes.add(card); document.body.append(card);
-          const image = el('img'); image.alt = ''; image.src = loadedCovers.get(item.slug).src; image.draggable = false; card.append(image);
-          await image.decode();
+          const card = createCoverFlight(item, state);
+          await card.querySelector('img').decode();
           if (activeProjectTransition !== state || state.cancelled) return false;
-          const width = Math.min(innerWidth * .90, innerHeight * .82 * item.w / item.h, origin ? origin.width * 1.18 : innerWidth * .65);
-          const height = width * item.h / item.w;
-          const destination = { left: (innerWidth - width) / 2, top: (innerHeight - height) / 2, width, height };
-          const source = origin || { left: destination.left + width * .10, top: destination.top + height * .10 + 20, width: width * .80, height: height * .80 };
-          const from = matrixForQuad(rectangleQuad(source), item.w, item.h), to = matrixForQuad(rectangleQuad(destination), item.w, item.h);
-          card.style.transform = from; card.style.removeProperty('visibility');
+          const destination = projectCoverRect(item);
+          const source = origin || {left:destination.width*.04,top:destination.height*.04,width:destination.width*.92,height:destination.height*.92};
+          Object.assign(card.style, coverFrame(source), {opacity:origin?'1':'0',visibility:'visible'});
           if (sequence !== null) {
             state.face = planes.find(record => record.sequence === sequence)?.face;
             if (state.face) state.face.style.visibility = 'hidden';
           }
-          if (!await state.play(card, [{ transform: from, opacity: 1 }, { transform: to, opacity: 1 }], { duration: 520, easing: 'cubic-bezier(.2,.75,.2,1)' })) return false;
-          document.body.dataset.projectTransition = 'color';
-          const filled = await Promise.all([
-            state.play(state.wash, [{ opacity: origin ? 0 : 1 }, { opacity: 1 }], { duration: 340, easing: 'ease-in-out' }),
-            state.play(card, [{ opacity: 1 }, { opacity: 0 }], { duration: 340, easing: 'ease-in-out' })
+          const expanded = await Promise.all([
+            state.play(card, [{...coverFrame(source),opacity:origin?1:0},{...coverFrame(destination),opacity:1}], {duration:origin?680:380,easing:'cubic-bezier(.22,.7,.2,1)'}),
+            state.play(state.wash, [{opacity:initialWash},{opacity:1}], {duration:origin?580:280,easing:'ease-in-out'})
           ]);
-          if (!filled.every(Boolean) || activeProjectTransition !== state) return false;
-          card.remove(); document.body.dataset.projectTransition = 'opening';
-          await resources;
+          if (!expanded.every(Boolean) || activeProjectTransition !== state) return false;
+          const rendered = renderProject(id); page.inert = true;
+          state.cover = rendered.cover; state.cover.style.visibility = 'hidden';
+          await Promise.all([rendered.cover.decode(), rendered.ready, document.fonts.ready]);
           if (activeProjectTransition !== state || state.cancelled) return false;
-          await revealProject(id, state);
-          return activeProjectTransition === state && !state.cancelled;
+          await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          // Layout can change during loading/resize: land on the actual header.
+          const actual = rendered.cover.getBoundingClientRect();
+          await state.play(card, [coverFrame(card.getBoundingClientRect()),coverFrame(actual)], {duration:160,easing:'ease-out'});
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          document.body.dataset.projectTransition = 'content';
+          await state.play(state.wash,[{opacity:1},{opacity:0}],{duration:240,easing:'ease-out'});
+          if (activeProjectTransition !== state || state.cancelled) return false;
+          // Same source, fit and final rectangle: swap in a single paint.
+          rendered.cover.getAnimations().forEach(animation=>animation.finish());
+          rendered.cover.style.removeProperty('visibility'); card.remove();
+          return true;
         } catch (error) {
           if (activeProjectTransition !== state || state.cancelled) return false;
           failed = true; document.body.dataset.projectTransition = 'error';
-          state.wash.style.opacity = '1'; state.wash.style.color = sectionLoadInk(item.surface);
-          const message = el('div', 'study-project-entry-error');
-          message.append(el('p', '', 'No se pudo abrir el proyecto.'));
+          state.nodes.forEach(node=>{if(node.classList?.contains('study-project-lift'))node.remove()});
+          state.wash.style.opacity = '1'; state.wash.style.color = '#111';
+          const message = el('div', 'study-project-entry-error'); message.append(el('p', '', 'No se pudo abrir el proyecto.'));
           const actions = el('div', 'study-section-loader__actions');
-          const retry = el('button', '', 'Reintentar'); retry.type = 'button';
-          retry.addEventListener('click', () => { finishProjectTransition(state); loadProject(id, sequence); });
-          const back = el('button', '', 'Volver'); back.type = 'button'; back.addEventListener('click', closePage);
-          actions.append(retry, back); message.append(actions); state.wash.append(message); retry.focus({ preventScroll: true });
+          const retry = el('button', '', 'Reintentar'); retry.type='button'; retry.addEventListener('click',()=>{finishProjectTransition(state);loadProject(id,sequence)});
+          const back = el('button', '', 'Volver'); back.type='button'; back.addEventListener('click',closePage);
+          actions.append(retry,back);message.append(actions);state.wash.append(message);retry.focus({preventScroll:true});
           return false;
         } finally {
           if (!failed) finishProjectTransition(state);
@@ -1483,61 +1485,47 @@
         }
         const id = Number(page.dataset.projectId), item = catalogue[id];
         if (!item) { closePageImmediately(); return; }
-        const image = page.querySelector('.study-case-hero__cover'), rect = paintedImageRect(image);
-        const sequence = Math.round((position - id) / catalogue.length) * catalogue.length + id;
-        const state = projectTransition(item, 'close');
-        state.wash.style.zIndex = '85'; state.wash.style.opacity = '0';
-        const media = openingMedia(item);
-        let clone = null, sourceMatrix = null;
-        // Withdraw only art already on screen, without moving the reading position.
-        if (rect && rect.width > 0 && rect.top >= 0 && rect.bottom <= innerHeight) {
-          clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
-          clone.style.width = `${media.w}px`; clone.style.height = `${media.h}px`;
-          const cloneImage = imageNode({ ...media, alt: '' }, false);
-          clone.append(cloneImage);
-          const wordmark = image.closest('.is-wordmark');
-          if (wordmark) {
-            clone.classList.add('is-reader-wordmark');
-            clone.style.setProperty('--reader-wordmark', wordmark.style.getPropertyValue('--reader-wordmark'));
-            clone.style.setProperty('--reader-mark-ink', wordmark.style.getPropertyValue('--reader-mark-ink'));
-          }
-          sourceMatrix = matrixForQuad(rectangleQuad(rect), media.w, media.h);
-          clone.style.transform = sourceMatrix; clone.style.visibility = 'hidden'; document.body.append(clone); state.nodes.add(clone);
-          await cloneImage.decode().catch(() => {});
-          if (activeProjectTransition !== state || state.cancelled) return;
-          clone.style.removeProperty('visibility');
-          state.cover = wordmark || image; state.cover.style.visibility = 'hidden';
-        }
+        const sequence = Math.round((position-id)/catalogue.length)*catalogue.length+id;
+        const image = page.querySelector('[data-project-cover]');
+        const rect = image?.getBoundingClientRect();
+        const state = projectTransition(item,'close');
+        state.close.hidden=true;state.wash.style.background='#fff';state.wash.style.zIndex='85';state.wash.style.opacity='0';
         try {
-          const content = [...pageContent.querySelectorAll('.study-case-hero__intro,.study-case-flow,.study-case-end')];
-          state.play(state.close, [{ color: getComputedStyle(state.close).color }, { color: getComputedStyle(document.body).getPropertyValue('--case-cover-ink').trim() }], { duration: 160, easing: 'ease-in-out' });
-          const withdrawal = content.map(node => state.play(node, [{ opacity: 1 }, { opacity: 0 }], { duration: 100, easing: 'ease-out' }));
-          const withdrawing = clone ? state.play(clone, [
-            { transform: sourceMatrix, opacity: 1 },
-            { transform: matrixForQuad(rectangleQuad({ left: rect.left, top: rect.top + 24, width: rect.width, height: rect.height }), media.w, media.h), opacity: 0 }
-          ], { duration: 220, delay: 60, easing: 'cubic-bezier(.4,0,.6,1)' }) : Promise.resolve(true);
-          if (!await state.play(state.wash, [{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'ease-in-out' })) return;
-          if (!await withdrawing) return;
-          await Promise.all(withdrawal);
-          if (activeProjectTransition !== state) return;
-          // Exchange views only behind a fully opaque surface.
-          offset = target = sequence - drift(); position = sequence; focusLoop?.focus(sequence);
-          hoverStates.clear(); hovered = null; pointer.inside = false;
-          closePageImmediately(true, state);
-          state.close.hidden = true; document.body.dataset.projectTransition = 'close-reveal';
-          const destination = focusLoop?.bounds(sequence);
-          if (destination && !preference.matches) {
-            const finalClip = `polygon(${destination.left}px ${destination.top}px,${destination.right}px ${destination.top}px,${destination.right}px ${destination.bottom}px,${destination.left}px ${destination.bottom}px)`;
-            await state.play(state.wash, [
-              { clipPath: 'polygon(0px 0px,100vw 0px,100vw 100vh,0px 100vh)' },
-              { clipPath: finalClip }
-            ], { duration: 560, easing: 'cubic-bezier(.65,0,.25,1)' });
+          const card=createCoverFlight(item,state);await card.querySelector('img').decode();
+          if(activeProjectTransition!==state||state.cancelled)return;
+          const visible=rect&&rect.bottom>0&&rect.top<innerHeight;
+          const source=visible?rect:projectCoverRect(item);
+          Object.assign(card.style,coverFrame(source),{opacity:visible?'1':'0',visibility:'visible'});
+          if(visible){state.cover=image;image.style.visibility='hidden'}
+          // A deep reader closes in place under its cover, without racing back
+          // through the document or borrowing a logo from another viewport.
+          if(!await state.play(card,[{opacity:visible?1:0},{opacity:1}],{duration:visible?0:220,easing:'ease-out'}))return;
+          if(!await state.play(state.wash,[{opacity:0},{opacity:1}],{duration:180,easing:'ease-in-out'}))return;
+          if(activeProjectTransition!==state||state.cancelled)return;
+          offset=target=sequence-drift();position=sequence;focusLoop?.focus(sequence);
+          hoverStates.clear();hovered=null;pointer.inside=false;
+          closePageImmediately(true,state);
+          document.body.dataset.projectTransition='close-reveal';
+          focusLoop?.measure();focusLoop?.focus(sequence);
+          const destination=focusLoop?.bounds(sequence);
+          state.face=planes.find(record=>record.sequence===sequence)?.face;
+          if(state.face)state.face.style.visibility='hidden';
+          await state.face?.querySelector('img')?.decode().catch(()=>{});
+          if(activeProjectTransition!==state||state.cancelled)return;
+          const from=card.getBoundingClientRect();
+          if(destination){
+            const returned=await Promise.all([
+              state.play(card,[coverFrame(from),coverFrame(destination)],{duration:640,easing:'cubic-bezier(.4,0,.25,1)'}),
+              state.play(state.wash,[{opacity:1},{opacity:0}],{duration:560,easing:'ease-in-out'})
+            ]);
+            if(!returned.every(Boolean)||activeProjectTransition!==state)return;
           }
-          await state.play(state.wash, [{ opacity: 1 }, { opacity: 0 }], { duration: 120, easing: 'ease-out' });
+          // Reveal the exact frozen card before removing its matching clone.
+          state.face?.style.removeProperty('visibility');card.remove();
         } finally {
-          if (activeProjectTransition === state) {
-            if (pageName === 'project') closePageImmediately(true);
-            else finishProjectTransition(state);
+          if(activeProjectTransition===state){
+            if(pageName==='project')closePageImmediately(true,state);
+            finishProjectTransition(state);
           }
         }
       }
@@ -1582,8 +1570,10 @@
         const returnSurface = pageName === 'about' ? '#03b047' : '#ef3333';
         try {
           const historyItem = catalogue[route.project];
+          if (!historyItem && !route.view && pageName === 'project') {
+            await closePage(); return;
+          }
           if (historyItem) {
-            closePageImmediately();
             const opened = await loadProject(route.project);
             if (opened && version === historyVersion && Number.isFinite(state?.portfolio?.scrollTop)) page.scrollTop = state.portfolio.scrollTop;
             return;
@@ -1965,12 +1955,6 @@
       document.querySelector('[data-lightbox-close]').addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
 
-      function matrixForQuad(q,w=800,h=1000) {
-        const source=[[0,0],[w,0],[w,h],[0,h]], rows=[];
-        source.forEach(([x,y],i)=>{const [u,v]=q[i];rows.push([x,y,1,0,0,0,-u*x,-u*y,u],[0,0,0,x,y,1,-v*x,-v*y,v]);});
-        for(let i=0;i<8;i++){let pivot=i;for(let r=i+1;r<8;r++)if(Math.abs(rows[r][i])>Math.abs(rows[pivot][i]))pivot=r;[rows[i],rows[pivot]]=[rows[pivot],rows[i]];const d=rows[i][i];if(Math.abs(d)<1e-9)return null;for(let c=i;c<=8;c++)rows[i][c]/=d;for(let r=0;r<8;r++)if(r!==i){const f=rows[r][i];for(let c=i;c<=8;c++)rows[r][c]-=f*rows[i][c];}}
-        const [a,b,c,d,e,f,g,hp]=rows.map(r=>r[8]);return `matrix3d(${a},${d},0,${g},${b},${e},0,${hp},0,0,1,0,${c},${f},0,1)`;
-      }
       function setupCaseJourney() {
         const controller = new AbortController(), effects = new Set();
         // Reader controls live outside the media columns, on the white canvas.
@@ -2074,14 +2058,6 @@
         document.fonts.ready.then(scheduleLayout);layout();
         return ()=>{disposed=true;controller.abort();resize.disconnect();cancelAnimationFrame(layoutFrame);cancelAnimationFrame(motionFrame);cards.forEach(card=>card.style.removeProperty('--reader-drift'));};
       }
-      function paintedImageRect(image) {
-        if (!image) return null;
-        const box=image.getBoundingClientRect(), width=image.naturalWidth||image.width, height=image.naturalHeight||image.height;
-        if (!width || !height || getComputedStyle(image).objectFit!=='contain') return box;
-        const fit=Math.min(box.width/width,box.height/height), w=width*fit, h=height*fit;
-        return {left:box.left+(box.width-w)/2,top:box.top+(box.height-h)/2,width:w,height:h,bottom:box.top+(box.height+h)/2};
-      }
-
       // Wildfolk is a continuous, full-bleed visual case with navigation at its end.
       function renderWildfolkProject(item, id) {
         document.body.dataset.caseLayout = 'wildfolk';
@@ -2111,16 +2087,11 @@
           button.addEventListener('click', () => openLightbox(im.fullSrc || im.src, im.alt, Boolean(im.monochrome)));
           return figure;
         };
-        const hero = el('header', 'study-case-hero wildfolk-intro'); hero.dataset.chapter = 'Wildfolk';
-        hero.append(mediaButton(art['can-wall'], {eager:true,full:true,caption:false}));
-        const intro = el('div', 'study-case-hero__intro wildfolk-intro__copy');
-        const visual = el('div', 'study-case-hero__visual is-wordmark wildfolk-intro__mark');
-        const media = openingMedia(item), cover = imageNode(media, false);
-        cover.className = 'study-case-hero__cover is-logo';
-        visual.style.setProperty('--reader-wordmark', `url("${new URL(media.src, document.baseURI).href}")`);
-        visual.style.setProperty('--reader-mark-ink', '#111'); visual.append(cover);
-        intro.append(el('h2', 'visually-hidden', item.title), visual, tags(['Identidad visual', 'Packaging', String(item.year)]));
-        hero.append(intro); flow.append(hero);
+        const {hero,cover}=projectCoverHeader(item);hero.classList.add('wildfolk-intro');
+        const intro=el('div','wildfolk-intro__copy'),visual=hero;
+        intro.append(el('h2','visually-hidden',item.title),tags(['Identidad visual','Packaging',String(item.year)]));
+        hero.append(intro);flow.append(hero);
+        const media=openingMedia(item);
         const addSection = (key, title, images, options = {}) => {
           const section = el('section', `wildfolk-section${options.className ? ' ' + options.className : ''}`);
           section.dataset.chapter = title; section.id = `wildfolk-${key}`;
@@ -2142,7 +2113,7 @@
           colorSection.append(chip);
         }); flow.append(colorSection);
         addSection('familia', 'Packaging principal', [art['can-pile']], {full:true});
-        addSection('hielo', 'Producto sobre hielo', [art['ice-pair']], {full:true});
+        addSection('hielo', 'Familia de latas', [art['can-wall']], {full:true});
         addSection('packaging', 'Mockups de producto', [art['can-diagonal'], art['ice-detail']]);
         addSection('etiquetas', 'Etiquetas', [art['golden-label'], art['ipa-wrap']], {className:'wildfolk-section--labels'});
         addSection('personajes', 'Personajes', item.blocks[3].images, {className:'wildfolk-section--characters',label:'Personajes · Exploración asistida por IA'});
@@ -2190,17 +2161,8 @@
         document.body.style.setProperty('--case-cover-surface', item.surface);
         if (item.slug === 'wildfolk') return renderWildfolkProject(item, id);
 
-        const hero = el('header', 'study-case-hero');
-        hero.dataset.chapter = 'Apertura';
-        const visual = el('div', 'study-case-hero__visual');
-        const media = openingMedia(item), cover = imageNode(media, false);
-        cover.className = 'study-case-hero__cover' + (media.isLogo ? ' is-logo' : '');
-        if (media.isLogo) {
-          visual.classList.add('is-wordmark');visual.style.setProperty('--reader-wordmark',`url("${new URL(media.src,document.baseURI).href}")`);
-          visual.style.setProperty('--reader-mark-ink','#111');
-          visual.style.setProperty('--reader-mark-width',media.displayWidth?`${media.displayWidth}px`:'100%');
-        }
-        visual.append(cover);
+        const {hero,cover}=projectCoverHeader(item);
+        const visual=hero, storyIntro=el('header','study-case-hero');
         const intro = el('div', 'study-case-hero__intro');
         const title = el('div');
         title.append(el('h2', 'study-page-title', item.title), el('p', 'study-page-note', `${item.type} · ${item.year}`));
@@ -2208,9 +2170,9 @@
         const start = el('button', 'study-text-button study-case-start', 'Recorrer proyecto');
         start.type = 'button'; start.dataset.caseStart = ''; start.insertAdjacentHTML('beforeend', '<svg class="ui-arrow ui-arrow--down" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>');
         copy.append(el('p', 'study-page-copy', item.intro), start);
-        intro.append(title, copy); hero.append(visual, intro);
-
-        const flow = el('div', 'study-case-flow'); flow.append(hero);
+        intro.append(title, copy); storyIntro.append(intro);
+        pageContent.append(hero);
+        const flow = el('div', 'study-case-flow'); flow.append(storyIntro);
         item.blocks.forEach((block, index) => {
           const section = el('section', 'study-case-section');
           section.dataset.chapter = block.title;
@@ -2309,59 +2271,22 @@
         if (!pageName && state.returnFocus?.isConnected) state.returnFocus.focus({ preventScroll: true });
         updateStudyCursor(true);
       }
-      const rectangleQuad = rect => [[rect.left,rect.top],[rect.left+rect.width,rect.top],[rect.left+rect.width,rect.top+rect.height],[rect.left,rect.top+rect.height]];
-      async function revealProject(id, state) {
-        if (activeProjectTransition !== state || state.cancelled) return;
-        const item = catalogue[id], media = openingMedia(item);
-        state.wash.style.zIndex = '85'; state.wash.style.opacity = '1';
-        const clone = el('div', 'study-project-lift'); clone.setAttribute('aria-hidden', 'true');
-        const width = media.isLogo ? media.w : coverWidth, height = media.isLogo ? media.h : coverHeight;
-        clone.style.width = `${width}px`; clone.style.height = `${height}px`; clone.style.opacity = '0';
-        clone.style.background = 'transparent';
-        const image = el('img'); image.src = media.src; image.alt = ''; image.draggable = false;
-        if (media.monochrome) image.classList.add('is-monochrome');
-        clone.append(image); state.wash.append(clone); state.nodes.add(clone);
-        const source = null;
-        await image.decode().catch(() => {});
-        if (activeProjectTransition !== state || state.cancelled) return;
-        let from, to;
-        let measuredWidth = innerWidth, measuredHeight = innerHeight;
-        const placeClone = () => {
-          if (innerWidth !== measuredWidth || innerHeight !== measuredHeight) {
-            // A projected home quad belongs to its original viewport. Fall back
-            // to a centered entry when that viewport changes during the gate.
-            measuredWidth = innerWidth; measuredHeight = innerHeight;
-          }
-          const targetWidth = Math.min(media.isLogo ? (media.displayWidth || 660) : 760, innerWidth*.78, innerHeight*.60/(height/width));
-          const targetHeight = targetWidth * height / width;
-          const center = { left: (innerWidth-targetWidth)/2, top: (innerHeight-targetHeight)/2, width: targetWidth, height: targetHeight };
-          to = matrixForQuad(rectangleQuad(center), width, height);
-          const start = source || rectangleQuad({ left: center.left+targetWidth*.06, top: center.top+targetHeight*.06+24, width: targetWidth*.88, height: targetHeight*.88 });
-          from = matrixForQuad(start, width, height);
-          clone.style.transform = from;
-        };
-        placeClone(); clone.style.opacity = '0';
-        if (state.face) state.face.style.visibility = 'hidden';
-        if (activeProjectTransition !== state || state.cancelled) return;
-        placeClone();
-        // The card has filled the color surface; only then reveal the PNG.
-        document.body.dataset.projectTransition = 'opening';
-        if(!await state.play(clone,[{opacity:0},{opacity:1}],{duration:200,easing:'ease-out'}))return;
-        state.close.style.color = sectionLoadInk(item.surface);
-        if (!await state.play(clone, [{ transform: from, opacity: 1 }, { transform: to, opacity: 1 }], { duration: 300, easing: 'cubic-bezier(.2,.75,.2,1)' })) return;
-        if (activeProjectTransition !== state) return;
-        const rendered = renderProject(id); page.inert = true; page.style.opacity = '1';
-        const content = [...pageContent.children]; content.forEach(node => node.style.opacity = '0');
-        await Promise.all([rendered.cover.decode().catch(() => {}), rendered.ready]);
-        if (activeProjectTransition !== state || state.cancelled) return;
-        document.body.dataset.projectTransition = 'content';
-        // One parent opacity owns the color and PNG: no delayed rectangle.
-        await Promise.all([
-          state.play(state.wash, [{ opacity: 1 }, { opacity: 0 }], { duration: 360, easing: 'cubic-bezier(.2,.75,.2,1)' }),
-          state.play(state.close, [{ color: state.close.style.color }, { color: '#111' }], { duration: 360, easing: 'ease-out' }),
-          ...content.map(node => state.play(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 360, easing: 'ease-out' }))
-        ]);
-
+      function projectCoverRect(item) {
+        return {left:0,top:0,width:innerWidth,height:innerWidth*item.h/item.w};
+      }
+      function coverFrame(rect) {
+        return {left:`${rect.left}px`,top:`${rect.top}px`,width:`${rect.width}px`,height:`${rect.height}px`,transform:'none'};
+      }
+      function createCoverFlight(item,state) {
+        const card=el('div','study-project-lift is-cover-flight');card.setAttribute('aria-hidden','true');
+        card.style.visibility='hidden';const image=el('img');image.src=item.cover;image.alt='';image.draggable=false;
+        card.append(image);state.nodes.add(card);document.body.append(card);return card;
+      }
+      function projectCoverHeader(item) {
+        const hero=el('header','study-project-cover');hero.dataset.chapter='Apertura';
+        const cover=imageNode({src:item.cover,w:item.w,h:item.h,alt:item.alt||item.title},false);
+        cover.dataset.projectCover='';cover.fetchPriority='high';hero.append(cover);
+        return {hero,cover};
       }
 
       async function openProject(sequence) {
