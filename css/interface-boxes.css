@@ -1,0 +1,98 @@
+/* One measure for boxed interface text; prose and form fields keep their reading width. */
+:root {
+  --ui-box-width: clamp(164px,12vw,192px);
+  --ui-box-height: clamp(28px,2vw,34px);
+  --ui-box-font: clamp(12px,.94vw,16px);
+  --shell-index-width: var(--ui-box-width);
+  --shell-row-height: var(--ui-box-height);
+}
+.study-nav-trigger, .study-submenu button, .study-projects-title, .study-projects button,
+.focus-open, .study-page-index[role="tablist"] button, .study-form-actions .study-text-button,
+.study-contact-submit, .wildfolk-tag, .wildfolk-intro__start {
+  box-sizing: border-box;
+  width: var(--ui-box-width);
+  max-width: 100%;
+  height: var(--ui-box-height);
+  min-height: var(--ui-box-height);
+  padding: 0 8px;
+  font-size: var(--ui-box-font);
+  line-height: 1.15;
+}
+.study-nav-group { flex: 0 0 var(--ui-box-width); width: var(--ui-box-width); }
+.study-projects-title { display: flex; align-items: center; }
+.study-page-index[role="tablist"] button, .focus-open, .study-form-actions .study-text-button, .study-contact-submit {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  border: 1px solid #111; background: #fff; color: #111; text-align: left;
+}
+.study-page-index[role="tablist"] button::before { content: none; }
+.study-page-index[role="tablist"] button[aria-selected="true"] { color: #fff; background: #03b047; }
+.focus-open { margin-top: 4px; }
+.study-contact-submit:disabled { color: #666; }
+.wildfolk-tags { display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%; }
+.wildfolk-tag { display: block; line-height: calc(var(--ui-box-height) - 2px); flex: 0 0 auto; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wildfolk-tag + .wildfolk-tag { border-left: 1px solid #111; }
+.wildfolk-intro__start { justify-content: space-between; }
+.wildfolk-chapters { width: var(--ui-box-width); height: var(--ui-box-height); max-width: calc(100% - 32px); }
+.wildfolk-chapters__status { height: var(--ui-box-height); padding: 0 8px; gap: 7px; font-size: var(--ui-box-font); line-height: 1.15; }
+.wildfolk-chapters__step { flex-basis: var(--ui-box-height); width: var(--ui-box-height); height: var(--ui-box-height); }
+body:not([data-study-page="project"]) .study-heading {
+  width: var(--ui-box-width); min-width: 0; max-width: var(--ui-box-width); height: var(--ui-box-height); min-height: 0;
+  padding: 0 5px; font-size: var(--ui-box-font); align-items: center;
+}
+/* A project closes from one complete box: mark, label, cross. */
+body[data-study-page="project"] .study-heading {
+  top: var(--shell-top); left: var(--shell-edge); width: var(--ui-box-height); height: var(--ui-box-height);
+  min-width: 0; max-width: none; min-height: 0; padding: 0; margin: 0; border: 1px solid #111;
+  background: #111; color: #fff; align-items: center;
+}
+body[data-study-page="project"] .study-heading > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+body[data-study-page="project"] .study-home {
+  display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+  min-width: 0; min-height: 0; padding: 4px; margin: 0; background: #111; color: #fff;
+}
+body[data-study-page="project"] .study-home .study-mark { width: 17px; height: 17px; }
+body[data-study-page="project"] .study-page-close {
+  top: var(--shell-top); left: calc(var(--shell-edge) + var(--ui-box-height)); right: auto;
+  width: calc(var(--ui-box-width) - var(--ui-box-height)); max-width: none; height: var(--ui-box-height); min-height: 0;
+  padding: 0 8px; margin: 0; border: 1px solid #111; border-left: 0; background: #111; color: #fff;
+  font-size: var(--ui-box-font); line-height: 1.15; text-transform: uppercase;
+}
+body[data-case-layout="wildfolk"] .wildfolk-chapters { top: var(--shell-top); right: var(--shell-edge); }
+.wildfolk-piece figcaption { overflow: hidden; }
+.wildfolk-tag { flex-shrink: 0; }
+.study-lightbox > [data-lightbox-close] {
+  display: flex; align-items: center; justify-content: space-between; width: var(--ui-box-width);
+  height: var(--ui-box-height); min-height: 0; padding: 0 8px; border: 1px solid #111;
+  font-size: var(--ui-box-font); background: #fff; color: #111;
+}
+@media(min-width:601px) and (max-width:1200px) {
+  body:not([data-study-page="project"]) .study-navigation { width: max-content; max-width: calc(100% - 32px); }
+}
+@media(min-width:601px) and (max-width:900px) and (hover:hover) and (pointer:fine) {
+  body:not([data-study-page="project"]) .study-navigation { display: grid; grid-template-columns: repeat(3,var(--ui-box-width)); gap: 6px; }
+  body[data-study-page="about"] .study-page { top: calc(var(--shell-top) + var(--ui-box-height) * 3 + 44px); }
+  body[data-study-page="contact"] .study-page { top: calc(var(--shell-top) + var(--ui-box-height) * 3 + 44px); }
+}
+@media(max-width:600px), (max-width:900px) and (hover:none) and (pointer:coarse) {
+  :root { --ui-box-width: 164px; --ui-box-height: 30px; --ui-box-font: 12px; }
+  body:not([data-study-page="project"]) .study-heading { width: 100%; max-width: none; height: 38px; min-height: 38px; padding: 0 58px 0 14px; font-size: clamp(16px,4.8vw,20px); }
+  .study-nav-group { width: 100%; flex: none; }
+  .study-nav-trigger, .study-submenu button, .study-projects-title, .study-projects button { width: 100%; height: 44px; min-height: 44px; padding: 0 12px; font-size: 19px; }
+  body[data-study-page="project"] .study-heading, body[data-study-page="project"] .study-page-close { top: calc(16px + env(safe-area-inset-top,0px)); }
+  body[data-study-page="project"] .study-menu-toggle { top: calc(9px + env(safe-area-inset-top,0px)); }
+  body[data-case-layout="wildfolk"] .wildfolk-chapters { top: calc(24px + var(--ui-box-height) + env(safe-area-inset-top,0px)); right: var(--shell-edge); }
+  .wildfolk-chapters__name { max-width: none; }
+  .wildfolk-intro .wildfolk-tags { flex-direction: column; }
+  .wildfolk-intro .wildfolk-tag { width: var(--ui-box-width); font-size: var(--ui-box-font); }
+  .study-page-index[role="tablist"] { width: 100%; gap: 8px; }
+  .study-page-index[role="tablist"] button { width: var(--ui-box-width); }
+}
+
+@media(min-width:601px) and (max-width:900px) and (max-height:520px) and (hover:hover) and (pointer:fine) {
+  .study-projects { top: calc(var(--shell-top) + var(--ui-box-height) * 3 + 42px); transform: none; }
+}
+
+@media(min-width:601px) and (max-width:900px) and (hover:hover) and (pointer:fine) {
+  .study-colophon { bottom: 6px; font-size: 10px; }
+  .nav-controls { bottom: 28px; }
+}

@@ -6,7 +6,7 @@ const mod=(n,m)=>((n%m)+m)%m, clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), mix=
 const smooth=t=>{t=clamp(t);return t*t*t*(10+t*(-15+6*t))};
 const rm=matchMedia('(prefers-reduced-motion: reduce)');
 // One continuous coordinate; focus accepts one settled step per wheel gesture.
-const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:220,impulseMin:2,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
+const SETTINGS={hold:0,autoSpeed:.12,autoRamp:1000,maxSpeed:2.2,response:.10,engageTime:.15,closeTime:.13,quiet:160,settle:90,impulseMin:2,browsePixels:420,browseMaxLead:.85,browseSpeed:1.6,browseResponse:.22,browseRest:900};
 let pos=0,target=0,last=0,drag=null,active=-1,metaSeq=null,geo;
 let mode='idle',engagement=0,lastInput=-Infinity,idleStart=performance.now();
 let wheelGesture=null, pending=[], pointerGesture=null, focusReadyAt=0;
@@ -191,20 +191,19 @@ function browseBy(amount,now=performance.now()){
  lastInput=now;
 }
 function step(dir,now=performance.now(),explicit=false){
- if(inputBlocked()||!dir)return;
+ if(inputBlocked()||!dir||mode==='seeking')return false;
  setHover(null);
- // Never queue gestures while seeking or moving: every card gets a full stop.
- if(mode==='seeking')return;
+ // Keep a complete stop between cards; never accumulate a queue of moves.
  if(mode!=='active'){
   const anchor=mode==='browsing'?Math.round(target):Math.round(pos);
-  browseBy(anchor+dir-(mode==='browsing'?target:pos),now);return;
+  browseBy(anchor+dir-(mode==='browsing'?target:pos),now);return true;
  }
  lastInput=now;
- if(Math.abs(target-pos)>.003||engagement<.99||(!explicit&&now<focusReadyAt))return;
- pending.length=0;target=Math.round(pos)+dir;
+ if(Math.abs(target-pos)>.003||engagement<.99||(!explicit&&now<focusReadyAt))return false;
+ pending.length=0;target=Math.round(pos)+dir;return true;
 }
-// Consume the entire wheel burst, including its momentum. A new step requires
-// a quiet gap AND a settled card. Events received during travel are discarded.
+// A gesture is used only when its step actually starts. Continued deliberate
+// input can finish the short settling interval, without queuing a later move.
 function wheelInput(delta,now=performance.now()){
  if(!Number.isFinite(delta)||!delta)return;
  if(mode!=='active'&&mode!=='seeking'){
@@ -212,11 +211,13 @@ function wheelInput(delta,now=performance.now()){
   browseBy(clamp(delta/SETTINGS.browsePixels,-.55,.55),now);return;
  }
  const dir=Math.sign(delta),mag=Math.abs(delta),g=wheelGesture;
- if(!g||now-g.at>=SETTINGS.quiet)wheelGesture={at:now,fired:false};
- wheelGesture.at=now;
- if(!wheelGesture.fired&&mag>=SETTINGS.impulseMin){
-  wheelGesture.fired=true;
-  step(dir,now);
+ // Fractional momentum noise must not keep a completed gesture locked forever.
+ if(g?.fired&&mag<Math.max(.15,Math.min(.6,g.peak*.01))){lastInput=now;return;}
+ if(!g||now-g.at>=SETTINGS.quiet||dir!==g.dir)wheelGesture={at:now,dir,peak:mag,pixels:0,fired:false};
+ wheelGesture.at=now;wheelGesture.peak=Math.max(wheelGesture.peak,mag);
+ if(!wheelGesture.fired){
+  wheelGesture.pixels+=mag;
+  if(wheelGesture.pixels>=SETTINGS.impulseMin)wheelGesture.fired=step(dir,now);
  }
  lastInput=now;
 }
@@ -265,7 +266,7 @@ function frame(t){
   engagement=rm.matches?1:approach(engagement,1,dt,SETTINGS.engageTime);
   if(Math.abs(target-pos)<.003){
    pos=target;
-   if(wasMoving)focusReadyAt=t+180;
+   if(wasMoving)focusReadyAt=t+SETTINGS.settle;
    pending.length=0;
   }
  }else if(mode==='browsing'){
@@ -333,7 +334,7 @@ $('next').addEventListener('click',()=>step(1,performance.now(),true));
 window.addEventListener('keydown',e=>{if(entrance){if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','PageDown','PageUp',' ','Enter'].includes(e.key))e.preventDefault();return}if(bridge.blocked()||e.target.closest('input,textarea,select,summary'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='Escape'){e.preventDefault();closeFocus();return}const dir=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)?1:['ArrowUp','ArrowLeft','PageUp'].includes(e.key)?-1:0;if(!dir)return;if(e.key===' '&&e.target.closest('button'))return;e.preventDefault();if(!e.repeat)step(dir,performance.now(),true)});
 measure();draw();return {tick:frame,measure,draw,step,goTo,closeFocus,activate,isFocused,
  enter({onChrome,onControls,onReady}={}){setHover(null);drag=null;pointerGesture=null;pending.length=0;wheelGesture=null;target=pos;entrance={elapsed:0,onChrome,onControls,onReady};if(rm.matches){onChrome?.();onControls?.();releaseEntrance()}draw();updateControls()},cancelEntrance,
- focus(value){releaseEntrance();pos=target=value;pending.length=0;wheelGesture=null;focusReadyAt=performance.now()+180;mode='active';engagement=1;lastInput=performance.now();draw();updateControls()},
+ focus(value){releaseEntrance();pos=target=value;pending.length=0;wheelGesture=null;focusReadyAt=performance.now()+SETTINGS.settle;mode='active';engagement=1;lastInput=performance.now();draw();updateControls()},
  bounds(sequence){
   const g=layout().map.get(sequence);if(!g)return null;
   const points=[];

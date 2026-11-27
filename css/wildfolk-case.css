@@ -150,3 +150,12 @@ body[data-case-layout="wildfolk"] .wildfolk-signature > .wildfolk-piece img { he
 @media(max-height:520px) and (min-width:601px) {
   body[data-case-layout="wildfolk"] .wildfolk-signature > .wildfolk-piece img { height: 25svh; }
 }
+
+/* Photographic scenes fill their frame; flat artwork keeps its complete proportions. */
+body[data-case-layout="wildfolk"] .wildfolk-scene-pair .wildfolk-piece__open img,
+body[data-case-layout="wildfolk"] .wildfolk-section--packaging .wildfolk-piece__open img { object-fit: cover; }
+.wildfolk-section--packaging .wildfolk-media-grid { grid-template-columns: minmax(0,1fr); height: auto; min-height: 0; }
+.wildfolk-section--packaging .wildfolk-piece__open { height: var(--wildfolk-frame); }
+@media(max-width:600px) {
+  .wildfolk-scene-pair .wildfolk-media-grid, .wildfolk-section--packaging .wildfolk-piece__open { height: var(--wildfolk-frame); }
+}

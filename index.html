@@ -368,6 +368,7 @@
   <link rel="stylesheet" href="./css/wildfolk-case.css">
   <link rel="stylesheet" href="./css/section-load.css">
   <link rel="stylesheet" href="./css/focus-loop.css">
+  <link rel="stylesheet" href="./css/interface-boxes.css">
 </head>
 <body class="study-loading">
   <h1 class="study-heading">
@@ -442,7 +443,7 @@
     <button type="button" data-case-next aria-label="Proyecto siguiente"><svg class="ui-arrow ui-arrow--right" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg></button>
   </nav>
   <p class="visually-hidden" data-case-status role="status" aria-live="polite"></p>
-  <dialog class="study-lightbox" aria-label="Imagen ampliada"><button type="button" data-lightbox-close>Cerrar ×</button><img alt=""></dialog>
+  <dialog class="study-lightbox" aria-label="Imagen ampliada"><button type="button" data-lightbox-close><span>Cerrar</span><span aria-hidden="true">×</span></button><img alt=""></dialog>
   <noscript><style>.study-loader { display: none; }.study-noscript { z-index: 120; }</style><p class="study-noscript">Activá JavaScript para probar el movimiento.</p></noscript>
 <section class="focus-meta" id="focusMeta" aria-hidden="true"><div class="focus-logo" id="focusCounter">01 / 06</div><div><h2 id="focusTitle"></h2><p id="focusDesc"></p></div><div class="focus-kind" id="focusKind"></div><button id="focusOpen" class="focus-open" type="button">Abrir proyecto <svg class="ui-arrow ui-arrow--out" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg></button></section>
 <nav class="nav-controls" aria-label="Navegación entre proyectos"><button id="prev" type="button" aria-label="Proyecto anterior" title="Proyecto anterior (←)"><svg viewBox="0 0 9 9" aria-hidden="true"><path d="M2 1.5h5.5V7" transform="rotate(225 4.5 4.5)"/></svg></button><div class="nav-progress" ><svg id="projectProgress" viewBox="0 0 60 60" role="progressbar" aria-label="Posición en el carrusel" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><circle class="ring-track" id="projectTrack" cx="30" cy="30" r="27"/><circle class="ring-value" id="projectRing" cx="30" cy="30" r="27" pathLength="100"/></svg><button id="closeFocus" type="button" title="Cerrar foco (Esc)" aria-label="Cerrar foco" disabled><svg class="close-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div><button id="next" type="button" aria-label="Proyecto siguiente" title="Proyecto siguiente (→)"><svg viewBox="0 0 9 9" aria-hidden="true"><path d="M2 1.5h5.5V7" transform="rotate(45 4.5 4.5)"/></svg></button></nav>
@@ -1601,7 +1602,7 @@
       window.addEventListener('popstate', event => restorePageAddress(event.state));
 
       function headingState(label, color = '') {
-        heading.textContent = label; heading.style.backgroundColor = color; heading.removeAttribute('title');
+        heading.textContent = pageName === 'about' ? 'Sobre mí' : pageName === 'contact' ? 'Trabajemos juntos' : label; heading.style.backgroundColor = color; heading.title = label;
         if (['about','contact'].includes(document.body.dataset.studyPage)) heading.style.removeProperty('background-color');
         const logo = document.querySelector('[data-logo-runner]');
         logo.dispatchEvent(new Event('logo-runner:reset'));
@@ -2105,7 +2106,7 @@
           chapters.forEach((chapter, index) => { if (chapter.getBoundingClientRect().top <= top) next = index; });
           if (page.scrollTop >= page.scrollHeight - page.clientHeight - 2) next = chapters.length - 1;
           if (next === current) return;
-          current = next; count.textContent = `${String(current + 1).padStart(2, '0')} / ${String(chapters.length).padStart(2, '0')}`;
+          current = next; count.textContent = `${current + 1}/${chapters.length}`;
           name.textContent = chapters[current].dataset.chapter;
           controls[0].disabled = current === 0; controls[1].disabled = current === chapters.length - 1;
           controls.forEach((button,index) => {
@@ -2139,7 +2140,7 @@
         const flow = el('div', 'study-case-flow wildfolk-layout');
         const tags = (labels, className = '') => {
           const group = el('div', `wildfolk-tags ${className}`.trim());
-          labels.forEach((label, index) => group.append(el('span', `wildfolk-tag wildfolk-tag--${index + 1}`, label)));
+          labels.forEach((label, index) => { const tag = el('span', `wildfolk-tag wildfolk-tag--${index + 1}`, label); tag.title = label; group.append(tag); });
           return group;
         };
         const mediaButton = (im, { eager = false, full = false, caption = true } = {}) => {
@@ -2155,7 +2156,7 @@
           if (eager) image.fetchPriority = 'high';
           button.append(image); figure.append(button);
           if (caption && im.label) {
-            const captionNode = el('figcaption'); captionNode.append(tags([im.label])); figure.append(captionNode);
+            const captionNode = el('figcaption'); captionNode.title = im.label; captionNode.append(tags([im.label])); figure.append(captionNode);
           }
           button.addEventListener('click', () => openLightbox(im.fullSrc || im.src, im.alt, Boolean(im.monochrome)));
           return figure;
@@ -2169,7 +2170,7 @@
         const media=openingMedia(item);
         const addSection = (key, title, images, options = {}) => {
           const section = el('section', `wildfolk-section${options.className ? ' ' + options.className : ''}`);
-          section.dataset.chapter = title; section.id = `wildfolk-${key}`;
+          section.dataset.chapter = options.navLabel || title; section.id = `wildfolk-${key}`;
           const titleNode = el('h3', 'visually-hidden', title); titleNode.id = `wildfolk-${key}-title`; section.setAttribute('aria-labelledby', titleNode.id);
           section.append(titleNode);
           if (options.label) section.append(tags([options.label], 'wildfolk-section__label'));
@@ -2187,10 +2188,10 @@
           chip.append(el('span', 'wildfolk-color-band__name', color.name), el('span', 'wildfolk-color-band__hex', color.hex));
           colorSection.append(chip);
         }); flow.append(colorSection);
-        const family=addSection('familia','Packaging principal',[art['can-pile']],{full:true});
-        const setting=addSection('hielo','Familia de latas',[art['can-wall']],{full:true});
+        const family=addSection('familia','Packaging principal',[art['can-pile']],{full:true,navLabel:'Familia'});
+        const setting=addSection('hielo','Familia de latas',[art['can-wall']],{full:true,navLabel:'Aplicación'});
         const scenes=el('div','wildfolk-scene-pair');family.section.before(scenes);scenes.append(family.section,setting.section);
-        addSection('packaging','Mockups de producto',[art['can-diagonal'],art['ice-detail']],{className:'wildfolk-section--packaging'});
+        addSection('packaging','Mockups de producto',[art['can-diagonal'],art['ice-detail']],{className:'wildfolk-section--packaging',navLabel:'Detalles'});
         addSection('etiquetas','Etiquetas',[art['golden-label'],art['ipa-wrap'],{...art.lettering,label:'Firma de marca'}],{className:'wildfolk-section--labels'});
         addSection('personajes', 'Personajes', item.blocks[3].images, {className:'wildfolk-section--characters',label:'Personajes · Exploración asistida por IA'});
         // Start with the delivered family; explain the visual system after seeing it in use.

@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portfolio
 
+## Interfaz y foco · 27 de noviembre de 2026
+
+Cajas compartidas en css/interface-boxes.css para navegación, índice, acciones y labels. Foco sin consumir gestos antes del asentamiento y con soporte para deltas finos de trackpad. Wildfolk presenta fotos de borde a borde; las piezas planas y sus originales completos permanecen accesibles mediante ampliación.
+
 ## Wildfolk · recorrido encuadrado
 
 Apertura de altura de pantalla con etiquetas visibles y de igual ancho. Entregables contenidos, secuencia visual por ocho secciones y navegación compacta sin barra de progreso. Se conservan ampliación, movimiento reducido y apertura/cierre desde la misma portada. El resto de los casos mantiene su distribución.

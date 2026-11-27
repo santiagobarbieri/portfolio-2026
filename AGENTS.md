@@ -1,5 +1,14 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Foco sin gestos perdidos y cajas compartidas · 27 de noviembre de 2026
+
+El gesto de rueda se consume únicamente si inicia un paso en foco. Si la tarjeta aún se acomoda, aceptar los eventos deliberados siguientes del mismo gesto al completar el asentamiento; no crear una cola ni avanzar sin recibir input nuevo. Acumular deltas pequeños para admitir trackpads precisos. Una ráfaga con inercia avanza solo una tarjeta; ignorar ruido fraccional residual, reconocer un cambio claro de dirección y permitir un gesto nuevo tras 160ms de silencio significativo. Asentamiento de 90ms, manteniendo parada completa entre tarjetas. El modo libre no cambia.
+
+Santiago aclaró que la medida común corresponde a las cajas de texto de toda la interfaz, no solamente a las etiquetas de Wildfolk. css/interface-boxes.css define ancho, alto, tipografía y padding compartidos para navegación, índice, pestañas, acciones y labels. Las filas del índice móvil conservan ancho completo y 44px táctiles; el resto se contiene dentro del viewport. Cerrar forma una sola caja con logo, texto y cruz; los títulos largos usan rótulos concisos o ellipsis con nombre completo accesible. No reducir los campos de formulario ni los párrafos a esa medida. Los controles compuestos y sus iconos conservan su función.
+
+Las fotografías de Wildfolk llenan sus escenas de borde a borde, sin márgenes vacíos: object-fit cover, sin deformación, y ampliación del original completo. Los dos detalles se presentan en escenas completas sucesivas. Vectores y etiquetas planas conservan encaje completo para no cortar marcas ni información. Se mantiene el recorrido por ocho secciones y sus entradas/superposiciones. Los demás interiores no se rediseñan.
+
+
 ## Wildfolk: encuadres y navegación por secciones · 27 de noviembre de 2026
 
 La portada exacta del inicio se convierte en una apertura de 100svh con object-fit cover. Identidad visual, Packaging y 2026 aparecen dentro de ese primer encuadre, con tres etiquetas de igual ancho y sin desbordar. La expansión por foto llega al alto del viewport solo en Wildfolk; los demás encabezados conservan su geometría. Cerrar comparte una tira negra compacta con la marca, texto y cruz alineados a los extremos, como los controles de las secciones personales.
