@@ -436,7 +436,7 @@
 
   <div class="study-loader" role="status" aria-label="Cargando proyectos"></div>
   <a class="study-card-info" href="#" aria-hidden="true" tabindex="-1"><h2 data-info-title></h2><p data-info-description></p><span class="study-card-info__year" data-info-year></span><span class="study-card-info__open">ABRIR <svg class="ui-arrow ui-arrow--out" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg></span></a>
-  <section class="study-page" hidden tabindex="-1" aria-label="Contenido de la sección"><button class="study-page-close" type="button">Cerrar ×</button><div data-page-content></div></section>
+  <section class="study-page" hidden tabindex="-1" aria-label="Contenido de la sección"><button class="study-page-close" type="button"><span>Cerrar</span><span aria-hidden="true">×</span></button><div data-page-content></div></section>
   <nav class="study-case-navigation" hidden aria-label="Cambiar proyecto">
     <button type="button" data-case-previous aria-label="Proyecto anterior"><svg class="ui-arrow ui-arrow--left" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg></button>
     <button type="button" data-case-next aria-label="Proyecto siguiente"><svg class="ui-arrow ui-arrow--right" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg></button>
@@ -2047,6 +2047,7 @@
           wake();
         },{passive:true,signal});
         page.addEventListener('pointerdown',stopWheel,{passive:true,signal});
+        page.addEventListener('reader:navigate',stopWheel,{signal});
         page.addEventListener('keydown',()=>{stopWheel();},{signal});
         window.addEventListener('resize',()=>{stopWheel();scheduleLayout();wake();},{passive:true,signal});
         document.addEventListener('visibilitychange',()=>{
@@ -2081,7 +2082,56 @@
         return()=>{controller.abort();observer.disconnect();effects.forEach(animation=>animation.cancel())};
       }
 
-      // Wildfolk is a continuous, full-bleed visual case with navigation at its end.
+      function setupWildfolkChapters(flow, chapters) {
+        const controller = new AbortController(), {signal} = controller;
+        const nav = el('nav', 'wildfolk-chapters');
+        nav.setAttribute('aria-label', 'Secciones de Wildfolk');
+        const status = el('span', 'wildfolk-chapters__status');
+        const count = el('span', 'wildfolk-chapters__count');
+        const name = el('span', 'wildfolk-chapters__name'); status.append(count, name);
+        const controls = [-1, 1].map(direction => {
+          const button = el('button', 'wildfolk-chapters__step'); button.type = 'button';
+          button.dataset.chapterStep = String(direction);
+          button.setAttribute('aria-label', direction < 0 ? 'Sección anterior' : 'Sección siguiente');
+          button.innerHTML = `<svg class="ui-arrow ui-arrow--${direction < 0 ? 'up' : 'down'}" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>`;
+          return button;
+        });
+        nav.append(status, ...controls); pageContent.append(nav);
+        let current = -1, frame = 0;
+        function update() {
+          frame = 0;
+          const top = page.getBoundingClientRect().top + Math.min(120, page.clientHeight * .22);
+          let next = 0;
+          chapters.forEach((chapter, index) => { if (chapter.getBoundingClientRect().top <= top) next = index; });
+          if (page.scrollTop >= page.scrollHeight - page.clientHeight - 2) next = chapters.length - 1;
+          if (next === current) return;
+          current = next; count.textContent = `${String(current + 1).padStart(2, '0')} / ${String(chapters.length).padStart(2, '0')}`;
+          name.textContent = chapters[current].dataset.chapter;
+          controls[0].disabled = current === 0; controls[1].disabled = current === chapters.length - 1;
+          controls.forEach((button,index) => {
+            const target = chapters[current + (index ? 1 : -1)];
+            button.title = target ? target.dataset.chapter : '';
+          });
+        }
+        function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+        function goTo(index) {
+          const target = chapters[Math.max(0, Math.min(index, chapters.length - 1))];
+          // Stop a pending wheel interpolation before navigating to an exact chapter.
+          page.dispatchEvent(new Event('reader:navigate'));
+          // The first overlapping mockup starts at its group, even while pinned.
+          const anchor = getComputedStyle(target).position === 'sticky' ? target.parentElement : target;
+          const top = page.scrollTop + anchor.getBoundingClientRect().top - page.getBoundingClientRect().top;
+          page.scrollTo({top, behavior: preference.matches ? 'instant' : 'smooth'});
+        }
+        controls.forEach((button,index) => button.addEventListener('click', () => goTo(current + (index ? 1 : -1)), {signal}));
+        flow.querySelector('[data-wildfolk-start]')?.addEventListener('click', () => goTo(1), {signal});
+        page.addEventListener('scroll', schedule, {passive: true, signal});
+        window.addEventListener('resize', schedule, {passive: true, signal});
+        update();
+        return () => { controller.abort(); cancelAnimationFrame(frame); nav.remove(); };
+      }
+
+      // Wildfolk is a finite sequence of viewport-framed visual deliverables.
       function renderWildfolkProject(item, id) {
         document.body.dataset.caseLayout = 'wildfolk';
         heading.textContent = item.title;
@@ -2112,7 +2162,9 @@
         };
         const {hero,cover}=projectCoverHeader(item);hero.classList.add('wildfolk-intro');
         const intro=el('div','wildfolk-intro__copy'),visual=hero;
-        intro.append(el('h2','visually-hidden',item.title),tags(['Identidad visual','Packaging',String(item.year)]));
+        const start = el('button', 'wildfolk-intro__start', 'Recorrer'); start.type = 'button'; start.dataset.wildfolkStart = '';
+        start.insertAdjacentHTML('beforeend', '<svg class="ui-arrow ui-arrow--down" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>');
+        intro.append(el('h2','visually-hidden',item.title),tags(['Identidad visual','Packaging',String(item.year)]),start);
         hero.append(intro);flow.append(hero);
         const media=openingMedia(item);
         const addSection = (key, title, images, options = {}) => {
@@ -2141,10 +2193,12 @@
         addSection('packaging','Mockups de producto',[art['can-diagonal'],art['ice-detail']],{className:'wildfolk-section--packaging'});
         addSection('etiquetas','Etiquetas',[art['golden-label'],art['ipa-wrap'],{...art.lettering,label:'Firma de marca'}],{className:'wildfolk-section--labels'});
         addSection('personajes', 'Personajes', item.blocks[3].images, {className:'wildfolk-section--characters',label:'Personajes · Exploración asistida por IA'});
-        const signature = el('section', 'wildfolk-signature'); signature.setAttribute('aria-label', 'Wildfolk · Logotipo');
+        // Start with the delivered family; explain the visual system after seeing it in use.
+        flow.append(colorSection);
+        const signature = el('section', 'wildfolk-signature'); signature.dataset.chapter = 'Cierre'; signature.setAttribute('aria-label', 'Wildfolk · Logotipo');
         signature.append(mediaButton({...media,monochrome:true,label:'Wildfolk · Identidad visual'}, {caption:false})); flow.append(signature);
         const end = el('nav','wildfolk-end'); end.setAttribute('aria-label', 'Continuar a otro proyecto');
-        const endHeading=el('div','wildfolk-end__heading');endHeading.append(tags(['Continuar recorrido']),tags([`${String(id+1).padStart(2,'0')} / ${String(catalogue.length).padStart(2,'0')}`]));end.append(endHeading);
+        const endHeading=el('div','wildfolk-end__heading');endHeading.append(tags(['Continuar recorrido']),tags([`Wildfolk · ${item.year}`]));end.append(endHeading);
         [-1,1].forEach(direction => {
           const targetItem = catalogue[modulo(id + direction, catalogue.length)];
           const button = el('button', 'wildfolk-end__link'); button.type = 'button';
@@ -2161,8 +2215,10 @@
         pageContent.append(flow);
         const ready = Promise.all([...hero.querySelectorAll('img')].map(image => image.decode())).then(()=>true).catch(()=>false);
         const clearReader = setupFiniteReader(flow, {arrange:false,drift:false});
-        const clearJourney = setupCaseJourney(),clearMotion=setupWildfolkMotion(flow);
-        clearCaseJourney = () => {clearReader();clearJourney();clearMotion();delete document.body.dataset.caseLayout;};
+        const clearJourney = setupCaseJourney(), clearMotion = setupWildfolkMotion(flow);
+        const chapters = [hero, family.section, setting.section, ...flow.querySelectorAll('.wildfolk-section--packaging,.wildfolk-section--labels,.wildfolk-section--characters'), colorSection, signature];
+        const clearChapters = setupWildfolkChapters(flow, chapters);
+        clearCaseJourney = () => {clearChapters();clearReader();clearJourney();clearMotion();delete document.body.dataset.caseLayout;};
         updateCaseNavigation(id);
         return {item,hero,visual,intro,cover,ready};
       }
@@ -2292,7 +2348,7 @@
         updateStudyCursor(true);
       }
       function projectCoverRect(item) {
-        return {left:0,top:0,width:innerWidth,height:innerWidth*item.h/item.w};
+        return {left:0,top:0,width:innerWidth,height:item.slug === 'wildfolk' ? innerHeight : innerWidth*item.h/item.w};
       }
       function coverFrame(rect) {
         return {left:`${rect.left}px`,top:`${rect.top}px`,width:`${rect.width}px`,height:`${rect.height}px`,transform:'none'};

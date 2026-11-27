@@ -1,24 +1,25 @@
-/* Wildfolk only: uninterrupted imagery, compact identification, navigation at the end. */
-body[data-case-layout="wildfolk"] { --wildfolk-ink: #111; --wildfolk-gold: #efb400; --wildfolk-orange: #d66600; }
+/* Wildfolk: viewport-sized deliverables, one finite scroll and compact chapter controls. */
+body[data-case-layout="wildfolk"] { --wildfolk-ink: #111; --wildfolk-gold: #efb400; --wildfolk-orange: #d66600; --wildfolk-frame: 100svh; --wildfolk-clearance: 76px; --wildfolk-command-height: max(28px,var(--shell-row-height)); }
 body[data-case-layout="wildfolk"] .study-page { inset: 0; padding: 0; scroll-padding-top: 0; }
 body[data-case-layout="wildfolk"] .study-case-flow.wildfolk-layout { display: block; width: 100%; max-width: none; margin: 0; padding: 0; color: var(--wildfolk-ink); }
 body[data-case-layout="wildfolk"] .study-case-navigation,
 body[data-case-layout="wildfolk"] .study-menu-toggle { display: none !important; }
-body[data-case-layout="wildfolk"] .study-heading { top: 24px; left: 16px; width: 26px; height: 26px; max-width: none; margin: 0; padding: 0; background: #111; color: #fff; align-items: center; }
+body[data-case-layout="wildfolk"] .study-heading { top: 24px; left: 16px; width: var(--wildfolk-command-height); height: var(--wildfolk-command-height); max-width: none; margin: 0; padding: 0; background: #111; color: #fff; align-items: center; }
 body[data-case-layout="wildfolk"] .study-heading > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-body[data-case-layout="wildfolk"] .study-home { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 4px; margin: 0; color: #fff; background: #111; }
+body[data-case-layout="wildfolk"] .study-home { display: flex; align-items: center; justify-content: center; width: var(--wildfolk-command-height); height: var(--wildfolk-command-height); min-width: 0; min-height: 0; padding: 4px; margin: 0; color: #fff; background: #111; }
 body[data-case-layout="wildfolk"] .study-home .study-mark { width: 18px; height: 18px; }
-body[data-case-layout="wildfolk"] .study-page-close { top: 24px; left: 42px; right: auto; display: flex; align-items: center; justify-content: space-between; width: 94px; height: 26px; min-height: 0; padding: 0 7px 0 3px; margin: 0; color: #fff; background: #111; font-size: 12px; line-height: 1; text-transform: uppercase; }
-body[data-case-layout="wildfolk"] .wildfolk-intro { display: block; position: relative; margin: 0; padding: 0; min-height: 0; }
-body[data-case-layout="wildfolk"] .wildfolk-intro__copy { position: absolute; right: 2.5%; bottom: 15%; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; width: 28%; max-width: none; margin: 0; padding: 0; }
-.wildfolk-tags { display: flex; align-items: stretch; flex-wrap: wrap; width: fit-content; max-width: 100%; }
-.wildfolk-tag { display: inline-block; min-width: 0; padding: 2px 5px; border: 1px solid #111; background: #ededed; color: #111; font-size: clamp(10px,.85vw,14px); font-weight: 450; line-height: 1.15; text-transform: uppercase; overflow-wrap: anywhere; }
-.wildfolk-tag + .wildfolk-tag { margin-left: -1px; }
+body[data-case-layout="wildfolk"] .study-page-close { top: 24px; left: calc(16px + var(--wildfolk-command-height)); right: auto; display: flex; align-items: center; justify-content: space-between; width: calc(var(--shell-font) * 8.7 - var(--wildfolk-command-height)); height: var(--wildfolk-command-height); min-height: 0; padding: 0 7px; margin: 0; color: #fff; background: #111; border: 1px solid #111; font-size: var(--shell-font); line-height: 1.15; text-transform: uppercase; }
+body[data-case-layout="wildfolk"] .wildfolk-intro { display: block; position: relative; margin: 0; padding: 0; min-height: 0; height: var(--wildfolk-frame); }
+body[data-case-layout="wildfolk"] .wildfolk-intro > img { width: 100%; height: 100%; object-fit: cover; }
+body[data-case-layout="wildfolk"] .wildfolk-intro__copy { position: absolute; right: 24px; bottom: 24px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; width: auto; max-width: none; margin: 0; padding: 0; }
+.wildfolk-tags { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0,1fr); align-items: stretch; width: fit-content; max-width: 100%; }
+.wildfolk-tag { display: inline-block; min-width: 0; padding: 2px 5px; border: 1px solid #111; background: #ededed; color: #111; font-size: clamp(12px,.85vw,14px); font-weight: 450; line-height: 1.15; text-transform: uppercase; text-align: center; overflow-wrap: anywhere; }
+.wildfolk-tag + .wildfolk-tag { border-left: 0; }
 .wildfolk-intro .wildfolk-tag--1 { background: var(--wildfolk-orange); }
 .wildfolk-intro .wildfolk-tag--2 { background: #130f06; color: #fff; }
 .wildfolk-intro .wildfolk-tag--3 { background: #ededed; }
 .wildfolk-section { position: relative; min-width: 0; margin: 0; padding: 0; }
-.wildfolk-section__label { position: absolute; top: 16px; right: 16px; max-width: calc(100% - 168px); z-index: 1; pointer-events: none; }
+.wildfolk-section__label { position: absolute; top: var(--wildfolk-clearance); right: 16px; max-width: calc(100% - 168px); z-index: 1; pointer-events: none; }
 .wildfolk-media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: stretch; gap: 0; }
 .wildfolk-media-grid--full { grid-template-columns: minmax(0,1fr); }
 .wildfolk-piece { position: relative; min-width: 0; margin: 0; }
@@ -27,7 +28,7 @@ body[data-case-layout="wildfolk"] .wildfolk-piece__open img { display: block; wi
 body[data-case-layout="wildfolk"] .wildfolk-piece .is-monochrome { filter: brightness(0); }
 .wildfolk-piece figcaption { position: absolute; bottom: 12px; left: 12px; max-width: calc(100% - 24px); margin: 0; pointer-events: none; }
 .wildfolk-piece__open:focus-visible { position: relative; z-index: 2; outline: 2px solid #111; outline-offset: -4px; }
-.wildfolk-color-band { display: grid; grid-template-columns: 2fr repeat(3,minmax(0,1fr)); min-height: clamp(280px,35vw,640px); }
+.wildfolk-color-band { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); height: min(60svh,640px); min-height: 280px; }
 .wildfolk-color-band__copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; padding: clamp(20px,2.5vw,48px); background: #130f06; color: #fff; }
 .wildfolk-color-band__copy .wildfolk-tag { color: #fff; border-color: #fff; background: transparent; }
 .wildfolk-color-band__copy p { max-width: 460px; margin: 0; font-size: clamp(18px,1.55vw,28px); line-height: 1.3; letter-spacing: -.025em; text-wrap: pretty; }
@@ -36,23 +37,32 @@ body[data-case-layout="wildfolk"] .wildfolk-piece .is-monochrome { filter: brigh
 .wildfolk-color-band__hex { opacity: .8; }
 /* Two full-bleed scenes overlap naturally inside their own finite group. */
 .wildfolk-scene-pair { position: relative; isolation: isolate; }
-.wildfolk-scene-pair > .wildfolk-section:first-child { position: sticky; top: min(0px,calc(100svh - 75vw)); z-index: 0; }
+.wildfolk-scene-pair > .wildfolk-section:first-child { position: sticky; top: 0; z-index: 0; }
 .wildfolk-scene-pair > .wildfolk-section:last-child { position: relative; z-index: 1; background: #fff; }
 .wildfolk-section--packaging, .wildfolk-section--labels, .wildfolk-section--characters { overflow: clip; }
-.wildfolk-section--labels .wildfolk-media-grid { grid-template-rows: 1fr 1fr; }
+/* Image areas have a real height budget; intrinsic image dimensions cannot stretch a chapter. */
+.wildfolk-scene-pair .wildfolk-media-grid { height: var(--wildfolk-frame); }
+.wildfolk-scene-pair .wildfolk-piece, .wildfolk-section--packaging .wildfolk-piece, .wildfolk-section--labels .wildfolk-piece { min-height: 0; }
+.wildfolk-scene-pair .wildfolk-piece__open, .wildfolk-section--packaging .wildfolk-piece__open { height: 100%; }
+body[data-case-layout="wildfolk"] .wildfolk-scene-pair .wildfolk-piece__open img { width: 100%; height: 100%; object-fit: contain; }
+.wildfolk-section--packaging .wildfolk-media-grid { height: min(84svh,37.5vw); min-height: 240px; }
+body[data-case-layout="wildfolk"] .wildfolk-section--packaging .wildfolk-piece__open img { height: 100%; object-fit: contain; }
+.wildfolk-section--labels { padding: var(--wildfolk-clearance) 16px 40px; }
+.wildfolk-section--labels .wildfolk-media-grid { height: calc(var(--wildfolk-frame) - var(--wildfolk-clearance) - 40px); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 12px; }
 .wildfolk-section--labels .wildfolk-piece:first-child { grid-column: 1; grid-row: 1 / span 2; }
 .wildfolk-section--labels .wildfolk-piece:nth-child(2) { grid-column: 2; grid-row: 1; }
 .wildfolk-section--labels .wildfolk-piece:nth-child(3) { grid-column: 2; grid-row: 2; }
 body[data-case-layout="wildfolk"] .wildfolk-section--labels .wildfolk-piece__open { height: 100%; }
 body[data-case-layout="wildfolk"] .wildfolk-section--labels .wildfolk-piece__open img { height: 100%; object-fit: contain; }
 body[data-case-layout="wildfolk"] .wildfolk-section--labels .wildfolk-piece:nth-child(3) .wildfolk-piece__open { padding: 12%; }
-.wildfolk-section--characters { padding: 48px 16px 36px; background: #ededed; }
+.wildfolk-section--characters { padding: calc(var(--wildfolk-clearance) + 42px) 16px 36px; background: #ededed; }
 .wildfolk-section--characters .wildfolk-media-grid { grid-template-columns: repeat(6,minmax(0,1fr)); gap: 10px; }
-body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: clamp(140px,16vw,300px); object-fit: contain; }
+body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: min(32svh,16vw); object-fit: contain; }
 .wildfolk-section--characters figcaption { position: static; margin-top: 8px; max-width: 100%; }
 .wildfolk-section--characters figcaption .wildfolk-tag { font-size: clamp(10px,.75vw,13px); }
-.wildfolk-signature { display: flex; flex-direction: column; align-items: center; gap: clamp(24px,4vw,64px); padding: clamp(32px,5vw,88px) 0 0; background: var(--wildfolk-orange); }
-.wildfolk-signature > .wildfolk-piece { width: calc(100% - clamp(48px,10vw,180px)); }
+.wildfolk-signature { display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: var(--wildfolk-frame); gap: 24px; padding: var(--wildfolk-clearance) 0 0; background: var(--wildfolk-orange); }
+.wildfolk-signature > .wildfolk-piece { width: calc(100% - 48px); }
+body[data-case-layout="wildfolk"] .wildfolk-signature > .wildfolk-piece img { height: min(50svh,36vw); }
 .wildfolk-end { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 32px; width: 100%; margin: 0; padding: 24px clamp(16px,3vw,48px) 32px; color: #111; }
 .wildfolk-end__heading { grid-column: 1/-1; display: flex; justify-content: space-between; gap: 12px; }
 .wildfolk-end__heading .wildfolk-tag { color: #fff; background: #111; }
@@ -65,26 +75,78 @@ body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece_
 @media(max-width:600px) {
   body[data-case-layout="wildfolk"] .study-page { inset: 0; }
   body[data-case-layout="wildfolk"] .study-heading, body[data-case-layout="wildfolk"] .study-page-close { top: calc(16px + env(safe-area-inset-top,0px)); }
-  body[data-case-layout="wildfolk"] .wildfolk-intro__copy { gap: 7px; width: 30%; right: 2%; bottom: 10%; }
+  body[data-case-layout="wildfolk"] .wildfolk-intro__copy { gap: 12px; width: calc(100% - 32px); right: 16px; bottom: calc(20px + env(safe-area-inset-bottom,0px)); }
   .wildfolk-intro .wildfolk-tags { justify-content: flex-end; }
-  .wildfolk-section__label { top: 12px; right: 12px; max-width: calc(100% - 24px); }
+  .wildfolk-section__label { top: 16px; right: 12px; max-width: calc(100% - 24px); }
   .wildfolk-tag { font-size: 10px; padding: 2px 4px; }
-  .wildfolk-color-band { grid-template-columns: repeat(3,minmax(0,1fr)); min-height: 0; }
+  .wildfolk-color-band { grid-template-columns: repeat(3,minmax(0,1fr)); height: auto; min-height: 0; }
   .wildfolk-color-band__copy { grid-column: 1/-1; padding: 28px 20px; gap: 18px; }
   .wildfolk-color-band__copy p { font-size: 20px; }
-  .wildfolk-color-band__chip { min-height: 180px; padding: 10px; font-size: 11px; }
+  .wildfolk-color-band__chip { min-height: min(30svh,180px); padding: 10px; font-size: 11px; }
   .wildfolk-media-grid { grid-template-columns: minmax(0,1fr); }
   .wildfolk-section--characters .wildfolk-media-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
-  body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: clamp(100px,28vw,170px); }
+  body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: min(24svh,28vw); }
   .wildfolk-section--characters figcaption .wildfolk-tag { font-size: 10px; }
-  body[data-case-layout="wildfolk"] .wildfolk-section--labels .wildfolk-piece__open img { height: auto; max-height: none; }
+  body[data-case-layout="wildfolk"] .wildfolk-section--labels .wildfolk-piece__open img { height: 100%; max-height: none; }
   .wildfolk-end { padding: 20px 16px calc(24px + env(safe-area-inset-bottom,0px)); gap: 12px; }
   .wildfolk-end__link { flex-wrap: wrap; gap: 8px; padding: 10px; font-size: 17px; }
   .wildfolk-end__preview { width: 100%; order: -1; }
   .wildfolk-end__link .ui-arrow { width: 12px; height: 12px; flex-basis: 12px; }
-  .wildfolk-section--labels .wildfolk-media-grid { grid-template-rows: auto; }
+  .wildfolk-section--labels { padding: 16px 12px; }
+  .wildfolk-section--labels .wildfolk-media-grid { height: auto; grid-template-rows: auto; }
+  .wildfolk-section--labels .wildfolk-piece__open { height: min(78svh,125vw); }
+  .wildfolk-section--labels .wildfolk-piece:nth-child(2) .wildfolk-piece__open { height: min(70svh,75vw); }
+  .wildfolk-section--labels .wildfolk-piece:nth-child(3) .wildfolk-piece__open { height: min(35svh,45vw); }
+  .wildfolk-scene-pair .wildfolk-media-grid { height: min(80svh,90vw); }
+  .wildfolk-section--packaging .wildfolk-media-grid { height: auto; min-height: 0; }
+  .wildfolk-section--packaging .wildfolk-piece__open { height: min(80svh,90vw); }
+  .wildfolk-section--characters { padding-top: 76px; }
+  body[data-case-layout="wildfolk"] .wildfolk-signature > .wildfolk-piece img { height: min(35svh,40vw); }
   .wildfolk-section--labels .wildfolk-piece:first-child, .wildfolk-section--labels .wildfolk-piece:nth-child(2), .wildfolk-section--labels .wildfolk-piece:nth-child(3) { grid-column: auto; grid-row: auto; }
 }
 @media(prefers-reduced-motion:reduce) { .wildfolk-end__link .ui-arrow { translate: none !important; } }
 
 @media(prefers-reduced-motion:reduce) { .wildfolk-scene-pair > .wildfolk-section:first-child { position: relative; top: auto; } }
+
+/* Commands share the portfolio's small black strips and stay outside image captions. */
+.wildfolk-chapters { position: fixed; z-index: 66; top: 24px; right: 16px; display: flex; align-items: center; width: clamp(240px,23vw,320px); max-width: calc(100% - 160px); background: #111; color: #fff; }
+.wildfolk-chapters__status { display: flex; align-items: center; flex: 1; gap: 12px; min-width: 0; padding: 0 10px; font-size: 12px; line-height: var(--wildfolk-command-height); }
+.wildfolk-chapters__count { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.wildfolk-chapters__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wildfolk-chapters__step { display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: var(--wildfolk-command-height); padding: 0; border: 0; background: transparent; color: inherit; }
+.wildfolk-chapters__step:disabled { opacity: .35; }
+.wildfolk-chapters__step .ui-arrow { width: 12px; height: 12px; transition: translate 180ms ease; }
+.wildfolk-chapters .ui-arrow--up { transform: rotate(-45deg); }
+.wildfolk-intro__start { display: flex; align-items: center; gap: 18px; padding: 7px 10px; border: 1px solid #111; background: #ededed; color: #111; font-size: 14px; line-height: 1.15; }
+.wildfolk-intro__start .ui-arrow { transition: translate 180ms ease; }
+.wildfolk-chapters button:focus-visible, .wildfolk-intro__start:focus-visible { outline: 2px solid currentColor; outline-offset: -3px; }
+@media(hover:hover) and (pointer:fine) {
+  .wildfolk-chapters__step[data-chapter-step="-1"]:enabled:hover .ui-arrow { translate: 0 -2px; }
+  .wildfolk-chapters__step[data-chapter-step="1"]:enabled:hover .ui-arrow, .wildfolk-intro__start:hover .ui-arrow { translate: 0 2px; }
+}
+@media(max-width:600px) {
+  .wildfolk-chapters { top: calc(16px + env(safe-area-inset-top,0px)); right: 12px; max-width: calc(100% - 160px); }
+  .wildfolk-chapters__name { max-width: 66px; }
+  .wildfolk-chapters__status { gap: 6px; padding: 0 8px; }
+  .wildfolk-chapters__step { flex-basis: 28px; width: 28px; min-height: 0; }
+  .wildfolk-intro .wildfolk-tag { font-size: 12px; }
+}
+@media(max-height:520px) and (min-width:601px) {
+  .wildfolk-color-band { height: auto; min-height: 240px; }
+  .wildfolk-color-band__copy { gap: 12px; padding: 20px; }
+  .wildfolk-color-band__copy p { font-size: 18px; }
+  .wildfolk-section--characters { padding-top: 88px; padding-bottom: 24px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .wildfolk-chapters .ui-arrow, .wildfolk-intro__start .ui-arrow { translate: none !important; transition: none; }
+}
+
+@media(max-width:900px) and (min-width:601px) {
+  .wildfolk-color-band { height: auto; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .wildfolk-color-band__copy { grid-column: 1/-1; gap: 12px; padding: 20px; }
+  .wildfolk-color-band__copy p { max-width: none; font-size: 18px; }
+  .wildfolk-color-band__chip { min-height: 120px; }
+}
+@media(max-height:520px) and (min-width:601px) {
+  body[data-case-layout="wildfolk"] .wildfolk-signature > .wildfolk-piece img { height: 25svh; }
+}

@@ -1,5 +1,14 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Wildfolk: encuadres y navegación por secciones · 27 de noviembre de 2026
+
+La portada exacta del inicio se convierte en una apertura de 100svh con object-fit cover. Identidad visual, Packaging y 2026 aparecen dentro de ese primer encuadre, con tres etiquetas de igual ancho y sin desbordar. La expansión por foto llega al alto del viewport solo en Wildfolk; los demás encabezados conservan su geometría. Cerrar comparte una tira negra compacta con la marca, texto y cruz alineados a los extremos, como los controles de las secciones personales.
+
+El recorrido finito prioriza aplicaciones: apertura, familia de latas, aplicación, detalles, etiquetas, personajes, color y cierre. Las imágenes interiores conservan proporción y encaje contain dentro de un presupuesto real de altura; no crecer por tamaño intrínseco ni crear scrolls internos. Etiquetas usa dos columnas con una pieza vertical y dos horizontales en escritorio; móvil apila las piezas. Las seis criaturas mantienen una fila o dos filas de tres. Paleta usa paneles de igual ancho y su texto confirmado; no inventar contenido. El cierre ocupa un encuadre propio con marca y proyectos vecinos.
+
+Un control negro compacto arriba a la derecha muestra sección actual y contador 01/08, con dos flechas para saltar a la anterior/siguiente. Sin barra de progreso ni avance automático. Recorrer lleva a la primera entrega. La rueda sigue siendo libre y suave; los saltos explícitos cancelan la inercia pendiente. Actualizar estado también al llegar al fondo y desmontar controles/observadores al salir. Respetar movimiento reducido, ampliación individual y la transición inversa de portada. No extender este rediseño a otros proyectos todavía.
+
+
 ## Wildfolk: selección actual y recorrido animado · 27 de noviembre de 2026
 
 Mostrar las seis criaturas en una sola fila en escritorio; en móvil, tres columnas y dos filas. Retirar del recorrido público toda la exploración anterior: afiches de logo claro, posavasos y mockup en mano; conservar los archivos originales sin borrarlos. Etiquetas y marca se organizan en dos columnas equilibradas, con una pieza vertical y dos horizontales; sin huecos de altura fija innecesarios.

@@ -1,5 +1,10 @@
 # Santiago Barbieri — Portfolio
 
+## Wildfolk · recorrido encuadrado
+
+Apertura de altura de pantalla con etiquetas visibles y de igual ancho. Entregables contenidos, secuencia visual por ocho secciones y navegación compacta sin barra de progreso. Se conservan ampliación, movimiento reducido y apertura/cierre desde la misma portada. El resto de los casos mantiene su distribución.
+
+
 ## Navegación y apertura · 27 de noviembre de 2026
 
 El foco avanza un proyecto por gesto y descarta la inercia y los movimientos en cola. Los seis casos abren expandiendo la misma portada del carrusel hasta su encabezado, sin pantalla de color ni logo intermedio. Cerrar invierte ese recorrido y vuelve al proyecto enfocado. La lectura sigue siendo finita; el home mantiene el loop libre.
