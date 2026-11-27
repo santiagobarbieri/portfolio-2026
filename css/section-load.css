@@ -54,14 +54,11 @@
   margin: 0;
   flex: 0 0 48px;
   background: transparent;
-  color: inherit;
+  color: #111;
 }
 
-/* Keep the colored silhouette readable on both sides of its moving edge. */
-.study-section-loader .study-logo-loader svg {
-  filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff)
-    drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
-}
+/* Solid ink replaces the outline, without changing the original runner geometry. */
+.study-section-loader .study-logo-loader svg { filter: none; }
 .study-section-loader[data-direction="return"] .study-logo-loader { transform: scaleX(-1); }
 
 .study-section-loader__message {

@@ -2,7 +2,7 @@
 
 ## Actualización visual · 27 de noviembre de 2026
 
-Wildfolk presenta principalmente la línea de packaging con logotipo negro: 22 imágenes, mockups nuevos, etiquetas, marca y color, con textos breves. Dos columnas en escritorio y una en móvil, sin loop interno ni descargas. La primera línea gráfica permanece identificada como exploración previa. Los originales locales no se modifican; los derivados públicos están en `assets/images/wildfolk-web/`.
+Wildfolk presenta principalmente la línea de packaging con logotipo negro: 22 imágenes, mockups nuevos, etiquetas, marca y color, con identificaciones breves y dos cajas explicativas puntuales. Imágenes casi al ancho completo, dos columnas en escritorio y una en móvil, sin loop interno ni descargas. Las resoluciones se adaptan al ancho y a la densidad de pantalla. La primera línea gráfica permanece identificada como exploración previa. Los originales locales no se modifican; los derivados públicos están en `assets/images/wildfolk-web/`.
 
 Las transiciones entre Proyectos, Sobre mí y Contacto conservan la vista saliente hasta que el barrido la cubre, evitando el salto inicial a una pantalla vacía. El inicio no tiene corredor y las tarjetas entran una vez por sesión.
 

@@ -1,103 +1,66 @@
-/* Wildfolk: delivered work leads the finite reader; two clear media columns. */
-body[data-case-layout="wildfolk"] {
-  --wildfolk-rail: clamp(56px, 8.5vw, 164px);
-  --wildfolk-gap: clamp(20px, 2.5vw, 44px);
-}
-body[data-case-layout="wildfolk"] .study-page { inset: 88px 0 0; scroll-padding-top: 32px; }
+/* A tight, image-led sheet. Side commands retain a slim, dedicated rail. */
+body[data-case-layout="wildfolk"] { --wildfolk-rail: 48px; --wildfolk-gap: 12px; }
+body[data-case-layout="wildfolk"] .study-page { inset: 88px 0 0; scroll-padding-top: 16px; }
 body[data-case-layout="wildfolk"] .study-case-flow.wildfolk-layout {
-  display: block;
-  width: min(1440px, calc(100% - var(--wildfolk-rail) * 2));
-  max-width: none;
-  margin: 32px auto 0;
-  padding: 0;
+  display: block; width: calc(100% - var(--wildfolk-rail) * 2); max-width: none;
+  margin: 8px auto 0; padding: 0;
 }
 body[data-case-layout="wildfolk"] .wildfolk-intro {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: center;
-  gap: var(--wildfolk-gap);
-  margin: 0 0 clamp(40px, 5vw, 80px);
-  padding: 24px 0;
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: center;
+  gap: var(--wildfolk-gap); margin: 0 0 20px; padding: 12px 0;
 }
-body[data-case-layout="wildfolk"] .wildfolk-intro__mark {
-  width: min(82%, 420px);
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-}
+body[data-case-layout="wildfolk"] .wildfolk-intro__mark { width: min(58%,280px); min-height: 0; margin: 0; padding: 0; }
 body[data-case-layout="wildfolk"] .wildfolk-intro__mark img { width: 100%; height: auto; max-height: none; }
-body[data-case-layout="wildfolk"] .wildfolk-intro__copy { display: block; width: 100%; min-width: 0; max-width: 560px; padding: 0; }
-body[data-case-layout="wildfolk"] .wildfolk-intro h2 {
-  margin: 12px 0 16px;
-  font-size: clamp(30px, 3.2vw, 52px);
-  font-weight: 600;
-  letter-spacing: -.04em;
-  line-height: 1.08;
-}
-body[data-case-layout="wildfolk"] .wildfolk-intro p {
-  margin: 0 0 18px;
-  font-size: clamp(17px, 1.4vw, 22px);
-  line-height: 1.4;
-  text-wrap: pretty;
-}
-body[data-case-layout="wildfolk"] p.wildfolk-kicker { font-size: 14px; line-height: 1.4; margin: 0; color: #555; }
-.wildfolk-section { margin: 0 0 clamp(56px, 6vw, 104px); padding: 0; min-width: 0; }
-.wildfolk-section__copy {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: baseline;
-  gap: 12px var(--wildfolk-gap);
-  margin: 0 0 24px;
-}
-.wildfolk-section__copy h3 { margin: 0; font-size: clamp(23px, 2.15vw, 34px); font-weight: 600; line-height: 1.1; letter-spacing: -.035em; text-wrap: balance; }
-.wildfolk-section__copy p { margin: 0; max-width: 460px; font-size: 17px; line-height: 1.4; color: #444; text-wrap: pretty; }
-.wildfolk-media-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 32px var(--wildfolk-gap); }
+body[data-case-layout="wildfolk"] .wildfolk-intro__copy { display: block; width: 100%; min-width: 0; max-width: none; padding: 0; }
+body[data-case-layout="wildfolk"] p.wildfolk-kicker { margin: 0 0 4px; color: #444; font-size: 14px; line-height: 1.4; }
+.wildfolk-section { margin: 0 0 24px; padding: 0; min-width: 0; }
+.wildfolk-section__copy { margin: 0; padding: 0; }
+.wildfolk-group-label { margin: 0 0 12px; font-size: 14px; line-height: 1.4; color: #444; }
+.wildfolk-media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: start; gap: 16px var(--wildfolk-gap); }
 .wildfolk-piece { min-width: 0; margin: 0; }
 .wildfolk-piece__open { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; transform-origin: center; transition: transform 180ms ease; }
 body[data-case-layout="wildfolk"] .wildfolk-piece__open img { display: block; width: 100%; height: auto; max-width: 100%; max-height: none; object-fit: contain; border: 0; box-shadow: none; background: transparent; }
 body[data-case-layout="wildfolk"] .wildfolk-piece .is-monochrome { filter: brightness(0); }
-.wildfolk-piece figcaption { margin-top: 10px; color: #555; font-size: 14px; line-height: 1.4; }
-.wildfolk-piece__open:focus-visible { outline: 2px solid #111; outline-offset: 5px; }
-body[data-case-layout="wildfolk"] .wildfolk-section--marks .wildfolk-piece__open img { height: clamp(180px, 23vw, 330px); width: 100%; object-fit: contain; }
-body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: clamp(180px, 20vw, 280px); width: 100%; object-fit: contain; }
-body[data-case-layout="wildfolk"] .wildfolk-section--label .wildfolk-piece__open img { height: clamp(340px, 41vw, 600px); width: 100%; object-fit: contain; }
-body[data-case-layout="wildfolk"] .wildfolk-section--objects .wildfolk-piece__open img { height: clamp(260px, 35vw, 490px); width: 100%; object-fit: contain; }
+.wildfolk-piece figcaption { margin-top: 6px; color: #555; font-size: 13px; line-height: 1.4; }
+.wildfolk-piece__open:focus-visible { outline: 2px solid #111; outline-offset: 4px; }
+body[data-case-layout="wildfolk"] .wildfolk-section--marks .wildfolk-piece__open img { height: clamp(180px,19vw,340px); width: 100%; object-fit: contain; }
+body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: clamp(180px,18vw,300px); width: 100%; object-fit: contain; }
+body[data-case-layout="wildfolk"] .wildfolk-section--label .wildfolk-piece__open img { height: clamp(340px,40vw,660px); width: 100%; object-fit: contain; }
+body[data-case-layout="wildfolk"] .wildfolk-section--objects .wildfolk-piece__open img { height: clamp(260px,33vw,550px); width: 100%; object-fit: contain; }
 .wildfolk-section--color .wildfolk-media-grid { align-items: center; }
 .wildfolk-palette { margin: 0; min-width: 0; }
-.wildfolk-palette__swatches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.wildfolk-palette__chip { display: flex; flex-direction: column; min-width: 0; gap: 4px; font-size: 14px; line-height: 1.4; }
-.wildfolk-palette__swatch { display: block; height: clamp(120px, 15vw, 220px); margin-bottom: 8px; background: var(--swatch); }
-.wildfolk-palette__chip > span:last-child { font-size: 13px; color: #555; }
-.wildfolk-end { min-height: 180px; }
-@media (hover:hover) and (pointer:fine) { .wildfolk-piece__open:hover { transform: translateY(-2px) scale(1.01); } }
-@media (max-width: 900px) {
-  body[data-case-layout="wildfolk"] { --wildfolk-rail: 60px; --wildfolk-gap: 24px; }
-  .wildfolk-section__copy { grid-template-columns: minmax(0, 1fr); }
-  .wildfolk-section__copy h3 { font-size: 27px; }
-  .wildfolk-section__copy p { font-size: 16px; }
-}
-@media (max-width: 600px), (max-width: 900px) and (hover:none) and (pointer:coarse) {
-  body[data-case-layout="wildfolk"] { --wildfolk-rail: 44px; --wildfolk-gap: 20px; }
-  body[data-case-layout="wildfolk"] .study-page { inset: calc(76px + env(safe-area-inset-top, 0px)) 0 0; }
-  body[data-case-layout="wildfolk"] .study-case-flow.wildfolk-layout { margin-top: 18px; }
-  body[data-case-layout="wildfolk"] .wildfolk-intro { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 12px 0; margin-bottom: 44px; }
-  body[data-case-layout="wildfolk"] .wildfolk-intro__mark { width: min(100%, 300px); }
-  body[data-case-layout="wildfolk"] .wildfolk-intro h2 { font-size: 34px; }
-  body[data-case-layout="wildfolk"] .wildfolk-intro p { font-size: 17px; }
-  body[data-case-layout="wildfolk"] p.wildfolk-kicker { font-size: 13px; }
-  .wildfolk-media-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .wildfolk-section { margin-bottom: 52px; }
-  .wildfolk-section__copy { margin-bottom: 20px; }
-  .wildfolk-section__copy h3 { font-size: 26px; }
-  .wildfolk-piece figcaption { font-size: 13px; }
-  .wildfolk-palette__swatches { gap: 8px; }
+.wildfolk-palette__swatches { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.wildfolk-palette__chip { display: flex; flex-direction: column; min-width: 0; gap: 3px; font-size: 14px; line-height: 1.4; }
+.wildfolk-palette__swatch { display: block; height: clamp(120px,14vw,230px); margin-bottom: 5px; background: var(--swatch); }
+.wildfolk-palette__chip > span:last-child { color: #555; font-size: 13px; }
+.wildfolk-note { margin: 12px 0 0; padding: clamp(16px,1.6vw,26px); color: #111; }
+.wildfolk-note--blue { background: #01a2f2; }
+.wildfolk-note--gray { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: baseline; gap: var(--wildfolk-gap); margin: 0 0 12px; background: #ededed; }
+.wildfolk-note h4 { margin: 0 0 6px; font-size: clamp(19px,1.8vw,28px); line-height: 1.15; letter-spacing: -.03em; font-weight: 600; }
+.wildfolk-note p { max-width: 600px; margin: 0; font-size: clamp(16px,1.2vw,20px); line-height: 1.4; text-wrap: pretty; }
+.wildfolk-end { min-height: 88px; }
+body[data-case-layout="wildfolk"] .study-case-navigation button { width: 36px; min-width: 36px; }
+body[data-case-layout="wildfolk"] .study-case-navigation button:first-child { left: 4px; }
+body[data-case-layout="wildfolk"] .study-case-navigation button:last-child { right: 4px; }
+@media(hover:hover) and (pointer:fine) { .wildfolk-piece__open:hover { transform: translateY(-1px) scale(1.005); } }
+@media(max-width:600px), (max-width:900px) and (hover:none) and (pointer:coarse) {
+  body[data-case-layout="wildfolk"] { --wildfolk-rail: 32px; --wildfolk-gap: 10px; }
+  body[data-case-layout="wildfolk"] .study-page { inset: calc(76px + env(safe-area-inset-top,0px)) 0 0; }
+  body[data-case-layout="wildfolk"] .wildfolk-intro { gap: 12px; margin-bottom: 16px; padding: 8px 0; }
+  body[data-case-layout="wildfolk"] .wildfolk-intro__mark { width: min(100%,180px); }
+  body[data-case-layout="wildfolk"] p.wildfolk-kicker { font-size: 12px; }
+  .wildfolk-media-grid { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .wildfolk-section { margin-bottom: 20px; }
+  .wildfolk-note--gray { grid-template-columns: minmax(0,1fr); }
   .wildfolk-palette__chip { font-size: 12px; }
   .wildfolk-palette__chip > span:last-child { font-size: 11px; }
   .wildfolk-palette__swatch { height: 120px; }
-  body[data-case-layout="wildfolk"] .wildfolk-section--marks .wildfolk-piece__open img { height: 200px; }
-  body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: 230px; }
+  body[data-case-layout="wildfolk"] .wildfolk-section--marks .wildfolk-piece__open img { height: 170px; }
+  body[data-case-layout="wildfolk"] .wildfolk-section--characters .wildfolk-piece__open img { height: 210px; }
   body[data-case-layout="wildfolk"] .wildfolk-section--label .wildfolk-piece__open img { height: auto; max-height: 480px; }
   body[data-case-layout="wildfolk"] .wildfolk-section--objects .wildfolk-piece__open img { height: auto; max-height: none; }
+  body[data-case-layout="wildfolk"] .study-case-navigation button { width: 28px; min-width: 28px; }
+  body[data-case-layout="wildfolk"] .study-case-navigation button:first-child { left: 0; }
+  body[data-case-layout="wildfolk"] .study-case-navigation button:last-child { right: 0; }
 }
-@media (max-width: 360px) { body[data-case-layout="wildfolk"] { --wildfolk-rail: 36px; } }
-@media (prefers-reduced-motion:reduce) { .wildfolk-piece__open { transition: none; } }
+@media(prefers-reduced-motion:reduce) { .wildfolk-piece__open { transition: none; } }

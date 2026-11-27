@@ -1,5 +1,15 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Wildfolk compacto y corredor sin contorno · 27 de noviembre de 2026
+
+Solo Wildfolk amplía el recorrido casi hasta los bordes: dos columnas iguales sin ancho máximo, laterales de 48px para los comandos, gutter de 12px y 24px entre grupos. En móvil conserva una columna con 32px laterales. Mantener imágenes completas, proporciones originales, zoom y un final finito. No rellenar ni recortar archivos para ganar superficie.
+
+Se retiran los títulos y párrafos visibles de presentación y de cada bloque. Conservar títulos semánticos ocultos, nombres breves bajo las piezas, año/disciplina, identificación de marca ficticia y aviso breve de exploración de personajes asistida por IA. Únicamente dos cajas explicativas puntuales: sistema de color sobre azul #01A2F2 del portfolio y exploración previa sobre gris #EDEDED. La paleta no recibe un fondo agregado. Evitar reintroducir una ficha editorial o texto de storytelling entre cada imagen.
+
+Las imágenes eligen preview o ampliación mediante srcset según ancho y densidad de pantalla. Esperar la decodificación de las dos imágenes realmente elegidas por el navegador antes de revelar el caso, sin precargar todos los zooms. Los demás proyectos y sus assets no cambian.
+
+El corredor usa silueta negra sólida sobre el barrido, sin borde blanco, drop-shadow ni cambios en sus trazados originales. Conservar la integración con la vista saliente, posición mitad dentro/mitad fuera, velocidad uniforme, regreso espejado e inicio sin corredor. Esta instrucción reemplaza el contorno y el relleno del color del bloque anteriores.
+
 ## Wildfolk visual y barrido integrado · 27 de noviembre de 2026
 
 Santiago pidió rediseñar completamente Wildfolk con predominio de imágenes y confirmó como principal la nueva línea con logo negro de `Escritorio/FOR ZIP - WILDFOLK 2`. Usar mockups sobre hielo, familia de latas, etiquetas planas y extendidas, lettering/isotipo y tres colores aportados: #EFB400, #D66600 y #130F06. La portada y los previews de Wildfolk representan esa línea; la apertura conserva tarjeta→color→PNG, ahora dorado con la marca transparente en negro. Los demás casos no cambian.
