@@ -1,5 +1,13 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Wildfolk de borde a borde · 27 de noviembre de 2026
+
+La nueva referencia reemplaza los márgenes laterales y el ancho de lectura solo en Wildfolk: apertura, mockups y bandas visuales ocupan el 100% del viewport, sin franjas superiores, gutters ni loop interno. Conservar proporciones nativas e imágenes completas; usar el mockup nuevo de latas apiladas en la apertura y el de latas mezcladas en un bloque completo. Mantener la línea principal con logotipo negro elegida por Santiago. Las piezas previas siguen identificadas como primera exploración, sin cambiar la portada del home ni los demás proyectos.
+
+Etiquetas rectangulares compactas, unidas con borde negro de 1px: Identidad visual, Packaging y año junto a la marca; nombres breves en las piezas. Paleta continua con los tres colores aportados y una explicación breve sobre negro cálido. Cierre fijo pequeño con el único logo personal arriba a la izquierda; las flechas de cambio de proyecto aparecen únicamente al final del recorrido, con nombres accesibles y hover de desplazamiento. En móvil se apilan las imágenes; personajes mantienen dos columnas. No modificar aperturas, loaders, foco ni transiciones generales.
+
+Los nuevos derivados can-wall y can-pile provienen de FOR ZIP - WILDFOLK 2; previews de 1400px y ampliaciones de 3200px con srcset, sin modificar los originales. Decodificar el hero y el PNG antes de revelar el caso. Mantener zoom individual y navegación finita sin descargas.
+
 ## Wildfolk compacto y corredor sin contorno · 27 de noviembre de 2026
 
 Solo Wildfolk amplía el recorrido casi hasta los bordes: dos columnas iguales sin ancho máximo, laterales de 48px para los comandos, gutter de 12px y 24px entre grupos. En móvil conserva una columna con 32px laterales. Mantener imágenes completas, proporciones originales, zoom y un final finito. No rellenar ni recortar archivos para ganar superficie.
