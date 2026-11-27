@@ -912,8 +912,9 @@
       info.addEventListener('pointerenter', () => { pointer.inside = false; });
       stage.addEventListener('keydown', event => { if (event.key === 'Enter' && !pageName && !event.target.closest('.study-card-info')) { event.preventDefault(); focusLoop?.activate(Math.round(position)); } });
 
-      function loadingMark() {
+      function loadingMark(fps = 12) {
         const host = el('span','study-logo-loader');
+        host.dataset.fps = String(fps);
         host.setAttribute('data-logo-loader',''); host.setAttribute('aria-hidden','true');
         window.PortfolioLogoRunner?.mountLoader(host);
         return host;
@@ -1111,7 +1112,7 @@
 
       function beginSectionLoad(options = {}) {
         cancelSectionLoad(activeSectionLoad, 'superseded');
-        const { key = 'home', label = 'Proyectos', surface = '#fff', runner = true, returning = false, minimum = runner ? 850 : 0 } = options;
+        const { key = 'home', label = 'Proyectos', surface = '#fff', runner = true, returning = false, minimum = runner ? 1000 : 0 } = options;
         const controller = new AbortController();
         const node = el('div', 'study-section-loader');
         node.style.setProperty('--section-load-surface', surface);
@@ -1126,7 +1127,10 @@
         const wash = el('div', 'study-section-loader__wash'); wash.setAttribute('aria-hidden', 'true');
         const content = el('div', 'study-section-loader__content');
         const status = el('span', 'visually-hidden', `Cargando ${label}`);
-        if (runner) content.append(loadingMark());
+        if (runner) {
+          const mark = loadingMark(16);
+          content.append(mark);
+        }
         content.append(status); node.append(wash, content);
         let resolveMinimum, resolveCancelled, resolveMotion;
         const state = {
@@ -1146,28 +1150,32 @@
         activeSectionLoad = state;
         document.querySelector('[data-logo-runner]')?.dispatchEvent(new Event('logo-runner:reset'));
         document.body.append(node);
-        let previous = performance.now();
+        const runnerPosition = progress => {
+          // A short acceleration/deceleration around a constant-speed crossing.
+          // Loading progress never changes the character's lateral velocity.
+          const ramp = .10, travel = 1 - ramp;
+          if (progress < ramp) return progress * progress / (2 * ramp * travel);
+          if (progress > 1 - ramp) return 1 - (1 - progress) ** 2 / (2 * ramp * travel);
+          return (progress - ramp / 2) / travel;
+        };
+        const placeRunner = progress => {
+          const distance = runnerPosition(progress);
+          const x = returning ? innerWidth + 24 - distance * (innerWidth + 48) : -24 + distance * (innerWidth + 48);
+          const edge = Math.max(0, Math.min(1, x / innerWidth));
+          state.wash.style.transform = `scaleX(${!runner || preference.matches ? 1 : edge})`;
+          state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(${x - 24}px, -50%, 0)`;
+        };
         const advance = now => {
           state.frame = 0;
           if (!state.current() || state.phase !== 'loading') return;
-          const dt = Math.min(50, now - previous); previous = now;
           const elapsed = now - state.started;
-          const clock = state.duration ? Math.min(1, elapsed / state.duration) : 1;
-          const available = state.workReady ? 1 : Math.min(.94, .08 + state.progress * .86);
-          const goal = Math.min(clock, available);
-          state.position = preference.matches ? goal : state.position + (goal - state.position) * (1 - Math.exp(-dt / 40));
-          if (state.workReady && clock === 1 && (preference.matches || state.duration === 0 || 1 - state.position < .006)) state.position = 1;
-          // The runner's center owns the edge: half inside the color, half outside.
-          // Returning erases the same surface from right to left.
-          const edge = returning ? 1 - state.position : state.position;
-          state.wash.style.transform = `scaleX(${!runner || preference.matches ? 1 : edge})`;
-          state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(calc(${edge * 100}vw - 24px), -50%, 0)`;
+          state.position = state.duration ? Math.min(1, elapsed / state.duration) : 1;
+          placeRunner(state.position);
           state.node.dataset.progress = state.position.toFixed(4);
-          if (state.position === 1 && state.workReady) { state.resolveMotion(true); return; }
+          if (state.position === 1) { state.resolveMotion(true); return; }
           state.frame = requestAnimationFrame(advance);
         };
-        state.wash.style.transform = !runner || returning || preference.matches ? 'scaleX(1)' : 'scaleX(0)';
-        state.content.style.transform = preference.matches ? 'translate(-50%, -50%)' : `translate3d(calc(${returning ? 100 : 0}vw - 24px),-50%,0)`;
+        placeRunner(0);
         state.frame = requestAnimationFrame(advance);
         state.entered = Promise.resolve(true);
         return state;
@@ -1268,10 +1276,6 @@
             : Promise.resolve(true);
           const results = await Promise.all([
             playSectionLoad(state, state.node, wipe, { duration: vertical ? 220 : 180, easing: 'cubic-bezier(.65,0,.25,1)' }),
-            state.options.runner !== false && !preference.matches ? playSectionLoad(state, state.content, [
-              { transform: state.content.style.transform },
-              { transform: state.options.returning ? 'translate3d(-72px,-50%,0)' : 'translate3d(calc(100vw + 24px),-50%,0)' }
-            ], { duration: 140, easing: 'ease-out' }) : Promise.resolve(true),
             reveal
           ]);
           if (!results.every(Boolean) || !state.current()) {
