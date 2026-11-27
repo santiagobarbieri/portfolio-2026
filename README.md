@@ -1,5 +1,13 @@
 # Santiago Barbieri — Portfolio
 
+## OLAS, Club de Economía y Wildfolk · referencias del 27 de noviembre de 2026
+
+Los tres casos adoptan las composiciones nuevas: portada completa, paleta y aplicación, fondo antes de la grilla y ficha final con tipografía y descripción breve. OLAS y Wildfolk presentan celdas cuadradas de igual alto, con una aplicación de lapiceras a doble ancho en OLAS. Club mantiene la secuencia más corta de su modelo. Anterior/Siguiente cambian al nombre y color del destino, con expansión lateral y acceso por teclado. Los controles aparecen después de la apertura; etiquetas sobre las imágenes y ampliación individual sin descargas.
+
+Albert Sans en OLAS/Club; Grenze Gotisch e Inter Medium en Wildfolk. Fuentes locales con licencia OFL. Los archivos de `assets/images/reference-cases/` son derivados optimizados de estos originales encontrados en Descargas: `Olas - Pins.png`, `iPhone_Mockup_5.png`, `Simple_Round_Sticker_Mockup.png`, `Free_Pen_Mockup_2.png`, `Free_Pen_Mockup_4.png`, `Pin_Button_Mockup_3.png` y `PRESET _ Carousel Slide 3.png`. Originales intactos. Wildfolk conserva sus derivados existentes de la línea de logo negro.
+
+Verificación: seis anchos de 320 a 1920px; secuencia de superposición, celdas cuadradas, controles expandidos, apertura/cierre, cambio de proyecto, ampliación, movimiento reducido y scroll sostenido en foco. El indicador circular del inicio ahora refleja el desplazamiento continuo. Archivo sigue bloqueado; la propuesta de afiches inspirada en ElasticGridScroll Variation 02 no está implementada.
+
 ## Wildfolk y foco sostenido · 27 de noviembre de 2026
 
 El scroll sostenido en foco continúa por pasos con paradas completas y sin cola de movimientos. Las cajas comparten medida mínima y crecen para mostrar textos largos completos. Wildfolk usa una grilla de cuatro elementos por fila (dos en móvil), pies alineados abajo a la derecha y dos portadas a pantalla completa al final, superpuestas sobre la paleta. Se retiran el navegador de secciones y las acciones Recorrer.

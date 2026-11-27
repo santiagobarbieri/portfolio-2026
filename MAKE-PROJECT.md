@@ -1,5 +1,17 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Composiciones de OLAS, Club de Economía y Wildfolk · 27 de noviembre de 2026
+
+Esta dirección reemplaza las distribuciones anteriores únicamente en estos tres casos. Usar `catalogue[].presentation`, `renderReferenceProject` y `css/wildfolk-case.css`: portada de 100svh; paleta vertical a la izquierda y aplicación a la derecha; fondo de la exposición que cubre primero la paleta; después entra la grilla derecha de dos columnas con celdas cuadradas de igual alto y piezas seleccionadas de doble ancho. Al terminar la grilla aparece, si existe, la imagen completa siguiente y luego la ficha final de tipografía, marca y descripción. Club conserva el recorrido breve de su referencia, sin inventarle una grilla. El scroll es finito, sin carrusel interno ni descargas; ampliar cada original por separado.
+
+OLAS y Club usan Albert Sans. Wildfolk usa Grenze Gotisch Bold en el título e Inter Medium en subtítulo y texto. Las fuentes WOFF2 se alojan localmente con sus licencias OFL; conservar las variantes y colores originales de las marcas. Descripciones breves, basadas en la información confirmada, sin texto de relleno ni resultados inventados. Los placeholders Título/Subtítulo de Figma se sustituyen por muestras reales del proyecto. Conservar el aviso de exploración asistida por IA en Wildfolk.
+
+Cerrar, navegación y metadatos ocupan tres zonas independientes arriba. Anterior/Siguiente muestran el nombre y color del destino al hacer hover o foco de teclado, creciendo hacia el costado correspondiente sin invadir los otros controles. Los comandos entran después de terminar la expansión de la portada; las piezas tienen entradas laterales suaves y escalonadas, sin desaparecer al bajar. Las etiquetas se superponen sobre las imágenes, dentro de sus límites, y admiten texto completo. Respetar movimiento reducido y limpiar observadores/capas al cambiar de vista.
+
+Los mockups encontrados en Descargas se publican como previews y ampliaciones WebP en `assets/images/reference-cases/`; no modificar ni borrar sus originales. La referencia nueva de Wildfolk incluye expresamente el posavasos y la lata aplastada: incluir esos dos sin recuperar el resto de la exploración anterior. El progreso circular del inicio sigue la posición continua real de la pila; conservar el control por gesto del foco.
+
+Archivo permanece con candado. ElasticGridScroll Variation 02 solo se evalúa como propuesta futura para afiches; no agregar esa dependencia ni implementar esa vista todavía. Apolo, Orfeo y El Armado conservan sus interiores actuales.
+
 ## Foco sostenido, etiquetas completas y grilla de Wildfolk · 27 de noviembre de 2026
 
 El foco admite scroll rápido sostenido: después de detenerse completamente y de 700ms desde el paso anterior, un input de magnitud significativa puede iniciar otro paso. No encolar pasos ni repetir por colas de inercia decrecientes. Mantener gestos finos, dirección inversa y una parada de 90ms entre tarjetas; silencio de 160ms también inicia un gesto nuevo. Fuera de foco no cambia.

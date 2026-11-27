@@ -124,7 +124,7 @@ function layout(){
 let ringPosition=1;
 function updateProjectRing(seq,dt){
  const goal=seq+1;
- ringPosition=rm.matches?goal:approach(ringPosition,goal,dt,.075);
+ ringPosition=goal;
  const lap=Math.floor(ringPosition/N), fraction=mod(ringPosition,N)/N;
  const odd=mod(lap,2)===1;
  $('projectTrack').style.stroke=odd?'var(--ring-a)':'var(--ring-b)';
@@ -168,7 +168,7 @@ function draw(dt=0){
  // mobile menu restores its controls through syncMobileShell.
  if(f>.45&&idx.contains(document.activeElement))stage.focus({preventScroll:true});
  idx.inert=Boolean(entrance)||f>.45;
- const ringSeq=mode==='seeking'?target:center;updateProjectRing(ringSeq,dt);const a=mod(ringSeq,N);if(a!==active){active=a;idx.querySelectorAll('button').forEach((b,i)=>i===a?b.setAttribute('aria-current','true'):b.removeAttribute('aria-current'));$('projectProgress').setAttribute('aria-valuemax',N);$('projectProgress').setAttribute('aria-valuenow',a+1);$('projectProgress').setAttribute('aria-valuetext',`${P[a].t}, ${a+1} de ${N}`)}
+ updateProjectRing(pos,dt);const a=mod(center,N);if(a!==active){active=a;idx.querySelectorAll('button').forEach((b,i)=>i===a?b.setAttribute('aria-current','true'):b.removeAttribute('aria-current'));$('projectProgress').setAttribute('aria-valuemax',N);$('projectProgress').setAttribute('aria-valuenow',a+1);$('projectProgress').setAttribute('aria-valuetext',`${P[a].t}, ${a+1} de ${N}`)}
 }
 // Monotone first-order filter: no spring or overshoot.
 function approach(value,goal,dt,tau,maxSpeed=Infinity){
