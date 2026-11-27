@@ -1,5 +1,13 @@
 # MAKE-PROJECT.md — cómo crear la página de un proyecto
 
+## Wildfolk: selección actual y recorrido animado · 27 de noviembre de 2026
+
+Mostrar las seis criaturas en una sola fila en escritorio; en móvil, tres columnas y dos filas. Retirar del recorrido público toda la exploración anterior: afiches de logo claro, posavasos y mockup en mano; conservar los archivos originales sin borrarlos. Etiquetas y marca se organizan en dos columnas equilibradas, con una pieza vertical y dos horizontales; sin huecos de altura fija innecesarios.
+
+Los dos mockups completos forman un grupo finito: el primero se mantiene brevemente y el segundo lo cubre al avanzar. Entradas laterales de 28px y verticales de 20px con desfase de hasta 260ms en producto, etiquetas y criaturas; nunca ocultar por completo una pieza ya visible. Respetar movimiento reducido desactivando entradas y superposición sticky; cancelar animaciones al abandonar la ficha. El cierre continúa sobre naranja, con marca, etiquetas compactas, miniaturas de los proyectos vecinos y flechas finas, sin footer gris genérico ni rótulos grandes Anterior/Próximo.
+
+Las aperturas por foto y el scroll por gesto en foco quedan vigentes. La lista de mockups futuros abarca los seis casos activos y orienta a una presentación centrada en entregables reales; no presentar maquetas como producciones realizadas.
+
 ## Portada continua y foco por gesto · 27 de noviembre de 2026
 
 Santiago retira la apertura de color y PNG independiente en todos los proyectos. La imagen exacta de la tarjeta enfocada se amplía hasta el ancho de pantalla y se convierte en el encabezado real, sin intercambio por otro asset. Conservar proporción: object-fit cover coincide con la tarjeta durante la expansión y llega al alto natural del encabezado. Preparar y decodificar el encabezado debajo de la misma imagen antes de entregar el control al lector; no introducir un flash de color ni un segundo logo. Los textos y entregables siguen después del encabezado. Wildfolk conserva su recorrido de borde a borde; el mockup anterior de apertura pasa al recorrido.

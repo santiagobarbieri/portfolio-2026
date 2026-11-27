@@ -2058,6 +2058,29 @@
         document.fonts.ready.then(scheduleLayout);layout();
         return ()=>{disposed=true;controller.abort();resize.disconnect();cancelAnimationFrame(layoutFrame);cancelAnimationFrame(motionFrame);cards.forEach(card=>card.style.removeProperty('--reader-drift'));};
       }
+      function setupWildfolkMotion(flow) {
+        const controller=new AbortController(),effects=new Set();
+        const observer=new IntersectionObserver(entries=>{
+          for(const entry of entries){
+            if(!entry.isIntersecting)continue;
+            observer.unobserve(entry.target);
+            if(preference.matches||activeProjectTransition)continue;
+            const pieces=[...entry.target.querySelectorAll('.wildfolk-piece')];
+            pieces.forEach((piece,index)=>{
+              const direction=index%2?1:-1;
+              const animation=piece.animate([
+                {translate:`${direction*28}px 20px`,opacity:.7},
+                {translate:'0px 0px',opacity:1}
+              ],{duration:650,delay:Math.min(index*65,260),easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'});
+              effects.add(animation);animation.finished.then(()=>effects.delete(animation)).catch(()=>{});
+            });
+          }
+        },{root:page,threshold:.08,rootMargin:'0px 0px -24px'});
+        flow.querySelectorAll('.wildfolk-section--packaging,.wildfolk-section--labels,.wildfolk-section--characters').forEach(section=>observer.observe(section));
+        preference.addEventListener('change',()=>{if(preference.matches)effects.forEach(animation=>animation.cancel())},{signal:controller.signal});
+        return()=>{controller.abort();observer.disconnect();effects.forEach(animation=>animation.cancel())};
+      }
+
       // Wildfolk is a continuous, full-bleed visual case with navigation at its end.
       function renderWildfolkProject(item, id) {
         document.body.dataset.caseLayout = 'wildfolk';
@@ -2112,37 +2135,34 @@
           chip.append(el('span', 'wildfolk-color-band__name', color.name), el('span', 'wildfolk-color-band__hex', color.hex));
           colorSection.append(chip);
         }); flow.append(colorSection);
-        addSection('familia', 'Packaging principal', [art['can-pile']], {full:true});
-        addSection('hielo', 'Familia de latas', [art['can-wall']], {full:true});
-        addSection('packaging', 'Mockups de producto', [art['can-diagonal'], art['ice-detail']]);
-        addSection('etiquetas', 'Etiquetas', [art['golden-label'], art['ipa-wrap']], {className:'wildfolk-section--labels'});
+        const family=addSection('familia','Packaging principal',[art['can-pile']],{full:true});
+        const setting=addSection('hielo','Familia de latas',[art['can-wall']],{full:true});
+        const scenes=el('div','wildfolk-scene-pair');family.section.before(scenes);scenes.append(family.section,setting.section);
+        addSection('packaging','Mockups de producto',[art['can-diagonal'],art['ice-detail']],{className:'wildfolk-section--packaging'});
+        addSection('etiquetas','Etiquetas',[art['golden-label'],art['ipa-wrap'],{...art.lettering,label:'Firma de marca'}],{className:'wildfolk-section--labels'});
         addSection('personajes', 'Personajes', item.blocks[3].images, {className:'wildfolk-section--characters',label:'Personajes · Exploración asistida por IA'});
-        // Keep earlier cream-logo artwork separate from the new black-logo packaging.
-        const earlier = addSection('grafica', 'Primera exploración gráfica', item.blocks[1].images, {className:'wildfolk-section--posters'});
-        const earlierNote = el('aside', 'wildfolk-note');
-        earlierNote.append(tags(['Primera exploración']), el('p', '', 'Logo claro, paisaje y alto contraste. Afiches y aplicaciones de la primera línea gráfica.'));
-        earlier.section.prepend(earlierNote);
-        addSection('aplicaciones', 'Aplicaciones previas', [art.coaster,item.blocks[5].images[0]], {className:'wildfolk-section--objects',label:'Aplicaciones · Primera exploración'});
         const signature = el('section', 'wildfolk-signature'); signature.setAttribute('aria-label', 'Wildfolk · Logotipo');
         signature.append(mediaButton({...media,monochrome:true,label:'Wildfolk · Identidad visual'}, {caption:false})); flow.append(signature);
         const end = el('nav','wildfolk-end'); end.setAttribute('aria-label', 'Continuar a otro proyecto');
+        const endHeading=el('div','wildfolk-end__heading');endHeading.append(tags(['Continuar recorrido']),tags([`${String(id+1).padStart(2,'0')} / ${String(catalogue.length).padStart(2,'0')}`]));end.append(endHeading);
         [-1,1].forEach(direction => {
           const targetItem = catalogue[modulo(id + direction, catalogue.length)];
           const button = el('button', 'wildfolk-end__link'); button.type = 'button';
           button.setAttribute('aria-label', `${direction < 0 ? 'Proyecto anterior' : 'Próximo proyecto'}: ${targetItem.title}`);
           button.dataset.wildfolkStep = String(direction);
-          const label = el('span', 'wildfolk-end__text'); label.append(el('span', 'wildfolk-end__eyebrow', direction < 0 ? 'Anterior' : 'Próximo proyecto'), el('span', '', targetItem.title));
+          const label=el('span','wildfolk-end__text',targetItem.title);
+          const preview=imageNode({src:targetItem.cover,w:targetItem.w,h:targetItem.h,alt:''});preview.className='wildfolk-end__preview';
           const arrow = `<svg class="ui-arrow ui-arrow--${direction < 0 ? 'left' : 'right'}" viewBox="0 0 9 9" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 1.5h5.5V7"/></svg>`;
           if (direction < 0) button.insertAdjacentHTML('beforeend', arrow);
-          button.append(label);
+          button.append(preview,label);
           if (direction > 0) button.insertAdjacentHTML('beforeend', arrow);
           button.addEventListener('click', () => switchProject(direction)); end.append(button);
-        }); flow.append(end);
+        }); signature.append(end);
         pageContent.append(flow);
         const ready = Promise.all([...hero.querySelectorAll('img')].map(image => image.decode())).then(()=>true).catch(()=>false);
         const clearReader = setupFiniteReader(flow, {arrange:false,drift:false});
-        const clearJourney = setupCaseJourney();
-        clearCaseJourney = () => {clearReader();clearJourney();delete document.body.dataset.caseLayout;};
+        const clearJourney = setupCaseJourney(),clearMotion=setupWildfolkMotion(flow);
+        clearCaseJourney = () => {clearReader();clearJourney();clearMotion();delete document.body.dataset.caseLayout;};
         updateCaseNavigation(id);
         return {item,hero,visual,intro,cover,ready};
       }

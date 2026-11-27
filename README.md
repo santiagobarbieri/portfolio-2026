@@ -6,7 +6,7 @@ El foco avanza un proyecto por gesto y descarta la inercia y los movimientos en 
 
 ## Actualización visual · 27 de noviembre de 2026
 
-Wildfolk ocupa el ancho completo con la nueva línea de packaging de logotipo negro: apertura inmersiva, mockups continuos, paleta y etiquetas rectangulares compactas. El cierre queda fijo arriba a la izquierda y la navegación entre proyectos está al final. Las exploraciones previas se identifican por separado; imágenes completas, ampliación individual y variantes responsivas, sin descargas. Los originales locales permanecen intactos.
+Wildfolk ocupa el ancho completo con la nueva línea de packaging de logotipo negro: apertura inmersiva, mockups continuos, paleta y etiquetas rectangulares compactas. El cierre queda fijo arriba a la izquierda y la navegación entre proyectos está al final. La exploración previa queda fuera del recorrido. Seis criaturas en una fila (dos en móvil), mockups con superposición y entradas laterales suaves. El cierre naranja integra miniaturas de los proyectos vecinos. Imágenes completas, ampliación individual y variantes responsivas, sin descargas. Los originales locales permanecen intactos.
 
 Las transiciones entre Proyectos, Sobre mí y Contacto conservan la vista saliente hasta que el barrido la cubre, evitando el salto inicial a una pantalla vacía. El inicio no tiene corredor y las tarjetas entran una vez por sesión.
 
