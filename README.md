@@ -1,5 +1,11 @@
 # Santiago Barbieri — Portfolio
 
+## Sobre mí · contenido y continuidad · 28 de noviembre de 2026
+
+Se incorpora el retrato real de REF, una presentación breve, los seis proyectos actuales, afiches y fotos personales, gustos y las dos credenciales confirmadas. Se mantiene la secuencia del modelo con verde, negro y gris claro. Más recorrido de scroll y menos giros, escala y desplazamientos para leer cada escena con calma.
+
+Cerrar baja la vista completa y revela el loop existente, sin una segunda entrada verde ni cargador intermedio. La firma y el cierre acompañan el movimiento sin saltos. Comprobado en Chrome entre 320 y 1920px, con historial, teclado y movimiento reducido; sin desbordes ni recursos faltantes.
+
 ## Sobre mí · firma y cierre · 28 de noviembre de 2026
 
 La firma comparte escala con las demás cajas de la interfaz. Cerrar está siempre visible a su lado durante todo el recorrido; conserva la salida por solapa verde y el acceso con teclado.

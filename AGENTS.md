@@ -1,5 +1,15 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Sobre mí · contenido real, scroll medido y cierre descendente · 28 de noviembre de 2026
+
+La nueva solicitud reemplaza los espacios abstractos y el retrato pendiente de la prueba anterior. Usar el retrato real de Desktop/REF/Retrato.png, convertido sin pérdida a assets/images/about/santiago-barbieri.webp (400 × 576); no ampliar su fuente. Presentación breve basada en datos confirmados, seis proyectos del catálogo, ocho piezas personales entre afiches, tapas y fotografía propia. Gustos reúne música, cine, diseño y fotografía sin atribuir favoritos específicos. Credenciales: Desarrollo web/Coderhouse e Inglés C1/CAE/Cambridge English, sin fechas ni documentos inventados.
+
+Conservar las seis escenas, los portales del logo y la paleta verde/negro/gris de Sobre mí. Ampliar el recorrido a doce alturas, amortiguación de 200ms sin sobrepaso y menores giros, escalas y desfases de imágenes. En ventanas de menos de 600px de alto y con movimiento reducido, lectura vertical natural. Firma compacta y CERRAR siempre visibles.
+
+Al cerrar, bajar la vista existente durante 780ms para revelar el loop: no subir otra hoja ni intercalar un loader. Firma y botón acompañan la salida; no cambiar su posición por el contenedor transformado. Historial, cancelación y movimiento reducido deben limpiar el estado y conservar la navegación. No alterar Contacto, los interiores de proyectos ni la lógica del loop.
+
+Verificado en Chrome: 320×568, 390×844, 768×1024, 1440×900 y 1920×1080, seis puntos del recorrido, cierre descendente desde escenas avanzadas, historial, acceso por teclado y movimiento reducido. Sin overflow horizontal, errores de consola ni recursos faltantes.
+
 ## Firma compacta y cierre persistente en Sobre mí · 28 de noviembre de 2026
 
 Esta indicación reemplaza el cierre al final del recorrido. La firma de Sobre mí usa las variables compartidas de las cajas (--ui-box-width, --ui-box-height y --ui-box-font), con marca de 17px. El botón CERRAR queda a su lado en una barra fija, visible y operable desde cualquier escena, fuera de los clips y de los contenedores inert. No duplicarlo al final ni recuperar el nav. Conservar el recorrido y la solapa verde.

@@ -1471,6 +1471,7 @@
 
       function cancelPanelAnimation() {
         panelVersion += 1; panelAnimation?.cancel(); panelAnimation = null; page.inert = false;
+        delete document.body.dataset.aboutReturning;
       }
       function revealPanel(kind) {
         const version = panelVersion;
@@ -1480,10 +1481,41 @@
           animation.finished.then(() => { if (panelAnimation === animation) panelAnimation = null; }).catch(() => {});
         });
       }
+      async function closeAboutFolder() {
+        cancelPanelAnimation();
+        const version = panelVersion;
+        document.body.dataset.aboutReturning = '';
+        page.inert = true;
+        // Keep fixed controls out of the transformed scroller's containing block.
+        const toolbar = page.querySelector('.about-model-toolbar');
+        const toolbarParent = toolbar?.parentNode;
+        if (toolbar) { toolbar.inert = true; document.body.append(toolbar); }
+        const toolbarAnimation = toolbar?.animate([
+          { transform: 'translateY(0)' }, { transform: 'translateY(100dvh)' }
+        ], { duration: 780, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+        // Lower the live sheet; the scene stays intact until it leaves the viewport.
+        const animation = page.animate([
+          { transform: 'translateY(0)' },
+          { transform: 'translateY(100dvh)' }
+        ], { duration: 780, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+        panelAnimation = animation;
+        try {
+          await animation.finished;
+          if (version !== panelVersion || pageName !== 'about') return;
+          closePageImmediately();
+        } catch { /* Another navigation owns the page after cancellation. */ }
+        finally {
+          toolbarAnimation?.cancel();
+          if (toolbar && toolbarParent?.isConnected && pageName === 'about') {
+            toolbar.inert = false; toolbarParent.append(toolbar);
+          } else toolbar?.remove();
+        }
+      }
       async function closePage() {
         cancelCoverWait();
         if (activeSectionLoad) { cancelSectionLoad(activeSectionLoad, 'close'); closePageImmediately(); return; }
         if (activeProjectTransition || !pageName || preference.matches || panelAnimation) { closePageImmediately(); return; }
+        if (pageName === 'about') { await closeAboutFolder(); return; }
         if (pageName !== 'project') {
           const surface = pageName === 'about' ? '#03b047' : pageName === 'posters' ? '#ff6b2c' : '#ef3333';
           const load = beginSectionLoad({ key: 'home', label: 'Proyectos', surface, aboutFolder: pageName === 'about', returning: true, live: true, onCancel: closePageImmediately });
@@ -1592,6 +1624,15 @@
           if (historyItem) {
             const opened = await loadProject(route.project);
             if (opened && version === historyVersion && Number.isFinite(state?.portfolio?.scrollTop)) page.scrollTop = state.portfolio.scrollTop;
+            return;
+          }
+          if (returning && pageName === 'about') {
+            if (preference.matches) closePageImmediately();
+            else await closeAboutFolder();
+            if (version === historyVersion && Number.isFinite(state?.portfolio?.position)) {
+              position = state.portfolio.position; focusLoop?.move(position);
+              offset = target = position - drift(); draw();
+            }
             return;
           }
           const load = beginSectionLoad({ key: route.view || 'home', label: route.view || 'Proyectos', surface: returning ? returnSurface : (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : route.view==='posters'?'#ff6b2c':'#ffffff'), runner: returning || Boolean(route.view), aboutFolder: returning && pageName === 'about', returning, live: true, onCancel: closePageImmediately });
@@ -1720,22 +1761,36 @@
         beginPage('about', '¿QUIÉN ES SANTIAGO BARBIERI?', '#03b047');
         const journey = el('div','about-journey'); pageContent.append(journey);
         const image = (src,w,h,alt) => ({src,w,h,alt});
-        const work = [
-          {slug:'apolo-studios',name:'Apolo Studios',detail:'Identidad, prendas y campañas',year:'2024–2026',image:image('./assets/images/reference-cases/apolo-everywhere-cafe.webp',1200,900,'Campaña Everywhere de Apolo Studios, en un café')},
-          {slug:'wildfolk',name:'Wildfolk',detail:'Identidad y packaging',year:'2026',image:image('./assets/images/wildfolk-web/ice-pair-1400.webp',1400,933,'Latas Wildfolk en hielo')},
-          {slug:'olas-ditella',name:'OLAS Di Tella',detail:'Identidad y campaña',year:'2026',image:image('./assets/images/reference-cases/olas-pins.webp',1400,910,'Aplicación de OLAS en pines verdes')},
-          {slug:'el-armado',name:'El Armado',detail:'Identidad visual',year:'2026',image:image('./assets/images/project-covers/el-armado.webp',1200,900,'Afiche de El Armado aplicado en un mockup')}
-        ];
+        const work = catalogue.map(item => ({
+          slug:item.slug, name:item.title, detail:item.type, year:item.year,
+          image:image('./'+item.cover,item.w,item.h,item.alt)
+        }));
         const poster = id => {
           const item = archiveItems.find(item=>item.id===id);
           return {...item.preview,alt:item.alt};
         };
         const journeyAPI=createAboutJourney({scroller:page,root:journey,makeImage:imageNode,initial:activeAboutTab,work,
+          portrait:image('./assets/images/about/santiago-barbieri.webp',400,576,'Santiago Barbieri, retrato en blanco y negro'),
+          bio:{
+            lead:'Diseñador gráfico, director creativo, desarrollador web y fotógrafo.',
+            paragraphs:[
+              'Soy cofundador y director creativo de Apolo Studios, en Buenos Aires.',
+              'Trabajo en identidades visuales, gráficas de prendas, campañas y experiencias digitales. Este portfolio reúne esos proyectos y mis exploraciones personales.'
+            ]
+          },
+          credentials:[
+            {title:'Desarrollo web',detail:'Formación en desarrollo web',issuer:'Coderhouse'},
+            {title:'Inglés · C1',detail:'Certificate in Advanced English',issuer:'Cambridge English · CAE'}
+          ],
           interests:[
-            {kind:'music',label:'Música · afiche personal',image:poster('poster-talking-heads')},
-            {kind:'cinema',label:'Cine · afiche personal',image:poster('poster-carrie')},
-            {kind:'design',label:'Diseño · tapa rediseñada',image:image('./assets/images/stephen-king/PET%20SEMATARY-800.webp',800,1132,'Rediseño personal de la tapa de Pet Sematary')},
-            {kind:'photography',label:'Fotografía · Zapallar',image:image('./assets/images/zapallar/IMG_4660-1600.webp',1600,898,'Costa de Zapallar, fotografía de Santiago Barbieri')}
+            {kind:'photography',label:'Zapallar · Fotografía propia',image:image('./assets/images/zapallar/IMG_4660-1600.webp',1600,898,'Costa de Zapallar, fotografía de Santiago Barbieri')},
+            {kind:'music',label:'Talking Heads · Afiche personal',image:poster('poster-talking-heads')},
+            {kind:'cinema',label:'Carrie · Afiche personal',image:poster('poster-carrie')},
+            {kind:'design',label:'Pet Sematary · Tapa rediseñada',image:image('./assets/images/stephen-king/PET%20SEMATARY-800.webp',800,1132,'Rediseño personal de la tapa de Pet Sematary')},
+            {kind:'music',label:'100 Horses · Afiche personal',image:image('./assets/images/poster-previews/100-horses.webp',0,0,'Afiche personal de 100 Horses')},
+            {kind:'photography',label:'Zapallar · Fotografía propia',image:image('./assets/images/zapallar/IMG_4673-800.webp',0,0,'Fotografía propia de Zapallar')},
+            {kind:'design',label:'Blood Meridian · Afiche personal',image:image('./assets/images/poster-previews/blood-meridian.webp',0,0,'Afiche personal de Blood Meridian')},
+            {kind:'photography',label:'Zapallar · Fotografía propia',image:image('./assets/images/zapallar/DSC01575-800.webp',0,0,'Fotografía propia de Zapallar')}
           ],
           onChapter:key=>{activeAboutTab=key;syncPageAddress('about','',true)},
           openProject:slug=>{const id=catalogue.findIndex(item=>item.slug===slug);if(id>=0&&!activeProjectTransition&&!activeSectionLoad)loadProject(id)},
