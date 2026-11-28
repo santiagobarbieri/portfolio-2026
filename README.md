@@ -1,5 +1,13 @@
 # Santiago Barbieri — Portfolio
 
+## Sobre mí · 28 de noviembre de 2026
+
+Nuevo recorrido guiado por scroll con cuatro capítulos: **Quién soy, Mi trabajo, Gustos y Credenciales**. Conserva Albert Sans, la navegación de tiras y la paleta del portfolio. En escritorio combina escenas superpuestas, trabajos en una tira horizontal y un collage de afiches y fotografías; en móvil y con movimiento reducido pasa a lectura vertical. El scroll es nativo, sin avance automático.
+
+Las imágenes se preparan antes de retirar la carga; abrir el menú no desplaza el recorrido. Se mantienen enlaces directos a capítulos y acceso a los proyectos. El retrato personal está pendiente de incorporar. Las imágenes de campañas no se usan para representar a Santiago.
+
+Verificación en tamaños de 320 a 1920px: navegación por capítulos y teclado, scroll, carga de imágenes, cambio de vistas, apertura de proyectos, resize y movimiento reducido. Sin errores de consola ni recursos faltantes en las pruebas.
+
 ## Apolo, Orfeo, El Armado y Pósters V.1 · 27 de noviembre de 2026
 
 Los seis proyectos activos comparten el nuevo recorrido visual de referencia, con sus propias aplicaciones, color y descripción breve. Apolo reúne las cuatro colecciones confirmadas, firmas y video de Menorca; Orfeo separa prendas y recursos de marca; El Armado presenta ilustración, firma y pieza para historias. Se recuperaron exportaciones mayores de las fotografías aprobadas de Apolo y se conservaron intactos sus originales.

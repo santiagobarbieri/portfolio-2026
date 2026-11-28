@@ -1,5 +1,15 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Sobre mí · recorrido por scroll · 28 de noviembre de 2026
+
+La referencia «Landing — scroll driven.html» orienta la navegación, no reemplaza la identidad del portfolio. `assets/scripts/about-journey.js` y `css/about-journey.css` organizan cuatro capítulos: Quién soy, Mi trabajo, Gustos y Credenciales. Esta solicitud vuelve a habilitar Gustos en Sobre mí. Conservar Albert Sans, rótulos verdes, blanco, gris y negro, navegación de tiras y cursor actuales.
+
+En escritorio el scroll nativo conduce escenas superpuestas, una tira horizontal de trabajos y un collage con desfases suaves. No interceptar la rueda ni avanzar automáticamente. La escena anterior permanece pintada hasta quedar cubierta. En móvil, ventanas bajas y movimiento reducido, usar lectura vertical natural. Los botones permiten saltar a cada capítulo; la ruta conserva testament/work/interests/credentials mediante replace, sin crear historial por cada gesto. Abrir desplegables no debe mover el recorrido.
+
+Preparar y decodificar las imágenes antes de retirar el loader existente. Desmontar listeners, frames y estado al salir. Las fotos de trabajo son de Apolo, Wildfolk, OLAS y El Armado; Gustos muestra afiches personales, una tapa rediseñada y fotografía propia, identificados como tales. El retrato personal sigue pendiente: no sustituirlo por una persona fotografiada en una campaña ni extraerlo de capturas. Biografía breve basada en hechos confirmados; no inventar hitos, edad o preferencias específicas. Conservar Desarrollo web/Coderhouse e Inglés C1/Cambridge English CAE.
+
+Verificado entre 320 y 1920px, con scroll, capítulos, teclado, carga, apertura de proyecto, cierre, cambio a Contacto, resize y movimiento reducido, sin errores de consola ni recursos faltantes.
+
 ## Sistema de referencia extendido y Pósters V.1 · 27 de noviembre de 2026
 
 La nueva indicación extiende la composición de referencia a Apolo Studios, Orfeo y El Armado. Los seis casos activos usan `catalogue[].presentation`: portada completa, paleta y aplicación, fondo antes de la grilla, grilla derecha de celdas cuadradas y ficha final breve. Mantener identidad y entregables propios; no inventar resultados ni atribuciones tipográficas. Apolo conserva Everywhere, Circles, Sahara y Menorca, las firmas y el video de Menorca sin controles, en loop y silencio al quedar visible. Orfeo separa Viamonte, Talcahuano y Lavalle de sellos y estampillas, sin recuperar créditos personales retirados. El Armado conserva la ilustración, su variante monocroma, la firma hueso sobre vino y la pieza para historias. Las marcas claras pueden usar su campo de color real para conservar contraste. Los controles sobre acentos oscuros usan tinta clara.
