@@ -1,5 +1,11 @@
 # Santiago Barbieri — Portfolio
 
+## Sobre mí · transiciones continuas y nueva paleta · 28 de noviembre de 2026
+
+El recorrido se acerca al modelo scroll driven original: el logo conecta las escenas mediante portales, se incorpora a las composiciones y acompaña los cambios de color. Naranja #D3532E en trabajo, celeste #01A2F2 en gustos y verde #03B047 en credenciales, sobre blanco/gris y texto negro. Índice más discreto y scroll amortiguado, con más recorrido para ver las fotos. Móvil y movimiento reducido conservan lectura vertical. El retrato sigue pendiente.
+
+Comprobados los puntos intermedios de las transiciones, asentamiento del scroll, navegación, desplegables y distribución de 320 a 1920px; sin errores de consola ni recursos faltantes.
+
 ## Sobre mí · 28 de noviembre de 2026
 
 Nuevo recorrido guiado por scroll con cuatro capítulos: **Quién soy, Mi trabajo, Gustos y Credenciales**. Conserva Albert Sans, la navegación de tiras y la paleta del portfolio. En escritorio combina escenas superpuestas, trabajos en una tira horizontal y un collage de afiches y fotografías; en móvil y con movimiento reducido pasa a lectura vertical. El scroll es nativo, sin avance automático.

@@ -5,8 +5,9 @@
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const compact = matchMedia('(max-width: 700px)');
     const chapters = [['testament', 'Quién soy'], ['work', 'Mi trabajo'], ['interests', 'Gustos'], ['credentials', 'Credenciales']];
-    const starts = [0, .24, .62, .83], destinations = [.025, .30, .69, .92];
-    let frame = 0, resizeFrame = 0, disposed = false, linear = false, active = -1, max = 1, railTravel = 0;
+    const portals = [[0, 0], [.18, .30], [.54, .66], [.77, .89]];
+    const starts = [0, .27, .635, .865], destinations = [.025, .36, .71, .95];
+    let frame = 0, resizeFrame = 0, disposed = false, linear = false, active = -1, max = 1, railTravel = 0, rendered = null, lastTime = 0;
     const node = (tag, className, text) => {
       const n = document.createElement(tag); if (className) n.className = className;
       if (text) n.textContent = text; return n;
@@ -16,12 +17,29 @@
     const ease = t => t * t * (3 - 2 * t);
     const label = text => node('span', 'about-label', text);
     const track = node('div', 'about-track'), stage = node('div', 'about-stage');
+    // Reuse the portfolio mark exactly; the logo is also the transition aperture.
+    const logoPath = document.querySelector('.study-home .study-mark path').getAttribute('d');
+    const NS = 'http://www.w3.org/2000/svg';
+    const mark = className => {
+      const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 50 50');
+      svg.setAttribute('class', className); svg.setAttribute('aria-hidden', 'true');
+      const path = document.createElementNS(NS, 'path'); path.setAttribute('d', logoPath); path.setAttribute('fill', 'currentColor'); svg.append(path); return svg;
+    };
+    const definitions = document.createElementNS(NS, 'svg'); definitions.setAttribute('class','about-portal-defs'); definitions.setAttribute('aria-hidden','true');
+    const defs = document.createElementNS(NS, 'defs'); definitions.append(defs); root.append(definitions);
+    const portalPaths = [];
+    const token = 'about-' + Math.random().toString(36).slice(2,9);
     const status = node('p', 'visually-hidden'); status.setAttribute('role', 'status');
     const index = node('nav', 'about-index'); index.setAttribute('aria-label', 'Capítulos de Sobre mí');
     const scenes = chapters.map(([key, title], i) => {
       const section = node('section', `about-scene about-scene--${key}`); section.dataset.aboutChapter = key;
       section.id = `about-${key}`; section.setAttribute('aria-label', title);
-      const content = node('div', 'about-scene__content'); section.append(content); stage.append(section);
+      const content = node('div', 'about-scene__content');
+      const ghost = mark('about-scene__mark'); section.append(ghost, content); stage.append(section);
+      if (i) {
+        const clip = document.createElementNS(NS,'clipPath'); clip.id = `${token}-${i}`; clip.setAttribute('clipPathUnits','userSpaceOnUse');
+        const path = document.createElementNS(NS,'path'); path.setAttribute('d',logoPath); clip.append(path); defs.append(clip); portalPaths[i] = {path,id:clip.id};
+      }
       const button = node('button', 'about-index__button', title); button.type = 'button';
       button.dataset.aboutTab = key; button.setAttribute('aria-controls', section.id);
       button.addEventListener('click', () => goTo(i)); index.append(button);
@@ -29,7 +47,7 @@
     });
     const intro = node('div', 'about-intro');
     const introCopy = node('div', 'about-intro__copy');
-    introCopy.append(label('Sobre mí'), node('h2', 'about-title about-title--hello', 'Hola, soy Santiago.'));
+    introCopy.append(mark('about-intro__mark'), label('Sobre mí'), node('h2', 'about-title about-title--hello', 'Hola, soy Santiago.'));
     introCopy.append(node('p', 'about-intro__lead', 'Diseñador gráfico, director creativo, desarrollador web y fotógrafo.'));
     const identity = node('div', 'about-intro__identity');
     identity.append(node('p', 'about-copy', 'Soy cofundador y director creativo de Apolo Studios. Trabajo en identidades, prendas, campañas y experiencias digitales.'));
@@ -39,7 +57,7 @@
     if (portrait) { portraitField.append(makeImage(portrait, false), node('figcaption', '', 'Santiago Barbieri')); }
     else {
       // A personal photograph must be supplied by Santiago; never substitute a campaign model.
-      portraitField.append(node('span', 'about-portrait__monogram', 'SB'), node('figcaption', '', 'Retrato por incorporar'));
+      portraitField.append(mark('about-portrait__mark'), node('figcaption', '', 'Retrato por incorporar'));
       portraitField.firstChild.setAttribute('aria-hidden', 'true');
     }
     const introAside = node('div', 'about-intro__aside'); introAside.append(portraitField, identity);
@@ -104,7 +122,7 @@
       status.textContent = `${chapters[i][1]}. Capítulo ${i + 1} de 4.`;
       onChapter(chapters[i][0]);
     }
-    function paint() {
+    function paint(time = performance.now()) {
       frame = 0; if (disposed) return;
       const y = scroller.scrollTop;
       if (linear) {
@@ -117,23 +135,37 @@
           scene.content.style.setProperty('--chapter-enter', String(reveal));
         }); setChapter(chapter); return;
       }
-      const p = clamp(y / max); root.style.setProperty('--about-progress', String(p));
+      const target = clamp(y / max);
+      const dt = lastTime ? Math.min(40, time - lastTime) : 16; lastTime = time;
+      if (rendered === null) rendered = target;
+      rendered += (target - rendered) * (1 - Math.exp(-dt / 85));
+      if (Math.abs(target - rendered) < .00001) rendered = target;
+      const p = rendered; root.style.setProperty('--about-progress', String(p));
       let chapter = 0;
       scenes.forEach((scene, i) => {
-        const reveal = i === 0 ? 1 : ease(segment(p, starts[i] - .045, starts[i] + .035));
-        const covered = i < scenes.length - 1 && p >= starts[i + 1] + .035;
+        const reveal = i === 0 ? 1 : segment(p, ...portals[i]);
+        const covered = i < scenes.length - 1 && p >= portals[i + 1][1];
         scene.section.style.visibility = reveal > 0 && !covered ? 'visible' : 'hidden';
-        scene.section.style.clipPath = reveal >= 1 ? 'none' : `inset(${(1 - reveal) * 100}% 0 0 0)`;
-        scene.content.style.setProperty('--chapter-enter', String(reveal));
-        if (i && p >= starts[i] + .006) chapter = i;
+        if (i && reveal > 0 && reveal < 1) {
+          const width = stage.clientWidth, height = stage.clientHeight;
+          const t = ease(reveal), scale = .35 * Math.pow((Math.max(width,height) * 1.5) / .35, t);
+          const angle = (1 - reveal) ** 2 * (i % 2 ? -38 : 38);
+          portalPaths[i].path.setAttribute('transform', `translate(${width*.56} ${height*.52}) rotate(${angle}) scale(${scale}) translate(-25 -25)`);
+          scene.section.style.clipPath = `url(#${portalPaths[i].id})`;
+        } else scene.section.style.clipPath = 'none';
+        scene.content.style.setProperty('--chapter-enter', String(ease(segment(reveal,.18,.9))));
+        const local = segment(p, i ? portals[i][0] : 0, i < 3 ? portals[i+1][1] : 1);
+        scene.section.querySelector('.about-scene__mark').style.transform = `translate(-50%,-50%) rotate(${local*75 - 20}deg) scale(${1 + local*.18})`;
+        if (i && p >= starts[i]) chapter = i;
       });
-      const q = segment(p, .29, .59);
+      const q = segment(p, .31, .57);
       rail.style.transform = `translate3d(${-q * railTravel}px,0,0)`;
       [...collage.children].forEach((piece, i) => {
-        const q = segment(p, .62, .84), offset = (1 - ease(segment(q, 0, .48))) * (i % 2 ? 28 : -28);
-        piece.style.transform = `translate3d(${offset}px,${(q - .5) * (i % 2 ? -12 : 12)}px,0)`;
+        const q = segment(p, .60, .82), offset = (1 - ease(segment(q, 0, .48))) * (i % 2 ? 70 : -70);
+        piece.style.transform = `translate3d(${offset}px,${(q - .5) * (i % 2 ? -65 : 65)}px,0)`;
       });
-      hint.style.opacity = p < .035 ? '1' : '0'; setChapter(chapter);
+      hint.style.opacity = String(1 - segment(p, .01, .055)); setChapter(chapter);
+      if (rendered !== target) requestPaint();
     }
     function requestPaint() { if (!frame && !disposed) frame = requestAnimationFrame(paint); }
     function goTo(i, instant = false) {
@@ -141,6 +173,7 @@
       let top;
       if (linear) top = scenes[i].section.offsetTop;
       else top = destinations[i] * max;
+      if (instant) rendered = null;
       scroller.scrollTo({ top, behavior: instant || reduced.matches ? 'instant' : 'smooth' }); requestPaint();
     }
     function measure(keepChapter = true) {
@@ -160,7 +193,7 @@
         scene.content.style.removeProperty('--chapter-enter'); scene.section.inert = false; scene.section.removeAttribute('aria-hidden');
       });
       rail.style.removeProperty('transform'); [...collage.children].forEach(n => n.style.removeProperty('transform'));
-      active = -1;
+      active = -1; rendered = null; lastTime = 0;
       if (keepChapter && previousLinear !== linear) goTo(selected, true);
       else if (keepChapter && !linear) scroller.scrollTop = progress * max;
       paint();

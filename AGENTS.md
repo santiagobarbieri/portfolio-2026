@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Sobre mí · continuidad, portales y color · 28 de noviembre de 2026
+
+El usuario pide mayor cercanía al modelo «Landing — scroll driven.html»: menos sensación de pantallas aisladas, más presencia del logo y nueva paleta. Las transiciones de escritorio usan aperturas SVG con el trazado exacto del logo, expansión y giro ligados al scroll; conservar la escena saliente hasta quedar cubierta. El mismo símbolo aparece en las composiciones y en el retrato pendiente, sin inventar una foto personal. Trabajo usa #D3532E, Gustos combina #EDEDED y #01A2F2, Credenciales usa #03B047, con texto negro. No recuperar difference.
+
+El recorrido ocupa nueve alturas de viewport, con una respuesta amortiguada de 85ms sin sobrepaso, sin interceptar rueda ni avance automático. El motor solicita frames solo hasta asentarse. La tira horizontal tiene un tramo propio antes de la transición siguiente. Índice lateral discreto, sin cajas por capítulo. En móvil, ventanas bajas y movimiento reducido permanece la lectura vertical natural; conservar navegación, rutas y preparación de imágenes. Portales y colores afectan únicamente Sobre mí. Validado en escritorio/tablet de 768 a 1920px, móvil de 320/390px, ventanas bajas, puntos medios de transición, cambios de tamaño y desplegables, sin errores de consola ni recursos faltantes.
+
 ## Sobre mí · recorrido por scroll · 28 de noviembre de 2026
 
 La referencia «Landing — scroll driven.html» orienta la navegación, no reemplaza la identidad del portfolio. `assets/scripts/about-journey.js` y `css/about-journey.css` organizan cuatro capítulos: Quién soy, Mi trabajo, Gustos y Credenciales. Esta solicitud vuelve a habilitar Gustos en Sobre mí. Conservar Albert Sans, rótulos verdes, blanco, gris y negro, navegación de tiras y cursor actuales.
