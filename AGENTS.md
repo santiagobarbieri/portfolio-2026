@@ -1,5 +1,15 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Sobre mí · prueba mínima del modelo y entrada por solapa verde · 28 de noviembre de 2026
+
+Esta indicación sustituye la adaptación anterior de Sobre mí con cinco acentos, contenido editorial y controles de capítulos. Conservar la sucesión, intervalos, geometría y amortiguación de «Landing — scroll driven.html» como estudio de movimiento: bienvenida con logo, presentación, tira horizontal, collage, filas y cierre. Usar únicamente verde #03B047, negro y gris claro #EDEDED en los campos del recorrido. Reemplazar solo algunas piezas por imágenes existentes de trabajo/archivo personal; mantener los demás espacios abstractos del modelo, sin inventar biografía, preferencias, credenciales ni retrato. El contenido final se decidirá después.
+
+Entrar mediante una hoja verde con solapa que se desplaza desde abajo, sin corredor. La vista anterior permanece hasta que la hoja la cubre; preparar y decodificar la nueva vista debajo. La firma fija es una sola tira negra con el logo y SANTIAGO BARBIERI en blanco. Ocultar navegación global, índice de proyectos, contador, controles móviles y pie. El único botón visible en el recorrido es CERRAR al final; Escape también permite volver. La salida usa la misma hoja verde y limpia los listeners, clips y estado de Sobre mí. Conservar las rutas de capítulos anteriores. No cambiar proyectos, Contacto ni el loop principal.
+
+Scroll nativo ligado al modelo en escritorio y móvil; movimiento reducido usa lectura vertical sin portales. El logo de bienvenida comienza su entrada después de retirarse la hoja. No agregar nuevas secciones ni textos públicos todavía.
+
+Verificado en Chrome entre 320 y 1920px: portales, desplazamiento horizontal, entrada y salida de la solapa, historial, cierre por teclado, cancelación, movimiento reducido y regreso a Contacto. Sin errores de consola ni recursos faltantes.
+
 ## Sobre mí · sucesión original y cinco colores de navegación · 28 de noviembre de 2026
 
 Esta indicación sustituye la versión anterior de cuatro escenas y los tres acentos usados allí. Reproducir la sucesión de «Landing — scroll driven.html»: bienvenida con logo, presentación, trabajos horizontales, collage de gustos, credenciales y puente a proyectos. Conservar sus intervalos de portales [.03,.14], [.30,.38], [.52,.60], [.74,.81], [.90,.97], y tramos de contenido [.08,.28], [.33,.52], [.55,.74], [.77,.89]. Track de diez alturas; respuesta equivalente a la amortiguación del modelo (.1 por frame a 60Hz), sin sobrepasos ni interceptar rueda. Usar la escala final del portal del archivo, no ampliaciones desmedidas que vuelvan abrupto el cierre del color.

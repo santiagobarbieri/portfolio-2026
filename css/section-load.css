@@ -137,3 +137,9 @@ body[data-project-transition="error"] .study-transition-wash { pointer-events:au
 
 /* The departing page stays visible until the running edge actually covers it. */
 .study-section-loader[data-direction="return"] .study-section-loader__wash { transform-origin: right center; }
+
+/* About enters as a green folder sheet, without a runner. */
+.study-section-loader[data-effect="folder"] { background:transparent!important; }
+.study-section-loader[data-effect="folder"] .study-section-loader__wash { transform-origin:center; border-top:1px solid #111; }
+.study-section-loader[data-effect="folder"] .study-section-loader__wash::before { content:'';position:absolute;left:4vw;top:-31px;width:180px;height:32px;background:var(--section-load-surface);border:1px solid #111;border-bottom:0;clip-path:polygon(0 0,85% 0,100% 100%,0 100%); }
+.study-section-loader[data-effect="folder"][data-phase="error"] { background:#03b047!important; }

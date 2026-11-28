@@ -1120,7 +1120,9 @@
 
       function beginSectionLoad(options = {}) {
         cancelSectionLoad(activeSectionLoad, 'superseded');
-        const { key = 'home', label = 'Proyectos', surface = '#fff', runner = true, returning = false, live = false, minimum = runner ? 1000 : 0 } = options;
+        const folder = options.key === 'about' || options.aboutFolder === true;
+        const { key = 'home', label = 'Proyectos', surface = '#fff', runner: requestedRunner = true, returning = false, live = false, minimum = folder ? (preference.matches ? 0 : 650) : requestedRunner ? 1000 : 0 } = options;
+        const runner = folder ? false : requestedRunner;
         const controller = new AbortController();
         const node = el('div', 'study-section-loader');
         node.style.setProperty('--section-load-surface', surface);
@@ -1130,6 +1132,7 @@
         if (live && !preference.matches) document.body.dataset.sectionUnderlay = '';
         node.dataset.direction = returning ? 'return' : 'forward';
         node.dataset.runner = String(runner);
+        if (folder) node.dataset.effect = 'folder';
         node.dataset.sectionLoad = key; node.dataset.phase = 'loading';
         node.setAttribute('role', 'status'); node.setAttribute('aria-live', 'polite');
         node.setAttribute('aria-label', `Cargando ${label}`); node.setAttribute('aria-busy', 'true');
@@ -1168,6 +1171,7 @@
           return (progress - ramp / 2) / travel;
         };
         const placeRunner = progress => {
+          if (folder) { const t = progress * progress * (3 - 2 * progress); state.wash.style.transform = `translateY(${(1-t)*110}%)`; return; }
           const distance = runnerPosition(progress);
           const x = returning ? innerWidth + 24 - distance * (innerWidth + 48) : -24 + distance * (innerWidth + 48);
           const edge = Math.max(0, Math.min(1, x / innerWidth));
@@ -1283,7 +1287,10 @@
           onReveal?.();
           const horizontal = state.options.live && !preference.matches;
           const vertical = !horizontal && !state.options.returning && (exit === 'curtain' || exit === 'return');
-          const wipe = horizontal
+          const folder = state.node.dataset.effect === 'folder';
+          const wipe = folder
+            ? (state.options.returning ? [{transform:'translateY(0)'},{transform:'translateY(110%)'}] : [{opacity:1},{opacity:0}])
+            : horizontal
             ? [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: state.options.returning ? 'inset(0 100% 0 0)' : 'inset(0 0 0 100%)' }]
             : vertical
               ? [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 0 100% 0)' }]
@@ -1292,7 +1299,7 @@
             ? playSectionLoad(state, pageContent, [{ opacity: 0 }, { opacity: 1 }], { duration: 220, easing: 'cubic-bezier(.2,.75,.2,1)' })
             : Promise.resolve(true);
           const results = await Promise.all([
-            playSectionLoad(state, state.node, wipe, { duration: horizontal ? 360 : vertical ? 220 : 180, easing: 'cubic-bezier(.65,0,.25,1)' }),
+            playSectionLoad(state, state.node, wipe, { duration: folder ? (state.options.returning ? 520 : 160) : horizontal ? 360 : vertical ? 220 : 180, easing: 'cubic-bezier(.65,0,.25,1)' }),
             reveal
           ]);
           if (!results.every(Boolean) || !state.current()) {
@@ -1479,7 +1486,7 @@
         if (activeProjectTransition || !pageName || preference.matches || panelAnimation) { closePageImmediately(); return; }
         if (pageName !== 'project') {
           const surface = pageName === 'about' ? '#03b047' : pageName === 'posters' ? '#ff6b2c' : '#ef3333';
-          const load = beginSectionLoad({ key: 'home', label: 'Proyectos', surface, returning: true, live: true, onCancel: closePageImmediately });
+          const load = beginSectionLoad({ key: 'home', label: 'Proyectos', surface, aboutFolder: pageName === 'about', returning: true, live: true, onCancel: closePageImmediately });
           syncSectionLoading();
           try {
             await finishSectionLoad(load, {
@@ -1587,7 +1594,7 @@
             if (opened && version === historyVersion && Number.isFinite(state?.portfolio?.scrollTop)) page.scrollTop = state.portfolio.scrollTop;
             return;
           }
-          const load = beginSectionLoad({ key: route.view || 'home', label: route.view || 'Proyectos', surface: returning ? returnSurface : (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : route.view==='posters'?'#ff6b2c':'#ffffff'), runner: returning || Boolean(route.view), returning, live: true, onCancel: closePageImmediately });
+          const load = beginSectionLoad({ key: route.view || 'home', label: route.view || 'Proyectos', surface: returning ? returnSurface : (route.view === 'about' ? '#03b047' : route.view === 'contact' ? '#ef3333' : route.view==='posters'?'#ff6b2c':'#ffffff'), runner: returning || Boolean(route.view), aboutFolder: returning && pageName === 'about', returning, live: true, onCancel: closePageImmediately });
           syncSectionLoading();
           const opened = await finishSectionLoad(load, { prepare: async () => {
             closePageImmediately(true, null, load);

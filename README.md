@@ -1,5 +1,13 @@
 # Santiago Barbieri — Portfolio
 
+## Sobre mí · estudio mínimo y solapa verde · 28 de noviembre de 2026
+
+Nueva prueba basada en la sucesión de `Landing — scroll driven.html`, con la paleta de Sobre mí: verde, negro y gris claro. Mantiene los portales del logo, el desplazamiento horizontal, el collage y las entradas de filas del modelo. Solo unas pocas imágenes reales sustituyen sus placeholders; el retrato y los contenidos finales siguen pendientes.
+
+Una hoja verde con solapa reemplaza al corredor al entrar y salir de Sobre mí. Se retira la navegación dentro de esa vista: queda la firma blanca sobre negro y el cierre al final del recorrido. Escape también permite volver. Los demás recorridos y Contacto conservan su funcionamiento.
+
+Verificado en Chrome entre 320 y 1920px: portales, desplazamiento horizontal, entrada y salida de la solapa, historial, cierre por teclado, cancelación, movimiento reducido y regreso a Contacto. Sin errores de consola ni recursos faltantes.
+
 ## Sobre mí · sucesión del modelo original · 28 de noviembre de 2026
 
 Sobre mí recupera las seis escenas y los intervalos de scroll del archivo de referencia: bienvenida con logo, quién soy, trabajos horizontales, gustos, credenciales y proyectos. La escala de los portales y la amortiguación se ajustan al modelo, evitando el crecimiento excesivo que aceleraba visualmente las transiciones. Se retiran los logos repetidos de las composiciones.
