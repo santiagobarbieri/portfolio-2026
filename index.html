@@ -494,7 +494,7 @@
       const menuLabels = new Map([...document.querySelectorAll('.study-nav-trigger')].map(n => [n, n.getAttribute('aria-label')]));
       const lightbox = document.querySelector('.study-lightbox');
       const loadedCovers = new Map(), loadedOpeningArt = new Map();
-      let addressReady = false, handlingHistory = false, activeAboutTab = 'testament', mobileMenuOpen = false;
+      let addressReady = false, handlingHistory = false, activeAboutTab = 'opening', mobileMenuOpen = false;
       // Widen the support; the original 4:5 cover stays centered at its native ratio.
       const coverWidth = config.size * .80, coverHeight = config.size * .60;
       let enteredAt = Infinity, infoSequence = null, pageName = '', lastFocus = null, openingToken = 0, pageVideoObserver = null;
@@ -1551,7 +1551,7 @@
         const requestedView = ['about','contact','archive','posters','photos'].includes(query.get('view')) ? query.get('view') : '';
         const lockedArchive = photographyLocked && requestedView === 'photos';
         const view = lockedArchive ? '' : requestedView === 'archive' ? 'posters' : requestedView;
-        const tab = ['testament','work','interests','credentials'].includes(query.get('tab')) ? query.get('tab') : 'testament';
+        const tab = ['opening','testament','work','interests','credentials','ending'].includes(query.get('tab')) ? query.get('tab') : 'opening';
         return { project, view, tab, lockedArchive };
       }
       function rememberPageAddress() {
@@ -1565,7 +1565,7 @@
         url.hash = '';
         if (kind === 'project') url.searchParams.set('project', slug);
         else if (kind) url.searchParams.set('view', kind);
-        if (kind === 'about' && activeAboutTab !== 'testament') url.searchParams.set('tab', activeAboutTab);
+        if (kind === 'about' && activeAboutTab !== 'opening') url.searchParams.set('tab', activeAboutTab);
         const address = url.pathname + url.search;
         const state = { portfolio: { position, scrollTop: pageName ? page.scrollTop : 0 } };
         if (replace || !addressReady || address === location.pathname + location.search) history.replaceState(state, '', address);
@@ -1707,9 +1707,9 @@
       document.querySelector('.study-nav-group--archive > summary')?.addEventListener('click', event => {
         if (['archive','posters','photos'].includes(pageName)) { event.preventDefault(); closePage(); }
       });
-      function openAbout(tab = 'testament', prepared = false) {
+      function openAbout(tab = 'opening', prepared = false) {
         if (!prepared && !handlingHistory) { loadPanel('about', () => openAbout(tab, true)); return; }
-        activeAboutTab = ['testament','work','interests','credentials'].includes(tab) ? tab : 'testament';
+        activeAboutTab = ['opening','testament','work','interests','credentials','ending'].includes(tab) ? tab : 'opening';
         beginPage('about', '¿QUIÉN ES SANTIAGO BARBIERI?', '#03b047');
         const journey = el('div','about-journey'); pageContent.append(journey);
         const image = (src,w,h,alt) => ({src,w,h,alt});

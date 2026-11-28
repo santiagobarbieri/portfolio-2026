@@ -1,5 +1,13 @@
 # Santiago Barbieri — Portfolio
 
+## Sobre mí · sucesión del modelo original · 28 de noviembre de 2026
+
+Sobre mí recupera las seis escenas y los intervalos de scroll del archivo de referencia: bienvenida con logo, quién soy, trabajos horizontales, gustos, credenciales y proyectos. La escala de los portales y la amortiguación se ajustan al modelo, evitando el crecimiento excesivo que aceleraba visualmente las transiciones. Se retiran los logos repetidos de las composiciones.
+
+Usa los cinco colores exactos de la navegación: verde, azul, rojo, amarillo y naranja. Presentación progresiva, escala de tarjetas en el recorrido horizontal, collage escalonado y credenciales laterales. Entrada por defecto desde la bienvenida; enlaces anteriores a capítulos conservados. En móvil y con movimiento reducido permanece la secuencia vertical. Retrato personal pendiente.
+
+Verificado en seis tamaños de escritorio/tablet, ventanas bajas y móvil de 320/390px: capítulos, portales, cierre, acceso a proyectos, desplegables y movimiento reducido. Sin errores de consola ni recursos faltantes.
+
 ## Sobre mí · transiciones continuas y nueva paleta · 28 de noviembre de 2026
 
 El recorrido se acerca al modelo scroll driven original: el logo conecta las escenas mediante portales, se incorpora a las composiciones y acompaña los cambios de color. Naranja #D3532E en trabajo, celeste #01A2F2 en gustos y verde #03B047 en credenciales, sobre blanco/gris y texto negro. Índice más discreto y scroll amortiguado, con más recorrido para ver las fotos. Móvil y movimiento reducido conservan lectura vertical. El retrato sigue pendiente.

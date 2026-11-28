@@ -1,5 +1,11 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Sobre mí · sucesión original y cinco colores de navegación · 28 de noviembre de 2026
+
+Esta indicación sustituye la versión anterior de cuatro escenas y los tres acentos usados allí. Reproducir la sucesión de «Landing — scroll driven.html»: bienvenida con logo, presentación, trabajos horizontales, collage de gustos, credenciales y puente a proyectos. Conservar sus intervalos de portales [.03,.14], [.30,.38], [.52,.60], [.74,.81], [.90,.97], y tramos de contenido [.08,.28], [.33,.52], [.55,.74], [.77,.89]. Track de diez alturas; respuesta equivalente a la amortiguación del modelo (.1 por frame a 60Hz), sin sobrepasos ni interceptar rueda. Usar la escala final del portal del archivo, no ampliaciones desmedidas que vuelvan abrupto el cierre del color.
+
+Paleta exacta de navegación: verde #03B047, azul #01A2F2, rojo #EF3333, amarillo #F9A507 y naranja #FF6B2C, más blanco/gris y negro. Logo de bienvenida y portales; solo una marca ambiental en trabajos, sin repetirla en todas las escenas ni usarla como retrato. Presentación se revela por bloques y retrato; trabajos tiene escala por distancia y skew leve; collage entradas escalonadas y desplazamientos contenidos sin cubrir etiquetas; credenciales entra lateralmente. El puente final permite volver al inicio o abrir trabajos reales. Las rutas antiguas siguen funcionando; entrada por defecto usa opening y el cierre usa ending. Móvil/ventanas bajas/movimiento reducido conservan las mismas seis escenas en lectura vertical. No alterar proyectos ni el loop principal.
+
 ## Sobre mí · continuidad, portales y color · 28 de noviembre de 2026
 
 El usuario pide mayor cercanía al modelo «Landing — scroll driven.html»: menos sensación de pantallas aisladas, más presencia del logo y nueva paleta. Las transiciones de escritorio usan aperturas SVG con el trazado exacto del logo, expansión y giro ligados al scroll; conservar la escena saliente hasta quedar cubierta. El mismo símbolo aparece en las composiciones y en el retrato pendiente, sin inventar una foto personal. Trabajo usa #D3532E, Gustos combina #EDEDED y #01A2F2, Credenciales usa #03B047, con texto negro. No recuperar difference.

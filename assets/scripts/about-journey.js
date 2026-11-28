@@ -1,12 +1,13 @@
-/* About: one native scroll, four chapters. No timed playback or wheel hijacking. */
+/* About follows the six-scene timeline of Landing — scroll driven.html. */
 (() => {
-  window.createAboutJourney = ({ scroller, root, makeImage, work, interests, portrait = null, initial = 'testament', onChapter, openProject, close }) => {
+  window.createAboutJourney = ({ scroller, root, makeImage, work, interests, portrait = null, initial = 'opening', onChapter, openProject, close }) => {
     const controller = new AbortController(), { signal } = controller;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const compact = matchMedia('(max-width: 700px)');
-    const chapters = [['testament', 'Quién soy'], ['work', 'Mi trabajo'], ['interests', 'Gustos'], ['credentials', 'Credenciales']];
-    const portals = [[0, 0], [.18, .30], [.54, .66], [.77, .89]];
-    const starts = [0, .27, .635, .865], destinations = [.025, .36, .71, .95];
+    const chapters = [['opening', 'Santiago Barbieri'], ['testament', 'Quién soy'], ['work', 'Mi trabajo'], ['interests', 'Gustos'], ['credentials', 'Credenciales'], ['ending', 'Proyectos']];
+    // Original reference: five logo portals, six scenes, identical scroll intervals.
+    const portals = [[0,0], [.03,.14], [.30,.38], [.52,.60], [.74,.81], [.90,.97]];
+    const starts = [0,.14,.38,.60,.81,.97], destinations = [0,.23,.41,.68,.87,1];
     let frame = 0, resizeFrame = 0, disposed = false, linear = false, active = -1, max = 1, railTravel = 0, rendered = null, lastTime = 0;
     const node = (tag, className, text) => {
       const n = document.createElement(tag); if (className) n.className = className;
@@ -14,7 +15,8 @@
     };
     const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
     const segment = (p, a, b) => clamp((p - a) / (b - a));
-    const ease = t => t * t * (3 - 2 * t);
+    const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+    const easeOut = t => 1 - Math.pow(1-t,3);
     const label = text => node('span', 'about-label', text);
     const track = node('div', 'about-track'), stage = node('div', 'about-stage');
     // Reuse the portfolio mark exactly; the logo is also the transition aperture.
@@ -35,7 +37,8 @@
       const section = node('section', `about-scene about-scene--${key}`); section.dataset.aboutChapter = key;
       section.id = `about-${key}`; section.setAttribute('aria-label', title);
       const content = node('div', 'about-scene__content');
-      const ghost = mark('about-scene__mark'); section.append(ghost, content); stage.append(section);
+      if (key === 'work') section.append(mark('about-scene__mark'));
+      section.append(content); stage.append(section);
       if (i) {
         const clip = document.createElementNS(NS,'clipPath'); clip.id = `${token}-${i}`; clip.setAttribute('clipPathUnits','userSpaceOnUse');
         const path = document.createElementNS(NS,'path'); path.setAttribute('d',logoPath); clip.append(path); defs.append(clip); portalPaths[i] = {path,id:clip.id};
@@ -45,9 +48,13 @@
       button.addEventListener('click', () => goTo(i)); index.append(button);
       return { section, content, button };
     });
+    const welcome = node('div','about-welcome');
+    const heroLogo = mark('about-welcome__mark');
+    welcome.append(heroLogo,node('h2','about-welcome__name','Santiago Barbieri'),node('p','about-welcome__line','Diseño, dirección creativa y fotografía.'));
+    scenes[0].content.append(welcome);
     const intro = node('div', 'about-intro');
     const introCopy = node('div', 'about-intro__copy');
-    introCopy.append(mark('about-intro__mark'), label('Sobre mí'), node('h2', 'about-title about-title--hello', 'Hola, soy Santiago.'));
+    introCopy.append(label('Sobre mí'), node('h2', 'about-title about-title--hello', 'Hola, soy Santiago.'));
     introCopy.append(node('p', 'about-intro__lead', 'Diseñador gráfico, director creativo, desarrollador web y fotógrafo.'));
     const identity = node('div', 'about-intro__identity');
     identity.append(node('p', 'about-copy', 'Soy cofundador y director creativo de Apolo Studios. Trabajo en identidades, prendas, campañas y experiencias digitales.'));
@@ -57,11 +64,10 @@
     if (portrait) { portraitField.append(makeImage(portrait, false), node('figcaption', '', 'Santiago Barbieri')); }
     else {
       // A personal photograph must be supplied by Santiago; never substitute a campaign model.
-      portraitField.append(mark('about-portrait__mark'), node('figcaption', '', 'Retrato por incorporar'));
-      portraitField.firstChild.setAttribute('aria-hidden', 'true');
+      portraitField.append(node('figcaption', '', 'Retrato por incorporar'));
     }
     const introAside = node('div', 'about-intro__aside'); introAside.append(portraitField, identity);
-    intro.append(introCopy, introAside); scenes[0].content.append(intro);
+    intro.append(introCopy, introAside); scenes[1].content.append(intro);
 
     const workHeader = node('header', 'about-work__header');
     workHeader.append(label('Mi trabajo'), node('h2', 'about-title', 'De una idea a una pieza.'));
@@ -74,7 +80,7 @@
       caption.append(node('h3', '', item.name), node('p', '', item.detail), label(item.year));
       card.append(button, caption); rail.append(card);
     });
-    railWindow.append(rail); scenes[1].content.append(workHeader, railWindow);
+    railWindow.append(rail); scenes[2].content.append(workHeader, railWindow);
 
     const taste = node('div', 'about-interests'), tasteCopy = node('header', 'about-interests__copy');
     tasteCopy.append(label('Gustos'), node('h2', 'about-title', 'Lo que miro. Lo que escucho.'), node('p', 'about-copy', 'Música, cine, diseño y fotografía.'));
@@ -83,7 +89,7 @@
       const figure = node('figure', `about-interest about-interest--${item.kind}`);
       figure.append(makeImage(item.image, false), node('figcaption', '', item.label)); collage.append(figure);
     });
-    taste.append(tasteCopy, collage); scenes[2].content.append(taste);
+    taste.append(tasteCopy, collage); scenes[3].content.append(taste);
 
     const credentials = node('div', 'about-accreditations');
     credentials.append(label('Formación'), node('h2', 'about-title', 'Credenciales.'));
@@ -93,7 +99,16 @@
     const closing = node('div', 'about-accreditations__closing');
     closing.append(node('p', 'about-copy', 'El resto está en los proyectos.'));
     const returnButton = node('button', 'about-return', 'Volver a proyectos'); returnButton.type = 'button'; returnButton.addEventListener('click', close);
-    closing.append(returnButton); credentials.append(closing); scenes[3].content.append(credentials);
+    closing.append(returnButton); scenes[4].content.append(credentials);
+    const ending = node('div','about-ending');
+    ending.append(label('Proyectos'),node('h2','about-title','Seguí mirando.'),closing);
+    const projectLinks = node('div','about-ending__projects');
+    work.forEach(item=>{
+      const button = node('button','about-ending__project');button.type='button';button.dataset.aboutProject=item.slug;
+      button.setAttribute('aria-label',`Abrir ${item.name}`);button.append(makeImage(item.image,false),node('span','',item.name));
+      button.addEventListener('click',()=>openProject(item.slug));projectLinks.append(button);
+    });
+    ending.append(projectLinks);scenes[5].content.append(ending);
     const controls = node('nav', 'about-controls'); controls.setAttribute('aria-label', 'Recorrer Sobre mí');
     const current = node('span', 'about-controls__current');
     const arrows = [-1, 1].map(direction => {
@@ -117,9 +132,9 @@
         if (!linear) { scene.section.inert = n !== i; scene.section.setAttribute('aria-hidden', String(n !== i)); }
         else { scene.section.inert = false; scene.section.removeAttribute('aria-hidden'); }
       });
-      current.textContent = `${String(i + 1).padStart(2, '0')} / 04 · ${chapters[i][1]}`;
+      current.textContent = `${String(i + 1).padStart(2, '0')} / 06 · ${chapters[i][1]}`;
       arrows[0].disabled = i === 0; arrows[1].disabled = i === scenes.length - 1;
-      status.textContent = `${chapters[i][1]}. Capítulo ${i + 1} de 4.`;
+      status.textContent = `${chapters[i][1]}. Capítulo ${i + 1} de 6.`;
       onChapter(chapters[i][0]);
     }
     function paint(time = performance.now()) {
@@ -138,8 +153,9 @@
       const target = clamp(y / max);
       const dt = lastTime ? Math.min(40, time - lastTime) : 16; lastTime = time;
       if (rendered === null) rendered = target;
-      rendered += (target - rendered) * (1 - Math.exp(-dt / 85));
+      rendered += (target - rendered) * (1 - Math.exp(-dt / 158));
       if (Math.abs(target - rendered) < .00001) rendered = target;
+      const velocity = target - rendered;
       const p = rendered; root.style.setProperty('--about-progress', String(p));
       let chapter = 0;
       scenes.forEach((scene, i) => {
@@ -148,23 +164,52 @@
         scene.section.style.visibility = reveal > 0 && !covered ? 'visible' : 'hidden';
         if (i && reveal > 0 && reveal < 1) {
           const width = stage.clientWidth, height = stage.clientHeight;
-          const t = ease(reveal), scale = .35 * Math.pow((Math.max(width,height) * 1.5) / .35, t);
-          const angle = (1 - reveal) ** 2 * (i % 2 ? -38 : 38);
-          portalPaths[i].path.setAttribute('transform', `translate(${width*.56} ${height*.52}) rotate(${angle}) scale(${scale}) translate(-25 -25)`);
+          const hero = heroLogo.getBoundingClientRect(), stageRect = stage.getBoundingClientRect();
+          const s0 = i === 1 ? hero.width / 50 : .3;
+          const sEnd = Math.max(height / 4.8, width / 24) * 1.1;
+          const scale = s0 * Math.pow(sEnd / s0, ease(reveal));
+          const angle = -50 * Math.pow(1 - Math.min(1,reveal / .8),2) * (i % 2 ? 1 : -1);
+          const x = i === 1 ? hero.left + hero.width/2 - stageRect.left : width/2;
+          const y = i === 1 ? hero.top + hero.height/2 - stageRect.top : height/2;
+          portalPaths[i].path.setAttribute('transform', `translate(${x} ${y}) rotate(${angle}) scale(${scale}) translate(-25 -25)`);
           scene.section.style.clipPath = `url(#${portalPaths[i].id})`;
         } else scene.section.style.clipPath = 'none';
-        scene.content.style.setProperty('--chapter-enter', String(ease(segment(reveal,.18,.9))));
-        const local = segment(p, i ? portals[i][0] : 0, i < 3 ? portals[i+1][1] : 1);
-        scene.section.querySelector('.about-scene__mark').style.transform = `translate(-50%,-50%) rotate(${local*75 - 20}deg) scale(${1 + local*.18})`;
+        scene.content.style.setProperty('--chapter-enter','1');
         if (i && p >= starts[i]) chapter = i;
       });
-      const q = segment(p, .31, .57);
-      rail.style.transform = `translate3d(${-q * railTravel}px,0,0)`;
-      [...collage.children].forEach((piece, i) => {
-        const q = segment(p, .60, .82), offset = (1 - ease(segment(q, 0, .48))) * (i % 2 ? 70 : -70);
-        piece.style.transform = `translate3d(${offset}px,${(q - .5) * (i % 2 ? -65 : 65)}px,0)`;
+      // Every scene has its own choreography, taken from the reference timeline.
+      welcome.style.opacity = String(1-segment(p,0,.05));
+      welcome.style.transform = `translateY(${-segment(p,0,.05)*30}px)`;
+      const introProgress = segment(p,.08,.28);
+      [introCopy.querySelector('h2'),introCopy.querySelector('.about-intro__lead'),identity].forEach((part,i)=>{
+        const t = easeOut(segment(introProgress,i*.12,.38+i*.12));
+        part.style.opacity = String(t); part.style.transform = `translateY(${(1-t)*32}px)`;
       });
-      hint.style.opacity = String(1 - segment(p, .01, .055)); setChapter(chapter);
+      const portraitReveal = easeOut(segment(introProgress,.05,.60));
+      portraitField.style.clipPath = `inset(${(1-portraitReveal)*100}% 0 0 0)`;
+      const portraitImage = portraitField.querySelector('img');
+      if (portraitImage) portraitImage.style.transform = `scale(${1.35-.35*portraitReveal})`;
+      const q = segment(p,.33,.52), x = -q*railTravel;
+      rail.style.transform = `translate3d(${x}px,0,0) skewX(${clamp(velocity*-160,-8,8)}deg)`;
+      [...rail.children].forEach(card=>{
+        const center = card.offsetLeft + card.offsetWidth/2 + x - rail.offsetLeft;
+        const distance = clamp(Math.abs(center-railWindow.clientWidth/2)/railWindow.clientWidth);
+        card.style.transform = `scale(${1-.14*distance})`;
+      });
+      scenes[2].section.querySelector('.about-scene__mark').style.transform = `translate(-50%,-50%) rotate(${q*180}deg)`;
+      const tasteProgress = segment(p,.55,.74);
+      [...collage.children].forEach((piece,i)=>{
+        const t = easeOut(segment(tasteProgress,i*.06,.3+i*.06));
+        const travel = (.5-tasteProgress) * [.5,.6,.5,.5][i] * stage.clientHeight * .4;
+        piece.style.opacity = String(t);
+        piece.style.transform = `translateY(${travel+(1-t)*stage.clientHeight*.08}px) scale(${.6+.4*t}) rotate(${(1-t)*(i%2?8:-8)}deg)`;
+      });
+      const credentialProgress = segment(p,.77,.89);
+      [...credentials.querySelectorAll('.about-accreditation')].forEach((row,i)=>{
+        const t = easeOut(segment(credentialProgress,i*.08,.4+i*.08));
+        row.style.opacity = String(t);row.style.transform = `translateX(${(1-t)*(i%2?1:-1)*8}vw)`;
+      });
+      hint.style.opacity = String(1 - segment(p, 0, .01)); setChapter(chapter);
       if (rendered !== target) requestPaint();
     }
     function requestPaint() { if (!frame && !disposed) frame = requestAnimationFrame(paint); }
@@ -192,7 +237,9 @@
         scene.section.style.removeProperty('visibility'); scene.section.style.removeProperty('clip-path');
         scene.content.style.removeProperty('--chapter-enter'); scene.section.inert = false; scene.section.removeAttribute('aria-hidden');
       });
-      rail.style.removeProperty('transform'); [...collage.children].forEach(n => n.style.removeProperty('transform'));
+      rail.style.removeProperty('transform');
+      [welcome,...rail.children,...collage.children,...credentials.querySelectorAll('.about-accreditation'),introCopy.querySelector('h2'),introCopy.querySelector('.about-intro__lead'),identity].forEach(n=>{n.style.removeProperty('transform');n.style.removeProperty('opacity')});
+      portraitField.style.removeProperty('clip-path');portraitField.querySelector('img')?.style.removeProperty('transform');
       active = -1; rendered = null; lastTime = 0;
       if (keepChapter && previousLinear !== linear) goTo(selected, true);
       else if (keepChapter && !linear) scroller.scrollTop = progress * max;
