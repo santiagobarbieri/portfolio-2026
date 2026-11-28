@@ -1,5 +1,9 @@
 # AGENTS.md — Santiago Barbieri · Portfolio
 
+## Firma compacta y cierre persistente en Sobre mí · 28 de noviembre de 2026
+
+Esta indicación reemplaza el cierre al final del recorrido. La firma de Sobre mí usa las variables compartidas de las cajas (--ui-box-width, --ui-box-height y --ui-box-font), con marca de 17px. El botón CERRAR queda a su lado en una barra fija, visible y operable desde cualquier escena, fuera de los clips y de los contenedores inert. No duplicarlo al final ni recuperar el nav. Conservar el recorrido y la solapa verde.
+
 ## Sobre mí · prueba mínima del modelo y entrada por solapa verde · 28 de noviembre de 2026
 
 Esta indicación sustituye la adaptación anterior de Sobre mí con cinco acentos, contenido editorial y controles de capítulos. Conservar la sucesión, intervalos, geometría y amortiguación de «Landing — scroll driven.html» como estudio de movimiento: bienvenida con logo, presentación, tira horizontal, collage, filas y cierre. Usar únicamente verde #03B047, negro y gris claro #EDEDED en los campos del recorrido. Reemplazar solo algunas piezas por imágenes existentes de trabajo/archivo personal; mantener los demás espacios abstractos del modelo, sin inventar biografía, preferencias, credenciales ni retrato. El contenido final se decidirá después.

@@ -1,5 +1,9 @@
 # Santiago Barbieri — Portfolio
 
+## Sobre mí · firma y cierre · 28 de noviembre de 2026
+
+La firma comparte escala con las demás cajas de la interfaz. Cerrar está siempre visible a su lado durante todo el recorrido; conserva la salida por solapa verde y el acceso con teclado.
+
 ## Sobre mí · estudio mínimo y solapa verde · 28 de noviembre de 2026
 
 Nueva prueba basada en la sucesión de `Landing — scroll driven.html`, con la paleta de Sobre mí: verde, negro y gris claro. Mantiene los portales del logo, el desplazamiento horizontal, el collage y las entradas de filas del modelo. Solo unas pocas imágenes reales sustituyen sus placeholders; el retrato y los contenidos finales siguen pendientes.

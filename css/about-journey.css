@@ -11,8 +11,9 @@ body[data-about-journey] .study-page::-webkit-scrollbar { display:none; }
 .about-model-scene--testament,.about-model-scene--interests,.about-model-scene--ending { background:var(--about-paper);color:var(--about-ink); }
 .about-model-scene--work { background:var(--about-ink);color:var(--about-green); }
 .about-model-scene--credentials { background:var(--about-green);color:var(--about-ink); }
-.about-model-signature { position:fixed;z-index:55;left:clamp(14px,2.5vw,38px);top:clamp(14px,2.5vw,38px);display:flex;align-items:center;gap:12px;padding:8px 12px;background:#111;color:#fff;font-size:clamp(17px,1.7vw,28px);font-weight:400;line-height:1.2; }
-.about-model-signature__mark { display:block;width:32px;height:32px;flex:none;fill:currentColor; }
+.about-model-toolbar { position:fixed;z-index:55;left:var(--shell-edge,16px);top:var(--shell-top,32px);display:flex;align-items:stretch;gap:6px;max-width:calc(100% - var(--shell-edge,16px)*2); }
+.about-model-signature { box-sizing:border-box;display:flex;align-items:center;gap:6px;width:max-content;min-width:var(--ui-box-width);min-height:var(--ui-box-height);padding:4px 8px;border:1px solid #111;background:#111;color:#fff;font-size:var(--ui-box-font);font-weight:400;line-height:1.15;white-space:nowrap; }
+.about-model-signature__mark { display:block;width:17px;height:17px;flex:none;fill:currentColor; }
 .about-model-bar { display:block;height:24px;width:var(--bar-width,100%);background:currentColor;transform-origin:left; }
 .about-model-bar--text { height:10px;opacity:.35; }
 .about-model-placeholder { position:relative;overflow:hidden;background:color-mix(in srgb,currentColor 12%,transparent); }
@@ -47,9 +48,11 @@ body[data-about-journey] .study-page::-webkit-scrollbar { display:none; }
 .about-model-rule { position:absolute;left:0;right:0;top:0;height:1px;background:currentColor;opacity:.5;transform-origin:left; }
 .about-model-marquee { position:absolute;left:0;top:50%;display:flex;gap:6vw;width:max-content;margin-top:-30vmin;opacity:.07; }
 .about-model-marquee svg { width:60vmin;height:60vmin;fill:currentColor; }
-.about-model-close { display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 24px;background:#111;color:#fff;font-size:20px;transition:translate 180ms; }
-.about-model-close:is(:hover,:focus-visible) { translate:0 -3px; }
-.about-model-close:focus-visible { outline:2px solid #111;outline-offset:5px; }
+.about-model-close { box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:var(--ui-box-height);padding:4px 8px;border:1px solid #111;background:#111;color:#fff;font-size:var(--ui-box-font);line-height:1.15;white-space:nowrap;transition:translate 180ms; }
+.about-model-close:is(:hover,:focus-visible) { translate:0 -2px; }
+.about-model-close > span:last-child { transition:rotate 180ms; }
+.about-model-close:is(:hover,:focus-visible) > span:last-child { rotate:90deg; }
+.about-model-close:focus-visible { outline:2px solid #111;outline-offset:3px; }
 .about-journey--linear .about-model-track { height:auto; }
 .about-journey--linear .about-model-stage { position:relative;height:auto;overflow:visible; }
 .about-journey--linear .about-model-scene { position:relative;min-height:var(--about-screen);visibility:visible;padding:100px 20px 40px; }
@@ -58,8 +61,6 @@ body[data-about-journey] .study-page::-webkit-scrollbar { display:none; }
 .about-journey--linear .about-model-collage { position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:100%; }
 .about-journey--linear .about-model-piece { position:relative;left:auto!important;top:auto!important;width:100%!important; }
 @media(max-width:700px) {
- .about-model-signature { gap:8px;padding:7px 9px;font-size:17px; }
- .about-model-signature__mark { width:24px;height:24px; }
  .about-model-intro { grid-template-columns:1fr;gap:4vh; }
  .about-model-portrait { aspect-ratio:16/10;max-height:30vh; }
  .about-model-panel { flex-basis:78vw; }
@@ -70,5 +71,6 @@ body[data-about-journey] .study-page::-webkit-scrollbar { display:none; }
 @media(prefers-reduced-motion:reduce) {
  .is-ready .about-model-hero__mark path { animation:none;fill:currentColor;stroke:none; }
  .about-model-close { transition:none;translate:none!important; }
+ .about-model-close > span:last-child { transition:none;rotate:none!important; }
  .about-model-hero > .about-model-bar { transition:none; }
 }

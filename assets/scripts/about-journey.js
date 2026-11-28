@@ -27,6 +27,7 @@
       if(i){const cp=document.createElementNS(NS,'clipPath');cp.id=token+i;cp.setAttribute('clipPathUnits','userSpaceOnUse');const path=document.createElementNS(NS,'path');path.setAttribute('d',D);cp.append(path);defs.append(cp);paths[i]={path,id:cp.id};}
       return el;
     });
+    const toolbar=node('div','about-model-toolbar');
     const signature=node('div','about-model-signature');signature.append(mark('about-model-signature__mark'),node('span','','SANTIAGO BARBIERI'));
     const hero=node('div','about-model-hero'),heroLogo=mark('about-model-hero__mark');hero.append(heroLogo,bar(100,true),bar(55));scenes[0].append(hero);
     const intro=node('div','about-model-intro'),copy=node('div','about-model-copy');
@@ -41,8 +42,9 @@
     const marquee=node('div','about-model-marquee');for(let i=0;i<8;i++)marquee.append(mark(''));scenes[4].append(marquee);
     const rows=node('div','about-model-rows');const rowWidths=[[40,80,30],[55,90,25],[35,70,35],[60,85,20],[45,75,30],[50,88,28]];
     const rowNodes=rowWidths.map(widths=>{const row=node('div','about-model-row');row.append(node('i','about-model-rule'),...widths.map((w,i)=>bar(w,i===0)));rows.append(row);return row});scenes[4].append(rows);
-    const closeButton=node('button','about-model-close','CERRAR ×');closeButton.type='button';closeButton.addEventListener('click',close,{signal});scenes[5].append(closeButton);
-    root.append(signature,track);document.body.dataset.aboutJourney='true';
+    const closeButton=node('button','about-model-close');closeButton.type='button';closeButton.setAttribute('aria-label','Cerrar Sobre mí');
+    const closeIcon=node('span','','×');closeIcon.setAttribute('aria-hidden','true');closeButton.append(node('span','','CERRAR'),closeIcon);closeButton.addEventListener('click',close,{signal});
+    toolbar.append(signature,closeButton);root.append(toolbar,track);document.body.dataset.aboutJourney='true';
     const readyObserver=new MutationObserver(()=>{if(!document.body.hasAttribute('data-section-loading')&&!document.querySelector('.study-section-loader')){root.classList.add('is-ready');readyObserver.disconnect()}});
     readyObserver.observe(document.body,{attributes:true,attributeFilter:['data-section-loading'],childList:true});
     function setChapter(i){if(i===active)return;active=i;root.dataset.chapter=keys[i];scenes.forEach((el,n)=>{el.inert=!linear&&n!==i;if(!linear)el.setAttribute('aria-hidden',String(n!==i));else el.removeAttribute('aria-hidden')});onChapter(keys[i])}
